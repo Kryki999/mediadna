@@ -1,0 +1,478 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+/* Media DNA Studio — dark mode premium palette */
+:root {
+  --background: oklch(0 0 0);
+  --foreground: oklch(0.99 0 0);
+
+  --card: oklch(0.14 0.004 240);
+  --card-foreground: oklch(0.985 0 0);
+
+  --popover: oklch(0.14 0.004 240);
+  --popover-foreground: oklch(0.985 0 0);
+
+  --primary: rgb(0, 85, 255);
+  --primary-foreground: #ffffff;
+
+  --secondary: oklch(0.18 0.006 240);
+  --secondary-foreground: oklch(0.975 0 0);
+
+  --muted: oklch(0.18 0.006 240);
+  --muted-foreground: oklch(0.76 0.006 240);
+
+  --accent: oklch(0.2 0.012 235);
+  --accent-foreground: oklch(0.985 0 0);
+
+  --destructive: oklch(0.65 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+
+  --border: oklch(0.28 0.01 240 / 0.45);
+  --input: oklch(0.28 0.01 240 / 0.45);
+  --ring: rgb(0, 85, 255);
+
+  --chart-1: rgb(0, 85, 255);
+  --chart-2: #1e69ff;
+  --chart-3: #3b7cff;
+  --chart-4: #5a90ff;
+  --chart-5: #7aa6ff;
+
+  --radius: 0.75rem;
+
+  --sidebar: oklch(0.1 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: rgb(0, 85, 255);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: oklch(0.2 0.012 235);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.28 0.01 240 / 0.45);
+  --sidebar-ring: rgb(0, 85, 255);
+}
+
+@theme inline {
+  --font-sans: var(--font-sans), 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono), 'Geist Mono', ui-monospace, monospace;
+  --font-serif: var(--font-serif), 'Instrument Serif', ui-serif, Georgia, serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: 'ss01', 'cv11';
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Editorial display headings — Archivo Black (real 900 weight). */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-sans);
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+
+  h1,
+  h2 {
+    font-weight: 900;
+    line-height: 1.02;
+  }
+
+  h3,
+  h4 {
+    font-weight: 800;
+    line-height: 1.1;
+  }
+
+  h5,
+  h6 {
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@layer utilities {
+  /* Infinite horizontal marquee */
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  .animate-marquee {
+    animation: marquee 40s linear infinite;
+  }
+
+  /* Subtle float for floating badges */
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  /* Soft pulsing glow */
+  @keyframes glow-pulse {
+    0%,
+    100% {
+      opacity: 0.55;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  .animate-glow {
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+
+  .dna-glow {
+    box-shadow: 0 0 0.75rem color-mix(in oklab, var(--primary) 45%, transparent);
+  }
+
+  .text-brand-fade {
+    background-image: linear-gradient(
+      90deg,
+      color-mix(in oklab, var(--primary) 90%, white 10%),
+      color-mix(in oklab, var(--primary) 55%, white 45%),
+      color-mix(in oklab, var(--primary) 92%, white 8%)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Signature luminance fade for display headings — mirrors the website-shredder treatment. */
+  .text-display-fade {
+    background-image: linear-gradient(
+      to bottom,
+      oklch(1 0 0) 0%,
+      oklch(0.92 0 0) 55%,
+      oklch(0.72 0 0) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Strong subhead baseline — matches the shredder paragraph mass. */
+  .text-subhead {
+    font-weight: 500;
+    color: oklch(0.76 0.006 240);
+    letter-spacing: -0.005em;
+  }
+
+  /* Slow spin for rotating orbits */
+  @keyframes slow-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .animate-slow-spin {
+    animation: slow-spin 40s linear infinite;
+  }
+
+  @keyframes scroll-up-slow {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(calc(-50% - 0.5rem));
+    }
+  }
+  .animate-scroll-up-slow {
+    animation: scroll-up-slow 24s linear infinite;
+  }
+
+  @keyframes scroll-down-slow {
+    from {
+      transform: translateY(calc(-50% - 0.5rem));
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  .animate-scroll-down-slow {
+    animation: scroll-down-slow 24s linear infinite;
+  }
+
+  @keyframes eco-bar-pulse {
+    0% {
+      transform: scaleY(0.35);
+      opacity: 0.45;
+    }
+    100% {
+      transform: scaleY(1);
+      opacity: 1;
+    }
+  }
+  .eco-growth-bar {
+    height: var(--bar-height, 60%);
+    min-height: 14px;
+    opacity: 0.85;
+    transform-origin: bottom;
+    transform: scaleY(1);
+    background: linear-gradient(
+      180deg,
+      rgba(110, 170, 255, 1) 0%,
+      rgba(47, 124, 255, 0.9) 45%,
+      rgba(47, 124, 255, 0.35) 100%
+    );
+    box-shadow: 0 0 22px rgba(47, 124, 255, 0.4);
+  }
+  .eco-growth-bar.is-active {
+    animation: eco-bar-pulse 1100ms cubic-bezier(0.2, 0.8, 0.2, 1) var(--bar-delay, 0ms) 1 forwards;
+  }
+
+  .card-line.dragging {
+    cursor: grabbing;
+  }
+
+  .card-wrapper {
+    position: relative;
+    width: 400px;
+    height: 250px;
+    flex-shrink: 0;
+  }
+
+  .card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 400px;
+    height: 250px;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+
+  .card-normal {
+    background: transparent;
+    box-shadow: 0 15px 40px rgb(0 0 0 / 40%);
+    z-index: 2;
+    clip-path: inset(0 0 0 var(--clip-right, 0%));
+  }
+
+  .card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    filter: brightness(1.1) contrast(1.1);
+    box-shadow: inset 0 0 20px rgb(0 0 0 / 10%);
+  }
+
+  .card-ascii {
+    background: transparent;
+    z-index: 1;
+    clip-path: inset(0 calc(100% - var(--clip-left, 0%)) 0 0);
+  }
+
+  .ascii-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: rgb(220 210 255 / 60%);
+    font-family: Courier New, monospace;
+    font-size: 11px;
+    line-height: 13px;
+    white-space: pre;
+    animation: glitch 0.1s infinite linear alternate-reverse;
+    margin: 0;
+    padding: 0;
+    mask-image: linear-gradient(to right, rgb(0 0 0 / 100%) 0%, rgb(0 0 0 / 80%) 30%, rgb(0 0 0 / 60%) 50%, rgb(0 0 0 / 40%) 80%, rgb(0 0 0 / 20%) 100%);
+  }
+
+  @keyframes glitch {
+    0% { opacity: 1; }
+    15% { opacity: 0.9; }
+    16% { opacity: 1; }
+    49% { opacity: 0.8; }
+    50% { opacity: 1; }
+    99% { opacity: 0.9; }
+    100% { opacity: 1; }
+  }
+
+  .scan-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgb(0 255 255 / 40%), transparent);
+    animation: scanEffect 0.6s ease-out;
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  @keyframes scanEffect {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    50% { opacity: 1; }
+    100% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+
+  /* Hide scrollbars on horizontal carousels */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+
+  /* Lead Machine — tactical grid background with radial fade. */
+  .lead-grid-bg {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    background-size: 44px 44px;
+    background-position: center;
+    -webkit-mask-image: radial-gradient(ellipse at center, black 45%, transparent 82%);
+    mask-image: radial-gradient(ellipse at center, black 45%, transparent 82%);
+  }
+
+  /* Lead Machine — central glassmorphism hub. */
+  .lead-hub-glass {
+    background:
+      linear-gradient(180deg, rgba(20, 22, 30, 0.72), rgba(8, 9, 12, 0.72));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    -webkit-backdrop-filter: blur(14px) saturate(120%);
+    backdrop-filter: blur(14px) saturate(120%);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      0 0 0 1px rgba(0, 85, 255, 0.18),
+      0 30px 80px rgba(0, 85, 255, 0.18);
+  }
+
+  @keyframes lead-hub-halo {
+    0%,
+    100% {
+      opacity: 0.55;
+      transform: translate(-50%, -50%) scale(0.92);
+    }
+    50% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.08);
+    }
+  }
+  .lead-hub-halo {
+    animation: lead-hub-halo 4.2s ease-in-out infinite;
+  }
+
+  /* Softer card surface reused by loot cards / generator tiles. */
+  .lead-tile {
+    background:
+      linear-gradient(180deg, rgba(20, 22, 30, 0.9), rgba(10, 11, 15, 0.92));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      0 12px 36px rgba(0, 0, 0, 0.45);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lead-hub-halo {
+      animation: none !important;
+    }
+  }
+
+  @keyframes matrix-dna-pulse {
+    0%,
+    100% {
+      filter: drop-shadow(0 0 0 rgba(47, 124, 255, 0));
+      transform: scale(1);
+    }
+    50% {
+      filter: drop-shadow(0 0 7px rgba(47, 124, 255, 0.85));
+      transform: scale(1.08);
+    }
+  }
+  .group:hover .matrix-dna-icon {
+    animation: matrix-dna-pulse 900ms ease-in-out infinite;
+  }
+
+  .matrix-hero-mask {
+    mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee,
+    .animate-float,
+    .animate-glow,
+    .animate-slow-spin,
+    .animate-scroll-up-slow,
+    .animate-scroll-down-slow,
+    .eco-growth-bar,
+    .group:hover .matrix-dna-icon {
+      animation: none !important;
+    }
+  }
+}

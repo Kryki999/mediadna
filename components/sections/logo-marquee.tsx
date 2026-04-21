@@ -1,0 +1,42 @@
+const logos = [
+  "NORTHLINE",
+  "OBSIDIAN",
+  "MERIDIAN°",
+  "ATLAS / CO",
+  "VANTAGE",
+  "KRONOS",
+  "HELIOS",
+  "NOVA·LAB",
+]
+
+export function LogoMarquee() {
+  return (
+    <section
+      aria-label="Marki, które nam zaufały"
+      className="relative border-y border-border bg-background py-10 md:py-14"
+    >
+      <div className="mx-auto mb-8 w-full max-w-[1400px] px-5 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+        <p className="text-center text-xs uppercase tracking-[0.24em] text-muted-foreground">
+          Zaufali nam liderzy w swoich branżach
+        </p>
+      </div>
+
+      <div className="group relative overflow-hidden">
+        {/* Edge fades */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-background to-transparent md:w-40" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-background to-transparent md:w-40" />
+
+        <div className="flex w-max animate-marquee gap-14 md:gap-20">
+          {[...logos, ...logos].map((l, i) => (
+            <span
+              key={`${l}-${i}`}
+              className="shrink-0 text-2xl font-extrabold tracking-tight text-muted-foreground/70 transition-colors hover:text-foreground md:text-4xl"
+            >
+              {l}
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}

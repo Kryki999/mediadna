@@ -1,0 +1,28154 @@
+﻿(function(){
+const e=document.createElement("link").relList;
+if(e&&e.supports&&e.supports("modulepreload"))return;
+for(const r of document.querySelectorAll('link[rel="modulepreload"]'))i(r);
+new MutationObserver(r=>{
+for(const l of r)if(l.type==="childList")for(const u of l.addedNodes)u.tagName==="LINK"&&u.rel==="modulepreload"&&i(u)}
+).observe(document,{
+childList:!0,subtree:!0}
+);
+function n(r){
+const l={
+}
+;
+return r.integrity&&(l.integrity=r.integrity),r.referrerPolicy&&(l.referrerPolicy=r.referrerPolicy),r.crossOrigin==="use-credentials"?l.credentials="include":r.crossOrigin==="anonymous"?l.credentials="omit":l.credentials="same-origin",l}
+function i(r){
+if(r.ep)return;
+r.ep=!0;
+const l=n(r);
+fetch(r.href,l)}
+}
+)();
+function cS(t){
+return t&&t.__esModule&&Object.prototype.hasOwnProperty.call(t,"default")?t.default:t}
+var Yd={
+exports:{
+}
+}
+,xr={
+}
+;
+/**
+ * @license React
+ * react-jsx-runtime.production.js
+ *
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */var Tv;
+function GC(){
+if(Tv)return xr;
+Tv=1;
+var t=Symbol.for("react.transitional.element"),e=Symbol.for("react.fragment");
+function n(i,r,l){
+var u=null;
+if(l!==void 0&&(u=""+l),r.key!==void 0&&(u=""+r.key),"key"in r){
+l={
+}
+;
+for(var d in r)d!=="key"&&(l[d]=r[d])}
+else l=r;
+return r=l.ref,{
+$$typeof:t,type:i,key:u,ref:r!==void 0?r:null,props:l}
+}
+return xr.Fragment=e,xr.jsx=n,xr.jsxs=n,xr}
+var Sv;
+function qC(){
+return Sv||(Sv=1,Yd.exports=GC()),Yd.exports}
+var E=qC(),jd={
+exports:{
+}
+}
+,fe={
+}
+;
+/**
+ * @license React
+ * react.production.js
+ *
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */var wv;
+function HC(){
+if(wv)return fe;
+wv=1;
+var t=Symbol.for("react.transitional.element"),e=Symbol.for("react.portal"),n=Symbol.for("react.fragment"),i=Symbol.for("react.strict_mode"),r=Symbol.for("react.profiler"),l=Symbol.for("react.consumer"),u=Symbol.for("react.context"),d=Symbol.for("react.forward_ref"),h=Symbol.for("react.suspense"),p=Symbol.for("react.memo"),g=Symbol.for("react.lazy"),_=Symbol.for("react.activity"),T=Symbol.iterator;
+function w(D){
+return D===null||typeof D!="object"?null:(D=T&&D[T]||D["@@iterator"],typeof D=="function"?D:null)}
+var A={
+isMounted:function(){
+return!1}
+,enqueueForceUpdate:function(){
+}
+,enqueueReplaceState:function(){
+}
+,enqueueSetState:function(){
+}
+}
+,C=Object.assign,x={
+}
+;
+function R(D,Y,Q){
+this.props=D,this.context=Y,this.refs=x,this.updater=Q||A}
+R.prototype.isReactComponent={
+}
+,R.prototype.setState=function(D,Y){
+if(typeof D!="object"&&typeof D!="function"&&D!=null)throw Error("takes an object of state variables to update or a function which returns an object of state variables.");
+this.updater.enqueueSetState(this,D,Y,"setState")}
+,R.prototype.forceUpdate=function(D){
+this.updater.enqueueForceUpdate(this,D,"forceUpdate")}
+;
+function k(){
+}
+k.prototype=R.prototype;
+function N(D,Y,Q){
+this.props=D,this.context=Y,this.refs=x,this.updater=Q||A}
+var O=N.prototype=new k;
+O.constructor=N,C(O,R.prototype),O.isPureReactComponent=!0;
+var F=Array.isArray;
+function z(){
+}
+var G={
+H:null,A:null,T:null,S:null}
+,X=Object.prototype.hasOwnProperty;
+function j(D,Y,Q){
+var ie=Q.ref;
+return{
+$$typeof:t,type:D,key:Y,ref:ie!==void 0?ie:null,props:Q}
+}
+function oe(D,Y){
+return j(D.type,Y,D.props)}
+function he(D){
+return typeof D=="object"&&D!==null&&D.$$typeof===t}
+function Ie(D){
+var Y={
+"=":"=0",":":"=2"}
+;
+return"$"+D.replace(/[=:]/g,function(Q){
+return Y[Q]}
+)}
+var Ae=/\/+/g;
+function $e(D,Y){
+return typeof D=="object"&&D!==null&&D.key!=null?Ie(""+D.key):Y.toString(36)}
+function mt(D){
+switch(D.status){
+case"fulfilled":return D.value;
+case"rejected":throw D.reason;
+default:switch(typeof D.status=="string"?D.then(z,z):(D.status="pending",D.then(function(Y){
+D.status==="pending"&&(D.status="fulfilled",D.value=Y)}
+,function(Y){
+D.status==="pending"&&(D.status="rejected",D.reason=Y)}
+)),D.status){
+case"fulfilled":return D.value;
+case"rejected":throw D.reason}
+}
+throw D}
+function q(D,Y,Q,ie,pe){
+var ve=typeof D;
+(ve==="undefined"||ve==="boolean")&&(D=null);
+var ke=!1;
+if(D===null)ke=!0;
+else switch(ve){
+case"bigint":case"string":case"number":ke=!0;
+break;
+case"object":switch(D.$$typeof){
+case t:case e:ke=!0;
+break;
+case g:return ke=D._init,q(ke(D._payload),Y,Q,ie,pe)}
+}
+if(ke)return pe=pe(D),ke=ie===""?"."+$e(D,0):ie,F(pe)?(Q="",ke!=null&&(Q=ke.replace(Ae,"$&/")+"/"),q(pe,Y,Q,"",function(Uo){
+return Uo}
+)):pe!=null&&(he(pe)&&(pe=oe(pe,Q+(pe.key==null||D&&D.key===pe.key?"":(""+pe.key).replace(Ae,"$&/")+"/")+ke)),Y.push(pe)),1;
+ke=0;
+var At=ie===""?".":ie+":";
+if(F(D))for(var Qe=0;
+Qe<D.length;
+Qe++)ie=D[Qe],ve=At+$e(ie,Qe),ke+=q(ie,Y,Q,ve,pe);
+else if(Qe=w(D),typeof Qe=="function")for(D=Qe.call(D),Qe=0;
+!(ie=D.next()).done;
+)ie=ie.value,ve=At+$e(ie,Qe++),ke+=q(ie,Y,Q,ve,pe);
+else if(ve==="object"){
+if(typeof D.then=="function")return q(mt(D),Y,Q,ie,pe);
+throw Y=String(D),Error("Objects are not valid as a React child (found: "+(Y==="[object Object]"?"object with keys {
+"+Object.keys(D).join(", ")+"}
+":Y)+"). If you meant to render a collection of children, use an array instead.")}
+return ke}
+function W(D,Y,Q){
+if(D==null)return D;
+var ie=[],pe=0;
+return q(D,ie,"","",function(ve){
+return Y.call(Q,ve,pe++)}
+),ie}
+function ee(D){
+if(D._status===-1){
+var Y=D._result;
+Y=Y(),Y.then(function(Q){
+(D._status===0||D._status===-1)&&(D._status=1,D._result=Q)}
+,function(Q){
+(D._status===0||D._status===-1)&&(D._status=2,D._result=Q)}
+),D._status===-1&&(D._status=0,D._result=Y)}
+if(D._status===1)return D._result.default;
+throw D._result}
+var Se=typeof reportError=="function"?reportError:function(D){
+if(typeof window=="object"&&typeof window.ErrorEvent=="function"){
+var Y=new window.ErrorEvent("error",{
+bubbles:!0,cancelable:!0,message:typeof D=="object"&&D!==null&&typeof D.message=="string"?String(D.message):String(D),error:D}
+);
+if(!window.dispatchEvent(Y))return}
+else if(typeof process=="object"&&typeof process.emit=="function"){
+process.emit("uncaughtException",D);
+return}
+console.error(D)}
+,Ce={
+map:W,forEach:function(D,Y,Q){
+W(D,function(){
+Y.apply(this,arguments)}
+,Q)}
+,count:function(D){
+var Y=0;
+return W(D,function(){
+Y++}
+),Y}
+,toArray:function(D){
+return W(D,function(Y){
+return Y}
+)||[]}
+,only:function(D){
+if(!he(D))throw Error("React.Children.only expected to receive a single React element child.");
+return D}
+}
+;
+return fe.Activity=_,fe.Children=Ce,fe.Component=R,fe.Fragment=n,fe.Profiler=r,fe.PureComponent=N,fe.StrictMode=i,fe.Suspense=h,fe.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE=G,fe.__COMPILER_RUNTIME={
+__proto__:null,c:function(D){
+return G.H.useMemoCache(D)}
+}
+,fe.cache=function(D){
+return function(){
+return D.apply(null,arguments)}
+}
+,fe.cacheSignal=function(){
+return null}
+,fe.cloneElement=function(D,Y,Q){
+if(D==null)throw Error("The argument must be a React element, but you passed "+D+".");
+var ie=C({
+}
+,D.props),pe=D.key;
+if(Y!=null)for(ve in Y.key!==void 0&&(pe=""+Y.key),Y)!X.call(Y,ve)||ve==="key"||ve==="__self"||ve==="__source"||ve==="ref"&&Y.ref===void 0||(ie[ve]=Y[ve]);
+var ve=arguments.length-2;
+if(ve===1)ie.children=Q;
+else if(1<ve){
+for(var ke=Array(ve),At=0;
+At<ve;
+At++)ke[At]=arguments[At+2];
+ie.children=ke}
+return j(D.type,pe,ie)}
+,fe.createContext=function(D){
+return D={
+$$typeof:u,_currentValue:D,_currentValue2:D,_threadCount:0,Provider:null,Consumer:null}
+,D.Provider=D,D.Consumer={
+$$typeof:l,_context:D}
+,D}
+,fe.createElement=function(D,Y,Q){
+var ie,pe={
+}
+,ve=null;
+if(Y!=null)for(ie in Y.key!==void 0&&(ve=""+Y.key),Y)X.call(Y,ie)&&ie!=="key"&&ie!=="__self"&&ie!=="__source"&&(pe[ie]=Y[ie]);
+var ke=arguments.length-2;
+if(ke===1)pe.children=Q;
+else if(1<ke){
+for(var At=Array(ke),Qe=0;
+Qe<ke;
+Qe++)At[Qe]=arguments[Qe+2];
+pe.children=At}
+if(D&&D.defaultProps)for(ie in ke=D.defaultProps,ke)pe[ie]===void 0&&(pe[ie]=ke[ie]);
+return j(D,ve,pe)}
+,fe.createRef=function(){
+return{
+current:null}
+}
+,fe.forwardRef=function(D){
+return{
+$$typeof:d,render:D}
+}
+,fe.isValidElement=he,fe.lazy=function(D){
+return{
+$$typeof:g,_payload:{
+_status:-1,_result:D}
+,_init:ee}
+}
+,fe.memo=function(D,Y){
+return{
+$$typeof:p,type:D,compare:Y===void 0?null:Y}
+}
+,fe.startTransition=function(D){
+var Y=G.T,Q={
+}
+;
+G.T=Q;
+try{
+var ie=D(),pe=G.S;
+pe!==null&&pe(Q,ie),typeof ie=="object"&&ie!==null&&typeof ie.then=="function"&&ie.then(z,Se)}
+catch(ve){
+Se(ve)}
+finally{
+Y!==null&&Q.types!==null&&(Y.types=Q.types),G.T=Y}
+}
+,fe.unstable_useCacheRefresh=function(){
+return G.H.useCacheRefresh()}
+,fe.use=function(D){
+return G.H.use(D)}
+,fe.useActionState=function(D,Y,Q){
+return G.H.useActionState(D,Y,Q)}
+,fe.useCallback=function(D,Y){
+return G.H.useCallback(D,Y)}
+,fe.useContext=function(D){
+return G.H.useContext(D)}
+,fe.useDebugValue=function(){
+}
+,fe.useDeferredValue=function(D,Y){
+return G.H.useDeferredValue(D,Y)}
+,fe.useEffect=function(D,Y){
+return G.H.useEffect(D,Y)}
+,fe.useEffectEvent=function(D){
+return G.H.useEffectEvent(D)}
+,fe.useId=function(){
+return G.H.useId()}
+,fe.useImperativeHandle=function(D,Y,Q){
+return G.H.useImperativeHandle(D,Y,Q)}
+,fe.useInsertionEffect=function(D,Y){
+return G.H.useInsertionEffect(D,Y)}
+,fe.useLayoutEffect=function(D,Y){
+return G.H.useLayoutEffect(D,Y)}
+,fe.useMemo=function(D,Y){
+return G.H.useMemo(D,Y)}
+,fe.useOptimistic=function(D,Y){
+return G.H.useOptimistic(D,Y)}
+,fe.useReducer=function(D,Y,Q){
+return G.H.useReducer(D,Y,Q)}
+,fe.useRef=function(D){
+return G.H.useRef(D)}
+,fe.useState=function(D){
+return G.H.useState(D)}
+,fe.useSyncExternalStore=function(D,Y,Q){
+return G.H.useSyncExternalStore(D,Y,Q)}
+,fe.useTransition=function(){
+return G.H.useTransition()}
+,fe.version="19.2.3",fe}
+var Ev;
+function Ch(){
+return Ev||(Ev=1,jd.exports=HC()),jd.exports}
+var J=Ch();
+const Pi=cS(J);
+var Wd={
+exports:{
+}
+}
+,Rr={
+}
+,Xd={
+exports:{
+}
+}
+,Qd={
+}
+;
+/**
+ * @license React
+ * scheduler.production.js
+ *
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */var bv;
+function zC(){
+return bv||(bv=1,(function(t){
+function e(q,W){
+var ee=q.length;
+q.push(W);
+e:for(;
+0<ee;
+){
+var Se=ee-1>>>1,Ce=q[Se];
+if(0<r(Ce,W))q[Se]=W,q[ee]=Ce,ee=Se;
+else break e}
+}
+function n(q){
+return q.length===0?null:q[0]}
+function i(q){
+if(q.length===0)return null;
+var W=q[0],ee=q.pop();
+if(ee!==W){
+q[0]=ee;
+e:for(var Se=0,Ce=q.length,D=Ce>>>1;
+Se<D;
+){
+var Y=2*(Se+1)-1,Q=q[Y],ie=Y+1,pe=q[ie];
+if(0>r(Q,ee))ie<Ce&&0>r(pe,Q)?(q[Se]=pe,q[ie]=ee,Se=ie):(q[Se]=Q,q[Y]=ee,Se=Y);
+else if(ie<Ce&&0>r(pe,ee))q[Se]=pe,q[ie]=ee,Se=ie;
+else break e}
+}
+return W}
+function r(q,W){
+var ee=q.sortIndex-W.sortIndex;
+return ee!==0?ee:q.id-W.id}
+if(t.unstable_now=void 0,typeof performance=="object"&&typeof performance.now=="function"){
+var l=performance;
+t.unstable_now=function(){
+return l.now()}
+}
+else{
+var u=Date,d=u.now();
+t.unstable_now=function(){
+return u.now()-d}
+}
+var h=[],p=[],g=1,_=null,T=3,w=!1,A=!1,C=!1,x=!1,R=typeof setTimeout=="function"?setTimeout:null,k=typeof clearTimeout=="function"?clearTimeout:null,N=typeof setImmediate<"u"?setImmediate:null;
+function O(q){
+for(var W=n(p);
+W!==null;
+){
+if(W.callback===null)i(p);
+else if(W.startTime<=q)i(p),W.sortIndex=W.expirationTime,e(h,W);
+else break;
+W=n(p)}
+}
+function F(q){
+if(C=!1,O(q),!A)if(n(h)!==null)A=!0,z||(z=!0,Ie());
+else{
+var W=n(p);
+W!==null&&mt(F,W.startTime-q)}
+}
+var z=!1,G=-1,X=5,j=-1;
+function oe(){
+return x?!0:!(t.unstable_now()-j<X)}
+function he(){
+if(x=!1,z){
+var q=t.unstable_now();
+j=q;
+var W=!0;
+try{
+e:{
+A=!1,C&&(C=!1,k(G),G=-1),w=!0;
+var ee=T;
+try{
+t:{
+for(O(q),_=n(h);
+_!==null&&!(_.expirationTime>q&&oe());
+){
+var Se=_.callback;
+if(typeof Se=="function"){
+_.callback=null,T=_.priorityLevel;
+var Ce=Se(_.expirationTime<=q);
+if(q=t.unstable_now(),typeof Ce=="function"){
+_.callback=Ce,O(q),W=!0;
+break t}
+_===n(h)&&i(h),O(q)}
+else i(h);
+_=n(h)}
+if(_!==null)W=!0;
+else{
+var D=n(p);
+D!==null&&mt(F,D.startTime-q),W=!1}
+}
+break e}
+finally{
+_=null,T=ee,w=!1}
+W=void 0}
+}
+finally{
+W?Ie():z=!1}
+}
+}
+var Ie;
+if(typeof N=="function")Ie=function(){
+N(he)}
+;
+else if(typeof MessageChannel<"u"){
+var Ae=new MessageChannel,$e=Ae.port2;
+Ae.port1.onmessage=he,Ie=function(){
+$e.postMessage(null)}
+}
+else Ie=function(){
+R(he,0)}
+;
+function mt(q,W){
+G=R(function(){
+q(t.unstable_now())}
+,W)}
+t.unstable_IdlePriority=5,t.unstable_ImmediatePriority=1,t.unstable_LowPriority=4,t.unstable_NormalPriority=3,t.unstable_Profiling=null,t.unstable_UserBlockingPriority=2,t.unstable_cancelCallback=function(q){
+q.callback=null}
+,t.unstable_forceFrameRate=function(q){
+0>q||125<q?console.error("forceFrameRate takes a positive int between 0 and 125, forcing frame rates higher than 125 fps is not supported"):X=0<q?Math.floor(1e3/q):5}
+,t.unstable_getCurrentPriorityLevel=function(){
+return T}
+,t.unstable_next=function(q){
+switch(T){
+case 1:case 2:case 3:var W=3;
+break;
+default:W=T}
+var ee=T;
+T=W;
+try{
+return q()}
+finally{
+T=ee}
+}
+,t.unstable_requestPaint=function(){
+x=!0}
+,t.unstable_runWithPriority=function(q,W){
+switch(q){
+case 1:case 2:case 3:case 4:case 5:break;
+default:q=3}
+var ee=T;
+T=q;
+try{
+return W()}
+finally{
+T=ee}
+}
+,t.unstable_scheduleCallback=function(q,W,ee){
+var Se=t.unstable_now();
+switch(typeof ee=="object"&&ee!==null?(ee=ee.delay,ee=typeof ee=="number"&&0<ee?Se+ee:Se):ee=Se,q){
+case 1:var Ce=-1;
+break;
+case 2:Ce=250;
+break;
+case 5:Ce=1073741823;
+break;
+case 4:Ce=1e4;
+break;
+default:Ce=5e3}
+return Ce=ee+Ce,q={
+id:g++,callback:W,priorityLevel:q,startTime:ee,expirationTime:Ce,sortIndex:-1}
+,ee>Se?(q.sortIndex=ee,e(p,q),n(h)===null&&q===n(p)&&(C?(k(G),G=-1):C=!0,mt(F,ee-Se))):(q.sortIndex=Ce,e(h,q),A||w||(A=!0,z||(z=!0,Ie()))),q}
+,t.unstable_shouldYield=oe,t.unstable_wrapCallback=function(q){
+var W=T;
+return function(){
+var ee=T;
+T=W;
+try{
+return q.apply(this,arguments)}
+finally{
+T=ee}
+}
+}
+}
+)(Qd)),Qd}
+var Av;
+function $C(){
+return Av||(Av=1,Xd.exports=zC()),Xd.exports}
+var Zd={
+exports:{
+}
+}
+,Et={
+}
+;
+/**
+ * @license React
+ * react-dom.production.js
+ *
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */var Cv;
+function JC(){
+if(Cv)return Et;
+Cv=1;
+var t=Ch();
+function e(h){
+var p="https://react.dev/errors/"+h;
+if(1<arguments.length){
+p+="?args[]="+encodeURIComponent(arguments[1]);
+for(var g=2;
+g<arguments.length;
+g++)p+="&args[]="+encodeURIComponent(arguments[g])}
+return"Minified React error #"+h+";
+ visit "+p+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings."}
+function n(){
+}
+var i={
+d:{
+f:n,r:function(){
+throw Error(e(522))}
+,D:n,C:n,L:n,m:n,X:n,S:n,M:n}
+,p:0,findDOMNode:null}
+,r=Symbol.for("react.portal");
+function l(h,p,g){
+var _=3<arguments.length&&arguments[3]!==void 0?arguments[3]:null;
+return{
+$$typeof:r,key:_==null?null:""+_,children:h,containerInfo:p,implementation:g}
+}
+var u=t.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
+function d(h,p){
+if(h==="font")return"";
+if(typeof p=="string")return p==="use-credentials"?p:""}
+return Et.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE=i,Et.createPortal=function(h,p){
+var g=2<arguments.length&&arguments[2]!==void 0?arguments[2]:null;
+if(!p||p.nodeType!==1&&p.nodeType!==9&&p.nodeType!==11)throw Error(e(299));
+return l(h,p,null,g)}
+,Et.flushSync=function(h){
+var p=u.T,g=i.p;
+try{
+if(u.T=null,i.p=2,h)return h()}
+finally{
+u.T=p,i.p=g,i.d.f()}
+}
+,Et.preconnect=function(h,p){
+typeof h=="string"&&(p?(p=p.crossOrigin,p=typeof p=="string"?p==="use-credentials"?p:"":void 0):p=null,i.d.C(h,p))}
+,Et.prefetchDNS=function(h){
+typeof h=="string"&&i.d.D(h)}
+,Et.preinit=function(h,p){
+if(typeof h=="string"&&p&&typeof p.as=="string"){
+var g=p.as,_=d(g,p.crossOrigin),T=typeof p.integrity=="string"?p.integrity:void 0,w=typeof p.fetchPriority=="string"?p.fetchPriority:void 0;
+g==="style"?i.d.S(h,typeof p.precedence=="string"?p.precedence:void 0,{
+crossOrigin:_,integrity:T,fetchPriority:w}
+):g==="script"&&i.d.X(h,{
+crossOrigin:_,integrity:T,fetchPriority:w,nonce:typeof p.nonce=="string"?p.nonce:void 0}
+)}
+}
+,Et.preinitModule=function(h,p){
+if(typeof h=="string")if(typeof p=="object"&&p!==null){
+if(p.as==null||p.as==="script"){
+var g=d(p.as,p.crossOrigin);
+i.d.M(h,{
+crossOrigin:g,integrity:typeof p.integrity=="string"?p.integrity:void 0,nonce:typeof p.nonce=="string"?p.nonce:void 0}
+)}
+}
+else p==null&&i.d.M(h)}
+,Et.preload=function(h,p){
+if(typeof h=="string"&&typeof p=="object"&&p!==null&&typeof p.as=="string"){
+var g=p.as,_=d(g,p.crossOrigin);
+i.d.L(h,g,{
+crossOrigin:_,integrity:typeof p.integrity=="string"?p.integrity:void 0,nonce:typeof p.nonce=="string"?p.nonce:void 0,type:typeof p.type=="string"?p.type:void 0,fetchPriority:typeof p.fetchPriority=="string"?p.fetchPriority:void 0,referrerPolicy:typeof p.referrerPolicy=="string"?p.referrerPolicy:void 0,imageSrcSet:typeof p.imageSrcSet=="string"?p.imageSrcSet:void 0,imageSizes:typeof p.imageSizes=="string"?p.imageSizes:void 0,media:typeof p.media=="string"?p.media:void 0}
+)}
+}
+,Et.preloadModule=function(h,p){
+if(typeof h=="string")if(p){
+var g=d(p.as,p.crossOrigin);
+i.d.m(h,{
+as:typeof p.as=="string"&&p.as!=="script"?p.as:void 0,crossOrigin:g,integrity:typeof p.integrity=="string"?p.integrity:void 0}
+)}
+else i.d.m(h)}
+,Et.requestFormReset=function(h){
+i.d.r(h)}
+,Et.unstable_batchedUpdates=function(h,p){
+return h(p)}
+,Et.useFormState=function(h,p,g){
+return u.H.useFormState(h,p,g)}
+,Et.useFormStatus=function(){
+return u.H.useHostTransitionStatus()}
+,Et.version="19.2.3",Et}
+var xv;
+function KC(){
+if(xv)return Zd.exports;
+xv=1;
+function t(){
+if(!(typeof __REACT_DEVTOOLS_GLOBAL_HOOK__>"u"||typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE!="function"))try{
+__REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE(t)}
+catch(e){
+console.error(e)}
+}
+return t(),Zd.exports=JC(),Zd.exports}
+/**
+ * @license React
+ * react-dom-client.production.js
+ *
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */var Rv;
+function YC(){
+if(Rv)return Rr;
+Rv=1;
+var t=$C(),e=Ch(),n=KC();
+function i(s){
+var o="https://react.dev/errors/"+s;
+if(1<arguments.length){
+o+="?args[]="+encodeURIComponent(arguments[1]);
+for(var a=2;
+a<arguments.length;
+a++)o+="&args[]="+encodeURIComponent(arguments[a])}
+return"Minified React error #"+s+";
+ visit "+o+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings."}
+function r(s){
+return!(!s||s.nodeType!==1&&s.nodeType!==9&&s.nodeType!==11)}
+function l(s){
+var o=s,a=s;
+if(s.alternate)for(;
+o.return;
+)o=o.return;
+else{
+s=o;
+do o=s,(o.flags&4098)!==0&&(a=o.return),s=o.return;
+while(s)}
+return o.tag===3?a:null}
+function u(s){
+if(s.tag===13){
+var o=s.memoizedState;
+if(o===null&&(s=s.alternate,s!==null&&(o=s.memoizedState)),o!==null)return o.dehydrated}
+return null}
+function d(s){
+if(s.tag===31){
+var o=s.memoizedState;
+if(o===null&&(s=s.alternate,s!==null&&(o=s.memoizedState)),o!==null)return o.dehydrated}
+return null}
+function h(s){
+if(l(s)!==s)throw Error(i(188))}
+function p(s){
+var o=s.alternate;
+if(!o){
+if(o=l(s),o===null)throw Error(i(188));
+return o!==s?null:s}
+for(var a=s,c=o;
+;
+){
+var y=a.return;
+if(y===null)break;
+var v=y.alternate;
+if(v===null){
+if(c=y.return,c!==null){
+a=c;
+continue}
+break}
+if(y.child===v.child){
+for(v=y.child;
+v;
+){
+if(v===a)return h(y),s;
+if(v===c)return h(y),o;
+v=v.sibling}
+throw Error(i(188))}
+if(a.return!==c.return)a=y,c=v;
+else{
+for(var S=!1,b=y.child;
+b;
+){
+if(b===a){
+S=!0,a=y,c=v;
+break}
+if(b===c){
+S=!0,c=y,a=v;
+break}
+b=b.sibling}
+if(!S){
+for(b=v.child;
+b;
+){
+if(b===a){
+S=!0,a=v,c=y;
+break}
+if(b===c){
+S=!0,c=v,a=y;
+break}
+b=b.sibling}
+if(!S)throw Error(i(189))}
+}
+if(a.alternate!==c)throw Error(i(190))}
+if(a.tag!==3)throw Error(i(188));
+return a.stateNode.current===a?s:o}
+function g(s){
+var o=s.tag;
+if(o===5||o===26||o===27||o===6)return s;
+for(s=s.child;
+s!==null;
+){
+if(o=g(s),o!==null)return o;
+s=s.sibling}
+return null}
+var _=Object.assign,T=Symbol.for("react.element"),w=Symbol.for("react.transitional.element"),A=Symbol.for("react.portal"),C=Symbol.for("react.fragment"),x=Symbol.for("react.strict_mode"),R=Symbol.for("react.profiler"),k=Symbol.for("react.consumer"),N=Symbol.for("react.context"),O=Symbol.for("react.forward_ref"),F=Symbol.for("react.suspense"),z=Symbol.for("react.suspense_list"),G=Symbol.for("react.memo"),X=Symbol.for("react.lazy"),j=Symbol.for("react.activity"),oe=Symbol.for("react.memo_cache_sentinel"),he=Symbol.iterator;
+function Ie(s){
+return s===null||typeof s!="object"?null:(s=he&&s[he]||s["@@iterator"],typeof s=="function"?s:null)}
+var Ae=Symbol.for("react.client.reference");
+function $e(s){
+if(s==null)return null;
+if(typeof s=="function")return s.$$typeof===Ae?null:s.displayName||s.name||null;
+if(typeof s=="string")return s;
+switch(s){
+case C:return"Fragment";
+case R:return"Profiler";
+case x:return"StrictMode";
+case F:return"Suspense";
+case z:return"SuspenseList";
+case j:return"Activity"}
+if(typeof s=="object")switch(s.$$typeof){
+case A:return"Portal";
+case N:return s.displayName||"Context";
+case k:return(s._context.displayName||"Context")+".Consumer";
+case O:var o=s.render;
+return s=s.displayName,s||(s=o.displayName||o.name||"",s=s!==""?"ForwardRef("+s+")":"ForwardRef"),s;
+case G:return o=s.displayName||null,o!==null?o:$e(s.type)||"Memo";
+case X:o=s._payload,s=s._init;
+try{
+return $e(s(o))}
+catch{
+}
+}
+return null}
+var mt=Array.isArray,q=e.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE,W=n.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE,ee={
+pending:!1,data:null,method:null,action:null}
+,Se=[],Ce=-1;
+function D(s){
+return{
+current:s}
+}
+function Y(s){
+0>Ce||(s.current=Se[Ce],Se[Ce]=null,Ce--)}
+function Q(s,o){
+Ce++,Se[Ce]=s.current,s.current=o}
+var ie=D(null),pe=D(null),ve=D(null),ke=D(null);
+function At(s,o){
+switch(Q(ve,o),Q(pe,s),Q(ie,null),o.nodeType){
+case 9:case 11:s=(s=o.documentElement)&&(s=s.namespaceURI)?Hy(s):0;
+break;
+default:if(s=o.tagName,o=o.namespaceURI)o=Hy(o),s=zy(o,s);
+else switch(s){
+case"svg":s=1;
+break;
+case"math":s=2;
+break;
+default:s=0}
+}
+Y(ie),Q(ie,s)}
+function Qe(){
+Y(ie),Y(pe),Y(ve)}
+function Uo(s){
+s.memoizedState!==null&&Q(ke,s);
+var o=ie.current,a=zy(o,s.type);
+o!==a&&(Q(pe,s),Q(ie,a))}
+function la(s){
+pe.current===s&&(Y(ie),Y(pe)),ke.current===s&&(Y(ke),Er._currentValue=ee)}
+var Mu,_p;
+function Fi(s){
+if(Mu===void 0)try{
+throw Error()}
+catch(a){
+var o=a.stack.trim().match(/\n( *(at )?)/);
+Mu=o&&o[1]||"",_p=-1<a.stack.indexOf(`
+    at`)?" (<anonymous>)":-1<a.stack.indexOf("@")?"@unknown:0:0":""}
+return`
+`+Mu+s+_p}
+var Iu=!1;
+function Du(s,o){
+if(!s||Iu)return"";
+Iu=!0;
+var a=Error.prepareStackTrace;
+Error.prepareStackTrace=void 0;
+try{
+var c={
+DetermineComponentFrameRoot:function(){
+try{
+if(o){
+var K=function(){
+throw Error()}
+;
+if(Object.defineProperty(K.prototype,"props",{
+set:function(){
+throw Error()}
+}
+),typeof Reflect=="object"&&Reflect.construct){
+try{
+Reflect.construct(K,[])}
+catch(B){
+var V=B}
+Reflect.construct(s,[],K)}
+else{
+try{
+K.call()}
+catch(B){
+V=B}
+s.call(K.prototype)}
+}
+else{
+try{
+throw Error()}
+catch(B){
+V=B}
+(K=s())&&typeof K.catch=="function"&&K.catch(function(){
+}
+)}
+}
+catch(B){
+if(B&&V&&typeof B.stack=="string")return[B.stack,V.stack]}
+return[null,null]}
+}
+;
+c.DetermineComponentFrameRoot.displayName="DetermineComponentFrameRoot";
+var y=Object.getOwnPropertyDescriptor(c.DetermineComponentFrameRoot,"name");
+y&&y.configurable&&Object.defineProperty(c.DetermineComponentFrameRoot,"name",{
+value:"DetermineComponentFrameRoot"}
+);
+var v=c.DetermineComponentFrameRoot(),S=v[0],b=v[1];
+if(S&&b){
+var M=S.split(`
+`),L=b.split(`
+`);
+for(y=c=0;
+c<M.length&&!M[c].includes("DetermineComponentFrameRoot");
+)c++;
+for(;
+y<L.length&&!L[y].includes("DetermineComponentFrameRoot");
+)y++;
+if(c===M.length||y===L.length)for(c=M.length-1,y=L.length-1;
+1<=c&&0<=y&&M[c]!==L[y];
+)y--;
+for(;
+1<=c&&0<=y;
+c--,y--)if(M[c]!==L[y]){
+if(c!==1||y!==1)do if(c--,y--,0>y||M[c]!==L[y]){
+var H=`
+`+M[c].replace(" at new "," at ");
+return s.displayName&&H.includes("<anonymous>")&&(H=H.replace("<anonymous>",s.displayName)),H}
+while(1<=c&&0<=y);
+break}
+}
+}
+finally{
+Iu=!1,Error.prepareStackTrace=a}
+return(a=s?s.displayName||s.name:"")?Fi(a):""}
+function vb(s,o){
+switch(s.tag){
+case 26:case 27:case 5:return Fi(s.type);
+case 16:return Fi("Lazy");
+case 13:return s.child!==o&&o!==null?Fi("Suspense Fallback"):Fi("Suspense");
+case 19:return Fi("SuspenseList");
+case 0:case 15:return Du(s.type,!1);
+case 11:return Du(s.type.render,!1);
+case 1:return Du(s.type,!0);
+case 31:return Fi("Activity");
+default:return""}
+}
+function Tp(s){
+try{
+var o="",a=null;
+do o+=vb(s,a),a=s,s=s.return;
+while(s);
+return o}
+catch(c){
+return`
+Error generating stack: `+c.message+`
+`+c.stack}
+}
+var ku=Object.prototype.hasOwnProperty,Uu=t.unstable_scheduleCallback,Pu=t.unstable_cancelCallback,_b=t.unstable_shouldYield,Tb=t.unstable_requestPaint,Bt=t.unstable_now,Sb=t.unstable_getCurrentPriorityLevel,Sp=t.unstable_ImmediatePriority,wp=t.unstable_UserBlockingPriority,ua=t.unstable_NormalPriority,wb=t.unstable_LowPriority,Ep=t.unstable_IdlePriority,Eb=t.log,bb=t.unstable_setDisableYieldValue,Po=null,Ft=null;
+function oi(s){
+if(typeof Eb=="function"&&bb(s),Ft&&typeof Ft.setStrictMode=="function")try{
+Ft.setStrictMode(Po,s)}
+catch{
+}
+}
+var Gt=Math.clz32?Math.clz32:xb,Ab=Math.log,Cb=Math.LN2;
+function xb(s){
+return s>>>=0,s===0?32:31-(Ab(s)/Cb|0)|0}
+var ca=256,da=262144,fa=4194304;
+function Gi(s){
+var o=s&42;
+if(o!==0)return o;
+switch(s&-s){
+case 1:return 1;
+case 2:return 2;
+case 4:return 4;
+case 8:return 8;
+case 16:return 16;
+case 32:return 32;
+case 64:return 64;
+case 128:return 128;
+case 256:case 512:case 1024:case 2048:case 4096:case 8192:case 16384:case 32768:case 65536:case 131072:return s&261888;
+case 262144:case 524288:case 1048576:case 2097152:return s&3932160;
+case 4194304:case 8388608:case 16777216:case 33554432:return s&62914560;
+case 67108864:return 67108864;
+case 134217728:return 134217728;
+case 268435456:return 268435456;
+case 536870912:return 536870912;
+case 1073741824:return 0;
+default:return s}
+}
+function ha(s,o,a){
+var c=s.pendingLanes;
+if(c===0)return 0;
+var y=0,v=s.suspendedLanes,S=s.pingedLanes;
+s=s.warmLanes;
+var b=c&134217727;
+return b!==0?(c=b&~v,c!==0?y=Gi(c):(S&=b,S!==0?y=Gi(S):a||(a=b&~s,a!==0&&(y=Gi(a))))):(b=c&~v,b!==0?y=Gi(b):S!==0?y=Gi(S):a||(a=c&~s,a!==0&&(y=Gi(a)))),y===0?0:o!==0&&o!==y&&(o&v)===0&&(v=y&-y,a=o&-o,v>=a||v===32&&(a&4194048)!==0)?o:y}
+function Lo(s,o){
+return(s.pendingLanes&~(s.suspendedLanes&~s.pingedLanes)&o)===0}
+function Rb(s,o){
+switch(s){
+case 1:case 2:case 4:case 8:case 64:return o+250;
+case 16:case 32:case 128:case 256:case 512:case 1024:case 2048:case 4096:case 8192:case 16384:case 32768:case 65536:case 131072:case 262144:case 524288:case 1048576:case 2097152:return o+5e3;
+case 4194304:case 8388608:case 16777216:case 33554432:return-1;
+case 67108864:case 134217728:case 268435456:case 536870912:case 1073741824:return-1;
+default:return-1}
+}
+function bp(){
+var s=fa;
+return fa<<=1,(fa&62914560)===0&&(fa=4194304),s}
+function Lu(s){
+for(var o=[],a=0;
+31>a;
+a++)o.push(s);
+return o}
+function Oo(s,o){
+s.pendingLanes|=o,o!==268435456&&(s.suspendedLanes=0,s.pingedLanes=0,s.warmLanes=0)}
+function Nb(s,o,a,c,y,v){
+var S=s.pendingLanes;
+s.pendingLanes=a,s.suspendedLanes=0,s.pingedLanes=0,s.warmLanes=0,s.expiredLanes&=a,s.entangledLanes&=a,s.errorRecoveryDisabledLanes&=a,s.shellSuspendCounter=0;
+var b=s.entanglements,M=s.expirationTimes,L=s.hiddenUpdates;
+for(a=S&~a;
+0<a;
+){
+var H=31-Gt(a),K=1<<H;
+b[H]=0,M[H]=-1;
+var V=L[H];
+if(V!==null)for(L[H]=null,H=0;
+H<V.length;
+H++){
+var B=V[H];
+B!==null&&(B.lane&=-536870913)}
+a&=~K}
+c!==0&&Ap(s,c,0),v!==0&&y===0&&s.tag!==0&&(s.suspendedLanes|=v&~(S&~o))}
+function Ap(s,o,a){
+s.pendingLanes|=o,s.suspendedLanes&=~o;
+var c=31-Gt(o);
+s.entangledLanes|=o,s.entanglements[c]=s.entanglements[c]|1073741824|a&261930}
+function Cp(s,o){
+var a=s.entangledLanes|=o;
+for(s=s.entanglements;
+a;
+){
+var c=31-Gt(a),y=1<<c;
+y&o|s[c]&o&&(s[c]|=o),a&=~y}
+}
+function xp(s,o){
+var a=o&-o;
+return a=(a&42)!==0?1:Ou(a),(a&(s.suspendedLanes|o))!==0?0:a}
+function Ou(s){
+switch(s){
+case 2:s=1;
+break;
+case 8:s=4;
+break;
+case 32:s=16;
+break;
+case 256:case 512:case 1024:case 2048:case 4096:case 8192:case 16384:case 32768:case 65536:case 131072:case 262144:case 524288:case 1048576:case 2097152:case 4194304:case 8388608:case 16777216:case 33554432:s=128;
+break;
+case 268435456:s=134217728;
+break;
+default:s=0}
+return s}
+function Vu(s){
+return s&=-s,2<s?8<s?(s&134217727)!==0?32:268435456:8:2}
+function Rp(){
+var s=W.p;
+return s!==0?s:(s=window.event,s===void 0?32:hv(s.type))}
+function Np(s,o){
+var a=W.p;
+try{
+return W.p=s,o()}
+finally{
+W.p=a}
+}
+var ri=Math.random().toString(36).slice(2),gt="__reactFiber$"+ri,It="__reactProps$"+ri,_s="__reactContainer$"+ri,Bu="__reactEvents$"+ri,Mb="__reactListeners$"+ri,Ib="__reactHandles$"+ri,Mp="__reactResources$"+ri,Vo="__reactMarker$"+ri;
+function Fu(s){
+delete s[gt],delete s[It],delete s[Bu],delete s[Mb],delete s[Ib]}
+function Ts(s){
+var o=s[gt];
+if(o)return o;
+for(var a=s.parentNode;
+a;
+){
+if(o=a[_s]||a[gt]){
+if(a=o.alternate,o.child!==null||a!==null&&a.child!==null)for(s=Xy(s);
+s!==null;
+){
+if(a=s[gt])return a;
+s=Xy(s)}
+return o}
+s=a,a=s.parentNode}
+return null}
+function Ss(s){
+if(s=s[gt]||s[_s]){
+var o=s.tag;
+if(o===5||o===6||o===13||o===31||o===26||o===27||o===3)return s}
+return null}
+function Bo(s){
+var o=s.tag;
+if(o===5||o===26||o===27||o===6)return s.stateNode;
+throw Error(i(33))}
+function ws(s){
+var o=s[Mp];
+return o||(o=s[Mp]={
+hoistableStyles:new Map,hoistableScripts:new Map}
+),o}
+function ct(s){
+s[Vo]=!0}
+var Ip=new Set,Dp={
+}
+;
+function qi(s,o){
+Es(s,o),Es(s+"Capture",o)}
+function Es(s,o){
+for(Dp[s]=o,s=0;
+s<o.length;
+s++)Ip.add(o[s])}
+var Db=RegExp("^[:A-Z_a-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD][:A-Z_a-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD\\-.0-9\\u00B7\\u0300-\\u036F\\u203F-\\u2040]*$"),kp={
+}
+,Up={
+}
+;
+function kb(s){
+return ku.call(Up,s)?!0:ku.call(kp,s)?!1:Db.test(s)?Up[s]=!0:(kp[s]=!0,!1)}
+function pa(s,o,a){
+if(kb(o))if(a===null)s.removeAttribute(o);
+else{
+switch(typeof a){
+case"undefined":case"function":case"symbol":s.removeAttribute(o);
+return;
+case"boolean":var c=o.toLowerCase().slice(0,5);
+if(c!=="data-"&&c!=="aria-"){
+s.removeAttribute(o);
+return}
+}
+s.setAttribute(o,""+a)}
+}
+function ma(s,o,a){
+if(a===null)s.removeAttribute(o);
+else{
+switch(typeof a){
+case"undefined":case"function":case"symbol":case"boolean":s.removeAttribute(o);
+return}
+s.setAttribute(o,""+a)}
+}
+function Un(s,o,a,c){
+if(c===null)s.removeAttribute(a);
+else{
+switch(typeof c){
+case"undefined":case"function":case"symbol":case"boolean":s.removeAttribute(a);
+return}
+s.setAttributeNS(o,a,""+c)}
+}
+function Zt(s){
+switch(typeof s){
+case"bigint":case"boolean":case"number":case"string":case"undefined":return s;
+case"object":return s;
+default:return""}
+}
+function Pp(s){
+var o=s.type;
+return(s=s.nodeName)&&s.toLowerCase()==="input"&&(o==="checkbox"||o==="radio")}
+function Ub(s,o,a){
+var c=Object.getOwnPropertyDescriptor(s.constructor.prototype,o);
+if(!s.hasOwnProperty(o)&&typeof c<"u"&&typeof c.get=="function"&&typeof c.set=="function"){
+var y=c.get,v=c.set;
+return Object.defineProperty(s,o,{
+configurable:!0,get:function(){
+return y.call(this)}
+,set:function(S){
+a=""+S,v.call(this,S)}
+}
+),Object.defineProperty(s,o,{
+enumerable:c.enumerable}
+),{
+getValue:function(){
+return a}
+,setValue:function(S){
+a=""+S}
+,stopTracking:function(){
+s._valueTracker=null,delete s[o]}
+}
+}
+}
+function Gu(s){
+if(!s._valueTracker){
+var o=Pp(s)?"checked":"value";
+s._valueTracker=Ub(s,o,""+s[o])}
+}
+function Lp(s){
+if(!s)return!1;
+var o=s._valueTracker;
+if(!o)return!0;
+var a=o.getValue(),c="";
+return s&&(c=Pp(s)?s.checked?"true":"false":s.value),s=c,s!==a?(o.setValue(s),!0):!1}
+function ga(s){
+if(s=s||(typeof document<"u"?document:void 0),typeof s>"u")return null;
+try{
+return s.activeElement||s.body}
+catch{
+return s.body}
+}
+var Pb=/[\n"\\]/g;
+function en(s){
+return s.replace(Pb,function(o){
+return"\\"+o.charCodeAt(0).toString(16)+" "}
+)}
+function qu(s,o,a,c,y,v,S,b){
+s.name="",S!=null&&typeof S!="function"&&typeof S!="symbol"&&typeof S!="boolean"?s.type=S:s.removeAttribute("type"),o!=null?S==="number"?(o===0&&s.value===""||s.value!=o)&&(s.value=""+Zt(o)):s.value!==""+Zt(o)&&(s.value=""+Zt(o)):S!=="submit"&&S!=="reset"||s.removeAttribute("value"),o!=null?Hu(s,S,Zt(o)):a!=null?Hu(s,S,Zt(a)):c!=null&&s.removeAttribute("value"),y==null&&v!=null&&(s.defaultChecked=!!v),y!=null&&(s.checked=y&&typeof y!="function"&&typeof y!="symbol"),b!=null&&typeof b!="function"&&typeof b!="symbol"&&typeof b!="boolean"?s.name=""+Zt(b):s.removeAttribute("name")}
+function Op(s,o,a,c,y,v,S,b){
+if(v!=null&&typeof v!="function"&&typeof v!="symbol"&&typeof v!="boolean"&&(s.type=v),o!=null||a!=null){
+if(!(v!=="submit"&&v!=="reset"||o!=null)){
+Gu(s);
+return}
+a=a!=null?""+Zt(a):"",o=o!=null?""+Zt(o):a,b||o===s.value||(s.value=o),s.defaultValue=o}
+c=c??y,c=typeof c!="function"&&typeof c!="symbol"&&!!c,s.checked=b?s.checked:!!c,s.defaultChecked=!!c,S!=null&&typeof S!="function"&&typeof S!="symbol"&&typeof S!="boolean"&&(s.name=S),Gu(s)}
+function Hu(s,o,a){
+o==="number"&&ga(s.ownerDocument)===s||s.defaultValue===""+a||(s.defaultValue=""+a)}
+function bs(s,o,a,c){
+if(s=s.options,o){
+o={
+}
+;
+for(var y=0;
+y<a.length;
+y++)o["$"+a[y]]=!0;
+for(a=0;
+a<s.length;
+a++)y=o.hasOwnProperty("$"+s[a].value),s[a].selected!==y&&(s[a].selected=y),y&&c&&(s[a].defaultSelected=!0)}
+else{
+for(a=""+Zt(a),o=null,y=0;
+y<s.length;
+y++){
+if(s[y].value===a){
+s[y].selected=!0,c&&(s[y].defaultSelected=!0);
+return}
+o!==null||s[y].disabled||(o=s[y])}
+o!==null&&(o.selected=!0)}
+}
+function Vp(s,o,a){
+if(o!=null&&(o=""+Zt(o),o!==s.value&&(s.value=o),a==null)){
+s.defaultValue!==o&&(s.defaultValue=o);
+return}
+s.defaultValue=a!=null?""+Zt(a):""}
+function Bp(s,o,a,c){
+if(o==null){
+if(c!=null){
+if(a!=null)throw Error(i(92));
+if(mt(c)){
+if(1<c.length)throw Error(i(93));
+c=c[0]}
+a=c}
+a==null&&(a=""),o=a}
+a=Zt(o),s.defaultValue=a,c=s.textContent,c===a&&c!==""&&c!==null&&(s.value=c),Gu(s)}
+function As(s,o){
+if(o){
+var a=s.firstChild;
+if(a&&a===s.lastChild&&a.nodeType===3){
+a.nodeValue=o;
+return}
+}
+s.textContent=o}
+var Lb=new Set("animationIterationCount aspectRatio borderImageOutset borderImageSlice borderImageWidth boxFlex boxFlexGroup boxOrdinalGroup columnCount columns flex flexGrow flexPositive flexShrink flexNegative flexOrder gridArea gridRow gridRowEnd gridRowSpan gridRowStart gridColumn gridColumnEnd gridColumnSpan gridColumnStart fontWeight lineClamp lineHeight opacity order orphans scale tabSize widows zIndex zoom fillOpacity floodOpacity stopOpacity strokeDasharray strokeDashoffset strokeMiterlimit strokeOpacity strokeWidth MozAnimationIterationCount MozBoxFlex MozBoxFlexGroup MozLineClamp msAnimationIterationCount msFlex msZoom msFlexGrow msFlexNegative msFlexOrder msFlexPositive msFlexShrink msGridColumn msGridColumnSpan msGridRow msGridRowSpan WebkitAnimationIterationCount WebkitBoxFlex WebKitBoxFlexGroup WebkitBoxOrdinalGroup WebkitColumnCount WebkitColumns WebkitFlex WebkitFlexGrow WebkitFlexPositive WebkitFlexShrink WebkitLineClamp".split(" "));
+function Fp(s,o,a){
+var c=o.indexOf("--")===0;
+a==null||typeof a=="boolean"||a===""?c?s.setProperty(o,""):o==="float"?s.cssFloat="":s[o]="":c?s.setProperty(o,a):typeof a!="number"||a===0||Lb.has(o)?o==="float"?s.cssFloat=a:s[o]=(""+a).trim():s[o]=a+"px"}
+function Gp(s,o,a){
+if(o!=null&&typeof o!="object")throw Error(i(62));
+if(s=s.style,a!=null){
+for(var c in a)!a.hasOwnProperty(c)||o!=null&&o.hasOwnProperty(c)||(c.indexOf("--")===0?s.setProperty(c,""):c==="float"?s.cssFloat="":s[c]="");
+for(var y in o)c=o[y],o.hasOwnProperty(y)&&a[y]!==c&&Fp(s,y,c)}
+else for(var v in o)o.hasOwnProperty(v)&&Fp(s,v,o[v])}
+function zu(s){
+if(s.indexOf("-")===-1)return!1;
+switch(s){
+case"annotation-xml":case"color-profile":case"font-face":case"font-face-src":case"font-face-uri":case"font-face-format":case"font-face-name":case"missing-glyph":return!1;
+default:return!0}
+}
+var Ob=new Map([["acceptCharset","accept-charset"],["htmlFor","for"],["httpEquiv","http-equiv"],["crossOrigin","crossorigin"],["accentHeight","accent-height"],["alignmentBaseline","alignment-baseline"],["arabicForm","arabic-form"],["baselineShift","baseline-shift"],["capHeight","cap-height"],["clipPath","clip-path"],["clipRule","clip-rule"],["colorInterpolation","color-interpolation"],["colorInterpolationFilters","color-interpolation-filters"],["colorProfile","color-profile"],["colorRendering","color-rendering"],["dominantBaseline","dominant-baseline"],["enableBackground","enable-background"],["fillOpacity","fill-opacity"],["fillRule","fill-rule"],["floodColor","flood-color"],["floodOpacity","flood-opacity"],["fontFamily","font-family"],["fontSize","font-size"],["fontSizeAdjust","font-size-adjust"],["fontStretch","font-stretch"],["fontStyle","font-style"],["fontVariant","font-variant"],["fontWeight","font-weight"],["glyphName","glyph-name"],["glyphOrientationHorizontal","glyph-orientation-horizontal"],["glyphOrientationVertical","glyph-orientation-vertical"],["horizAdvX","horiz-adv-x"],["horizOriginX","horiz-origin-x"],["imageRendering","image-rendering"],["letterSpacing","letter-spacing"],["lightingColor","lighting-color"],["markerEnd","marker-end"],["markerMid","marker-mid"],["markerStart","marker-start"],["overlinePosition","overline-position"],["overlineThickness","overline-thickness"],["paintOrder","paint-order"],["panose-1","panose-1"],["pointerEvents","pointer-events"],["renderingIntent","rendering-intent"],["shapeRendering","shape-rendering"],["stopColor","stop-color"],["stopOpacity","stop-opacity"],["strikethroughPosition","strikethrough-position"],["strikethroughThickness","strikethrough-thickness"],["strokeDasharray","stroke-dasharray"],["strokeDashoffset","stroke-dashoffset"],["strokeLinecap","stroke-linecap"],["strokeLinejoin","stroke-linejoin"],["strokeMiterlimit","stroke-miterlimit"],["strokeOpacity","stroke-opacity"],["strokeWidth","stroke-width"],["textAnchor","text-anchor"],["textDecoration","text-decoration"],["textRendering","text-rendering"],["transformOrigin","transform-origin"],["underlinePosition","underline-position"],["underlineThickness","underline-thickness"],["unicodeBidi","unicode-bidi"],["unicodeRange","unicode-range"],["unitsPerEm","units-per-em"],["vAlphabetic","v-alphabetic"],["vHanging","v-hanging"],["vIdeographic","v-ideographic"],["vMathematical","v-mathematical"],["vectorEffect","vector-effect"],["vertAdvY","vert-adv-y"],["vertOriginX","vert-origin-x"],["vertOriginY","vert-origin-y"],["wordSpacing","word-spacing"],["writingMode","writing-mode"],["xmlnsXlink","xmlns:xlink"],["xHeight","x-height"]]),Vb=/^[\u0000-\u001F ]*j[\r\n\t]*a[\r\n\t]*v[\r\n\t]*a[\r\n\t]*s[\r\n\t]*c[\r\n\t]*r[\r\n\t]*i[\r\n\t]*p[\r\n\t]*t[\r\n\t]*:/i;
+function ya(s){
+return Vb.test(""+s)?"javascript:throw new Error('React has blocked a javascript: URL as a security precaution.')":s}
+function Pn(){
+}
+var $u=null;
+function Ju(s){
+return s=s.target||s.srcElement||window,s.correspondingUseElement&&(s=s.correspondingUseElement),s.nodeType===3?s.parentNode:s}
+var Cs=null,xs=null;
+function qp(s){
+var o=Ss(s);
+if(o&&(s=o.stateNode)){
+var a=s[It]||null;
+e:switch(s=o.stateNode,o.type){
+case"input":if(qu(s,a.value,a.defaultValue,a.defaultValue,a.checked,a.defaultChecked,a.type,a.name),o=a.name,a.type==="radio"&&o!=null){
+for(a=s;
+a.parentNode;
+)a=a.parentNode;
+for(a=a.querySelectorAll('input[name="'+en(""+o)+'"][type="radio"]'),o=0;
+o<a.length;
+o++){
+var c=a[o];
+if(c!==s&&c.form===s.form){
+var y=c[It]||null;
+if(!y)throw Error(i(90));
+qu(c,y.value,y.defaultValue,y.defaultValue,y.checked,y.defaultChecked,y.type,y.name)}
+}
+for(o=0;
+o<a.length;
+o++)c=a[o],c.form===s.form&&Lp(c)}
+break e;
+case"textarea":Vp(s,a.value,a.defaultValue);
+break e;
+case"select":o=a.value,o!=null&&bs(s,!!a.multiple,o,!1)}
+}
+}
+var Ku=!1;
+function Hp(s,o,a){
+if(Ku)return s(o,a);
+Ku=!0;
+try{
+var c=s(o);
+return c}
+finally{
+if(Ku=!1,(Cs!==null||xs!==null)&&(sl(),Cs&&(o=Cs,s=xs,xs=Cs=null,qp(o),s)))for(o=0;
+o<s.length;
+o++)qp(s[o])}
+}
+function Fo(s,o){
+var a=s.stateNode;
+if(a===null)return null;
+var c=a[It]||null;
+if(c===null)return null;
+a=c[o];
+e:switch(o){
+case"onClick":case"onClickCapture":case"onDoubleClick":case"onDoubleClickCapture":case"onMouseDown":case"onMouseDownCapture":case"onMouseMove":case"onMouseMoveCapture":case"onMouseUp":case"onMouseUpCapture":case"onMouseEnter":(c=!c.disabled)||(s=s.type,c=!(s==="button"||s==="input"||s==="select"||s==="textarea")),s=!c;
+break e;
+default:s=!1}
+if(s)return null;
+if(a&&typeof a!="function")throw Error(i(231,o,typeof a));
+return a}
+var Ln=!(typeof window>"u"||typeof window.document>"u"||typeof window.document.createElement>"u"),Yu=!1;
+if(Ln)try{
+var Go={
+}
+;
+Object.defineProperty(Go,"passive",{
+get:function(){
+Yu=!0}
+}
+),window.addEventListener("test",Go,Go),window.removeEventListener("test",Go,Go)}
+catch{
+Yu=!1}
+var ai=null,ju=null,va=null;
+function zp(){
+if(va)return va;
+var s,o=ju,a=o.length,c,y="value"in ai?ai.value:ai.textContent,v=y.length;
+for(s=0;
+s<a&&o[s]===y[s];
+s++);
+var S=a-s;
+for(c=1;
+c<=S&&o[a-c]===y[v-c];
+c++);
+return va=y.slice(s,1<c?1-c:void 0)}
+function _a(s){
+var o=s.keyCode;
+return"charCode"in s?(s=s.charCode,s===0&&o===13&&(s=13)):s=o,s===10&&(s=13),32<=s||s===13?s:0}
+function Ta(){
+return!0}
+function $p(){
+return!1}
+function Dt(s){
+function o(a,c,y,v,S){
+this._reactName=a,this._targetInst=y,this.type=c,this.nativeEvent=v,this.target=S,this.currentTarget=null;
+for(var b in s)s.hasOwnProperty(b)&&(a=s[b],this[b]=a?a(v):v[b]);
+return this.isDefaultPrevented=(v.defaultPrevented!=null?v.defaultPrevented:v.returnValue===!1)?Ta:$p,this.isPropagationStopped=$p,this}
+return _(o.prototype,{
+preventDefault:function(){
+this.defaultPrevented=!0;
+var a=this.nativeEvent;
+a&&(a.preventDefault?a.preventDefault():typeof a.returnValue!="unknown"&&(a.returnValue=!1),this.isDefaultPrevented=Ta)}
+,stopPropagation:function(){
+var a=this.nativeEvent;
+a&&(a.stopPropagation?a.stopPropagation():typeof a.cancelBubble!="unknown"&&(a.cancelBubble=!0),this.isPropagationStopped=Ta)}
+,persist:function(){
+}
+,isPersistent:Ta}
+),o}
+var Hi={
+eventPhase:0,bubbles:0,cancelable:0,timeStamp:function(s){
+return s.timeStamp||Date.now()}
+,defaultPrevented:0,isTrusted:0}
+,Sa=Dt(Hi),qo=_({
+}
+,Hi,{
+view:0,detail:0}
+),Bb=Dt(qo),Wu,Xu,Ho,wa=_({
+}
+,qo,{
+screenX:0,screenY:0,clientX:0,clientY:0,pageX:0,pageY:0,ctrlKey:0,shiftKey:0,altKey:0,metaKey:0,getModifierState:Zu,button:0,buttons:0,relatedTarget:function(s){
+return s.relatedTarget===void 0?s.fromElement===s.srcElement?s.toElement:s.fromElement:s.relatedTarget}
+,movementX:function(s){
+return"movementX"in s?s.movementX:(s!==Ho&&(Ho&&s.type==="mousemove"?(Wu=s.screenX-Ho.screenX,Xu=s.screenY-Ho.screenY):Xu=Wu=0,Ho=s),Wu)}
+,movementY:function(s){
+return"movementY"in s?s.movementY:Xu}
+}
+),Jp=Dt(wa),Fb=_({
+}
+,wa,{
+dataTransfer:0}
+),Gb=Dt(Fb),qb=_({
+}
+,qo,{
+relatedTarget:0}
+),Qu=Dt(qb),Hb=_({
+}
+,Hi,{
+animationName:0,elapsedTime:0,pseudoElement:0}
+),zb=Dt(Hb),$b=_({
+}
+,Hi,{
+clipboardData:function(s){
+return"clipboardData"in s?s.clipboardData:window.clipboardData}
+}
+),Jb=Dt($b),Kb=_({
+}
+,Hi,{
+data:0}
+),Kp=Dt(Kb),Yb={
+Esc:"Escape",Spacebar:" ",Left:"ArrowLeft",Up:"ArrowUp",Right:"ArrowRight",Down:"ArrowDown",Del:"Delete",Win:"OS",Menu:"ContextMenu",Apps:"ContextMenu",Scroll:"ScrollLock",MozPrintableKey:"Unidentified"}
+,jb={
+8:"Backspace",9:"Tab",12:"Clear",13:"Enter",16:"Shift",17:"Control",18:"Alt",19:"Pause",20:"CapsLock",27:"Escape",32:" ",33:"PageUp",34:"PageDown",35:"End",36:"Home",37:"ArrowLeft",38:"ArrowUp",39:"ArrowRight",40:"ArrowDown",45:"Insert",46:"Delete",112:"F1",113:"F2",114:"F3",115:"F4",116:"F5",117:"F6",118:"F7",119:"F8",120:"F9",121:"F10",122:"F11",123:"F12",144:"NumLock",145:"ScrollLock",224:"Meta"}
+,Wb={
+Alt:"altKey",Control:"ctrlKey",Meta:"metaKey",Shift:"shiftKey"}
+;
+function Xb(s){
+var o=this.nativeEvent;
+return o.getModifierState?o.getModifierState(s):(s=Wb[s])?!!o[s]:!1}
+function Zu(){
+return Xb}
+var Qb=_({
+}
+,qo,{
+key:function(s){
+if(s.key){
+var o=Yb[s.key]||s.key;
+if(o!=="Unidentified")return o}
+return s.type==="keypress"?(s=_a(s),s===13?"Enter":String.fromCharCode(s)):s.type==="keydown"||s.type==="keyup"?jb[s.keyCode]||"Unidentified":""}
+,code:0,location:0,ctrlKey:0,shiftKey:0,altKey:0,metaKey:0,repeat:0,locale:0,getModifierState:Zu,charCode:function(s){
+return s.type==="keypress"?_a(s):0}
+,keyCode:function(s){
+return s.type==="keydown"||s.type==="keyup"?s.keyCode:0}
+,which:function(s){
+return s.type==="keypress"?_a(s):s.type==="keydown"||s.type==="keyup"?s.keyCode:0}
+}
+),Zb=Dt(Qb),eA=_({
+}
+,wa,{
+pointerId:0,width:0,height:0,pressure:0,tangentialPressure:0,tiltX:0,tiltY:0,twist:0,pointerType:0,isPrimary:0}
+),Yp=Dt(eA),tA=_({
+}
+,qo,{
+touches:0,targetTouches:0,changedTouches:0,altKey:0,metaKey:0,ctrlKey:0,shiftKey:0,getModifierState:Zu}
+),nA=Dt(tA),iA=_({
+}
+,Hi,{
+propertyName:0,elapsedTime:0,pseudoElement:0}
+),sA=Dt(iA),oA=_({
+}
+,wa,{
+deltaX:function(s){
+return"deltaX"in s?s.deltaX:"wheelDeltaX"in s?-s.wheelDeltaX:0}
+,deltaY:function(s){
+return"deltaY"in s?s.deltaY:"wheelDeltaY"in s?-s.wheelDeltaY:"wheelDelta"in s?-s.wheelDelta:0}
+,deltaZ:0,deltaMode:0}
+),rA=Dt(oA),aA=_({
+}
+,Hi,{
+newState:0,oldState:0}
+),lA=Dt(aA),uA=[9,13,27,32],ec=Ln&&"CompositionEvent"in window,zo=null;
+Ln&&"documentMode"in document&&(zo=document.documentMode);
+var cA=Ln&&"TextEvent"in window&&!zo,jp=Ln&&(!ec||zo&&8<zo&&11>=zo),Wp=" ",Xp=!1;
+function Qp(s,o){
+switch(s){
+case"keyup":return uA.indexOf(o.keyCode)!==-1;
+case"keydown":return o.keyCode!==229;
+case"keypress":case"mousedown":case"focusout":return!0;
+default:return!1}
+}
+function Zp(s){
+return s=s.detail,typeof s=="object"&&"data"in s?s.data:null}
+var Rs=!1;
+function dA(s,o){
+switch(s){
+case"compositionend":return Zp(o);
+case"keypress":return o.which!==32?null:(Xp=!0,Wp);
+case"textInput":return s=o.data,s===Wp&&Xp?null:s;
+default:return null}
+}
+function fA(s,o){
+if(Rs)return s==="compositionend"||!ec&&Qp(s,o)?(s=zp(),va=ju=ai=null,Rs=!1,s):null;
+switch(s){
+case"paste":return null;
+case"keypress":if(!(o.ctrlKey||o.altKey||o.metaKey)||o.ctrlKey&&o.altKey){
+if(o.char&&1<o.char.length)return o.char;
+if(o.which)return String.fromCharCode(o.which)}
+return null;
+case"compositionend":return jp&&o.locale!=="ko"?null:o.data;
+default:return null}
+}
+var hA={
+color:!0,date:!0,datetime:!0,"datetime-local":!0,email:!0,month:!0,number:!0,password:!0,range:!0,search:!0,tel:!0,text:!0,time:!0,url:!0,week:!0}
+;
+function em(s){
+var o=s&&s.nodeName&&s.nodeName.toLowerCase();
+return o==="input"?!!hA[s.type]:o==="textarea"}
+function tm(s,o,a,c){
+Cs?xs?xs.push(c):xs=[c]:Cs=c,o=dl(o,"onChange"),0<o.length&&(a=new Sa("onChange","change",null,a,c),s.push({
+event:a,listeners:o}
+))}
+var $o=null,Jo=null;
+function pA(s){
+Oy(s,0)}
+function Ea(s){
+var o=Bo(s);
+if(Lp(o))return s}
+function nm(s,o){
+if(s==="change")return o}
+var im=!1;
+if(Ln){
+var tc;
+if(Ln){
+var nc="oninput"in document;
+if(!nc){
+var sm=document.createElement("div");
+sm.setAttribute("oninput","return;
+"),nc=typeof sm.oninput=="function"}
+tc=nc}
+else tc=!1;
+im=tc&&(!document.documentMode||9<document.documentMode)}
+function om(){
+$o&&($o.detachEvent("onpropertychange",rm),Jo=$o=null)}
+function rm(s){
+if(s.propertyName==="value"&&Ea(Jo)){
+var o=[];
+tm(o,Jo,s,Ju(s)),Hp(pA,o)}
+}
+function mA(s,o,a){
+s==="focusin"?(om(),$o=o,Jo=a,$o.attachEvent("onpropertychange",rm)):s==="focusout"&&om()}
+function gA(s){
+if(s==="selectionchange"||s==="keyup"||s==="keydown")return Ea(Jo)}
+function yA(s,o){
+if(s==="click")return Ea(o)}
+function vA(s,o){
+if(s==="input"||s==="change")return Ea(o)}
+function _A(s,o){
+return s===o&&(s!==0||1/s===1/o)||s!==s&&o!==o}
+var qt=typeof Object.is=="function"?Object.is:_A;
+function Ko(s,o){
+if(qt(s,o))return!0;
+if(typeof s!="object"||s===null||typeof o!="object"||o===null)return!1;
+var a=Object.keys(s),c=Object.keys(o);
+if(a.length!==c.length)return!1;
+for(c=0;
+c<a.length;
+c++){
+var y=a[c];
+if(!ku.call(o,y)||!qt(s[y],o[y]))return!1}
+return!0}
+function am(s){
+for(;
+s&&s.firstChild;
+)s=s.firstChild;
+return s}
+function lm(s,o){
+var a=am(s);
+s=0;
+for(var c;
+a;
+){
+if(a.nodeType===3){
+if(c=s+a.textContent.length,s<=o&&c>=o)return{
+node:a,offset:o-s}
+;
+s=c}
+e:{
+for(;
+a;
+){
+if(a.nextSibling){
+a=a.nextSibling;
+break e}
+a=a.parentNode}
+a=void 0}
+a=am(a)}
+}
+function um(s,o){
+return s&&o?s===o?!0:s&&s.nodeType===3?!1:o&&o.nodeType===3?um(s,o.parentNode):"contains"in s?s.contains(o):s.compareDocumentPosition?!!(s.compareDocumentPosition(o)&16):!1:!1}
+function cm(s){
+s=s!=null&&s.ownerDocument!=null&&s.ownerDocument.defaultView!=null?s.ownerDocument.defaultView:window;
+for(var o=ga(s.document);
+o instanceof s.HTMLIFrameElement;
+){
+try{
+var a=typeof o.contentWindow.location.href=="string"}
+catch{
+a=!1}
+if(a)s=o.contentWindow;
+else break;
+o=ga(s.document)}
+return o}
+function ic(s){
+var o=s&&s.nodeName&&s.nodeName.toLowerCase();
+return o&&(o==="input"&&(s.type==="text"||s.type==="search"||s.type==="tel"||s.type==="url"||s.type==="password")||o==="textarea"||s.contentEditable==="true")}
+var TA=Ln&&"documentMode"in document&&11>=document.documentMode,Ns=null,sc=null,Yo=null,oc=!1;
+function dm(s,o,a){
+var c=a.window===a?a.document:a.nodeType===9?a:a.ownerDocument;
+oc||Ns==null||Ns!==ga(c)||(c=Ns,"selectionStart"in c&&ic(c)?c={
+start:c.selectionStart,end:c.selectionEnd}
+:(c=(c.ownerDocument&&c.ownerDocument.defaultView||window).getSelection(),c={
+anchorNode:c.anchorNode,anchorOffset:c.anchorOffset,focusNode:c.focusNode,focusOffset:c.focusOffset}
+),Yo&&Ko(Yo,c)||(Yo=c,c=dl(sc,"onSelect"),0<c.length&&(o=new Sa("onSelect","select",null,o,a),s.push({
+event:o,listeners:c}
+),o.target=Ns)))}
+function zi(s,o){
+var a={
+}
+;
+return a[s.toLowerCase()]=o.toLowerCase(),a["Webkit"+s]="webkit"+o,a["Moz"+s]="moz"+o,a}
+var Ms={
+animationend:zi("Animation","AnimationEnd"),animationiteration:zi("Animation","AnimationIteration"),animationstart:zi("Animation","AnimationStart"),transitionrun:zi("Transition","TransitionRun"),transitionstart:zi("Transition","TransitionStart"),transitioncancel:zi("Transition","TransitionCancel"),transitionend:zi("Transition","TransitionEnd")}
+,rc={
+}
+,fm={
+}
+;
+Ln&&(fm=document.createElement("div").style,"AnimationEvent"in window||(delete Ms.animationend.animation,delete Ms.animationiteration.animation,delete Ms.animationstart.animation),"TransitionEvent"in window||delete Ms.transitionend.transition);
+function $i(s){
+if(rc[s])return rc[s];
+if(!Ms[s])return s;
+var o=Ms[s],a;
+for(a in o)if(o.hasOwnProperty(a)&&a in fm)return rc[s]=o[a];
+return s}
+var hm=$i("animationend"),pm=$i("animationiteration"),mm=$i("animationstart"),SA=$i("transitionrun"),wA=$i("transitionstart"),EA=$i("transitioncancel"),gm=$i("transitionend"),ym=new Map,ac="abort auxClick beforeToggle cancel canPlay canPlayThrough click close contextMenu copy cut drag dragEnd dragEnter dragExit dragLeave dragOver dragStart drop durationChange emptied encrypted ended error gotPointerCapture input invalid keyDown keyPress keyUp load loadedData loadedMetadata loadStart lostPointerCapture mouseDown mouseMove mouseOut mouseOver mouseUp paste pause play playing pointerCancel pointerDown pointerMove pointerOut pointerOver pointerUp progress rateChange reset resize seeked seeking stalled submit suspend timeUpdate touchCancel touchEnd touchStart volumeChange scroll toggle touchMove waiting wheel".split(" ");
+ac.push("scrollEnd");
+function mn(s,o){
+ym.set(s,o),qi(o,[s])}
+var ba=typeof reportError=="function"?reportError:function(s){
+if(typeof window=="object"&&typeof window.ErrorEvent=="function"){
+var o=new window.ErrorEvent("error",{
+bubbles:!0,cancelable:!0,message:typeof s=="object"&&s!==null&&typeof s.message=="string"?String(s.message):String(s),error:s}
+);
+if(!window.dispatchEvent(o))return}
+else if(typeof process=="object"&&typeof process.emit=="function"){
+process.emit("uncaughtException",s);
+return}
+console.error(s)}
+,tn=[],Is=0,lc=0;
+function Aa(){
+for(var s=Is,o=lc=Is=0;
+o<s;
+){
+var a=tn[o];
+tn[o++]=null;
+var c=tn[o];
+tn[o++]=null;
+var y=tn[o];
+tn[o++]=null;
+var v=tn[o];
+if(tn[o++]=null,c!==null&&y!==null){
+var S=c.pending;
+S===null?y.next=y:(y.next=S.next,S.next=y),c.pending=y}
+v!==0&&vm(a,y,v)}
+}
+function Ca(s,o,a,c){
+tn[Is++]=s,tn[Is++]=o,tn[Is++]=a,tn[Is++]=c,lc|=c,s.lanes|=c,s=s.alternate,s!==null&&(s.lanes|=c)}
+function uc(s,o,a,c){
+return Ca(s,o,a,c),xa(s)}
+function Ji(s,o){
+return Ca(s,null,null,o),xa(s)}
+function vm(s,o,a){
+s.lanes|=a;
+var c=s.alternate;
+c!==null&&(c.lanes|=a);
+for(var y=!1,v=s.return;
+v!==null;
+)v.childLanes|=a,c=v.alternate,c!==null&&(c.childLanes|=a),v.tag===22&&(s=v.stateNode,s===null||s._visibility&1||(y=!0)),s=v,v=v.return;
+return s.tag===3?(v=s.stateNode,y&&o!==null&&(y=31-Gt(a),s=v.hiddenUpdates,c=s[y],c===null?s[y]=[o]:c.push(o),o.lane=a|536870912),v):null}
+function xa(s){
+if(50<gr)throw gr=0,vd=null,Error(i(185));
+for(var o=s.return;
+o!==null;
+)s=o,o=s.return;
+return s.tag===3?s.stateNode:null}
+var Ds={
+}
+;
+function bA(s,o,a,c){
+this.tag=s,this.key=a,this.sibling=this.child=this.return=this.stateNode=this.type=this.elementType=null,this.index=0,this.refCleanup=this.ref=null,this.pendingProps=o,this.dependencies=this.memoizedState=this.updateQueue=this.memoizedProps=null,this.mode=c,this.subtreeFlags=this.flags=0,this.deletions=null,this.childLanes=this.lanes=0,this.alternate=null}
+function Ht(s,o,a,c){
+return new bA(s,o,a,c)}
+function cc(s){
+return s=s.prototype,!(!s||!s.isReactComponent)}
+function On(s,o){
+var a=s.alternate;
+return a===null?(a=Ht(s.tag,o,s.key,s.mode),a.elementType=s.elementType,a.type=s.type,a.stateNode=s.stateNode,a.alternate=s,s.alternate=a):(a.pendingProps=o,a.type=s.type,a.flags=0,a.subtreeFlags=0,a.deletions=null),a.flags=s.flags&65011712,a.childLanes=s.childLanes,a.lanes=s.lanes,a.child=s.child,a.memoizedProps=s.memoizedProps,a.memoizedState=s.memoizedState,a.updateQueue=s.updateQueue,o=s.dependencies,a.dependencies=o===null?null:{
+lanes:o.lanes,firstContext:o.firstContext}
+,a.sibling=s.sibling,a.index=s.index,a.ref=s.ref,a.refCleanup=s.refCleanup,a}
+function _m(s,o){
+s.flags&=65011714;
+var a=s.alternate;
+return a===null?(s.childLanes=0,s.lanes=o,s.child=null,s.subtreeFlags=0,s.memoizedProps=null,s.memoizedState=null,s.updateQueue=null,s.dependencies=null,s.stateNode=null):(s.childLanes=a.childLanes,s.lanes=a.lanes,s.child=a.child,s.subtreeFlags=0,s.deletions=null,s.memoizedProps=a.memoizedProps,s.memoizedState=a.memoizedState,s.updateQueue=a.updateQueue,s.type=a.type,o=a.dependencies,s.dependencies=o===null?null:{
+lanes:o.lanes,firstContext:o.firstContext}
+),s}
+function Ra(s,o,a,c,y,v){
+var S=0;
+if(c=s,typeof s=="function")cc(s)&&(S=1);
+else if(typeof s=="string")S=NC(s,a,ie.current)?26:s==="html"||s==="head"||s==="body"?27:5;
+else e:switch(s){
+case j:return s=Ht(31,a,o,y),s.elementType=j,s.lanes=v,s;
+case C:return Ki(a.children,y,v,o);
+case x:S=8,y|=24;
+break;
+case R:return s=Ht(12,a,o,y|2),s.elementType=R,s.lanes=v,s;
+case F:return s=Ht(13,a,o,y),s.elementType=F,s.lanes=v,s;
+case z:return s=Ht(19,a,o,y),s.elementType=z,s.lanes=v,s;
+default:if(typeof s=="object"&&s!==null)switch(s.$$typeof){
+case N:S=10;
+break e;
+case k:S=9;
+break e;
+case O:S=11;
+break e;
+case G:S=14;
+break e;
+case X:S=16,c=null;
+break e}
+S=29,a=Error(i(130,s===null?"null":typeof s,"")),c=null}
+return o=Ht(S,a,o,y),o.elementType=s,o.type=c,o.lanes=v,o}
+function Ki(s,o,a,c){
+return s=Ht(7,s,c,o),s.lanes=a,s}
+function dc(s,o,a){
+return s=Ht(6,s,null,o),s.lanes=a,s}
+function Tm(s){
+var o=Ht(18,null,null,0);
+return o.stateNode=s,o}
+function fc(s,o,a){
+return o=Ht(4,s.children!==null?s.children:[],s.key,o),o.lanes=a,o.stateNode={
+containerInfo:s.containerInfo,pendingChildren:null,implementation:s.implementation}
+,o}
+var Sm=new WeakMap;
+function nn(s,o){
+if(typeof s=="object"&&s!==null){
+var a=Sm.get(s);
+return a!==void 0?a:(o={
+value:s,source:o,stack:Tp(o)}
+,Sm.set(s,o),o)}
+return{
+value:s,source:o,stack:Tp(o)}
+}
+var ks=[],Us=0,Na=null,jo=0,sn=[],on=0,li=null,Nn=1,Mn="";
+function Vn(s,o){
+ks[Us++]=jo,ks[Us++]=Na,Na=s,jo=o}
+function wm(s,o,a){
+sn[on++]=Nn,sn[on++]=Mn,sn[on++]=li,li=s;
+var c=Nn;
+s=Mn;
+var y=32-Gt(c)-1;
+c&=~(1<<y),a+=1;
+var v=32-Gt(o)+y;
+if(30<v){
+var S=y-y%5;
+v=(c&(1<<S)-1).toString(32),c>>=S,y-=S,Nn=1<<32-Gt(o)+y|a<<y|c,Mn=v+s}
+else Nn=1<<v|a<<y|c,Mn=s}
+function hc(s){
+s.return!==null&&(Vn(s,1),wm(s,1,0))}
+function pc(s){
+for(;
+s===Na;
+)Na=ks[--Us],ks[Us]=null,jo=ks[--Us],ks[Us]=null;
+for(;
+s===li;
+)li=sn[--on],sn[on]=null,Mn=sn[--on],sn[on]=null,Nn=sn[--on],sn[on]=null}
+function Em(s,o){
+sn[on++]=Nn,sn[on++]=Mn,sn[on++]=li,Nn=o.id,Mn=o.overflow,li=s}
+var yt=null,qe=null,be=!1,ui=null,rn=!1,mc=Error(i(519));
+function ci(s){
+var o=Error(i(418,1<arguments.length&&arguments[1]!==void 0&&arguments[1]?"text":"HTML",""));
+throw Wo(nn(o,s)),mc}
+function bm(s){
+var o=s.stateNode,a=s.type,c=s.memoizedProps;
+switch(o[gt]=s,o[It]=c,a){
+case"dialog":Te("cancel",o),Te("close",o);
+break;
+case"iframe":case"object":case"embed":Te("load",o);
+break;
+case"video":case"audio":for(a=0;
+a<vr.length;
+a++)Te(vr[a],o);
+break;
+case"source":Te("error",o);
+break;
+case"img":case"image":case"link":Te("error",o),Te("load",o);
+break;
+case"details":Te("toggle",o);
+break;
+case"input":Te("invalid",o),Op(o,c.value,c.defaultValue,c.checked,c.defaultChecked,c.type,c.name,!0);
+break;
+case"select":Te("invalid",o);
+break;
+case"textarea":Te("invalid",o),Bp(o,c.value,c.defaultValue,c.children)}
+a=c.children,typeof a!="string"&&typeof a!="number"&&typeof a!="bigint"||o.textContent===""+a||c.suppressHydrationWarning===!0||Gy(o.textContent,a)?(c.popover!=null&&(Te("beforetoggle",o),Te("toggle",o)),c.onScroll!=null&&Te("scroll",o),c.onScrollEnd!=null&&Te("scrollend",o),c.onClick!=null&&(o.onclick=Pn),o=!0):o=!1,o||ci(s,!0)}
+function Am(s){
+for(yt=s.return;
+yt;
+)switch(yt.tag){
+case 5:case 31:case 13:rn=!1;
+return;
+case 27:case 3:rn=!0;
+return;
+default:yt=yt.return}
+}
+function Ps(s){
+if(s!==yt)return!1;
+if(!be)return Am(s),be=!0,!1;
+var o=s.tag,a;
+if((a=o!==3&&o!==27)&&((a=o===5)&&(a=s.type,a=!(a!=="form"&&a!=="button")||kd(s.type,s.memoizedProps)),a=!a),a&&qe&&ci(s),Am(s),o===13){
+if(s=s.memoizedState,s=s!==null?s.dehydrated:null,!s)throw Error(i(317));
+qe=Wy(s)}
+else if(o===31){
+if(s=s.memoizedState,s=s!==null?s.dehydrated:null,!s)throw Error(i(317));
+qe=Wy(s)}
+else o===27?(o=qe,bi(s.type)?(s=Vd,Vd=null,qe=s):qe=o):qe=yt?ln(s.stateNode.nextSibling):null;
+return!0}
+function Yi(){
+qe=yt=null,be=!1}
+function gc(){
+var s=ui;
+return s!==null&&(Lt===null?Lt=s:Lt.push.apply(Lt,s),ui=null),s}
+function Wo(s){
+ui===null?ui=[s]:ui.push(s)}
+var yc=D(null),ji=null,Bn=null;
+function di(s,o,a){
+Q(yc,o._currentValue),o._currentValue=a}
+function Fn(s){
+s._currentValue=yc.current,Y(yc)}
+function vc(s,o,a){
+for(;
+s!==null;
+){
+var c=s.alternate;
+if((s.childLanes&o)!==o?(s.childLanes|=o,c!==null&&(c.childLanes|=o)):c!==null&&(c.childLanes&o)!==o&&(c.childLanes|=o),s===a)break;
+s=s.return}
+}
+function _c(s,o,a,c){
+var y=s.child;
+for(y!==null&&(y.return=s);
+y!==null;
+){
+var v=y.dependencies;
+if(v!==null){
+var S=y.child;
+v=v.firstContext;
+e:for(;
+v!==null;
+){
+var b=v;
+v=y;
+for(var M=0;
+M<o.length;
+M++)if(b.context===o[M]){
+v.lanes|=a,b=v.alternate,b!==null&&(b.lanes|=a),vc(v.return,a,s),c||(S=null);
+break e}
+v=b.next}
+}
+else if(y.tag===18){
+if(S=y.return,S===null)throw Error(i(341));
+S.lanes|=a,v=S.alternate,v!==null&&(v.lanes|=a),vc(S,a,s),S=null}
+else S=y.child;
+if(S!==null)S.return=y;
+else for(S=y;
+S!==null;
+){
+if(S===s){
+S=null;
+break}
+if(y=S.sibling,y!==null){
+y.return=S.return,S=y;
+break}
+S=S.return}
+y=S}
+}
+function Ls(s,o,a,c){
+s=null;
+for(var y=o,v=!1;
+y!==null;
+){
+if(!v){
+if((y.flags&524288)!==0)v=!0;
+else if((y.flags&262144)!==0)break}
+if(y.tag===10){
+var S=y.alternate;
+if(S===null)throw Error(i(387));
+if(S=S.memoizedProps,S!==null){
+var b=y.type;
+qt(y.pendingProps.value,S.value)||(s!==null?s.push(b):s=[b])}
+}
+else if(y===ke.current){
+if(S=y.alternate,S===null)throw Error(i(387));
+S.memoizedState.memoizedState!==y.memoizedState.memoizedState&&(s!==null?s.push(Er):s=[Er])}
+y=y.return}
+s!==null&&_c(o,s,a,c),o.flags|=262144}
+function Ma(s){
+for(s=s.firstContext;
+s!==null;
+){
+if(!qt(s.context._currentValue,s.memoizedValue))return!0;
+s=s.next}
+return!1}
+function Wi(s){
+ji=s,Bn=null,s=s.dependencies,s!==null&&(s.firstContext=null)}
+function vt(s){
+return Cm(ji,s)}
+function Ia(s,o){
+return ji===null&&Wi(s),Cm(s,o)}
+function Cm(s,o){
+var a=o._currentValue;
+if(o={
+context:o,memoizedValue:a,next:null}
+,Bn===null){
+if(s===null)throw Error(i(308));
+Bn=o,s.dependencies={
+lanes:0,firstContext:o}
+,s.flags|=524288}
+else Bn=Bn.next=o;
+return a}
+var AA=typeof AbortController<"u"?AbortController:function(){
+var s=[],o=this.signal={
+aborted:!1,addEventListener:function(a,c){
+s.push(c)}
+}
+;
+this.abort=function(){
+o.aborted=!0,s.forEach(function(a){
+return a()}
+)}
+}
+,CA=t.unstable_scheduleCallback,xA=t.unstable_NormalPriority,tt={
+$$typeof:N,Consumer:null,Provider:null,_currentValue:null,_currentValue2:null,_threadCount:0}
+;
+function Tc(){
+return{
+controller:new AA,data:new Map,refCount:0}
+}
+function Xo(s){
+s.refCount--,s.refCount===0&&CA(xA,function(){
+s.controller.abort()}
+)}
+var Qo=null,Sc=0,Os=0,Vs=null;
+function RA(s,o){
+if(Qo===null){
+var a=Qo=[];
+Sc=0,Os=bd(),Vs={
+status:"pending",value:void 0,then:function(c){
+a.push(c)}
+}
+}
+return Sc++,o.then(xm,xm),o}
+function xm(){
+if(--Sc===0&&Qo!==null){
+Vs!==null&&(Vs.status="fulfilled");
+var s=Qo;
+Qo=null,Os=0,Vs=null;
+for(var o=0;
+o<s.length;
+o++)(0,s[o])()}
+}
+function NA(s,o){
+var a=[],c={
+status:"pending",value:null,reason:null,then:function(y){
+a.push(y)}
+}
+;
+return s.then(function(){
+c.status="fulfilled",c.value=o;
+for(var y=0;
+y<a.length;
+y++)(0,a[y])(o)}
+,function(y){
+for(c.status="rejected",c.reason=y,y=0;
+y<a.length;
+y++)(0,a[y])(void 0)}
+),c}
+var Rm=q.S;
+q.S=function(s,o){
+dy=Bt(),typeof o=="object"&&o!==null&&typeof o.then=="function"&&RA(s,o),Rm!==null&&Rm(s,o)}
+;
+var Xi=D(null);
+function wc(){
+var s=Xi.current;
+return s!==null?s:Fe.pooledCache}
+function Da(s,o){
+o===null?Q(Xi,Xi.current):Q(Xi,o.pool)}
+function Nm(){
+var s=wc();
+return s===null?null:{
+parent:tt._currentValue,pool:s}
+}
+var Bs=Error(i(460)),Ec=Error(i(474)),ka=Error(i(542)),Ua={
+then:function(){
+}
+}
+;
+function Mm(s){
+return s=s.status,s==="fulfilled"||s==="rejected"}
+function Im(s,o,a){
+switch(a=s[a],a===void 0?s.push(o):a!==o&&(o.then(Pn,Pn),o=a),o.status){
+case"fulfilled":return o.value;
+case"rejected":throw s=o.reason,km(s),s;
+default:if(typeof o.status=="string")o.then(Pn,Pn);
+else{
+if(s=Fe,s!==null&&100<s.shellSuspendCounter)throw Error(i(482));
+s=o,s.status="pending",s.then(function(c){
+if(o.status==="pending"){
+var y=o;
+y.status="fulfilled",y.value=c}
+}
+,function(c){
+if(o.status==="pending"){
+var y=o;
+y.status="rejected",y.reason=c}
+}
+)}
+switch(o.status){
+case"fulfilled":return o.value;
+case"rejected":throw s=o.reason,km(s),s}
+throw Zi=o,Bs}
+}
+function Qi(s){
+try{
+var o=s._init;
+return o(s._payload)}
+catch(a){
+throw a!==null&&typeof a=="object"&&typeof a.then=="function"?(Zi=a,Bs):a}
+}
+var Zi=null;
+function Dm(){
+if(Zi===null)throw Error(i(459));
+var s=Zi;
+return Zi=null,s}
+function km(s){
+if(s===Bs||s===ka)throw Error(i(483))}
+var Fs=null,Zo=0;
+function Pa(s){
+var o=Zo;
+return Zo+=1,Fs===null&&(Fs=[]),Im(Fs,s,o)}
+function er(s,o){
+o=o.props.ref,s.ref=o!==void 0?o:null}
+function La(s,o){
+throw o.$$typeof===T?Error(i(525)):(s=Object.prototype.toString.call(o),Error(i(31,s==="[object Object]"?"object with keys {
+"+Object.keys(o).join(", ")+"}
+":s)))}
+function Um(s){
+function o(U,I){
+if(s){
+var P=U.deletions;
+P===null?(U.deletions=[I],U.flags|=16):P.push(I)}
+}
+function a(U,I){
+if(!s)return null;
+for(;
+I!==null;
+)o(U,I),I=I.sibling;
+return null}
+function c(U){
+for(var I=new Map;
+U!==null;
+)U.key!==null?I.set(U.key,U):I.set(U.index,U),U=U.sibling;
+return I}
+function y(U,I){
+return U=On(U,I),U.index=0,U.sibling=null,U}
+function v(U,I,P){
+return U.index=P,s?(P=U.alternate,P!==null?(P=P.index,P<I?(U.flags|=67108866,I):P):(U.flags|=67108866,I)):(U.flags|=1048576,I)}
+function S(U){
+return s&&U.alternate===null&&(U.flags|=67108866),U}
+function b(U,I,P,$){
+return I===null||I.tag!==6?(I=dc(P,U.mode,$),I.return=U,I):(I=y(I,P),I.return=U,I)}
+function M(U,I,P,$){
+var ae=P.type;
+return ae===C?H(U,I,P.props.children,$,P.key):I!==null&&(I.elementType===ae||typeof ae=="object"&&ae!==null&&ae.$$typeof===X&&Qi(ae)===I.type)?(I=y(I,P.props),er(I,P),I.return=U,I):(I=Ra(P.type,P.key,P.props,null,U.mode,$),er(I,P),I.return=U,I)}
+function L(U,I,P,$){
+return I===null||I.tag!==4||I.stateNode.containerInfo!==P.containerInfo||I.stateNode.implementation!==P.implementation?(I=fc(P,U.mode,$),I.return=U,I):(I=y(I,P.children||[]),I.return=U,I)}
+function H(U,I,P,$,ae){
+return I===null||I.tag!==7?(I=Ki(P,U.mode,$,ae),I.return=U,I):(I=y(I,P),I.return=U,I)}
+function K(U,I,P){
+if(typeof I=="string"&&I!==""||typeof I=="number"||typeof I=="bigint")return I=dc(""+I,U.mode,P),I.return=U,I;
+if(typeof I=="object"&&I!==null){
+switch(I.$$typeof){
+case w:return P=Ra(I.type,I.key,I.props,null,U.mode,P),er(P,I),P.return=U,P;
+case A:return I=fc(I,U.mode,P),I.return=U,I;
+case X:return I=Qi(I),K(U,I,P)}
+if(mt(I)||Ie(I))return I=Ki(I,U.mode,P,null),I.return=U,I;
+if(typeof I.then=="function")return K(U,Pa(I),P);
+if(I.$$typeof===N)return K(U,Ia(U,I),P);
+La(U,I)}
+return null}
+function V(U,I,P,$){
+var ae=I!==null?I.key:null;
+if(typeof P=="string"&&P!==""||typeof P=="number"||typeof P=="bigint")return ae!==null?null:b(U,I,""+P,$);
+if(typeof P=="object"&&P!==null){
+switch(P.$$typeof){
+case w:return P.key===ae?M(U,I,P,$):null;
+case A:return P.key===ae?L(U,I,P,$):null;
+case X:return P=Qi(P),V(U,I,P,$)}
+if(mt(P)||Ie(P))return ae!==null?null:H(U,I,P,$,null);
+if(typeof P.then=="function")return V(U,I,Pa(P),$);
+if(P.$$typeof===N)return V(U,I,Ia(U,P),$);
+La(U,P)}
+return null}
+function B(U,I,P,$,ae){
+if(typeof $=="string"&&$!==""||typeof $=="number"||typeof $=="bigint")return U=U.get(P)||null,b(I,U,""+$,ae);
+if(typeof $=="object"&&$!==null){
+switch($.$$typeof){
+case w:return U=U.get($.key===null?P:$.key)||null,M(I,U,$,ae);
+case A:return U=U.get($.key===null?P:$.key)||null,L(I,U,$,ae);
+case X:return $=Qi($),B(U,I,P,$,ae)}
+if(mt($)||Ie($))return U=U.get(P)||null,H(I,U,$,ae,null);
+if(typeof $.then=="function")return B(U,I,P,Pa($),ae);
+if($.$$typeof===N)return B(U,I,P,Ia(I,$),ae);
+La(I,$)}
+return null}
+function te(U,I,P,$){
+for(var ae=null,xe=null,se=I,ge=I=0,Ee=null;
+se!==null&&ge<P.length;
+ge++){
+se.index>ge?(Ee=se,se=null):Ee=se.sibling;
+var Re=V(U,se,P[ge],$);
+if(Re===null){
+se===null&&(se=Ee);
+break}
+s&&se&&Re.alternate===null&&o(U,se),I=v(Re,I,ge),xe===null?ae=Re:xe.sibling=Re,xe=Re,se=Ee}
+if(ge===P.length)return a(U,se),be&&Vn(U,ge),ae;
+if(se===null){
+for(;
+ge<P.length;
+ge++)se=K(U,P[ge],$),se!==null&&(I=v(se,I,ge),xe===null?ae=se:xe.sibling=se,xe=se);
+return be&&Vn(U,ge),ae}
+for(se=c(se);
+ge<P.length;
+ge++)Ee=B(se,U,ge,P[ge],$),Ee!==null&&(s&&Ee.alternate!==null&&se.delete(Ee.key===null?ge:Ee.key),I=v(Ee,I,ge),xe===null?ae=Ee:xe.sibling=Ee,xe=Ee);
+return s&&se.forEach(function(Ni){
+return o(U,Ni)}
+),be&&Vn(U,ge),ae}
+function le(U,I,P,$){
+if(P==null)throw Error(i(151));
+for(var ae=null,xe=null,se=I,ge=I=0,Ee=null,Re=P.next();
+se!==null&&!Re.done;
+ge++,Re=P.next()){
+se.index>ge?(Ee=se,se=null):Ee=se.sibling;
+var Ni=V(U,se,Re.value,$);
+if(Ni===null){
+se===null&&(se=Ee);
+break}
+s&&se&&Ni.alternate===null&&o(U,se),I=v(Ni,I,ge),xe===null?ae=Ni:xe.sibling=Ni,xe=Ni,se=Ee}
+if(Re.done)return a(U,se),be&&Vn(U,ge),ae;
+if(se===null){
+for(;
+!Re.done;
+ge++,Re=P.next())Re=K(U,Re.value,$),Re!==null&&(I=v(Re,I,ge),xe===null?ae=Re:xe.sibling=Re,xe=Re);
+return be&&Vn(U,ge),ae}
+for(se=c(se);
+!Re.done;
+ge++,Re=P.next())Re=B(se,U,ge,Re.value,$),Re!==null&&(s&&Re.alternate!==null&&se.delete(Re.key===null?ge:Re.key),I=v(Re,I,ge),xe===null?ae=Re:xe.sibling=Re,xe=Re);
+return s&&se.forEach(function(FC){
+return o(U,FC)}
+),be&&Vn(U,ge),ae}
+function Ve(U,I,P,$){
+if(typeof P=="object"&&P!==null&&P.type===C&&P.key===null&&(P=P.props.children),typeof P=="object"&&P!==null){
+switch(P.$$typeof){
+case w:e:{
+for(var ae=P.key;
+I!==null;
+){
+if(I.key===ae){
+if(ae=P.type,ae===C){
+if(I.tag===7){
+a(U,I.sibling),$=y(I,P.props.children),$.return=U,U=$;
+break e}
+}
+else if(I.elementType===ae||typeof ae=="object"&&ae!==null&&ae.$$typeof===X&&Qi(ae)===I.type){
+a(U,I.sibling),$=y(I,P.props),er($,P),$.return=U,U=$;
+break e}
+a(U,I);
+break}
+else o(U,I);
+I=I.sibling}
+P.type===C?($=Ki(P.props.children,U.mode,$,P.key),$.return=U,U=$):($=Ra(P.type,P.key,P.props,null,U.mode,$),er($,P),$.return=U,U=$)}
+return S(U);
+case A:e:{
+for(ae=P.key;
+I!==null;
+){
+if(I.key===ae)if(I.tag===4&&I.stateNode.containerInfo===P.containerInfo&&I.stateNode.implementation===P.implementation){
+a(U,I.sibling),$=y(I,P.children||[]),$.return=U,U=$;
+break e}
+else{
+a(U,I);
+break}
+else o(U,I);
+I=I.sibling}
+$=fc(P,U.mode,$),$.return=U,U=$}
+return S(U);
+case X:return P=Qi(P),Ve(U,I,P,$)}
+if(mt(P))return te(U,I,P,$);
+if(Ie(P)){
+if(ae=Ie(P),typeof ae!="function")throw Error(i(150));
+return P=ae.call(P),le(U,I,P,$)}
+if(typeof P.then=="function")return Ve(U,I,Pa(P),$);
+if(P.$$typeof===N)return Ve(U,I,Ia(U,P),$);
+La(U,P)}
+return typeof P=="string"&&P!==""||typeof P=="number"||typeof P=="bigint"?(P=""+P,I!==null&&I.tag===6?(a(U,I.sibling),$=y(I,P),$.return=U,U=$):(a(U,I),$=dc(P,U.mode,$),$.return=U,U=$),S(U)):a(U,I)}
+return function(U,I,P,$){
+try{
+Zo=0;
+var ae=Ve(U,I,P,$);
+return Fs=null,ae}
+catch(se){
+if(se===Bs||se===ka)throw se;
+var xe=Ht(29,se,null,U.mode);
+return xe.lanes=$,xe.return=U,xe}
+finally{
+}
+}
+}
+var es=Um(!0),Pm=Um(!1),fi=!1;
+function bc(s){
+s.updateQueue={
+baseState:s.memoizedState,firstBaseUpdate:null,lastBaseUpdate:null,shared:{
+pending:null,lanes:0,hiddenCallbacks:null}
+,callbacks:null}
+}
+function Ac(s,o){
+s=s.updateQueue,o.updateQueue===s&&(o.updateQueue={
+baseState:s.baseState,firstBaseUpdate:s.firstBaseUpdate,lastBaseUpdate:s.lastBaseUpdate,shared:s.shared,callbacks:null}
+)}
+function hi(s){
+return{
+lane:s,tag:0,payload:null,callback:null,next:null}
+}
+function pi(s,o,a){
+var c=s.updateQueue;
+if(c===null)return null;
+if(c=c.shared,(De&2)!==0){
+var y=c.pending;
+return y===null?o.next=o:(o.next=y.next,y.next=o),c.pending=o,o=xa(s),vm(s,null,a),o}
+return Ca(s,c,o,a),xa(s)}
+function tr(s,o,a){
+if(o=o.updateQueue,o!==null&&(o=o.shared,(a&4194048)!==0)){
+var c=o.lanes;
+c&=s.pendingLanes,a|=c,o.lanes=a,Cp(s,a)}
+}
+function Cc(s,o){
+var a=s.updateQueue,c=s.alternate;
+if(c!==null&&(c=c.updateQueue,a===c)){
+var y=null,v=null;
+if(a=a.firstBaseUpdate,a!==null){
+do{
+var S={
+lane:a.lane,tag:a.tag,payload:a.payload,callback:null,next:null}
+;
+v===null?y=v=S:v=v.next=S,a=a.next}
+while(a!==null);
+v===null?y=v=o:v=v.next=o}
+else y=v=o;
+a={
+baseState:c.baseState,firstBaseUpdate:y,lastBaseUpdate:v,shared:c.shared,callbacks:c.callbacks}
+,s.updateQueue=a;
+return}
+s=a.lastBaseUpdate,s===null?a.firstBaseUpdate=o:s.next=o,a.lastBaseUpdate=o}
+var xc=!1;
+function nr(){
+if(xc){
+var s=Vs;
+if(s!==null)throw s}
+}
+function ir(s,o,a,c){
+xc=!1;
+var y=s.updateQueue;
+fi=!1;
+var v=y.firstBaseUpdate,S=y.lastBaseUpdate,b=y.shared.pending;
+if(b!==null){
+y.shared.pending=null;
+var M=b,L=M.next;
+M.next=null,S===null?v=L:S.next=L,S=M;
+var H=s.alternate;
+H!==null&&(H=H.updateQueue,b=H.lastBaseUpdate,b!==S&&(b===null?H.firstBaseUpdate=L:b.next=L,H.lastBaseUpdate=M))}
+if(v!==null){
+var K=y.baseState;
+S=0,H=L=M=null,b=v;
+do{
+var V=b.lane&-536870913,B=V!==b.lane;
+if(B?(we&V)===V:(c&V)===V){
+V!==0&&V===Os&&(xc=!0),H!==null&&(H=H.next={
+lane:0,tag:b.tag,payload:b.payload,callback:null,next:null}
+);
+e:{
+var te=s,le=b;
+V=o;
+var Ve=a;
+switch(le.tag){
+case 1:if(te=le.payload,typeof te=="function"){
+K=te.call(Ve,K,V);
+break e}
+K=te;
+break e;
+case 3:te.flags=te.flags&-65537|128;
+case 0:if(te=le.payload,V=typeof te=="function"?te.call(Ve,K,V):te,V==null)break e;
+K=_({
+}
+,K,V);
+break e;
+case 2:fi=!0}
+}
+V=b.callback,V!==null&&(s.flags|=64,B&&(s.flags|=8192),B=y.callbacks,B===null?y.callbacks=[V]:B.push(V))}
+else B={
+lane:V,tag:b.tag,payload:b.payload,callback:b.callback,next:null}
+,H===null?(L=H=B,M=K):H=H.next=B,S|=V;
+if(b=b.next,b===null){
+if(b=y.shared.pending,b===null)break;
+B=b,b=B.next,B.next=null,y.lastBaseUpdate=B,y.shared.pending=null}
+}
+while(!0);
+H===null&&(M=K),y.baseState=M,y.firstBaseUpdate=L,y.lastBaseUpdate=H,v===null&&(y.shared.lanes=0),_i|=S,s.lanes=S,s.memoizedState=K}
+}
+function Lm(s,o){
+if(typeof s!="function")throw Error(i(191,s));
+s.call(o)}
+function Om(s,o){
+var a=s.callbacks;
+if(a!==null)for(s.callbacks=null,s=0;
+s<a.length;
+s++)Lm(a[s],o)}
+var Gs=D(null),Oa=D(0);
+function Vm(s,o){
+s=jn,Q(Oa,s),Q(Gs,o),jn=s|o.baseLanes}
+function Rc(){
+Q(Oa,jn),Q(Gs,Gs.current)}
+function Nc(){
+jn=Oa.current,Y(Gs),Y(Oa)}
+var zt=D(null),an=null;
+function mi(s){
+var o=s.alternate;
+Q(Ze,Ze.current&1),Q(zt,s),an===null&&(o===null||Gs.current!==null||o.memoizedState!==null)&&(an=s)}
+function Mc(s){
+Q(Ze,Ze.current),Q(zt,s),an===null&&(an=s)}
+function Bm(s){
+s.tag===22?(Q(Ze,Ze.current),Q(zt,s),an===null&&(an=s)):gi()}
+function gi(){
+Q(Ze,Ze.current),Q(zt,zt.current)}
+function $t(s){
+Y(zt),an===s&&(an=null),Y(Ze)}
+var Ze=D(0);
+function Va(s){
+for(var o=s;
+o!==null;
+){
+if(o.tag===13){
+var a=o.memoizedState;
+if(a!==null&&(a=a.dehydrated,a===null||Ld(a)||Od(a)))return o}
+else if(o.tag===19&&(o.memoizedProps.revealOrder==="forwards"||o.memoizedProps.revealOrder==="backwards"||o.memoizedProps.revealOrder==="unstable_legacy-backwards"||o.memoizedProps.revealOrder==="together")){
+if((o.flags&128)!==0)return o}
+else if(o.child!==null){
+o.child.return=o,o=o.child;
+continue}
+if(o===s)break;
+for(;
+o.sibling===null;
+){
+if(o.return===null||o.return===s)return null;
+o=o.return}
+o.sibling.return=o.return,o=o.sibling}
+return null}
+var Gn=0,me=null,Le=null,nt=null,Ba=!1,qs=!1,ts=!1,Fa=0,sr=0,Hs=null,MA=0;
+function Ye(){
+throw Error(i(321))}
+function Ic(s,o){
+if(o===null)return!1;
+for(var a=0;
+a<o.length&&a<s.length;
+a++)if(!qt(s[a],o[a]))return!1;
+return!0}
+function Dc(s,o,a,c,y,v){
+return Gn=v,me=o,o.memoizedState=null,o.updateQueue=null,o.lanes=0,q.H=s===null||s.memoizedState===null?wg:Kc,ts=!1,v=a(c,y),ts=!1,qs&&(v=Gm(o,a,c,y)),Fm(s),v}
+function Fm(s){
+q.H=ar;
+var o=Le!==null&&Le.next!==null;
+if(Gn=0,nt=Le=me=null,Ba=!1,sr=0,Hs=null,o)throw Error(i(300));
+s===null||it||(s=s.dependencies,s!==null&&Ma(s)&&(it=!0))}
+function Gm(s,o,a,c){
+me=s;
+var y=0;
+do{
+if(qs&&(Hs=null),sr=0,qs=!1,25<=y)throw Error(i(301));
+if(y+=1,nt=Le=null,s.updateQueue!=null){
+var v=s.updateQueue;
+v.lastEffect=null,v.events=null,v.stores=null,v.memoCache!=null&&(v.memoCache.index=0)}
+q.H=Eg,v=o(a,c)}
+while(qs);
+return v}
+function IA(){
+var s=q.H,o=s.useState()[0];
+return o=typeof o.then=="function"?or(o):o,s=s.useState()[0],(Le!==null?Le.memoizedState:null)!==s&&(me.flags|=1024),o}
+function kc(){
+var s=Fa!==0;
+return Fa=0,s}
+function Uc(s,o,a){
+o.updateQueue=s.updateQueue,o.flags&=-2053,s.lanes&=~a}
+function Pc(s){
+if(Ba){
+for(s=s.memoizedState;
+s!==null;
+){
+var o=s.queue;
+o!==null&&(o.pending=null),s=s.next}
+Ba=!1}
+Gn=0,nt=Le=me=null,qs=!1,sr=Fa=0,Hs=null}
+function Ct(){
+var s={
+memoizedState:null,baseState:null,baseQueue:null,queue:null,next:null}
+;
+return nt===null?me.memoizedState=nt=s:nt=nt.next=s,nt}
+function et(){
+if(Le===null){
+var s=me.alternate;
+s=s!==null?s.memoizedState:null}
+else s=Le.next;
+var o=nt===null?me.memoizedState:nt.next;
+if(o!==null)nt=o,Le=s;
+else{
+if(s===null)throw me.alternate===null?Error(i(467)):Error(i(310));
+Le=s,s={
+memoizedState:Le.memoizedState,baseState:Le.baseState,baseQueue:Le.baseQueue,queue:Le.queue,next:null}
+,nt===null?me.memoizedState=nt=s:nt=nt.next=s}
+return nt}
+function Ga(){
+return{
+lastEffect:null,events:null,stores:null,memoCache:null}
+}
+function or(s){
+var o=sr;
+return sr+=1,Hs===null&&(Hs=[]),s=Im(Hs,s,o),o=me,(nt===null?o.memoizedState:nt.next)===null&&(o=o.alternate,q.H=o===null||o.memoizedState===null?wg:Kc),s}
+function qa(s){
+if(s!==null&&typeof s=="object"){
+if(typeof s.then=="function")return or(s);
+if(s.$$typeof===N)return vt(s)}
+throw Error(i(438,String(s)))}
+function Lc(s){
+var o=null,a=me.updateQueue;
+if(a!==null&&(o=a.memoCache),o==null){
+var c=me.alternate;
+c!==null&&(c=c.updateQueue,c!==null&&(c=c.memoCache,c!=null&&(o={
+data:c.data.map(function(y){
+return y.slice()}
+),index:0}
+)))}
+if(o==null&&(o={
+data:[],index:0}
+),a===null&&(a=Ga(),me.updateQueue=a),a.memoCache=o,a=o.data[o.index],a===void 0)for(a=o.data[o.index]=Array(s),c=0;
+c<s;
+c++)a[c]=oe;
+return o.index++,a}
+function qn(s,o){
+return typeof o=="function"?o(s):o}
+function Ha(s){
+var o=et();
+return Oc(o,Le,s)}
+function Oc(s,o,a){
+var c=s.queue;
+if(c===null)throw Error(i(311));
+c.lastRenderedReducer=a;
+var y=s.baseQueue,v=c.pending;
+if(v!==null){
+if(y!==null){
+var S=y.next;
+y.next=v.next,v.next=S}
+o.baseQueue=y=v,c.pending=null}
+if(v=s.baseState,y===null)s.memoizedState=v;
+else{
+o=y.next;
+var b=S=null,M=null,L=o,H=!1;
+do{
+var K=L.lane&-536870913;
+if(K!==L.lane?(we&K)===K:(Gn&K)===K){
+var V=L.revertLane;
+if(V===0)M!==null&&(M=M.next={
+lane:0,revertLane:0,gesture:null,action:L.action,hasEagerState:L.hasEagerState,eagerState:L.eagerState,next:null}
+),K===Os&&(H=!0);
+else if((Gn&V)===V){
+L=L.next,V===Os&&(H=!0);
+continue}
+else K={
+lane:0,revertLane:L.revertLane,gesture:null,action:L.action,hasEagerState:L.hasEagerState,eagerState:L.eagerState,next:null}
+,M===null?(b=M=K,S=v):M=M.next=K,me.lanes|=V,_i|=V;
+K=L.action,ts&&a(v,K),v=L.hasEagerState?L.eagerState:a(v,K)}
+else V={
+lane:K,revertLane:L.revertLane,gesture:L.gesture,action:L.action,hasEagerState:L.hasEagerState,eagerState:L.eagerState,next:null}
+,M===null?(b=M=V,S=v):M=M.next=V,me.lanes|=K,_i|=K;
+L=L.next}
+while(L!==null&&L!==o);
+if(M===null?S=v:M.next=b,!qt(v,s.memoizedState)&&(it=!0,H&&(a=Vs,a!==null)))throw a;
+s.memoizedState=v,s.baseState=S,s.baseQueue=M,c.lastRenderedState=v}
+return y===null&&(c.lanes=0),[s.memoizedState,c.dispatch]}
+function Vc(s){
+var o=et(),a=o.queue;
+if(a===null)throw Error(i(311));
+a.lastRenderedReducer=s;
+var c=a.dispatch,y=a.pending,v=o.memoizedState;
+if(y!==null){
+a.pending=null;
+var S=y=y.next;
+do v=s(v,S.action),S=S.next;
+while(S!==y);
+qt(v,o.memoizedState)||(it=!0),o.memoizedState=v,o.baseQueue===null&&(o.baseState=v),a.lastRenderedState=v}
+return[v,c]}
+function qm(s,o,a){
+var c=me,y=et(),v=be;
+if(v){
+if(a===void 0)throw Error(i(407));
+a=a()}
+else a=o();
+var S=!qt((Le||y).memoizedState,a);
+if(S&&(y.memoizedState=a,it=!0),y=y.queue,Gc($m.bind(null,c,y,s),[s]),y.getSnapshot!==o||S||nt!==null&&nt.memoizedState.tag&1){
+if(c.flags|=2048,zs(9,{
+destroy:void 0}
+,zm.bind(null,c,y,a,o),null),Fe===null)throw Error(i(349));
+v||(Gn&127)!==0||Hm(c,o,a)}
+return a}
+function Hm(s,o,a){
+s.flags|=16384,s={
+getSnapshot:o,value:a}
+,o=me.updateQueue,o===null?(o=Ga(),me.updateQueue=o,o.stores=[s]):(a=o.stores,a===null?o.stores=[s]:a.push(s))}
+function zm(s,o,a,c){
+o.value=a,o.getSnapshot=c,Jm(o)&&Km(s)}
+function $m(s,o,a){
+return a(function(){
+Jm(o)&&Km(s)}
+)}
+function Jm(s){
+var o=s.getSnapshot;
+s=s.value;
+try{
+var a=o();
+return!qt(s,a)}
+catch{
+return!0}
+}
+function Km(s){
+var o=Ji(s,2);
+o!==null&&Ot(o,s,2)}
+function Bc(s){
+var o=Ct();
+if(typeof s=="function"){
+var a=s;
+if(s=a(),ts){
+oi(!0);
+try{
+a()}
+finally{
+oi(!1)}
+}
+}
+return o.memoizedState=o.baseState=s,o.queue={
+pending:null,lanes:0,dispatch:null,lastRenderedReducer:qn,lastRenderedState:s}
+,o}
+function Ym(s,o,a,c){
+return s.baseState=a,Oc(s,Le,typeof c=="function"?c:qn)}
+function DA(s,o,a,c,y){
+if(Ja(s))throw Error(i(485));
+if(s=o.action,s!==null){
+var v={
+payload:y,action:s,next:null,isTransition:!0,status:"pending",value:null,reason:null,listeners:[],then:function(S){
+v.listeners.push(S)}
+}
+;
+q.T!==null?a(!0):v.isTransition=!1,c(v),a=o.pending,a===null?(v.next=o.pending=v,jm(o,v)):(v.next=a.next,o.pending=a.next=v)}
+}
+function jm(s,o){
+var a=o.action,c=o.payload,y=s.state;
+if(o.isTransition){
+var v=q.T,S={
+}
+;
+q.T=S;
+try{
+var b=a(y,c),M=q.S;
+M!==null&&M(S,b),Wm(s,o,b)}
+catch(L){
+Fc(s,o,L)}
+finally{
+v!==null&&S.types!==null&&(v.types=S.types),q.T=v}
+}
+else try{
+v=a(y,c),Wm(s,o,v)}
+catch(L){
+Fc(s,o,L)}
+}
+function Wm(s,o,a){
+a!==null&&typeof a=="object"&&typeof a.then=="function"?a.then(function(c){
+Xm(s,o,c)}
+,function(c){
+return Fc(s,o,c)}
+):Xm(s,o,a)}
+function Xm(s,o,a){
+o.status="fulfilled",o.value=a,Qm(o),s.state=a,o=s.pending,o!==null&&(a=o.next,a===o?s.pending=null:(a=a.next,o.next=a,jm(s,a)))}
+function Fc(s,o,a){
+var c=s.pending;
+if(s.pending=null,c!==null){
+c=c.next;
+do o.status="rejected",o.reason=a,Qm(o),o=o.next;
+while(o!==c)}
+s.action=null}
+function Qm(s){
+s=s.listeners;
+for(var o=0;
+o<s.length;
+o++)(0,s[o])()}
+function Zm(s,o){
+return o}
+function eg(s,o){
+if(be){
+var a=Fe.formState;
+if(a!==null){
+e:{
+var c=me;
+if(be){
+if(qe){
+t:{
+for(var y=qe,v=rn;
+y.nodeType!==8;
+){
+if(!v){
+y=null;
+break t}
+if(y=ln(y.nextSibling),y===null){
+y=null;
+break t}
+}
+v=y.data,y=v==="F!"||v==="F"?y:null}
+if(y){
+qe=ln(y.nextSibling),c=y.data==="F!";
+break e}
+}
+ci(c)}
+c=!1}
+c&&(o=a[0])}
+}
+return a=Ct(),a.memoizedState=a.baseState=o,c={
+pending:null,lanes:0,dispatch:null,lastRenderedReducer:Zm,lastRenderedState:o}
+,a.queue=c,a=_g.bind(null,me,c),c.dispatch=a,c=Bc(!1),v=Jc.bind(null,me,!1,c.queue),c=Ct(),y={
+state:o,dispatch:null,action:s,pending:null}
+,c.queue=y,a=DA.bind(null,me,y,v,a),y.dispatch=a,c.memoizedState=s,[o,a,!1]}
+function tg(s){
+var o=et();
+return ng(o,Le,s)}
+function ng(s,o,a){
+if(o=Oc(s,o,Zm)[0],s=Ha(qn)[0],typeof o=="object"&&o!==null&&typeof o.then=="function")try{
+var c=or(o)}
+catch(S){
+throw S===Bs?ka:S}
+else c=o;
+o=et();
+var y=o.queue,v=y.dispatch;
+return a!==o.memoizedState&&(me.flags|=2048,zs(9,{
+destroy:void 0}
+,kA.bind(null,y,a),null)),[c,v,s]}
+function kA(s,o){
+s.action=o}
+function ig(s){
+var o=et(),a=Le;
+if(a!==null)return ng(o,a,s);
+et(),o=o.memoizedState,a=et();
+var c=a.queue.dispatch;
+return a.memoizedState=s,[o,c,!1]}
+function zs(s,o,a,c){
+return s={
+tag:s,create:a,deps:c,inst:o,next:null}
+,o=me.updateQueue,o===null&&(o=Ga(),me.updateQueue=o),a=o.lastEffect,a===null?o.lastEffect=s.next=s:(c=a.next,a.next=s,s.next=c,o.lastEffect=s),s}
+function sg(){
+return et().memoizedState}
+function za(s,o,a,c){
+var y=Ct();
+me.flags|=s,y.memoizedState=zs(1|o,{
+destroy:void 0}
+,a,c===void 0?null:c)}
+function $a(s,o,a,c){
+var y=et();
+c=c===void 0?null:c;
+var v=y.memoizedState.inst;
+Le!==null&&c!==null&&Ic(c,Le.memoizedState.deps)?y.memoizedState=zs(o,v,a,c):(me.flags|=s,y.memoizedState=zs(1|o,v,a,c))}
+function og(s,o){
+za(8390656,8,s,o)}
+function Gc(s,o){
+$a(2048,8,s,o)}
+function UA(s){
+me.flags|=4;
+var o=me.updateQueue;
+if(o===null)o=Ga(),me.updateQueue=o,o.events=[s];
+else{
+var a=o.events;
+a===null?o.events=[s]:a.push(s)}
+}
+function rg(s){
+var o=et().memoizedState;
+return UA({
+ref:o,nextImpl:s}
+),function(){
+if((De&2)!==0)throw Error(i(440));
+return o.impl.apply(void 0,arguments)}
+}
+function ag(s,o){
+return $a(4,2,s,o)}
+function lg(s,o){
+return $a(4,4,s,o)}
+function ug(s,o){
+if(typeof o=="function"){
+s=s();
+var a=o(s);
+return function(){
+typeof a=="function"?a():o(null)}
+}
+if(o!=null)return s=s(),o.current=s,function(){
+o.current=null}
+}
+function cg(s,o,a){
+a=a!=null?a.concat([s]):null,$a(4,4,ug.bind(null,o,s),a)}
+function qc(){
+}
+function dg(s,o){
+var a=et();
+o=o===void 0?null:o;
+var c=a.memoizedState;
+return o!==null&&Ic(o,c[1])?c[0]:(a.memoizedState=[s,o],s)}
+function fg(s,o){
+var a=et();
+o=o===void 0?null:o;
+var c=a.memoizedState;
+if(o!==null&&Ic(o,c[1]))return c[0];
+if(c=s(),ts){
+oi(!0);
+try{
+s()}
+finally{
+oi(!1)}
+}
+return a.memoizedState=[c,o],c}
+function Hc(s,o,a){
+return a===void 0||(Gn&1073741824)!==0&&(we&261930)===0?s.memoizedState=o:(s.memoizedState=a,s=hy(),me.lanes|=s,_i|=s,a)}
+function hg(s,o,a,c){
+return qt(a,o)?a:Gs.current!==null?(s=Hc(s,a,c),qt(s,o)||(it=!0),s):(Gn&42)===0||(Gn&1073741824)!==0&&(we&261930)===0?(it=!0,s.memoizedState=a):(s=hy(),me.lanes|=s,_i|=s,o)}
+function pg(s,o,a,c,y){
+var v=W.p;
+W.p=v!==0&&8>v?v:8;
+var S=q.T,b={
+}
+;
+q.T=b,Jc(s,!1,o,a);
+try{
+var M=y(),L=q.S;
+if(L!==null&&L(b,M),M!==null&&typeof M=="object"&&typeof M.then=="function"){
+var H=NA(M,c);
+rr(s,o,H,Yt(s))}
+else rr(s,o,c,Yt(s))}
+catch(K){
+rr(s,o,{
+then:function(){
+}
+,status:"rejected",reason:K}
+,Yt())}
+finally{
+W.p=v,S!==null&&b.types!==null&&(S.types=b.types),q.T=S}
+}
+function PA(){
+}
+function zc(s,o,a,c){
+if(s.tag!==5)throw Error(i(476));
+var y=mg(s).queue;
+pg(s,y,o,ee,a===null?PA:function(){
+return gg(s),a(c)}
+)}
+function mg(s){
+var o=s.memoizedState;
+if(o!==null)return o;
+o={
+memoizedState:ee,baseState:ee,baseQueue:null,queue:{
+pending:null,lanes:0,dispatch:null,lastRenderedReducer:qn,lastRenderedState:ee}
+,next:null}
+;
+var a={
+}
+;
+return o.next={
+memoizedState:a,baseState:a,baseQueue:null,queue:{
+pending:null,lanes:0,dispatch:null,lastRenderedReducer:qn,lastRenderedState:a}
+,next:null}
+,s.memoizedState=o,s=s.alternate,s!==null&&(s.memoizedState=o),o}
+function gg(s){
+var o=mg(s);
+o.next===null&&(o=s.alternate.memoizedState),rr(s,o.next.queue,{
+}
+,Yt())}
+function $c(){
+return vt(Er)}
+function yg(){
+return et().memoizedState}
+function vg(){
+return et().memoizedState}
+function LA(s){
+for(var o=s.return;
+o!==null;
+){
+switch(o.tag){
+case 24:case 3:var a=Yt();
+s=hi(a);
+var c=pi(o,s,a);
+c!==null&&(Ot(c,o,a),tr(c,o,a)),o={
+cache:Tc()}
+,s.payload=o;
+return}
+o=o.return}
+}
+function OA(s,o,a){
+var c=Yt();
+a={
+lane:c,revertLane:0,gesture:null,action:a,hasEagerState:!1,eagerState:null,next:null}
+,Ja(s)?Tg(o,a):(a=uc(s,o,a,c),a!==null&&(Ot(a,s,c),Sg(a,o,c)))}
+function _g(s,o,a){
+var c=Yt();
+rr(s,o,a,c)}
+function rr(s,o,a,c){
+var y={
+lane:c,revertLane:0,gesture:null,action:a,hasEagerState:!1,eagerState:null,next:null}
+;
+if(Ja(s))Tg(o,y);
+else{
+var v=s.alternate;
+if(s.lanes===0&&(v===null||v.lanes===0)&&(v=o.lastRenderedReducer,v!==null))try{
+var S=o.lastRenderedState,b=v(S,a);
+if(y.hasEagerState=!0,y.eagerState=b,qt(b,S))return Ca(s,o,y,0),Fe===null&&Aa(),!1}
+catch{
+}
+finally{
+}
+if(a=uc(s,o,y,c),a!==null)return Ot(a,s,c),Sg(a,o,c),!0}
+return!1}
+function Jc(s,o,a,c){
+if(c={
+lane:2,revertLane:bd(),gesture:null,action:c,hasEagerState:!1,eagerState:null,next:null}
+,Ja(s)){
+if(o)throw Error(i(479))}
+else o=uc(s,a,c,2),o!==null&&Ot(o,s,2)}
+function Ja(s){
+var o=s.alternate;
+return s===me||o!==null&&o===me}
+function Tg(s,o){
+qs=Ba=!0;
+var a=s.pending;
+a===null?o.next=o:(o.next=a.next,a.next=o),s.pending=o}
+function Sg(s,o,a){
+if((a&4194048)!==0){
+var c=o.lanes;
+c&=s.pendingLanes,a|=c,o.lanes=a,Cp(s,a)}
+}
+var ar={
+readContext:vt,use:qa,useCallback:Ye,useContext:Ye,useEffect:Ye,useImperativeHandle:Ye,useLayoutEffect:Ye,useInsertionEffect:Ye,useMemo:Ye,useReducer:Ye,useRef:Ye,useState:Ye,useDebugValue:Ye,useDeferredValue:Ye,useTransition:Ye,useSyncExternalStore:Ye,useId:Ye,useHostTransitionStatus:Ye,useFormState:Ye,useActionState:Ye,useOptimistic:Ye,useMemoCache:Ye,useCacheRefresh:Ye}
+;
+ar.useEffectEvent=Ye;
+var wg={
+readContext:vt,use:qa,useCallback:function(s,o){
+return Ct().memoizedState=[s,o===void 0?null:o],s}
+,useContext:vt,useEffect:og,useImperativeHandle:function(s,o,a){
+a=a!=null?a.concat([s]):null,za(4194308,4,ug.bind(null,o,s),a)}
+,useLayoutEffect:function(s,o){
+return za(4194308,4,s,o)}
+,useInsertionEffect:function(s,o){
+za(4,2,s,o)}
+,useMemo:function(s,o){
+var a=Ct();
+o=o===void 0?null:o;
+var c=s();
+if(ts){
+oi(!0);
+try{
+s()}
+finally{
+oi(!1)}
+}
+return a.memoizedState=[c,o],c}
+,useReducer:function(s,o,a){
+var c=Ct();
+if(a!==void 0){
+var y=a(o);
+if(ts){
+oi(!0);
+try{
+a(o)}
+finally{
+oi(!1)}
+}
+}
+else y=o;
+return c.memoizedState=c.baseState=y,s={
+pending:null,lanes:0,dispatch:null,lastRenderedReducer:s,lastRenderedState:y}
+,c.queue=s,s=s.dispatch=OA.bind(null,me,s),[c.memoizedState,s]}
+,useRef:function(s){
+var o=Ct();
+return s={
+current:s}
+,o.memoizedState=s}
+,useState:function(s){
+s=Bc(s);
+var o=s.queue,a=_g.bind(null,me,o);
+return o.dispatch=a,[s.memoizedState,a]}
+,useDebugValue:qc,useDeferredValue:function(s,o){
+var a=Ct();
+return Hc(a,s,o)}
+,useTransition:function(){
+var s=Bc(!1);
+return s=pg.bind(null,me,s.queue,!0,!1),Ct().memoizedState=s,[!1,s]}
+,useSyncExternalStore:function(s,o,a){
+var c=me,y=Ct();
+if(be){
+if(a===void 0)throw Error(i(407));
+a=a()}
+else{
+if(a=o(),Fe===null)throw Error(i(349));
+(we&127)!==0||Hm(c,o,a)}
+y.memoizedState=a;
+var v={
+value:a,getSnapshot:o}
+;
+return y.queue=v,og($m.bind(null,c,v,s),[s]),c.flags|=2048,zs(9,{
+destroy:void 0}
+,zm.bind(null,c,v,a,o),null),a}
+,useId:function(){
+var s=Ct(),o=Fe.identifierPrefix;
+if(be){
+var a=Mn,c=Nn;
+a=(c&~(1<<32-Gt(c)-1)).toString(32)+a,o="_"+o+"R_"+a,a=Fa++,0<a&&(o+="H"+a.toString(32)),o+="_"}
+else a=MA++,o="_"+o+"r_"+a.toString(32)+"_";
+return s.memoizedState=o}
+,useHostTransitionStatus:$c,useFormState:eg,useActionState:eg,useOptimistic:function(s){
+var o=Ct();
+o.memoizedState=o.baseState=s;
+var a={
+pending:null,lanes:0,dispatch:null,lastRenderedReducer:null,lastRenderedState:null}
+;
+return o.queue=a,o=Jc.bind(null,me,!0,a),a.dispatch=o,[s,o]}
+,useMemoCache:Lc,useCacheRefresh:function(){
+return Ct().memoizedState=LA.bind(null,me)}
+,useEffectEvent:function(s){
+var o=Ct(),a={
+impl:s}
+;
+return o.memoizedState=a,function(){
+if((De&2)!==0)throw Error(i(440));
+return a.impl.apply(void 0,arguments)}
+}
+}
+,Kc={
+readContext:vt,use:qa,useCallback:dg,useContext:vt,useEffect:Gc,useImperativeHandle:cg,useInsertionEffect:ag,useLayoutEffect:lg,useMemo:fg,useReducer:Ha,useRef:sg,useState:function(){
+return Ha(qn)}
+,useDebugValue:qc,useDeferredValue:function(s,o){
+var a=et();
+return hg(a,Le.memoizedState,s,o)}
+,useTransition:function(){
+var s=Ha(qn)[0],o=et().memoizedState;
+return[typeof s=="boolean"?s:or(s),o]}
+,useSyncExternalStore:qm,useId:yg,useHostTransitionStatus:$c,useFormState:tg,useActionState:tg,useOptimistic:function(s,o){
+var a=et();
+return Ym(a,Le,s,o)}
+,useMemoCache:Lc,useCacheRefresh:vg}
+;
+Kc.useEffectEvent=rg;
+var Eg={
+readContext:vt,use:qa,useCallback:dg,useContext:vt,useEffect:Gc,useImperativeHandle:cg,useInsertionEffect:ag,useLayoutEffect:lg,useMemo:fg,useReducer:Vc,useRef:sg,useState:function(){
+return Vc(qn)}
+,useDebugValue:qc,useDeferredValue:function(s,o){
+var a=et();
+return Le===null?Hc(a,s,o):hg(a,Le.memoizedState,s,o)}
+,useTransition:function(){
+var s=Vc(qn)[0],o=et().memoizedState;
+return[typeof s=="boolean"?s:or(s),o]}
+,useSyncExternalStore:qm,useId:yg,useHostTransitionStatus:$c,useFormState:ig,useActionState:ig,useOptimistic:function(s,o){
+var a=et();
+return Le!==null?Ym(a,Le,s,o):(a.baseState=s,[s,a.queue.dispatch])}
+,useMemoCache:Lc,useCacheRefresh:vg}
+;
+Eg.useEffectEvent=rg;
+function Yc(s,o,a,c){
+o=s.memoizedState,a=a(c,o),a=a==null?o:_({
+}
+,o,a),s.memoizedState=a,s.lanes===0&&(s.updateQueue.baseState=a)}
+var jc={
+enqueueSetState:function(s,o,a){
+s=s._reactInternals;
+var c=Yt(),y=hi(c);
+y.payload=o,a!=null&&(y.callback=a),o=pi(s,y,c),o!==null&&(Ot(o,s,c),tr(o,s,c))}
+,enqueueReplaceState:function(s,o,a){
+s=s._reactInternals;
+var c=Yt(),y=hi(c);
+y.tag=1,y.payload=o,a!=null&&(y.callback=a),o=pi(s,y,c),o!==null&&(Ot(o,s,c),tr(o,s,c))}
+,enqueueForceUpdate:function(s,o){
+s=s._reactInternals;
+var a=Yt(),c=hi(a);
+c.tag=2,o!=null&&(c.callback=o),o=pi(s,c,a),o!==null&&(Ot(o,s,a),tr(o,s,a))}
+}
+;
+function bg(s,o,a,c,y,v,S){
+return s=s.stateNode,typeof s.shouldComponentUpdate=="function"?s.shouldComponentUpdate(c,v,S):o.prototype&&o.prototype.isPureReactComponent?!Ko(a,c)||!Ko(y,v):!0}
+function Ag(s,o,a,c){
+s=o.state,typeof o.componentWillReceiveProps=="function"&&o.componentWillReceiveProps(a,c),typeof o.UNSAFE_componentWillReceiveProps=="function"&&o.UNSAFE_componentWillReceiveProps(a,c),o.state!==s&&jc.enqueueReplaceState(o,o.state,null)}
+function ns(s,o){
+var a=o;
+if("ref"in o){
+a={
+}
+;
+for(var c in o)c!=="ref"&&(a[c]=o[c])}
+if(s=s.defaultProps){
+a===o&&(a=_({
+}
+,a));
+for(var y in s)a[y]===void 0&&(a[y]=s[y])}
+return a}
+function Cg(s){
+ba(s)}
+function xg(s){
+console.error(s)}
+function Rg(s){
+ba(s)}
+function Ka(s,o){
+try{
+var a=s.onUncaughtError;
+a(o.value,{
+componentStack:o.stack}
+)}
+catch(c){
+setTimeout(function(){
+throw c}
+)}
+}
+function Ng(s,o,a){
+try{
+var c=s.onCaughtError;
+c(a.value,{
+componentStack:a.stack,errorBoundary:o.tag===1?o.stateNode:null}
+)}
+catch(y){
+setTimeout(function(){
+throw y}
+)}
+}
+function Wc(s,o,a){
+return a=hi(a),a.tag=3,a.payload={
+element:null}
+,a.callback=function(){
+Ka(s,o)}
+,a}
+function Mg(s){
+return s=hi(s),s.tag=3,s}
+function Ig(s,o,a,c){
+var y=a.type.getDerivedStateFromError;
+if(typeof y=="function"){
+var v=c.value;
+s.payload=function(){
+return y(v)}
+,s.callback=function(){
+Ng(o,a,c)}
+}
+var S=a.stateNode;
+S!==null&&typeof S.componentDidCatch=="function"&&(s.callback=function(){
+Ng(o,a,c),typeof y!="function"&&(Ti===null?Ti=new Set([this]):Ti.add(this));
+var b=c.stack;
+this.componentDidCatch(c.value,{
+componentStack:b!==null?b:""}
+)}
+)}
+function VA(s,o,a,c,y){
+if(a.flags|=32768,c!==null&&typeof c=="object"&&typeof c.then=="function"){
+if(o=a.alternate,o!==null&&Ls(o,a,y,!0),a=zt.current,a!==null){
+switch(a.tag){
+case 31:case 13:return an===null?ol():a.alternate===null&&je===0&&(je=3),a.flags&=-257,a.flags|=65536,a.lanes=y,c===Ua?a.flags|=16384:(o=a.updateQueue,o===null?a.updateQueue=new Set([c]):o.add(c),Sd(s,c,y)),!1;
+case 22:return a.flags|=65536,c===Ua?a.flags|=16384:(o=a.updateQueue,o===null?(o={
+transitions:null,markerInstances:null,retryQueue:new Set([c])}
+,a.updateQueue=o):(a=o.retryQueue,a===null?o.retryQueue=new Set([c]):a.add(c)),Sd(s,c,y)),!1}
+throw Error(i(435,a.tag))}
+return Sd(s,c,y),ol(),!1}
+if(be)return o=zt.current,o!==null?((o.flags&65536)===0&&(o.flags|=256),o.flags|=65536,o.lanes=y,c!==mc&&(s=Error(i(422),{
+cause:c}
+),Wo(nn(s,a)))):(c!==mc&&(o=Error(i(423),{
+cause:c}
+),Wo(nn(o,a))),s=s.current.alternate,s.flags|=65536,y&=-y,s.lanes|=y,c=nn(c,a),y=Wc(s.stateNode,c,y),Cc(s,y),je!==4&&(je=2)),!1;
+var v=Error(i(520),{
+cause:c}
+);
+if(v=nn(v,a),mr===null?mr=[v]:mr.push(v),je!==4&&(je=2),o===null)return!0;
+c=nn(c,a),a=o;
+do{
+switch(a.tag){
+case 3:return a.flags|=65536,s=y&-y,a.lanes|=s,s=Wc(a.stateNode,c,s),Cc(a,s),!1;
+case 1:if(o=a.type,v=a.stateNode,(a.flags&128)===0&&(typeof o.getDerivedStateFromError=="function"||v!==null&&typeof v.componentDidCatch=="function"&&(Ti===null||!Ti.has(v))))return a.flags|=65536,y&=-y,a.lanes|=y,y=Mg(y),Ig(y,s,a,c),Cc(a,y),!1}
+a=a.return}
+while(a!==null);
+return!1}
+var Xc=Error(i(461)),it=!1;
+function _t(s,o,a,c){
+o.child=s===null?Pm(o,null,a,c):es(o,s.child,a,c)}
+function Dg(s,o,a,c,y){
+a=a.render;
+var v=o.ref;
+if("ref"in c){
+var S={
+}
+;
+for(var b in c)b!=="ref"&&(S[b]=c[b])}
+else S=c;
+return Wi(o),c=Dc(s,o,a,S,v,y),b=kc(),s!==null&&!it?(Uc(s,o,y),Hn(s,o,y)):(be&&b&&hc(o),o.flags|=1,_t(s,o,c,y),o.child)}
+function kg(s,o,a,c,y){
+if(s===null){
+var v=a.type;
+return typeof v=="function"&&!cc(v)&&v.defaultProps===void 0&&a.compare===null?(o.tag=15,o.type=v,Ug(s,o,v,c,y)):(s=Ra(a.type,null,c,o,o.mode,y),s.ref=o.ref,s.return=o,o.child=s)}
+if(v=s.child,!od(s,y)){
+var S=v.memoizedProps;
+if(a=a.compare,a=a!==null?a:Ko,a(S,c)&&s.ref===o.ref)return Hn(s,o,y)}
+return o.flags|=1,s=On(v,c),s.ref=o.ref,s.return=o,o.child=s}
+function Ug(s,o,a,c,y){
+if(s!==null){
+var v=s.memoizedProps;
+if(Ko(v,c)&&s.ref===o.ref)if(it=!1,o.pendingProps=c=v,od(s,y))(s.flags&131072)!==0&&(it=!0);
+else return o.lanes=s.lanes,Hn(s,o,y)}
+return Qc(s,o,a,c,y)}
+function Pg(s,o,a,c){
+var y=c.children,v=s!==null?s.memoizedState:null;
+if(s===null&&o.stateNode===null&&(o.stateNode={
+_visibility:1,_pendingMarkers:null,_retryCache:null,_transitions:null}
+),c.mode==="hidden"){
+if((o.flags&128)!==0){
+if(v=v!==null?v.baseLanes|a:a,s!==null){
+for(c=o.child=s.child,y=0;
+c!==null;
+)y=y|c.lanes|c.childLanes,c=c.sibling;
+c=y&~v}
+else c=0,o.child=null;
+return Lg(s,o,v,a,c)}
+if((a&536870912)!==0)o.memoizedState={
+baseLanes:0,cachePool:null}
+,s!==null&&Da(o,v!==null?v.cachePool:null),v!==null?Vm(o,v):Rc(),Bm(o);
+else return c=o.lanes=536870912,Lg(s,o,v!==null?v.baseLanes|a:a,a,c)}
+else v!==null?(Da(o,v.cachePool),Vm(o,v),gi(),o.memoizedState=null):(s!==null&&Da(o,null),Rc(),gi());
+return _t(s,o,y,a),o.child}
+function lr(s,o){
+return s!==null&&s.tag===22||o.stateNode!==null||(o.stateNode={
+_visibility:1,_pendingMarkers:null,_retryCache:null,_transitions:null}
+),o.sibling}
+function Lg(s,o,a,c,y){
+var v=wc();
+return v=v===null?null:{
+parent:tt._currentValue,pool:v}
+,o.memoizedState={
+baseLanes:a,cachePool:v}
+,s!==null&&Da(o,null),Rc(),Bm(o),s!==null&&Ls(s,o,c,!0),o.childLanes=y,null}
+function Ya(s,o){
+return o=Wa({
+mode:o.mode,children:o.children}
+,s.mode),o.ref=s.ref,s.child=o,o.return=s,o}
+function Og(s,o,a){
+return es(o,s.child,null,a),s=Ya(o,o.pendingProps),s.flags|=2,$t(o),o.memoizedState=null,s}
+function BA(s,o,a){
+var c=o.pendingProps,y=(o.flags&128)!==0;
+if(o.flags&=-129,s===null){
+if(be){
+if(c.mode==="hidden")return s=Ya(o,c),o.lanes=536870912,lr(null,s);
+if(Mc(o),(s=qe)?(s=jy(s,rn),s=s!==null&&s.data==="&"?s:null,s!==null&&(o.memoizedState={
+dehydrated:s,treeContext:li!==null?{
+id:Nn,overflow:Mn}
+:null,retryLane:536870912,hydrationErrors:null}
+,a=Tm(s),a.return=o,o.child=a,yt=o,qe=null)):s=null,s===null)throw ci(o);
+return o.lanes=536870912,null}
+return Ya(o,c)}
+var v=s.memoizedState;
+if(v!==null){
+var S=v.dehydrated;
+if(Mc(o),y)if(o.flags&256)o.flags&=-257,o=Og(s,o,a);
+else if(o.memoizedState!==null)o.child=s.child,o.flags|=128,o=null;
+else throw Error(i(558));
+else if(it||Ls(s,o,a,!1),y=(a&s.childLanes)!==0,it||y){
+if(c=Fe,c!==null&&(S=xp(c,a),S!==0&&S!==v.retryLane))throw v.retryLane=S,Ji(s,S),Ot(c,s,S),Xc;
+ol(),o=Og(s,o,a)}
+else s=v.treeContext,qe=ln(S.nextSibling),yt=o,be=!0,ui=null,rn=!1,s!==null&&Em(o,s),o=Ya(o,c),o.flags|=4096;
+return o}
+return s=On(s.child,{
+mode:c.mode,children:c.children}
+),s.ref=o.ref,o.child=s,s.return=o,s}
+function ja(s,o){
+var a=o.ref;
+if(a===null)s!==null&&s.ref!==null&&(o.flags|=4194816);
+else{
+if(typeof a!="function"&&typeof a!="object")throw Error(i(284));
+(s===null||s.ref!==a)&&(o.flags|=4194816)}
+}
+function Qc(s,o,a,c,y){
+return Wi(o),a=Dc(s,o,a,c,void 0,y),c=kc(),s!==null&&!it?(Uc(s,o,y),Hn(s,o,y)):(be&&c&&hc(o),o.flags|=1,_t(s,o,a,y),o.child)}
+function Vg(s,o,a,c,y,v){
+return Wi(o),o.updateQueue=null,a=Gm(o,c,a,y),Fm(s),c=kc(),s!==null&&!it?(Uc(s,o,v),Hn(s,o,v)):(be&&c&&hc(o),o.flags|=1,_t(s,o,a,v),o.child)}
+function Bg(s,o,a,c,y){
+if(Wi(o),o.stateNode===null){
+var v=Ds,S=a.contextType;
+typeof S=="object"&&S!==null&&(v=vt(S)),v=new a(c,v),o.memoizedState=v.state!==null&&v.state!==void 0?v.state:null,v.updater=jc,o.stateNode=v,v._reactInternals=o,v=o.stateNode,v.props=c,v.state=o.memoizedState,v.refs={
+}
+,bc(o),S=a.contextType,v.context=typeof S=="object"&&S!==null?vt(S):Ds,v.state=o.memoizedState,S=a.getDerivedStateFromProps,typeof S=="function"&&(Yc(o,a,S,c),v.state=o.memoizedState),typeof a.getDerivedStateFromProps=="function"||typeof v.getSnapshotBeforeUpdate=="function"||typeof v.UNSAFE_componentWillMount!="function"&&typeof v.componentWillMount!="function"||(S=v.state,typeof v.componentWillMount=="function"&&v.componentWillMount(),typeof v.UNSAFE_componentWillMount=="function"&&v.UNSAFE_componentWillMount(),S!==v.state&&jc.enqueueReplaceState(v,v.state,null),ir(o,c,v,y),nr(),v.state=o.memoizedState),typeof v.componentDidMount=="function"&&(o.flags|=4194308),c=!0}
+else if(s===null){
+v=o.stateNode;
+var b=o.memoizedProps,M=ns(a,b);
+v.props=M;
+var L=v.context,H=a.contextType;
+S=Ds,typeof H=="object"&&H!==null&&(S=vt(H));
+var K=a.getDerivedStateFromProps;
+H=typeof K=="function"||typeof v.getSnapshotBeforeUpdate=="function",b=o.pendingProps!==b,H||typeof v.UNSAFE_componentWillReceiveProps!="function"&&typeof v.componentWillReceiveProps!="function"||(b||L!==S)&&Ag(o,v,c,S),fi=!1;
+var V=o.memoizedState;
+v.state=V,ir(o,c,v,y),nr(),L=o.memoizedState,b||V!==L||fi?(typeof K=="function"&&(Yc(o,a,K,c),L=o.memoizedState),(M=fi||bg(o,a,M,c,V,L,S))?(H||typeof v.UNSAFE_componentWillMount!="function"&&typeof v.componentWillMount!="function"||(typeof v.componentWillMount=="function"&&v.componentWillMount(),typeof v.UNSAFE_componentWillMount=="function"&&v.UNSAFE_componentWillMount()),typeof v.componentDidMount=="function"&&(o.flags|=4194308)):(typeof v.componentDidMount=="function"&&(o.flags|=4194308),o.memoizedProps=c,o.memoizedState=L),v.props=c,v.state=L,v.context=S,c=M):(typeof v.componentDidMount=="function"&&(o.flags|=4194308),c=!1)}
+else{
+v=o.stateNode,Ac(s,o),S=o.memoizedProps,H=ns(a,S),v.props=H,K=o.pendingProps,V=v.context,L=a.contextType,M=Ds,typeof L=="object"&&L!==null&&(M=vt(L)),b=a.getDerivedStateFromProps,(L=typeof b=="function"||typeof v.getSnapshotBeforeUpdate=="function")||typeof v.UNSAFE_componentWillReceiveProps!="function"&&typeof v.componentWillReceiveProps!="function"||(S!==K||V!==M)&&Ag(o,v,c,M),fi=!1,V=o.memoizedState,v.state=V,ir(o,c,v,y),nr();
+var B=o.memoizedState;
+S!==K||V!==B||fi||s!==null&&s.dependencies!==null&&Ma(s.dependencies)?(typeof b=="function"&&(Yc(o,a,b,c),B=o.memoizedState),(H=fi||bg(o,a,H,c,V,B,M)||s!==null&&s.dependencies!==null&&Ma(s.dependencies))?(L||typeof v.UNSAFE_componentWillUpdate!="function"&&typeof v.componentWillUpdate!="function"||(typeof v.componentWillUpdate=="function"&&v.componentWillUpdate(c,B,M),typeof v.UNSAFE_componentWillUpdate=="function"&&v.UNSAFE_componentWillUpdate(c,B,M)),typeof v.componentDidUpdate=="function"&&(o.flags|=4),typeof v.getSnapshotBeforeUpdate=="function"&&(o.flags|=1024)):(typeof v.componentDidUpdate!="function"||S===s.memoizedProps&&V===s.memoizedState||(o.flags|=4),typeof v.getSnapshotBeforeUpdate!="function"||S===s.memoizedProps&&V===s.memoizedState||(o.flags|=1024),o.memoizedProps=c,o.memoizedState=B),v.props=c,v.state=B,v.context=M,c=H):(typeof v.componentDidUpdate!="function"||S===s.memoizedProps&&V===s.memoizedState||(o.flags|=4),typeof v.getSnapshotBeforeUpdate!="function"||S===s.memoizedProps&&V===s.memoizedState||(o.flags|=1024),c=!1)}
+return v=c,ja(s,o),c=(o.flags&128)!==0,v||c?(v=o.stateNode,a=c&&typeof a.getDerivedStateFromError!="function"?null:v.render(),o.flags|=1,s!==null&&c?(o.child=es(o,s.child,null,y),o.child=es(o,null,a,y)):_t(s,o,a,y),o.memoizedState=v.state,s=o.child):s=Hn(s,o,y),s}
+function Fg(s,o,a,c){
+return Yi(),o.flags|=256,_t(s,o,a,c),o.child}
+var Zc={
+dehydrated:null,treeContext:null,retryLane:0,hydrationErrors:null}
+;
+function ed(s){
+return{
+baseLanes:s,cachePool:Nm()}
+}
+function td(s,o,a){
+return s=s!==null?s.childLanes&~a:0,o&&(s|=Kt),s}
+function Gg(s,o,a){
+var c=o.pendingProps,y=!1,v=(o.flags&128)!==0,S;
+if((S=v)||(S=s!==null&&s.memoizedState===null?!1:(Ze.current&2)!==0),S&&(y=!0,o.flags&=-129),S=(o.flags&32)!==0,o.flags&=-33,s===null){
+if(be){
+if(y?mi(o):gi(),(s=qe)?(s=jy(s,rn),s=s!==null&&s.data!=="&"?s:null,s!==null&&(o.memoizedState={
+dehydrated:s,treeContext:li!==null?{
+id:Nn,overflow:Mn}
+:null,retryLane:536870912,hydrationErrors:null}
+,a=Tm(s),a.return=o,o.child=a,yt=o,qe=null)):s=null,s===null)throw ci(o);
+return Od(s)?o.lanes=32:o.lanes=536870912,null}
+var b=c.children;
+return c=c.fallback,y?(gi(),y=o.mode,b=Wa({
+mode:"hidden",children:b}
+,y),c=Ki(c,y,a,null),b.return=o,c.return=o,b.sibling=c,o.child=b,c=o.child,c.memoizedState=ed(a),c.childLanes=td(s,S,a),o.memoizedState=Zc,lr(null,c)):(mi(o),nd(o,b))}
+var M=s.memoizedState;
+if(M!==null&&(b=M.dehydrated,b!==null)){
+if(v)o.flags&256?(mi(o),o.flags&=-257,o=id(s,o,a)):o.memoizedState!==null?(gi(),o.child=s.child,o.flags|=128,o=null):(gi(),b=c.fallback,y=o.mode,c=Wa({
+mode:"visible",children:c.children}
+,y),b=Ki(b,y,a,null),b.flags|=2,c.return=o,b.return=o,c.sibling=b,o.child=c,es(o,s.child,null,a),c=o.child,c.memoizedState=ed(a),c.childLanes=td(s,S,a),o.memoizedState=Zc,o=lr(null,c));
+else if(mi(o),Od(b)){
+if(S=b.nextSibling&&b.nextSibling.dataset,S)var L=S.dgst;
+S=L,c=Error(i(419)),c.stack="",c.digest=S,Wo({
+value:c,source:null,stack:null}
+),o=id(s,o,a)}
+else if(it||Ls(s,o,a,!1),S=(a&s.childLanes)!==0,it||S){
+if(S=Fe,S!==null&&(c=xp(S,a),c!==0&&c!==M.retryLane))throw M.retryLane=c,Ji(s,c),Ot(S,s,c),Xc;
+Ld(b)||ol(),o=id(s,o,a)}
+else Ld(b)?(o.flags|=192,o.child=s.child,o=null):(s=M.treeContext,qe=ln(b.nextSibling),yt=o,be=!0,ui=null,rn=!1,s!==null&&Em(o,s),o=nd(o,c.children),o.flags|=4096);
+return o}
+return y?(gi(),b=c.fallback,y=o.mode,M=s.child,L=M.sibling,c=On(M,{
+mode:"hidden",children:c.children}
+),c.subtreeFlags=M.subtreeFlags&65011712,L!==null?b=On(L,b):(b=Ki(b,y,a,null),b.flags|=2),b.return=o,c.return=o,c.sibling=b,o.child=c,lr(null,c),c=o.child,b=s.child.memoizedState,b===null?b=ed(a):(y=b.cachePool,y!==null?(M=tt._currentValue,y=y.parent!==M?{
+parent:M,pool:M}
+:y):y=Nm(),b={
+baseLanes:b.baseLanes|a,cachePool:y}
+),c.memoizedState=b,c.childLanes=td(s,S,a),o.memoizedState=Zc,lr(s.child,c)):(mi(o),a=s.child,s=a.sibling,a=On(a,{
+mode:"visible",children:c.children}
+),a.return=o,a.sibling=null,s!==null&&(S=o.deletions,S===null?(o.deletions=[s],o.flags|=16):S.push(s)),o.child=a,o.memoizedState=null,a)}
+function nd(s,o){
+return o=Wa({
+mode:"visible",children:o}
+,s.mode),o.return=s,s.child=o}
+function Wa(s,o){
+return s=Ht(22,s,null,o),s.lanes=0,s}
+function id(s,o,a){
+return es(o,s.child,null,a),s=nd(o,o.pendingProps.children),s.flags|=2,o.memoizedState=null,s}
+function qg(s,o,a){
+s.lanes|=o;
+var c=s.alternate;
+c!==null&&(c.lanes|=o),vc(s.return,o,a)}
+function sd(s,o,a,c,y,v){
+var S=s.memoizedState;
+S===null?s.memoizedState={
+isBackwards:o,rendering:null,renderingStartTime:0,last:c,tail:a,tailMode:y,treeForkCount:v}
+:(S.isBackwards=o,S.rendering=null,S.renderingStartTime=0,S.last=c,S.tail=a,S.tailMode=y,S.treeForkCount=v)}
+function Hg(s,o,a){
+var c=o.pendingProps,y=c.revealOrder,v=c.tail;
+c=c.children;
+var S=Ze.current,b=(S&2)!==0;
+if(b?(S=S&1|2,o.flags|=128):S&=1,Q(Ze,S),_t(s,o,c,a),c=be?jo:0,!b&&s!==null&&(s.flags&128)!==0)e:for(s=o.child;
+s!==null;
+){
+if(s.tag===13)s.memoizedState!==null&&qg(s,a,o);
+else if(s.tag===19)qg(s,a,o);
+else if(s.child!==null){
+s.child.return=s,s=s.child;
+continue}
+if(s===o)break e;
+for(;
+s.sibling===null;
+){
+if(s.return===null||s.return===o)break e;
+s=s.return}
+s.sibling.return=s.return,s=s.sibling}
+switch(y){
+case"forwards":for(a=o.child,y=null;
+a!==null;
+)s=a.alternate,s!==null&&Va(s)===null&&(y=a),a=a.sibling;
+a=y,a===null?(y=o.child,o.child=null):(y=a.sibling,a.sibling=null),sd(o,!1,y,a,v,c);
+break;
+case"backwards":case"unstable_legacy-backwards":for(a=null,y=o.child,o.child=null;
+y!==null;
+){
+if(s=y.alternate,s!==null&&Va(s)===null){
+o.child=y;
+break}
+s=y.sibling,y.sibling=a,a=y,y=s}
+sd(o,!0,a,null,v,c);
+break;
+case"together":sd(o,!1,null,null,void 0,c);
+break;
+default:o.memoizedState=null}
+return o.child}
+function Hn(s,o,a){
+if(s!==null&&(o.dependencies=s.dependencies),_i|=o.lanes,(a&o.childLanes)===0)if(s!==null){
+if(Ls(s,o,a,!1),(a&o.childLanes)===0)return null}
+else return null;
+if(s!==null&&o.child!==s.child)throw Error(i(153));
+if(o.child!==null){
+for(s=o.child,a=On(s,s.pendingProps),o.child=a,a.return=o;
+s.sibling!==null;
+)s=s.sibling,a=a.sibling=On(s,s.pendingProps),a.return=o;
+a.sibling=null}
+return o.child}
+function od(s,o){
+return(s.lanes&o)!==0?!0:(s=s.dependencies,!!(s!==null&&Ma(s)))}
+function FA(s,o,a){
+switch(o.tag){
+case 3:At(o,o.stateNode.containerInfo),di(o,tt,s.memoizedState.cache),Yi();
+break;
+case 27:case 5:Uo(o);
+break;
+case 4:At(o,o.stateNode.containerInfo);
+break;
+case 10:di(o,o.type,o.memoizedProps.value);
+break;
+case 31:if(o.memoizedState!==null)return o.flags|=128,Mc(o),null;
+break;
+case 13:var c=o.memoizedState;
+if(c!==null)return c.dehydrated!==null?(mi(o),o.flags|=128,null):(a&o.child.childLanes)!==0?Gg(s,o,a):(mi(o),s=Hn(s,o,a),s!==null?s.sibling:null);
+mi(o);
+break;
+case 19:var y=(s.flags&128)!==0;
+if(c=(a&o.childLanes)!==0,c||(Ls(s,o,a,!1),c=(a&o.childLanes)!==0),y){
+if(c)return Hg(s,o,a);
+o.flags|=128}
+if(y=o.memoizedState,y!==null&&(y.rendering=null,y.tail=null,y.lastEffect=null),Q(Ze,Ze.current),c)break;
+return null;
+case 22:return o.lanes=0,Pg(s,o,a,o.pendingProps);
+case 24:di(o,tt,s.memoizedState.cache)}
+return Hn(s,o,a)}
+function zg(s,o,a){
+if(s!==null)if(s.memoizedProps!==o.pendingProps)it=!0;
+else{
+if(!od(s,a)&&(o.flags&128)===0)return it=!1,FA(s,o,a);
+it=(s.flags&131072)!==0}
+else it=!1,be&&(o.flags&1048576)!==0&&wm(o,jo,o.index);
+switch(o.lanes=0,o.tag){
+case 16:e:{
+var c=o.pendingProps;
+if(s=Qi(o.elementType),o.type=s,typeof s=="function")cc(s)?(c=ns(s,c),o.tag=1,o=Bg(null,o,s,c,a)):(o.tag=0,o=Qc(null,o,s,c,a));
+else{
+if(s!=null){
+var y=s.$$typeof;
+if(y===O){
+o.tag=11,o=Dg(null,o,s,c,a);
+break e}
+else if(y===G){
+o.tag=14,o=kg(null,o,s,c,a);
+break e}
+}
+throw o=$e(s)||s,Error(i(306,o,""))}
+}
+return o;
+case 0:return Qc(s,o,o.type,o.pendingProps,a);
+case 1:return c=o.type,y=ns(c,o.pendingProps),Bg(s,o,c,y,a);
+case 3:e:{
+if(At(o,o.stateNode.containerInfo),s===null)throw Error(i(387));
+c=o.pendingProps;
+var v=o.memoizedState;
+y=v.element,Ac(s,o),ir(o,c,null,a);
+var S=o.memoizedState;
+if(c=S.cache,di(o,tt,c),c!==v.cache&&_c(o,[tt],a,!0),nr(),c=S.element,v.isDehydrated)if(v={
+element:c,isDehydrated:!1,cache:S.cache}
+,o.updateQueue.baseState=v,o.memoizedState=v,o.flags&256){
+o=Fg(s,o,c,a);
+break e}
+else if(c!==y){
+y=nn(Error(i(424)),o),Wo(y),o=Fg(s,o,c,a);
+break e}
+else{
+switch(s=o.stateNode.containerInfo,s.nodeType){
+case 9:s=s.body;
+break;
+default:s=s.nodeName==="HTML"?s.ownerDocument.body:s}
+for(qe=ln(s.firstChild),yt=o,be=!0,ui=null,rn=!0,a=Pm(o,null,c,a),o.child=a;
+a;
+)a.flags=a.flags&-3|4096,a=a.sibling}
+else{
+if(Yi(),c===y){
+o=Hn(s,o,a);
+break e}
+_t(s,o,c,a)}
+o=o.child}
+return o;
+case 26:return ja(s,o),s===null?(a=tv(o.type,null,o.pendingProps,null))?o.memoizedState=a:be||(a=o.type,s=o.pendingProps,c=fl(ve.current).createElement(a),c[gt]=o,c[It]=s,Tt(c,a,s),ct(c),o.stateNode=c):o.memoizedState=tv(o.type,s.memoizedProps,o.pendingProps,s.memoizedState),null;
+case 27:return Uo(o),s===null&&be&&(c=o.stateNode=Qy(o.type,o.pendingProps,ve.current),yt=o,rn=!0,y=qe,bi(o.type)?(Vd=y,qe=ln(c.firstChild)):qe=y),_t(s,o,o.pendingProps.children,a),ja(s,o),s===null&&(o.flags|=4194304),o.child;
+case 5:return s===null&&be&&((y=c=qe)&&(c=gC(c,o.type,o.pendingProps,rn),c!==null?(o.stateNode=c,yt=o,qe=ln(c.firstChild),rn=!1,y=!0):y=!1),y||ci(o)),Uo(o),y=o.type,v=o.pendingProps,S=s!==null?s.memoizedProps:null,c=v.children,kd(y,v)?c=null:S!==null&&kd(y,S)&&(o.flags|=32),o.memoizedState!==null&&(y=Dc(s,o,IA,null,null,a),Er._currentValue=y),ja(s,o),_t(s,o,c,a),o.child;
+case 6:return s===null&&be&&((s=a=qe)&&(a=yC(a,o.pendingProps,rn),a!==null?(o.stateNode=a,yt=o,qe=null,s=!0):s=!1),s||ci(o)),null;
+case 13:return Gg(s,o,a);
+case 4:return At(o,o.stateNode.containerInfo),c=o.pendingProps,s===null?o.child=es(o,null,c,a):_t(s,o,c,a),o.child;
+case 11:return Dg(s,o,o.type,o.pendingProps,a);
+case 7:return _t(s,o,o.pendingProps,a),o.child;
+case 8:return _t(s,o,o.pendingProps.children,a),o.child;
+case 12:return _t(s,o,o.pendingProps.children,a),o.child;
+case 10:return c=o.pendingProps,di(o,o.type,c.value),_t(s,o,c.children,a),o.child;
+case 9:return y=o.type._context,c=o.pendingProps.children,Wi(o),y=vt(y),c=c(y),o.flags|=1,_t(s,o,c,a),o.child;
+case 14:return kg(s,o,o.type,o.pendingProps,a);
+case 15:return Ug(s,o,o.type,o.pendingProps,a);
+case 19:return Hg(s,o,a);
+case 31:return BA(s,o,a);
+case 22:return Pg(s,o,a,o.pendingProps);
+case 24:return Wi(o),c=vt(tt),s===null?(y=wc(),y===null&&(y=Fe,v=Tc(),y.pooledCache=v,v.refCount++,v!==null&&(y.pooledCacheLanes|=a),y=v),o.memoizedState={
+parent:c,cache:y}
+,bc(o),di(o,tt,y)):((s.lanes&a)!==0&&(Ac(s,o),ir(o,null,null,a),nr()),y=s.memoizedState,v=o.memoizedState,y.parent!==c?(y={
+parent:c,cache:c}
+,o.memoizedState=y,o.lanes===0&&(o.memoizedState=o.updateQueue.baseState=y),di(o,tt,c)):(c=v.cache,di(o,tt,c),c!==y.cache&&_c(o,[tt],a,!0))),_t(s,o,o.pendingProps.children,a),o.child;
+case 29:throw o.pendingProps}
+throw Error(i(156,o.tag))}
+function zn(s){
+s.flags|=4}
+function rd(s,o,a,c,y){
+if((o=(s.mode&32)!==0)&&(o=!1),o){
+if(s.flags|=16777216,(y&335544128)===y)if(s.stateNode.complete)s.flags|=8192;
+else if(yy())s.flags|=8192;
+else throw Zi=Ua,Ec}
+else s.flags&=-16777217}
+function $g(s,o){
+if(o.type!=="stylesheet"||(o.state.loading&4)!==0)s.flags&=-16777217;
+else if(s.flags|=16777216,!rv(o))if(yy())s.flags|=8192;
+else throw Zi=Ua,Ec}
+function Xa(s,o){
+o!==null&&(s.flags|=4),s.flags&16384&&(o=s.tag!==22?bp():536870912,s.lanes|=o,Ys|=o)}
+function ur(s,o){
+if(!be)switch(s.tailMode){
+case"hidden":o=s.tail;
+for(var a=null;
+o!==null;
+)o.alternate!==null&&(a=o),o=o.sibling;
+a===null?s.tail=null:a.sibling=null;
+break;
+case"collapsed":a=s.tail;
+for(var c=null;
+a!==null;
+)a.alternate!==null&&(c=a),a=a.sibling;
+c===null?o||s.tail===null?s.tail=null:s.tail.sibling=null:c.sibling=null}
+}
+function He(s){
+var o=s.alternate!==null&&s.alternate.child===s.child,a=0,c=0;
+if(o)for(var y=s.child;
+y!==null;
+)a|=y.lanes|y.childLanes,c|=y.subtreeFlags&65011712,c|=y.flags&65011712,y.return=s,y=y.sibling;
+else for(y=s.child;
+y!==null;
+)a|=y.lanes|y.childLanes,c|=y.subtreeFlags,c|=y.flags,y.return=s,y=y.sibling;
+return s.subtreeFlags|=c,s.childLanes=a,o}
+function GA(s,o,a){
+var c=o.pendingProps;
+switch(pc(o),o.tag){
+case 16:case 15:case 0:case 11:case 7:case 8:case 12:case 9:case 14:return He(o),null;
+case 1:return He(o),null;
+case 3:return a=o.stateNode,c=null,s!==null&&(c=s.memoizedState.cache),o.memoizedState.cache!==c&&(o.flags|=2048),Fn(tt),Qe(),a.pendingContext&&(a.context=a.pendingContext,a.pendingContext=null),(s===null||s.child===null)&&(Ps(o)?zn(o):s===null||s.memoizedState.isDehydrated&&(o.flags&256)===0||(o.flags|=1024,gc())),He(o),null;
+case 26:var y=o.type,v=o.memoizedState;
+return s===null?(zn(o),v!==null?(He(o),$g(o,v)):(He(o),rd(o,y,null,c,a))):v?v!==s.memoizedState?(zn(o),He(o),$g(o,v)):(He(o),o.flags&=-16777217):(s=s.memoizedProps,s!==c&&zn(o),He(o),rd(o,y,s,c,a)),null;
+case 27:if(la(o),a=ve.current,y=o.type,s!==null&&o.stateNode!=null)s.memoizedProps!==c&&zn(o);
+else{
+if(!c){
+if(o.stateNode===null)throw Error(i(166));
+return He(o),null}
+s=ie.current,Ps(o)?bm(o):(s=Qy(y,c,a),o.stateNode=s,zn(o))}
+return He(o),null;
+case 5:if(la(o),y=o.type,s!==null&&o.stateNode!=null)s.memoizedProps!==c&&zn(o);
+else{
+if(!c){
+if(o.stateNode===null)throw Error(i(166));
+return He(o),null}
+if(v=ie.current,Ps(o))bm(o);
+else{
+var S=fl(ve.current);
+switch(v){
+case 1:v=S.createElementNS("http://www.w3.org/2000/svg",y);
+break;
+case 2:v=S.createElementNS("http://www.w3.org/1998/Math/MathML",y);
+break;
+default:switch(y){
+case"svg":v=S.createElementNS("http://www.w3.org/2000/svg",y);
+break;
+case"math":v=S.createElementNS("http://www.w3.org/1998/Math/MathML",y);
+break;
+case"script":v=S.createElement("div"),v.innerHTML="<script><\/script>",v=v.removeChild(v.firstChild);
+break;
+case"select":v=typeof c.is=="string"?S.createElement("select",{
+is:c.is}
+):S.createElement("select"),c.multiple?v.multiple=!0:c.size&&(v.size=c.size);
+break;
+default:v=typeof c.is=="string"?S.createElement(y,{
+is:c.is}
+):S.createElement(y)}
+}
+v[gt]=o,v[It]=c;
+e:for(S=o.child;
+S!==null;
+){
+if(S.tag===5||S.tag===6)v.appendChild(S.stateNode);
+else if(S.tag!==4&&S.tag!==27&&S.child!==null){
+S.child.return=S,S=S.child;
+continue}
+if(S===o)break e;
+for(;
+S.sibling===null;
+){
+if(S.return===null||S.return===o)break e;
+S=S.return}
+S.sibling.return=S.return,S=S.sibling}
+o.stateNode=v;
+e:switch(Tt(v,y,c),y){
+case"button":case"input":case"select":case"textarea":c=!!c.autoFocus;
+break e;
+case"img":c=!0;
+break e;
+default:c=!1}
+c&&zn(o)}
+}
+return He(o),rd(o,o.type,s===null?null:s.memoizedProps,o.pendingProps,a),null;
+case 6:if(s&&o.stateNode!=null)s.memoizedProps!==c&&zn(o);
+else{
+if(typeof c!="string"&&o.stateNode===null)throw Error(i(166));
+if(s=ve.current,Ps(o)){
+if(s=o.stateNode,a=o.memoizedProps,c=null,y=yt,y!==null)switch(y.tag){
+case 27:case 5:c=y.memoizedProps}
+s[gt]=o,s=!!(s.nodeValue===a||c!==null&&c.suppressHydrationWarning===!0||Gy(s.nodeValue,a)),s||ci(o,!0)}
+else s=fl(s).createTextNode(c),s[gt]=o,o.stateNode=s}
+return He(o),null;
+case 31:if(a=o.memoizedState,s===null||s.memoizedState!==null){
+if(c=Ps(o),a!==null){
+if(s===null){
+if(!c)throw Error(i(318));
+if(s=o.memoizedState,s=s!==null?s.dehydrated:null,!s)throw Error(i(557));
+s[gt]=o}
+else Yi(),(o.flags&128)===0&&(o.memoizedState=null),o.flags|=4;
+He(o),s=!1}
+else a=gc(),s!==null&&s.memoizedState!==null&&(s.memoizedState.hydrationErrors=a),s=!0;
+if(!s)return o.flags&256?($t(o),o):($t(o),null);
+if((o.flags&128)!==0)throw Error(i(558))}
+return He(o),null;
+case 13:if(c=o.memoizedState,s===null||s.memoizedState!==null&&s.memoizedState.dehydrated!==null){
+if(y=Ps(o),c!==null&&c.dehydrated!==null){
+if(s===null){
+if(!y)throw Error(i(318));
+if(y=o.memoizedState,y=y!==null?y.dehydrated:null,!y)throw Error(i(317));
+y[gt]=o}
+else Yi(),(o.flags&128)===0&&(o.memoizedState=null),o.flags|=4;
+He(o),y=!1}
+else y=gc(),s!==null&&s.memoizedState!==null&&(s.memoizedState.hydrationErrors=y),y=!0;
+if(!y)return o.flags&256?($t(o),o):($t(o),null)}
+return $t(o),(o.flags&128)!==0?(o.lanes=a,o):(a=c!==null,s=s!==null&&s.memoizedState!==null,a&&(c=o.child,y=null,c.alternate!==null&&c.alternate.memoizedState!==null&&c.alternate.memoizedState.cachePool!==null&&(y=c.alternate.memoizedState.cachePool.pool),v=null,c.memoizedState!==null&&c.memoizedState.cachePool!==null&&(v=c.memoizedState.cachePool.pool),v!==y&&(c.flags|=2048)),a!==s&&a&&(o.child.flags|=8192),Xa(o,o.updateQueue),He(o),null);
+case 4:return Qe(),s===null&&Rd(o.stateNode.containerInfo),He(o),null;
+case 10:return Fn(o.type),He(o),null;
+case 19:if(Y(Ze),c=o.memoizedState,c===null)return He(o),null;
+if(y=(o.flags&128)!==0,v=c.rendering,v===null)if(y)ur(c,!1);
+else{
+if(je!==0||s!==null&&(s.flags&128)!==0)for(s=o.child;
+s!==null;
+){
+if(v=Va(s),v!==null){
+for(o.flags|=128,ur(c,!1),s=v.updateQueue,o.updateQueue=s,Xa(o,s),o.subtreeFlags=0,s=a,a=o.child;
+a!==null;
+)_m(a,s),a=a.sibling;
+return Q(Ze,Ze.current&1|2),be&&Vn(o,c.treeForkCount),o.child}
+s=s.sibling}
+c.tail!==null&&Bt()>nl&&(o.flags|=128,y=!0,ur(c,!1),o.lanes=4194304)}
+else{
+if(!y)if(s=Va(v),s!==null){
+if(o.flags|=128,y=!0,s=s.updateQueue,o.updateQueue=s,Xa(o,s),ur(c,!0),c.tail===null&&c.tailMode==="hidden"&&!v.alternate&&!be)return He(o),null}
+else 2*Bt()-c.renderingStartTime>nl&&a!==536870912&&(o.flags|=128,y=!0,ur(c,!1),o.lanes=4194304);
+c.isBackwards?(v.sibling=o.child,o.child=v):(s=c.last,s!==null?s.sibling=v:o.child=v,c.last=v)}
+return c.tail!==null?(s=c.tail,c.rendering=s,c.tail=s.sibling,c.renderingStartTime=Bt(),s.sibling=null,a=Ze.current,Q(Ze,y?a&1|2:a&1),be&&Vn(o,c.treeForkCount),s):(He(o),null);
+case 22:case 23:return $t(o),Nc(),c=o.memoizedState!==null,s!==null?s.memoizedState!==null!==c&&(o.flags|=8192):c&&(o.flags|=8192),c?(a&536870912)!==0&&(o.flags&128)===0&&(He(o),o.subtreeFlags&6&&(o.flags|=8192)):He(o),a=o.updateQueue,a!==null&&Xa(o,a.retryQueue),a=null,s!==null&&s.memoizedState!==null&&s.memoizedState.cachePool!==null&&(a=s.memoizedState.cachePool.pool),c=null,o.memoizedState!==null&&o.memoizedState.cachePool!==null&&(c=o.memoizedState.cachePool.pool),c!==a&&(o.flags|=2048),s!==null&&Y(Xi),null;
+case 24:return a=null,s!==null&&(a=s.memoizedState.cache),o.memoizedState.cache!==a&&(o.flags|=2048),Fn(tt),He(o),null;
+case 25:return null;
+case 30:return null}
+throw Error(i(156,o.tag))}
+function qA(s,o){
+switch(pc(o),o.tag){
+case 1:return s=o.flags,s&65536?(o.flags=s&-65537|128,o):null;
+case 3:return Fn(tt),Qe(),s=o.flags,(s&65536)!==0&&(s&128)===0?(o.flags=s&-65537|128,o):null;
+case 26:case 27:case 5:return la(o),null;
+case 31:if(o.memoizedState!==null){
+if($t(o),o.alternate===null)throw Error(i(340));
+Yi()}
+return s=o.flags,s&65536?(o.flags=s&-65537|128,o):null;
+case 13:if($t(o),s=o.memoizedState,s!==null&&s.dehydrated!==null){
+if(o.alternate===null)throw Error(i(340));
+Yi()}
+return s=o.flags,s&65536?(o.flags=s&-65537|128,o):null;
+case 19:return Y(Ze),null;
+case 4:return Qe(),null;
+case 10:return Fn(o.type),null;
+case 22:case 23:return $t(o),Nc(),s!==null&&Y(Xi),s=o.flags,s&65536?(o.flags=s&-65537|128,o):null;
+case 24:return Fn(tt),null;
+case 25:return null;
+default:return null}
+}
+function Jg(s,o){
+switch(pc(o),o.tag){
+case 3:Fn(tt),Qe();
+break;
+case 26:case 27:case 5:la(o);
+break;
+case 4:Qe();
+break;
+case 31:o.memoizedState!==null&&$t(o);
+break;
+case 13:$t(o);
+break;
+case 19:Y(Ze);
+break;
+case 10:Fn(o.type);
+break;
+case 22:case 23:$t(o),Nc(),s!==null&&Y(Xi);
+break;
+case 24:Fn(tt)}
+}
+function cr(s,o){
+try{
+var a=o.updateQueue,c=a!==null?a.lastEffect:null;
+if(c!==null){
+var y=c.next;
+a=y;
+do{
+if((a.tag&s)===s){
+c=void 0;
+var v=a.create,S=a.inst;
+c=v(),S.destroy=c}
+a=a.next}
+while(a!==y)}
+}
+catch(b){
+Pe(o,o.return,b)}
+}
+function yi(s,o,a){
+try{
+var c=o.updateQueue,y=c!==null?c.lastEffect:null;
+if(y!==null){
+var v=y.next;
+c=v;
+do{
+if((c.tag&s)===s){
+var S=c.inst,b=S.destroy;
+if(b!==void 0){
+S.destroy=void 0,y=o;
+var M=a,L=b;
+try{
+L()}
+catch(H){
+Pe(y,M,H)}
+}
+}
+c=c.next}
+while(c!==v)}
+}
+catch(H){
+Pe(o,o.return,H)}
+}
+function Kg(s){
+var o=s.updateQueue;
+if(o!==null){
+var a=s.stateNode;
+try{
+Om(o,a)}
+catch(c){
+Pe(s,s.return,c)}
+}
+}
+function Yg(s,o,a){
+a.props=ns(s.type,s.memoizedProps),a.state=s.memoizedState;
+try{
+a.componentWillUnmount()}
+catch(c){
+Pe(s,o,c)}
+}
+function dr(s,o){
+try{
+var a=s.ref;
+if(a!==null){
+switch(s.tag){
+case 26:case 27:case 5:var c=s.stateNode;
+break;
+case 30:c=s.stateNode;
+break;
+default:c=s.stateNode}
+typeof a=="function"?s.refCleanup=a(c):a.current=c}
+}
+catch(y){
+Pe(s,o,y)}
+}
+function In(s,o){
+var a=s.ref,c=s.refCleanup;
+if(a!==null)if(typeof c=="function")try{
+c()}
+catch(y){
+Pe(s,o,y)}
+finally{
+s.refCleanup=null,s=s.alternate,s!=null&&(s.refCleanup=null)}
+else if(typeof a=="function")try{
+a(null)}
+catch(y){
+Pe(s,o,y)}
+else a.current=null}
+function jg(s){
+var o=s.type,a=s.memoizedProps,c=s.stateNode;
+try{
+e:switch(o){
+case"button":case"input":case"select":case"textarea":a.autoFocus&&c.focus();
+break e;
+case"img":a.src?c.src=a.src:a.srcSet&&(c.srcset=a.srcSet)}
+}
+catch(y){
+Pe(s,s.return,y)}
+}
+function ad(s,o,a){
+try{
+var c=s.stateNode;
+cC(c,s.type,a,o),c[It]=o}
+catch(y){
+Pe(s,s.return,y)}
+}
+function Wg(s){
+return s.tag===5||s.tag===3||s.tag===26||s.tag===27&&bi(s.type)||s.tag===4}
+function ld(s){
+e:for(;
+;
+){
+for(;
+s.sibling===null;
+){
+if(s.return===null||Wg(s.return))return null;
+s=s.return}
+for(s.sibling.return=s.return,s=s.sibling;
+s.tag!==5&&s.tag!==6&&s.tag!==18;
+){
+if(s.tag===27&&bi(s.type)||s.flags&2||s.child===null||s.tag===4)continue e;
+s.child.return=s,s=s.child}
+if(!(s.flags&2))return s.stateNode}
+}
+function ud(s,o,a){
+var c=s.tag;
+if(c===5||c===6)s=s.stateNode,o?(a.nodeType===9?a.body:a.nodeName==="HTML"?a.ownerDocument.body:a).insertBefore(s,o):(o=a.nodeType===9?a.body:a.nodeName==="HTML"?a.ownerDocument.body:a,o.appendChild(s),a=a._reactRootContainer,a!=null||o.onclick!==null||(o.onclick=Pn));
+else if(c!==4&&(c===27&&bi(s.type)&&(a=s.stateNode,o=null),s=s.child,s!==null))for(ud(s,o,a),s=s.sibling;
+s!==null;
+)ud(s,o,a),s=s.sibling}
+function Qa(s,o,a){
+var c=s.tag;
+if(c===5||c===6)s=s.stateNode,o?a.insertBefore(s,o):a.appendChild(s);
+else if(c!==4&&(c===27&&bi(s.type)&&(a=s.stateNode),s=s.child,s!==null))for(Qa(s,o,a),s=s.sibling;
+s!==null;
+)Qa(s,o,a),s=s.sibling}
+function Xg(s){
+var o=s.stateNode,a=s.memoizedProps;
+try{
+for(var c=s.type,y=o.attributes;
+y.length;
+)o.removeAttributeNode(y[0]);
+Tt(o,c,a),o[gt]=s,o[It]=a}
+catch(v){
+Pe(s,s.return,v)}
+}
+var $n=!1,st=!1,cd=!1,Qg=typeof WeakSet=="function"?WeakSet:Set,dt=null;
+function HA(s,o){
+if(s=s.containerInfo,Id=_l,s=cm(s),ic(s)){
+if("selectionStart"in s)var a={
+start:s.selectionStart,end:s.selectionEnd}
+;
+else e:{
+a=(a=s.ownerDocument)&&a.defaultView||window;
+var c=a.getSelection&&a.getSelection();
+if(c&&c.rangeCount!==0){
+a=c.anchorNode;
+var y=c.anchorOffset,v=c.focusNode;
+c=c.focusOffset;
+try{
+a.nodeType,v.nodeType}
+catch{
+a=null;
+break e}
+var S=0,b=-1,M=-1,L=0,H=0,K=s,V=null;
+t:for(;
+;
+){
+for(var B;
+K!==a||y!==0&&K.nodeType!==3||(b=S+y),K!==v||c!==0&&K.nodeType!==3||(M=S+c),K.nodeType===3&&(S+=K.nodeValue.length),(B=K.firstChild)!==null;
+)V=K,K=B;
+for(;
+;
+){
+if(K===s)break t;
+if(V===a&&++L===y&&(b=S),V===v&&++H===c&&(M=S),(B=K.nextSibling)!==null)break;
+K=V,V=K.parentNode}
+K=B}
+a=b===-1||M===-1?null:{
+start:b,end:M}
+}
+else a=null}
+a=a||{
+start:0,end:0}
+}
+else a=null;
+for(Dd={
+focusedElem:s,selectionRange:a}
+,_l=!1,dt=o;
+dt!==null;
+)if(o=dt,s=o.child,(o.subtreeFlags&1028)!==0&&s!==null)s.return=o,dt=s;
+else for(;
+dt!==null;
+){
+switch(o=dt,v=o.alternate,s=o.flags,o.tag){
+case 0:if((s&4)!==0&&(s=o.updateQueue,s=s!==null?s.events:null,s!==null))for(a=0;
+a<s.length;
+a++)y=s[a],y.ref.impl=y.nextImpl;
+break;
+case 11:case 15:break;
+case 1:if((s&1024)!==0&&v!==null){
+s=void 0,a=o,y=v.memoizedProps,v=v.memoizedState,c=a.stateNode;
+try{
+var te=ns(a.type,y);
+s=c.getSnapshotBeforeUpdate(te,v),c.__reactInternalSnapshotBeforeUpdate=s}
+catch(le){
+Pe(a,a.return,le)}
+}
+break;
+case 3:if((s&1024)!==0){
+if(s=o.stateNode.containerInfo,a=s.nodeType,a===9)Pd(s);
+else if(a===1)switch(s.nodeName){
+case"HEAD":case"HTML":case"BODY":Pd(s);
+break;
+default:s.textContent=""}
+}
+break;
+case 5:case 26:case 27:case 6:case 4:case 17:break;
+default:if((s&1024)!==0)throw Error(i(163))}
+if(s=o.sibling,s!==null){
+s.return=o.return,dt=s;
+break}
+dt=o.return}
+}
+function Zg(s,o,a){
+var c=a.flags;
+switch(a.tag){
+case 0:case 11:case 15:Kn(s,a),c&4&&cr(5,a);
+break;
+case 1:if(Kn(s,a),c&4)if(s=a.stateNode,o===null)try{
+s.componentDidMount()}
+catch(S){
+Pe(a,a.return,S)}
+else{
+var y=ns(a.type,o.memoizedProps);
+o=o.memoizedState;
+try{
+s.componentDidUpdate(y,o,s.__reactInternalSnapshotBeforeUpdate)}
+catch(S){
+Pe(a,a.return,S)}
+}
+c&64&&Kg(a),c&512&&dr(a,a.return);
+break;
+case 3:if(Kn(s,a),c&64&&(s=a.updateQueue,s!==null)){
+if(o=null,a.child!==null)switch(a.child.tag){
+case 27:case 5:o=a.child.stateNode;
+break;
+case 1:o=a.child.stateNode}
+try{
+Om(s,o)}
+catch(S){
+Pe(a,a.return,S)}
+}
+break;
+case 27:o===null&&c&4&&Xg(a);
+case 26:case 5:Kn(s,a),o===null&&c&4&&jg(a),c&512&&dr(a,a.return);
+break;
+case 12:Kn(s,a);
+break;
+case 31:Kn(s,a),c&4&&ny(s,a);
+break;
+case 13:Kn(s,a),c&4&&iy(s,a),c&64&&(s=a.memoizedState,s!==null&&(s=s.dehydrated,s!==null&&(a=QA.bind(null,a),vC(s,a))));
+break;
+case 22:if(c=a.memoizedState!==null||$n,!c){
+o=o!==null&&o.memoizedState!==null||st,y=$n;
+var v=st;
+$n=c,(st=o)&&!v?Yn(s,a,(a.subtreeFlags&8772)!==0):Kn(s,a),$n=y,st=v}
+break;
+case 30:break;
+default:Kn(s,a)}
+}
+function ey(s){
+var o=s.alternate;
+o!==null&&(s.alternate=null,ey(o)),s.child=null,s.deletions=null,s.sibling=null,s.tag===5&&(o=s.stateNode,o!==null&&Fu(o)),s.stateNode=null,s.return=null,s.dependencies=null,s.memoizedProps=null,s.memoizedState=null,s.pendingProps=null,s.stateNode=null,s.updateQueue=null}
+var ze=null,kt=!1;
+function Jn(s,o,a){
+for(a=a.child;
+a!==null;
+)ty(s,o,a),a=a.sibling}
+function ty(s,o,a){
+if(Ft&&typeof Ft.onCommitFiberUnmount=="function")try{
+Ft.onCommitFiberUnmount(Po,a)}
+catch{
+}
+switch(a.tag){
+case 26:st||In(a,o),Jn(s,o,a),a.memoizedState?a.memoizedState.count--:a.stateNode&&(a=a.stateNode,a.parentNode.removeChild(a));
+break;
+case 27:st||In(a,o);
+var c=ze,y=kt;
+bi(a.type)&&(ze=a.stateNode,kt=!1),Jn(s,o,a),Tr(a.stateNode),ze=c,kt=y;
+break;
+case 5:st||In(a,o);
+case 6:if(c=ze,y=kt,ze=null,Jn(s,o,a),ze=c,kt=y,ze!==null)if(kt)try{
+(ze.nodeType===9?ze.body:ze.nodeName==="HTML"?ze.ownerDocument.body:ze).removeChild(a.stateNode)}
+catch(v){
+Pe(a,o,v)}
+else try{
+ze.removeChild(a.stateNode)}
+catch(v){
+Pe(a,o,v)}
+break;
+case 18:ze!==null&&(kt?(s=ze,Ky(s.nodeType===9?s.body:s.nodeName==="HTML"?s.ownerDocument.body:s,a.stateNode),no(s)):Ky(ze,a.stateNode));
+break;
+case 4:c=ze,y=kt,ze=a.stateNode.containerInfo,kt=!0,Jn(s,o,a),ze=c,kt=y;
+break;
+case 0:case 11:case 14:case 15:yi(2,a,o),st||yi(4,a,o),Jn(s,o,a);
+break;
+case 1:st||(In(a,o),c=a.stateNode,typeof c.componentWillUnmount=="function"&&Yg(a,o,c)),Jn(s,o,a);
+break;
+case 21:Jn(s,o,a);
+break;
+case 22:st=(c=st)||a.memoizedState!==null,Jn(s,o,a),st=c;
+break;
+default:Jn(s,o,a)}
+}
+function ny(s,o){
+if(o.memoizedState===null&&(s=o.alternate,s!==null&&(s=s.memoizedState,s!==null))){
+s=s.dehydrated;
+try{
+no(s)}
+catch(a){
+Pe(o,o.return,a)}
+}
+}
+function iy(s,o){
+if(o.memoizedState===null&&(s=o.alternate,s!==null&&(s=s.memoizedState,s!==null&&(s=s.dehydrated,s!==null))))try{
+no(s)}
+catch(a){
+Pe(o,o.return,a)}
+}
+function zA(s){
+switch(s.tag){
+case 31:case 13:case 19:var o=s.stateNode;
+return o===null&&(o=s.stateNode=new Qg),o;
+case 22:return s=s.stateNode,o=s._retryCache,o===null&&(o=s._retryCache=new Qg),o;
+default:throw Error(i(435,s.tag))}
+}
+function Za(s,o){
+var a=zA(s);
+o.forEach(function(c){
+if(!a.has(c)){
+a.add(c);
+var y=ZA.bind(null,s,c);
+c.then(y,y)}
+}
+)}
+function Ut(s,o){
+var a=o.deletions;
+if(a!==null)for(var c=0;
+c<a.length;
+c++){
+var y=a[c],v=s,S=o,b=S;
+e:for(;
+b!==null;
+){
+switch(b.tag){
+case 27:if(bi(b.type)){
+ze=b.stateNode,kt=!1;
+break e}
+break;
+case 5:ze=b.stateNode,kt=!1;
+break e;
+case 3:case 4:ze=b.stateNode.containerInfo,kt=!0;
+break e}
+b=b.return}
+if(ze===null)throw Error(i(160));
+ty(v,S,y),ze=null,kt=!1,v=y.alternate,v!==null&&(v.return=null),y.return=null}
+if(o.subtreeFlags&13886)for(o=o.child;
+o!==null;
+)sy(o,s),o=o.sibling}
+var gn=null;
+function sy(s,o){
+var a=s.alternate,c=s.flags;
+switch(s.tag){
+case 0:case 11:case 14:case 15:Ut(o,s),Pt(s),c&4&&(yi(3,s,s.return),cr(3,s),yi(5,s,s.return));
+break;
+case 1:Ut(o,s),Pt(s),c&512&&(st||a===null||In(a,a.return)),c&64&&$n&&(s=s.updateQueue,s!==null&&(c=s.callbacks,c!==null&&(a=s.shared.hiddenCallbacks,s.shared.hiddenCallbacks=a===null?c:a.concat(c))));
+break;
+case 26:var y=gn;
+if(Ut(o,s),Pt(s),c&512&&(st||a===null||In(a,a.return)),c&4){
+var v=a!==null?a.memoizedState:null;
+if(c=s.memoizedState,a===null)if(c===null)if(s.stateNode===null){
+e:{
+c=s.type,a=s.memoizedProps,y=y.ownerDocument||y;
+t:switch(c){
+case"title":v=y.getElementsByTagName("title")[0],(!v||v[Vo]||v[gt]||v.namespaceURI==="http://www.w3.org/2000/svg"||v.hasAttribute("itemprop"))&&(v=y.createElement(c),y.head.insertBefore(v,y.querySelector("head > title"))),Tt(v,c,a),v[gt]=s,ct(v),c=v;
+break e;
+case"link":var S=sv("link","href",y).get(c+(a.href||""));
+if(S){
+for(var b=0;
+b<S.length;
+b++)if(v=S[b],v.getAttribute("href")===(a.href==null||a.href===""?null:a.href)&&v.getAttribute("rel")===(a.rel==null?null:a.rel)&&v.getAttribute("title")===(a.title==null?null:a.title)&&v.getAttribute("crossorigin")===(a.crossOrigin==null?null:a.crossOrigin)){
+S.splice(b,1);
+break t}
+}
+v=y.createElement(c),Tt(v,c,a),y.head.appendChild(v);
+break;
+case"meta":if(S=sv("meta","content",y).get(c+(a.content||""))){
+for(b=0;
+b<S.length;
+b++)if(v=S[b],v.getAttribute("content")===(a.content==null?null:""+a.content)&&v.getAttribute("name")===(a.name==null?null:a.name)&&v.getAttribute("property")===(a.property==null?null:a.property)&&v.getAttribute("http-equiv")===(a.httpEquiv==null?null:a.httpEquiv)&&v.getAttribute("charset")===(a.charSet==null?null:a.charSet)){
+S.splice(b,1);
+break t}
+}
+v=y.createElement(c),Tt(v,c,a),y.head.appendChild(v);
+break;
+default:throw Error(i(468,c))}
+v[gt]=s,ct(v),c=v}
+s.stateNode=c}
+else ov(y,s.type,s.stateNode);
+else s.stateNode=iv(y,c,s.memoizedProps);
+else v!==c?(v===null?a.stateNode!==null&&(a=a.stateNode,a.parentNode.removeChild(a)):v.count--,c===null?ov(y,s.type,s.stateNode):iv(y,c,s.memoizedProps)):c===null&&s.stateNode!==null&&ad(s,s.memoizedProps,a.memoizedProps)}
+break;
+case 27:Ut(o,s),Pt(s),c&512&&(st||a===null||In(a,a.return)),a!==null&&c&4&&ad(s,s.memoizedProps,a.memoizedProps);
+break;
+case 5:if(Ut(o,s),Pt(s),c&512&&(st||a===null||In(a,a.return)),s.flags&32){
+y=s.stateNode;
+try{
+As(y,"")}
+catch(te){
+Pe(s,s.return,te)}
+}
+c&4&&s.stateNode!=null&&(y=s.memoizedProps,ad(s,y,a!==null?a.memoizedProps:y)),c&1024&&(cd=!0);
+break;
+case 6:if(Ut(o,s),Pt(s),c&4){
+if(s.stateNode===null)throw Error(i(162));
+c=s.memoizedProps,a=s.stateNode;
+try{
+a.nodeValue=c}
+catch(te){
+Pe(s,s.return,te)}
+}
+break;
+case 3:if(ml=null,y=gn,gn=hl(o.containerInfo),Ut(o,s),gn=y,Pt(s),c&4&&a!==null&&a.memoizedState.isDehydrated)try{
+no(o.containerInfo)}
+catch(te){
+Pe(s,s.return,te)}
+cd&&(cd=!1,oy(s));
+break;
+case 4:c=gn,gn=hl(s.stateNode.containerInfo),Ut(o,s),Pt(s),gn=c;
+break;
+case 12:Ut(o,s),Pt(s);
+break;
+case 31:Ut(o,s),Pt(s),c&4&&(c=s.updateQueue,c!==null&&(s.updateQueue=null,Za(s,c)));
+break;
+case 13:Ut(o,s),Pt(s),s.child.flags&8192&&s.memoizedState!==null!=(a!==null&&a.memoizedState!==null)&&(tl=Bt()),c&4&&(c=s.updateQueue,c!==null&&(s.updateQueue=null,Za(s,c)));
+break;
+case 22:y=s.memoizedState!==null;
+var M=a!==null&&a.memoizedState!==null,L=$n,H=st;
+if($n=L||y,st=H||M,Ut(o,s),st=H,$n=L,Pt(s),c&8192)e:for(o=s.stateNode,o._visibility=y?o._visibility&-2:o._visibility|1,y&&(a===null||M||$n||st||is(s)),a=null,o=s;
+;
+){
+if(o.tag===5||o.tag===26){
+if(a===null){
+M=a=o;
+try{
+if(v=M.stateNode,y)S=v.style,typeof S.setProperty=="function"?S.setProperty("display","none","important"):S.display="none";
+else{
+b=M.stateNode;
+var K=M.memoizedProps.style,V=K!=null&&K.hasOwnProperty("display")?K.display:null;
+b.style.display=V==null||typeof V=="boolean"?"":(""+V).trim()}
+}
+catch(te){
+Pe(M,M.return,te)}
+}
+}
+else if(o.tag===6){
+if(a===null){
+M=o;
+try{
+M.stateNode.nodeValue=y?"":M.memoizedProps}
+catch(te){
+Pe(M,M.return,te)}
+}
+}
+else if(o.tag===18){
+if(a===null){
+M=o;
+try{
+var B=M.stateNode;
+y?Yy(B,!0):Yy(M.stateNode,!1)}
+catch(te){
+Pe(M,M.return,te)}
+}
+}
+else if((o.tag!==22&&o.tag!==23||o.memoizedState===null||o===s)&&o.child!==null){
+o.child.return=o,o=o.child;
+continue}
+if(o===s)break e;
+for(;
+o.sibling===null;
+){
+if(o.return===null||o.return===s)break e;
+a===o&&(a=null),o=o.return}
+a===o&&(a=null),o.sibling.return=o.return,o=o.sibling}
+c&4&&(c=s.updateQueue,c!==null&&(a=c.retryQueue,a!==null&&(c.retryQueue=null,Za(s,a))));
+break;
+case 19:Ut(o,s),Pt(s),c&4&&(c=s.updateQueue,c!==null&&(s.updateQueue=null,Za(s,c)));
+break;
+case 30:break;
+case 21:break;
+default:Ut(o,s),Pt(s)}
+}
+function Pt(s){
+var o=s.flags;
+if(o&2){
+try{
+for(var a,c=s.return;
+c!==null;
+){
+if(Wg(c)){
+a=c;
+break}
+c=c.return}
+if(a==null)throw Error(i(160));
+switch(a.tag){
+case 27:var y=a.stateNode,v=ld(s);
+Qa(s,v,y);
+break;
+case 5:var S=a.stateNode;
+a.flags&32&&(As(S,""),a.flags&=-33);
+var b=ld(s);
+Qa(s,b,S);
+break;
+case 3:case 4:var M=a.stateNode.containerInfo,L=ld(s);
+ud(s,L,M);
+break;
+default:throw Error(i(161))}
+}
+catch(H){
+Pe(s,s.return,H)}
+s.flags&=-3}
+o&4096&&(s.flags&=-4097)}
+function oy(s){
+if(s.subtreeFlags&1024)for(s=s.child;
+s!==null;
+){
+var o=s;
+oy(o),o.tag===5&&o.flags&1024&&o.stateNode.reset(),s=s.sibling}
+}
+function Kn(s,o){
+if(o.subtreeFlags&8772)for(o=o.child;
+o!==null;
+)Zg(s,o.alternate,o),o=o.sibling}
+function is(s){
+for(s=s.child;
+s!==null;
+){
+var o=s;
+switch(o.tag){
+case 0:case 11:case 14:case 15:yi(4,o,o.return),is(o);
+break;
+case 1:In(o,o.return);
+var a=o.stateNode;
+typeof a.componentWillUnmount=="function"&&Yg(o,o.return,a),is(o);
+break;
+case 27:Tr(o.stateNode);
+case 26:case 5:In(o,o.return),is(o);
+break;
+case 22:o.memoizedState===null&&is(o);
+break;
+case 30:is(o);
+break;
+default:is(o)}
+s=s.sibling}
+}
+function Yn(s,o,a){
+for(a=a&&(o.subtreeFlags&8772)!==0,o=o.child;
+o!==null;
+){
+var c=o.alternate,y=s,v=o,S=v.flags;
+switch(v.tag){
+case 0:case 11:case 15:Yn(y,v,a),cr(4,v);
+break;
+case 1:if(Yn(y,v,a),c=v,y=c.stateNode,typeof y.componentDidMount=="function")try{
+y.componentDidMount()}
+catch(L){
+Pe(c,c.return,L)}
+if(c=v,y=c.updateQueue,y!==null){
+var b=c.stateNode;
+try{
+var M=y.shared.hiddenCallbacks;
+if(M!==null)for(y.shared.hiddenCallbacks=null,y=0;
+y<M.length;
+y++)Lm(M[y],b)}
+catch(L){
+Pe(c,c.return,L)}
+}
+a&&S&64&&Kg(v),dr(v,v.return);
+break;
+case 27:Xg(v);
+case 26:case 5:Yn(y,v,a),a&&c===null&&S&4&&jg(v),dr(v,v.return);
+break;
+case 12:Yn(y,v,a);
+break;
+case 31:Yn(y,v,a),a&&S&4&&ny(y,v);
+break;
+case 13:Yn(y,v,a),a&&S&4&&iy(y,v);
+break;
+case 22:v.memoizedState===null&&Yn(y,v,a),dr(v,v.return);
+break;
+case 30:break;
+default:Yn(y,v,a)}
+o=o.sibling}
+}
+function dd(s,o){
+var a=null;
+s!==null&&s.memoizedState!==null&&s.memoizedState.cachePool!==null&&(a=s.memoizedState.cachePool.pool),s=null,o.memoizedState!==null&&o.memoizedState.cachePool!==null&&(s=o.memoizedState.cachePool.pool),s!==a&&(s!=null&&s.refCount++,a!=null&&Xo(a))}
+function fd(s,o){
+s=null,o.alternate!==null&&(s=o.alternate.memoizedState.cache),o=o.memoizedState.cache,o!==s&&(o.refCount++,s!=null&&Xo(s))}
+function yn(s,o,a,c){
+if(o.subtreeFlags&10256)for(o=o.child;
+o!==null;
+)ry(s,o,a,c),o=o.sibling}
+function ry(s,o,a,c){
+var y=o.flags;
+switch(o.tag){
+case 0:case 11:case 15:yn(s,o,a,c),y&2048&&cr(9,o);
+break;
+case 1:yn(s,o,a,c);
+break;
+case 3:yn(s,o,a,c),y&2048&&(s=null,o.alternate!==null&&(s=o.alternate.memoizedState.cache),o=o.memoizedState.cache,o!==s&&(o.refCount++,s!=null&&Xo(s)));
+break;
+case 12:if(y&2048){
+yn(s,o,a,c),s=o.stateNode;
+try{
+var v=o.memoizedProps,S=v.id,b=v.onPostCommit;
+typeof b=="function"&&b(S,o.alternate===null?"mount":"update",s.passiveEffectDuration,-0)}
+catch(M){
+Pe(o,o.return,M)}
+}
+else yn(s,o,a,c);
+break;
+case 31:yn(s,o,a,c);
+break;
+case 13:yn(s,o,a,c);
+break;
+case 23:break;
+case 22:v=o.stateNode,S=o.alternate,o.memoizedState!==null?v._visibility&2?yn(s,o,a,c):fr(s,o):v._visibility&2?yn(s,o,a,c):(v._visibility|=2,$s(s,o,a,c,(o.subtreeFlags&10256)!==0||!1)),y&2048&&dd(S,o);
+break;
+case 24:yn(s,o,a,c),y&2048&&fd(o.alternate,o);
+break;
+default:yn(s,o,a,c)}
+}
+function $s(s,o,a,c,y){
+for(y=y&&((o.subtreeFlags&10256)!==0||!1),o=o.child;
+o!==null;
+){
+var v=s,S=o,b=a,M=c,L=S.flags;
+switch(S.tag){
+case 0:case 11:case 15:$s(v,S,b,M,y),cr(8,S);
+break;
+case 23:break;
+case 22:var H=S.stateNode;
+S.memoizedState!==null?H._visibility&2?$s(v,S,b,M,y):fr(v,S):(H._visibility|=2,$s(v,S,b,M,y)),y&&L&2048&&dd(S.alternate,S);
+break;
+case 24:$s(v,S,b,M,y),y&&L&2048&&fd(S.alternate,S);
+break;
+default:$s(v,S,b,M,y)}
+o=o.sibling}
+}
+function fr(s,o){
+if(o.subtreeFlags&10256)for(o=o.child;
+o!==null;
+){
+var a=s,c=o,y=c.flags;
+switch(c.tag){
+case 22:fr(a,c),y&2048&&dd(c.alternate,c);
+break;
+case 24:fr(a,c),y&2048&&fd(c.alternate,c);
+break;
+default:fr(a,c)}
+o=o.sibling}
+}
+var hr=8192;
+function Js(s,o,a){
+if(s.subtreeFlags&hr)for(s=s.child;
+s!==null;
+)ay(s,o,a),s=s.sibling}
+function ay(s,o,a){
+switch(s.tag){
+case 26:Js(s,o,a),s.flags&hr&&s.memoizedState!==null&&MC(a,gn,s.memoizedState,s.memoizedProps);
+break;
+case 5:Js(s,o,a);
+break;
+case 3:case 4:var c=gn;
+gn=hl(s.stateNode.containerInfo),Js(s,o,a),gn=c;
+break;
+case 22:s.memoizedState===null&&(c=s.alternate,c!==null&&c.memoizedState!==null?(c=hr,hr=16777216,Js(s,o,a),hr=c):Js(s,o,a));
+break;
+default:Js(s,o,a)}
+}
+function ly(s){
+var o=s.alternate;
+if(o!==null&&(s=o.child,s!==null)){
+o.child=null;
+do o=s.sibling,s.sibling=null,s=o;
+while(s!==null)}
+}
+function pr(s){
+var o=s.deletions;
+if((s.flags&16)!==0){
+if(o!==null)for(var a=0;
+a<o.length;
+a++){
+var c=o[a];
+dt=c,cy(c,s)}
+ly(s)}
+if(s.subtreeFlags&10256)for(s=s.child;
+s!==null;
+)uy(s),s=s.sibling}
+function uy(s){
+switch(s.tag){
+case 0:case 11:case 15:pr(s),s.flags&2048&&yi(9,s,s.return);
+break;
+case 3:pr(s);
+break;
+case 12:pr(s);
+break;
+case 22:var o=s.stateNode;
+s.memoizedState!==null&&o._visibility&2&&(s.return===null||s.return.tag!==13)?(o._visibility&=-3,el(s)):pr(s);
+break;
+default:pr(s)}
+}
+function el(s){
+var o=s.deletions;
+if((s.flags&16)!==0){
+if(o!==null)for(var a=0;
+a<o.length;
+a++){
+var c=o[a];
+dt=c,cy(c,s)}
+ly(s)}
+for(s=s.child;
+s!==null;
+){
+switch(o=s,o.tag){
+case 0:case 11:case 15:yi(8,o,o.return),el(o);
+break;
+case 22:a=o.stateNode,a._visibility&2&&(a._visibility&=-3,el(o));
+break;
+default:el(o)}
+s=s.sibling}
+}
+function cy(s,o){
+for(;
+dt!==null;
+){
+var a=dt;
+switch(a.tag){
+case 0:case 11:case 15:yi(8,a,o);
+break;
+case 23:case 22:if(a.memoizedState!==null&&a.memoizedState.cachePool!==null){
+var c=a.memoizedState.cachePool.pool;
+c!=null&&c.refCount++}
+break;
+case 24:Xo(a.memoizedState.cache)}
+if(c=a.child,c!==null)c.return=a,dt=c;
+else e:for(a=s;
+dt!==null;
+){
+c=dt;
+var y=c.sibling,v=c.return;
+if(ey(c),c===a){
+dt=null;
+break e}
+if(y!==null){
+y.return=v,dt=y;
+break e}
+dt=v}
+}
+}
+var $A={
+getCacheForType:function(s){
+var o=vt(tt),a=o.data.get(s);
+return a===void 0&&(a=s(),o.data.set(s,a)),a}
+,cacheSignal:function(){
+return vt(tt).controller.signal}
+}
+,JA=typeof WeakMap=="function"?WeakMap:Map,De=0,Fe=null,_e=null,we=0,Ue=0,Jt=null,vi=!1,Ks=!1,hd=!1,jn=0,je=0,_i=0,ss=0,pd=0,Kt=0,Ys=0,mr=null,Lt=null,md=!1,tl=0,dy=0,nl=1/0,il=null,Ti=null,at=0,Si=null,js=null,Wn=0,gd=0,yd=null,fy=null,gr=0,vd=null;
+function Yt(){
+return(De&2)!==0&&we!==0?we&-we:q.T!==null?bd():Rp()}
+function hy(){
+if(Kt===0)if((we&536870912)===0||be){
+var s=da;
+da<<=1,(da&3932160)===0&&(da=262144),Kt=s}
+else Kt=536870912;
+return s=zt.current,s!==null&&(s.flags|=32),Kt}
+function Ot(s,o,a){
+(s===Fe&&(Ue===2||Ue===9)||s.cancelPendingCommit!==null)&&(Ws(s,0),wi(s,we,Kt,!1)),Oo(s,a),((De&2)===0||s!==Fe)&&(s===Fe&&((De&2)===0&&(ss|=a),je===4&&wi(s,we,Kt,!1)),Dn(s))}
+function py(s,o,a){
+if((De&6)!==0)throw Error(i(327));
+var c=!a&&(o&127)===0&&(o&s.expiredLanes)===0||Lo(s,o),y=c?jA(s,o):Td(s,o,!0),v=c;
+do{
+if(y===0){
+Ks&&!c&&wi(s,o,0,!1);
+break}
+else{
+if(a=s.current.alternate,v&&!KA(a)){
+y=Td(s,o,!1),v=!1;
+continue}
+if(y===2){
+if(v=o,s.errorRecoveryDisabledLanes&v)var S=0;
+else S=s.pendingLanes&-536870913,S=S!==0?S:S&536870912?536870912:0;
+if(S!==0){
+o=S;
+e:{
+var b=s;
+y=mr;
+var M=b.current.memoizedState.isDehydrated;
+if(M&&(Ws(b,S).flags|=256),S=Td(b,S,!1),S!==2){
+if(hd&&!M){
+b.errorRecoveryDisabledLanes|=v,ss|=v,y=4;
+break e}
+v=Lt,Lt=y,v!==null&&(Lt===null?Lt=v:Lt.push.apply(Lt,v))}
+y=S}
+if(v=!1,y!==2)continue}
+}
+if(y===1){
+Ws(s,0),wi(s,o,0,!0);
+break}
+e:{
+switch(c=s,v=y,v){
+case 0:case 1:throw Error(i(345));
+case 4:if((o&4194048)!==o)break;
+case 6:wi(c,o,Kt,!vi);
+break e;
+case 2:Lt=null;
+break;
+case 3:case 5:break;
+default:throw Error(i(329))}
+if((o&62914560)===o&&(y=tl+300-Bt(),10<y)){
+if(wi(c,o,Kt,!vi),ha(c,0,!0)!==0)break e;
+Wn=o,c.timeoutHandle=$y(my.bind(null,c,a,Lt,il,md,o,Kt,ss,Ys,vi,v,"Throttled",-0,0),y);
+break e}
+my(c,a,Lt,il,md,o,Kt,ss,Ys,vi,v,null,-0,0)}
+}
+break}
+while(!0);
+Dn(s)}
+function my(s,o,a,c,y,v,S,b,M,L,H,K,V,B){
+if(s.timeoutHandle=-1,K=o.subtreeFlags,K&8192||(K&16785408)===16785408){
+K={
+stylesheets:null,count:0,imgCount:0,imgBytes:0,suspenseyImages:[],waitingForImages:!0,waitingForViewTransition:!1,unsuspend:Pn}
+,ay(o,v,K);
+var te=(v&62914560)===v?tl-Bt():(v&4194048)===v?dy-Bt():0;
+if(te=IC(K,te),te!==null){
+Wn=v,s.cancelPendingCommit=te(Ey.bind(null,s,o,v,a,c,y,S,b,M,H,K,null,V,B)),wi(s,v,S,!L);
+return}
+}
+Ey(s,o,v,a,c,y,S,b,M)}
+function KA(s){
+for(var o=s;
+;
+){
+var a=o.tag;
+if((a===0||a===11||a===15)&&o.flags&16384&&(a=o.updateQueue,a!==null&&(a=a.stores,a!==null)))for(var c=0;
+c<a.length;
+c++){
+var y=a[c],v=y.getSnapshot;
+y=y.value;
+try{
+if(!qt(v(),y))return!1}
+catch{
+return!1}
+}
+if(a=o.child,o.subtreeFlags&16384&&a!==null)a.return=o,o=a;
+else{
+if(o===s)break;
+for(;
+o.sibling===null;
+){
+if(o.return===null||o.return===s)return!0;
+o=o.return}
+o.sibling.return=o.return,o=o.sibling}
+}
+return!0}
+function wi(s,o,a,c){
+o&=~pd,o&=~ss,s.suspendedLanes|=o,s.pingedLanes&=~o,c&&(s.warmLanes|=o),c=s.expirationTimes;
+for(var y=o;
+0<y;
+){
+var v=31-Gt(y),S=1<<v;
+c[v]=-1,y&=~S}
+a!==0&&Ap(s,a,o)}
+function sl(){
+return(De&6)===0?(yr(0),!1):!0}
+function _d(){
+if(_e!==null){
+if(Ue===0)var s=_e.return;
+else s=_e,Bn=ji=null,Pc(s),Fs=null,Zo=0,s=_e;
+for(;
+s!==null;
+)Jg(s.alternate,s),s=s.return;
+_e=null}
+}
+function Ws(s,o){
+var a=s.timeoutHandle;
+a!==-1&&(s.timeoutHandle=-1,hC(a)),a=s.cancelPendingCommit,a!==null&&(s.cancelPendingCommit=null,a()),Wn=0,_d(),Fe=s,_e=a=On(s.current,null),we=o,Ue=0,Jt=null,vi=!1,Ks=Lo(s,o),hd=!1,Ys=Kt=pd=ss=_i=je=0,Lt=mr=null,md=!1,(o&8)!==0&&(o|=o&32);
+var c=s.entangledLanes;
+if(c!==0)for(s=s.entanglements,c&=o;
+0<c;
+){
+var y=31-Gt(c),v=1<<y;
+o|=s[y],c&=~v}
+return jn=o,Aa(),a}
+function gy(s,o){
+me=null,q.H=ar,o===Bs||o===ka?(o=Dm(),Ue=3):o===Ec?(o=Dm(),Ue=4):Ue=o===Xc?8:o!==null&&typeof o=="object"&&typeof o.then=="function"?6:1,Jt=o,_e===null&&(je=1,Ka(s,nn(o,s.current)))}
+function yy(){
+var s=zt.current;
+return s===null?!0:(we&4194048)===we?an===null:(we&62914560)===we||(we&536870912)!==0?s===an:!1}
+function vy(){
+var s=q.H;
+return q.H=ar,s===null?ar:s}
+function _y(){
+var s=q.A;
+return q.A=$A,s}
+function ol(){
+je=4,vi||(we&4194048)!==we&&zt.current!==null||(Ks=!0),(_i&134217727)===0&&(ss&134217727)===0||Fe===null||wi(Fe,we,Kt,!1)}
+function Td(s,o,a){
+var c=De;
+De|=2;
+var y=vy(),v=_y();
+(Fe!==s||we!==o)&&(il=null,Ws(s,o)),o=!1;
+var S=je;
+e:do try{
+if(Ue!==0&&_e!==null){
+var b=_e,M=Jt;
+switch(Ue){
+case 8:_d(),S=6;
+break e;
+case 3:case 2:case 9:case 6:zt.current===null&&(o=!0);
+var L=Ue;
+if(Ue=0,Jt=null,Xs(s,b,M,L),a&&Ks){
+S=0;
+break e}
+break;
+default:L=Ue,Ue=0,Jt=null,Xs(s,b,M,L)}
+}
+YA(),S=je;
+break}
+catch(H){
+gy(s,H)}
+while(!0);
+return o&&s.shellSuspendCounter++,Bn=ji=null,De=c,q.H=y,q.A=v,_e===null&&(Fe=null,we=0,Aa()),S}
+function YA(){
+for(;
+_e!==null;
+)Ty(_e)}
+function jA(s,o){
+var a=De;
+De|=2;
+var c=vy(),y=_y();
+Fe!==s||we!==o?(il=null,nl=Bt()+500,Ws(s,o)):Ks=Lo(s,o);
+e:do try{
+if(Ue!==0&&_e!==null){
+o=_e;
+var v=Jt;
+t:switch(Ue){
+case 1:Ue=0,Jt=null,Xs(s,o,v,1);
+break;
+case 2:case 9:if(Mm(v)){
+Ue=0,Jt=null,Sy(o);
+break}
+o=function(){
+Ue!==2&&Ue!==9||Fe!==s||(Ue=7),Dn(s)}
+,v.then(o,o);
+break e;
+case 3:Ue=7;
+break e;
+case 4:Ue=5;
+break e;
+case 7:Mm(v)?(Ue=0,Jt=null,Sy(o)):(Ue=0,Jt=null,Xs(s,o,v,7));
+break;
+case 5:var S=null;
+switch(_e.tag){
+case 26:S=_e.memoizedState;
+case 5:case 27:var b=_e;
+if(S?rv(S):b.stateNode.complete){
+Ue=0,Jt=null;
+var M=b.sibling;
+if(M!==null)_e=M;
+else{
+var L=b.return;
+L!==null?(_e=L,rl(L)):_e=null}
+break t}
+}
+Ue=0,Jt=null,Xs(s,o,v,5);
+break;
+case 6:Ue=0,Jt=null,Xs(s,o,v,6);
+break;
+case 8:_d(),je=6;
+break e;
+default:throw Error(i(462))}
+}
+WA();
+break}
+catch(H){
+gy(s,H)}
+while(!0);
+return Bn=ji=null,q.H=c,q.A=y,De=a,_e!==null?0:(Fe=null,we=0,Aa(),je)}
+function WA(){
+for(;
+_e!==null&&!_b();
+)Ty(_e)}
+function Ty(s){
+var o=zg(s.alternate,s,jn);
+s.memoizedProps=s.pendingProps,o===null?rl(s):_e=o}
+function Sy(s){
+var o=s,a=o.alternate;
+switch(o.tag){
+case 15:case 0:o=Vg(a,o,o.pendingProps,o.type,void 0,we);
+break;
+case 11:o=Vg(a,o,o.pendingProps,o.type.render,o.ref,we);
+break;
+case 5:Pc(o);
+default:Jg(a,o),o=_e=_m(o,jn),o=zg(a,o,jn)}
+s.memoizedProps=s.pendingProps,o===null?rl(s):_e=o}
+function Xs(s,o,a,c){
+Bn=ji=null,Pc(o),Fs=null,Zo=0;
+var y=o.return;
+try{
+if(VA(s,y,o,a,we)){
+je=1,Ka(s,nn(a,s.current)),_e=null;
+return}
+}
+catch(v){
+if(y!==null)throw _e=y,v;
+je=1,Ka(s,nn(a,s.current)),_e=null;
+return}
+o.flags&32768?(be||c===1?s=!0:Ks||(we&536870912)!==0?s=!1:(vi=s=!0,(c===2||c===9||c===3||c===6)&&(c=zt.current,c!==null&&c.tag===13&&(c.flags|=16384))),wy(o,s)):rl(o)}
+function rl(s){
+var o=s;
+do{
+if((o.flags&32768)!==0){
+wy(o,vi);
+return}
+s=o.return;
+var a=GA(o.alternate,o,jn);
+if(a!==null){
+_e=a;
+return}
+if(o=o.sibling,o!==null){
+_e=o;
+return}
+_e=o=s}
+while(o!==null);
+je===0&&(je=5)}
+function wy(s,o){
+do{
+var a=qA(s.alternate,s);
+if(a!==null){
+a.flags&=32767,_e=a;
+return}
+if(a=s.return,a!==null&&(a.flags|=32768,a.subtreeFlags=0,a.deletions=null),!o&&(s=s.sibling,s!==null)){
+_e=s;
+return}
+_e=s=a}
+while(s!==null);
+je=6,_e=null}
+function Ey(s,o,a,c,y,v,S,b,M){
+s.cancelPendingCommit=null;
+do al();
+while(at!==0);
+if((De&6)!==0)throw Error(i(327));
+if(o!==null){
+if(o===s.current)throw Error(i(177));
+if(v=o.lanes|o.childLanes,v|=lc,Nb(s,a,v,S,b,M),s===Fe&&(_e=Fe=null,we=0),js=o,Si=s,Wn=a,gd=v,yd=y,fy=c,(o.subtreeFlags&10256)!==0||(o.flags&10256)!==0?(s.callbackNode=null,s.callbackPriority=0,eC(ua,function(){
+return Ry(),null}
+)):(s.callbackNode=null,s.callbackPriority=0),c=(o.flags&13878)!==0,(o.subtreeFlags&13878)!==0||c){
+c=q.T,q.T=null,y=W.p,W.p=2,S=De,De|=4;
+try{
+HA(s,o,a)}
+finally{
+De=S,W.p=y,q.T=c}
+}
+at=1,by(),Ay(),Cy()}
+}
+function by(){
+if(at===1){
+at=0;
+var s=Si,o=js,a=(o.flags&13878)!==0;
+if((o.subtreeFlags&13878)!==0||a){
+a=q.T,q.T=null;
+var c=W.p;
+W.p=2;
+var y=De;
+De|=4;
+try{
+sy(o,s);
+var v=Dd,S=cm(s.containerInfo),b=v.focusedElem,M=v.selectionRange;
+if(S!==b&&b&&b.ownerDocument&&um(b.ownerDocument.documentElement,b)){
+if(M!==null&&ic(b)){
+var L=M.start,H=M.end;
+if(H===void 0&&(H=L),"selectionStart"in b)b.selectionStart=L,b.selectionEnd=Math.min(H,b.value.length);
+else{
+var K=b.ownerDocument||document,V=K&&K.defaultView||window;
+if(V.getSelection){
+var B=V.getSelection(),te=b.textContent.length,le=Math.min(M.start,te),Ve=M.end===void 0?le:Math.min(M.end,te);
+!B.extend&&le>Ve&&(S=Ve,Ve=le,le=S);
+var U=lm(b,le),I=lm(b,Ve);
+if(U&&I&&(B.rangeCount!==1||B.anchorNode!==U.node||B.anchorOffset!==U.offset||B.focusNode!==I.node||B.focusOffset!==I.offset)){
+var P=K.createRange();
+P.setStart(U.node,U.offset),B.removeAllRanges(),le>Ve?(B.addRange(P),B.extend(I.node,I.offset)):(P.setEnd(I.node,I.offset),B.addRange(P))}
+}
+}
+}
+for(K=[],B=b;
+B=B.parentNode;
+)B.nodeType===1&&K.push({
+element:B,left:B.scrollLeft,top:B.scrollTop}
+);
+for(typeof b.focus=="function"&&b.focus(),b=0;
+b<K.length;
+b++){
+var $=K[b];
+$.element.scrollLeft=$.left,$.element.scrollTop=$.top}
+}
+_l=!!Id,Dd=Id=null}
+finally{
+De=y,W.p=c,q.T=a}
+}
+s.current=o,at=2}
+}
+function Ay(){
+if(at===2){
+at=0;
+var s=Si,o=js,a=(o.flags&8772)!==0;
+if((o.subtreeFlags&8772)!==0||a){
+a=q.T,q.T=null;
+var c=W.p;
+W.p=2;
+var y=De;
+De|=4;
+try{
+Zg(s,o.alternate,o)}
+finally{
+De=y,W.p=c,q.T=a}
+}
+at=3}
+}
+function Cy(){
+if(at===4||at===3){
+at=0,Tb();
+var s=Si,o=js,a=Wn,c=fy;
+(o.subtreeFlags&10256)!==0||(o.flags&10256)!==0?at=5:(at=0,js=Si=null,xy(s,s.pendingLanes));
+var y=s.pendingLanes;
+if(y===0&&(Ti=null),Vu(a),o=o.stateNode,Ft&&typeof Ft.onCommitFiberRoot=="function")try{
+Ft.onCommitFiberRoot(Po,o,void 0,(o.current.flags&128)===128)}
+catch{
+}
+if(c!==null){
+o=q.T,y=W.p,W.p=2,q.T=null;
+try{
+for(var v=s.onRecoverableError,S=0;
+S<c.length;
+S++){
+var b=c[S];
+v(b.value,{
+componentStack:b.stack}
+)}
+}
+finally{
+q.T=o,W.p=y}
+}
+(Wn&3)!==0&&al(),Dn(s),y=s.pendingLanes,(a&261930)!==0&&(y&42)!==0?s===vd?gr++:(gr=0,vd=s):gr=0,yr(0)}
+}
+function xy(s,o){
+(s.pooledCacheLanes&=o)===0&&(o=s.pooledCache,o!=null&&(s.pooledCache=null,Xo(o)))}
+function al(){
+return by(),Ay(),Cy(),Ry()}
+function Ry(){
+if(at!==5)return!1;
+var s=Si,o=gd;
+gd=0;
+var a=Vu(Wn),c=q.T,y=W.p;
+try{
+W.p=32>a?32:a,q.T=null,a=yd,yd=null;
+var v=Si,S=Wn;
+if(at=0,js=Si=null,Wn=0,(De&6)!==0)throw Error(i(331));
+var b=De;
+if(De|=4,uy(v.current),ry(v,v.current,S,a),De=b,yr(0,!1),Ft&&typeof Ft.onPostCommitFiberRoot=="function")try{
+Ft.onPostCommitFiberRoot(Po,v)}
+catch{
+}
+return!0}
+finally{
+W.p=y,q.T=c,xy(s,o)}
+}
+function Ny(s,o,a){
+o=nn(a,o),o=Wc(s.stateNode,o,2),s=pi(s,o,2),s!==null&&(Oo(s,2),Dn(s))}
+function Pe(s,o,a){
+if(s.tag===3)Ny(s,s,a);
+else for(;
+o!==null;
+){
+if(o.tag===3){
+Ny(o,s,a);
+break}
+else if(o.tag===1){
+var c=o.stateNode;
+if(typeof o.type.getDerivedStateFromError=="function"||typeof c.componentDidCatch=="function"&&(Ti===null||!Ti.has(c))){
+s=nn(a,s),a=Mg(2),c=pi(o,a,2),c!==null&&(Ig(a,c,o,s),Oo(c,2),Dn(c));
+break}
+}
+o=o.return}
+}
+function Sd(s,o,a){
+var c=s.pingCache;
+if(c===null){
+c=s.pingCache=new JA;
+var y=new Set;
+c.set(o,y)}
+else y=c.get(o),y===void 0&&(y=new Set,c.set(o,y));
+y.has(a)||(hd=!0,y.add(a),s=XA.bind(null,s,o,a),o.then(s,s))}
+function XA(s,o,a){
+var c=s.pingCache;
+c!==null&&c.delete(o),s.pingedLanes|=s.suspendedLanes&a,s.warmLanes&=~a,Fe===s&&(we&a)===a&&(je===4||je===3&&(we&62914560)===we&&300>Bt()-tl?(De&2)===0&&Ws(s,0):pd|=a,Ys===we&&(Ys=0)),Dn(s)}
+function My(s,o){
+o===0&&(o=bp()),s=Ji(s,o),s!==null&&(Oo(s,o),Dn(s))}
+function QA(s){
+var o=s.memoizedState,a=0;
+o!==null&&(a=o.retryLane),My(s,a)}
+function ZA(s,o){
+var a=0;
+switch(s.tag){
+case 31:case 13:var c=s.stateNode,y=s.memoizedState;
+y!==null&&(a=y.retryLane);
+break;
+case 19:c=s.stateNode;
+break;
+case 22:c=s.stateNode._retryCache;
+break;
+default:throw Error(i(314))}
+c!==null&&c.delete(o),My(s,a)}
+function eC(s,o){
+return Uu(s,o)}
+var ll=null,Qs=null,wd=!1,ul=!1,Ed=!1,Ei=0;
+function Dn(s){
+s!==Qs&&s.next===null&&(Qs===null?ll=Qs=s:Qs=Qs.next=s),ul=!0,wd||(wd=!0,nC())}
+function yr(s,o){
+if(!Ed&&ul){
+Ed=!0;
+do for(var a=!1,c=ll;
+c!==null;
+){
+if(s!==0){
+var y=c.pendingLanes;
+if(y===0)var v=0;
+else{
+var S=c.suspendedLanes,b=c.pingedLanes;
+v=(1<<31-Gt(42|s)+1)-1,v&=y&~(S&~b),v=v&201326741?v&201326741|1:v?v|2:0}
+v!==0&&(a=!0,Uy(c,v))}
+else v=we,v=ha(c,c===Fe?v:0,c.cancelPendingCommit!==null||c.timeoutHandle!==-1),(v&3)===0||Lo(c,v)||(a=!0,Uy(c,v));
+c=c.next}
+while(a);
+Ed=!1}
+}
+function tC(){
+Iy()}
+function Iy(){
+ul=wd=!1;
+var s=0;
+Ei!==0&&fC()&&(s=Ei);
+for(var o=Bt(),a=null,c=ll;
+c!==null;
+){
+var y=c.next,v=Dy(c,o);
+v===0?(c.next=null,a===null?ll=y:a.next=y,y===null&&(Qs=a)):(a=c,(s!==0||(v&3)!==0)&&(ul=!0)),c=y}
+at!==0&&at!==5||yr(s),Ei!==0&&(Ei=0)}
+function Dy(s,o){
+for(var a=s.suspendedLanes,c=s.pingedLanes,y=s.expirationTimes,v=s.pendingLanes&-62914561;
+0<v;
+){
+var S=31-Gt(v),b=1<<S,M=y[S];
+M===-1?((b&a)===0||(b&c)!==0)&&(y[S]=Rb(b,o)):M<=o&&(s.expiredLanes|=b),v&=~b}
+if(o=Fe,a=we,a=ha(s,s===o?a:0,s.cancelPendingCommit!==null||s.timeoutHandle!==-1),c=s.callbackNode,a===0||s===o&&(Ue===2||Ue===9)||s.cancelPendingCommit!==null)return c!==null&&c!==null&&Pu(c),s.callbackNode=null,s.callbackPriority=0;
+if((a&3)===0||Lo(s,a)){
+if(o=a&-a,o===s.callbackPriority)return o;
+switch(c!==null&&Pu(c),Vu(a)){
+case 2:case 8:a=wp;
+break;
+case 32:a=ua;
+break;
+case 268435456:a=Ep;
+break;
+default:a=ua}
+return c=ky.bind(null,s),a=Uu(a,c),s.callbackPriority=o,s.callbackNode=a,o}
+return c!==null&&c!==null&&Pu(c),s.callbackPriority=2,s.callbackNode=null,2}
+function ky(s,o){
+if(at!==0&&at!==5)return s.callbackNode=null,s.callbackPriority=0,null;
+var a=s.callbackNode;
+if(al()&&s.callbackNode!==a)return null;
+var c=we;
+return c=ha(s,s===Fe?c:0,s.cancelPendingCommit!==null||s.timeoutHandle!==-1),c===0?null:(py(s,c,o),Dy(s,Bt()),s.callbackNode!=null&&s.callbackNode===a?ky.bind(null,s):null)}
+function Uy(s,o){
+if(al())return null;
+py(s,o,!0)}
+function nC(){
+pC(function(){
+(De&6)!==0?Uu(Sp,tC):Iy()}
+)}
+function bd(){
+if(Ei===0){
+var s=Os;
+s===0&&(s=ca,ca<<=1,(ca&261888)===0&&(ca=256)),Ei=s}
+return Ei}
+function Py(s){
+return s==null||typeof s=="symbol"||typeof s=="boolean"?null:typeof s=="function"?s:ya(""+s)}
+function Ly(s,o){
+var a=o.ownerDocument.createElement("input");
+return a.name=o.name,a.value=o.value,s.id&&a.setAttribute("form",s.id),o.parentNode.insertBefore(a,o),s=new FormData(s),a.parentNode.removeChild(a),s}
+function iC(s,o,a,c,y){
+if(o==="submit"&&a&&a.stateNode===y){
+var v=Py((y[It]||null).action),S=c.submitter;
+S&&(o=(o=S[It]||null)?Py(o.formAction):S.getAttribute("formAction"),o!==null&&(v=o,S=null));
+var b=new Sa("action","action",null,c,y);
+s.push({
+event:b,listeners:[{
+instance:null,listener:function(){
+if(c.defaultPrevented){
+if(Ei!==0){
+var M=S?Ly(y,S):new FormData(y);
+zc(a,{
+pending:!0,data:M,method:y.method,action:v}
+,null,M)}
+}
+else typeof v=="function"&&(b.preventDefault(),M=S?Ly(y,S):new FormData(y),zc(a,{
+pending:!0,data:M,method:y.method,action:v}
+,v,M))}
+,currentTarget:y}
+]}
+)}
+}
+for(var Ad=0;
+Ad<ac.length;
+Ad++){
+var Cd=ac[Ad],sC=Cd.toLowerCase(),oC=Cd[0].toUpperCase()+Cd.slice(1);
+mn(sC,"on"+oC)}
+mn(hm,"onAnimationEnd"),mn(pm,"onAnimationIteration"),mn(mm,"onAnimationStart"),mn("dblclick","onDoubleClick"),mn("focusin","onFocus"),mn("focusout","onBlur"),mn(SA,"onTransitionRun"),mn(wA,"onTransitionStart"),mn(EA,"onTransitionCancel"),mn(gm,"onTransitionEnd"),Es("onMouseEnter",["mouseout","mouseover"]),Es("onMouseLeave",["mouseout","mouseover"]),Es("onPointerEnter",["pointerout","pointerover"]),Es("onPointerLeave",["pointerout","pointerover"]),qi("onChange","change click focusin focusout input keydown keyup selectionchange".split(" ")),qi("onSelect","focusout contextmenu dragend focusin keydown keyup mousedown mouseup selectionchange".split(" ")),qi("onBeforeInput",["compositionend","keypress","textInput","paste"]),qi("onCompositionEnd","compositionend focusout keydown keypress keyup mousedown".split(" ")),qi("onCompositionStart","compositionstart focusout keydown keypress keyup mousedown".split(" ")),qi("onCompositionUpdate","compositionupdate focusout keydown keypress keyup mousedown".split(" "));
+var vr="abort canplay canplaythrough durationchange emptied encrypted ended error loadeddata loadedmetadata loadstart pause play playing progress ratechange resize seeked seeking stalled suspend timeupdate volumechange waiting".split(" "),rC=new Set("beforetoggle cancel close invalid load scroll scrollend toggle".split(" ").concat(vr));
+function Oy(s,o){
+o=(o&4)!==0;
+for(var a=0;
+a<s.length;
+a++){
+var c=s[a],y=c.event;
+c=c.listeners;
+e:{
+var v=void 0;
+if(o)for(var S=c.length-1;
+0<=S;
+S--){
+var b=c[S],M=b.instance,L=b.currentTarget;
+if(b=b.listener,M!==v&&y.isPropagationStopped())break e;
+v=b,y.currentTarget=L;
+try{
+v(y)}
+catch(H){
+ba(H)}
+y.currentTarget=null,v=M}
+else for(S=0;
+S<c.length;
+S++){
+if(b=c[S],M=b.instance,L=b.currentTarget,b=b.listener,M!==v&&y.isPropagationStopped())break e;
+v=b,y.currentTarget=L;
+try{
+v(y)}
+catch(H){
+ba(H)}
+y.currentTarget=null,v=M}
+}
+}
+}
+function Te(s,o){
+var a=o[Bu];
+a===void 0&&(a=o[Bu]=new Set);
+var c=s+"__bubble";
+a.has(c)||(Vy(o,s,2,!1),a.add(c))}
+function xd(s,o,a){
+var c=0;
+o&&(c|=4),Vy(a,s,c,o)}
+var cl="_reactListening"+Math.random().toString(36).slice(2);
+function Rd(s){
+if(!s[cl]){
+s[cl]=!0,Ip.forEach(function(a){
+a!=="selectionchange"&&(rC.has(a)||xd(a,!1,s),xd(a,!0,s))}
+);
+var o=s.nodeType===9?s:s.ownerDocument;
+o===null||o[cl]||(o[cl]=!0,xd("selectionchange",!1,o))}
+}
+function Vy(s,o,a,c){
+switch(hv(o)){
+case 2:var y=UC;
+break;
+case 8:y=PC;
+break;
+default:y=Hd}
+a=y.bind(null,o,a,s),y=void 0,!Yu||o!=="touchstart"&&o!=="touchmove"&&o!=="wheel"||(y=!0),c?y!==void 0?s.addEventListener(o,a,{
+capture:!0,passive:y}
+):s.addEventListener(o,a,!0):y!==void 0?s.addEventListener(o,a,{
+passive:y}
+):s.addEventListener(o,a,!1)}
+function Nd(s,o,a,c,y){
+var v=c;
+if((o&1)===0&&(o&2)===0&&c!==null)e:for(;
+;
+){
+if(c===null)return;
+var S=c.tag;
+if(S===3||S===4){
+var b=c.stateNode.containerInfo;
+if(b===y)break;
+if(S===4)for(S=c.return;
+S!==null;
+){
+var M=S.tag;
+if((M===3||M===4)&&S.stateNode.containerInfo===y)return;
+S=S.return}
+for(;
+b!==null;
+){
+if(S=Ts(b),S===null)return;
+if(M=S.tag,M===5||M===6||M===26||M===27){
+c=v=S;
+continue e}
+b=b.parentNode}
+}
+c=c.return}
+Hp(function(){
+var L=v,H=Ju(a),K=[];
+e:{
+var V=ym.get(s);
+if(V!==void 0){
+var B=Sa,te=s;
+switch(s){
+case"keypress":if(_a(a)===0)break e;
+case"keydown":case"keyup":B=Zb;
+break;
+case"focusin":te="focus",B=Qu;
+break;
+case"focusout":te="blur",B=Qu;
+break;
+case"beforeblur":case"afterblur":B=Qu;
+break;
+case"click":if(a.button===2)break e;
+case"auxclick":case"dblclick":case"mousedown":case"mousemove":case"mouseup":case"mouseout":case"mouseover":case"contextmenu":B=Jp;
+break;
+case"drag":case"dragend":case"dragenter":case"dragexit":case"dragleave":case"dragover":case"dragstart":case"drop":B=Gb;
+break;
+case"touchcancel":case"touchend":case"touchmove":case"touchstart":B=nA;
+break;
+case hm:case pm:case mm:B=zb;
+break;
+case gm:B=sA;
+break;
+case"scroll":case"scrollend":B=Bb;
+break;
+case"wheel":B=rA;
+break;
+case"copy":case"cut":case"paste":B=Jb;
+break;
+case"gotpointercapture":case"lostpointercapture":case"pointercancel":case"pointerdown":case"pointermove":case"pointerout":case"pointerover":case"pointerup":B=Yp;
+break;
+case"toggle":case"beforetoggle":B=lA}
+var le=(o&4)!==0,Ve=!le&&(s==="scroll"||s==="scrollend"),U=le?V!==null?V+"Capture":null:V;
+le=[];
+for(var I=L,P;
+I!==null;
+){
+var $=I;
+if(P=$.stateNode,$=$.tag,$!==5&&$!==26&&$!==27||P===null||U===null||($=Fo(I,U),$!=null&&le.push(_r(I,$,P))),Ve)break;
+I=I.return}
+0<le.length&&(V=new B(V,te,null,a,H),K.push({
+event:V,listeners:le}
+))}
+}
+if((o&7)===0){
+e:{
+if(V=s==="mouseover"||s==="pointerover",B=s==="mouseout"||s==="pointerout",V&&a!==$u&&(te=a.relatedTarget||a.fromElement)&&(Ts(te)||te[_s]))break e;
+if((B||V)&&(V=H.window===H?H:(V=H.ownerDocument)?V.defaultView||V.parentWindow:window,B?(te=a.relatedTarget||a.toElement,B=L,te=te?Ts(te):null,te!==null&&(Ve=l(te),le=te.tag,te!==Ve||le!==5&&le!==27&&le!==6)&&(te=null)):(B=null,te=L),B!==te)){
+if(le=Jp,$="onMouseLeave",U="onMouseEnter",I="mouse",(s==="pointerout"||s==="pointerover")&&(le=Yp,$="onPointerLeave",U="onPointerEnter",I="pointer"),Ve=B==null?V:Bo(B),P=te==null?V:Bo(te),V=new le($,I+"leave",B,a,H),V.target=Ve,V.relatedTarget=P,$=null,Ts(H)===L&&(le=new le(U,I+"enter",te,a,H),le.target=P,le.relatedTarget=Ve,$=le),Ve=$,B&&te)t:{
+for(le=aC,U=B,I=te,P=0,$=U;
+$;
+$=le($))P++;
+$=0;
+for(var ae=I;
+ae;
+ae=le(ae))$++;
+for(;
+0<P-$;
+)U=le(U),P--;
+for(;
+0<$-P;
+)I=le(I),$--;
+for(;
+P--;
+){
+if(U===I||I!==null&&U===I.alternate){
+le=U;
+break t}
+U=le(U),I=le(I)}
+le=null}
+else le=null;
+B!==null&&By(K,V,B,le,!1),te!==null&&Ve!==null&&By(K,Ve,te,le,!0)}
+}
+e:{
+if(V=L?Bo(L):window,B=V.nodeName&&V.nodeName.toLowerCase(),B==="select"||B==="input"&&V.type==="file")var xe=nm;
+else if(em(V))if(im)xe=vA;
+else{
+xe=gA;
+var se=mA}
+else B=V.nodeName,!B||B.toLowerCase()!=="input"||V.type!=="checkbox"&&V.type!=="radio"?L&&zu(L.elementType)&&(xe=nm):xe=yA;
+if(xe&&(xe=xe(s,L))){
+tm(K,xe,a,H);
+break e}
+se&&se(s,V,L),s==="focusout"&&L&&V.type==="number"&&L.memoizedProps.value!=null&&Hu(V,"number",V.value)}
+switch(se=L?Bo(L):window,s){
+case"focusin":(em(se)||se.contentEditable==="true")&&(Ns=se,sc=L,Yo=null);
+break;
+case"focusout":Yo=sc=Ns=null;
+break;
+case"mousedown":oc=!0;
+break;
+case"contextmenu":case"mouseup":case"dragend":oc=!1,dm(K,a,H);
+break;
+case"selectionchange":if(TA)break;
+case"keydown":case"keyup":dm(K,a,H)}
+var ge;
+if(ec)e:{
+switch(s){
+case"compositionstart":var Ee="onCompositionStart";
+break e;
+case"compositionend":Ee="onCompositionEnd";
+break e;
+case"compositionupdate":Ee="onCompositionUpdate";
+break e}
+Ee=void 0}
+else Rs?Qp(s,a)&&(Ee="onCompositionEnd"):s==="keydown"&&a.keyCode===229&&(Ee="onCompositionStart");
+Ee&&(jp&&a.locale!=="ko"&&(Rs||Ee!=="onCompositionStart"?Ee==="onCompositionEnd"&&Rs&&(ge=zp()):(ai=H,ju="value"in ai?ai.value:ai.textContent,Rs=!0)),se=dl(L,Ee),0<se.length&&(Ee=new Kp(Ee,s,null,a,H),K.push({
+event:Ee,listeners:se}
+),ge?Ee.data=ge:(ge=Zp(a),ge!==null&&(Ee.data=ge)))),(ge=cA?dA(s,a):fA(s,a))&&(Ee=dl(L,"onBeforeInput"),0<Ee.length&&(se=new Kp("onBeforeInput","beforeinput",null,a,H),K.push({
+event:se,listeners:Ee}
+),se.data=ge)),iC(K,s,L,a,H)}
+Oy(K,o)}
+)}
+function _r(s,o,a){
+return{
+instance:s,listener:o,currentTarget:a}
+}
+function dl(s,o){
+for(var a=o+"Capture",c=[];
+s!==null;
+){
+var y=s,v=y.stateNode;
+if(y=y.tag,y!==5&&y!==26&&y!==27||v===null||(y=Fo(s,a),y!=null&&c.unshift(_r(s,y,v)),y=Fo(s,o),y!=null&&c.push(_r(s,y,v))),s.tag===3)return c;
+s=s.return}
+return[]}
+function aC(s){
+if(s===null)return null;
+do s=s.return;
+while(s&&s.tag!==5&&s.tag!==27);
+return s||null}
+function By(s,o,a,c,y){
+for(var v=o._reactName,S=[];
+a!==null&&a!==c;
+){
+var b=a,M=b.alternate,L=b.stateNode;
+if(b=b.tag,M!==null&&M===c)break;
+b!==5&&b!==26&&b!==27||L===null||(M=L,y?(L=Fo(a,v),L!=null&&S.unshift(_r(a,L,M))):y||(L=Fo(a,v),L!=null&&S.push(_r(a,L,M)))),a=a.return}
+S.length!==0&&s.push({
+event:o,listeners:S}
+)}
+var lC=/\r\n?/g,uC=/\u0000|\uFFFD/g;
+function Fy(s){
+return(typeof s=="string"?s:""+s).replace(lC,`
+`).replace(uC,"")}
+function Gy(s,o){
+return o=Fy(o),Fy(s)===o}
+function Oe(s,o,a,c,y,v){
+switch(a){
+case"children":typeof c=="string"?o==="body"||o==="textarea"&&c===""||As(s,c):(typeof c=="number"||typeof c=="bigint")&&o!=="body"&&As(s,""+c);
+break;
+case"className":ma(s,"class",c);
+break;
+case"tabIndex":ma(s,"tabindex",c);
+break;
+case"dir":case"role":case"viewBox":case"width":case"height":ma(s,a,c);
+break;
+case"style":Gp(s,c,v);
+break;
+case"data":if(o!=="object"){
+ma(s,"data",c);
+break}
+case"src":case"href":if(c===""&&(o!=="a"||a!=="href")){
+s.removeAttribute(a);
+break}
+if(c==null||typeof c=="function"||typeof c=="symbol"||typeof c=="boolean"){
+s.removeAttribute(a);
+break}
+c=ya(""+c),s.setAttribute(a,c);
+break;
+case"action":case"formAction":if(typeof c=="function"){
+s.setAttribute(a,"javascript:throw new Error('A React form was unexpectedly submitted. If you called form.submit() manually, consider using form.requestSubmit() instead. If you\\'re trying to use event.stopPropagation() in a submit event handler, consider also calling event.preventDefault().')");
+break}
+else typeof v=="function"&&(a==="formAction"?(o!=="input"&&Oe(s,o,"name",y.name,y,null),Oe(s,o,"formEncType",y.formEncType,y,null),Oe(s,o,"formMethod",y.formMethod,y,null),Oe(s,o,"formTarget",y.formTarget,y,null)):(Oe(s,o,"encType",y.encType,y,null),Oe(s,o,"method",y.method,y,null),Oe(s,o,"target",y.target,y,null)));
+if(c==null||typeof c=="symbol"||typeof c=="boolean"){
+s.removeAttribute(a);
+break}
+c=ya(""+c),s.setAttribute(a,c);
+break;
+case"onClick":c!=null&&(s.onclick=Pn);
+break;
+case"onScroll":c!=null&&Te("scroll",s);
+break;
+case"onScrollEnd":c!=null&&Te("scrollend",s);
+break;
+case"dangerouslySetInnerHTML":if(c!=null){
+if(typeof c!="object"||!("__html"in c))throw Error(i(61));
+if(a=c.__html,a!=null){
+if(y.children!=null)throw Error(i(60));
+s.innerHTML=a}
+}
+break;
+case"multiple":s.multiple=c&&typeof c!="function"&&typeof c!="symbol";
+break;
+case"muted":s.muted=c&&typeof c!="function"&&typeof c!="symbol";
+break;
+case"suppressContentEditableWarning":case"suppressHydrationWarning":case"defaultValue":case"defaultChecked":case"innerHTML":case"ref":break;
+case"autoFocus":break;
+case"xlinkHref":if(c==null||typeof c=="function"||typeof c=="boolean"||typeof c=="symbol"){
+s.removeAttribute("xlink:href");
+break}
+a=ya(""+c),s.setAttributeNS("http://www.w3.org/1999/xlink","xlink:href",a);
+break;
+case"contentEditable":case"spellCheck":case"draggable":case"value":case"autoReverse":case"externalResourcesRequired":case"focusable":case"preserveAlpha":c!=null&&typeof c!="function"&&typeof c!="symbol"?s.setAttribute(a,""+c):s.removeAttribute(a);
+break;
+case"inert":case"allowFullScreen":case"async":case"autoPlay":case"controls":case"default":case"defer":case"disabled":case"disablePictureInPicture":case"disableRemotePlayback":case"formNoValidate":case"hidden":case"loop":case"noModule":case"noValidate":case"open":case"playsInline":case"readOnly":case"required":case"reversed":case"scoped":case"seamless":case"itemScope":c&&typeof c!="function"&&typeof c!="symbol"?s.setAttribute(a,""):s.removeAttribute(a);
+break;
+case"capture":case"download":c===!0?s.setAttribute(a,""):c!==!1&&c!=null&&typeof c!="function"&&typeof c!="symbol"?s.setAttribute(a,c):s.removeAttribute(a);
+break;
+case"cols":case"rows":case"size":case"span":c!=null&&typeof c!="function"&&typeof c!="symbol"&&!isNaN(c)&&1<=c?s.setAttribute(a,c):s.removeAttribute(a);
+break;
+case"rowSpan":case"start":c==null||typeof c=="function"||typeof c=="symbol"||isNaN(c)?s.removeAttribute(a):s.setAttribute(a,c);
+break;
+case"popover":Te("beforetoggle",s),Te("toggle",s),pa(s,"popover",c);
+break;
+case"xlinkActuate":Un(s,"http://www.w3.org/1999/xlink","xlink:actuate",c);
+break;
+case"xlinkArcrole":Un(s,"http://www.w3.org/1999/xlink","xlink:arcrole",c);
+break;
+case"xlinkRole":Un(s,"http://www.w3.org/1999/xlink","xlink:role",c);
+break;
+case"xlinkShow":Un(s,"http://www.w3.org/1999/xlink","xlink:show",c);
+break;
+case"xlinkTitle":Un(s,"http://www.w3.org/1999/xlink","xlink:title",c);
+break;
+case"xlinkType":Un(s,"http://www.w3.org/1999/xlink","xlink:type",c);
+break;
+case"xmlBase":Un(s,"http://www.w3.org/XML/1998/namespace","xml:base",c);
+break;
+case"xmlLang":Un(s,"http://www.w3.org/XML/1998/namespace","xml:lang",c);
+break;
+case"xmlSpace":Un(s,"http://www.w3.org/XML/1998/namespace","xml:space",c);
+break;
+case"is":pa(s,"is",c);
+break;
+case"innerText":case"textContent":break;
+default:(!(2<a.length)||a[0]!=="o"&&a[0]!=="O"||a[1]!=="n"&&a[1]!=="N")&&(a=Ob.get(a)||a,pa(s,a,c))}
+}
+function Md(s,o,a,c,y,v){
+switch(a){
+case"style":Gp(s,c,v);
+break;
+case"dangerouslySetInnerHTML":if(c!=null){
+if(typeof c!="object"||!("__html"in c))throw Error(i(61));
+if(a=c.__html,a!=null){
+if(y.children!=null)throw Error(i(60));
+s.innerHTML=a}
+}
+break;
+case"children":typeof c=="string"?As(s,c):(typeof c=="number"||typeof c=="bigint")&&As(s,""+c);
+break;
+case"onScroll":c!=null&&Te("scroll",s);
+break;
+case"onScrollEnd":c!=null&&Te("scrollend",s);
+break;
+case"onClick":c!=null&&(s.onclick=Pn);
+break;
+case"suppressContentEditableWarning":case"suppressHydrationWarning":case"innerHTML":case"ref":break;
+case"innerText":case"textContent":break;
+default:if(!Dp.hasOwnProperty(a))e:{
+if(a[0]==="o"&&a[1]==="n"&&(y=a.endsWith("Capture"),o=a.slice(2,y?a.length-7:void 0),v=s[It]||null,v=v!=null?v[a]:null,typeof v=="function"&&s.removeEventListener(o,v,y),typeof c=="function")){
+typeof v!="function"&&v!==null&&(a in s?s[a]=null:s.hasAttribute(a)&&s.removeAttribute(a)),s.addEventListener(o,c,y);
+break e}
+a in s?s[a]=c:c===!0?s.setAttribute(a,""):pa(s,a,c)}
+}
+}
+function Tt(s,o,a){
+switch(o){
+case"div":case"span":case"svg":case"path":case"a":case"g":case"p":case"li":break;
+case"img":Te("error",s),Te("load",s);
+var c=!1,y=!1,v;
+for(v in a)if(a.hasOwnProperty(v)){
+var S=a[v];
+if(S!=null)switch(v){
+case"src":c=!0;
+break;
+case"srcSet":y=!0;
+break;
+case"children":case"dangerouslySetInnerHTML":throw Error(i(137,o));
+default:Oe(s,o,v,S,a,null)}
+}
+y&&Oe(s,o,"srcSet",a.srcSet,a,null),c&&Oe(s,o,"src",a.src,a,null);
+return;
+case"input":Te("invalid",s);
+var b=v=S=y=null,M=null,L=null;
+for(c in a)if(a.hasOwnProperty(c)){
+var H=a[c];
+if(H!=null)switch(c){
+case"name":y=H;
+break;
+case"type":S=H;
+break;
+case"checked":M=H;
+break;
+case"defaultChecked":L=H;
+break;
+case"value":v=H;
+break;
+case"defaultValue":b=H;
+break;
+case"children":case"dangerouslySetInnerHTML":if(H!=null)throw Error(i(137,o));
+break;
+default:Oe(s,o,c,H,a,null)}
+}
+Op(s,v,b,M,L,S,y,!1);
+return;
+case"select":Te("invalid",s),c=S=v=null;
+for(y in a)if(a.hasOwnProperty(y)&&(b=a[y],b!=null))switch(y){
+case"value":v=b;
+break;
+case"defaultValue":S=b;
+break;
+case"multiple":c=b;
+default:Oe(s,o,y,b,a,null)}
+o=v,a=S,s.multiple=!!c,o!=null?bs(s,!!c,o,!1):a!=null&&bs(s,!!c,a,!0);
+return;
+case"textarea":Te("invalid",s),v=y=c=null;
+for(S in a)if(a.hasOwnProperty(S)&&(b=a[S],b!=null))switch(S){
+case"value":c=b;
+break;
+case"defaultValue":y=b;
+break;
+case"children":v=b;
+break;
+case"dangerouslySetInnerHTML":if(b!=null)throw Error(i(91));
+break;
+default:Oe(s,o,S,b,a,null)}
+Bp(s,c,y,v);
+return;
+case"option":for(M in a)if(a.hasOwnProperty(M)&&(c=a[M],c!=null))switch(M){
+case"selected":s.selected=c&&typeof c!="function"&&typeof c!="symbol";
+break;
+default:Oe(s,o,M,c,a,null)}
+return;
+case"dialog":Te("beforetoggle",s),Te("toggle",s),Te("cancel",s),Te("close",s);
+break;
+case"iframe":case"object":Te("load",s);
+break;
+case"video":case"audio":for(c=0;
+c<vr.length;
+c++)Te(vr[c],s);
+break;
+case"image":Te("error",s),Te("load",s);
+break;
+case"details":Te("toggle",s);
+break;
+case"embed":case"source":case"link":Te("error",s),Te("load",s);
+case"area":case"base":case"br":case"col":case"hr":case"keygen":case"meta":case"param":case"track":case"wbr":case"menuitem":for(L in a)if(a.hasOwnProperty(L)&&(c=a[L],c!=null))switch(L){
+case"children":case"dangerouslySetInnerHTML":throw Error(i(137,o));
+default:Oe(s,o,L,c,a,null)}
+return;
+default:if(zu(o)){
+for(H in a)a.hasOwnProperty(H)&&(c=a[H],c!==void 0&&Md(s,o,H,c,a,void 0));
+return}
+}
+for(b in a)a.hasOwnProperty(b)&&(c=a[b],c!=null&&Oe(s,o,b,c,a,null))}
+function cC(s,o,a,c){
+switch(o){
+case"div":case"span":case"svg":case"path":case"a":case"g":case"p":case"li":break;
+case"input":var y=null,v=null,S=null,b=null,M=null,L=null,H=null;
+for(B in a){
+var K=a[B];
+if(a.hasOwnProperty(B)&&K!=null)switch(B){
+case"checked":break;
+case"value":break;
+case"defaultValue":M=K;
+default:c.hasOwnProperty(B)||Oe(s,o,B,null,c,K)}
+}
+for(var V in c){
+var B=c[V];
+if(K=a[V],c.hasOwnProperty(V)&&(B!=null||K!=null))switch(V){
+case"type":v=B;
+break;
+case"name":y=B;
+break;
+case"checked":L=B;
+break;
+case"defaultChecked":H=B;
+break;
+case"value":S=B;
+break;
+case"defaultValue":b=B;
+break;
+case"children":case"dangerouslySetInnerHTML":if(B!=null)throw Error(i(137,o));
+break;
+default:B!==K&&Oe(s,o,V,B,c,K)}
+}
+qu(s,S,b,M,L,H,v,y);
+return;
+case"select":B=S=b=V=null;
+for(v in a)if(M=a[v],a.hasOwnProperty(v)&&M!=null)switch(v){
+case"value":break;
+case"multiple":B=M;
+default:c.hasOwnProperty(v)||Oe(s,o,v,null,c,M)}
+for(y in c)if(v=c[y],M=a[y],c.hasOwnProperty(y)&&(v!=null||M!=null))switch(y){
+case"value":V=v;
+break;
+case"defaultValue":b=v;
+break;
+case"multiple":S=v;
+default:v!==M&&Oe(s,o,y,v,c,M)}
+o=b,a=S,c=B,V!=null?bs(s,!!a,V,!1):!!c!=!!a&&(o!=null?bs(s,!!a,o,!0):bs(s,!!a,a?[]:"",!1));
+return;
+case"textarea":B=V=null;
+for(b in a)if(y=a[b],a.hasOwnProperty(b)&&y!=null&&!c.hasOwnProperty(b))switch(b){
+case"value":break;
+case"children":break;
+default:Oe(s,o,b,null,c,y)}
+for(S in c)if(y=c[S],v=a[S],c.hasOwnProperty(S)&&(y!=null||v!=null))switch(S){
+case"value":V=y;
+break;
+case"defaultValue":B=y;
+break;
+case"children":break;
+case"dangerouslySetInnerHTML":if(y!=null)throw Error(i(91));
+break;
+default:y!==v&&Oe(s,o,S,y,c,v)}
+Vp(s,V,B);
+return;
+case"option":for(var te in a)if(V=a[te],a.hasOwnProperty(te)&&V!=null&&!c.hasOwnProperty(te))switch(te){
+case"selected":s.selected=!1;
+break;
+default:Oe(s,o,te,null,c,V)}
+for(M in c)if(V=c[M],B=a[M],c.hasOwnProperty(M)&&V!==B&&(V!=null||B!=null))switch(M){
+case"selected":s.selected=V&&typeof V!="function"&&typeof V!="symbol";
+break;
+default:Oe(s,o,M,V,c,B)}
+return;
+case"img":case"link":case"area":case"base":case"br":case"col":case"embed":case"hr":case"keygen":case"meta":case"param":case"source":case"track":case"wbr":case"menuitem":for(var le in a)V=a[le],a.hasOwnProperty(le)&&V!=null&&!c.hasOwnProperty(le)&&Oe(s,o,le,null,c,V);
+for(L in c)if(V=c[L],B=a[L],c.hasOwnProperty(L)&&V!==B&&(V!=null||B!=null))switch(L){
+case"children":case"dangerouslySetInnerHTML":if(V!=null)throw Error(i(137,o));
+break;
+default:Oe(s,o,L,V,c,B)}
+return;
+default:if(zu(o)){
+for(var Ve in a)V=a[Ve],a.hasOwnProperty(Ve)&&V!==void 0&&!c.hasOwnProperty(Ve)&&Md(s,o,Ve,void 0,c,V);
+for(H in c)V=c[H],B=a[H],!c.hasOwnProperty(H)||V===B||V===void 0&&B===void 0||Md(s,o,H,V,c,B);
+return}
+}
+for(var U in a)V=a[U],a.hasOwnProperty(U)&&V!=null&&!c.hasOwnProperty(U)&&Oe(s,o,U,null,c,V);
+for(K in c)V=c[K],B=a[K],!c.hasOwnProperty(K)||V===B||V==null&&B==null||Oe(s,o,K,V,c,B)}
+function qy(s){
+switch(s){
+case"css":case"script":case"font":case"img":case"image":case"input":case"link":return!0;
+default:return!1}
+}
+function dC(){
+if(typeof performance.getEntriesByType=="function"){
+for(var s=0,o=0,a=performance.getEntriesByType("resource"),c=0;
+c<a.length;
+c++){
+var y=a[c],v=y.transferSize,S=y.initiatorType,b=y.duration;
+if(v&&b&&qy(S)){
+for(S=0,b=y.responseEnd,c+=1;
+c<a.length;
+c++){
+var M=a[c],L=M.startTime;
+if(L>b)break;
+var H=M.transferSize,K=M.initiatorType;
+H&&qy(K)&&(M=M.responseEnd,S+=H*(M<b?1:(b-L)/(M-L)))}
+if(--c,o+=8*(v+S)/(y.duration/1e3),s++,10<s)break}
+}
+if(0<s)return o/s/1e6}
+return navigator.connection&&(s=navigator.connection.downlink,typeof s=="number")?s:5}
+var Id=null,Dd=null;
+function fl(s){
+return s.nodeType===9?s:s.ownerDocument}
+function Hy(s){
+switch(s){
+case"http://www.w3.org/2000/svg":return 1;
+case"http://www.w3.org/1998/Math/MathML":return 2;
+default:return 0}
+}
+function zy(s,o){
+if(s===0)switch(o){
+case"svg":return 1;
+case"math":return 2;
+default:return 0}
+return s===1&&o==="foreignObject"?0:s}
+function kd(s,o){
+return s==="textarea"||s==="noscript"||typeof o.children=="string"||typeof o.children=="number"||typeof o.children=="bigint"||typeof o.dangerouslySetInnerHTML=="object"&&o.dangerouslySetInnerHTML!==null&&o.dangerouslySetInnerHTML.__html!=null}
+var Ud=null;
+function fC(){
+var s=window.event;
+return s&&s.type==="popstate"?s===Ud?!1:(Ud=s,!0):(Ud=null,!1)}
+var $y=typeof setTimeout=="function"?setTimeout:void 0,hC=typeof clearTimeout=="function"?clearTimeout:void 0,Jy=typeof Promise=="function"?Promise:void 0,pC=typeof queueMicrotask=="function"?queueMicrotask:typeof Jy<"u"?function(s){
+return Jy.resolve(null).then(s).catch(mC)}
+:$y;
+function mC(s){
+setTimeout(function(){
+throw s}
+)}
+function bi(s){
+return s==="head"}
+function Ky(s,o){
+var a=o,c=0;
+do{
+var y=a.nextSibling;
+if(s.removeChild(a),y&&y.nodeType===8)if(a=y.data,a==="/$"||a==="/&"){
+if(c===0){
+s.removeChild(y),no(o);
+return}
+c--}
+else if(a==="$"||a==="$?"||a==="$~"||a==="$!"||a==="&")c++;
+else if(a==="html")Tr(s.ownerDocument.documentElement);
+else if(a==="head"){
+a=s.ownerDocument.head,Tr(a);
+for(var v=a.firstChild;
+v;
+){
+var S=v.nextSibling,b=v.nodeName;
+v[Vo]||b==="SCRIPT"||b==="STYLE"||b==="LINK"&&v.rel.toLowerCase()==="stylesheet"||a.removeChild(v),v=S}
+}
+else a==="body"&&Tr(s.ownerDocument.body);
+a=y}
+while(a);
+no(o)}
+function Yy(s,o){
+var a=s;
+s=0;
+do{
+var c=a.nextSibling;
+if(a.nodeType===1?o?(a._stashedDisplay=a.style.display,a.style.display="none"):(a.style.display=a._stashedDisplay||"",a.getAttribute("style")===""&&a.removeAttribute("style")):a.nodeType===3&&(o?(a._stashedText=a.nodeValue,a.nodeValue=""):a.nodeValue=a._stashedText||""),c&&c.nodeType===8)if(a=c.data,a==="/$"){
+if(s===0)break;
+s--}
+else a!=="$"&&a!=="$?"&&a!=="$~"&&a!=="$!"||s++;
+a=c}
+while(a)}
+function Pd(s){
+var o=s.firstChild;
+for(o&&o.nodeType===10&&(o=o.nextSibling);
+o;
+){
+var a=o;
+switch(o=o.nextSibling,a.nodeName){
+case"HTML":case"HEAD":case"BODY":Pd(a),Fu(a);
+continue;
+case"SCRIPT":case"STYLE":continue;
+case"LINK":if(a.rel.toLowerCase()==="stylesheet")continue}
+s.removeChild(a)}
+}
+function gC(s,o,a,c){
+for(;
+s.nodeType===1;
+){
+var y=a;
+if(s.nodeName.toLowerCase()!==o.toLowerCase()){
+if(!c&&(s.nodeName!=="INPUT"||s.type!=="hidden"))break}
+else if(c){
+if(!s[Vo])switch(o){
+case"meta":if(!s.hasAttribute("itemprop"))break;
+return s;
+case"link":if(v=s.getAttribute("rel"),v==="stylesheet"&&s.hasAttribute("data-precedence"))break;
+if(v!==y.rel||s.getAttribute("href")!==(y.href==null||y.href===""?null:y.href)||s.getAttribute("crossorigin")!==(y.crossOrigin==null?null:y.crossOrigin)||s.getAttribute("title")!==(y.title==null?null:y.title))break;
+return s;
+case"style":if(s.hasAttribute("data-precedence"))break;
+return s;
+case"script":if(v=s.getAttribute("src"),(v!==(y.src==null?null:y.src)||s.getAttribute("type")!==(y.type==null?null:y.type)||s.getAttribute("crossorigin")!==(y.crossOrigin==null?null:y.crossOrigin))&&v&&s.hasAttribute("async")&&!s.hasAttribute("itemprop"))break;
+return s;
+default:return s}
+}
+else if(o==="input"&&s.type==="hidden"){
+var v=y.name==null?null:""+y.name;
+if(y.type==="hidden"&&s.getAttribute("name")===v)return s}
+else return s;
+if(s=ln(s.nextSibling),s===null)break}
+return null}
+function yC(s,o,a){
+if(o==="")return null;
+for(;
+s.nodeType!==3;
+)if((s.nodeType!==1||s.nodeName!=="INPUT"||s.type!=="hidden")&&!a||(s=ln(s.nextSibling),s===null))return null;
+return s}
+function jy(s,o){
+for(;
+s.nodeType!==8;
+)if((s.nodeType!==1||s.nodeName!=="INPUT"||s.type!=="hidden")&&!o||(s=ln(s.nextSibling),s===null))return null;
+return s}
+function Ld(s){
+return s.data==="$?"||s.data==="$~"}
+function Od(s){
+return s.data==="$!"||s.data==="$?"&&s.ownerDocument.readyState!=="loading"}
+function vC(s,o){
+var a=s.ownerDocument;
+if(s.data==="$~")s._reactRetry=o;
+else if(s.data!=="$?"||a.readyState!=="loading")o();
+else{
+var c=function(){
+o(),a.removeEventListener("DOMContentLoaded",c)}
+;
+a.addEventListener("DOMContentLoaded",c),s._reactRetry=c}
+}
+function ln(s){
+for(;
+s!=null;
+s=s.nextSibling){
+var o=s.nodeType;
+if(o===1||o===3)break;
+if(o===8){
+if(o=s.data,o==="$"||o==="$!"||o==="$?"||o==="$~"||o==="&"||o==="F!"||o==="F")break;
+if(o==="/$"||o==="/&")return null}
+}
+return s}
+var Vd=null;
+function Wy(s){
+s=s.nextSibling;
+for(var o=0;
+s;
+){
+if(s.nodeType===8){
+var a=s.data;
+if(a==="/$"||a==="/&"){
+if(o===0)return ln(s.nextSibling);
+o--}
+else a!=="$"&&a!=="$!"&&a!=="$?"&&a!=="$~"&&a!=="&"||o++}
+s=s.nextSibling}
+return null}
+function Xy(s){
+s=s.previousSibling;
+for(var o=0;
+s;
+){
+if(s.nodeType===8){
+var a=s.data;
+if(a==="$"||a==="$!"||a==="$?"||a==="$~"||a==="&"){
+if(o===0)return s;
+o--}
+else a!=="/$"&&a!=="/&"||o++}
+s=s.previousSibling}
+return null}
+function Qy(s,o,a){
+switch(o=fl(a),s){
+case"html":if(s=o.documentElement,!s)throw Error(i(452));
+return s;
+case"head":if(s=o.head,!s)throw Error(i(453));
+return s;
+case"body":if(s=o.body,!s)throw Error(i(454));
+return s;
+default:throw Error(i(451))}
+}
+function Tr(s){
+for(var o=s.attributes;
+o.length;
+)s.removeAttributeNode(o[0]);
+Fu(s)}
+var un=new Map,Zy=new Set;
+function hl(s){
+return typeof s.getRootNode=="function"?s.getRootNode():s.nodeType===9?s:s.ownerDocument}
+var Xn=W.d;
+W.d={
+f:_C,r:TC,D:SC,C:wC,L:EC,m:bC,X:CC,S:AC,M:xC}
+;
+function _C(){
+var s=Xn.f(),o=sl();
+return s||o}
+function TC(s){
+var o=Ss(s);
+o!==null&&o.tag===5&&o.type==="form"?gg(o):Xn.r(s)}
+var Zs=typeof document>"u"?null:document;
+function ev(s,o,a){
+var c=Zs;
+if(c&&typeof o=="string"&&o){
+var y=en(o);
+y='link[rel="'+s+'"][href="'+y+'"]',typeof a=="string"&&(y+='[crossorigin="'+a+'"]'),Zy.has(y)||(Zy.add(y),s={
+rel:s,crossOrigin:a,href:o}
+,c.querySelector(y)===null&&(o=c.createElement("link"),Tt(o,"link",s),ct(o),c.head.appendChild(o)))}
+}
+function SC(s){
+Xn.D(s),ev("dns-prefetch",s,null)}
+function wC(s,o){
+Xn.C(s,o),ev("preconnect",s,o)}
+function EC(s,o,a){
+Xn.L(s,o,a);
+var c=Zs;
+if(c&&s&&o){
+var y='link[rel="preload"][as="'+en(o)+'"]';
+o==="image"&&a&&a.imageSrcSet?(y+='[imagesrcset="'+en(a.imageSrcSet)+'"]',typeof a.imageSizes=="string"&&(y+='[imagesizes="'+en(a.imageSizes)+'"]')):y+='[href="'+en(s)+'"]';
+var v=y;
+switch(o){
+case"style":v=eo(s);
+break;
+case"script":v=to(s)}
+un.has(v)||(s=_({
+rel:"preload",href:o==="image"&&a&&a.imageSrcSet?void 0:s,as:o}
+,a),un.set(v,s),c.querySelector(y)!==null||o==="style"&&c.querySelector(Sr(v))||o==="script"&&c.querySelector(wr(v))||(o=c.createElement("link"),Tt(o,"link",s),ct(o),c.head.appendChild(o)))}
+}
+function bC(s,o){
+Xn.m(s,o);
+var a=Zs;
+if(a&&s){
+var c=o&&typeof o.as=="string"?o.as:"script",y='link[rel="modulepreload"][as="'+en(c)+'"][href="'+en(s)+'"]',v=y;
+switch(c){
+case"audioworklet":case"paintworklet":case"serviceworker":case"sharedworker":case"worker":case"script":v=to(s)}
+if(!un.has(v)&&(s=_({
+rel:"modulepreload",href:s}
+,o),un.set(v,s),a.querySelector(y)===null)){
+switch(c){
+case"audioworklet":case"paintworklet":case"serviceworker":case"sharedworker":case"worker":case"script":if(a.querySelector(wr(v)))return}
+c=a.createElement("link"),Tt(c,"link",s),ct(c),a.head.appendChild(c)}
+}
+}
+function AC(s,o,a){
+Xn.S(s,o,a);
+var c=Zs;
+if(c&&s){
+var y=ws(c).hoistableStyles,v=eo(s);
+o=o||"default";
+var S=y.get(v);
+if(!S){
+var b={
+loading:0,preload:null}
+;
+if(S=c.querySelector(Sr(v)))b.loading=5;
+else{
+s=_({
+rel:"stylesheet",href:s,"data-precedence":o}
+,a),(a=un.get(v))&&Bd(s,a);
+var M=S=c.createElement("link");
+ct(M),Tt(M,"link",s),M._p=new Promise(function(L,H){
+M.onload=L,M.onerror=H}
+),M.addEventListener("load",function(){
+b.loading|=1}
+),M.addEventListener("error",function(){
+b.loading|=2}
+),b.loading|=4,pl(S,o,c)}
+S={
+type:"stylesheet",instance:S,count:1,state:b}
+,y.set(v,S)}
+}
+}
+function CC(s,o){
+Xn.X(s,o);
+var a=Zs;
+if(a&&s){
+var c=ws(a).hoistableScripts,y=to(s),v=c.get(y);
+v||(v=a.querySelector(wr(y)),v||(s=_({
+src:s,async:!0}
+,o),(o=un.get(y))&&Fd(s,o),v=a.createElement("script"),ct(v),Tt(v,"link",s),a.head.appendChild(v)),v={
+type:"script",instance:v,count:1,state:null}
+,c.set(y,v))}
+}
+function xC(s,o){
+Xn.M(s,o);
+var a=Zs;
+if(a&&s){
+var c=ws(a).hoistableScripts,y=to(s),v=c.get(y);
+v||(v=a.querySelector(wr(y)),v||(s=_({
+src:s,async:!0,type:"module"}
+,o),(o=un.get(y))&&Fd(s,o),v=a.createElement("script"),ct(v),Tt(v,"link",s),a.head.appendChild(v)),v={
+type:"script",instance:v,count:1,state:null}
+,c.set(y,v))}
+}
+function tv(s,o,a,c){
+var y=(y=ve.current)?hl(y):null;
+if(!y)throw Error(i(446));
+switch(s){
+case"meta":case"title":return null;
+case"style":return typeof a.precedence=="string"&&typeof a.href=="string"?(o=eo(a.href),a=ws(y).hoistableStyles,c=a.get(o),c||(c={
+type:"style",instance:null,count:0,state:null}
+,a.set(o,c)),c):{
+type:"void",instance:null,count:0,state:null}
+;
+case"link":if(a.rel==="stylesheet"&&typeof a.href=="string"&&typeof a.precedence=="string"){
+s=eo(a.href);
+var v=ws(y).hoistableStyles,S=v.get(s);
+if(S||(y=y.ownerDocument||y,S={
+type:"stylesheet",instance:null,count:0,state:{
+loading:0,preload:null}
+}
+,v.set(s,S),(v=y.querySelector(Sr(s)))&&!v._p&&(S.instance=v,S.state.loading=5),un.has(s)||(a={
+rel:"preload",as:"style",href:a.href,crossOrigin:a.crossOrigin,integrity:a.integrity,media:a.media,hrefLang:a.hrefLang,referrerPolicy:a.referrerPolicy}
+,un.set(s,a),v||RC(y,s,a,S.state))),o&&c===null)throw Error(i(528,""));
+return S}
+if(o&&c!==null)throw Error(i(529,""));
+return null;
+case"script":return o=a.async,a=a.src,typeof a=="string"&&o&&typeof o!="function"&&typeof o!="symbol"?(o=to(a),a=ws(y).hoistableScripts,c=a.get(o),c||(c={
+type:"script",instance:null,count:0,state:null}
+,a.set(o,c)),c):{
+type:"void",instance:null,count:0,state:null}
+;
+default:throw Error(i(444,s))}
+}
+function eo(s){
+return'href="'+en(s)+'"'}
+function Sr(s){
+return'link[rel="stylesheet"]['+s+"]"}
+function nv(s){
+return _({
+}
+,s,{
+"data-precedence":s.precedence,precedence:null}
+)}
+function RC(s,o,a,c){
+s.querySelector('link[rel="preload"][as="style"]['+o+"]")?c.loading=1:(o=s.createElement("link"),c.preload=o,o.addEventListener("load",function(){
+return c.loading|=1}
+),o.addEventListener("error",function(){
+return c.loading|=2}
+),Tt(o,"link",a),ct(o),s.head.appendChild(o))}
+function to(s){
+return'[src="'+en(s)+'"]'}
+function wr(s){
+return"script[async]"+s}
+function iv(s,o,a){
+if(o.count++,o.instance===null)switch(o.type){
+case"style":var c=s.querySelector('style[data-href~="'+en(a.href)+'"]');
+if(c)return o.instance=c,ct(c),c;
+var y=_({
+}
+,a,{
+"data-href":a.href,"data-precedence":a.precedence,href:null,precedence:null}
+);
+return c=(s.ownerDocument||s).createElement("style"),ct(c),Tt(c,"style",y),pl(c,a.precedence,s),o.instance=c;
+case"stylesheet":y=eo(a.href);
+var v=s.querySelector(Sr(y));
+if(v)return o.state.loading|=4,o.instance=v,ct(v),v;
+c=nv(a),(y=un.get(y))&&Bd(c,y),v=(s.ownerDocument||s).createElement("link"),ct(v);
+var S=v;
+return S._p=new Promise(function(b,M){
+S.onload=b,S.onerror=M}
+),Tt(v,"link",c),o.state.loading|=4,pl(v,a.precedence,s),o.instance=v;
+case"script":return v=to(a.src),(y=s.querySelector(wr(v)))?(o.instance=y,ct(y),y):(c=a,(y=un.get(v))&&(c=_({
+}
+,a),Fd(c,y)),s=s.ownerDocument||s,y=s.createElement("script"),ct(y),Tt(y,"link",c),s.head.appendChild(y),o.instance=y);
+case"void":return null;
+default:throw Error(i(443,o.type))}
+else o.type==="stylesheet"&&(o.state.loading&4)===0&&(c=o.instance,o.state.loading|=4,pl(c,a.precedence,s));
+return o.instance}
+function pl(s,o,a){
+for(var c=a.querySelectorAll('link[rel="stylesheet"][data-precedence],style[data-precedence]'),y=c.length?c[c.length-1]:null,v=y,S=0;
+S<c.length;
+S++){
+var b=c[S];
+if(b.dataset.precedence===o)v=b;
+else if(v!==y)break}
+v?v.parentNode.insertBefore(s,v.nextSibling):(o=a.nodeType===9?a.head:a,o.insertBefore(s,o.firstChild))}
+function Bd(s,o){
+s.crossOrigin==null&&(s.crossOrigin=o.crossOrigin),s.referrerPolicy==null&&(s.referrerPolicy=o.referrerPolicy),s.title==null&&(s.title=o.title)}
+function Fd(s,o){
+s.crossOrigin==null&&(s.crossOrigin=o.crossOrigin),s.referrerPolicy==null&&(s.referrerPolicy=o.referrerPolicy),s.integrity==null&&(s.integrity=o.integrity)}
+var ml=null;
+function sv(s,o,a){
+if(ml===null){
+var c=new Map,y=ml=new Map;
+y.set(a,c)}
+else y=ml,c=y.get(a),c||(c=new Map,y.set(a,c));
+if(c.has(s))return c;
+for(c.set(s,null),a=a.getElementsByTagName(s),y=0;
+y<a.length;
+y++){
+var v=a[y];
+if(!(v[Vo]||v[gt]||s==="link"&&v.getAttribute("rel")==="stylesheet")&&v.namespaceURI!=="http://www.w3.org/2000/svg"){
+var S=v.getAttribute(o)||"";
+S=s+S;
+var b=c.get(S);
+b?b.push(v):c.set(S,[v])}
+}
+return c}
+function ov(s,o,a){
+s=s.ownerDocument||s,s.head.insertBefore(a,o==="title"?s.querySelector("head > title"):null)}
+function NC(s,o,a){
+if(a===1||o.itemProp!=null)return!1;
+switch(s){
+case"meta":case"title":return!0;
+case"style":if(typeof o.precedence!="string"||typeof o.href!="string"||o.href==="")break;
+return!0;
+case"link":if(typeof o.rel!="string"||typeof o.href!="string"||o.href===""||o.onLoad||o.onError)break;
+switch(o.rel){
+case"stylesheet":return s=o.disabled,typeof o.precedence=="string"&&s==null;
+default:return!0}
+case"script":if(o.async&&typeof o.async!="function"&&typeof o.async!="symbol"&&!o.onLoad&&!o.onError&&o.src&&typeof o.src=="string")return!0}
+return!1}
+function rv(s){
+return!(s.type==="stylesheet"&&(s.state.loading&3)===0)}
+function MC(s,o,a,c){
+if(a.type==="stylesheet"&&(typeof c.media!="string"||matchMedia(c.media).matches!==!1)&&(a.state.loading&4)===0){
+if(a.instance===null){
+var y=eo(c.href),v=o.querySelector(Sr(y));
+if(v){
+o=v._p,o!==null&&typeof o=="object"&&typeof o.then=="function"&&(s.count++,s=gl.bind(s),o.then(s,s)),a.state.loading|=4,a.instance=v,ct(v);
+return}
+v=o.ownerDocument||o,c=nv(c),(y=un.get(y))&&Bd(c,y),v=v.createElement("link"),ct(v);
+var S=v;
+S._p=new Promise(function(b,M){
+S.onload=b,S.onerror=M}
+),Tt(v,"link",c),a.instance=v}
+s.stylesheets===null&&(s.stylesheets=new Map),s.stylesheets.set(a,o),(o=a.state.preload)&&(a.state.loading&3)===0&&(s.count++,a=gl.bind(s),o.addEventListener("load",a),o.addEventListener("error",a))}
+}
+var Gd=0;
+function IC(s,o){
+return s.stylesheets&&s.count===0&&vl(s,s.stylesheets),0<s.count||0<s.imgCount?function(a){
+var c=setTimeout(function(){
+if(s.stylesheets&&vl(s,s.stylesheets),s.unsuspend){
+var v=s.unsuspend;
+s.unsuspend=null,v()}
+}
+,6e4+o);
+0<s.imgBytes&&Gd===0&&(Gd=62500*dC());
+var y=setTimeout(function(){
+if(s.waitingForImages=!1,s.count===0&&(s.stylesheets&&vl(s,s.stylesheets),s.unsuspend)){
+var v=s.unsuspend;
+s.unsuspend=null,v()}
+}
+,(s.imgBytes>Gd?50:800)+o);
+return s.unsuspend=a,function(){
+s.unsuspend=null,clearTimeout(c),clearTimeout(y)}
+}
+:null}
+function gl(){
+if(this.count--,this.count===0&&(this.imgCount===0||!this.waitingForImages)){
+if(this.stylesheets)vl(this,this.stylesheets);
+else if(this.unsuspend){
+var s=this.unsuspend;
+this.unsuspend=null,s()}
+}
+}
+var yl=null;
+function vl(s,o){
+s.stylesheets=null,s.unsuspend!==null&&(s.count++,yl=new Map,o.forEach(DC,s),yl=null,gl.call(s))}
+function DC(s,o){
+if(!(o.state.loading&4)){
+var a=yl.get(s);
+if(a)var c=a.get(null);
+else{
+a=new Map,yl.set(s,a);
+for(var y=s.querySelectorAll("link[data-precedence],style[data-precedence]"),v=0;
+v<y.length;
+v++){
+var S=y[v];
+(S.nodeName==="LINK"||S.getAttribute("media")!=="not all")&&(a.set(S.dataset.precedence,S),c=S)}
+c&&a.set(null,c)}
+y=o.instance,S=y.getAttribute("data-precedence"),v=a.get(S)||c,v===c&&a.set(null,y),a.set(S,y),this.count++,c=gl.bind(this),y.addEventListener("load",c),y.addEventListener("error",c),v?v.parentNode.insertBefore(y,v.nextSibling):(s=s.nodeType===9?s.head:s,s.insertBefore(y,s.firstChild)),o.state.loading|=4}
+}
+var Er={
+$$typeof:N,Provider:null,Consumer:null,_currentValue:ee,_currentValue2:ee,_threadCount:0}
+;
+function kC(s,o,a,c,y,v,S,b,M){
+this.tag=1,this.containerInfo=s,this.pingCache=this.current=this.pendingChildren=null,this.timeoutHandle=-1,this.callbackNode=this.next=this.pendingContext=this.context=this.cancelPendingCommit=null,this.callbackPriority=0,this.expirationTimes=Lu(-1),this.entangledLanes=this.shellSuspendCounter=this.errorRecoveryDisabledLanes=this.expiredLanes=this.warmLanes=this.pingedLanes=this.suspendedLanes=this.pendingLanes=0,this.entanglements=Lu(0),this.hiddenUpdates=Lu(null),this.identifierPrefix=c,this.onUncaughtError=y,this.onCaughtError=v,this.onRecoverableError=S,this.pooledCache=null,this.pooledCacheLanes=0,this.formState=M,this.incompleteTransitions=new Map}
+function av(s,o,a,c,y,v,S,b,M,L,H,K){
+return s=new kC(s,o,a,S,M,L,H,K,b),o=1,v===!0&&(o|=24),v=Ht(3,null,null,o),s.current=v,v.stateNode=s,o=Tc(),o.refCount++,s.pooledCache=o,o.refCount++,v.memoizedState={
+element:c,isDehydrated:a,cache:o}
+,bc(v),s}
+function lv(s){
+return s?(s=Ds,s):Ds}
+function uv(s,o,a,c,y,v){
+y=lv(y),c.context===null?c.context=y:c.pendingContext=y,c=hi(o),c.payload={
+element:a}
+,v=v===void 0?null:v,v!==null&&(c.callback=v),a=pi(s,c,o),a!==null&&(Ot(a,s,o),tr(a,s,o))}
+function cv(s,o){
+if(s=s.memoizedState,s!==null&&s.dehydrated!==null){
+var a=s.retryLane;
+s.retryLane=a!==0&&a<o?a:o}
+}
+function qd(s,o){
+cv(s,o),(s=s.alternate)&&cv(s,o)}
+function dv(s){
+if(s.tag===13||s.tag===31){
+var o=Ji(s,67108864);
+o!==null&&Ot(o,s,67108864),qd(s,67108864)}
+}
+function fv(s){
+if(s.tag===13||s.tag===31){
+var o=Yt();
+o=Ou(o);
+var a=Ji(s,o);
+a!==null&&Ot(a,s,o),qd(s,o)}
+}
+var _l=!0;
+function UC(s,o,a,c){
+var y=q.T;
+q.T=null;
+var v=W.p;
+try{
+W.p=2,Hd(s,o,a,c)}
+finally{
+W.p=v,q.T=y}
+}
+function PC(s,o,a,c){
+var y=q.T;
+q.T=null;
+var v=W.p;
+try{
+W.p=8,Hd(s,o,a,c)}
+finally{
+W.p=v,q.T=y}
+}
+function Hd(s,o,a,c){
+if(_l){
+var y=zd(c);
+if(y===null)Nd(s,o,c,Tl,a),pv(s,c);
+else if(OC(y,s,o,a,c))c.stopPropagation();
+else if(pv(s,c),o&4&&-1<LC.indexOf(s)){
+for(;
+y!==null;
+){
+var v=Ss(y);
+if(v!==null)switch(v.tag){
+case 3:if(v=v.stateNode,v.current.memoizedState.isDehydrated){
+var S=Gi(v.pendingLanes);
+if(S!==0){
+var b=v;
+for(b.pendingLanes|=2,b.entangledLanes|=2;
+S;
+){
+var M=1<<31-Gt(S);
+b.entanglements[1]|=M,S&=~M}
+Dn(v),(De&6)===0&&(nl=Bt()+500,yr(0))}
+}
+break;
+case 31:case 13:b=Ji(v,2),b!==null&&Ot(b,v,2),sl(),qd(v,2)}
+if(v=zd(c),v===null&&Nd(s,o,c,Tl,a),v===y)break;
+y=v}
+y!==null&&c.stopPropagation()}
+else Nd(s,o,c,null,a)}
+}
+function zd(s){
+return s=Ju(s),$d(s)}
+var Tl=null;
+function $d(s){
+if(Tl=null,s=Ts(s),s!==null){
+var o=l(s);
+if(o===null)s=null;
+else{
+var a=o.tag;
+if(a===13){
+if(s=u(o),s!==null)return s;
+s=null}
+else if(a===31){
+if(s=d(o),s!==null)return s;
+s=null}
+else if(a===3){
+if(o.stateNode.current.memoizedState.isDehydrated)return o.tag===3?o.stateNode.containerInfo:null;
+s=null}
+else o!==s&&(s=null)}
+}
+return Tl=s,null}
+function hv(s){
+switch(s){
+case"beforetoggle":case"cancel":case"click":case"close":case"contextmenu":case"copy":case"cut":case"auxclick":case"dblclick":case"dragend":case"dragstart":case"drop":case"focusin":case"focusout":case"input":case"invalid":case"keydown":case"keypress":case"keyup":case"mousedown":case"mouseup":case"paste":case"pause":case"play":case"pointercancel":case"pointerdown":case"pointerup":case"ratechange":case"reset":case"resize":case"seeked":case"submit":case"toggle":case"touchcancel":case"touchend":case"touchstart":case"volumechange":case"change":case"selectionchange":case"textInput":case"compositionstart":case"compositionend":case"compositionupdate":case"beforeblur":case"afterblur":case"beforeinput":case"blur":case"fullscreenchange":case"focus":case"hashchange":case"popstate":case"select":case"selectstart":return 2;
+case"drag":case"dragenter":case"dragexit":case"dragleave":case"dragover":case"mousemove":case"mouseout":case"mouseover":case"pointermove":case"pointerout":case"pointerover":case"scroll":case"touchmove":case"wheel":case"mouseenter":case"mouseleave":case"pointerenter":case"pointerleave":return 8;
+case"message":switch(Sb()){
+case Sp:return 2;
+case wp:return 8;
+case ua:case wb:return 32;
+case Ep:return 268435456;
+default:return 32}
+default:return 32}
+}
+var Jd=!1,Ai=null,Ci=null,xi=null,br=new Map,Ar=new Map,Ri=[],LC="mousedown mouseup touchcancel touchend touchstart auxclick dblclick pointercancel pointerdown pointerup dragend dragstart drop compositionend compositionstart keydown keypress keyup input textInput copy cut paste click change contextmenu reset".split(" ");
+function pv(s,o){
+switch(s){
+case"focusin":case"focusout":Ai=null;
+break;
+case"dragenter":case"dragleave":Ci=null;
+break;
+case"mouseover":case"mouseout":xi=null;
+break;
+case"pointerover":case"pointerout":br.delete(o.pointerId);
+break;
+case"gotpointercapture":case"lostpointercapture":Ar.delete(o.pointerId)}
+}
+function Cr(s,o,a,c,y,v){
+return s===null||s.nativeEvent!==v?(s={
+blockedOn:o,domEventName:a,eventSystemFlags:c,nativeEvent:v,targetContainers:[y]}
+,o!==null&&(o=Ss(o),o!==null&&dv(o)),s):(s.eventSystemFlags|=c,o=s.targetContainers,y!==null&&o.indexOf(y)===-1&&o.push(y),s)}
+function OC(s,o,a,c,y){
+switch(o){
+case"focusin":return Ai=Cr(Ai,s,o,a,c,y),!0;
+case"dragenter":return Ci=Cr(Ci,s,o,a,c,y),!0;
+case"mouseover":return xi=Cr(xi,s,o,a,c,y),!0;
+case"pointerover":var v=y.pointerId;
+return br.set(v,Cr(br.get(v)||null,s,o,a,c,y)),!0;
+case"gotpointercapture":return v=y.pointerId,Ar.set(v,Cr(Ar.get(v)||null,s,o,a,c,y)),!0}
+return!1}
+function mv(s){
+var o=Ts(s.target);
+if(o!==null){
+var a=l(o);
+if(a!==null){
+if(o=a.tag,o===13){
+if(o=u(a),o!==null){
+s.blockedOn=o,Np(s.priority,function(){
+fv(a)}
+);
+return}
+}
+else if(o===31){
+if(o=d(a),o!==null){
+s.blockedOn=o,Np(s.priority,function(){
+fv(a)}
+);
+return}
+}
+else if(o===3&&a.stateNode.current.memoizedState.isDehydrated){
+s.blockedOn=a.tag===3?a.stateNode.containerInfo:null;
+return}
+}
+}
+s.blockedOn=null}
+function Sl(s){
+if(s.blockedOn!==null)return!1;
+for(var o=s.targetContainers;
+0<o.length;
+){
+var a=zd(s.nativeEvent);
+if(a===null){
+a=s.nativeEvent;
+var c=new a.constructor(a.type,a);
+$u=c,a.target.dispatchEvent(c),$u=null}
+else return o=Ss(a),o!==null&&dv(o),s.blockedOn=a,!1;
+o.shift()}
+return!0}
+function gv(s,o,a){
+Sl(s)&&a.delete(o)}
+function VC(){
+Jd=!1,Ai!==null&&Sl(Ai)&&(Ai=null),Ci!==null&&Sl(Ci)&&(Ci=null),xi!==null&&Sl(xi)&&(xi=null),br.forEach(gv),Ar.forEach(gv)}
+function wl(s,o){
+s.blockedOn===o&&(s.blockedOn=null,Jd||(Jd=!0,t.unstable_scheduleCallback(t.unstable_NormalPriority,VC)))}
+var El=null;
+function yv(s){
+El!==s&&(El=s,t.unstable_scheduleCallback(t.unstable_NormalPriority,function(){
+El===s&&(El=null);
+for(var o=0;
+o<s.length;
+o+=3){
+var a=s[o],c=s[o+1],y=s[o+2];
+if(typeof c!="function"){
+if($d(c||a)===null)continue;
+break}
+var v=Ss(a);
+v!==null&&(s.splice(o,3),o-=3,zc(v,{
+pending:!0,data:y,method:a.method,action:c}
+,c,y))}
+}
+))}
+function no(s){
+function o(M){
+return wl(M,s)}
+Ai!==null&&wl(Ai,s),Ci!==null&&wl(Ci,s),xi!==null&&wl(xi,s),br.forEach(o),Ar.forEach(o);
+for(var a=0;
+a<Ri.length;
+a++){
+var c=Ri[a];
+c.blockedOn===s&&(c.blockedOn=null)}
+for(;
+0<Ri.length&&(a=Ri[0],a.blockedOn===null);
+)mv(a),a.blockedOn===null&&Ri.shift();
+if(a=(s.ownerDocument||s).$$reactFormReplay,a!=null)for(c=0;
+c<a.length;
+c+=3){
+var y=a[c],v=a[c+1],S=y[It]||null;
+if(typeof v=="function")S||yv(a);
+else if(S){
+var b=null;
+if(v&&v.hasAttribute("formAction")){
+if(y=v,S=v[It]||null)b=S.formAction;
+else if($d(y)!==null)continue}
+else b=S.action;
+typeof b=="function"?a[c+1]=b:(a.splice(c,3),c-=3),yv(a)}
+}
+}
+function vv(){
+function s(v){
+v.canIntercept&&v.info==="react-transition"&&v.intercept({
+handler:function(){
+return new Promise(function(S){
+return y=S}
+)}
+,focusReset:"manual",scroll:"manual"}
+)}
+function o(){
+y!==null&&(y(),y=null),c||setTimeout(a,20)}
+function a(){
+if(!c&&!navigation.transition){
+var v=navigation.currentEntry;
+v&&v.url!=null&&navigation.navigate(v.url,{
+state:v.getState(),info:"react-transition",history:"replace"}
+)}
+}
+if(typeof navigation=="object"){
+var c=!1,y=null;
+return navigation.addEventListener("navigate",s),navigation.addEventListener("navigatesuccess",o),navigation.addEventListener("navigateerror",o),setTimeout(a,100),function(){
+c=!0,navigation.removeEventListener("navigate",s),navigation.removeEventListener("navigatesuccess",o),navigation.removeEventListener("navigateerror",o),y!==null&&(y(),y=null)}
+}
+}
+function Kd(s){
+this._internalRoot=s}
+bl.prototype.render=Kd.prototype.render=function(s){
+var o=this._internalRoot;
+if(o===null)throw Error(i(409));
+var a=o.current,c=Yt();
+uv(a,c,s,o,null,null)}
+,bl.prototype.unmount=Kd.prototype.unmount=function(){
+var s=this._internalRoot;
+if(s!==null){
+this._internalRoot=null;
+var o=s.containerInfo;
+uv(s.current,2,null,s,null,null),sl(),o[_s]=null}
+}
+;
+function bl(s){
+this._internalRoot=s}
+bl.prototype.unstable_scheduleHydration=function(s){
+if(s){
+var o=Rp();
+s={
+blockedOn:null,target:s,priority:o}
+;
+for(var a=0;
+a<Ri.length&&o!==0&&o<Ri[a].priority;
+a++);
+Ri.splice(a,0,s),a===0&&mv(s)}
+}
+;
+var _v=e.version;
+if(_v!=="19.2.3")throw Error(i(527,_v,"19.2.3"));
+W.findDOMNode=function(s){
+var o=s._reactInternals;
+if(o===void 0)throw typeof s.render=="function"?Error(i(188)):(s=Object.keys(s).join(","),Error(i(268,s)));
+return s=p(o),s=s!==null?g(s):null,s=s===null?null:s.stateNode,s}
+;
+var BC={
+bundleType:0,version:"19.2.3",rendererPackageName:"react-dom",currentDispatcherRef:q,reconcilerVersion:"19.2.3"}
+;
+if(typeof __REACT_DEVTOOLS_GLOBAL_HOOK__<"u"){
+var Al=__REACT_DEVTOOLS_GLOBAL_HOOK__;
+if(!Al.isDisabled&&Al.supportsFiber)try{
+Po=Al.inject(BC),Ft=Al}
+catch{
+}
+}
+return Rr.createRoot=function(s,o){
+if(!r(s))throw Error(i(299));
+var a=!1,c="",y=Cg,v=xg,S=Rg;
+return o!=null&&(o.unstable_strictMode===!0&&(a=!0),o.identifierPrefix!==void 0&&(c=o.identifierPrefix),o.onUncaughtError!==void 0&&(y=o.onUncaughtError),o.onCaughtError!==void 0&&(v=o.onCaughtError),o.onRecoverableError!==void 0&&(S=o.onRecoverableError)),o=av(s,1,!1,null,null,a,c,null,y,v,S,vv),s[_s]=o.current,Rd(s),new Kd(o)}
+,Rr.hydrateRoot=function(s,o,a){
+if(!r(s))throw Error(i(299));
+var c=!1,y="",v=Cg,S=xg,b=Rg,M=null;
+return a!=null&&(a.unstable_strictMode===!0&&(c=!0),a.identifierPrefix!==void 0&&(y=a.identifierPrefix),a.onUncaughtError!==void 0&&(v=a.onUncaughtError),a.onCaughtError!==void 0&&(S=a.onCaughtError),a.onRecoverableError!==void 0&&(b=a.onRecoverableError),a.formState!==void 0&&(M=a.formState)),o=av(s,1,!0,o,a??null,c,y,M,v,S,b,vv),o.context=lv(null),a=o.current,c=Yt(),c=Ou(c),y=hi(c),y.callback=null,pi(a,y,c),a=c,o.current.lanes=a,Oo(o,a),Dn(o),s[_s]=o.current,Rd(s),new bl(o)}
+,Rr.version="19.2.3",Rr}
+var Nv;
+function jC(){
+if(Nv)return Wd.exports;
+Nv=1;
+function t(){
+if(!(typeof __REACT_DEVTOOLS_GLOBAL_HOOK__>"u"||typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE!="function"))try{
+__REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE(t)}
+catch(e){
+console.error(e)}
+}
+return t(),Wd.exports=YC(),Wd.exports}
+var WC=jC();
+const XC=cS(WC);
+var Mv={
+}
+,QC="@vercel/analytics",ZC="1.6.1",ex=()=>{
+window.va||(window.va=function(...e){
+(window.vaq=window.vaq||[]).push(e)}
+)}
+;
+function dS(){
+return typeof window<"u"}
+function fS(){
+try{
+const t="production"}
+catch{
+}
+return"production"}
+function tx(t="auto"){
+if(t==="auto"){
+window.vam=fS();
+return}
+window.vam=t}
+function nx(){
+return(dS()?window.vam:fS())||"production"}
+function Mf(){
+return nx()==="development"}
+function ix(t){
+return t.scriptSrc?t.scriptSrc:Mf()?"https://va.vercel-scripts.com/v1/script.debug.js":t.basePath?`${
+t.basePath}
+/insights/script.js`:"/_vercel/insights/script.js"}
+function sx(t={
+debug:!0}
+){
+var e;
+if(!dS())return;
+tx(t.mode),ex(),t.beforeSend&&((e=window.va)==null||e.call(window,"beforeSend",t.beforeSend));
+const n=ix(t);
+if(document.head.querySelector(`script[src*="${
+n}
+"]`))return;
+const i=document.createElement("script");
+i.src=n,i.defer=!0,i.dataset.sdkn=QC+(t.framework?`/${
+t.framework}
+`:""),i.dataset.sdkv=ZC,t.disableAutoTrack&&(i.dataset.disableAutoTrack="1"),t.endpoint?i.dataset.endpoint=t.endpoint:t.basePath&&(i.dataset.endpoint=`${
+t.basePath}
+/insights`),t.dsn&&(i.dataset.dsn=t.dsn),i.onerror=()=>{
+const r=Mf()?"Please check if any ad blockers are enabled and try again.":"Be sure to enable Web Analytics for your project and deploy again. See https://vercel.com/docs/analytics/quickstart for more information.";
+console.log(`[Vercel Web Analytics] Failed to load script from ${
+n}
+. ${
+r}
+`)}
+,Mf()&&t.debug===!1&&(i.dataset.debug="false"),document.head.appendChild(i)}
+function ox({
+route:t,path:e}
+){
+var n;
+(n=window.va)==null||n.call(window,"pageview",{
+route:t,path:e}
+)}
+function rx(){
+if(!(typeof process>"u"||typeof Mv>"u"))return Mv.REACT_APP_VERCEL_OBSERVABILITY_BASEPATH}
+function Iv(t){
+return J.useEffect(()=>{
+var e;
+t.beforeSend&&((e=window.va)==null||e.call(window,"beforeSend",t.beforeSend))}
+,[t.beforeSend]),J.useEffect(()=>{
+sx({
+framework:t.framework||"react",basePath:t.basePath??rx(),...t.route!==void 0&&{
+disableAutoTrack:!0}
+,...t}
+)}
+,[]),J.useEffect(()=>{
+t.route&&t.path&&ox({
+route:t.route,path:t.path}
+)}
+,[t.route,t.path]),null}
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const hS=(...t)=>t.filter((e,n,i)=>!!e&&e.trim()!==""&&i.indexOf(e)===n).join(" ").trim();
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const ax=t=>t.replace(/([a-z0-9])([A-Z])/g,"$1-$2").toLowerCase();
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const lx=t=>t.replace(/^([A-Z])|[\s-_]+(\w)/g,(e,n,i)=>i?i.toUpperCase():n.toLowerCase());
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const Dv=t=>{
+const e=lx(t);
+return e.charAt(0).toUpperCase()+e.slice(1)}
+;
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */var ux={
+xmlns:"http://www.w3.org/2000/svg",width:24,height:24,viewBox:"0 0 24 24",fill:"none",stroke:"currentColor",strokeWidth:2,strokeLinecap:"round",strokeLinejoin:"round"}
+;
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const cx=t=>{
+for(const e in t)if(e.startsWith("aria-")||e==="role"||e==="title")return!0;
+return!1}
+;
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const dx=J.forwardRef(({
+color:t="currentColor",size:e=24,strokeWidth:n=2,absoluteStrokeWidth:i,className:r="",children:l,iconNode:u,...d}
+,h)=>J.createElement("svg",{
+ref:h,...ux,width:e,height:e,stroke:t,strokeWidth:i?Number(n)*24/Number(e):n,className:hS("lucide",r),...!l&&!cx(d)&&{
+"aria-hidden":"true"}
+,...d}
+,[...u.map(([p,g])=>J.createElement(p,g)),...Array.isArray(l)?l:[l]]));
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const Be=(t,e)=>{
+const n=J.forwardRef(({
+className:i,...r}
+,l)=>J.createElement(dx,{
+ref:l,iconNode:e,className:hS(`lucide-${
+ax(Dv(t))}
+`,`lucide-${
+t}
+`,i),...r}
+));
+return n.displayName=Dv(t),n}
+;
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const fx=[["path",{
+d:"M5 12h14",key:"1ays0h"}
+],["path",{
+d:"m12 5 7 7-7 7",key:"xquz4c"}
+]],pS=Be("arrow-right",fx);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const hx=[["path",{
+d:"M7 7h10v10",key:"1tivn9"}
+],["path",{
+d:"M7 17 17 7",key:"1vkiza"}
+]],px=Be("arrow-up-right",hx);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const mx=[["path",{
+d:"M3 3v16a2 2 0 0 0 2 2h16",key:"c24i48"}
+],["path",{
+d:"M18 17V9",key:"2bz60n"}
+],["path",{
+d:"M13 17V5",key:"1frdt8"}
+],["path",{
+d:"M8 17v-3",key:"17ska0"}
+]],gx=Be("chart-column",mx);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const yx=[["path",{
+d:"M20 6 9 17l-5-5",key:"1gmf2c"}
+]],vx=Be("check",yx);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const _x=[["circle",{
+cx:"12",cy:"12",r:"10",key:"1mglay"}
+],["path",{
+d:"m9 12 2 2 4-4",key:"dzmm74"}
+]],Tx=Be("circle-check",_x);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const Sx=[["line",{
+x1:"12",x2:"12",y1:"2",y2:"22",key:"7eqyqh"}
+],["path",{
+d:"M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6",key:"1b0p4s"}
+]],wx=Be("dollar-sign",Sx);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const Ex=[["path",{
+d:"M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4",key:"tonef"}
+],["path",{
+d:"M9 18c-4.51 2-5-2-7-2",key:"9comsn"}
+]],bx=Be("github",Ex);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const Ax=[["circle",{
+cx:"12",cy:"12",r:"10",key:"1mglay"}
+],["path",{
+d:"M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20",key:"13o1zl"}
+],["path",{
+d:"M2 12h20",key:"9i4pu4"}
+]],Cx=Be("globe",Ax);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const xx=[["rect",{
+width:"20",height:"20",x:"2",y:"2",rx:"5",ry:"5",key:"2e1cvw"}
+],["path",{
+d:"M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z",key:"9exkf1"}
+],["line",{
+x1:"17.5",x2:"17.51",y1:"6.5",y2:"6.5",key:"r4j83e"}
+]],Rx=Be("instagram",xx);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const Nx=[["path",{
+d:"M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z",key:"zw3jo"}
+],["path",{
+d:"M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12",key:"1wduqc"}
+],["path",{
+d:"M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17",key:"kqbvx6"}
+]],Mx=Be("layers",Nx);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const Ix=[["path",{
+d:"M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z",key:"c2jq9f"}
+],["rect",{
+width:"4",height:"12",x:"2",y:"9",key:"mk3on5"}
+],["circle",{
+cx:"4",cy:"4",r:"2",key:"bt5ra8"}
+]],Dx=Be("linkedin",Ix);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const kx=[["path",{
+d:"M21 12a9 9 0 1 1-6.219-8.56",key:"13zald"}
+]],Ux=Be("loader-circle",kx);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const Px=[["rect",{
+width:"18",height:"11",x:"3",y:"11",rx:"2",ry:"2",key:"1w4ew1"}
+],["path",{
+d:"M7 11V7a5 5 0 0 1 10 0v4",key:"fwvmzm"}
+]],Lx=Be("lock",Px);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const Ox=[["path",{
+d:"m16 17 5-5-5-5",key:"1bji2h"}
+],["path",{
+d:"M21 12H9",key:"dn1m92"}
+],["path",{
+d:"M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4",key:"1uf3rs"}
+]],Vx=Be("log-out",Ox);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const Bx=[["path",{
+d:"m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7",key:"132q7q"}
+],["rect",{
+x:"2",y:"4",width:"20",height:"16",rx:"2",key:"izxlao"}
+]],Fx=Be("mail",Bx);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const Gx=[["path",{
+d:"M4.037 4.688a.495.495 0 0 1 .651-.651l16 6.5a.5.5 0 0 1-.063.947l-6.124 1.58a2 2 0 0 0-1.438 1.435l-1.579 6.126a.5.5 0 0 1-.947.063z",key:"edeuup"}
+]],qx=Be("mouse-pointer-2",Gx);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const Hx=[["rect",{
+width:"18",height:"18",x:"3",y:"3",rx:"2",key:"afitv7"}
+],["path",{
+d:"M3 9h18",key:"1pudct"}
+],["path",{
+d:"M9 21V9",key:"1oto5p"}
+]],zx=Be("panels-top-left",Hx);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const $x=[["path",{
+d:"M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z",key:"1c8476"}
+],["path",{
+d:"M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7",key:"1ydtos"}
+],["path",{
+d:"M7 3v4a1 1 0 0 0 1 1h7",key:"t51u73"}
+]],Jx=Be("save",$x);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const Kx=[["path",{
+d:"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z",key:"oel41y"}
+],["path",{
+d:"M12 8v4",key:"1got3b"}
+],["path",{
+d:"M12 16h.01",key:"1drbdi"}
+]],Yx=Be("shield-alert",Kx);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const jx=[["path",{
+d:"M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z",key:"1s2grr"}
+],["path",{
+d:"M20 2v4",key:"1rf3ol"}
+],["path",{
+d:"M22 4h-4",key:"gwowj6"}
+],["circle",{
+cx:"4",cy:"20",r:"2",key:"6kqj1y"}
+]],Wx=Be("sparkles",jx);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const Xx=[["path",{
+d:"M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z",key:"r04s7s"}
+]],Qx=Be("star",Xx);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const Zx=[["circle",{
+cx:"12",cy:"12",r:"10",key:"1mglay"}
+],["circle",{
+cx:"12",cy:"12",r:"6",key:"1vlfrh"}
+],["circle",{
+cx:"12",cy:"12",r:"2",key:"1c9p78"}
+]],mS=Be("target",Zx);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const eR=[["path",{
+d:"M16 7h6v6",key:"box55l"}
+],["path",{
+d:"m22 7-8.5 8.5-5-5L2 17",key:"1t1m79"}
+]],tR=Be("trending-up",eR);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const nR=[["path",{
+d:"M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z",key:"pff0z6"}
+]],iR=Be("twitter",nR);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const sR=[["path",{
+d:"M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2",key:"975kel"}
+],["circle",{
+cx:"12",cy:"7",r:"4",key:"17ys0d"}
+]],oR=Be("user",sR);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const rR=[["path",{
+d:"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2",key:"1yyitq"}
+],["path",{
+d:"M16 3.128a4 4 0 0 1 0 7.744",key:"16gr8j"}
+],["path",{
+d:"M22 21v-2a4 4 0 0 0-3-3.87",key:"kshegd"}
+],["circle",{
+cx:"9",cy:"7",r:"4",key:"nufk8"}
+]],aR=Be("users",rR);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const lR=[["path",{
+d:"M18 6 6 18",key:"1bl5f8"}
+],["path",{
+d:"m6 6 12 12",key:"d8bk6v"}
+]],uR=Be("x",lR);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const cR=[["path",{
+d:"M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z",key:"1xq2db"}
+]],pu=Be("zap",cR),xh=J.createContext({
+}
+);
+function Li(t){
+const e=J.useRef(null);
+return e.current===null&&(e.current=t()),e.current}
+const gS=typeof window<"u",mu=gS?J.useLayoutEffect:J.useEffect,gu=J.createContext(null);
+function Rh(t,e){
+t.indexOf(e)===-1&&t.push(e)}
+function Nh(t,e){
+const n=t.indexOf(e);
+n>-1&&t.splice(n,1)}
+const xn=(t,e,n)=>n>e?e:n<t?t:n;
+let Hr=()=>{
+}
+;
+const ei={
+}
+,yS=t=>/^-?(?:\d+(?:\.\d+)?|\.\d+)$/u.test(t);
+function vS(t){
+return typeof t=="object"&&t!==null}
+const _S=t=>/^0[^.\s]+$/u.test(t);
+function Mh(t){
+let e;
+return()=>(e===void 0&&(e=t()),e)}
+const Vt=t=>t,dR=(t,e)=>n=>e(t(n)),ta=(...t)=>t.reduce(dR),xo=(t,e,n)=>{
+const i=e-t;
+return i===0?1:(n-t)/i}
+;
+class Ih{
+constructor(){
+this.subscriptions=[]}
+add(e){
+return Rh(this.subscriptions,e),()=>Nh(this.subscriptions,e)}
+notify(e,n,i){
+const r=this.subscriptions.length;
+if(r)if(r===1)this.subscriptions[0](e,n,i);
+else for(let l=0;
+l<r;
+l++){
+const u=this.subscriptions[l];
+u&&u(e,n,i)}
+}
+getSize(){
+return this.subscriptions.length}
+clear(){
+this.subscriptions.length=0}
+}
+const Zn=t=>t*1e3,dn=t=>t/1e3;
+function Dh(t,e){
+return e?t*(1e3/e):0}
+const TS=(t,e,n)=>(((1-3*n+3*e)*t+(3*n-6*e))*t+3*e)*t,fR=1e-7,hR=12;
+function pR(t,e,n,i,r){
+let l,u,d=0;
+do u=e+(n-e)/2,l=TS(u,i,r)-t,l>0?n=u:e=u;
+while(Math.abs(l)>fR&&++d<hR);
+return u}
+function na(t,e,n,i){
+if(t===e&&n===i)return Vt;
+const r=l=>pR(l,0,1,t,n);
+return l=>l===0||l===1?l:TS(r(l),e,i)}
+const SS=t=>e=>e<=.5?t(2*e)/2:(2-t(2*(1-e)))/2,wS=t=>e=>1-t(1-e),ES=na(.33,1.53,.69,.99),kh=wS(ES),bS=SS(kh),AS=t=>(t*=2)<1?.5*kh(t):.5*(2-Math.pow(2,-10*(t-1))),Uh=t=>1-Math.sin(Math.acos(t)),CS=wS(Uh),xS=SS(Uh),mR=na(.42,0,1,1),gR=na(0,0,.58,1),RS=na(.42,0,.58,1),yR=t=>Array.isArray(t)&&typeof t[0]!="number",NS=t=>Array.isArray(t)&&typeof t[0]=="number",vR={
+linear:Vt,easeIn:mR,easeInOut:RS,easeOut:gR,circIn:Uh,circInOut:xS,circOut:CS,backIn:kh,backInOut:bS,backOut:ES,anticipate:AS}
+,_R=t=>typeof t=="string",kv=t=>{
+if(NS(t)){
+Hr(t.length===4);
+const[e,n,i,r]=t;
+return na(e,n,i,r)}
+else if(_R(t))return vR[t];
+return t}
+,Cl=["setup","read","resolveKeyframes","preUpdate","update","preRender","render","postRender"];
+function TR(t,e){
+let n=new Set,i=new Set,r=!1,l=!1;
+const u=new WeakSet;
+let d={
+delta:0,timestamp:0,isProcessing:!1}
+;
+function h(g){
+u.has(g)&&(p.schedule(g),t()),g(d)}
+const p={
+schedule:(g,_=!1,T=!1)=>{
+const A=T&&r?n:i;
+return _&&u.add(g),A.has(g)||A.add(g),g}
+,cancel:g=>{
+i.delete(g),u.delete(g)}
+,process:g=>{
+if(d=g,r){
+l=!0;
+return}
+r=!0,[n,i]=[i,n],n.forEach(h),n.clear(),r=!1,l&&(l=!1,p.process(g))}
+}
+;
+return p}
+const SR=40;
+function MS(t,e){
+let n=!1,i=!0;
+const r={
+delta:0,timestamp:0,isProcessing:!1}
+,l=()=>n=!0,u=Cl.reduce((N,O)=>(N[O]=TR(l),N),{
+}
+),{
+setup:d,read:h,resolveKeyframes:p,preUpdate:g,update:_,preRender:T,render:w,postRender:A}
+=u,C=()=>{
+const N=ei.useManualTiming?r.timestamp:performance.now();
+n=!1,ei.useManualTiming||(r.delta=i?1e3/60:Math.max(Math.min(N-r.timestamp,SR),1)),r.timestamp=N,r.isProcessing=!0,d.process(r),h.process(r),p.process(r),g.process(r),_.process(r),T.process(r),w.process(r),A.process(r),r.isProcessing=!1,n&&e&&(i=!1,t(C))}
+,x=()=>{
+n=!0,i=!0,r.isProcessing||t(C)}
+;
+return{
+schedule:Cl.reduce((N,O)=>{
+const F=u[O];
+return N[O]=(z,G=!1,X=!1)=>(n||x(),F.schedule(z,G,X)),N}
+,{
+}
+),cancel:N=>{
+for(let O=0;
+O<Cl.length;
+O++)u[Cl[O]].cancel(N)}
+,state:r,steps:u}
+}
+const{
+schedule:Ne,cancel:hn,state:ft,steps:ef}
+=MS(typeof requestAnimationFrame<"u"?requestAnimationFrame:Vt,!0);
+let Gl;
+function wR(){
+Gl=void 0}
+const Rt={
+now:()=>(Gl===void 0&&Rt.set(ft.isProcessing||ei.useManualTiming?ft.timestamp:performance.now()),Gl),set:t=>{
+Gl=t,queueMicrotask(wR)}
+}
+,IS=t=>e=>typeof e=="string"&&e.startsWith(t),DS=IS("--"),ER=IS("var(--"),Ph=t=>ER(t)?bR.test(t.split("/*")[0].trim()):!1,bR=/var\(--(?:[\w-]+\s*|[\w-]+\s*,(?:\s*[^)(\s]|\s*\((?:[^)(]|\([^)(]*\))*\))+\s*)\)$/iu;
+function Uv(t){
+return typeof t!="string"?!1:t.split("/*")[0].includes("var(--")}
+const Ro={
+test:t=>typeof t=="number",parse:parseFloat,transform:t=>t}
+,zr={
+...Ro,transform:t=>xn(0,1,t)}
+,xl={
+...Ro,default:1}
+,Lr=t=>Math.round(t*1e5)/1e5,Lh=/-?(?:\d+(?:\.\d+)?|\.\d+)/gu;
+function AR(t){
+return t==null}
+const CR=/^(?:#[\da-f]{
+3,8}
+|(?:rgb|hsl)a?\((?:-?[\d.]+%?[,\s]+){
+2}
+-?[\d.]+%?\s*(?:[,/]\s*)?(?:\b\d+(?:\.\d+)?|\.\d+)?%?\))$/iu,Oh=(t,e)=>n=>!!(typeof n=="string"&&CR.test(n)&&n.startsWith(t)||e&&!AR(n)&&Object.prototype.hasOwnProperty.call(n,e)),kS=(t,e,n)=>i=>{
+if(typeof i!="string")return i;
+const[r,l,u,d]=i.match(Lh);
+return{
+[t]:parseFloat(r),[e]:parseFloat(l),[n]:parseFloat(u),alpha:d!==void 0?parseFloat(d):1}
+}
+,xR=t=>xn(0,255,t),tf={
+...Ro,transform:t=>Math.round(xR(t))}
+,hs={
+test:Oh("rgb","red"),parse:kS("red","green","blue"),transform:({
+red:t,green:e,blue:n,alpha:i=1}
+)=>"rgba("+tf.transform(t)+", "+tf.transform(e)+", "+tf.transform(n)+", "+Lr(zr.transform(i))+")"}
+;
+function RR(t){
+let e="",n="",i="",r="";
+return t.length>5?(e=t.substring(1,3),n=t.substring(3,5),i=t.substring(5,7),r=t.substring(7,9)):(e=t.substring(1,2),n=t.substring(2,3),i=t.substring(3,4),r=t.substring(4,5),e+=e,n+=n,i+=i,r+=r),{
+red:parseInt(e,16),green:parseInt(n,16),blue:parseInt(i,16),alpha:r?parseInt(r,16)/255:1}
+}
+const If={
+test:Oh("#"),parse:RR,transform:hs.transform}
+,ia=t=>({
+test:e=>typeof e=="string"&&e.endsWith(t)&&e.split(" ").length===1,parse:parseFloat,transform:e=>`${
+e}
+${
+t}
+`}
+),Mi=ia("deg"),kn=ia("%"),ne=ia("px"),NR=ia("vh"),MR=ia("vw"),Pv={
+...kn,parse:t=>kn.parse(t)/100,transform:t=>kn.transform(t*100)}
+,mo={
+test:Oh("hsl","hue"),parse:kS("hue","saturation","lightness"),transform:({
+hue:t,saturation:e,lightness:n,alpha:i=1}
+)=>"hsla("+Math.round(t)+", "+kn.transform(Lr(e))+", "+kn.transform(Lr(n))+", "+Lr(zr.transform(i))+")"}
+,rt={
+test:t=>hs.test(t)||If.test(t)||mo.test(t),parse:t=>hs.test(t)?hs.parse(t):mo.test(t)?mo.parse(t):If.parse(t),transform:t=>typeof t=="string"?t:t.hasOwnProperty("red")?hs.transform(t):mo.transform(t),getAnimatableNone:t=>{
+const e=rt.parse(t);
+return e.alpha=0,rt.transform(e)}
+}
+,IR=/(?:#[\da-f]{
+3,8}
+|(?:rgb|hsl)a?\((?:-?[\d.]+%?[,\s]+){
+2}
+-?[\d.]+%?\s*(?:[,/]\s*)?(?:\b\d+(?:\.\d+)?|\.\d+)?%?\))/giu;
+function DR(t){
+var e,n;
+return isNaN(t)&&typeof t=="string"&&(((e=t.match(Lh))==null?void 0:e.length)||0)+(((n=t.match(IR))==null?void 0:n.length)||0)>0}
+const US="number",PS="color",kR="var",UR="var(",Lv="${
+}
+",PR=/var\s*\(\s*--(?:[\w-]+\s*|[\w-]+\s*,(?:\s*[^)(\s]|\s*\((?:[^)(]|\([^)(]*\))*\))+\s*)\)|#[\da-f]{
+3,8}
+|(?:rgb|hsl)a?\((?:-?[\d.]+%?[,\s]+){
+2}
+-?[\d.]+%?\s*(?:[,/]\s*)?(?:\b\d+(?:\.\d+)?|\.\d+)?%?\)|-?(?:\d+(?:\.\d+)?|\.\d+)/giu;
+function $r(t){
+const e=t.toString(),n=[],i={
+color:[],number:[],var:[]}
+,r=[];
+let l=0;
+const d=e.replace(PR,h=>(rt.test(h)?(i.color.push(l),r.push(PS),n.push(rt.parse(h))):h.startsWith(UR)?(i.var.push(l),r.push(kR),n.push(h)):(i.number.push(l),r.push(US),n.push(parseFloat(h))),++l,Lv)).split(Lv);
+return{
+values:n,split:d,indexes:i,types:r}
+}
+function LS(t){
+return $r(t).values}
+function OS(t){
+const{
+split:e,types:n}
+=$r(t),i=e.length;
+return r=>{
+let l="";
+for(let u=0;
+u<i;
+u++)if(l+=e[u],r[u]!==void 0){
+const d=n[u];
+d===US?l+=Lr(r[u]):d===PS?l+=rt.transform(r[u]):l+=r[u]}
+return l}
+}
+const LR=t=>typeof t=="number"?0:rt.test(t)?rt.getAnimatableNone(t):t;
+function OR(t){
+const e=LS(t);
+return OS(t)(e.map(LR))}
+const Oi={
+test:DR,parse:LS,createTransformer:OS,getAnimatableNone:OR}
+;
+function nf(t,e,n){
+return n<0&&(n+=1),n>1&&(n-=1),n<1/6?t+(e-t)*6*n:n<1/2?e:n<2/3?t+(e-t)*(2/3-n)*6:t}
+function VR({
+hue:t,saturation:e,lightness:n,alpha:i}
+){
+t/=360,e/=100,n/=100;
+let r=0,l=0,u=0;
+if(!e)r=l=u=n;
+else{
+const d=n<.5?n*(1+e):n+e-n*e,h=2*n-d;
+r=nf(h,d,t+1/3),l=nf(h,d,t),u=nf(h,d,t-1/3)}
+return{
+red:Math.round(r*255),green:Math.round(l*255),blue:Math.round(u*255),alpha:i}
+}
+function jl(t,e){
+return n=>n>0?e:t}
+const Ke=(t,e,n)=>t+(e-t)*n,sf=(t,e,n)=>{
+const i=t*t,r=n*(e*e-i)+i;
+return r<0?0:Math.sqrt(r)}
+,BR=[If,hs,mo],FR=t=>BR.find(e=>e.test(t));
+function Ov(t){
+const e=FR(t);
+if(!e)return!1;
+let n=e.parse(t);
+return e===mo&&(n=VR(n)),n}
+const Vv=(t,e)=>{
+const n=Ov(t),i=Ov(e);
+if(!n||!i)return jl(t,e);
+const r={
+...n}
+;
+return l=>(r.red=sf(n.red,i.red,l),r.green=sf(n.green,i.green,l),r.blue=sf(n.blue,i.blue,l),r.alpha=Ke(n.alpha,i.alpha,l),hs.transform(r))}
+,Df=new Set(["none","hidden"]);
+function GR(t,e){
+return Df.has(t)?n=>n<=0?t:e:n=>n>=1?e:t}
+function qR(t,e){
+return n=>Ke(t,e,n)}
+function Vh(t){
+return typeof t=="number"?qR:typeof t=="string"?Ph(t)?jl:rt.test(t)?Vv:$R:Array.isArray(t)?VS:typeof t=="object"?rt.test(t)?Vv:HR:jl}
+function VS(t,e){
+const n=[...t],i=n.length,r=t.map((l,u)=>Vh(l)(l,e[u]));
+return l=>{
+for(let u=0;
+u<i;
+u++)n[u]=r[u](l);
+return n}
+}
+function HR(t,e){
+const n={
+...t,...e}
+,i={
+}
+;
+for(const r in n)t[r]!==void 0&&e[r]!==void 0&&(i[r]=Vh(t[r])(t[r],e[r]));
+return r=>{
+for(const l in i)n[l]=i[l](r);
+return n}
+}
+function zR(t,e){
+const n=[],i={
+color:0,var:0,number:0}
+;
+for(let r=0;
+r<e.values.length;
+r++){
+const l=e.types[r],u=t.indexes[l][i[l]],d=t.values[u]??0;
+n[r]=d,i[l]++}
+return n}
+const $R=(t,e)=>{
+const n=Oi.createTransformer(e),i=$r(t),r=$r(e);
+return i.indexes.var.length===r.indexes.var.length&&i.indexes.color.length===r.indexes.color.length&&i.indexes.number.length>=r.indexes.number.length?Df.has(t)&&!r.values.length||Df.has(e)&&!i.values.length?GR(t,e):ta(VS(zR(i,r),r.values),n):jl(t,e)}
+;
+function BS(t,e,n){
+return typeof t=="number"&&typeof e=="number"&&typeof n=="number"?Ke(t,e,n):Vh(t)(t,e)}
+const JR=t=>{
+const e=({
+timestamp:n}
+)=>t(n);
+return{
+start:(n=!0)=>Ne.update(e,n),stop:()=>hn(e),now:()=>ft.isProcessing?ft.timestamp:Rt.now()}
+}
+,FS=(t,e,n=10)=>{
+let i="";
+const r=Math.max(Math.round(e/n),2);
+for(let l=0;
+l<r;
+l++)i+=Math.round(t(l/(r-1))*1e4)/1e4+", ";
+return`linear(${
+i.substring(0,i.length-2)}
+)`}
+,Wl=2e4;
+function Bh(t){
+let e=0;
+const n=50;
+let i=t.next(e);
+for(;
+!i.done&&e<Wl;
+)e+=n,i=t.next(e);
+return e>=Wl?1/0:e}
+function KR(t,e=100,n){
+const i=n({
+...t,keyframes:[0,e]}
+),r=Math.min(Bh(i),Wl);
+return{
+type:"keyframes",ease:l=>i.next(r*l).value/e,duration:dn(r)}
+}
+const YR=5;
+function GS(t,e,n){
+const i=Math.max(e-YR,0);
+return Dh(n-t(i),e-i)}
+const Xe={
+stiffness:100,damping:10,mass:1,velocity:0,duration:800,bounce:.3,visualDuration:.3,restSpeed:{
+granular:.01,default:2}
+,restDelta:{
+granular:.005,default:.5}
+,minDuration:.01,maxDuration:10,minDamping:.05,maxDamping:1}
+,of=.001;
+function jR({
+duration:t=Xe.duration,bounce:e=Xe.bounce,velocity:n=Xe.velocity,mass:i=Xe.mass}
+){
+let r,l,u=1-e;
+u=xn(Xe.minDamping,Xe.maxDamping,u),t=xn(Xe.minDuration,Xe.maxDuration,dn(t)),u<1?(r=p=>{
+const g=p*u,_=g*t,T=g-n,w=kf(p,u),A=Math.exp(-_);
+return of-T/w*A}
+,l=p=>{
+const _=p*u*t,T=_*n+n,w=Math.pow(u,2)*Math.pow(p,2)*t,A=Math.exp(-_),C=kf(Math.pow(p,2),u);
+return(-r(p)+of>0?-1:1)*((T-w)*A)/C}
+):(r=p=>{
+const g=Math.exp(-p*t),_=(p-n)*t+1;
+return-of+g*_}
+,l=p=>{
+const g=Math.exp(-p*t),_=(n-p)*(t*t);
+return g*_}
+);
+const d=5/t,h=XR(r,l,d);
+if(t=Zn(t),isNaN(h))return{
+stiffness:Xe.stiffness,damping:Xe.damping,duration:t}
+;
+{
+const p=Math.pow(h,2)*i;
+return{
+stiffness:p,damping:u*2*Math.sqrt(i*p),duration:t}
+}
+}
+const WR=12;
+function XR(t,e,n){
+let i=n;
+for(let r=1;
+r<WR;
+r++)i=i-t(i)/e(i);
+return i}
+function kf(t,e){
+return t*Math.sqrt(1-e*e)}
+const QR=["duration","bounce"],ZR=["stiffness","damping","mass"];
+function Bv(t,e){
+return e.some(n=>t[n]!==void 0)}
+function e1(t){
+let e={
+velocity:Xe.velocity,stiffness:Xe.stiffness,damping:Xe.damping,mass:Xe.mass,isResolvedFromDuration:!1,...t}
+;
+if(!Bv(t,ZR)&&Bv(t,QR))if(t.visualDuration){
+const n=t.visualDuration,i=2*Math.PI/(n*1.2),r=i*i,l=2*xn(.05,1,1-(t.bounce||0))*Math.sqrt(r);
+e={
+...e,mass:Xe.mass,stiffness:r,damping:l}
+}
+else{
+const n=jR(t);
+e={
+...e,...n,mass:Xe.mass}
+,e.isResolvedFromDuration=!0}
+return e}
+function Xl(t=Xe.visualDuration,e=Xe.bounce){
+const n=typeof t!="object"?{
+visualDuration:t,keyframes:[0,1],bounce:e}
+:t;
+let{
+restSpeed:i,restDelta:r}
+=n;
+const l=n.keyframes[0],u=n.keyframes[n.keyframes.length-1],d={
+done:!1,value:l}
+,{
+stiffness:h,damping:p,mass:g,duration:_,velocity:T,isResolvedFromDuration:w}
+=e1({
+...n,velocity:-dn(n.velocity||0)}
+),A=T||0,C=p/(2*Math.sqrt(h*g)),x=u-l,R=dn(Math.sqrt(h/g)),k=Math.abs(x)<5;
+i||(i=k?Xe.restSpeed.granular:Xe.restSpeed.default),r||(r=k?Xe.restDelta.granular:Xe.restDelta.default);
+let N;
+if(C<1){
+const F=kf(R,C);
+N=z=>{
+const G=Math.exp(-C*R*z);
+return u-G*((A+C*R*x)/F*Math.sin(F*z)+x*Math.cos(F*z))}
+}
+else if(C===1)N=F=>u-Math.exp(-R*F)*(x+(A+R*x)*F);
+else{
+const F=R*Math.sqrt(C*C-1);
+N=z=>{
+const G=Math.exp(-C*R*z),X=Math.min(F*z,300);
+return u-G*((A+C*R*x)*Math.sinh(X)+F*x*Math.cosh(X))/F}
+}
+const O={
+calculatedDuration:w&&_||null,next:F=>{
+const z=N(F);
+if(w)d.done=F>=_;
+else{
+let G=F===0?A:0;
+C<1&&(G=F===0?Zn(A):GS(N,F,z));
+const X=Math.abs(G)<=i,j=Math.abs(u-z)<=r;
+d.done=X&&j}
+return d.value=d.done?u:z,d}
+,toString:()=>{
+const F=Math.min(Bh(O),Wl),z=FS(G=>O.next(F*G).value,F,30);
+return F+"ms "+z}
+,toTransition:()=>{
+}
+}
+;
+return O}
+Xl.applyToOptions=t=>{
+const e=KR(t,100,Xl);
+return t.ease=e.ease,t.duration=Zn(e.duration),t.type="keyframes",t}
+;
+function Uf({
+keyframes:t,velocity:e=0,power:n=.8,timeConstant:i=325,bounceDamping:r=10,bounceStiffness:l=500,modifyTarget:u,min:d,max:h,restDelta:p=.5,restSpeed:g}
+){
+const _=t[0],T={
+done:!1,value:_}
+,w=X=>d!==void 0&&X<d||h!==void 0&&X>h,A=X=>d===void 0?h:h===void 0||Math.abs(d-X)<Math.abs(h-X)?d:h;
+let C=n*e;
+const x=_+C,R=u===void 0?x:u(x);
+R!==x&&(C=R-_);
+const k=X=>-C*Math.exp(-X/i),N=X=>R+k(X),O=X=>{
+const j=k(X),oe=N(X);
+T.done=Math.abs(j)<=p,T.value=T.done?R:oe}
+;
+let F,z;
+const G=X=>{
+w(T.value)&&(F=X,z=Xl({
+keyframes:[T.value,A(T.value)],velocity:GS(N,X,T.value),damping:r,stiffness:l,restDelta:p,restSpeed:g}
+))}
+;
+return G(0),{
+calculatedDuration:null,next:X=>{
+let j=!1;
+return!z&&F===void 0&&(j=!0,O(X),G(X)),F!==void 0&&X>=F?z.next(X-F):(!j&&O(X),T)}
+}
+}
+function t1(t,e,n){
+const i=[],r=n||ei.mix||BS,l=t.length-1;
+for(let u=0;
+u<l;
+u++){
+let d=r(t[u],t[u+1]);
+if(e){
+const h=Array.isArray(e)?e[u]||Vt:e;
+d=ta(h,d)}
+i.push(d)}
+return i}
+function Fh(t,e,{
+clamp:n=!0,ease:i,mixer:r}
+={
+}
+){
+const l=t.length;
+if(Hr(l===e.length),l===1)return()=>e[0];
+if(l===2&&e[0]===e[1])return()=>e[1];
+const u=t[0]===t[1];
+t[0]>t[l-1]&&(t=[...t].reverse(),e=[...e].reverse());
+const d=t1(e,i,r),h=d.length,p=g=>{
+if(u&&g<t[0])return e[0];
+let _=0;
+if(h>1)for(;
+_<t.length-2&&!(g<t[_+1]);
+_++);
+const T=xo(t[_],t[_+1],g);
+return d[_](T)}
+;
+return n?g=>p(xn(t[0],t[l-1],g)):p}
+function n1(t,e){
+const n=t[t.length-1];
+for(let i=1;
+i<=e;
+i++){
+const r=xo(0,e,i);
+t.push(Ke(n,1,r))}
+}
+function qS(t){
+const e=[0];
+return n1(e,t.length-1),e}
+function i1(t,e){
+return t.map(n=>n*e)}
+function s1(t,e){
+return t.map(()=>e||RS).splice(0,t.length-1)}
+function Or({
+duration:t=300,keyframes:e,times:n,ease:i="easeInOut"}
+){
+const r=yR(i)?i.map(kv):kv(i),l={
+done:!1,value:e[0]}
+,u=i1(n&&n.length===e.length?n:qS(e),t),d=Fh(u,e,{
+ease:Array.isArray(r)?r:s1(e,r)}
+);
+return{
+calculatedDuration:t,next:h=>(l.value=d(h),l.done=h>=t,l)}
+}
+const o1=t=>t!==null;
+function Gh(t,{
+repeat:e,repeatType:n="loop"}
+,i,r=1){
+const l=t.filter(o1),d=r<0||e&&n!=="loop"&&e%2===1?0:l.length-1;
+return!d||i===void 0?l[d]:i}
+const r1={
+decay:Uf,inertia:Uf,tween:Or,keyframes:Or,spring:Xl}
+;
+function HS(t){
+typeof t.type=="string"&&(t.type=r1[t.type])}
+class qh{
+constructor(){
+this.updateFinished()}
+get finished(){
+return this._finished}
+updateFinished(){
+this._finished=new Promise(e=>{
+this.resolve=e}
+)}
+notifyFinished(){
+this.resolve()}
+then(e,n){
+return this.finished.then(e,n)}
+}
+const a1=t=>t/100;
+class yu extends qh{
+constructor(e){
+super(),this.state="idle",this.startTime=null,this.isStopped=!1,this.currentTime=0,this.holdTime=null,this.playbackSpeed=1,this.stop=()=>{
+var i,r;
+const{
+motionValue:n}
+=this.options;
+n&&n.updatedAt!==Rt.now()&&this.tick(Rt.now()),this.isStopped=!0,this.state!=="idle"&&(this.teardown(),(r=(i=this.options).onStop)==null||r.call(i))}
+,this.options=e,this.initAnimation(),this.play(),e.autoplay===!1&&this.pause()}
+initAnimation(){
+const{
+options:e}
+=this;
+HS(e);
+const{
+type:n=Or,repeat:i=0,repeatDelay:r=0,repeatType:l,velocity:u=0}
+=e;
+let{
+keyframes:d}
+=e;
+const h=n||Or;
+h!==Or&&typeof d[0]!="number"&&(this.mixKeyframes=ta(a1,BS(d[0],d[1])),d=[0,100]);
+const p=h({
+...e,keyframes:d}
+);
+l==="mirror"&&(this.mirroredGenerator=h({
+...e,keyframes:[...d].reverse(),velocity:-u}
+)),p.calculatedDuration===null&&(p.calculatedDuration=Bh(p));
+const{
+calculatedDuration:g}
+=p;
+this.calculatedDuration=g,this.resolvedDuration=g+r,this.totalDuration=this.resolvedDuration*(i+1)-r,this.generator=p}
+updateTime(e){
+const n=Math.round(e-this.startTime)*this.playbackSpeed;
+this.holdTime!==null?this.currentTime=this.holdTime:this.currentTime=n}
+tick(e,n=!1){
+const{
+generator:i,totalDuration:r,mixKeyframes:l,mirroredGenerator:u,resolvedDuration:d,calculatedDuration:h}
+=this;
+if(this.startTime===null)return i.next(0);
+const{
+delay:p=0,keyframes:g,repeat:_,repeatType:T,repeatDelay:w,type:A,onUpdate:C,finalKeyframe:x}
+=this.options;
+this.speed>0?this.startTime=Math.min(this.startTime,e):this.speed<0&&(this.startTime=Math.min(e-r/this.speed,this.startTime)),n?this.currentTime=e:this.updateTime(e);
+const R=this.currentTime-p*(this.playbackSpeed>=0?1:-1),k=this.playbackSpeed>=0?R<0:R>r;
+this.currentTime=Math.max(R,0),this.state==="finished"&&this.holdTime===null&&(this.currentTime=r);
+let N=this.currentTime,O=i;
+if(_){
+const X=Math.min(this.currentTime,r)/d;
+let j=Math.floor(X),oe=X%1;
+!oe&&X>=1&&(oe=1),oe===1&&j--,j=Math.min(j,_+1),!!(j%2)&&(T==="reverse"?(oe=1-oe,w&&(oe-=w/d)):T==="mirror"&&(O=u)),N=xn(0,1,oe)*d}
+const F=k?{
+done:!1,value:g[0]}
+:O.next(N);
+l&&(F.value=l(F.value));
+let{
+done:z}
+=F;
+!k&&h!==null&&(z=this.playbackSpeed>=0?this.currentTime>=r:this.currentTime<=0);
+const G=this.holdTime===null&&(this.state==="finished"||this.state==="running"&&z);
+return G&&A!==Uf&&(F.value=Gh(g,this.options,x,this.speed)),C&&C(F.value),G&&this.finish(),F}
+then(e,n){
+return this.finished.then(e,n)}
+get duration(){
+return dn(this.calculatedDuration)}
+get iterationDuration(){
+const{
+delay:e=0}
+=this.options||{
+}
+;
+return this.duration+dn(e)}
+get time(){
+return dn(this.currentTime)}
+set time(e){
+var n;
+e=Zn(e),this.currentTime=e,this.startTime===null||this.holdTime!==null||this.playbackSpeed===0?this.holdTime=e:this.driver&&(this.startTime=this.driver.now()-e/this.playbackSpeed),(n=this.driver)==null||n.start(!1)}
+get speed(){
+return this.playbackSpeed}
+set speed(e){
+this.updateTime(Rt.now());
+const n=this.playbackSpeed!==e;
+this.playbackSpeed=e,n&&(this.time=dn(this.currentTime))}
+play(){
+var r,l;
+if(this.isStopped)return;
+const{
+driver:e=JR,startTime:n}
+=this.options;
+this.driver||(this.driver=e(u=>this.tick(u))),(l=(r=this.options).onPlay)==null||l.call(r);
+const i=this.driver.now();
+this.state==="finished"?(this.updateFinished(),this.startTime=i):this.holdTime!==null?this.startTime=i-this.holdTime:this.startTime||(this.startTime=n??i),this.state==="finished"&&this.speed<0&&(this.startTime+=this.calculatedDuration),this.holdTime=null,this.state="running",this.driver.start()}
+pause(){
+this.state="paused",this.updateTime(Rt.now()),this.holdTime=this.currentTime}
+complete(){
+this.state!=="running"&&this.play(),this.state="finished",this.holdTime=null}
+finish(){
+var e,n;
+this.notifyFinished(),this.teardown(),this.state="finished",(n=(e=this.options).onComplete)==null||n.call(e)}
+cancel(){
+var e,n;
+this.holdTime=null,this.startTime=0,this.tick(0),this.teardown(),(n=(e=this.options).onCancel)==null||n.call(e)}
+teardown(){
+this.state="idle",this.stopDriver(),this.startTime=this.holdTime=null}
+stopDriver(){
+this.driver&&(this.driver.stop(),this.driver=void 0)}
+sample(e){
+return this.startTime=0,this.tick(e,!0)}
+attachTimeline(e){
+var n;
+return this.options.allowFlatten&&(this.options.type="keyframes",this.options.ease="linear",this.initAnimation()),(n=this.driver)==null||n.stop(),e.observe(this)}
+}
+function l1(t){
+for(let e=1;
+e<t.length;
+e++)t[e]??(t[e]=t[e-1])}
+const ps=t=>t*180/Math.PI,Pf=t=>{
+const e=ps(Math.atan2(t[1],t[0]));
+return Lf(e)}
+,u1={
+x:4,y:5,translateX:4,translateY:5,scaleX:0,scaleY:3,scale:t=>(Math.abs(t[0])+Math.abs(t[3]))/2,rotate:Pf,rotateZ:Pf,skewX:t=>ps(Math.atan(t[1])),skewY:t=>ps(Math.atan(t[2])),skew:t=>(Math.abs(t[1])+Math.abs(t[2]))/2}
+,Lf=t=>(t=t%360,t<0&&(t+=360),t),Fv=Pf,Gv=t=>Math.sqrt(t[0]*t[0]+t[1]*t[1]),qv=t=>Math.sqrt(t[4]*t[4]+t[5]*t[5]),c1={
+x:12,y:13,z:14,translateX:12,translateY:13,translateZ:14,scaleX:Gv,scaleY:qv,scale:t=>(Gv(t)+qv(t))/2,rotateX:t=>Lf(ps(Math.atan2(t[6],t[5]))),rotateY:t=>Lf(ps(Math.atan2(-t[2],t[0]))),rotateZ:Fv,rotate:Fv,skewX:t=>ps(Math.atan(t[4])),skewY:t=>ps(Math.atan(t[1])),skew:t=>(Math.abs(t[1])+Math.abs(t[4]))/2}
+;
+function Of(t){
+return t.includes("scale")?1:0}
+function Vf(t,e){
+if(!t||t==="none")return Of(e);
+const n=t.match(/^matrix3d\(([-\d.e\s,]+)\)$/u);
+let i,r;
+if(n)i=c1,r=n;
+else{
+const d=t.match(/^matrix\(([-\d.e\s,]+)\)$/u);
+i=u1,r=d}
+if(!r)return Of(e);
+const l=i[e],u=r[1].split(",").map(f1);
+return typeof l=="function"?l(u):u[l]}
+const d1=(t,e)=>{
+const{
+transform:n="none"}
+=getComputedStyle(t);
+return Vf(n,e)}
+;
+function f1(t){
+return parseFloat(t.trim())}
+const No=["transformPerspective","x","y","z","translateX","translateY","translateZ","scale","scaleX","scaleY","rotate","rotateX","rotateY","rotateZ","skew","skewX","skewY"],Mo=new Set(No),Hv=t=>t===Ro||t===ne,h1=new Set(["x","y","z"]),p1=No.filter(t=>!h1.has(t));
+function m1(t){
+const e=[];
+return p1.forEach(n=>{
+const i=t.getValue(n);
+i!==void 0&&(e.push([n,i.get()]),i.set(n.startsWith("scale")?1:0))}
+),e}
+const Ui={
+width:({
+x:t}
+,{
+paddingLeft:e="0",paddingRight:n="0"}
+)=>t.max-t.min-parseFloat(e)-parseFloat(n),height:({
+y:t}
+,{
+paddingTop:e="0",paddingBottom:n="0"}
+)=>t.max-t.min-parseFloat(e)-parseFloat(n),top:(t,{
+top:e}
+)=>parseFloat(e),left:(t,{
+left:e}
+)=>parseFloat(e),bottom:({
+y:t}
+,{
+top:e}
+)=>parseFloat(e)+(t.max-t.min),right:({
+x:t}
+,{
+left:e}
+)=>parseFloat(e)+(t.max-t.min),x:(t,{
+transform:e}
+)=>Vf(e,"x"),y:(t,{
+transform:e}
+)=>Vf(e,"y")}
+;
+Ui.translateX=Ui.x;
+Ui.translateY=Ui.y;
+const ys=new Set;
+let Bf=!1,Ff=!1,Gf=!1;
+function zS(){
+if(Ff){
+const t=Array.from(ys).filter(i=>i.needsMeasurement),e=new Set(t.map(i=>i.element)),n=new Map;
+e.forEach(i=>{
+const r=m1(i);
+r.length&&(n.set(i,r),i.render())}
+),t.forEach(i=>i.measureInitialState()),e.forEach(i=>{
+i.render();
+const r=n.get(i);
+r&&r.forEach(([l,u])=>{
+var d;
+(d=i.getValue(l))==null||d.set(u)}
+)}
+),t.forEach(i=>i.measureEndState()),t.forEach(i=>{
+i.suspendedScrollY!==void 0&&window.scrollTo(0,i.suspendedScrollY)}
+)}
+Ff=!1,Bf=!1,ys.forEach(t=>t.complete(Gf)),ys.clear()}
+function $S(){
+ys.forEach(t=>{
+t.readKeyframes(),t.needsMeasurement&&(Ff=!0)}
+)}
+function g1(){
+Gf=!0,$S(),zS(),Gf=!1}
+class Hh{
+constructor(e,n,i,r,l,u=!1){
+this.state="pending",this.isAsync=!1,this.needsMeasurement=!1,this.unresolvedKeyframes=[...e],this.onComplete=n,this.name=i,this.motionValue=r,this.element=l,this.isAsync=u}
+scheduleResolve(){
+this.state="scheduled",this.isAsync?(ys.add(this),Bf||(Bf=!0,Ne.read($S),Ne.resolveKeyframes(zS))):(this.readKeyframes(),this.complete())}
+readKeyframes(){
+const{
+unresolvedKeyframes:e,name:n,element:i,motionValue:r}
+=this;
+if(e[0]===null){
+const l=r==null?void 0:r.get(),u=e[e.length-1];
+if(l!==void 0)e[0]=l;
+else if(i&&n){
+const d=i.readValue(n,u);
+d!=null&&(e[0]=d)}
+e[0]===void 0&&(e[0]=u),r&&l===void 0&&r.set(e[0])}
+l1(e)}
+setFinalKeyframe(){
+}
+measureInitialState(){
+}
+renderEndStyles(){
+}
+measureEndState(){
+}
+complete(e=!1){
+this.state="complete",this.onComplete(this.unresolvedKeyframes,this.finalKeyframe,e),ys.delete(this)}
+cancel(){
+this.state==="scheduled"&&(ys.delete(this),this.state="pending")}
+resume(){
+this.state==="pending"&&this.scheduleResolve()}
+}
+const y1=t=>t.startsWith("--");
+function v1(t,e,n){
+y1(e)?t.style.setProperty(e,n):t.style[e]=n}
+const JS=Mh(()=>window.ScrollTimeline!==void 0),_1={
+}
+;
+function T1(t,e){
+const n=Mh(t);
+return()=>_1[e]??n()}
+const KS=T1(()=>{
+try{
+document.createElement("div").animate({
+opacity:0}
+,{
+easing:"linear(0, 1)"}
+)}
+catch{
+return!1}
+return!0}
+,"linearEasing"),Dr=([t,e,n,i])=>`cubic-bezier(${
+t}
+, ${
+e}
+, ${
+n}
+, ${
+i}
+)`,zv={
+linear:"linear",ease:"ease",easeIn:"ease-in",easeOut:"ease-out",easeInOut:"ease-in-out",circIn:Dr([0,.65,.55,1]),circOut:Dr([.55,0,1,.45]),backIn:Dr([.31,.01,.66,-.59]),backOut:Dr([.33,1.53,.69,.99])}
+;
+function YS(t,e){
+if(t)return typeof t=="function"?KS()?FS(t,e):"ease-out":NS(t)?Dr(t):Array.isArray(t)?t.map(n=>YS(n,e)||zv.easeOut):zv[t]}
+function S1(t,e,n,{
+delay:i=0,duration:r=300,repeat:l=0,repeatType:u="loop",ease:d="easeOut",times:h}
+={
+}
+,p=void 0){
+const g={
+[e]:n}
+;
+h&&(g.offset=h);
+const _=YS(d,r);
+Array.isArray(_)&&(g.easing=_);
+const T={
+delay:i,duration:r,easing:Array.isArray(_)?"linear":_,fill:"both",iterations:l+1,direction:u==="reverse"?"alternate":"normal"}
+;
+return p&&(T.pseudoElement=p),t.animate(g,T)}
+function jS(t){
+return typeof t=="function"&&"applyToOptions"in t}
+function w1({
+type:t,...e}
+){
+return jS(t)&&KS()?t.applyToOptions(e):(e.duration??(e.duration=300),e.ease??(e.ease="easeOut"),e)}
+class E1 extends qh{
+constructor(e){
+if(super(),this.finishedTime=null,this.isStopped=!1,this.manualStartTime=null,!e)return;
+const{
+element:n,name:i,keyframes:r,pseudoElement:l,allowFlatten:u=!1,finalKeyframe:d,onComplete:h}
+=e;
+this.isPseudoElement=!!l,this.allowFlatten=u,this.options=e,Hr(typeof e.type!="string");
+const p=w1(e);
+this.animation=S1(n,i,r,p,l),p.autoplay===!1&&this.animation.pause(),this.animation.onfinish=()=>{
+if(this.finishedTime=this.time,!l){
+const g=Gh(r,this.options,d,this.speed);
+this.updateMotionValue?this.updateMotionValue(g):v1(n,i,g),this.animation.cancel()}
+h==null||h(),this.notifyFinished()}
+}
+play(){
+this.isStopped||(this.manualStartTime=null,this.animation.play(),this.state==="finished"&&this.updateFinished())}
+pause(){
+this.animation.pause()}
+complete(){
+var e,n;
+(n=(e=this.animation).finish)==null||n.call(e)}
+cancel(){
+try{
+this.animation.cancel()}
+catch{
+}
+}
+stop(){
+if(this.isStopped)return;
+this.isStopped=!0;
+const{
+state:e}
+=this;
+e==="idle"||e==="finished"||(this.updateMotionValue?this.updateMotionValue():this.commitStyles(),this.isPseudoElement||this.cancel())}
+commitStyles(){
+var e,n;
+this.isPseudoElement||(n=(e=this.animation).commitStyles)==null||n.call(e)}
+get duration(){
+var n,i;
+const e=((i=(n=this.animation.effect)==null?void 0:n.getComputedTiming)==null?void 0:i.call(n).duration)||0;
+return dn(Number(e))}
+get iterationDuration(){
+const{
+delay:e=0}
+=this.options||{
+}
+;
+return this.duration+dn(e)}
+get time(){
+return dn(Number(this.animation.currentTime)||0)}
+set time(e){
+this.manualStartTime=null,this.finishedTime=null,this.animation.currentTime=Zn(e)}
+get speed(){
+return this.animation.playbackRate}
+set speed(e){
+e<0&&(this.finishedTime=null),this.animation.playbackRate=e}
+get state(){
+return this.finishedTime!==null?"finished":this.animation.playState}
+get startTime(){
+return this.manualStartTime??Number(this.animation.startTime)}
+set startTime(e){
+this.manualStartTime=this.animation.startTime=e}
+attachTimeline({
+timeline:e,observe:n}
+){
+var i;
+return this.allowFlatten&&((i=this.animation.effect)==null||i.updateTiming({
+easing:"linear"}
+)),this.animation.onfinish=null,e&&JS()?(this.animation.timeline=e,Vt):n(this)}
+}
+const WS={
+anticipate:AS,backInOut:bS,circInOut:xS}
+;
+function b1(t){
+return t in WS}
+function A1(t){
+typeof t.ease=="string"&&b1(t.ease)&&(t.ease=WS[t.ease])}
+const rf=10;
+class C1 extends E1{
+constructor(e){
+A1(e),HS(e),super(e),e.startTime!==void 0&&(this.startTime=e.startTime),this.options=e}
+updateMotionValue(e){
+const{
+motionValue:n,onUpdate:i,onComplete:r,element:l,...u}
+=this.options;
+if(!n)return;
+if(e!==void 0){
+n.set(e);
+return}
+const d=new yu({
+...u,autoplay:!1}
+),h=Math.max(rf,Rt.now()-this.startTime),p=xn(0,rf,h-rf);
+n.setWithVelocity(d.sample(Math.max(0,h-p)).value,d.sample(h).value,p),d.stop()}
+}
+const $v=(t,e)=>e==="zIndex"?!1:!!(typeof t=="number"||Array.isArray(t)||typeof t=="string"&&(Oi.test(t)||t==="0")&&!t.startsWith("url("));
+function x1(t){
+const e=t[0];
+if(t.length===1)return!0;
+for(let n=0;
+n<t.length;
+n++)if(t[n]!==e)return!0}
+function R1(t,e,n,i){
+const r=t[0];
+if(r===null)return!1;
+if(e==="display"||e==="visibility")return!0;
+const l=t[t.length-1],u=$v(r,e),d=$v(l,e);
+return!u||!d?!1:x1(t)||(n==="spring"||jS(n))&&i}
+function qf(t){
+t.duration=0,t.type="keyframes"}
+const N1=new Set(["opacity","clipPath","filter","transform"]),M1=Mh(()=>Object.hasOwnProperty.call(Element.prototype,"animate"));
+function I1(t){
+var g;
+const{
+motionValue:e,name:n,repeatDelay:i,repeatType:r,damping:l,type:u}
+=t;
+if(!(((g=e==null?void 0:e.owner)==null?void 0:g.current)instanceof HTMLElement))return!1;
+const{
+onUpdate:h,transformTemplate:p}
+=e.owner.getProps();
+return M1()&&n&&N1.has(n)&&(n!=="transform"||!p)&&!h&&!i&&r!=="mirror"&&l!==0&&u!=="inertia"}
+const D1=40;
+class k1 extends qh{
+constructor({
+autoplay:e=!0,delay:n=0,type:i="keyframes",repeat:r=0,repeatDelay:l=0,repeatType:u="loop",keyframes:d,name:h,motionValue:p,element:g,..._}
+){
+var A;
+super(),this.stop=()=>{
+var C,x;
+this._animation&&(this._animation.stop(),(C=this.stopTimeline)==null||C.call(this)),(x=this.keyframeResolver)==null||x.cancel()}
+,this.createdAt=Rt.now();
+const T={
+autoplay:e,delay:n,type:i,repeat:r,repeatDelay:l,repeatType:u,name:h,motionValue:p,element:g,..._}
+,w=(g==null?void 0:g.KeyframeResolver)||Hh;
+this.keyframeResolver=new w(d,(C,x,R)=>this.onKeyframesResolved(C,x,T,!R),h,p,g),(A=this.keyframeResolver)==null||A.scheduleResolve()}
+onKeyframesResolved(e,n,i,r){
+var x,R;
+this.keyframeResolver=void 0;
+const{
+name:l,type:u,velocity:d,delay:h,isHandoff:p,onUpdate:g}
+=i;
+this.resolvedAt=Rt.now(),R1(e,l,u,d)||((ei.instantAnimations||!h)&&(g==null||g(Gh(e,i,n))),e[0]=e[e.length-1],qf(i),i.repeat=0);
+const T={
+startTime:r?this.resolvedAt?this.resolvedAt-this.createdAt>D1?this.resolvedAt:this.createdAt:this.createdAt:void 0,finalKeyframe:n,...i,keyframes:e}
+,w=!p&&I1(T),A=(R=(x=T.motionValue)==null?void 0:x.owner)==null?void 0:R.current,C=w?new C1({
+...T,element:A}
+):new yu(T);
+C.finished.then(()=>{
+this.notifyFinished()}
+).catch(Vt),this.pendingTimeline&&(this.stopTimeline=C.attachTimeline(this.pendingTimeline),this.pendingTimeline=void 0),this._animation=C}
+get finished(){
+return this._animation?this.animation.finished:this._finished}
+then(e,n){
+return this.finished.finally(e).then(()=>{
+}
+)}
+get animation(){
+var e;
+return this._animation||((e=this.keyframeResolver)==null||e.resume(),g1()),this._animation}
+get duration(){
+return this.animation.duration}
+get iterationDuration(){
+return this.animation.iterationDuration}
+get time(){
+return this.animation.time}
+set time(e){
+this.animation.time=e}
+get speed(){
+return this.animation.speed}
+get state(){
+return this.animation.state}
+set speed(e){
+this.animation.speed=e}
+get startTime(){
+return this.animation.startTime}
+attachTimeline(e){
+return this._animation?this.stopTimeline=this.animation.attachTimeline(e):this.pendingTimeline=e,()=>this.stop()}
+play(){
+this.animation.play()}
+pause(){
+this.animation.pause()}
+complete(){
+this.animation.complete()}
+cancel(){
+var e;
+this._animation&&this.animation.cancel(),(e=this.keyframeResolver)==null||e.cancel()}
+}
+function XS(t,e,n,i=0,r=1){
+const l=Array.from(t).sort((p,g)=>p.sortNodePosition(g)).indexOf(e),u=t.size,d=(u-1)*i;
+return typeof n=="function"?n(l,u):r===1?l*i:d-l*i}
+const U1=/^var\(--(?:([\w-]+)|([\w-]+), ?([a-zA-Z\d ()%#.,-]+))\)/u;
+function P1(t){
+const e=U1.exec(t);
+if(!e)return[,];
+const[,n,i,r]=e;
+return[`--${
+n??i}
+`,r]}
+function QS(t,e,n=1){
+const[i,r]=P1(t);
+if(!i)return;
+const l=window.getComputedStyle(e).getPropertyValue(i);
+if(l){
+const u=l.trim();
+return yS(u)?parseFloat(u):u}
+return Ph(r)?QS(r,e,n+1):r}
+const L1={
+type:"spring",stiffness:500,damping:25,restSpeed:10}
+,O1=t=>({
+type:"spring",stiffness:550,damping:t===0?2*Math.sqrt(550):30,restSpeed:10}
+),V1={
+type:"keyframes",duration:.8}
+,B1={
+type:"keyframes",ease:[.25,.1,.35,1],duration:.3}
+,F1=(t,{
+keyframes:e}
+)=>e.length>2?V1:Mo.has(t)?t.startsWith("scale")?O1(e[1]):L1:B1,G1=t=>t!==null;
+function q1(t,{
+repeat:e,repeatType:n="loop"}
+,i){
+const r=t.filter(G1),l=e&&n!=="loop"&&e%2===1?0:r.length-1;
+return r[l]}
+function zh(t,e){
+return(t==null?void 0:t[e])??(t==null?void 0:t.default)??t}
+function H1({
+when:t,delay:e,delayChildren:n,staggerChildren:i,staggerDirection:r,repeat:l,repeatType:u,repeatDelay:d,from:h,elapsed:p,...g}
+){
+return!!Object.keys(g).length}
+const $h=(t,e,n,i={
+}
+,r,l)=>u=>{
+const d=zh(i,t)||{
+}
+,h=d.delay||i.delay||0;
+let{
+elapsed:p=0}
+=i;
+p=p-Zn(h);
+const g={
+keyframes:Array.isArray(n)?n:[null,n],ease:"easeOut",velocity:e.getVelocity(),...d,delay:-p,onUpdate:T=>{
+e.set(T),d.onUpdate&&d.onUpdate(T)}
+,onComplete:()=>{
+u(),d.onComplete&&d.onComplete()}
+,name:t,motionValue:e,element:l?void 0:r}
+;
+H1(d)||Object.assign(g,F1(t,g)),g.duration&&(g.duration=Zn(g.duration)),g.repeatDelay&&(g.repeatDelay=Zn(g.repeatDelay)),g.from!==void 0&&(g.keyframes[0]=g.from);
+let _=!1;
+if((g.type===!1||g.duration===0&&!g.repeatDelay)&&(qf(g),g.delay===0&&(_=!0)),(ei.instantAnimations||ei.skipAnimations)&&(_=!0,qf(g),g.delay=0),g.allowFlatten=!d.type&&!d.ease,_&&!l&&e.get()!==void 0){
+const T=q1(g.keyframes,d);
+if(T!==void 0){
+Ne.update(()=>{
+g.onUpdate(T),g.onComplete()}
+);
+return}
+}
+return d.isSync?new yu(g):new k1(g)}
+;
+function Jv(t){
+const e=[{
+}
+,{
+}
+];
+return t==null||t.values.forEach((n,i)=>{
+e[0][i]=n.get(),e[1][i]=n.getVelocity()}
+),e}
+function Jh(t,e,n,i){
+if(typeof e=="function"){
+const[r,l]=Jv(i);
+e=e(n!==void 0?n:t.custom,r,l)}
+if(typeof e=="string"&&(e=t.variants&&t.variants[e]),typeof e=="function"){
+const[r,l]=Jv(i);
+e=e(n!==void 0?n:t.custom,r,l)}
+return e}
+function Eo(t,e,n){
+const i=t.getProps();
+return Jh(i,e,n!==void 0?n:i.custom,t)}
+const ZS=new Set(["width","height","top","left","right","bottom",...No]),Kv=30,z1=t=>!isNaN(parseFloat(t)),Vr={
+current:void 0}
+;
+class $1{
+constructor(e,n={
+}
+){
+this.canTrackVelocity=null,this.events={
+}
+,this.updateAndNotify=i=>{
+var l;
+const r=Rt.now();
+if(this.updatedAt!==r&&this.setPrevFrameValue(),this.prev=this.current,this.setCurrent(i),this.current!==this.prev&&((l=this.events.change)==null||l.notify(this.current),this.dependents))for(const u of this.dependents)u.dirty()}
+,this.hasAnimated=!1,this.setCurrent(e),this.owner=n.owner}
+setCurrent(e){
+this.current=e,this.updatedAt=Rt.now(),this.canTrackVelocity===null&&e!==void 0&&(this.canTrackVelocity=z1(this.current))}
+setPrevFrameValue(e=this.current){
+this.prevFrameValue=e,this.prevUpdatedAt=this.updatedAt}
+onChange(e){
+return this.on("change",e)}
+on(e,n){
+this.events[e]||(this.events[e]=new Ih);
+const i=this.events[e].add(n);
+return e==="change"?()=>{
+i(),Ne.read(()=>{
+this.events.change.getSize()||this.stop()}
+)}
+:i}
+clearListeners(){
+for(const e in this.events)this.events[e].clear()}
+attach(e,n){
+this.passiveEffect=e,this.stopPassiveEffect=n}
+set(e){
+this.passiveEffect?this.passiveEffect(e,this.updateAndNotify):this.updateAndNotify(e)}
+setWithVelocity(e,n,i){
+this.set(n),this.prev=void 0,this.prevFrameValue=e,this.prevUpdatedAt=this.updatedAt-i}
+jump(e,n=!0){
+this.updateAndNotify(e),this.prev=e,this.prevUpdatedAt=this.prevFrameValue=void 0,n&&this.stop(),this.stopPassiveEffect&&this.stopPassiveEffect()}
+dirty(){
+var e;
+(e=this.events.change)==null||e.notify(this.current)}
+addDependent(e){
+this.dependents||(this.dependents=new Set),this.dependents.add(e)}
+removeDependent(e){
+this.dependents&&this.dependents.delete(e)}
+get(){
+return Vr.current&&Vr.current.push(this),this.current}
+getPrevious(){
+return this.prev}
+getVelocity(){
+const e=Rt.now();
+if(!this.canTrackVelocity||this.prevFrameValue===void 0||e-this.updatedAt>Kv)return 0;
+const n=Math.min(this.updatedAt-this.prevUpdatedAt,Kv);
+return Dh(parseFloat(this.current)-parseFloat(this.prevFrameValue),n)}
+start(e){
+return this.stop(),new Promise(n=>{
+this.hasAnimated=!0,this.animation=e(n),this.events.animationStart&&this.events.animationStart.notify()}
+).then(()=>{
+this.events.animationComplete&&this.events.animationComplete.notify(),this.clearAnimation()}
+)}
+stop(){
+this.animation&&(this.animation.stop(),this.events.animationCancel&&this.events.animationCancel.notify()),this.clearAnimation()}
+isAnimating(){
+return!!this.animation}
+clearAnimation(){
+delete this.animation}
+destroy(){
+var e,n;
+(e=this.dependents)==null||e.clear(),(n=this.events.destroy)==null||n.notify(),this.clearListeners(),this.stop(),this.stopPassiveEffect&&this.stopPassiveEffect()}
+}
+function bn(t,e){
+return new $1(t,e)}
+const Hf=t=>Array.isArray(t);
+function J1(t,e,n){
+t.hasValue(e)?t.getValue(e).set(n):t.addValue(e,bn(n))}
+function K1(t){
+return Hf(t)?t[t.length-1]||0:t}
+function Y1(t,e){
+const n=Eo(t,e);
+let{
+transitionEnd:i={
+}
+,transition:r={
+}
+,...l}
+=n||{
+}
+;
+l={
+...l,...i}
+;
+for(const u in l){
+const d=K1(l[u]);
+J1(t,u,d)}
+}
+const ht=t=>!!(t&&t.getVelocity);
+function j1(t){
+return!!(ht(t)&&t.add)}
+function zf(t,e){
+const n=t.getValue("willChange");
+if(j1(n))return n.add(e);
+if(!n&&ei.WillChange){
+const i=new ei.WillChange("auto");
+t.addValue("willChange",i),i.add(e)}
+}
+function Kh(t){
+return t.replace(/([A-Z])/g,e=>`-${
+e.toLowerCase()}
+`)}
+const W1="framerAppearId",ew="data-"+Kh(W1);
+function tw(t){
+return t.props[ew]}
+function X1({
+protectedKeys:t,needsAnimating:e}
+,n){
+const i=t.hasOwnProperty(n)&&e[n]!==!0;
+return e[n]=!1,i}
+function nw(t,e,{
+delay:n=0,transitionOverride:i,type:r}
+={
+}
+){
+let{
+transition:l=t.getDefaultTransition(),transitionEnd:u,...d}
+=e;
+i&&(l=i);
+const h=[],p=r&&t.animationState&&t.animationState.getState()[r];
+for(const g in d){
+const _=t.getValue(g,t.latestValues[g]??null),T=d[g];
+if(T===void 0||p&&X1(p,g))continue;
+const w={
+delay:n,...zh(l||{
+}
+,g)}
+,A=_.get();
+if(A!==void 0&&!_.isAnimating&&!Array.isArray(T)&&T===A&&!w.velocity)continue;
+let C=!1;
+if(window.MotionHandoffAnimation){
+const R=tw(t);
+if(R){
+const k=window.MotionHandoffAnimation(R,g,Ne);
+k!==null&&(w.startTime=k,C=!0)}
+}
+zf(t,g),_.start($h(g,_,T,t.shouldReduceMotion&&ZS.has(g)?{
+type:!1}
+:w,t,C));
+const x=_.animation;
+x&&h.push(x)}
+return u&&Promise.all(h).then(()=>{
+Ne.update(()=>{
+u&&Y1(t,u)}
+)}
+),h}
+function $f(t,e,n={
+}
+){
+var h;
+const i=Eo(t,e,n.type==="exit"?(h=t.presenceContext)==null?void 0:h.custom:void 0);
+let{
+transition:r=t.getDefaultTransition()||{
+}
+}
+=i||{
+}
+;
+n.transitionOverride&&(r=n.transitionOverride);
+const l=i?()=>Promise.all(nw(t,i,n)):()=>Promise.resolve(),u=t.variantChildren&&t.variantChildren.size?(p=0)=>{
+const{
+delayChildren:g=0,staggerChildren:_,staggerDirection:T}
+=r;
+return Q1(t,e,p,g,_,T,n)}
+:()=>Promise.resolve(),{
+when:d}
+=r;
+if(d){
+const[p,g]=d==="beforeChildren"?[l,u]:[u,l];
+return p().then(()=>g())}
+else return Promise.all([l(),u(n.delay)])}
+function Q1(t,e,n=0,i=0,r=0,l=1,u){
+const d=[];
+for(const h of t.variantChildren)h.notify("AnimationStart",e),d.push($f(h,e,{
+...u,delay:n+(typeof i=="function"?0:i)+XS(t.variantChildren,h,i,r,l)}
+).then(()=>h.notify("AnimationComplete",e)));
+return Promise.all(d)}
+function Z1(t,e,n={
+}
+){
+t.notify("AnimationStart",e);
+let i;
+if(Array.isArray(e)){
+const r=e.map(l=>$f(t,l,n));
+i=Promise.all(r)}
+else if(typeof e=="string")i=$f(t,e,n);
+else{
+const r=typeof e=="function"?Eo(t,e,n.custom):e;
+i=Promise.all(nw(t,r,n))}
+return i.then(()=>{
+t.notify("AnimationComplete",e)}
+)}
+const eN={
+test:t=>t==="auto",parse:t=>t}
+,iw=t=>e=>e.test(t),sw=[Ro,ne,kn,Mi,MR,NR,eN],Yv=t=>sw.find(iw(t));
+function tN(t){
+return typeof t=="number"?t===0:t!==null?t==="none"||t==="0"||_S(t):!0}
+const nN=new Set(["brightness","contrast","saturate","opacity"]);
+function iN(t){
+const[e,n]=t.slice(0,-1).split("(");
+if(e==="drop-shadow")return t;
+const[i]=n.match(Lh)||[];
+if(!i)return t;
+const r=n.replace(i,"");
+let l=nN.has(e)?1:0;
+return i!==n&&(l*=100),e+"("+l+r+")"}
+const sN=/\b([a-z-]*)\(.*?\)/gu,Jf={
+...Oi,getAnimatableNone:t=>{
+const e=t.match(sN);
+return e?e.map(iN).join(" "):t}
+}
+,jv={
+...Ro,transform:Math.round}
+,oN={
+rotate:Mi,rotateX:Mi,rotateY:Mi,rotateZ:Mi,scale:xl,scaleX:xl,scaleY:xl,scaleZ:xl,skew:Mi,skewX:Mi,skewY:Mi,distance:ne,translateX:ne,translateY:ne,translateZ:ne,x:ne,y:ne,z:ne,perspective:ne,transformPerspective:ne,opacity:zr,originX:Pv,originY:Pv,originZ:ne}
+,Yh={
+borderWidth:ne,borderTopWidth:ne,borderRightWidth:ne,borderBottomWidth:ne,borderLeftWidth:ne,borderRadius:ne,borderTopLeftRadius:ne,borderTopRightRadius:ne,borderBottomRightRadius:ne,borderBottomLeftRadius:ne,width:ne,maxWidth:ne,height:ne,maxHeight:ne,top:ne,right:ne,bottom:ne,left:ne,inset:ne,insetBlock:ne,insetBlockStart:ne,insetBlockEnd:ne,insetInline:ne,insetInlineStart:ne,insetInlineEnd:ne,padding:ne,paddingTop:ne,paddingRight:ne,paddingBottom:ne,paddingLeft:ne,paddingBlock:ne,paddingBlockStart:ne,paddingBlockEnd:ne,paddingInline:ne,paddingInlineStart:ne,paddingInlineEnd:ne,margin:ne,marginTop:ne,marginRight:ne,marginBottom:ne,marginLeft:ne,marginBlock:ne,marginBlockStart:ne,marginBlockEnd:ne,marginInline:ne,marginInlineStart:ne,marginInlineEnd:ne,fontSize:ne,backgroundPositionX:ne,backgroundPositionY:ne,...oN,zIndex:jv,fillOpacity:zr,strokeOpacity:zr,numOctaves:jv}
+,rN={
+...Yh,color:rt,backgroundColor:rt,outlineColor:rt,fill:rt,stroke:rt,borderColor:rt,borderTopColor:rt,borderRightColor:rt,borderBottomColor:rt,borderLeftColor:rt,filter:Jf,WebkitFilter:Jf}
+,ow=t=>rN[t];
+function rw(t,e){
+let n=ow(t);
+return n!==Jf&&(n=Oi),n.getAnimatableNone?n.getAnimatableNone(e):void 0}
+const aN=new Set(["auto","none","0"]);
+function lN(t,e,n){
+let i=0,r;
+for(;
+i<t.length&&!r;
+){
+const l=t[i];
+typeof l=="string"&&!aN.has(l)&&$r(l).values.length&&(r=t[i]),i++}
+if(r&&n)for(const l of e)t[l]=rw(n,r)}
+class uN extends Hh{
+constructor(e,n,i,r,l){
+super(e,n,i,r,l,!0)}
+readKeyframes(){
+const{
+unresolvedKeyframes:e,element:n,name:i}
+=this;
+if(!n||!n.current)return;
+super.readKeyframes();
+for(let g=0;
+g<e.length;
+g++){
+let _=e[g];
+if(typeof _=="string"&&(_=_.trim(),Ph(_))){
+const T=QS(_,n.current);
+T!==void 0&&(e[g]=T),g===e.length-1&&(this.finalKeyframe=_)}
+}
+if(this.resolveNoneKeyframes(),!ZS.has(i)||e.length!==2)return;
+const[r,l]=e,u=Yv(r),d=Yv(l),h=Uv(r),p=Uv(l);
+if(h!==p&&Ui[i]){
+this.needsMeasurement=!0;
+return}
+if(u!==d)if(Hv(u)&&Hv(d))for(let g=0;
+g<e.length;
+g++){
+const _=e[g];
+typeof _=="string"&&(e[g]=parseFloat(_))}
+else Ui[i]&&(this.needsMeasurement=!0)}
+resolveNoneKeyframes(){
+const{
+unresolvedKeyframes:e,name:n}
+=this,i=[];
+for(let r=0;
+r<e.length;
+r++)(e[r]===null||tN(e[r]))&&i.push(r);
+i.length&&lN(e,i,n)}
+measureInitialState(){
+const{
+element:e,unresolvedKeyframes:n,name:i}
+=this;
+if(!e||!e.current)return;
+i==="height"&&(this.suspendedScrollY=window.pageYOffset),this.measuredOrigin=Ui[i](e.measureViewportBox(),window.getComputedStyle(e.current)),n[0]=this.measuredOrigin;
+const r=n[n.length-1];
+r!==void 0&&e.getValue(i,r).jump(r,!1)}
+measureEndState(){
+var d;
+const{
+element:e,name:n,unresolvedKeyframes:i}
+=this;
+if(!e||!e.current)return;
+const r=e.getValue(n);
+r&&r.jump(this.measuredOrigin,!1);
+const l=i.length-1,u=i[l];
+i[l]=Ui[n](e.measureViewportBox(),window.getComputedStyle(e.current)),u!==null&&this.finalKeyframe===void 0&&(this.finalKeyframe=u),(d=this.removedTransforms)!=null&&d.length&&this.removedTransforms.forEach(([h,p])=>{
+e.getValue(h).set(p)}
+),this.resolveNoneKeyframes()}
+}
+function aw(t,e,n){
+if(t==null)return[];
+if(t instanceof EventTarget)return[t];
+if(typeof t=="string"){
+const r=document.querySelectorAll(t);
+return r?Array.from(r):[]}
+return Array.from(t).filter(i=>i!=null)}
+const lw=(t,e)=>e&&typeof t=="number"?e.transform(t):t;
+function Ql(t){
+return vS(t)&&"offsetHeight"in t}
+const{
+schedule:jh}
+=MS(queueMicrotask,!1),Tn={
+x:!1,y:!1}
+;
+function uw(){
+return Tn.x||Tn.y}
+function cN(t){
+return t==="x"||t==="y"?Tn[t]?null:(Tn[t]=!0,()=>{
+Tn[t]=!1}
+):Tn.x||Tn.y?null:(Tn.x=Tn.y=!0,()=>{
+Tn.x=Tn.y=!1}
+)}
+function cw(t,e){
+const n=aw(t),i=new AbortController,r={
+passive:!0,...e,signal:i.signal}
+;
+return[n,r,()=>i.abort()]}
+function Wv(t){
+return!(t.pointerType==="touch"||uw())}
+function dN(t,e,n={
+}
+){
+const[i,r,l]=cw(t,n),u=d=>{
+if(!Wv(d))return;
+const{
+target:h}
+=d,p=e(h,d);
+if(typeof p!="function"||!h)return;
+const g=_=>{
+Wv(_)&&(p(_),h.removeEventListener("pointerleave",g))}
+;
+h.addEventListener("pointerleave",g,r)}
+;
+return i.forEach(d=>{
+d.addEventListener("pointerenter",u,r)}
+),l}
+const dw=(t,e)=>e?t===e?!0:dw(t,e.parentElement):!1,Wh=t=>t.pointerType==="mouse"?typeof t.button!="number"||t.button<=0:t.isPrimary!==!1,fN=new Set(["BUTTON","INPUT","SELECT","TEXTAREA","A"]);
+function fw(t){
+return fN.has(t.tagName)||t.isContentEditable===!0}
+const ql=new WeakSet;
+function Xv(t){
+return e=>{
+e.key==="Enter"&&t(e)}
+}
+function af(t,e){
+t.dispatchEvent(new PointerEvent("pointer"+e,{
+isPrimary:!0,bubbles:!0}
+))}
+const hN=(t,e)=>{
+const n=t.currentTarget;
+if(!n)return;
+const i=Xv(()=>{
+if(ql.has(n))return;
+af(n,"down");
+const r=Xv(()=>{
+af(n,"up")}
+),l=()=>af(n,"cancel");
+n.addEventListener("keyup",r,e),n.addEventListener("blur",l,e)}
+);
+n.addEventListener("keydown",i,e),n.addEventListener("blur",()=>n.removeEventListener("keydown",i),e)}
+;
+function Qv(t){
+return Wh(t)&&!uw()}
+function pN(t,e,n={
+}
+){
+const[i,r,l]=cw(t,n),u=d=>{
+const h=d.currentTarget;
+if(!Qv(d))return;
+ql.add(h);
+const p=e(h,d),g=(w,A)=>{
+window.removeEventListener("pointerup",_),window.removeEventListener("pointercancel",T),ql.has(h)&&ql.delete(h),Qv(w)&&typeof p=="function"&&p(w,{
+success:A}
+)}
+,_=w=>{
+g(w,h===window||h===document||n.useGlobalTarget||dw(h,w.target))}
+,T=w=>{
+g(w,!1)}
+;
+window.addEventListener("pointerup",_,r),window.addEventListener("pointercancel",T,r)}
+;
+return i.forEach(d=>{
+(n.useGlobalTarget?window:d).addEventListener("pointerdown",u,r),Ql(d)&&(d.addEventListener("focus",p=>hN(p,r)),!fw(d)&&!d.hasAttribute("tabindex")&&(d.tabIndex=0))}
+),l}
+function Xh(t){
+return vS(t)&&"ownerSVGElement"in t}
+const Hl=new WeakMap;
+let Ii;
+const hw=(t,e,n)=>(i,r)=>r&&r[0]?r[0][t+"Size"]:Xh(i)&&"getBBox"in i?i.getBBox()[e]:i[n],mN=hw("inline","width","offsetWidth"),gN=hw("block","height","offsetHeight");
+function yN({
+target:t,borderBoxSize:e}
+){
+var n;
+(n=Hl.get(t))==null||n.forEach(i=>{
+i(t,{
+get width(){
+return mN(t,e)}
+,get height(){
+return gN(t,e)}
+}
+)}
+)}
+function vN(t){
+t.forEach(yN)}
+function _N(){
+typeof ResizeObserver>"u"||(Ii=new ResizeObserver(vN))}
+function TN(t,e){
+Ii||_N();
+const n=aw(t);
+return n.forEach(i=>{
+let r=Hl.get(i);
+r||(r=new Set,Hl.set(i,r)),r.add(e),Ii==null||Ii.observe(i)}
+),()=>{
+n.forEach(i=>{
+const r=Hl.get(i);
+r==null||r.delete(e),r!=null&&r.size||Ii==null||Ii.unobserve(i)}
+)}
+}
+const zl=new Set;
+let go;
+function SN(){
+go=()=>{
+const t={
+get width(){
+return window.innerWidth}
+,get height(){
+return window.innerHeight}
+}
+;
+zl.forEach(e=>e(t))}
+,window.addEventListener("resize",go)}
+function wN(t){
+return zl.add(t),go||SN(),()=>{
+zl.delete(t),!zl.size&&typeof go=="function"&&(window.removeEventListener("resize",go),go=void 0)}
+}
+function EN(t,e){
+return typeof t=="function"?wN(t):TN(t,e)}
+function pw(t,e){
+let n;
+const i=()=>{
+const{
+currentTime:r}
+=e,u=(r===null?0:r.value)/100;
+n!==u&&t(u),n=u}
+;
+return Ne.preUpdate(i,!0),()=>hn(i)}
+function bN(t){
+return Xh(t)&&t.tagName==="svg"}
+function AN(...t){
+const e=!Array.isArray(t[0]),n=e?0:-1,i=t[0+n],r=t[1+n],l=t[2+n],u=t[3+n],d=Fh(r,l,u);
+return e?d(i):d}
+function CN(t,e,n={
+}
+){
+const i=t.get();
+let r=null,l=i,u;
+const d=typeof i=="string"?i.replace(/[\d.-]/g,""):void 0,h=()=>{
+r&&(r.stop(),r=null)}
+,p=()=>{
+h();
+const g=e0(t.get()),_=e0(l);
+g!==_&&(r=new yu({
+keyframes:[g,_],velocity:t.getVelocity(),type:"spring",restDelta:.001,restSpeed:.01,...n,onUpdate:u}
+))}
+;
+if(t.attach((g,_)=>{
+l=g,u=T=>_(Zv(T,d)),Ne.postRender(()=>{
+var T;
+p(),(T=t.events.animationStart)==null||T.notify(),r==null||r.then(()=>{
+var w;
+(w=t.events.animationComplete)==null||w.notify()}
+)}
+)}
+,h),ht(e)){
+const g=e.on("change",T=>t.set(Zv(T,d))),_=t.on("destroy",g);
+return()=>{
+g(),_()}
+}
+return h}
+function Zv(t,e){
+return e?t+e:t}
+function e0(t){
+return typeof t=="number"?t:parseFloat(t)}
+const xN=[...sw,rt,Oi],RN=t=>xN.find(iw(t)),t0=()=>({
+translate:0,scale:1,origin:0,originPoint:0}
+),yo=()=>({
+x:t0(),y:t0()}
+),n0=()=>({
+min:0,max:0}
+),ut=()=>({
+x:n0(),y:n0()}
+),Kf={
+current:null}
+,mw={
+current:!1}
+,NN=typeof window<"u";
+function MN(){
+if(mw.current=!0,!!NN)if(window.matchMedia){
+const t=window.matchMedia("(prefers-reduced-motion)"),e=()=>Kf.current=t.matches;
+t.addEventListener("change",e),e()}
+else Kf.current=!1}
+const IN=new WeakMap;
+function vu(t){
+return t!==null&&typeof t=="object"&&typeof t.start=="function"}
+function Jr(t){
+return typeof t=="string"||Array.isArray(t)}
+const Qh=["animate","whileInView","whileFocus","whileHover","whileTap","whileDrag","exit"],Zh=["initial",...Qh];
+function _u(t){
+return vu(t.animate)||Zh.some(e=>Jr(t[e]))}
+function gw(t){
+return!!(_u(t)||t.variants)}
+function DN(t,e,n){
+for(const i in e){
+const r=e[i],l=n[i];
+if(ht(r))t.addValue(i,r);
+else if(ht(l))t.addValue(i,bn(r,{
+owner:t}
+));
+else if(l!==r)if(t.hasValue(i)){
+const u=t.getValue(i);
+u.liveStyle===!0?u.jump(r):u.hasAnimated||u.set(r)}
+else{
+const u=t.getStaticValue(i);
+t.addValue(i,bn(u!==void 0?u:r,{
+owner:t}
+))}
+}
+for(const i in n)e[i]===void 0&&t.removeValue(i);
+return e}
+const i0=["AnimationStart","AnimationComplete","Update","BeforeLayoutMeasure","LayoutMeasure","LayoutAnimationStart","LayoutAnimationComplete"];
+let Zl={
+}
+;
+function yw(t){
+Zl=t}
+function kN(){
+return Zl}
+class UN{
+scrapeMotionValuesFromProps(e,n,i){
+return{
+}
+}
+constructor({
+parent:e,props:n,presenceContext:i,reducedMotionConfig:r,blockInitialAnimation:l,visualState:u}
+,d={
+}
+){
+this.current=null,this.children=new Set,this.isVariantNode=!1,this.isControllingVariants=!1,this.shouldReduceMotion=null,this.values=new Map,this.KeyframeResolver=Hh,this.features={
+}
+,this.valueSubscriptions=new Map,this.prevMotionValues={
+}
+,this.events={
+}
+,this.propEventSubscriptions={
+}
+,this.notifyUpdate=()=>this.notify("Update",this.latestValues),this.render=()=>{
+this.current&&(this.triggerBuild(),this.renderInstance(this.current,this.renderState,this.props.style,this.projection))}
+,this.renderScheduledAt=0,this.scheduleRender=()=>{
+const T=Rt.now();
+this.renderScheduledAt<T&&(this.renderScheduledAt=T,Ne.render(this.render,!1,!0))}
+;
+const{
+latestValues:h,renderState:p}
+=u;
+this.latestValues=h,this.baseTarget={
+...h}
+,this.initialValues=n.initial?{
+...h}
+:{
+}
+,this.renderState=p,this.parent=e,this.props=n,this.presenceContext=i,this.depth=e?e.depth+1:0,this.reducedMotionConfig=r,this.options=d,this.blockInitialAnimation=!!l,this.isControllingVariants=_u(n),this.isVariantNode=gw(n),this.isVariantNode&&(this.variantChildren=new Set),this.manuallyAnimateOnMount=!!(e&&e.current);
+const{
+willChange:g,..._}
+=this.scrapeMotionValuesFromProps(n,{
+}
+,this);
+for(const T in _){
+const w=_[T];
+h[T]!==void 0&&ht(w)&&w.set(h[T])}
+}
+mount(e){
+var n;
+this.current=e,IN.set(e,this),this.projection&&!this.projection.instance&&this.projection.mount(e),this.parent&&this.isVariantNode&&!this.isControllingVariants&&(this.removeFromVariantTree=this.parent.addVariantChild(this)),this.values.forEach((i,r)=>this.bindToMotionValue(r,i)),this.reducedMotionConfig==="never"?this.shouldReduceMotion=!1:this.reducedMotionConfig==="always"?this.shouldReduceMotion=!0:(mw.current||MN(),this.shouldReduceMotion=Kf.current),(n=this.parent)==null||n.addChild(this),this.update(this.props,this.presenceContext)}
+unmount(){
+var e;
+this.projection&&this.projection.unmount(),hn(this.notifyUpdate),hn(this.render),this.valueSubscriptions.forEach(n=>n()),this.valueSubscriptions.clear(),this.removeFromVariantTree&&this.removeFromVariantTree(),(e=this.parent)==null||e.removeChild(this);
+for(const n in this.events)this.events[n].clear();
+for(const n in this.features){
+const i=this.features[n];
+i&&(i.unmount(),i.isMounted=!1)}
+this.current=null}
+addChild(e){
+this.children.add(e),this.enteringChildren??(this.enteringChildren=new Set),this.enteringChildren.add(e)}
+removeChild(e){
+this.children.delete(e),this.enteringChildren&&this.enteringChildren.delete(e)}
+bindToMotionValue(e,n){
+this.valueSubscriptions.has(e)&&this.valueSubscriptions.get(e)();
+const i=Mo.has(e);
+i&&this.onBindTransform&&this.onBindTransform();
+const r=n.on("change",u=>{
+this.latestValues[e]=u,this.props.onUpdate&&Ne.preRender(this.notifyUpdate),i&&this.projection&&(this.projection.isTransformDirty=!0),this.scheduleRender()}
+);
+let l;
+typeof window<"u"&&window.MotionCheckAppearSync&&(l=window.MotionCheckAppearSync(this,e,n)),this.valueSubscriptions.set(e,()=>{
+r(),l&&l(),n.owner&&n.stop()}
+)}
+sortNodePosition(e){
+return!this.current||!this.sortInstanceNodePosition||this.type!==e.type?0:this.sortInstanceNodePosition(this.current,e.current)}
+updateFeatures(){
+let e="animation";
+for(e in Zl){
+const n=Zl[e];
+if(!n)continue;
+const{
+isEnabled:i,Feature:r}
+=n;
+if(!this.features[e]&&r&&i(this.props)&&(this.features[e]=new r(this)),this.features[e]){
+const l=this.features[e];
+l.isMounted?l.update():(l.mount(),l.isMounted=!0)}
+}
+}
+triggerBuild(){
+this.build(this.renderState,this.latestValues,this.props)}
+measureViewportBox(){
+return this.current?this.measureInstanceViewportBox(this.current,this.props):ut()}
+getStaticValue(e){
+return this.latestValues[e]}
+setStaticValue(e,n){
+this.latestValues[e]=n}
+update(e,n){
+(e.transformTemplate||this.props.transformTemplate)&&this.scheduleRender(),this.prevProps=this.props,this.props=e,this.prevPresenceContext=this.presenceContext,this.presenceContext=n;
+for(let i=0;
+i<i0.length;
+i++){
+const r=i0[i];
+this.propEventSubscriptions[r]&&(this.propEventSubscriptions[r](),delete this.propEventSubscriptions[r]);
+const l="on"+r,u=e[l];
+u&&(this.propEventSubscriptions[r]=this.on(r,u))}
+this.prevMotionValues=DN(this,this.scrapeMotionValuesFromProps(e,this.prevProps||{
+}
+,this),this.prevMotionValues),this.handleChildMotionValue&&this.handleChildMotionValue()}
+getProps(){
+return this.props}
+getVariant(e){
+return this.props.variants?this.props.variants[e]:void 0}
+getDefaultTransition(){
+return this.props.transition}
+getTransformPagePoint(){
+return this.props.transformPagePoint}
+getClosestVariantNode(){
+return this.isVariantNode?this:this.parent?this.parent.getClosestVariantNode():void 0}
+addVariantChild(e){
+const n=this.getClosestVariantNode();
+if(n)return n.variantChildren&&n.variantChildren.add(e),()=>n.variantChildren.delete(e)}
+addValue(e,n){
+const i=this.values.get(e);
+n!==i&&(i&&this.removeValue(e),this.bindToMotionValue(e,n),this.values.set(e,n),this.latestValues[e]=n.get())}
+removeValue(e){
+this.values.delete(e);
+const n=this.valueSubscriptions.get(e);
+n&&(n(),this.valueSubscriptions.delete(e)),delete this.latestValues[e],this.removeValueFromRenderState(e,this.renderState)}
+hasValue(e){
+return this.values.has(e)}
+getValue(e,n){
+if(this.props.values&&this.props.values[e])return this.props.values[e];
+let i=this.values.get(e);
+return i===void 0&&n!==void 0&&(i=bn(n===null?void 0:n,{
+owner:this}
+),this.addValue(e,i)),i}
+readValue(e,n){
+let i=this.latestValues[e]!==void 0||!this.current?this.latestValues[e]:this.getBaseTargetFromProps(this.props,e)??this.readValueFromInstance(this.current,e,this.options);
+return i!=null&&(typeof i=="string"&&(yS(i)||_S(i))?i=parseFloat(i):!RN(i)&&Oi.test(n)&&(i=rw(e,n)),this.setBaseTarget(e,ht(i)?i.get():i)),ht(i)?i.get():i}
+setBaseTarget(e,n){
+this.baseTarget[e]=n}
+getBaseTarget(e){
+var l;
+const{
+initial:n}
+=this.props;
+let i;
+if(typeof n=="string"||typeof n=="object"){
+const u=Jh(this.props,n,(l=this.presenceContext)==null?void 0:l.custom);
+u&&(i=u[e])}
+if(n&&i!==void 0)return i;
+const r=this.getBaseTargetFromProps(this.props,e);
+return r!==void 0&&!ht(r)?r:this.initialValues[e]!==void 0&&i===void 0?void 0:this.baseTarget[e]}
+on(e,n){
+return this.events[e]||(this.events[e]=new Ih),this.events[e].add(n)}
+notify(e,...n){
+this.events[e]&&this.events[e].notify(...n)}
+scheduleRenderMicrotask(){
+jh.render(this.render)}
+}
+class vw extends UN{
+constructor(){
+super(...arguments),this.KeyframeResolver=uN}
+sortInstanceNodePosition(e,n){
+return e.compareDocumentPosition(n)&2?1:-1}
+getBaseTargetFromProps(e,n){
+const i=e.style;
+return i?i[n]:void 0}
+removeValueFromRenderState(e,{
+vars:n,style:i}
+){
+delete n[e],delete i[e]}
+handleChildMotionValue(){
+this.childSubscription&&(this.childSubscription(),delete this.childSubscription);
+const{
+children:e}
+=this.props;
+ht(e)&&(this.childSubscription=e.on("change",n=>{
+this.current&&(this.current.textContent=`${
+n}
+`)}
+))}
+}
+class Vi{
+constructor(e){
+this.isMounted=!1,this.node=e}
+update(){
+}
+}
+function _w({
+top:t,left:e,right:n,bottom:i}
+){
+return{
+x:{
+min:e,max:n}
+,y:{
+min:t,max:i}
+}
+}
+function PN({
+x:t,y:e}
+){
+return{
+top:e.min,right:t.max,bottom:e.max,left:t.min}
+}
+function LN(t,e){
+if(!e)return t;
+const n=e({
+x:t.left,y:t.top}
+),i=e({
+x:t.right,y:t.bottom}
+);
+return{
+top:n.y,left:n.x,bottom:i.y,right:i.x}
+}
+function lf(t){
+return t===void 0||t===1}
+function Yf({
+scale:t,scaleX:e,scaleY:n}
+){
+return!lf(t)||!lf(e)||!lf(n)}
+function ls(t){
+return Yf(t)||Tw(t)||t.z||t.rotate||t.rotateX||t.rotateY||t.skewX||t.skewY}
+function Tw(t){
+return s0(t.x)||s0(t.y)}
+function s0(t){
+return t&&t!=="0%"}
+function eu(t,e,n){
+const i=t-n,r=e*i;
+return n+r}
+function o0(t,e,n,i,r){
+return r!==void 0&&(t=eu(t,r,i)),eu(t,n,i)+e}
+function jf(t,e=0,n=1,i,r){
+t.min=o0(t.min,e,n,i,r),t.max=o0(t.max,e,n,i,r)}
+function Sw(t,{
+x:e,y:n}
+){
+jf(t.x,e.translate,e.scale,e.originPoint),jf(t.y,n.translate,n.scale,n.originPoint)}
+const r0=.999999999999,a0=1.0000000000001;
+function ON(t,e,n,i=!1){
+const r=n.length;
+if(!r)return;
+e.x=e.y=1;
+let l,u;
+for(let d=0;
+d<r;
+d++){
+l=n[d],u=l.projectionDelta;
+const{
+visualElement:h}
+=l.options;
+h&&h.props.style&&h.props.style.display==="contents"||(i&&l.options.layoutScroll&&l.scroll&&l!==l.root&&_o(t,{
+x:-l.scroll.offset.x,y:-l.scroll.offset.y}
+),u&&(e.x*=u.x.scale,e.y*=u.y.scale,Sw(t,u)),i&&ls(l.latestValues)&&_o(t,l.latestValues))}
+e.x<a0&&e.x>r0&&(e.x=1),e.y<a0&&e.y>r0&&(e.y=1)}
+function vo(t,e){
+t.min=t.min+e,t.max=t.max+e}
+function l0(t,e,n,i,r=.5){
+const l=Ke(t.min,t.max,r);
+jf(t,e,n,l,i)}
+function _o(t,e){
+l0(t.x,e.x,e.scaleX,e.scale,e.originX),l0(t.y,e.y,e.scaleY,e.scale,e.originY)}
+function ww(t,e){
+return _w(LN(t.getBoundingClientRect(),e))}
+function VN(t,e,n){
+const i=ww(t,n),{
+scroll:r}
+=e;
+return r&&(vo(i.x,r.offset.x),vo(i.y,r.offset.y)),i}
+const BN={
+x:"translateX",y:"translateY",z:"translateZ",transformPerspective:"perspective"}
+,FN=No.length;
+function GN(t,e,n){
+let i="",r=!0;
+for(let l=0;
+l<FN;
+l++){
+const u=No[l],d=t[u];
+if(d===void 0)continue;
+let h=!0;
+if(typeof d=="number")h=d===(u.startsWith("scale")?1:0);
+else{
+const p=parseFloat(d);
+h=u.startsWith("scale")?p===1:p===0}
+if(!h||n){
+const p=lw(d,Yh[u]);
+if(!h){
+r=!1;
+const g=BN[u]||u;
+i+=`${
+g}
+(${
+p}
+) `}
+n&&(e[u]=p)}
+}
+return i=i.trim(),n?i=n(e,r?"":i):r&&(i="none"),i}
+function ep(t,e,n){
+const{
+style:i,vars:r,transformOrigin:l}
+=t;
+let u=!1,d=!1;
+for(const h in e){
+const p=e[h];
+if(Mo.has(h)){
+u=!0;
+continue}
+else if(DS(h)){
+r[h]=p;
+continue}
+else{
+const g=lw(p,Yh[h]);
+h.startsWith("origin")?(d=!0,l[h]=g):i[h]=g}
+}
+if(e.transform||(u||n?i.transform=GN(e,t.transform,n):i.transform&&(i.transform="none")),d){
+const{
+originX:h="50%",originY:p="50%",originZ:g=0}
+=l;
+i.transformOrigin=`${
+h}
+ ${
+p}
+ ${
+g}
+`}
+}
+function Ew(t,{
+style:e,vars:n}
+,i,r){
+const l=t.style;
+let u;
+for(u in e)l[u]=e[u];
+r==null||r.applyProjectionStyles(l,i);
+for(u in n)l.setProperty(u,n[u])}
+function u0(t,e){
+return e.max===e.min?0:t/(e.max-e.min)*100}
+const Nr={
+correct:(t,e)=>{
+if(!e.target)return t;
+if(typeof t=="string")if(ne.test(t))t=parseFloat(t);
+else return t;
+const n=u0(t,e.target.x),i=u0(t,e.target.y);
+return`${
+n}
+% ${
+i}
+%`}
+}
+,qN={
+correct:(t,{
+treeScale:e,projectionDelta:n}
+)=>{
+const i=t,r=Oi.parse(t);
+if(r.length>5)return i;
+const l=Oi.createTransformer(t),u=typeof r[0]!="number"?1:0,d=n.x.scale*e.x,h=n.y.scale*e.y;
+r[0+u]/=d,r[1+u]/=h;
+const p=Ke(d,h,.5);
+return typeof r[2+u]=="number"&&(r[2+u]/=p),typeof r[3+u]=="number"&&(r[3+u]/=p),l(r)}
+}
+,Wf={
+borderRadius:{
+...Nr,applyTo:["borderTopLeftRadius","borderTopRightRadius","borderBottomLeftRadius","borderBottomRightRadius"]}
+,borderTopLeftRadius:Nr,borderTopRightRadius:Nr,borderBottomLeftRadius:Nr,borderBottomRightRadius:Nr,boxShadow:qN}
+;
+function bw(t,{
+layout:e,layoutId:n}
+){
+return Mo.has(t)||t.startsWith("origin")||(e||n!==void 0)&&(!!Wf[t]||t==="opacity")}
+function tp(t,e,n){
+var u;
+const i=t.style,r=e==null?void 0:e.style,l={
+}
+;
+if(!i)return l;
+for(const d in i)(ht(i[d])||r&&ht(r[d])||bw(d,t)||((u=n==null?void 0:n.getValue(d))==null?void 0:u.liveStyle)!==void 0)&&(l[d]=i[d]);
+return l}
+function HN(t){
+return window.getComputedStyle(t)}
+class zN extends vw{
+constructor(){
+super(...arguments),this.type="html",this.renderInstance=Ew}
+readValueFromInstance(e,n){
+var i;
+if(Mo.has(n))return(i=this.projection)!=null&&i.isProjecting?Of(n):d1(e,n);
+{
+const r=HN(e),l=(DS(n)?r.getPropertyValue(n):r[n])||0;
+return typeof l=="string"?l.trim():l}
+}
+measureInstanceViewportBox(e,{
+transformPagePoint:n}
+){
+return ww(e,n)}
+build(e,n,i){
+ep(e,n,i.transformTemplate)}
+scrapeMotionValuesFromProps(e,n,i){
+return tp(e,n,i)}
+}
+const $N={
+offset:"stroke-dashoffset",array:"stroke-dasharray"}
+,JN={
+offset:"strokeDashoffset",array:"strokeDasharray"}
+;
+function KN(t,e,n=1,i=0,r=!0){
+t.pathLength=1;
+const l=r?$N:JN;
+t[l.offset]=`${
+-i}
+`,t[l.array]=`${
+e}
+ ${
+n}
+`}
+const YN=["offsetDistance","offsetPath","offsetRotate","offsetAnchor"];
+function Aw(t,{
+attrX:e,attrY:n,attrScale:i,pathLength:r,pathSpacing:l=1,pathOffset:u=0,...d}
+,h,p,g){
+if(ep(t,d,p),h){
+t.style.viewBox&&(t.attrs.viewBox=t.style.viewBox);
+return}
+t.attrs=t.style,t.style={
+}
+;
+const{
+attrs:_,style:T}
+=t;
+_.transform&&(T.transform=_.transform,delete _.transform),(T.transform||_.transformOrigin)&&(T.transformOrigin=_.transformOrigin??"50% 50%",delete _.transformOrigin),T.transform&&(T.transformBox=(g==null?void 0:g.transformBox)??"fill-box",delete _.transformBox);
+for(const w of YN)_[w]!==void 0&&(T[w]=_[w],delete _[w]);
+e!==void 0&&(_.x=e),n!==void 0&&(_.y=n),i!==void 0&&(_.scale=i),r!==void 0&&KN(_,r,l,u,!1)}
+const Cw=new Set(["baseFrequency","diffuseConstant","kernelMatrix","kernelUnitLength","keySplines","keyTimes","limitingConeAngle","markerHeight","markerWidth","numOctaves","targetX","targetY","surfaceScale","specularConstant","specularExponent","stdDeviation","tableValues","viewBox","gradientTransform","pathLength","startOffset","textLength","lengthAdjust"]),xw=t=>typeof t=="string"&&t.toLowerCase()==="svg";
+function jN(t,e,n,i){
+Ew(t,e,void 0,i);
+for(const r in e.attrs)t.setAttribute(Cw.has(r)?r:Kh(r),e.attrs[r])}
+function Rw(t,e,n){
+const i=tp(t,e,n);
+for(const r in t)if(ht(t[r])||ht(e[r])){
+const l=No.indexOf(r)!==-1?"attr"+r.charAt(0).toUpperCase()+r.substring(1):r;
+i[l]=t[r]}
+return i}
+class WN extends vw{
+constructor(){
+super(...arguments),this.type="svg",this.isSVGTag=!1,this.measureInstanceViewportBox=ut}
+getBaseTargetFromProps(e,n){
+return e[n]}
+readValueFromInstance(e,n){
+if(Mo.has(n)){
+const i=ow(n);
+return i&&i.default||0}
+return n=Cw.has(n)?n:Kh(n),e.getAttribute(n)}
+scrapeMotionValuesFromProps(e,n,i){
+return Rw(e,n,i)}
+build(e,n,i){
+Aw(e,n,this.isSVGTag,i.transformTemplate,i.style)}
+renderInstance(e,n,i,r){
+jN(e,n,i,r)}
+mount(e){
+this.isSVGTag=xw(e.tagName),super.mount(e)}
+}
+const XN=Zh.length;
+function Nw(t){
+if(!t)return;
+if(!t.isControllingVariants){
+const n=t.parent?Nw(t.parent)||{
+}
+:{
+}
+;
+return t.props.initial!==void 0&&(n.initial=t.props.initial),n}
+const e={
+}
+;
+for(let n=0;
+n<XN;
+n++){
+const i=Zh[n],r=t.props[i];
+(Jr(r)||r===!1)&&(e[i]=r)}
+return e}
+function Mw(t,e){
+if(!Array.isArray(e))return!1;
+const n=e.length;
+if(n!==t.length)return!1;
+for(let i=0;
+i<n;
+i++)if(e[i]!==t[i])return!1;
+return!0}
+const QN=[...Qh].reverse(),ZN=Qh.length;
+function eM(t){
+return e=>Promise.all(e.map(({
+animation:n,options:i}
+)=>Z1(t,n,i)))}
+function tM(t){
+let e=eM(t),n=c0(),i=!0;
+const r=h=>(p,g)=>{
+var T;
+const _=Eo(t,g,h==="exit"?(T=t.presenceContext)==null?void 0:T.custom:void 0);
+if(_){
+const{
+transition:w,transitionEnd:A,...C}
+=_;
+p={
+...p,...C,...A}
+}
+return p}
+;
+function l(h){
+e=h(t)}
+function u(h){
+const{
+props:p}
+=t,g=Nw(t.parent)||{
+}
+,_=[],T=new Set;
+let w={
+}
+,A=1/0;
+for(let x=0;
+x<ZN;
+x++){
+const R=QN[x],k=n[R],N=p[R]!==void 0?p[R]:g[R],O=Jr(N),F=R===h?k.isActive:null;
+F===!1&&(A=x);
+let z=N===g[R]&&N!==p[R]&&O;
+if(z&&i&&t.manuallyAnimateOnMount&&(z=!1),k.protectedKeys={
+...w}
+,!k.isActive&&F===null||!N&&!k.prevProp||vu(N)||typeof N=="boolean")continue;
+const G=nM(k.prevProp,N);
+let X=G||R===h&&k.isActive&&!z&&O||x>A&&O,j=!1;
+const oe=Array.isArray(N)?N:[N];
+let he=oe.reduce(r(R),{
+}
+);
+F===!1&&(he={
+}
+);
+const{
+prevResolvedValues:Ie={
+}
+}
+=k,Ae={
+...Ie,...he}
+,$e=W=>{
+X=!0,T.has(W)&&(j=!0,T.delete(W)),k.needsAnimating[W]=!0;
+const ee=t.getValue(W);
+ee&&(ee.liveStyle=!1)}
+;
+for(const W in Ae){
+const ee=he[W],Se=Ie[W];
+if(w.hasOwnProperty(W))continue;
+let Ce=!1;
+Hf(ee)&&Hf(Se)?Ce=!Mw(ee,Se):Ce=ee!==Se,Ce?ee!=null?$e(W):T.add(W):ee!==void 0&&T.has(W)?$e(W):k.protectedKeys[W]=!0}
+k.prevProp=N,k.prevResolvedValues=he,k.isActive&&(w={
+...w,...he}
+),i&&t.blockInitialAnimation&&(X=!1);
+const mt=z&&G;
+X&&(!mt||j)&&_.push(...oe.map(W=>{
+const ee={
+type:R}
+;
+if(typeof W=="string"&&i&&!mt&&t.manuallyAnimateOnMount&&t.parent){
+const{
+parent:Se}
+=t,Ce=Eo(Se,W);
+if(Se.enteringChildren&&Ce){
+const{
+delayChildren:D}
+=Ce.transition||{
+}
+;
+ee.delay=XS(Se.enteringChildren,t,D)}
+}
+return{
+animation:W,options:ee}
+}
+))}
+if(T.size){
+const x={
+}
+;
+if(typeof p.initial!="boolean"){
+const R=Eo(t,Array.isArray(p.initial)?p.initial[0]:p.initial);
+R&&R.transition&&(x.transition=R.transition)}
+T.forEach(R=>{
+const k=t.getBaseTarget(R),N=t.getValue(R);
+N&&(N.liveStyle=!0),x[R]=k??null}
+),_.push({
+animation:x}
+)}
+let C=!!_.length;
+return i&&(p.initial===!1||p.initial===p.animate)&&!t.manuallyAnimateOnMount&&(C=!1),i=!1,C?e(_):Promise.resolve()}
+function d(h,p){
+var _;
+if(n[h].isActive===p)return Promise.resolve();
+(_=t.variantChildren)==null||_.forEach(T=>{
+var w;
+return(w=T.animationState)==null?void 0:w.setActive(h,p)}
+),n[h].isActive=p;
+const g=u(h);
+for(const T in n)n[T].protectedKeys={
+}
+;
+return g}
+return{
+animateChanges:u,setActive:d,setAnimateFunction:l,getState:()=>n,reset:()=>{
+n=c0()}
+}
+}
+function nM(t,e){
+return typeof e=="string"?e!==t:Array.isArray(e)?!Mw(e,t):!1}
+function os(t=!1){
+return{
+isActive:t,protectedKeys:{
+}
+,needsAnimating:{
+}
+,prevResolvedValues:{
+}
+}
+}
+function c0(){
+return{
+animate:os(!0),whileInView:os(),whileHover:os(),whileTap:os(),whileDrag:os(),whileFocus:os(),exit:os()}
+}
+function d0(t,e){
+t.min=e.min,t.max=e.max}
+function vn(t,e){
+d0(t.x,e.x),d0(t.y,e.y)}
+function f0(t,e){
+t.translate=e.translate,t.scale=e.scale,t.originPoint=e.originPoint,t.origin=e.origin}
+const Iw=1e-4,iM=1-Iw,sM=1+Iw,Dw=.01,oM=0-Dw,rM=0+Dw;
+function Nt(t){
+return t.max-t.min}
+function aM(t,e,n){
+return Math.abs(t-e)<=n}
+function h0(t,e,n,i=.5){
+t.origin=i,t.originPoint=Ke(e.min,e.max,t.origin),t.scale=Nt(n)/Nt(e),t.translate=Ke(n.min,n.max,t.origin)-t.originPoint,(t.scale>=iM&&t.scale<=sM||isNaN(t.scale))&&(t.scale=1),(t.translate>=oM&&t.translate<=rM||isNaN(t.translate))&&(t.translate=0)}
+function Br(t,e,n,i){
+h0(t.x,e.x,n.x,i?i.originX:void 0),h0(t.y,e.y,n.y,i?i.originY:void 0)}
+function p0(t,e,n){
+t.min=n.min+e.min,t.max=t.min+Nt(e)}
+function lM(t,e,n){
+p0(t.x,e.x,n.x),p0(t.y,e.y,n.y)}
+function m0(t,e,n){
+t.min=e.min-n.min,t.max=t.min+Nt(e)}
+function tu(t,e,n){
+m0(t.x,e.x,n.x),m0(t.y,e.y,n.y)}
+function g0(t,e,n,i,r){
+return t-=e,t=eu(t,1/n,i),r!==void 0&&(t=eu(t,1/r,i)),t}
+function uM(t,e=0,n=1,i=.5,r,l=t,u=t){
+if(kn.test(e)&&(e=parseFloat(e),e=Ke(u.min,u.max,e/100)-u.min),typeof e!="number")return;
+let d=Ke(l.min,l.max,i);
+t===l&&(d-=e),t.min=g0(t.min,e,n,d,r),t.max=g0(t.max,e,n,d,r)}
+function y0(t,e,[n,i,r],l,u){
+uM(t,e[n],e[i],e[r],e.scale,l,u)}
+const cM=["x","scaleX","originX"],dM=["y","scaleY","originY"];
+function v0(t,e,n,i){
+y0(t.x,e,cM,n?n.x:void 0,i?i.x:void 0),y0(t.y,e,dM,n?n.y:void 0,i?i.y:void 0)}
+function _0(t){
+return t.translate===0&&t.scale===1}
+function kw(t){
+return _0(t.x)&&_0(t.y)}
+function T0(t,e){
+return t.min===e.min&&t.max===e.max}
+function fM(t,e){
+return T0(t.x,e.x)&&T0(t.y,e.y)}
+function S0(t,e){
+return Math.round(t.min)===Math.round(e.min)&&Math.round(t.max)===Math.round(e.max)}
+function Uw(t,e){
+return S0(t.x,e.x)&&S0(t.y,e.y)}
+function w0(t){
+return Nt(t.x)/Nt(t.y)}
+function E0(t,e){
+return t.translate===e.translate&&t.scale===e.scale&&t.originPoint===e.originPoint}
+function cn(t){
+return[t("x"),t("y")]}
+function hM(t,e,n){
+let i="";
+const r=t.x.translate/e.x,l=t.y.translate/e.y,u=(n==null?void 0:n.z)||0;
+if((r||l||u)&&(i=`translate3d(${
+r}
+px, ${
+l}
+px, ${
+u}
+px) `),(e.x!==1||e.y!==1)&&(i+=`scale(${
+1/e.x}
+, ${
+1/e.y}
+) `),n){
+const{
+transformPerspective:p,rotate:g,rotateX:_,rotateY:T,skewX:w,skewY:A}
+=n;
+p&&(i=`perspective(${
+p}
+px) ${
+i}
+`),g&&(i+=`rotate(${
+g}
+deg) `),_&&(i+=`rotateX(${
+_}
+deg) `),T&&(i+=`rotateY(${
+T}
+deg) `),w&&(i+=`skewX(${
+w}
+deg) `),A&&(i+=`skewY(${
+A}
+deg) `)}
+const d=t.x.scale*e.x,h=t.y.scale*e.y;
+return(d!==1||h!==1)&&(i+=`scale(${
+d}
+, ${
+h}
+)`),i||"none"}
+const Pw=["TopLeft","TopRight","BottomLeft","BottomRight"],pM=Pw.length,b0=t=>typeof t=="string"?parseFloat(t):t,A0=t=>typeof t=="number"||ne.test(t);
+function mM(t,e,n,i,r,l){
+r?(t.opacity=Ke(0,n.opacity??1,gM(i)),t.opacityExit=Ke(e.opacity??1,0,yM(i))):l&&(t.opacity=Ke(e.opacity??1,n.opacity??1,i));
+for(let u=0;
+u<pM;
+u++){
+const d=`border${
+Pw[u]}
+Radius`;
+let h=C0(e,d),p=C0(n,d);
+if(h===void 0&&p===void 0)continue;
+h||(h=0),p||(p=0),h===0||p===0||A0(h)===A0(p)?(t[d]=Math.max(Ke(b0(h),b0(p),i),0),(kn.test(p)||kn.test(h))&&(t[d]+="%")):t[d]=p}
+(e.rotate||n.rotate)&&(t.rotate=Ke(e.rotate||0,n.rotate||0,i))}
+function C0(t,e){
+return t[e]!==void 0?t[e]:t.borderRadius}
+const gM=Lw(0,.5,CS),yM=Lw(.5,.95,Vt);
+function Lw(t,e,n){
+return i=>i<t?0:i>e?1:n(xo(t,e,i))}
+function vM(t,e,n){
+const i=ht(t)?t:bn(t);
+return i.start($h("",i,e,n)),i.animation}
+function Kr(t,e,n,i={
+passive:!0}
+){
+return t.addEventListener(e,n,i),()=>t.removeEventListener(e,n)}
+const _M=(t,e)=>t.depth-e.depth;
+class TM{
+constructor(){
+this.children=[],this.isDirty=!1}
+add(e){
+Rh(this.children,e),this.isDirty=!0}
+remove(e){
+Nh(this.children,e),this.isDirty=!0}
+forEach(e){
+this.isDirty&&this.children.sort(_M),this.isDirty=!1,this.children.forEach(e)}
+}
+function SM(t,e){
+const n=Rt.now(),i=({
+timestamp:r}
+)=>{
+const l=r-n;
+l>=e&&(hn(i),t(l-e))}
+;
+return Ne.setup(i,!0),()=>hn(i)}
+function $l(t){
+return ht(t)?t.get():t}
+class wM{
+constructor(){
+this.members=[]}
+add(e){
+Rh(this.members,e),e.scheduleRender()}
+remove(e){
+if(Nh(this.members,e),e===this.prevLead&&(this.prevLead=void 0),e===this.lead){
+const n=this.members[this.members.length-1];
+n&&this.promote(n)}
+}
+relegate(e){
+const n=this.members.findIndex(r=>e===r);
+if(n===0)return!1;
+let i;
+for(let r=n;
+r>=0;
+r--){
+const l=this.members[r];
+if(l.isPresent!==!1){
+i=l;
+break}
+}
+return i?(this.promote(i),!0):!1}
+promote(e,n){
+const i=this.lead;
+if(e!==i&&(this.prevLead=i,this.lead=e,e.show(),i)){
+i.instance&&i.scheduleRender(),e.scheduleRender();
+const r=i.options.layoutDependency,l=e.options.layoutDependency;
+r!==void 0&&l!==void 0&&r===l||(e.resumeFrom=i,n&&(e.resumeFrom.preserveOpacity=!0),i.snapshot&&(e.snapshot=i.snapshot,e.snapshot.latestValues=i.animationValues||i.latestValues),e.root&&e.root.isUpdating&&(e.isLayoutDirty=!0));
+const{
+crossfade:d}
+=e.options;
+d===!1&&i.hide()}
+}
+exitAnimationComplete(){
+this.members.forEach(e=>{
+const{
+options:n,resumingFrom:i}
+=e;
+n.onExitComplete&&n.onExitComplete(),i&&i.options.onExitComplete&&i.options.onExitComplete()}
+)}
+scheduleRender(){
+this.members.forEach(e=>{
+e.instance&&e.scheduleRender(!1)}
+)}
+removeLeadSnapshot(){
+this.lead&&this.lead.snapshot&&(this.lead.snapshot=void 0)}
+}
+const Jl={
+hasAnimatedSinceResize:!0,hasEverUpdated:!1}
+,uf=["","X","Y","Z"],EM=1e3;
+let bM=0;
+function cf(t,e,n,i){
+const{
+latestValues:r}
+=e;
+r[t]&&(n[t]=r[t],e.setStaticValue(t,0),i&&(i[t]=0))}
+function Ow(t){
+if(t.hasCheckedOptimisedAppear=!0,t.root===t)return;
+const{
+visualElement:e}
+=t.options;
+if(!e)return;
+const n=tw(e);
+if(window.MotionHasOptimisedAnimation(n,"transform")){
+const{
+layout:r,layoutId:l}
+=t.options;
+window.MotionCancelOptimisedAnimation(n,"transform",Ne,!(r||l))}
+const{
+parent:i}
+=t;
+i&&!i.hasCheckedOptimisedAppear&&Ow(i)}
+function Vw({
+attachResizeListener:t,defaultParent:e,measureScroll:n,checkIsScrollRoot:i,resetTransform:r}
+){
+return class{
+constructor(u={
+}
+,d=e==null?void 0:e()){
+this.id=bM++,this.animationId=0,this.animationCommitId=0,this.children=new Set,this.options={
+}
+,this.isTreeAnimating=!1,this.isAnimationBlocked=!1,this.isLayoutDirty=!1,this.isProjectionDirty=!1,this.isSharedProjectionDirty=!1,this.isTransformDirty=!1,this.updateManuallyBlocked=!1,this.updateBlockedByResize=!1,this.isUpdating=!1,this.isSVG=!1,this.needsReset=!1,this.shouldResetTransform=!1,this.hasCheckedOptimisedAppear=!1,this.treeScale={
+x:1,y:1}
+,this.eventHandlers=new Map,this.hasTreeAnimated=!1,this.layoutVersion=0,this.updateScheduled=!1,this.scheduleUpdate=()=>this.update(),this.projectionUpdateScheduled=!1,this.checkUpdateFailed=()=>{
+this.isUpdating&&(this.isUpdating=!1,this.clearAllSnapshots())}
+,this.updateProjection=()=>{
+this.projectionUpdateScheduled=!1,this.nodes.forEach(xM),this.nodes.forEach(IM),this.nodes.forEach(DM),this.nodes.forEach(RM)}
+,this.resolvedRelativeTargetAt=0,this.linkedParentVersion=0,this.hasProjected=!1,this.isVisible=!0,this.animationProgress=0,this.sharedNodes=new Map,this.latestValues=u,this.root=d?d.root||d:this,this.path=d?[...d.path,d]:[],this.parent=d,this.depth=d?d.depth+1:0;
+for(let h=0;
+h<this.path.length;
+h++)this.path[h].shouldResetTransform=!0;
+this.root===this&&(this.nodes=new TM)}
+addEventListener(u,d){
+return this.eventHandlers.has(u)||this.eventHandlers.set(u,new Ih),this.eventHandlers.get(u).add(d)}
+notifyListeners(u,...d){
+const h=this.eventHandlers.get(u);
+h&&h.notify(...d)}
+hasListeners(u){
+return this.eventHandlers.has(u)}
+mount(u){
+if(this.instance)return;
+this.isSVG=Xh(u)&&!bN(u),this.instance=u;
+const{
+layoutId:d,layout:h,visualElement:p}
+=this.options;
+if(p&&!p.current&&p.mount(u),this.root.nodes.add(this),this.parent&&this.parent.children.add(this),this.root.hasTreeAnimated&&(h||d)&&(this.isLayoutDirty=!0),t){
+let g,_=0;
+const T=()=>this.root.updateBlockedByResize=!1;
+Ne.read(()=>{
+_=window.innerWidth}
+),t(u,()=>{
+const w=window.innerWidth;
+w!==_&&(_=w,this.root.updateBlockedByResize=!0,g&&g(),g=SM(T,250),Jl.hasAnimatedSinceResize&&(Jl.hasAnimatedSinceResize=!1,this.nodes.forEach(N0)))}
+)}
+d&&this.root.registerSharedNode(d,this),this.options.animate!==!1&&p&&(d||h)&&this.addEventListener("didUpdate",({
+delta:g,hasLayoutChanged:_,hasRelativeLayoutChanged:T,layout:w}
+)=>{
+if(this.isTreeAnimationBlocked()){
+this.target=void 0,this.relativeTarget=void 0;
+return}
+const A=this.options.transition||p.getDefaultTransition()||OM,{
+onLayoutAnimationStart:C,onLayoutAnimationComplete:x}
+=p.getProps(),R=!this.targetLayout||!Uw(this.targetLayout,w),k=!_&&T;
+if(this.options.layoutRoot||this.resumeFrom||k||_&&(R||!this.currentAnimation)){
+this.resumeFrom&&(this.resumingFrom=this.resumeFrom,this.resumingFrom.resumingFrom=void 0);
+const N={
+...zh(A,"layout"),onPlay:C,onComplete:x}
+;
+(p.shouldReduceMotion||this.options.layoutRoot)&&(N.delay=0,N.type=!1),this.startAnimation(N),this.setAnimationOrigin(g,k)}
+else _||N0(this),this.isLead()&&this.options.onExitComplete&&this.options.onExitComplete();
+this.targetLayout=w}
+)}
+unmount(){
+this.options.layoutId&&this.willUpdate(),this.root.nodes.remove(this);
+const u=this.getStack();
+u&&u.remove(this),this.parent&&this.parent.children.delete(this),this.instance=void 0,this.eventHandlers.clear(),hn(this.updateProjection)}
+blockUpdate(){
+this.updateManuallyBlocked=!0}
+unblockUpdate(){
+this.updateManuallyBlocked=!1}
+isUpdateBlocked(){
+return this.updateManuallyBlocked||this.updateBlockedByResize}
+isTreeAnimationBlocked(){
+return this.isAnimationBlocked||this.parent&&this.parent.isTreeAnimationBlocked()||!1}
+startUpdate(){
+this.isUpdateBlocked()||(this.isUpdating=!0,this.nodes&&this.nodes.forEach(kM),this.animationId++)}
+getTransformTemplate(){
+const{
+visualElement:u}
+=this.options;
+return u&&u.getProps().transformTemplate}
+willUpdate(u=!0){
+if(this.root.hasTreeAnimated=!0,this.root.isUpdateBlocked()){
+this.options.onExitComplete&&this.options.onExitComplete();
+return}
+if(window.MotionCancelOptimisedAnimation&&!this.hasCheckedOptimisedAppear&&Ow(this),!this.root.isUpdating&&this.root.startUpdate(),this.isLayoutDirty)return;
+this.isLayoutDirty=!0;
+for(let g=0;
+g<this.path.length;
+g++){
+const _=this.path[g];
+_.shouldResetTransform=!0,_.updateScroll("snapshot"),_.options.layoutRoot&&_.willUpdate(!1)}
+const{
+layoutId:d,layout:h}
+=this.options;
+if(d===void 0&&!h)return;
+const p=this.getTransformTemplate();
+this.prevTransformTemplateValue=p?p(this.latestValues,""):void 0,this.updateSnapshot(),u&&this.notifyListeners("willUpdate")}
+update(){
+if(this.updateScheduled=!1,this.isUpdateBlocked()){
+this.unblockUpdate(),this.clearAllSnapshots(),this.nodes.forEach(x0);
+return}
+if(this.animationId<=this.animationCommitId){
+this.nodes.forEach(R0);
+return}
+this.animationCommitId=this.animationId,this.isUpdating?(this.isUpdating=!1,this.nodes.forEach(MM),this.nodes.forEach(AM),this.nodes.forEach(CM)):this.nodes.forEach(R0),this.clearAllSnapshots();
+const d=Rt.now();
+ft.delta=xn(0,1e3/60,d-ft.timestamp),ft.timestamp=d,ft.isProcessing=!0,ef.update.process(ft),ef.preRender.process(ft),ef.render.process(ft),ft.isProcessing=!1}
+didUpdate(){
+this.updateScheduled||(this.updateScheduled=!0,jh.read(this.scheduleUpdate))}
+clearAllSnapshots(){
+this.nodes.forEach(NM),this.sharedNodes.forEach(UM)}
+scheduleUpdateProjection(){
+this.projectionUpdateScheduled||(this.projectionUpdateScheduled=!0,Ne.preRender(this.updateProjection,!1,!0))}
+scheduleCheckAfterUnmount(){
+Ne.postRender(()=>{
+this.isLayoutDirty?this.root.didUpdate():this.root.checkUpdateFailed()}
+)}
+updateSnapshot(){
+this.snapshot||!this.instance||(this.snapshot=this.measure(),this.snapshot&&!Nt(this.snapshot.measuredBox.x)&&!Nt(this.snapshot.measuredBox.y)&&(this.snapshot=void 0))}
+updateLayout(){
+if(!this.instance||(this.updateScroll(),!(this.options.alwaysMeasureLayout&&this.isLead())&&!this.isLayoutDirty))return;
+if(this.resumeFrom&&!this.resumeFrom.instance)for(let h=0;
+h<this.path.length;
+h++)this.path[h].updateScroll();
+const u=this.layout;
+this.layout=this.measure(!1),this.layoutVersion++,this.layoutCorrected=ut(),this.isLayoutDirty=!1,this.projectionDelta=void 0,this.notifyListeners("measure",this.layout.layoutBox);
+const{
+visualElement:d}
+=this.options;
+d&&d.notify("LayoutMeasure",this.layout.layoutBox,u?u.layoutBox:void 0)}
+updateScroll(u="measure"){
+let d=!!(this.options.layoutScroll&&this.instance);
+if(this.scroll&&this.scroll.animationId===this.root.animationId&&this.scroll.phase===u&&(d=!1),d&&this.instance){
+const h=i(this.instance);
+this.scroll={
+animationId:this.root.animationId,phase:u,isRoot:h,offset:n(this.instance),wasRoot:this.scroll?this.scroll.isRoot:h}
+}
+}
+resetTransform(){
+if(!r)return;
+const u=this.isLayoutDirty||this.shouldResetTransform||this.options.alwaysMeasureLayout,d=this.projectionDelta&&!kw(this.projectionDelta),h=this.getTransformTemplate(),p=h?h(this.latestValues,""):void 0,g=p!==this.prevTransformTemplateValue;
+u&&this.instance&&(d||ls(this.latestValues)||g)&&(r(this.instance,p),this.shouldResetTransform=!1,this.scheduleRender())}
+measure(u=!0){
+const d=this.measurePageBox();
+let h=this.removeElementScroll(d);
+return u&&(h=this.removeTransform(h)),VM(h),{
+animationId:this.root.animationId,measuredBox:d,layoutBox:h,latestValues:{
+}
+,source:this.id}
+}
+measurePageBox(){
+var p;
+const{
+visualElement:u}
+=this.options;
+if(!u)return ut();
+const d=u.measureViewportBox();
+if(!(((p=this.scroll)==null?void 0:p.wasRoot)||this.path.some(BM))){
+const{
+scroll:g}
+=this.root;
+g&&(vo(d.x,g.offset.x),vo(d.y,g.offset.y))}
+return d}
+removeElementScroll(u){
+var h;
+const d=ut();
+if(vn(d,u),(h=this.scroll)!=null&&h.wasRoot)return d;
+for(let p=0;
+p<this.path.length;
+p++){
+const g=this.path[p],{
+scroll:_,options:T}
+=g;
+g!==this.root&&_&&T.layoutScroll&&(_.wasRoot&&vn(d,u),vo(d.x,_.offset.x),vo(d.y,_.offset.y))}
+return d}
+applyTransform(u,d=!1){
+const h=ut();
+vn(h,u);
+for(let p=0;
+p<this.path.length;
+p++){
+const g=this.path[p];
+!d&&g.options.layoutScroll&&g.scroll&&g!==g.root&&_o(h,{
+x:-g.scroll.offset.x,y:-g.scroll.offset.y}
+),ls(g.latestValues)&&_o(h,g.latestValues)}
+return ls(this.latestValues)&&_o(h,this.latestValues),h}
+removeTransform(u){
+const d=ut();
+vn(d,u);
+for(let h=0;
+h<this.path.length;
+h++){
+const p=this.path[h];
+if(!p.instance||!ls(p.latestValues))continue;
+Yf(p.latestValues)&&p.updateSnapshot();
+const g=ut(),_=p.measurePageBox();
+vn(g,_),v0(d,p.latestValues,p.snapshot?p.snapshot.layoutBox:void 0,g)}
+return ls(this.latestValues)&&v0(d,this.latestValues),d}
+setTargetDelta(u){
+this.targetDelta=u,this.root.scheduleUpdateProjection(),this.isProjectionDirty=!0}
+setOptions(u){
+this.options={
+...this.options,...u,crossfade:u.crossfade!==void 0?u.crossfade:!0}
+}
+clearMeasurements(){
+this.scroll=void 0,this.layout=void 0,this.snapshot=void 0,this.prevTransformTemplateValue=void 0,this.targetDelta=void 0,this.target=void 0,this.isLayoutDirty=!1}
+forceRelativeParentToResolveTarget(){
+this.relativeParent&&this.relativeParent.resolvedRelativeTargetAt!==ft.timestamp&&this.relativeParent.resolveTargetDelta(!0)}
+resolveTargetDelta(u=!1){
+var w;
+const d=this.getLead();
+this.isProjectionDirty||(this.isProjectionDirty=d.isProjectionDirty),this.isTransformDirty||(this.isTransformDirty=d.isTransformDirty),this.isSharedProjectionDirty||(this.isSharedProjectionDirty=d.isSharedProjectionDirty);
+const h=!!this.resumingFrom||this!==d;
+if(!(u||h&&this.isSharedProjectionDirty||this.isProjectionDirty||(w=this.parent)!=null&&w.isProjectionDirty||this.attemptToResolveRelativeTarget||this.root.updateBlockedByResize))return;
+const{
+layout:g,layoutId:_}
+=this.options;
+if(!this.layout||!(g||_))return;
+this.resolvedRelativeTargetAt=ft.timestamp;
+const T=this.getClosestProjectingParent();
+T&&this.linkedParentVersion!==T.layoutVersion&&!T.options.layoutRoot&&this.removeRelativeTarget(),!this.targetDelta&&!this.relativeTarget&&(T&&T.layout?this.createRelativeTarget(T,this.layout.layoutBox,T.layout.layoutBox):this.removeRelativeTarget()),!(!this.relativeTarget&&!this.targetDelta)&&(this.target||(this.target=ut(),this.targetWithTransforms=ut()),this.relativeTarget&&this.relativeTargetOrigin&&this.relativeParent&&this.relativeParent.target?(this.forceRelativeParentToResolveTarget(),lM(this.target,this.relativeTarget,this.relativeParent.target)):this.targetDelta?(this.resumingFrom?this.target=this.applyTransform(this.layout.layoutBox):vn(this.target,this.layout.layoutBox),Sw(this.target,this.targetDelta)):vn(this.target,this.layout.layoutBox),this.attemptToResolveRelativeTarget&&(this.attemptToResolveRelativeTarget=!1,T&&!!T.resumingFrom==!!this.resumingFrom&&!T.options.layoutScroll&&T.target&&this.animationProgress!==1?this.createRelativeTarget(T,this.target,T.target):this.relativeParent=this.relativeTarget=void 0))}
+getClosestProjectingParent(){
+if(!(!this.parent||Yf(this.parent.latestValues)||Tw(this.parent.latestValues)))return this.parent.isProjecting()?this.parent:this.parent.getClosestProjectingParent()}
+isProjecting(){
+return!!((this.relativeTarget||this.targetDelta||this.options.layoutRoot)&&this.layout)}
+createRelativeTarget(u,d,h){
+this.relativeParent=u,this.linkedParentVersion=u.layoutVersion,this.forceRelativeParentToResolveTarget(),this.relativeTarget=ut(),this.relativeTargetOrigin=ut(),tu(this.relativeTargetOrigin,d,h),vn(this.relativeTarget,this.relativeTargetOrigin)}
+removeRelativeTarget(){
+this.relativeParent=this.relativeTarget=void 0}
+calcProjection(){
+var A;
+const u=this.getLead(),d=!!this.resumingFrom||this!==u;
+let h=!0;
+if((this.isProjectionDirty||(A=this.parent)!=null&&A.isProjectionDirty)&&(h=!1),d&&(this.isSharedProjectionDirty||this.isTransformDirty)&&(h=!1),this.resolvedRelativeTargetAt===ft.timestamp&&(h=!1),h)return;
+const{
+layout:p,layoutId:g}
+=this.options;
+if(this.isTreeAnimating=!!(this.parent&&this.parent.isTreeAnimating||this.currentAnimation||this.pendingAnimation),this.isTreeAnimating||(this.targetDelta=this.relativeTarget=void 0),!this.layout||!(p||g))return;
+vn(this.layoutCorrected,this.layout.layoutBox);
+const _=this.treeScale.x,T=this.treeScale.y;
+ON(this.layoutCorrected,this.treeScale,this.path,d),u.layout&&!u.target&&(this.treeScale.x!==1||this.treeScale.y!==1)&&(u.target=u.layout.layoutBox,u.targetWithTransforms=ut());
+const{
+target:w}
+=u;
+if(!w){
+this.prevProjectionDelta&&(this.createProjectionDeltas(),this.scheduleRender());
+return}
+!this.projectionDelta||!this.prevProjectionDelta?this.createProjectionDeltas():(f0(this.prevProjectionDelta.x,this.projectionDelta.x),f0(this.prevProjectionDelta.y,this.projectionDelta.y)),Br(this.projectionDelta,this.layoutCorrected,w,this.latestValues),(this.treeScale.x!==_||this.treeScale.y!==T||!E0(this.projectionDelta.x,this.prevProjectionDelta.x)||!E0(this.projectionDelta.y,this.prevProjectionDelta.y))&&(this.hasProjected=!0,this.scheduleRender(),this.notifyListeners("projectionUpdate",w))}
+hide(){
+this.isVisible=!1}
+show(){
+this.isVisible=!0}
+scheduleRender(u=!0){
+var d;
+if((d=this.options.visualElement)==null||d.scheduleRender(),u){
+const h=this.getStack();
+h&&h.scheduleRender()}
+this.resumingFrom&&!this.resumingFrom.instance&&(this.resumingFrom=void 0)}
+createProjectionDeltas(){
+this.prevProjectionDelta=yo(),this.projectionDelta=yo(),this.projectionDeltaWithTransform=yo()}
+setAnimationOrigin(u,d=!1){
+const h=this.snapshot,p=h?h.latestValues:{
+}
+,g={
+...this.latestValues}
+,_=yo();
+(!this.relativeParent||!this.relativeParent.options.layoutRoot)&&(this.relativeTarget=this.relativeTargetOrigin=void 0),this.attemptToResolveRelativeTarget=!d;
+const T=ut(),w=h?h.source:void 0,A=this.layout?this.layout.source:void 0,C=w!==A,x=this.getStack(),R=!x||x.members.length<=1,k=!!(C&&!R&&this.options.crossfade===!0&&!this.path.some(LM));
+this.animationProgress=0;
+let N;
+this.mixTargetDelta=O=>{
+const F=O/1e3;
+M0(_.x,u.x,F),M0(_.y,u.y,F),this.setTargetDelta(_),this.relativeTarget&&this.relativeTargetOrigin&&this.layout&&this.relativeParent&&this.relativeParent.layout&&(tu(T,this.layout.layoutBox,this.relativeParent.layout.layoutBox),PM(this.relativeTarget,this.relativeTargetOrigin,T,F),N&&fM(this.relativeTarget,N)&&(this.isProjectionDirty=!1),N||(N=ut()),vn(N,this.relativeTarget)),C&&(this.animationValues=g,mM(g,p,this.latestValues,F,k,R)),this.root.scheduleUpdateProjection(),this.scheduleRender(),this.animationProgress=F}
+,this.mixTargetDelta(this.options.layoutRoot?1e3:0)}
+startAnimation(u){
+var d,h,p;
+this.notifyListeners("animationStart"),(d=this.currentAnimation)==null||d.stop(),(p=(h=this.resumingFrom)==null?void 0:h.currentAnimation)==null||p.stop(),this.pendingAnimation&&(hn(this.pendingAnimation),this.pendingAnimation=void 0),this.pendingAnimation=Ne.update(()=>{
+Jl.hasAnimatedSinceResize=!0,this.motionValue||(this.motionValue=bn(0)),this.currentAnimation=vM(this.motionValue,[0,1e3],{
+...u,velocity:0,isSync:!0,onUpdate:g=>{
+this.mixTargetDelta(g),u.onUpdate&&u.onUpdate(g)}
+,onStop:()=>{
+}
+,onComplete:()=>{
+u.onComplete&&u.onComplete(),this.completeAnimation()}
+}
+),this.resumingFrom&&(this.resumingFrom.currentAnimation=this.currentAnimation),this.pendingAnimation=void 0}
+)}
+completeAnimation(){
+this.resumingFrom&&(this.resumingFrom.currentAnimation=void 0,this.resumingFrom.preserveOpacity=void 0);
+const u=this.getStack();
+u&&u.exitAnimationComplete(),this.resumingFrom=this.currentAnimation=this.animationValues=void 0,this.notifyListeners("animationComplete")}
+finishAnimation(){
+this.currentAnimation&&(this.mixTargetDelta&&this.mixTargetDelta(EM),this.currentAnimation.stop()),this.completeAnimation()}
+applyTransformsToTarget(){
+const u=this.getLead();
+let{
+targetWithTransforms:d,target:h,layout:p,latestValues:g}
+=u;
+if(!(!d||!h||!p)){
+if(this!==u&&this.layout&&p&&Bw(this.options.animationType,this.layout.layoutBox,p.layoutBox)){
+h=this.target||ut();
+const _=Nt(this.layout.layoutBox.x);
+h.x.min=u.target.x.min,h.x.max=h.x.min+_;
+const T=Nt(this.layout.layoutBox.y);
+h.y.min=u.target.y.min,h.y.max=h.y.min+T}
+vn(d,h),_o(d,g),Br(this.projectionDeltaWithTransform,this.layoutCorrected,d,g)}
+}
+registerSharedNode(u,d){
+this.sharedNodes.has(u)||this.sharedNodes.set(u,new wM),this.sharedNodes.get(u).add(d);
+const p=d.options.initialPromotionConfig;
+d.promote({
+transition:p?p.transition:void 0,preserveFollowOpacity:p&&p.shouldPreserveFollowOpacity?p.shouldPreserveFollowOpacity(d):void 0}
+)}
+isLead(){
+const u=this.getStack();
+return u?u.lead===this:!0}
+getLead(){
+var d;
+const{
+layoutId:u}
+=this.options;
+return u?((d=this.getStack())==null?void 0:d.lead)||this:this}
+getPrevLead(){
+var d;
+const{
+layoutId:u}
+=this.options;
+return u?(d=this.getStack())==null?void 0:d.prevLead:void 0}
+getStack(){
+const{
+layoutId:u}
+=this.options;
+if(u)return this.root.sharedNodes.get(u)}
+promote({
+needsReset:u,transition:d,preserveFollowOpacity:h}
+={
+}
+){
+const p=this.getStack();
+p&&p.promote(this,h),u&&(this.projectionDelta=void 0,this.needsReset=!0),d&&this.setOptions({
+transition:d}
+)}
+relegate(){
+const u=this.getStack();
+return u?u.relegate(this):!1}
+resetSkewAndRotation(){
+const{
+visualElement:u}
+=this.options;
+if(!u)return;
+let d=!1;
+const{
+latestValues:h}
+=u;
+if((h.z||h.rotate||h.rotateX||h.rotateY||h.rotateZ||h.skewX||h.skewY)&&(d=!0),!d)return;
+const p={
+}
+;
+h.z&&cf("z",u,p,this.animationValues);
+for(let g=0;
+g<uf.length;
+g++)cf(`rotate${
+uf[g]}
+`,u,p,this.animationValues),cf(`skew${
+uf[g]}
+`,u,p,this.animationValues);
+u.render();
+for(const g in p)u.setStaticValue(g,p[g]),this.animationValues&&(this.animationValues[g]=p[g]);
+u.scheduleRender()}
+applyProjectionStyles(u,d){
+if(!this.instance||this.isSVG)return;
+if(!this.isVisible){
+u.visibility="hidden";
+return}
+const h=this.getTransformTemplate();
+if(this.needsReset){
+this.needsReset=!1,u.visibility="",u.opacity="",u.pointerEvents=$l(d==null?void 0:d.pointerEvents)||"",u.transform=h?h(this.latestValues,""):"none";
+return}
+const p=this.getLead();
+if(!this.projectionDelta||!this.layout||!p.target){
+this.options.layoutId&&(u.opacity=this.latestValues.opacity!==void 0?this.latestValues.opacity:1,u.pointerEvents=$l(d==null?void 0:d.pointerEvents)||""),this.hasProjected&&!ls(this.latestValues)&&(u.transform=h?h({
+}
+,""):"none",this.hasProjected=!1);
+return}
+u.visibility="";
+const g=p.animationValues||p.latestValues;
+this.applyTransformsToTarget();
+let _=hM(this.projectionDeltaWithTransform,this.treeScale,g);
+h&&(_=h(g,_)),u.transform=_;
+const{
+x:T,y:w}
+=this.projectionDelta;
+u.transformOrigin=`${
+T.origin*100}
+% ${
+w.origin*100}
+% 0`,p.animationValues?u.opacity=p===this?g.opacity??this.latestValues.opacity??1:this.preserveOpacity?this.latestValues.opacity:g.opacityExit:u.opacity=p===this?g.opacity!==void 0?g.opacity:"":g.opacityExit!==void 0?g.opacityExit:0;
+for(const A in Wf){
+if(g[A]===void 0)continue;
+const{
+correct:C,applyTo:x,isCSSVariable:R}
+=Wf[A],k=_==="none"?g[A]:C(g[A],p);
+if(x){
+const N=x.length;
+for(let O=0;
+O<N;
+O++)u[x[O]]=k}
+else R?this.options.visualElement.renderState.vars[A]=k:u[A]=k}
+this.options.layoutId&&(u.pointerEvents=p===this?$l(d==null?void 0:d.pointerEvents)||"":"none")}
+clearSnapshot(){
+this.resumeFrom=this.snapshot=void 0}
+resetTree(){
+this.root.nodes.forEach(u=>{
+var d;
+return(d=u.currentAnimation)==null?void 0:d.stop()}
+),this.root.nodes.forEach(x0),this.root.sharedNodes.clear()}
+}
+}
+function AM(t){
+t.updateLayout()}
+function CM(t){
+var n;
+const e=((n=t.resumeFrom)==null?void 0:n.snapshot)||t.snapshot;
+if(t.isLead()&&t.layout&&e&&t.hasListeners("didUpdate")){
+const{
+layoutBox:i,measuredBox:r}
+=t.layout,{
+animationType:l}
+=t.options,u=e.source!==t.layout.source;
+l==="size"?cn(_=>{
+const T=u?e.measuredBox[_]:e.layoutBox[_],w=Nt(T);
+T.min=i[_].min,T.max=T.min+w}
+):Bw(l,e.layoutBox,i)&&cn(_=>{
+const T=u?e.measuredBox[_]:e.layoutBox[_],w=Nt(i[_]);
+T.max=T.min+w,t.relativeTarget&&!t.currentAnimation&&(t.isProjectionDirty=!0,t.relativeTarget[_].max=t.relativeTarget[_].min+w)}
+);
+const d=yo();
+Br(d,i,e.layoutBox);
+const h=yo();
+u?Br(h,t.applyTransform(r,!0),e.measuredBox):Br(h,i,e.layoutBox);
+const p=!kw(d);
+let g=!1;
+if(!t.resumeFrom){
+const _=t.getClosestProjectingParent();
+if(_&&!_.resumeFrom){
+const{
+snapshot:T,layout:w}
+=_;
+if(T&&w){
+const A=ut();
+tu(A,e.layoutBox,T.layoutBox);
+const C=ut();
+tu(C,i,w.layoutBox),Uw(A,C)||(g=!0),_.options.layoutRoot&&(t.relativeTarget=C,t.relativeTargetOrigin=A,t.relativeParent=_)}
+}
+}
+t.notifyListeners("didUpdate",{
+layout:i,snapshot:e,delta:h,layoutDelta:d,hasLayoutChanged:p,hasRelativeLayoutChanged:g}
+)}
+else if(t.isLead()){
+const{
+onExitComplete:i}
+=t.options;
+i&&i()}
+t.options.transition=void 0}
+function xM(t){
+t.parent&&(t.isProjecting()||(t.isProjectionDirty=t.parent.isProjectionDirty),t.isSharedProjectionDirty||(t.isSharedProjectionDirty=!!(t.isProjectionDirty||t.parent.isProjectionDirty||t.parent.isSharedProjectionDirty)),t.isTransformDirty||(t.isTransformDirty=t.parent.isTransformDirty))}
+function RM(t){
+t.isProjectionDirty=t.isSharedProjectionDirty=t.isTransformDirty=!1}
+function NM(t){
+t.clearSnapshot()}
+function x0(t){
+t.clearMeasurements()}
+function R0(t){
+t.isLayoutDirty=!1}
+function MM(t){
+const{
+visualElement:e}
+=t.options;
+e&&e.getProps().onBeforeLayoutMeasure&&e.notify("BeforeLayoutMeasure"),t.resetTransform()}
+function N0(t){
+t.finishAnimation(),t.targetDelta=t.relativeTarget=t.target=void 0,t.isProjectionDirty=!0}
+function IM(t){
+t.resolveTargetDelta()}
+function DM(t){
+t.calcProjection()}
+function kM(t){
+t.resetSkewAndRotation()}
+function UM(t){
+t.removeLeadSnapshot()}
+function M0(t,e,n){
+t.translate=Ke(e.translate,0,n),t.scale=Ke(e.scale,1,n),t.origin=e.origin,t.originPoint=e.originPoint}
+function I0(t,e,n,i){
+t.min=Ke(e.min,n.min,i),t.max=Ke(e.max,n.max,i)}
+function PM(t,e,n,i){
+I0(t.x,e.x,n.x,i),I0(t.y,e.y,n.y,i)}
+function LM(t){
+return t.animationValues&&t.animationValues.opacityExit!==void 0}
+const OM={
+duration:.45,ease:[.4,0,.1,1]}
+,D0=t=>typeof navigator<"u"&&navigator.userAgent&&navigator.userAgent.toLowerCase().includes(t),k0=D0("applewebkit/")&&!D0("chrome/")?Math.round:Vt;
+function U0(t){
+t.min=k0(t.min),t.max=k0(t.max)}
+function VM(t){
+U0(t.x),U0(t.y)}
+function Bw(t,e,n){
+return t==="position"||t==="preserve-aspect"&&!aM(w0(e),w0(n),.2)}
+function BM(t){
+var e;
+return t!==t.root&&((e=t.scroll)==null?void 0:e.wasRoot)}
+const FM=Vw({
+attachResizeListener:(t,e)=>Kr(t,"resize",e),measureScroll:()=>{
+var t,e;
+return{
+x:document.documentElement.scrollLeft||((t=document.body)==null?void 0:t.scrollLeft)||0,y:document.documentElement.scrollTop||((e=document.body)==null?void 0:e.scrollTop)||0}
+}
+,checkIsScrollRoot:()=>!0}
+),df={
+current:void 0}
+,Fw=Vw({
+measureScroll:t=>({
+x:t.scrollLeft,y:t.scrollTop}
+),defaultParent:()=>{
+if(!df.current){
+const t=new FM({
+}
+);
+t.mount(window),t.setOptions({
+layoutScroll:!0}
+),df.current=t}
+return df.current}
+,resetTransform:(t,e)=>{
+t.style.transform=e!==void 0?e:"none"}
+,checkIsScrollRoot:t=>window.getComputedStyle(t).position==="fixed"}
+),sa=J.createContext({
+transformPagePoint:t=>t,isStatic:!1,reducedMotion:"never"}
+);
+function P0(t,e){
+if(typeof t=="function")return t(e);
+t!=null&&(t.current=e)}
+function GM(...t){
+return e=>{
+let n=!1;
+const i=t.map(r=>{
+const l=P0(r,e);
+return!n&&typeof l=="function"&&(n=!0),l}
+);
+if(n)return()=>{
+for(let r=0;
+r<i.length;
+r++){
+const l=i[r];
+typeof l=="function"?l():P0(t[r],null)}
+}
+}
+}
+function qM(...t){
+return J.useCallback(GM(...t),t)}
+class HM extends J.Component{
+getSnapshotBeforeUpdate(e){
+const n=this.props.childRef.current;
+if(n&&e.isPresent&&!this.props.isPresent){
+const i=n.offsetParent,r=Ql(i)&&i.offsetWidth||0,l=Ql(i)&&i.offsetHeight||0,u=this.props.sizeRef.current;
+u.height=n.offsetHeight||0,u.width=n.offsetWidth||0,u.top=n.offsetTop,u.left=n.offsetLeft,u.right=r-u.width-u.left,u.bottom=l-u.height-u.top}
+return null}
+componentDidUpdate(){
+}
+render(){
+return this.props.children}
+}
+function zM({
+children:t,isPresent:e,anchorX:n,anchorY:i,root:r}
+){
+var _;
+const l=J.useId(),u=J.useRef(null),d=J.useRef({
+width:0,height:0,top:0,left:0,right:0,bottom:0}
+),{
+nonce:h}
+=J.useContext(sa),p=((_=t.props)==null?void 0:_.ref)??(t==null?void 0:t.ref),g=qM(u,p);
+return J.useInsertionEffect(()=>{
+const{
+width:T,height:w,top:A,left:C,right:x,bottom:R}
+=d.current;
+if(e||!u.current||!T||!w)return;
+const k=n==="left"?`left: ${
+C}
+`:`right: ${
+x}
+`,N=i==="bottom"?`bottom: ${
+R}
+`:`top: ${
+A}
+`;
+u.current.dataset.motionPopId=l;
+const O=document.createElement("style");
+h&&(O.nonce=h);
+const F=r??document.head;
+return F.appendChild(O),O.sheet&&O.sheet.insertRule(`
+          [data-motion-pop-id="${
+l}
+"] {
+
+            position: absolute !important;
+
+            width: ${
+T}
+px !important;
+
+            height: ${
+w}
+px !important;
+
+            ${
+k}
+px !important;
+
+            ${
+N}
+px !important;
+
+          }
+
+        `),()=>{
+F.contains(O)&&F.removeChild(O)}
+}
+,[e]),E.jsx(HM,{
+isPresent:e,childRef:u,sizeRef:d,children:J.cloneElement(t,{
+ref:g}
+)}
+)}
+const $M=({
+children:t,initial:e,isPresent:n,onExitComplete:i,custom:r,presenceAffectsLayout:l,mode:u,anchorX:d,anchorY:h,root:p}
+)=>{
+const g=Li(JM),_=J.useId();
+let T=!0,w=J.useMemo(()=>(T=!1,{
+id:_,initial:e,isPresent:n,custom:r,onExitComplete:A=>{
+g.set(A,!0);
+for(const C of g.values())if(!C)return;
+i&&i()}
+,register:A=>(g.set(A,!1),()=>g.delete(A))}
+),[n,g,i]);
+return l&&T&&(w={
+...w}
+),J.useMemo(()=>{
+g.forEach((A,C)=>g.set(C,!1))}
+,[n]),J.useEffect(()=>{
+!n&&!g.size&&i&&i()}
+,[n]),u==="popLayout"&&(t=E.jsx(zM,{
+isPresent:n,anchorX:d,anchorY:h,root:p,children:t}
+)),E.jsx(gu.Provider,{
+value:w,children:t}
+)}
+;
+function JM(){
+return new Map}
+function Gw(t=!0){
+const e=J.useContext(gu);
+if(e===null)return[!0,null];
+const{
+isPresent:n,onExitComplete:i,register:r}
+=e,l=J.useId();
+J.useEffect(()=>{
+if(t)return r(l)}
+,[t]);
+const u=J.useCallback(()=>t&&i&&i(l),[l,i,t]);
+return!n&&i?[!1,u]:[!0]}
+const Rl=t=>t.key||"";
+function L0(t){
+const e=[];
+return J.Children.forEach(t,n=>{
+J.isValidElement(n)&&e.push(n)}
+),e}
+const qw=({
+children:t,custom:e,initial:n=!0,onExitComplete:i,presenceAffectsLayout:r=!0,mode:l="sync",propagate:u=!1,anchorX:d="left",anchorY:h="top",root:p}
+)=>{
+const[g,_]=Gw(u),T=J.useMemo(()=>L0(t),[t]),w=u&&!g?[]:T.map(Rl),A=J.useRef(!0),C=J.useRef(T),x=Li(()=>new Map),R=J.useRef(new Set),[k,N]=J.useState(T),[O,F]=J.useState(T);
+mu(()=>{
+A.current=!1,C.current=T;
+for(let X=0;
+X<O.length;
+X++){
+const j=Rl(O[X]);
+w.includes(j)?(x.delete(j),R.current.delete(j)):x.get(j)!==!0&&x.set(j,!1)}
+}
+,[O,w.length,w.join("-")]);
+const z=[];
+if(T!==k){
+let X=[...T];
+for(let j=0;
+j<O.length;
+j++){
+const oe=O[j],he=Rl(oe);
+w.includes(he)||(X.splice(j,0,oe),z.push(oe))}
+return l==="wait"&&z.length&&(X=z),F(L0(X)),N(T),null}
+const{
+forceRender:G}
+=J.useContext(xh);
+return E.jsx(E.Fragment,{
+children:O.map(X=>{
+const j=Rl(X),oe=u&&!g?!1:T===O||w.includes(j),he=()=>{
+if(R.current.has(j))return;
+if(R.current.add(j),x.has(j))x.set(j,!0);
+else return;
+let Ie=!0;
+x.forEach(Ae=>{
+Ae||(Ie=!1)}
+),Ie&&(G==null||G(),F(C.current),u&&(_==null||_()),i&&i())}
+;
+return E.jsx($M,{
+isPresent:oe,initial:!A.current||n?void 0:!1,custom:e,presenceAffectsLayout:r,mode:l,root:p,onExitComplete:oe?void 0:he,anchorX:d,anchorY:h,children:X}
+,j)}
+)}
+)}
+,Hw=J.createContext({
+strict:!1}
+),O0={
+animation:["animate","variants","whileHover","whileTap","exit","whileInView","whileFocus","whileDrag"],exit:["exit"],drag:["drag","dragControls"],focus:["whileFocus"],hover:["whileHover","onHoverStart","onHoverEnd"],tap:["whileTap","onTap","onTapStart","onTapCancel"],pan:["onPan","onPanStart","onPanSessionStart","onPanEnd"],inView:["whileInView","onViewportEnter","onViewportLeave"],layout:["layout","layoutId"]}
+;
+let V0=!1;
+function KM(){
+if(V0)return;
+const t={
+}
+;
+for(const e in O0)t[e]={
+isEnabled:n=>O0[e].some(i=>!!n[i])}
+;
+yw(t),V0=!0}
+function zw(){
+return KM(),kN()}
+function YM(t){
+const e=zw();
+for(const n in t)e[n]={
+...e[n],...t[n]}
+;
+yw(e)}
+const jM=new Set(["animate","exit","variants","initial","style","values","variants","transition","transformTemplate","custom","inherit","onBeforeLayoutMeasure","onAnimationStart","onAnimationComplete","onUpdate","onDragStart","onDrag","onDragEnd","onMeasureDragConstraints","onDirectionLock","onDragTransitionEnd","_dragX","_dragY","onHoverStart","onHoverEnd","onViewportEnter","onViewportLeave","globalTapTarget","ignoreStrict","viewport"]);
+function nu(t){
+return t.startsWith("while")||t.startsWith("drag")&&t!=="draggable"||t.startsWith("layout")||t.startsWith("onTap")||t.startsWith("onPan")||t.startsWith("onLayout")||jM.has(t)}
+let $w=t=>!nu(t);
+function WM(t){
+typeof t=="function"&&($w=e=>e.startsWith("on")?!nu(e):t(e))}
+try{
+WM(require("@emotion/is-prop-valid").default)}
+catch{
+}
+function XM(t,e,n){
+const i={
+}
+;
+for(const r in t)r==="values"&&typeof t.values=="object"||($w(r)||n===!0&&nu(r)||!e&&!nu(r)||t.draggable&&r.startsWith("onDrag"))&&(i[r]=t[r]);
+return i}
+const Tu=J.createContext({
+}
+);
+function QM(t,e){
+if(_u(t)){
+const{
+initial:n,animate:i}
+=t;
+return{
+initial:n===!1||Jr(n)?n:void 0,animate:Jr(i)?i:void 0}
+}
+return t.inherit!==!1?e:{
+}
+}
+function ZM(t){
+const{
+initial:e,animate:n}
+=QM(t,J.useContext(Tu));
+return J.useMemo(()=>({
+initial:e,animate:n}
+),[B0(e),B0(n)])}
+function B0(t){
+return Array.isArray(t)?t.join(" "):t}
+const np=()=>({
+style:{
+}
+,transform:{
+}
+,transformOrigin:{
+}
+,vars:{
+}
+}
+);
+function Jw(t,e,n){
+for(const i in e)!ht(e[i])&&!bw(i,n)&&(t[i]=e[i])}
+function eI({
+transformTemplate:t}
+,e){
+return J.useMemo(()=>{
+const n=np();
+return ep(n,e,t),Object.assign({
+}
+,n.vars,n.style)}
+,[e])}
+function tI(t,e){
+const n=t.style||{
+}
+,i={
+}
+;
+return Jw(i,n,t),Object.assign(i,eI(t,e)),i}
+function nI(t,e){
+const n={
+}
+,i=tI(t,e);
+return t.drag&&t.dragListener!==!1&&(n.draggable=!1,i.userSelect=i.WebkitUserSelect=i.WebkitTouchCallout="none",i.touchAction=t.drag===!0?"none":`pan-${
+t.drag==="x"?"y":"x"}
+`),t.tabIndex===void 0&&(t.onTap||t.onTapStart||t.whileTap)&&(n.tabIndex=0),n.style=i,n}
+const Kw=()=>({
+...np(),attrs:{
+}
+}
+);
+function iI(t,e,n,i){
+const r=J.useMemo(()=>{
+const l=Kw();
+return Aw(l,e,xw(i),t.transformTemplate,t.style),{
+...l.attrs,style:{
+...l.style}
+}
+}
+,[e]);
+if(t.style){
+const l={
+}
+;
+Jw(l,t.style,t),r.style={
+...l,...r.style}
+}
+return r}
+const sI=["animate","circle","defs","desc","ellipse","g","image","line","filter","marker","mask","metadata","path","pattern","polygon","polyline","rect","stop","switch","symbol","svg","text","tspan","use","view"];
+function ip(t){
+return typeof t!="string"||t.includes("-")?!1:!!(sI.indexOf(t)>-1||/[A-Z]/u.test(t))}
+function oI(t,e,n,{
+latestValues:i}
+,r,l=!1,u){
+const h=(u??ip(t)?iI:nI)(e,i,r,t),p=XM(e,typeof t=="string",l),g=t!==J.Fragment?{
+...p,...h,ref:n}
+:{
+}
+,{
+children:_}
+=e,T=J.useMemo(()=>ht(_)?_.get():_,[_]);
+return J.createElement(t,{
+...g,children:T}
+)}
+function rI({
+scrapeMotionValuesFromProps:t,createRenderState:e}
+,n,i,r){
+return{
+latestValues:aI(n,i,r,t),renderState:e()}
+}
+function aI(t,e,n,i){
+const r={
+}
+,l=i(t,{
+}
+);
+for(const T in l)r[T]=$l(l[T]);
+let{
+initial:u,animate:d}
+=t;
+const h=_u(t),p=gw(t);
+e&&p&&!h&&t.inherit!==!1&&(u===void 0&&(u=e.initial),d===void 0&&(d=e.animate));
+let g=n?n.initial===!1:!1;
+g=g||u===!1;
+const _=g?d:u;
+if(_&&typeof _!="boolean"&&!vu(_)){
+const T=Array.isArray(_)?_:[_];
+for(let w=0;
+w<T.length;
+w++){
+const A=Jh(t,T[w]);
+if(A){
+const{
+transitionEnd:C,transition:x,...R}
+=A;
+for(const k in R){
+let N=R[k];
+if(Array.isArray(N)){
+const O=g?N.length-1:0;
+N=N[O]}
+N!==null&&(r[k]=N)}
+for(const k in C)r[k]=C[k]}
+}
+}
+return r}
+const Yw=t=>(e,n)=>{
+const i=J.useContext(Tu),r=J.useContext(gu),l=()=>rI(t,e,i,r);
+return n?l():Li(l)}
+,lI=Yw({
+scrapeMotionValuesFromProps:tp,createRenderState:np}
+),uI=Yw({
+scrapeMotionValuesFromProps:Rw,createRenderState:Kw}
+),cI=Symbol.for("motionComponentSymbol");
+function dI(t,e,n){
+const i=J.useRef(n);
+J.useInsertionEffect(()=>{
+i.current=n}
+);
+const r=J.useRef(null);
+return J.useCallback(l=>{
+var d;
+l&&((d=t.onMount)==null||d.call(t,l)),e&&(l?e.mount(l):e.unmount());
+const u=i.current;
+if(typeof u=="function")if(l){
+const h=u(l);
+typeof h=="function"&&(r.current=h)}
+else r.current?(r.current(),r.current=null):u(l);
+else u&&(u.current=l)}
+,[e])}
+const jw=J.createContext({
+}
+);
+function kr(t){
+return t&&typeof t=="object"&&Object.prototype.hasOwnProperty.call(t,"current")}
+function fI(t,e,n,i,r,l){
+var R,k;
+const{
+visualElement:u}
+=J.useContext(Tu),d=J.useContext(Hw),h=J.useContext(gu),p=J.useContext(sa).reducedMotion,g=J.useRef(null),_=J.useRef(!1);
+i=i||d.renderer,!g.current&&i&&(g.current=i(t,{
+visualState:e,parent:u,props:n,presenceContext:h,blockInitialAnimation:h?h.initial===!1:!1,reducedMotionConfig:p,isSVG:l}
+),_.current&&g.current&&(g.current.manuallyAnimateOnMount=!0));
+const T=g.current,w=J.useContext(jw);
+T&&!T.projection&&r&&(T.type==="html"||T.type==="svg")&&hI(g.current,n,r,w);
+const A=J.useRef(!1);
+J.useInsertionEffect(()=>{
+T&&A.current&&T.update(n,h)}
+);
+const C=n[ew],x=J.useRef(!!C&&!((R=window.MotionHandoffIsComplete)!=null&&R.call(window,C))&&((k=window.MotionHasOptimisedAnimation)==null?void 0:k.call(window,C)));
+return mu(()=>{
+_.current=!0,T&&(A.current=!0,window.MotionIsMounted=!0,T.updateFeatures(),T.scheduleRenderMicrotask(),x.current&&T.animationState&&T.animationState.animateChanges())}
+),J.useEffect(()=>{
+T&&(!x.current&&T.animationState&&T.animationState.animateChanges(),x.current&&(queueMicrotask(()=>{
+var N;
+(N=window.MotionHandoffMarkAsComplete)==null||N.call(window,C)}
+),x.current=!1),T.enteringChildren=void 0)}
+),T}
+function hI(t,e,n,i){
+const{
+layoutId:r,layout:l,drag:u,dragConstraints:d,layoutScroll:h,layoutRoot:p,layoutCrossfade:g}
+=e;
+t.projection=new n(t.latestValues,e["data-framer-portal-id"]?void 0:Ww(t.parent)),t.projection.setOptions({
+layoutId:r,layout:l,alwaysMeasureLayout:!!u||d&&kr(d),visualElement:t,animationType:typeof l=="string"?l:"both",initialPromotionConfig:i,crossfade:g,layoutScroll:h,layoutRoot:p}
+)}
+function Ww(t){
+if(t)return t.options.allowProjection!==!1?t.projection:Ww(t.parent)}
+function ff(t,{
+forwardMotionProps:e=!1,type:n}
+={
+}
+,i,r){
+i&&YM(i);
+const l=n?n==="svg":ip(t),u=l?uI:lI;
+function d(p,g){
+let _;
+const T={
+...J.useContext(sa),...p,layoutId:pI(p)}
+,{
+isStatic:w}
+=T,A=ZM(p),C=u(p,w);
+if(!w&&gS){
+mI();
+const x=gI(T);
+_=x.MeasureLayout,A.visualElement=fI(t,C,T,r,x.ProjectionNode,l)}
+return E.jsxs(Tu.Provider,{
+value:A,children:[_&&A.visualElement?E.jsx(_,{
+visualElement:A.visualElement,...T}
+):null,oI(t,p,dI(C,A.visualElement,g),C,w,e,l)]}
+)}
+d.displayName=`motion.${
+typeof t=="string"?t:`create(${
+t.displayName??t.name??""}
+)`}
+`;
+const h=J.forwardRef(d);
+return h[cI]=t,h}
+function pI({
+layoutId:t}
+){
+const e=J.useContext(xh).id;
+return e&&t!==void 0?e+"-"+t:t}
+function mI(t,e){
+J.useContext(Hw).strict}
+function gI(t){
+const e=zw(),{
+drag:n,layout:i}
+=e;
+if(!n&&!i)return{
+}
+;
+const r={
+...n,...i}
+;
+return{
+MeasureLayout:n!=null&&n.isEnabled(t)||i!=null&&i.isEnabled(t)?r.MeasureLayout:void 0,ProjectionNode:r.ProjectionNode}
+}
+function yI(t,e){
+if(typeof Proxy>"u")return ff;
+const n=new Map,i=(l,u)=>ff(l,u,t,e),r=(l,u)=>i(l,u);
+return new Proxy(r,{
+get:(l,u)=>u==="create"?i:(n.has(u)||n.set(u,ff(u,void 0,t,e)),n.get(u))}
+)}
+const vI=(t,e)=>e.isSVG??ip(t)?new WN(e):new zN(e,{
+allowProjection:t!==J.Fragment}
+);
+class _I extends Vi{
+constructor(e){
+super(e),e.animationState||(e.animationState=tM(e))}
+updateAnimationControlsSubscription(){
+const{
+animate:e}
+=this.node.getProps();
+vu(e)&&(this.unmountControls=e.subscribe(this.node))}
+mount(){
+this.updateAnimationControlsSubscription()}
+update(){
+const{
+animate:e}
+=this.node.getProps(),{
+animate:n}
+=this.node.prevProps||{
+}
+;
+e!==n&&this.updateAnimationControlsSubscription()}
+unmount(){
+var e;
+this.node.animationState.reset(),(e=this.unmountControls)==null||e.call(this)}
+}
+let TI=0;
+class SI extends Vi{
+constructor(){
+super(...arguments),this.id=TI++}
+update(){
+if(!this.node.presenceContext)return;
+const{
+isPresent:e,onExitComplete:n}
+=this.node.presenceContext,{
+isPresent:i}
+=this.node.prevPresenceContext||{
+}
+;
+if(!this.node.animationState||e===i)return;
+const r=this.node.animationState.setActive("exit",!e);
+n&&!e&&r.then(()=>{
+n(this.id)}
+)}
+mount(){
+const{
+register:e,onExitComplete:n}
+=this.node.presenceContext||{
+}
+;
+n&&n(this.id),e&&(this.unmount=e(this.id))}
+unmount(){
+}
+}
+const wI={
+animation:{
+Feature:_I}
+,exit:{
+Feature:SI}
+}
+;
+function oa(t){
+return{
+point:{
+x:t.pageX,y:t.pageY}
+}
+}
+const EI=t=>e=>Wh(e)&&t(e,oa(e));
+function Fr(t,e,n,i){
+return Kr(t,e,EI(n),i)}
+const Xw=({
+current:t}
+)=>t?t.ownerDocument.defaultView:null,F0=(t,e)=>Math.abs(t-e);
+function bI(t,e){
+const n=F0(t.x,e.x),i=F0(t.y,e.y);
+return Math.sqrt(n**2+i**2)}
+const G0=new Set(["auto","scroll"]);
+class Qw{
+constructor(e,n,{
+transformPagePoint:i,contextWindow:r=window,dragSnapToOrigin:l=!1,distanceThreshold:u=3,element:d}
+={
+}
+){
+if(this.startEvent=null,this.lastMoveEvent=null,this.lastMoveEventInfo=null,this.handlers={
+}
+,this.contextWindow=window,this.scrollPositions=new Map,this.removeScrollListeners=null,this.onElementScroll=w=>{
+this.handleScroll(w.target)}
+,this.onWindowScroll=()=>{
+this.handleScroll(window)}
+,this.updatePoint=()=>{
+if(!(this.lastMoveEvent&&this.lastMoveEventInfo))return;
+const w=pf(this.lastMoveEventInfo,this.history),A=this.startEvent!==null,C=bI(w.offset,{
+x:0,y:0}
+)>=this.distanceThreshold;
+if(!A&&!C)return;
+const{
+point:x}
+=w,{
+timestamp:R}
+=ft;
+this.history.push({
+...x,timestamp:R}
+);
+const{
+onStart:k,onMove:N}
+=this.handlers;
+A||(k&&k(this.lastMoveEvent,w),this.startEvent=this.lastMoveEvent),N&&N(this.lastMoveEvent,w)}
+,this.handlePointerMove=(w,A)=>{
+this.lastMoveEvent=w,this.lastMoveEventInfo=hf(A,this.transformPagePoint),Ne.update(this.updatePoint,!0)}
+,this.handlePointerUp=(w,A)=>{
+this.end();
+const{
+onEnd:C,onSessionEnd:x,resumeAnimation:R}
+=this.handlers;
+if((this.dragSnapToOrigin||!this.startEvent)&&R&&R(),!(this.lastMoveEvent&&this.lastMoveEventInfo))return;
+const k=pf(w.type==="pointercancel"?this.lastMoveEventInfo:hf(A,this.transformPagePoint),this.history);
+this.startEvent&&C&&C(w,k),x&&x(w,k)}
+,!Wh(e))return;
+this.dragSnapToOrigin=l,this.handlers=n,this.transformPagePoint=i,this.distanceThreshold=u,this.contextWindow=r||window;
+const h=oa(e),p=hf(h,this.transformPagePoint),{
+point:g}
+=p,{
+timestamp:_}
+=ft;
+this.history=[{
+...g,timestamp:_}
+];
+const{
+onSessionStart:T}
+=n;
+T&&T(e,pf(p,this.history)),this.removeListeners=ta(Fr(this.contextWindow,"pointermove",this.handlePointerMove),Fr(this.contextWindow,"pointerup",this.handlePointerUp),Fr(this.contextWindow,"pointercancel",this.handlePointerUp)),d&&this.startScrollTracking(d)}
+startScrollTracking(e){
+let n=e.parentElement;
+for(;
+n;
+){
+const i=getComputedStyle(n);
+(G0.has(i.overflowX)||G0.has(i.overflowY))&&this.scrollPositions.set(n,{
+x:n.scrollLeft,y:n.scrollTop}
+),n=n.parentElement}
+this.scrollPositions.set(window,{
+x:window.scrollX,y:window.scrollY}
+),window.addEventListener("scroll",this.onElementScroll,{
+capture:!0,passive:!0}
+),window.addEventListener("scroll",this.onWindowScroll,{
+passive:!0}
+),this.removeScrollListeners=()=>{
+window.removeEventListener("scroll",this.onElementScroll,{
+capture:!0}
+),window.removeEventListener("scroll",this.onWindowScroll)}
+}
+handleScroll(e){
+const n=this.scrollPositions.get(e);
+if(!n)return;
+const i=e===window,r=i?{
+x:window.scrollX,y:window.scrollY}
+:{
+x:e.scrollLeft,y:e.scrollTop}
+,l={
+x:r.x-n.x,y:r.y-n.y}
+;
+l.x===0&&l.y===0||(i?this.lastMoveEventInfo&&(this.lastMoveEventInfo.point.x+=l.x,this.lastMoveEventInfo.point.y+=l.y):this.history.length>0&&(this.history[0].x-=l.x,this.history[0].y-=l.y),this.scrollPositions.set(e,r),Ne.update(this.updatePoint,!0))}
+updateHandlers(e){
+this.handlers=e}
+end(){
+this.removeListeners&&this.removeListeners(),this.removeScrollListeners&&this.removeScrollListeners(),this.scrollPositions.clear(),hn(this.updatePoint)}
+}
+function hf(t,e){
+return e?{
+point:e(t.point)}
+:t}
+function q0(t,e){
+return{
+x:t.x-e.x,y:t.y-e.y}
+}
+function pf({
+point:t}
+,e){
+return{
+point:t,delta:q0(t,Zw(e)),offset:q0(t,AI(e)),velocity:CI(e,.1)}
+}
+function AI(t){
+return t[0]}
+function Zw(t){
+return t[t.length-1]}
+function CI(t,e){
+if(t.length<2)return{
+x:0,y:0}
+;
+let n=t.length-1,i=null;
+const r=Zw(t);
+for(;
+n>=0&&(i=t[n],!(r.timestamp-i.timestamp>Zn(e)));
+)n--;
+if(!i)return{
+x:0,y:0}
+;
+const l=dn(r.timestamp-i.timestamp);
+if(l===0)return{
+x:0,y:0}
+;
+const u={
+x:(r.x-i.x)/l,y:(r.y-i.y)/l}
+;
+return u.x===1/0&&(u.x=0),u.y===1/0&&(u.y=0),u}
+function xI(t,{
+min:e,max:n}
+,i){
+return e!==void 0&&t<e?t=i?Ke(e,t,i.min):Math.max(t,e):n!==void 0&&t>n&&(t=i?Ke(n,t,i.max):Math.min(t,n)),t}
+function H0(t,e,n){
+return{
+min:e!==void 0?t.min+e:void 0,max:n!==void 0?t.max+n-(t.max-t.min):void 0}
+}
+function RI(t,{
+top:e,left:n,bottom:i,right:r}
+){
+return{
+x:H0(t.x,n,r),y:H0(t.y,e,i)}
+}
+function z0(t,e){
+let n=e.min-t.min,i=e.max-t.max;
+return e.max-e.min<t.max-t.min&&([n,i]=[i,n]),{
+min:n,max:i}
+}
+function NI(t,e){
+return{
+x:z0(t.x,e.x),y:z0(t.y,e.y)}
+}
+function MI(t,e){
+let n=.5;
+const i=Nt(t),r=Nt(e);
+return r>i?n=xo(e.min,e.max-i,t.min):i>r&&(n=xo(t.min,t.max-r,e.min)),xn(0,1,n)}
+function II(t,e){
+const n={
+}
+;
+return e.min!==void 0&&(n.min=e.min-t.min),e.max!==void 0&&(n.max=e.max-t.min),n}
+const Xf=.35;
+function DI(t=Xf){
+return t===!1?t=0:t===!0&&(t=Xf),{
+x:$0(t,"left","right"),y:$0(t,"top","bottom")}
+}
+function $0(t,e,n){
+return{
+min:J0(t,e),max:J0(t,n)}
+}
+function J0(t,e){
+return typeof t=="number"?t:t[e]||0}
+const kI=new WeakMap;
+class UI{
+constructor(e){
+this.openDragLock=null,this.isDragging=!1,this.currentDirection=null,this.originPoint={
+x:0,y:0}
+,this.constraints=!1,this.hasMutatedConstraints=!1,this.elastic=ut(),this.latestPointerEvent=null,this.latestPanInfo=null,this.visualElement=e}
+start(e,{
+snapToCursor:n=!1,distanceThreshold:i}
+={
+}
+){
+const{
+presenceContext:r}
+=this.visualElement;
+if(r&&r.isPresent===!1)return;
+const l=_=>{
+n?(this.stopAnimation(),this.snapToCursor(oa(_).point)):this.pauseAnimation()}
+,u=(_,T)=>{
+this.stopAnimation();
+const{
+drag:w,dragPropagation:A,onDragStart:C}
+=this.getProps();
+if(w&&!A&&(this.openDragLock&&this.openDragLock(),this.openDragLock=cN(w),!this.openDragLock))return;
+this.latestPointerEvent=_,this.latestPanInfo=T,this.isDragging=!0,this.currentDirection=null,this.resolveConstraints(),this.visualElement.projection&&(this.visualElement.projection.isAnimationBlocked=!0,this.visualElement.projection.target=void 0),cn(R=>{
+let k=this.getAxisMotionValue(R).get()||0;
+if(kn.test(k)){
+const{
+projection:N}
+=this.visualElement;
+if(N&&N.layout){
+const O=N.layout.layoutBox[R];
+O&&(k=Nt(O)*(parseFloat(k)/100))}
+}
+this.originPoint[R]=k}
+),C&&Ne.postRender(()=>C(_,T)),zf(this.visualElement,"transform");
+const{
+animationState:x}
+=this.visualElement;
+x&&x.setActive("whileDrag",!0)}
+,d=(_,T)=>{
+this.latestPointerEvent=_,this.latestPanInfo=T;
+const{
+dragPropagation:w,dragDirectionLock:A,onDirectionLock:C,onDrag:x}
+=this.getProps();
+if(!w&&!this.openDragLock)return;
+const{
+offset:R}
+=T;
+if(A&&this.currentDirection===null){
+this.currentDirection=PI(R),this.currentDirection!==null&&C&&C(this.currentDirection);
+return}
+this.updateAxis("x",T.point,R),this.updateAxis("y",T.point,R),this.visualElement.render(),x&&x(_,T)}
+,h=(_,T)=>{
+this.latestPointerEvent=_,this.latestPanInfo=T,this.stop(_,T),this.latestPointerEvent=null,this.latestPanInfo=null}
+,p=()=>cn(_=>{
+var T;
+return this.getAnimationState(_)==="paused"&&((T=this.getAxisMotionValue(_).animation)==null?void 0:T.play())}
+),{
+dragSnapToOrigin:g}
+=this.getProps();
+this.panSession=new Qw(e,{
+onSessionStart:l,onStart:u,onMove:d,onSessionEnd:h,resumeAnimation:p}
+,{
+transformPagePoint:this.visualElement.getTransformPagePoint(),dragSnapToOrigin:g,distanceThreshold:i,contextWindow:Xw(this.visualElement),element:this.visualElement.current}
+)}
+stop(e,n){
+const i=e||this.latestPointerEvent,r=n||this.latestPanInfo,l=this.isDragging;
+if(this.cancel(),!l||!r||!i)return;
+const{
+velocity:u}
+=r;
+this.startAnimation(u);
+const{
+onDragEnd:d}
+=this.getProps();
+d&&Ne.postRender(()=>d(i,r))}
+cancel(){
+this.isDragging=!1;
+const{
+projection:e,animationState:n}
+=this.visualElement;
+e&&(e.isAnimationBlocked=!1),this.endPanSession();
+const{
+dragPropagation:i}
+=this.getProps();
+!i&&this.openDragLock&&(this.openDragLock(),this.openDragLock=null),n&&n.setActive("whileDrag",!1)}
+endPanSession(){
+this.panSession&&this.panSession.end(),this.panSession=void 0}
+updateAxis(e,n,i){
+const{
+drag:r}
+=this.getProps();
+if(!i||!Nl(e,r,this.currentDirection))return;
+const l=this.getAxisMotionValue(e);
+let u=this.originPoint[e]+i[e];
+this.constraints&&this.constraints[e]&&(u=xI(u,this.constraints[e],this.elastic[e])),l.set(u)}
+resolveConstraints(){
+var l;
+const{
+dragConstraints:e,dragElastic:n}
+=this.getProps(),i=this.visualElement.projection&&!this.visualElement.projection.layout?this.visualElement.projection.measure(!1):(l=this.visualElement.projection)==null?void 0:l.layout,r=this.constraints;
+e&&kr(e)?this.constraints||(this.constraints=this.resolveRefConstraints()):e&&i?this.constraints=RI(i.layoutBox,e):this.constraints=!1,this.elastic=DI(n),r!==this.constraints&&i&&this.constraints&&!this.hasMutatedConstraints&&cn(u=>{
+this.constraints!==!1&&this.getAxisMotionValue(u)&&(this.constraints[u]=II(i.layoutBox[u],this.constraints[u]))}
+)}
+resolveRefConstraints(){
+const{
+dragConstraints:e,onMeasureDragConstraints:n}
+=this.getProps();
+if(!e||!kr(e))return!1;
+const i=e.current,{
+projection:r}
+=this.visualElement;
+if(!r||!r.layout)return!1;
+const l=VN(i,r.root,this.visualElement.getTransformPagePoint());
+let u=NI(r.layout.layoutBox,l);
+if(n){
+const d=n(PN(u));
+this.hasMutatedConstraints=!!d,d&&(u=_w(d))}
+return u}
+startAnimation(e){
+const{
+drag:n,dragMomentum:i,dragElastic:r,dragTransition:l,dragSnapToOrigin:u,onDragTransitionEnd:d}
+=this.getProps(),h=this.constraints||{
+}
+,p=cn(g=>{
+if(!Nl(g,n,this.currentDirection))return;
+let _=h&&h[g]||{
+}
+;
+u&&(_={
+min:0,max:0}
+);
+const T=r?200:1e6,w=r?40:1e7,A={
+type:"inertia",velocity:i?e[g]:0,bounceStiffness:T,bounceDamping:w,timeConstant:750,restDelta:1,restSpeed:10,...l,..._}
+;
+return this.startAxisValueAnimation(g,A)}
+);
+return Promise.all(p).then(d)}
+startAxisValueAnimation(e,n){
+const i=this.getAxisMotionValue(e);
+return zf(this.visualElement,e),i.start($h(e,i,0,n,this.visualElement,!1))}
+stopAnimation(){
+cn(e=>this.getAxisMotionValue(e).stop())}
+pauseAnimation(){
+cn(e=>{
+var n;
+return(n=this.getAxisMotionValue(e).animation)==null?void 0:n.pause()}
+)}
+getAnimationState(e){
+var n;
+return(n=this.getAxisMotionValue(e).animation)==null?void 0:n.state}
+getAxisMotionValue(e){
+const n=`_drag${
+e.toUpperCase()}
+`,i=this.visualElement.getProps(),r=i[n];
+return r||this.visualElement.getValue(e,(i.initial?i.initial[e]:void 0)||0)}
+snapToCursor(e){
+cn(n=>{
+const{
+drag:i}
+=this.getProps();
+if(!Nl(n,i,this.currentDirection))return;
+const{
+projection:r}
+=this.visualElement,l=this.getAxisMotionValue(n);
+if(r&&r.layout){
+const{
+min:u,max:d}
+=r.layout.layoutBox[n],h=l.get()||0;
+l.set(e[n]-Ke(u,d,.5)+h)}
+}
+)}
+scalePositionWithinConstraints(){
+if(!this.visualElement.current)return;
+const{
+drag:e,dragConstraints:n}
+=this.getProps(),{
+projection:i}
+=this.visualElement;
+if(!kr(n)||!i||!this.constraints)return;
+this.stopAnimation();
+const r={
+x:0,y:0}
+;
+cn(u=>{
+const d=this.getAxisMotionValue(u);
+if(d&&this.constraints!==!1){
+const h=d.get();
+r[u]=MI({
+min:h,max:h}
+,this.constraints[u])}
+}
+);
+const{
+transformTemplate:l}
+=this.visualElement.getProps();
+this.visualElement.current.style.transform=l?l({
+}
+,""):"none",i.root&&i.root.updateScroll(),i.updateLayout(),this.resolveConstraints(),cn(u=>{
+if(!Nl(u,e,null))return;
+const d=this.getAxisMotionValue(u),{
+min:h,max:p}
+=this.constraints[u];
+d.set(Ke(h,p,r[u]))}
+)}
+addListeners(){
+if(!this.visualElement.current)return;
+kI.set(this.visualElement,this);
+const e=this.visualElement.current,n=Fr(e,"pointerdown",h=>{
+const{
+drag:p,dragListener:g=!0}
+=this.getProps(),_=h.target,T=_!==e&&fw(_);
+p&&g&&!T&&this.start(h)}
+),i=()=>{
+const{
+dragConstraints:h}
+=this.getProps();
+kr(h)&&h.current&&(this.constraints=this.resolveRefConstraints())}
+,{
+projection:r}
+=this.visualElement,l=r.addEventListener("measure",i);
+r&&!r.layout&&(r.root&&r.root.updateScroll(),r.updateLayout()),Ne.read(i);
+const u=Kr(window,"resize",()=>this.scalePositionWithinConstraints()),d=r.addEventListener("didUpdate",(({
+delta:h,hasLayoutChanged:p}
+)=>{
+this.isDragging&&p&&(cn(g=>{
+const _=this.getAxisMotionValue(g);
+_&&(this.originPoint[g]+=h[g].translate,_.set(_.get()+h[g].translate))}
+),this.visualElement.render())}
+));
+return()=>{
+u(),n(),l(),d&&d()}
+}
+getProps(){
+const e=this.visualElement.getProps(),{
+drag:n=!1,dragDirectionLock:i=!1,dragPropagation:r=!1,dragConstraints:l=!1,dragElastic:u=Xf,dragMomentum:d=!0}
+=e;
+return{
+...e,drag:n,dragDirectionLock:i,dragPropagation:r,dragConstraints:l,dragElastic:u,dragMomentum:d}
+}
+}
+function Nl(t,e,n){
+return(e===!0||e===t)&&(n===null||n===t)}
+function PI(t,e=10){
+let n=null;
+return Math.abs(t.y)>e?n="y":Math.abs(t.x)>e&&(n="x"),n}
+class LI extends Vi{
+constructor(e){
+super(e),this.removeGroupControls=Vt,this.removeListeners=Vt,this.controls=new UI(e)}
+mount(){
+const{
+dragControls:e}
+=this.node.getProps();
+e&&(this.removeGroupControls=e.subscribe(this.controls)),this.removeListeners=this.controls.addListeners()||Vt}
+update(){
+const{
+dragControls:e}
+=this.node.getProps(),{
+dragControls:n}
+=this.node.prevProps||{
+}
+;
+e!==n&&(this.removeGroupControls(),e&&(this.removeGroupControls=e.subscribe(this.controls)))}
+unmount(){
+this.removeGroupControls(),this.removeListeners(),this.controls.isDragging||this.controls.endPanSession()}
+}
+const K0=t=>(e,n)=>{
+t&&Ne.postRender(()=>t(e,n))}
+;
+class OI extends Vi{
+constructor(){
+super(...arguments),this.removePointerDownListener=Vt}
+onPointerDown(e){
+this.session=new Qw(e,this.createPanHandlers(),{
+transformPagePoint:this.node.getTransformPagePoint(),contextWindow:Xw(this.node)}
+)}
+createPanHandlers(){
+const{
+onPanSessionStart:e,onPanStart:n,onPan:i,onPanEnd:r}
+=this.node.getProps();
+return{
+onSessionStart:K0(e),onStart:K0(n),onMove:i,onEnd:(l,u)=>{
+delete this.session,r&&Ne.postRender(()=>r(l,u))}
+}
+}
+mount(){
+this.removePointerDownListener=Fr(this.node.current,"pointerdown",e=>this.onPointerDown(e))}
+update(){
+this.session&&this.session.updateHandlers(this.createPanHandlers())}
+unmount(){
+this.removePointerDownListener(),this.session&&this.session.end()}
+}
+let mf=!1;
+class VI extends J.Component{
+componentDidMount(){
+const{
+visualElement:e,layoutGroup:n,switchLayoutGroup:i,layoutId:r}
+=this.props,{
+projection:l}
+=e;
+l&&(n.group&&n.group.add(l),i&&i.register&&r&&i.register(l),mf&&l.root.didUpdate(),l.addEventListener("animationComplete",()=>{
+this.safeToRemove()}
+),l.setOptions({
+...l.options,layoutDependency:this.props.layoutDependency,onExitComplete:()=>this.safeToRemove()}
+)),Jl.hasEverUpdated=!0}
+getSnapshotBeforeUpdate(e){
+const{
+layoutDependency:n,visualElement:i,drag:r,isPresent:l}
+=this.props,{
+projection:u}
+=i;
+return u&&(u.isPresent=l,e.layoutDependency!==n&&u.setOptions({
+...u.options,layoutDependency:n}
+),mf=!0,r||e.layoutDependency!==n||n===void 0||e.isPresent!==l?u.willUpdate():this.safeToRemove(),e.isPresent!==l&&(l?u.promote():u.relegate()||Ne.postRender(()=>{
+const d=u.getStack();
+(!d||!d.members.length)&&this.safeToRemove()}
+))),null}
+componentDidUpdate(){
+const{
+projection:e}
+=this.props.visualElement;
+e&&(e.root.didUpdate(),jh.postRender(()=>{
+!e.currentAnimation&&e.isLead()&&this.safeToRemove()}
+))}
+componentWillUnmount(){
+const{
+visualElement:e,layoutGroup:n,switchLayoutGroup:i}
+=this.props,{
+projection:r}
+=e;
+mf=!0,r&&(r.scheduleCheckAfterUnmount(),n&&n.group&&n.group.remove(r),i&&i.deregister&&i.deregister(r))}
+safeToRemove(){
+const{
+safeToRemove:e}
+=this.props;
+e&&e()}
+render(){
+return null}
+}
+function eE(t){
+const[e,n]=Gw(),i=J.useContext(xh);
+return E.jsx(VI,{
+...t,layoutGroup:i,switchLayoutGroup:J.useContext(jw),isPresent:e,safeToRemove:n}
+)}
+const BI={
+pan:{
+Feature:OI}
+,drag:{
+Feature:LI,ProjectionNode:Fw,MeasureLayout:eE}
+}
+;
+function Y0(t,e,n){
+const{
+props:i}
+=t;
+t.animationState&&i.whileHover&&t.animationState.setActive("whileHover",n==="Start");
+const r="onHover"+n,l=i[r];
+l&&Ne.postRender(()=>l(e,oa(e)))}
+class FI extends Vi{
+mount(){
+const{
+current:e}
+=this.node;
+e&&(this.unmount=dN(e,(n,i)=>(Y0(this.node,i,"Start"),r=>Y0(this.node,r,"End"))))}
+unmount(){
+}
+}
+class GI extends Vi{
+constructor(){
+super(...arguments),this.isActive=!1}
+onFocus(){
+let e=!1;
+try{
+e=this.node.current.matches(":focus-visible")}
+catch{
+e=!0}
+!e||!this.node.animationState||(this.node.animationState.setActive("whileFocus",!0),this.isActive=!0)}
+onBlur(){
+!this.isActive||!this.node.animationState||(this.node.animationState.setActive("whileFocus",!1),this.isActive=!1)}
+mount(){
+this.unmount=ta(Kr(this.node.current,"focus",()=>this.onFocus()),Kr(this.node.current,"blur",()=>this.onBlur()))}
+unmount(){
+}
+}
+function j0(t,e,n){
+const{
+props:i}
+=t;
+if(t.current instanceof HTMLButtonElement&&t.current.disabled)return;
+t.animationState&&i.whileTap&&t.animationState.setActive("whileTap",n==="Start");
+const r="onTap"+(n==="End"?"":n),l=i[r];
+l&&Ne.postRender(()=>l(e,oa(e)))}
+class qI extends Vi{
+mount(){
+const{
+current:e}
+=this.node;
+e&&(this.unmount=pN(e,(n,i)=>(j0(this.node,i,"Start"),(r,{
+success:l}
+)=>j0(this.node,r,l?"End":"Cancel")),{
+useGlobalTarget:this.node.props.globalTapTarget}
+))}
+unmount(){
+}
+}
+const Qf=new WeakMap,gf=new WeakMap,HI=t=>{
+const e=Qf.get(t.target);
+e&&e(t)}
+,zI=t=>{
+t.forEach(HI)}
+;
+function $I({
+root:t,...e}
+){
+const n=t||document;
+gf.has(n)||gf.set(n,{
+}
+);
+const i=gf.get(n),r=JSON.stringify(e);
+return i[r]||(i[r]=new IntersectionObserver(zI,{
+root:t,...e}
+)),i[r]}
+function JI(t,e,n){
+const i=$I(e);
+return Qf.set(t,n),i.observe(t),()=>{
+Qf.delete(t),i.unobserve(t)}
+}
+const KI={
+some:0,all:1}
+;
+class YI extends Vi{
+constructor(){
+super(...arguments),this.hasEnteredView=!1,this.isInView=!1}
+startObserver(){
+this.unmount();
+const{
+viewport:e={
+}
+}
+=this.node.getProps(),{
+root:n,margin:i,amount:r="some",once:l}
+=e,u={
+root:n?n.current:void 0,rootMargin:i,threshold:typeof r=="number"?r:KI[r]}
+,d=h=>{
+const{
+isIntersecting:p}
+=h;
+if(this.isInView===p||(this.isInView=p,l&&!p&&this.hasEnteredView))return;
+p&&(this.hasEnteredView=!0),this.node.animationState&&this.node.animationState.setActive("whileInView",p);
+const{
+onViewportEnter:g,onViewportLeave:_}
+=this.node.getProps(),T=p?g:_;
+T&&T(h)}
+;
+return JI(this.node.current,u,d)}
+mount(){
+this.startObserver()}
+update(){
+if(typeof IntersectionObserver>"u")return;
+const{
+props:e,prevProps:n}
+=this.node;
+["amount","margin","root"].some(jI(e,n))&&this.startObserver()}
+unmount(){
+}
+}
+function jI({
+viewport:t={
+}
+}
+,{
+viewport:e={
+}
+}
+={
+}
+){
+return n=>t[n]!==e[n]}
+const WI={
+inView:{
+Feature:YI}
+,tap:{
+Feature:qI}
+,focus:{
+Feature:GI}
+,hover:{
+Feature:FI}
+}
+,XI={
+layout:{
+ProjectionNode:Fw,MeasureLayout:eE}
+}
+,QI={
+...wI,...WI,...BI,...XI}
+,ye=yI(QI,vI),ZI=50,W0=()=>({
+current:0,offset:[],progress:0,scrollLength:0,targetOffset:0,targetLength:0,containerLength:0,velocity:0}
+),eD=()=>({
+time:0,x:W0(),y:W0()}
+),tD={
+x:{
+length:"Width",position:"Left"}
+,y:{
+length:"Height",position:"Top"}
+}
+;
+function X0(t,e,n,i){
+const r=n[e],{
+length:l,position:u}
+=tD[e],d=r.current,h=n.time;
+r.current=t[`scroll${
+u}
+`],r.scrollLength=t[`scroll${
+l}
+`]-t[`client${
+l}
+`],r.offset.length=0,r.offset[0]=0,r.offset[1]=r.scrollLength,r.progress=xo(0,r.scrollLength,r.current);
+const p=i-h;
+r.velocity=p>ZI?0:Dh(r.current-d,p)}
+function nD(t,e,n){
+X0(t,"x",e,n),X0(t,"y",e,n),e.time=n}
+function iD(t,e){
+const n={
+x:0,y:0}
+;
+let i=t;
+for(;
+i&&i!==e;
+)if(Ql(i))n.x+=i.offsetLeft,n.y+=i.offsetTop,i=i.offsetParent;
+else if(i.tagName==="svg"){
+const r=i.getBoundingClientRect();
+i=i.parentElement;
+const l=i.getBoundingClientRect();
+n.x+=r.left-l.left,n.y+=r.top-l.top}
+else if(i instanceof SVGGraphicsElement){
+const{
+x:r,y:l}
+=i.getBBox();
+n.x+=r,n.y+=l;
+let u=null,d=i.parentNode;
+for(;
+!u;
+)d.tagName==="svg"&&(u=d),d=i.parentNode;
+i=u}
+else break;
+return n}
+const Zf={
+start:0,center:.5,end:1}
+;
+function Q0(t,e,n=0){
+let i=0;
+if(t in Zf&&(t=Zf[t]),typeof t=="string"){
+const r=parseFloat(t);
+t.endsWith("px")?i=r:t.endsWith("%")?t=r/100:t.endsWith("vw")?i=r/100*document.documentElement.clientWidth:t.endsWith("vh")?i=r/100*document.documentElement.clientHeight:t=r}
+return typeof t=="number"&&(i=e*t),n+i}
+const sD=[0,0];
+function oD(t,e,n,i){
+let r=Array.isArray(t)?t:sD,l=0,u=0;
+return typeof t=="number"?r=[t,t]:typeof t=="string"&&(t=t.trim(),t.includes(" ")?r=t.split(" "):r=[t,Zf[t]?t:"0"]),l=Q0(r[0],n,i),u=Q0(r[1],e),l-u}
+const rD={
+All:[[0,0],[1,1]]}
+,aD={
+x:0,y:0}
+;
+function lD(t){
+return"getBBox"in t&&t.tagName!=="svg"?t.getBBox():{
+width:t.clientWidth,height:t.clientHeight}
+}
+function uD(t,e,n){
+const{
+offset:i=rD.All}
+=n,{
+target:r=t,axis:l="y"}
+=n,u=l==="y"?"height":"width",d=r!==t?iD(r,t):aD,h=r===t?{
+width:t.scrollWidth,height:t.scrollHeight}
+:lD(r),p={
+width:t.clientWidth,height:t.clientHeight}
+;
+e[l].offset.length=0;
+let g=!e[l].interpolate;
+const _=i.length;
+for(let T=0;
+T<_;
+T++){
+const w=oD(i[T],p[u],h[u],d[l]);
+!g&&w!==e[l].interpolatorOffsets[T]&&(g=!0),e[l].offset[T]=w}
+g&&(e[l].interpolate=Fh(e[l].offset,qS(i),{
+clamp:!1}
+),e[l].interpolatorOffsets=[...e[l].offset]),e[l].progress=xn(0,1,e[l].interpolate(e[l].current))}
+function cD(t,e=t,n){
+if(n.x.targetOffset=0,n.y.targetOffset=0,e!==t){
+let i=e;
+for(;
+i&&i!==t;
+)n.x.targetOffset+=i.offsetLeft,n.y.targetOffset+=i.offsetTop,i=i.offsetParent}
+n.x.targetLength=e===t?e.scrollWidth:e.clientWidth,n.y.targetLength=e===t?e.scrollHeight:e.clientHeight,n.x.containerLength=t.clientWidth,n.y.containerLength=t.clientHeight}
+function dD(t,e,n,i={
+}
+){
+return{
+measure:r=>{
+cD(t,i.target,n),nD(t,n,r),(i.offset||i.target)&&uD(t,n,i)}
+,notify:()=>e(n)}
+}
+const io=new WeakMap,Z0=new WeakMap,yf=new WeakMap,e_=new WeakMap,Ml=new WeakMap,t_=t=>t===document.scrollingElement?window:t;
+function tE(t,{
+container:e=document.scrollingElement,trackContentSize:n=!1,...i}
+={
+}
+){
+if(!e)return Vt;
+let r=yf.get(e);
+r||(r=new Set,yf.set(e,r));
+const l=eD(),u=dD(e,t,l,i);
+if(r.add(u),!io.has(e)){
+const h=()=>{
+for(const T of r)T.measure(ft.timestamp);
+Ne.preUpdate(p)}
+,p=()=>{
+for(const T of r)T.notify()}
+,g=()=>Ne.read(h);
+io.set(e,g);
+const _=t_(e);
+window.addEventListener("resize",g,{
+passive:!0}
+),e!==document.documentElement&&Z0.set(e,EN(e,g)),_.addEventListener("scroll",g,{
+passive:!0}
+),g()}
+if(n&&!Ml.has(e)){
+const h=io.get(e),p={
+width:e.scrollWidth,height:e.scrollHeight}
+;
+e_.set(e,p);
+const g=()=>{
+const T=e.scrollWidth,w=e.scrollHeight;
+(p.width!==T||p.height!==w)&&(h(),p.width=T,p.height=w)}
+,_=Ne.read(g,!0);
+Ml.set(e,_)}
+const d=io.get(e);
+return Ne.read(d,!1,!0),()=>{
+var _;
+hn(d);
+const h=yf.get(e);
+if(!h||(h.delete(u),h.size))return;
+const p=io.get(e);
+io.delete(e),p&&(t_(e).removeEventListener("scroll",p),(_=Z0.get(e))==null||_(),window.removeEventListener("resize",p));
+const g=Ml.get(e);
+g&&(hn(g),Ml.delete(e)),e_.delete(e)}
+}
+const n_=new Map;
+function fD(t){
+const e={
+value:0}
+,n=tE(i=>{
+e.value=i[t.axis].progress*100}
+,t);
+return{
+currentTime:e,cancel:n}
+}
+function nE({
+source:t,container:e,...n}
+){
+const{
+axis:i}
+=n;
+t&&(e=t);
+const r=n_.get(e)??new Map;
+n_.set(e,r);
+const l=n.target??"self",u=r.get(l)??{
+}
+,d=i+(n.offset??[]).join(",");
+return u[d]||(u[d]=!n.target&&JS()?new ScrollTimeline({
+source:e,axis:i}
+):fD({
+container:e,...n}
+)),u[d]}
+function hD(t,e){
+const n=nE(e);
+return t.attachTimeline({
+timeline:e.target?void 0:n,observe:i=>(i.pause(),pw(r=>{
+i.time=i.iterationDuration*r}
+,n))}
+)}
+function pD(t){
+return t.length===2}
+function mD(t,e){
+return pD(t)?tE(n=>{
+t(n[e.axis].progress,n)}
+,e):pw(t,nE(e))}
+function gD(t,{
+axis:e="y",container:n=document.scrollingElement,...i}
+={
+}
+){
+if(!n)return Vt;
+const r={
+axis:e,container:n,...i}
+;
+return typeof t=="function"?mD(t,r):hD(t,r)}
+const yD=()=>({
+scrollX:bn(0),scrollY:bn(0),scrollXProgress:bn(0),scrollYProgress:bn(0)}
+),Il=t=>t?!t.current:!1;
+function iE({
+container:t,target:e,...n}
+={
+}
+){
+const i=Li(yD),r=J.useRef(null),l=J.useRef(!1),u=J.useCallback(()=>(r.current=gD((d,{
+x:h,y:p}
+)=>{
+i.scrollX.set(h.current),i.scrollXProgress.set(h.progress),i.scrollY.set(p.current),i.scrollYProgress.set(p.progress)}
+,{
+...n,container:(t==null?void 0:t.current)||void 0,target:(e==null?void 0:e.current)||void 0}
+),()=>{
+var d;
+(d=r.current)==null||d.call(r)}
+),[t,e,JSON.stringify(n.offset)]);
+return mu(()=>{
+if(l.current=!1,Il(t)||Il(e)){
+l.current=!0;
+return}
+else return u()}
+,[u]),J.useEffect(()=>{
+if(l.current)return Hr(!Il(t)),Hr(!Il(e)),u()}
+,[u]),i}
+function sE(t){
+const e=Li(()=>bn(t)),{
+isStatic:n}
+=J.useContext(sa);
+if(n){
+const[,i]=J.useState(t);
+J.useEffect(()=>e.on("change",i),[])}
+return e}
+function oE(t,e){
+const n=sE(e()),i=()=>n.set(e());
+return i(),mu(()=>{
+const r=()=>Ne.preRender(i,!1,!0),l=t.map(u=>u.on("change",r));
+return()=>{
+l.forEach(u=>u()),hn(i)}
+}
+),n}
+function vD(t){
+Vr.current=[],t();
+const e=oE(Vr.current,t);
+return Vr.current=void 0,e}
+function Sn(t,e,n,i){
+if(typeof t=="function")return vD(t);
+if(n!==void 0&&!Array.isArray(n)&&typeof e!="function")return _D(t,e,n,i);
+const u=typeof e=="function"?e:AN(e,n,i);
+return Array.isArray(t)?i_(t,u):i_([t],([d])=>u(d))}
+function i_(t,e){
+const n=Li(()=>[]);
+return oE(t,()=>{
+n.length=0;
+const i=t.length;
+for(let r=0;
+r<i;
+r++)n[r]=t[r].get();
+return e(n)}
+)}
+function _D(t,e,n,i){
+const r=Li(()=>Object.keys(n)),l=Li(()=>({
+}
+));
+for(const u of r)l[u]=Sn(t,e,n[u],i);
+return l}
+function TD(t,e={
+}
+){
+const{
+isStatic:n}
+=J.useContext(sa),i=()=>ht(t)?t.get():t;
+if(n)return Sn(i);
+const r=sE(i());
+return J.useInsertionEffect(()=>CN(r,t,e),[r,JSON.stringify(e)]),r}
+function s_(t,e={
+}
+){
+return TD(t,{
+type:"spring",...e}
+)}
+const SD=({
+isScrolled:t,userId:e,onLoginClick:n,onDashboardClick:i}
+)=>{
+const[r,l]=J.useState(!1),u=()=>{
+l(!r)}
+,d=()=>{
+l(!1)}
+;
+return E.jsxs(E.Fragment,{
+children:[E.jsx("nav",{
+className:`fixed left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
+t?"top-4 mx-4 md:mx-auto md:max-w-5xl rounded-full bg-black/80 backdrop-blur-xl border border-white/10 shadow-[0_0_20px_rgba(0,0,0,0.5)]":"top-0 px-6 py-6 bg-transparent"}
+`,children:E.jsxs("div",{
+className:`flex items-center justify-between ${
+t?"px-6 py-3":"max-w-7xl mx-auto"}
+`,children:[E.jsxs("div",{
+className:"flex items-center gap-2 group cursor-pointer",children:[E.jsx("div",{
+className:`flex items-center justify-center transition-all duration-300 ${
+t?"w-8 h-8 rounded-lg":"w-10 h-10 rounded-xl"}
+ bg-[#BFF549] group-hover:rotate-12`,children:E.jsx(pu,{
+className:`text-black transition-all ${
+t?"w-4 h-4":"w-6 h-6"}
+`,fill:"currentColor"}
+)}
+),E.jsx("span",{
+className:`font-black tracking-tighter text-white transition-all ${
+t?"text-lg":"text-xl"}
+`,children:"VOLTFLOW"}
+)]}
+),E.jsxs("div",{
+className:"hidden md:flex items-center gap-8",children:[["Expertise","Process","Audit"].map(h=>E.jsxs("a",{
+href:`#${
+h.toLowerCase()}
+`,className:"text-sm font-medium text-[#99A1AF] hover:text-[#BFF549] transition-colors relative group",children:[h,E.jsx("span",{
+className:"absolute -bottom-1 left-0 w-0 h-0.5 bg-[#BFF549] transition-all duration-300 group-hover:w-full"}
+)]}
+,h)),e?E.jsxs("button",{
+onClick:i,className:"text-sm font-medium text-[#99A1AF] hover:text-[#BFF549] transition-colors relative group",children:["Dashboard",E.jsx("span",{
+className:"absolute -bottom-1 left-0 w-0 h-0.5 bg-[#BFF549] transition-all duration-300 group-hover:w-full"}
+)]}
+):E.jsxs("button",{
+onClick:n,className:"text-sm font-medium text-[#99A1AF] hover:text-[#BFF549] transition-colors relative group",children:["Login",E.jsx("span",{
+className:"absolute -bottom-1 left-0 w-0 h-0.5 bg-[#BFF549] transition-all duration-300 group-hover:w-full"}
+)]}
+),E.jsx("button",{
+className:`bg-white text-black font-bold text-sm rounded-full hover:bg-[#BFF549] transition-all transform active:scale-95 ${
+t?"px-4 py-2":"px-6 py-2.5"}
+`,children:"Book Strategy"}
+)]}
+),E.jsx("button",{
+onClick:u,className:"md:hidden text-white p-2 relative z-50","aria-label":"Toggle menu",children:r?E.jsx(uR,{
+className:"w-6 h-6"}
+):E.jsxs("div",{
+children:[E.jsx("div",{
+className:"w-6 h-0.5 bg-white mb-1.5 rounded-full"}
+),E.jsx("div",{
+className:"w-6 h-0.5 bg-white mb-1.5 rounded-full"}
+),E.jsx("div",{
+className:"w-6 h-0.5 bg-white rounded-full"}
+)]}
+)}
+)]}
+)}
+),E.jsx(qw,{
+children:r&&E.jsx(ye.div,{
+initial:{
+opacity:0,x:"100%"}
+,animate:{
+opacity:1,x:0}
+,exit:{
+opacity:0,x:"100%"}
+,transition:{
+type:"tween",duration:.3}
+,className:"fixed inset-0 z-40 bg-black/95 backdrop-blur-xl md:hidden",children:E.jsxs("div",{
+className:"flex flex-col items-center justify-center h-full gap-8 px-6",children:[["Expertise","Process","Audit"].map((h,p)=>E.jsx(ye.a,{
+initial:{
+opacity:0,y:20}
+,animate:{
+opacity:1,y:0}
+,transition:{
+delay:p*.1}
+,href:`#${
+h.toLowerCase()}
+`,onClick:d,className:"text-3xl font-bold text-white hover:text-[#BFF549] transition-colors",children:h}
+,h)),e?E.jsx(ye.button,{
+initial:{
+opacity:0,y:20}
+,animate:{
+opacity:1,y:0}
+,transition:{
+delay:.3}
+,onClick:()=>{
+i(),d()}
+,className:"text-3xl font-bold text-white hover:text-[#BFF549] transition-colors",children:"Dashboard"}
+):E.jsx(ye.button,{
+initial:{
+opacity:0,y:20}
+,animate:{
+opacity:1,y:0}
+,transition:{
+delay:.3}
+,onClick:()=>{
+n(),d()}
+,className:"text-3xl font-bold text-white hover:text-[#BFF549] transition-colors",children:"Login"}
+),E.jsx(ye.button,{
+initial:{
+opacity:0,y:20}
+,animate:{
+opacity:1,y:0}
+,transition:{
+delay:.4}
+,onClick:d,className:"mt-4 px-10 py-4 bg-[#BFF549] text-black font-bold text-lg rounded-full hover:bg-white transition-all",children:"Book Strategy"}
+)]}
+)}
+)}
+)]}
+)}
+;
+var rE={
+color:void 0,size:void 0,className:void 0,style:void 0,attr:void 0}
+,o_=Pi.createContext&&Pi.createContext(rE),wD=["attr","size","title"];
+function ED(t,e){
+if(t==null)return{
+}
+;
+var n=bD(t,e),i,r;
+if(Object.getOwnPropertySymbols){
+var l=Object.getOwnPropertySymbols(t);
+for(r=0;
+r<l.length;
+r++)i=l[r],!(e.indexOf(i)>=0)&&Object.prototype.propertyIsEnumerable.call(t,i)&&(n[i]=t[i])}
+return n}
+function bD(t,e){
+if(t==null)return{
+}
+;
+var n={
+}
+;
+for(var i in t)if(Object.prototype.hasOwnProperty.call(t,i)){
+if(e.indexOf(i)>=0)continue;
+n[i]=t[i]}
+return n}
+function iu(){
+return iu=Object.assign?Object.assign.bind():function(t){
+for(var e=1;
+e<arguments.length;
+e++){
+var n=arguments[e];
+for(var i in n)Object.prototype.hasOwnProperty.call(n,i)&&(t[i]=n[i])}
+return t}
+,iu.apply(this,arguments)}
+function r_(t,e){
+var n=Object.keys(t);
+if(Object.getOwnPropertySymbols){
+var i=Object.getOwnPropertySymbols(t);
+e&&(i=i.filter(function(r){
+return Object.getOwnPropertyDescriptor(t,r).enumerable}
+)),n.push.apply(n,i)}
+return n}
+function su(t){
+for(var e=1;
+e<arguments.length;
+e++){
+var n=arguments[e]!=null?arguments[e]:{
+}
+;
+e%2?r_(Object(n),!0).forEach(function(i){
+AD(t,i,n[i])}
+):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(n)):r_(Object(n)).forEach(function(i){
+Object.defineProperty(t,i,Object.getOwnPropertyDescriptor(n,i))}
+)}
+return t}
+function AD(t,e,n){
+return e=CD(e),e in t?Object.defineProperty(t,e,{
+value:n,enumerable:!0,configurable:!0,writable:!0}
+):t[e]=n,t}
+function CD(t){
+var e=xD(t,"string");
+return typeof e=="symbol"?e:e+""}
+function xD(t,e){
+if(typeof t!="object"||!t)return t;
+var n=t[Symbol.toPrimitive];
+if(n!==void 0){
+var i=n.call(t,e);
+if(typeof i!="object")return i;
+throw new TypeError("@@toPrimitive must return a primitive value.")}
+return(e==="string"?String:Number)(t)}
+function aE(t){
+return t&&t.map((e,n)=>Pi.createElement(e.tag,su({
+key:n}
+,e.attr),aE(e.child)))}
+function ra(t){
+return e=>Pi.createElement(RD,iu({
+attr:su({
+}
+,t.attr)}
+,e),aE(t.child))}
+function RD(t){
+var e=n=>{
+var{
+attr:i,size:r,title:l}
+=t,u=ED(t,wD),d=r||n.size||"1em",h;
+return n.className&&(h=n.className),t.className&&(h=(h?h+" ":"")+t.className),Pi.createElement("svg",iu({
+stroke:"currentColor",fill:"currentColor",strokeWidth:"0"}
+,n.attr,i,u,{
+className:h,style:su(su({
+color:t.color||n.color}
+,n.style),t.style),height:d,width:d,xmlns:"http://www.w3.org/2000/svg"}
+),l&&Pi.createElement("title",null,l),t.children)}
+;
+return o_!==void 0?Pi.createElement(o_.Consumer,null,n=>e(n)):e(rE)}
+function ND(t){
+return ra({
+attr:{
+viewBox:"0 0 512 512"}
+,child:[{
+tag:"path",attr:{
+fill:"none",strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:"32",d:"m350.54 148.68-26.62-42.06C318.31 100.08 310.62 96 302 96h-92c-8.62 0-16.31 4.08-21.92 10.62l-26.62 42.06C155.85 155.23 148.62 160 140 160H80a32 32 0 0 0-32 32v192a32 32 0 0 0 32 32h352a32 32 0 0 0 32-32V192a32 32 0 0 0-32-32h-59c-8.65 0-16.85-4.77-22.46-11.32z"}
+,child:[]}
+,{
+tag:"circle",attr:{
+cx:"256",cy:"272",r:"80",fill:"none",strokeMiterlimit:"10",strokeWidth:"32"}
+,child:[]}
+,{
+tag:"path",attr:{
+fill:"none",strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:"32",d:"M124 158v-22h-24v22"}
+,child:[]}
+]}
+)(t)}
+function MD(t){
+return ra({
+attr:{
+viewBox:"0 0 512 512"}
+,child:[{
+tag:"path",attr:{
+fill:"none",strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:"32",d:"M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0 0 18 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"}
+,child:[]}
+]}
+)(t)}
+function ID(t){
+return ra({
+attr:{
+viewBox:"0 0 512 512"}
+,child:[{
+tag:"path",attr:{
+fill:"none",strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:"32",d:"M80 212v236a16 16 0 0 0 16 16h96V328a24 24 0 0 1 24-24h80a24 24 0 0 1 24 24v136h96a16 16 0 0 0 16-16V212"}
+,child:[]}
+,{
+tag:"path",attr:{
+fill:"none",strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:"32",d:"M480 256 266.89 52c-5-5.28-16.69-5.34-21.78 0L32 256m368-77V64h-48v69"}
+,child:[]}
+]}
+)(t)}
+function DD(t){
+return ra({
+attr:{
+viewBox:"0 0 512 512"}
+,child:[{
+tag:"circle",attr:{
+cx:"128",cy:"256",r:"48",fill:"none",strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:"32"}
+,child:[]}
+,{
+tag:"circle",attr:{
+cx:"384",cy:"112",r:"48",fill:"none",strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:"32"}
+,child:[]}
+,{
+tag:"circle",attr:{
+cx:"384",cy:"400",r:"48",fill:"none",strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:"32"}
+,child:[]}
+,{
+tag:"path",attr:{
+fill:"none",strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:"32",d:"m169.83 279.53 172.34 96.94m0-240.94-172.34 96.94"}
+,child:[]}
+]}
+)(t)}
+function kD(t){
+return ra({
+attr:{
+viewBox:"0 0 512 512"}
+,child:[{
+tag:"path",attr:{
+fill:"none",strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:"32",d:"M374.79 308.78 457.5 367a16 16 0 0 0 22.5-14.62V159.62A16 16 0 0 0 457.5 145l-82.71 58.22A16 16 0 0 0 368 216.3v79.4a16 16 0 0 0 6.79 13.08z"}
+,child:[]}
+,{
+tag:"path",attr:{
+fill:"none",strokeMiterlimit:"10",strokeWidth:"32",d:"M268 384H84a52.15 52.15 0 0 1-52-52V180a52.15 52.15 0 0 1 52-52h184.48A51.68 51.68 0 0 1 320 179.52V332a52.15 52.15 0 0 1-52 52z"}
+,child:[]}
+]}
+)(t)}
+const UD=[{
+title:"Home",icon:E.jsx(ID,{
+}
+),gradientFrom:"#a955ff",gradientTo:"#ea51ff"}
+,{
+title:"Video",icon:E.jsx(kD,{
+}
+),gradientFrom:"#56CCF2",gradientTo:"#2F80ED"}
+,{
+title:"Photo",icon:E.jsx(ND,{
+}
+),gradientFrom:"#FF9966",gradientTo:"#FF5E62"}
+,{
+title:"Share",icon:E.jsx(DD,{
+}
+),gradientFrom:"#80FF72",gradientTo:"#7EE8FA"}
+,{
+title:"Tym",icon:E.jsx(MD,{
+}
+),gradientFrom:"#ffa9c6",gradientTo:"#f434e2"}
+];
+function PD(){
+return E.jsx("div",{
+className:"flex justify-center items-center py-8",children:E.jsx("ul",{
+className:"flex gap-4",children:UD.map(({
+title:t,icon:e,gradientFrom:n,gradientTo:i}
+,r)=>E.jsxs("li",{
+style:{
+"--gradient-from":n,"--gradient-to":i}
+,className:"relative w-[50px] h-[50px] bg-white/10 backdrop-blur-sm shadow-lg rounded-full flex items-center justify-center transition-all duration-500 hover:w-[160px] hover:shadow-none group cursor-pointer border border-white/20",children:[E.jsx("span",{
+className:"absolute inset-0 rounded-full opacity-0 transition-all duration-500 group-hover:opacity-100",style:{
+background:`linear-gradient(45deg, ${
+n}
+, ${
+i}
+)`}
+}
+),E.jsx("span",{
+className:"absolute top-[8px] inset-x-0 h-full rounded-full blur-[15px] opacity-0 -z-10 transition-all duration-500 group-hover:opacity-50",style:{
+background:`linear-gradient(45deg, ${
+n}
+, ${
+i}
+)`}
+}
+),E.jsx("span",{
+className:"relative z-10 transition-all duration-500 group-hover:scale-0 delay-0",children:E.jsx("span",{
+className:"text-xl text-white/80",children:e}
+)}
+),E.jsx("span",{
+className:"absolute text-white uppercase tracking-wide text-xs font-bold transition-all duration-500 scale-0 group-hover:scale-100 delay-150",children:t}
+)]}
+,r))}
+)}
+)}
+const LD=()=>{
+const t=J.useMemo(()=>Array.from({
+length:100}
+).map((e,n)=>({
+id:n,size:Math.random()*2+1,x:Math.random()*100,y:Math.random()*100,duration:10+Math.random()*20,delay:Math.random()*-20,opacity:.1+Math.random()*.4}
+)),[]);
+return E.jsx("div",{
+className:"absolute inset-0 z-[1] overflow-hidden pointer-events-none",children:t.map(e=>E.jsx(ye.div,{
+className:"absolute rounded-full bg-white",style:{
+width:e.size,height:e.size,left:`${
+e.x}
+%`,top:`${
+e.y}
+%`,opacity:e.opacity}
+,animate:{
+opacity:[e.opacity,e.opacity*2,e.opacity],y:[0,-20,0]}
+,transition:{
+duration:e.duration,repeat:1/0,ease:"linear",delay:e.delay}
+}
+,e.id))}
+)}
+,OD=()=>{
+const t=J.useRef(null),[e,n]=J.useState({
+x:0,y:0}
+),{
+scrollY:i}
+=iE(),r=Sn(i,[0,500],[0,200]),l=Sn(i,[0,500],[0,-150]),u=A=>{
+if(!t.current)return;
+const C=t.current.getBoundingClientRect();
+n({
+x:(A.clientX-C.left)/C.width-.5,y:(A.clientY-C.top)/C.height-.5}
+)}
+,d={
+damping:20,stiffness:100,mass:.5}
+,h=s_(e.x,d),p=s_(e.y,d),g=Sn(h,[-.5,.5],[-20,20]),_=Sn(p,[-.5,.5],[-20,20]),T=Sn(p,[-.5,.5],[5,-5]),w=Sn(h,[-.5,.5],[-5,5]);
+return E.jsxs("section",{
+ref:t,onMouseMove:u,className:"relative min-h-screen flex items-center justify-center overflow-hidden bg-[#02040a] pt-20",children:[E.jsx("div",{
+className:"absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(15,20,35,1)_0%,rgba(0,0,0,1)_100%)] z-0"}
+),E.jsx("div",{
+className:"absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)] z-0 opacity-50"}
+),E.jsx(LD,{
+}
+),E.jsxs("div",{
+className:"absolute inset-0 z-0 pointer-events-none",children:[E.jsx(ye.div,{
+style:{
+x:Sn(h,[-.5,.5],[-50,50]),y:r}
+,className:"absolute top-0 -left-[10%] w-[800px] h-[800px] bg-[#BFF549] rounded-full blur-[250px] opacity-10"}
+),E.jsx(ye.div,{
+style:{
+x:Sn(h,[-.5,.5],[50,-50]),y:l}
+,className:"absolute bottom-0 -right-[10%] w-[600px] h-[600px] bg-blue-600 rounded-full blur-[200px] opacity-10"}
+)]}
+),E.jsx("div",{
+className:"absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-[#02040a] to-transparent z-[5] pointer-events-none"}
+),E.jsx(ye.div,{
+style:{
+x:g,y:_,rotateX:T,rotateY:w,perspective:1e3}
+,className:"relative z-10 container mx-auto px-6 text-center",children:E.jsxs(ye.div,{
+initial:{
+opacity:0,scale:.9}
+,animate:{
+opacity:1,scale:1}
+,transition:{
+duration:.8,ease:"easeOut"}
+,className:"relative inline-block",children:[E.jsxs("span",{
+className:"inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full border border-[#BFF549]/30 bg-[#BFF549]/5 text-[#BFF549] text-xs font-bold uppercase tracking-[0.2em] backdrop-blur-md",children:[E.jsx(pu,{
+className:"w-3 h-3 fill-current"}
+),"Performance Optimized"]}
+),E.jsxs("h1",{
+className:"text-6xl md:text-[120px] font-black leading-[0.85] tracking-tighter mb-8 text-white mix-blend-difference",children:["WE BUILD ",E.jsx("br",{
+}
+),E.jsx("span",{
+className:"relative inline-block text-transparent bg-clip-text bg-gradient-to-b from-white to-white/50",children:"GORGEOUS"}
+)," ",E.jsx("br",{
+}
+),E.jsx("span",{
+className:"text-[#BFF549]",children:"WEBSITES."}
+)]}
+),E.jsx("p",{
+className:"text-lg md:text-2xl text-[#99A1AF] max-w-2xl mx-auto mb-12 font-light leading-relaxed tracking-tight",children:"Elevating digital presence through scientific design. We don't just build sites;
+ we engineer visual identities that convert."}
+),E.jsxs("div",{
+className:"flex flex-col sm:flex-row items-center justify-center gap-6",children:[E.jsxs("div",{
+className:"relative group w-auto",children:[E.jsx("div",{
+className:"absolute inset-0 bg-[#BFF549] rounded-full blur-[20px] opacity-40 group-hover:opacity-60 transition-all duration-300 transform group-hover:scale-110"}
+),E.jsxs("button",{
+className:"relative px-12 py-6 bg-[#BFF549] text-black font-black text-xl rounded-full overflow-hidden transition-all hover:scale-[1.02] active:scale-95 z-10 flex items-center gap-3 whitespace-nowrap",children:["Start Project",E.jsx(pS,{
+className:"w-6 h-6 group-hover:translate-x-1 transition-transform"}
+)]}
+)]}
+),E.jsx("button",{
+className:"px-10 py-6 text-white font-bold text-lg rounded-full border border-white/10 hover:bg-white/5 transition-all flex items-center gap-3 backdrop-blur-sm whitespace-nowrap",children:"View Our Work"}
+)]}
+),E.jsx(PD,{
+}
+)]}
+)}
+)]}
+)}
+,vf=["TechVibe","NexusLabs","Quantum","Elevate","Stellar","FlowState","Velocity","Apex","Zenith","Horizon","Prisma","Vertex"],VD=()=>E.jsxs("section",{
+className:"py-20 border-y border-white/5 bg-black overflow-hidden relative",children:[E.jsx("div",{
+className:"absolute inset-0 bg-gradient-to-r from-black via-transparent to-black z-10 pointer-events-none"}
+),E.jsx("div",{
+className:"container mx-auto px-6 mb-12 relative z-20",children:E.jsx("div",{
+className:"text-center",children:E.jsx("p",{
+className:"text-[#99A1AF] text-sm font-bold uppercase tracking-[0.2em]",children:"Trusted by industry leaders"}
+)}
+)}
+),E.jsx("div",{
+className:"relative flex whitespace-nowrap",children:E.jsx(ye.div,{
+animate:{
+x:[0,-2e3]}
+,transition:{
+duration:40,repeat:1/0,ease:"linear"}
+,className:"flex gap-20 md:gap-32 items-center pr-20",children:[...vf,...vf,...vf].map((t,e)=>E.jsx("span",{
+className:"text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white/30 to-white/10 hover:from-white hover:to-white/80 transition-all cursor-default tracking-tighter uppercase font-display",children:t}
+,e))}
+)}
+)]}
+),BD=()=>E.jsxs("section",{
+id:"expertise",className:"py-32 bg-[#02040a] relative overflow-hidden overflow-x-hidden",children:[E.jsx("div",{
+className:"absolute top-0 right-0 w-[500px] h-[500px] bg-blue-900/10 rounded-full blur-[120px] pointer-events-none"}
+),E.jsx("div",{
+className:"absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#BFF549]/5 rounded-full blur-[120px] pointer-events-none"}
+),E.jsxs("div",{
+className:"container mx-auto px-6 relative z-10",children:[E.jsxs("div",{
+className:"flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8",children:[E.jsxs("div",{
+children:[E.jsx(ye.span,{
+initial:{
+opacity:0,y:20}
+,whileInView:{
+opacity:1,y:0}
+,className:"inline-block text-[#BFF549] font-bold tracking-widest uppercase mb-4 text-sm",children:"Our Expertise"}
+),E.jsxs(ye.h2,{
+initial:{
+opacity:0,y:20}
+,whileInView:{
+opacity:1,y:0}
+,transition:{
+delay:.1}
+,className:"text-4xl md:text-7xl font-black tracking-tighter text-white",children:["SCIENTIFIC ",E.jsx("br",{
+}
+),E.jsx("span",{
+className:"text-transparent bg-clip-text bg-gradient-to-r from-white to-white/40",children:"PRECISION."}
+)]}
+)]}
+),E.jsx(ye.p,{
+initial:{
+opacity:0,y:20}
+,whileInView:{
+opacity:1,y:0}
+,transition:{
+delay:.2}
+,className:"text-xl text-[#99A1AF] max-w-lg font-light leading-relaxed",children:"We adhere to a rigorous, data-backed design methodology. No guesswork, just results."}
+)]}
+),E.jsxs("div",{
+className:"grid grid-cols-1 md:grid-cols-6 md:grid-rows-2 gap-6 h-auto md:h-[800px]",children:[E.jsxs(ye.div,{
+whileHover:{
+scale:.98}
+,className:"md:col-span-4 md:row-span-2 bg-gradient-to-br from-white/[0.08] to-transparent border border-white/5 rounded-[40px] p-10 flex flex-col justify-between group overflow-hidden relative",children:[E.jsx("div",{
+className:"absolute inset-0 bg-gradient-to-br from-[#BFF549]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"}
+),E.jsxs("div",{
+className:"relative z-10",children:[E.jsx("div",{
+className:"w-16 h-16 bg-[#BFF549] rounded-2xl flex items-center justify-center mb-8 rotate-3 group-hover:rotate-12 transition-transform duration-500",children:E.jsx(gx,{
+className:"w-8 h-8 text-black"}
+)}
+),E.jsxs("h3",{
+className:"text-4xl font-bold mb-6",children:["Velocity-First ",E.jsx("br",{
+}
+),"Architecture"]}
+),E.jsx("p",{
+className:"text-lg text-[#99A1AF] max-w-md",children:"We engineer sites that load in sub-100ms. Speed isn't just a feature;
+ it's the foundation of conversion. Google loves it, users demand it."}
+)]}
+),E.jsx("div",{
+className:"relative mt-10 h-64 bg-black/40 rounded-3xl border border-white/5 overflow-hidden",children:E.jsx("div",{
+className:"absolute bottom-0 left-0 right-0 h-full flex items-end gap-2 px-8 pb-8",children:[40,65,55,80,70,95,100].map((t,e)=>E.jsx(ye.div,{
+initial:{
+height:0}
+,whileInView:{
+height:`${
+t}
+%`}
+,transition:{
+delay:e*.1,duration:1,ease:"circOut"}
+,className:"flex-1 bg-gradient-to-t from-[#BFF549]/20 to-[#BFF549] rounded-t-lg opacity-80"}
+,e))}
+)}
+)]}
+),E.jsxs(ye.div,{
+whileHover:{
+scale:.98}
+,className:"md:col-span-2 md:row-span-1 bg-white/[0.03] border border-white/5 rounded-[40px] p-8 flex flex-col justify-center relative group overflow-hidden",children:[E.jsx("div",{
+className:"absolute top-0 right-0 p-8 opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-4 group-hover:translate-x-0 duration-300",children:E.jsx(px,{
+className:"w-8 h-8 text-[#BFF549]"}
+)}
+),E.jsx(zx,{
+className:"w-10 h-10 text-white mb-6"}
+),E.jsx("h3",{
+className:"text-2xl font-bold mb-3",children:"Neuro-Design"}
+),E.jsx("p",{
+className:"text-sm text-[#99A1AF]",children:"Eye-tracking data guides every pixel placement."}
+)]}
+),E.jsxs(ye.div,{
+whileHover:{
+scale:.98}
+,className:"md:col-span-2 md:row-span-1 bg-white/[0.03] border border-white/5 rounded-[40px] p-8 flex flex-col justify-center relative group overflow-hidden",children:[E.jsx("div",{
+className:"absolute inset-0 bg-gradient-to-tr from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"}
+),E.jsx(mS,{
+className:"w-10 h-10 text-purple-400 mb-6"}
+),E.jsx("h3",{
+className:"text-2xl font-bold mb-3",children:"Conversion CRO"}
+),E.jsx("p",{
+className:"text-sm text-[#99A1AF]",children:"Frictionless funnels that turn visitors into revenue."}
+)]}
+)]}
+),E.jsxs("div",{
+className:"grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mt-6",children:[E.jsxs(ye.div,{
+whileHover:{
+y:-5}
+,className:"bg-white/[0.02] border border-white/5 rounded-3xl p-6 flex items-center gap-4",children:[E.jsx("div",{
+className:"p-3 bg-white/5 rounded-xl",children:E.jsx(Mx,{
+className:"w-6 h-6 text-[#BFF549]"}
+)}
+),E.jsxs("div",{
+children:[E.jsx("h4",{
+className:"font-bold",children:"Brand Authority"}
+),E.jsx("p",{
+className:"text-xs text-gray-500",children:"Premium Aesthetics"}
+)]}
+)]}
+),E.jsxs(ye.div,{
+whileHover:{
+y:-5}
+,className:"bg-white/[0.02] border border-white/5 rounded-3xl p-6 flex items-center gap-4",children:[E.jsx("div",{
+className:"p-3 bg-white/5 rounded-xl",children:E.jsx(qx,{
+className:"w-6 h-6 text-blue-400"}
+)}
+),E.jsxs("div",{
+children:[E.jsx("h4",{
+className:"font-bold",children:"Behavioral Triggers"}
+),E.jsx("p",{
+className:"text-xs text-gray-500",children:"Intent Response"}
+)]}
+)]}
+),E.jsxs(ye.div,{
+whileHover:{
+y:-5}
+,className:"bg-white/[0.02] border border-white/5 rounded-3xl p-6 flex items-center gap-4",children:[E.jsx("div",{
+className:"p-3 bg-white/5 rounded-xl",children:E.jsx(pu,{
+className:"w-6 h-6 text-yellow-400"}
+)}
+),E.jsxs("div",{
+children:[E.jsx("h4",{
+className:"font-bold",children:"Instant Iteration"}
+),E.jsx("p",{
+className:"text-xs text-gray-500",children:"Rapid Testing"}
+)]}
+)]}
+)]}
+)]}
+)]}
+),a_=[{
+name:"Alex Rivera",role:"CEO of TechStream",content:"We saw a 140% lift in conversions within the first 30 days. The psychological hooks are absolutely real.",avatar:"https://picsum.photos/100/100?random=1",rating:5}
+,{
+name:"Sarah Chen",role:"Founder of GlowUp",content:"The most beautiful website I've ever owned. But more importantly, it actually makes me money while I sleep.",avatar:"https://picsum.photos/100/100?random=2",rating:5}
+,{
+name:"Jameson Blake",role:"VP Marketing, Velocity",content:"Their process is elite. They understood our enterprise needs and delivered a high-converting masterpiece.",avatar:"https://picsum.photos/100/100?random=3",rating:5}
+,{
+name:"Elena Rodriguez",role:"CMO, FutureScale",content:"A truly scientific approach to design. Every pixel has a purpose. The results speak for themselves.",avatar:"https://picsum.photos/100/100?random=4",rating:5}
+],FD=()=>{
+const t=J.useRef(null),{
+scrollYProgress:e}
+=iE({
+target:t}
+);
+return Sn(e,[0,1],["0%","-50%"]),E.jsx("section",{
+id:"testimonials",className:"py-32 bg-[#02040a] overflow-hidden",ref:t,children:E.jsxs("div",{
+className:"relative w-full",children:[E.jsx("div",{
+className:"absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#02040a] to-transparent z-10 pointer-events-none"}
+),E.jsx("div",{
+className:"absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#02040a] to-transparent z-10 pointer-events-none"}
+),E.jsx("div",{
+className:"overflow-hidden",children:E.jsx(ye.div,{
+className:"flex gap-8 px-6 md:px-20 py-4",drag:"x",dragConstraints:{
+left:-1e3,right:0}
+,dragElastic:.1,children:a_.concat(a_).map((n,i)=>E.jsxs("div",{
+className:"w-[350px] md:w-[500px] flex-shrink-0 bg-white/[0.03] border border-white/5 p-10 rounded-[40px] hover:bg-white/[0.05] transition-all duration-300 group",children:[E.jsx("div",{
+className:"flex gap-1 mb-6",children:[...Array(n.rating)].map((r,l)=>E.jsx(Qx,{
+className:"w-5 h-5 text-[#BFF549] fill-current"}
+,l))}
+),E.jsxs("blockquote",{
+className:"text-2xl font-light leading-relaxed mb-8 text-white group-hover:text-white/90",children:['"',n.content,'"']}
+),E.jsxs("div",{
+className:"flex items-center gap-4",children:[E.jsx("img",{
+src:n.avatar,alt:n.name,className:"w-12 h-12 rounded-full border-2 border-[#BFF549]/20"}
+),E.jsxs("div",{
+children:[E.jsx("div",{
+className:"font-bold text-lg text-white",children:n.name}
+),E.jsx("div",{
+className:"text-[#BFF549] text-sm uppercase tracking-widest font-bold",children:n.role}
+)]}
+)]}
+)]}
+,i))}
+)}
+)]}
+)}
+)}
+;
+var GD={
+}
+;
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */let qD,HD;
+function zD(){
+return{
+geminiUrl:qD,vertexUrl:HD}
+}
+function $D(t,e,n,i){
+var r,l;
+if(!(t!=null&&t.baseUrl)){
+const u=zD();
+return e?(r=u.vertexUrl)!==null&&r!==void 0?r:n:(l=u.geminiUrl)!==null&&l!==void 0?l:i}
+return t.baseUrl}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */class ni{
+}
+function Z(t,e){
+const n=/\{
+([^}
+]+)\}
+/g;
+return t.replace(n,(i,r)=>{
+if(Object.prototype.hasOwnProperty.call(e,r)){
+const l=e[r];
+return l!=null?String(l):""}
+else throw new Error(`Key '${
+r}
+' not found in valueMap.`)}
+)}
+function m(t,e,n){
+for(let l=0;
+l<e.length-1;
+l++){
+const u=e[l];
+if(u.endsWith("[]")){
+const d=u.slice(0,-2);
+if(!(d in t))if(Array.isArray(n))t[d]=Array.from({
+length:n.length}
+,()=>({
+}
+));
+else throw new Error(`Value must be a list given an array path ${
+u}
+`);
+if(Array.isArray(t[d])){
+const h=t[d];
+if(Array.isArray(n))for(let p=0;
+p<h.length;
+p++){
+const g=h[p];
+m(g,e.slice(l+1),n[p])}
+else for(const p of h)m(p,e.slice(l+1),n)}
+return}
+else if(u.endsWith("[0]")){
+const d=u.slice(0,-3);
+d in t||(t[d]=[{
+}
+]);
+const h=t[d];
+m(h[0],e.slice(l+1),n);
+return}
+(!t[u]||typeof t[u]!="object")&&(t[u]={
+}
+),t=t[u]}
+const i=e[e.length-1],r=t[i];
+if(r!==void 0){
+if(!n||typeof n=="object"&&Object.keys(n).length===0||n===r)return;
+if(typeof r=="object"&&typeof n=="object"&&r!==null&&n!==null)Object.assign(r,n);
+else throw new Error(`Cannot set value for an existing key. Key: ${
+i}
+`)}
+else i==="_self"&&typeof n=="object"&&n!==null&&!Array.isArray(n)?Object.assign(t,n):t[i]=n}
+function f(t,e,n=void 0){
+try{
+if(e.length===1&&e[0]==="_self")return t;
+for(let i=0;
+i<e.length;
+i++){
+if(typeof t!="object"||t===null)return n;
+const r=e[i];
+if(r.endsWith("[]")){
+const l=r.slice(0,-2);
+if(l in t){
+const u=t[l];
+return Array.isArray(u)?u.map(d=>f(d,e.slice(i+1),n)):n}
+else return n}
+else t=t[r]}
+return t}
+catch(i){
+if(i instanceof TypeError)return n;
+throw i}
+}
+function JD(t,e){
+for(const[n,i]of Object.entries(e)){
+const r=n.split("."),l=i.split("."),u=new Set;
+let d=-1;
+for(let h=0;
+h<r.length;
+h++)if(r[h]==="*"){
+d=h;
+break}
+if(d!==-1&&l.length>d)for(let h=d;
+h<l.length;
+h++){
+const p=l[h];
+p!=="*"&&!p.endsWith("[]")&&!p.endsWith("[0]")&&u.add(p)}
+eh(t,r,l,0,u)}
+}
+function eh(t,e,n,i,r){
+if(i>=e.length||typeof t!="object"||t===null)return;
+const l=e[i];
+if(l.endsWith("[]")){
+const u=l.slice(0,-2),d=t;
+if(u in d&&Array.isArray(d[u]))for(const h of d[u])eh(h,e,n,i+1,r)}
+else if(l==="*"){
+if(typeof t=="object"&&t!==null&&!Array.isArray(t)){
+const u=t,d=Object.keys(u).filter(p=>!p.startsWith("_")&&!r.has(p)),h={
+}
+;
+for(const p of d)h[p]=u[p];
+for(const[p,g]of Object.entries(h)){
+const _=[];
+for(const T of n.slice(i))T==="*"?_.push(p):_.push(T);
+m(u,_,g)}
+for(const p of d)delete u[p]}
+}
+else{
+const u=t;
+l in u&&eh(u[l],e,n,i+1,r)}
+}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */function sp(t){
+if(typeof t!="string")throw new Error("fromImageBytes must be a string");
+return t}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */function KD(t){
+const e={
+}
+,n=f(t,["operationName"]);
+n!=null&&m(e,["operationName"],n);
+const i=f(t,["resourceName"]);
+return i!=null&&m(e,["_url","resourceName"],i),e}
+function YD(t){
+const e={
+}
+,n=f(t,["name"]);
+n!=null&&m(e,["name"],n);
+const i=f(t,["metadata"]);
+i!=null&&m(e,["metadata"],i);
+const r=f(t,["done"]);
+r!=null&&m(e,["done"],r);
+const l=f(t,["error"]);
+l!=null&&m(e,["error"],l);
+const u=f(t,["response","generateVideoResponse"]);
+return u!=null&&m(e,["response"],WD(u)),e}
+function jD(t){
+const e={
+}
+,n=f(t,["name"]);
+n!=null&&m(e,["name"],n);
+const i=f(t,["metadata"]);
+i!=null&&m(e,["metadata"],i);
+const r=f(t,["done"]);
+r!=null&&m(e,["done"],r);
+const l=f(t,["error"]);
+l!=null&&m(e,["error"],l);
+const u=f(t,["response"]);
+return u!=null&&m(e,["response"],XD(u)),e}
+function WD(t){
+const e={
+}
+,n=f(t,["generatedSamples"]);
+if(n!=null){
+let l=n;
+Array.isArray(l)&&(l=l.map(u=>QD(u))),m(e,["generatedVideos"],l)}
+const i=f(t,["raiMediaFilteredCount"]);
+i!=null&&m(e,["raiMediaFilteredCount"],i);
+const r=f(t,["raiMediaFilteredReasons"]);
+return r!=null&&m(e,["raiMediaFilteredReasons"],r),e}
+function XD(t){
+const e={
+}
+,n=f(t,["videos"]);
+if(n!=null){
+let l=n;
+Array.isArray(l)&&(l=l.map(u=>ZD(u))),m(e,["generatedVideos"],l)}
+const i=f(t,["raiMediaFilteredCount"]);
+i!=null&&m(e,["raiMediaFilteredCount"],i);
+const r=f(t,["raiMediaFilteredReasons"]);
+return r!=null&&m(e,["raiMediaFilteredReasons"],r),e}
+function QD(t){
+const e={
+}
+,n=f(t,["video"]);
+return n!=null&&m(e,["video"],ok(n)),e}
+function ZD(t){
+const e={
+}
+,n=f(t,["_self"]);
+return n!=null&&m(e,["video"],rk(n)),e}
+function ek(t){
+const e={
+}
+,n=f(t,["operationName"]);
+return n!=null&&m(e,["_url","operationName"],n),e}
+function tk(t){
+const e={
+}
+,n=f(t,["operationName"]);
+return n!=null&&m(e,["_url","operationName"],n),e}
+function nk(t){
+const e={
+}
+,n=f(t,["name"]);
+n!=null&&m(e,["name"],n);
+const i=f(t,["metadata"]);
+i!=null&&m(e,["metadata"],i);
+const r=f(t,["done"]);
+r!=null&&m(e,["done"],r);
+const l=f(t,["error"]);
+l!=null&&m(e,["error"],l);
+const u=f(t,["response"]);
+return u!=null&&m(e,["response"],ik(u)),e}
+function ik(t){
+const e={
+}
+,n=f(t,["sdkHttpResponse"]);
+n!=null&&m(e,["sdkHttpResponse"],n);
+const i=f(t,["parent"]);
+i!=null&&m(e,["parent"],i);
+const r=f(t,["documentName"]);
+return r!=null&&m(e,["documentName"],r),e}
+function lE(t){
+const e={
+}
+,n=f(t,["name"]);
+n!=null&&m(e,["name"],n);
+const i=f(t,["metadata"]);
+i!=null&&m(e,["metadata"],i);
+const r=f(t,["done"]);
+r!=null&&m(e,["done"],r);
+const l=f(t,["error"]);
+l!=null&&m(e,["error"],l);
+const u=f(t,["response"]);
+return u!=null&&m(e,["response"],sk(u)),e}
+function sk(t){
+const e={
+}
+,n=f(t,["sdkHttpResponse"]);
+n!=null&&m(e,["sdkHttpResponse"],n);
+const i=f(t,["parent"]);
+i!=null&&m(e,["parent"],i);
+const r=f(t,["documentName"]);
+return r!=null&&m(e,["documentName"],r),e}
+function ok(t){
+const e={
+}
+,n=f(t,["uri"]);
+n!=null&&m(e,["uri"],n);
+const i=f(t,["encodedVideo"]);
+i!=null&&m(e,["videoBytes"],sp(i));
+const r=f(t,["encoding"]);
+return r!=null&&m(e,["mimeType"],r),e}
+function rk(t){
+const e={
+}
+,n=f(t,["gcsUri"]);
+n!=null&&m(e,["uri"],n);
+const i=f(t,["bytesBase64Encoded"]);
+i!=null&&m(e,["videoBytes"],sp(i));
+const r=f(t,["mimeType"]);
+return r!=null&&m(e,["mimeType"],r),e}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */var l_;
+(function(t){
+t.OUTCOME_UNSPECIFIED="OUTCOME_UNSPECIFIED",t.OUTCOME_OK="OUTCOME_OK",t.OUTCOME_FAILED="OUTCOME_FAILED",t.OUTCOME_DEADLINE_EXCEEDED="OUTCOME_DEADLINE_EXCEEDED"}
+)(l_||(l_={
+}
+));
+var u_;
+(function(t){
+t.LANGUAGE_UNSPECIFIED="LANGUAGE_UNSPECIFIED",t.PYTHON="PYTHON"}
+)(u_||(u_={
+}
+));
+var c_;
+(function(t){
+t.SCHEDULING_UNSPECIFIED="SCHEDULING_UNSPECIFIED",t.SILENT="SILENT",t.WHEN_IDLE="WHEN_IDLE",t.INTERRUPT="INTERRUPT"}
+)(c_||(c_={
+}
+));
+var Wt;
+(function(t){
+t.TYPE_UNSPECIFIED="TYPE_UNSPECIFIED",t.STRING="STRING",t.NUMBER="NUMBER",t.INTEGER="INTEGER",t.BOOLEAN="BOOLEAN",t.ARRAY="ARRAY",t.OBJECT="OBJECT",t.NULL="NULL"}
+)(Wt||(Wt={
+}
+));
+var d_;
+(function(t){
+t.API_SPEC_UNSPECIFIED="API_SPEC_UNSPECIFIED",t.SIMPLE_SEARCH="SIMPLE_SEARCH",t.ELASTIC_SEARCH="ELASTIC_SEARCH"}
+)(d_||(d_={
+}
+));
+var f_;
+(function(t){
+t.AUTH_TYPE_UNSPECIFIED="AUTH_TYPE_UNSPECIFIED",t.NO_AUTH="NO_AUTH",t.API_KEY_AUTH="API_KEY_AUTH",t.HTTP_BASIC_AUTH="HTTP_BASIC_AUTH",t.GOOGLE_SERVICE_ACCOUNT_AUTH="GOOGLE_SERVICE_ACCOUNT_AUTH",t.OAUTH="OAUTH",t.OIDC_AUTH="OIDC_AUTH"}
+)(f_||(f_={
+}
+));
+var h_;
+(function(t){
+t.HTTP_IN_UNSPECIFIED="HTTP_IN_UNSPECIFIED",t.HTTP_IN_QUERY="HTTP_IN_QUERY",t.HTTP_IN_HEADER="HTTP_IN_HEADER",t.HTTP_IN_PATH="HTTP_IN_PATH",t.HTTP_IN_BODY="HTTP_IN_BODY",t.HTTP_IN_COOKIE="HTTP_IN_COOKIE"}
+)(h_||(h_={
+}
+));
+var p_;
+(function(t){
+t.PHISH_BLOCK_THRESHOLD_UNSPECIFIED="PHISH_BLOCK_THRESHOLD_UNSPECIFIED",t.BLOCK_LOW_AND_ABOVE="BLOCK_LOW_AND_ABOVE",t.BLOCK_MEDIUM_AND_ABOVE="BLOCK_MEDIUM_AND_ABOVE",t.BLOCK_HIGH_AND_ABOVE="BLOCK_HIGH_AND_ABOVE",t.BLOCK_HIGHER_AND_ABOVE="BLOCK_HIGHER_AND_ABOVE",t.BLOCK_VERY_HIGH_AND_ABOVE="BLOCK_VERY_HIGH_AND_ABOVE",t.BLOCK_ONLY_EXTREMELY_HIGH="BLOCK_ONLY_EXTREMELY_HIGH"}
+)(p_||(p_={
+}
+));
+var m_;
+(function(t){
+t.UNSPECIFIED="UNSPECIFIED",t.BLOCKING="BLOCKING",t.NON_BLOCKING="NON_BLOCKING"}
+)(m_||(m_={
+}
+));
+var g_;
+(function(t){
+t.MODE_UNSPECIFIED="MODE_UNSPECIFIED",t.MODE_DYNAMIC="MODE_DYNAMIC"}
+)(g_||(g_={
+}
+));
+var y_;
+(function(t){
+t.MODE_UNSPECIFIED="MODE_UNSPECIFIED",t.AUTO="AUTO",t.ANY="ANY",t.NONE="NONE",t.VALIDATED="VALIDATED"}
+)(y_||(y_={
+}
+));
+var v_;
+(function(t){
+t.THINKING_LEVEL_UNSPECIFIED="THINKING_LEVEL_UNSPECIFIED",t.LOW="LOW",t.MEDIUM="MEDIUM",t.HIGH="HIGH",t.MINIMAL="MINIMAL"}
+)(v_||(v_={
+}
+));
+var __;
+(function(t){
+t.HARM_CATEGORY_UNSPECIFIED="HARM_CATEGORY_UNSPECIFIED",t.HARM_CATEGORY_HARASSMENT="HARM_CATEGORY_HARASSMENT",t.HARM_CATEGORY_HATE_SPEECH="HARM_CATEGORY_HATE_SPEECH",t.HARM_CATEGORY_SEXUALLY_EXPLICIT="HARM_CATEGORY_SEXUALLY_EXPLICIT",t.HARM_CATEGORY_DANGEROUS_CONTENT="HARM_CATEGORY_DANGEROUS_CONTENT",t.HARM_CATEGORY_CIVIC_INTEGRITY="HARM_CATEGORY_CIVIC_INTEGRITY",t.HARM_CATEGORY_IMAGE_HATE="HARM_CATEGORY_IMAGE_HATE",t.HARM_CATEGORY_IMAGE_DANGEROUS_CONTENT="HARM_CATEGORY_IMAGE_DANGEROUS_CONTENT",t.HARM_CATEGORY_IMAGE_HARASSMENT="HARM_CATEGORY_IMAGE_HARASSMENT",t.HARM_CATEGORY_IMAGE_SEXUALLY_EXPLICIT="HARM_CATEGORY_IMAGE_SEXUALLY_EXPLICIT",t.HARM_CATEGORY_JAILBREAK="HARM_CATEGORY_JAILBREAK"}
+)(__||(__={
+}
+));
+var T_;
+(function(t){
+t.HARM_BLOCK_METHOD_UNSPECIFIED="HARM_BLOCK_METHOD_UNSPECIFIED",t.SEVERITY="SEVERITY",t.PROBABILITY="PROBABILITY"}
+)(T_||(T_={
+}
+));
+var S_;
+(function(t){
+t.HARM_BLOCK_THRESHOLD_UNSPECIFIED="HARM_BLOCK_THRESHOLD_UNSPECIFIED",t.BLOCK_LOW_AND_ABOVE="BLOCK_LOW_AND_ABOVE",t.BLOCK_MEDIUM_AND_ABOVE="BLOCK_MEDIUM_AND_ABOVE",t.BLOCK_ONLY_HIGH="BLOCK_ONLY_HIGH",t.BLOCK_NONE="BLOCK_NONE",t.OFF="OFF"}
+)(S_||(S_={
+}
+));
+var w_;
+(function(t){
+t.FINISH_REASON_UNSPECIFIED="FINISH_REASON_UNSPECIFIED",t.STOP="STOP",t.MAX_TOKENS="MAX_TOKENS",t.SAFETY="SAFETY",t.RECITATION="RECITATION",t.LANGUAGE="LANGUAGE",t.OTHER="OTHER",t.BLOCKLIST="BLOCKLIST",t.PROHIBITED_CONTENT="PROHIBITED_CONTENT",t.SPII="SPII",t.MALFORMED_FUNCTION_CALL="MALFORMED_FUNCTION_CALL",t.IMAGE_SAFETY="IMAGE_SAFETY",t.UNEXPECTED_TOOL_CALL="UNEXPECTED_TOOL_CALL",t.IMAGE_PROHIBITED_CONTENT="IMAGE_PROHIBITED_CONTENT",t.NO_IMAGE="NO_IMAGE",t.IMAGE_RECITATION="IMAGE_RECITATION",t.IMAGE_OTHER="IMAGE_OTHER"}
+)(w_||(w_={
+}
+));
+var E_;
+(function(t){
+t.HARM_PROBABILITY_UNSPECIFIED="HARM_PROBABILITY_UNSPECIFIED",t.NEGLIGIBLE="NEGLIGIBLE",t.LOW="LOW",t.MEDIUM="MEDIUM",t.HIGH="HIGH"}
+)(E_||(E_={
+}
+));
+var b_;
+(function(t){
+t.HARM_SEVERITY_UNSPECIFIED="HARM_SEVERITY_UNSPECIFIED",t.HARM_SEVERITY_NEGLIGIBLE="HARM_SEVERITY_NEGLIGIBLE",t.HARM_SEVERITY_LOW="HARM_SEVERITY_LOW",t.HARM_SEVERITY_MEDIUM="HARM_SEVERITY_MEDIUM",t.HARM_SEVERITY_HIGH="HARM_SEVERITY_HIGH"}
+)(b_||(b_={
+}
+));
+var A_;
+(function(t){
+t.URL_RETRIEVAL_STATUS_UNSPECIFIED="URL_RETRIEVAL_STATUS_UNSPECIFIED",t.URL_RETRIEVAL_STATUS_SUCCESS="URL_RETRIEVAL_STATUS_SUCCESS",t.URL_RETRIEVAL_STATUS_ERROR="URL_RETRIEVAL_STATUS_ERROR",t.URL_RETRIEVAL_STATUS_PAYWALL="URL_RETRIEVAL_STATUS_PAYWALL",t.URL_RETRIEVAL_STATUS_UNSAFE="URL_RETRIEVAL_STATUS_UNSAFE"}
+)(A_||(A_={
+}
+));
+var C_;
+(function(t){
+t.BLOCKED_REASON_UNSPECIFIED="BLOCKED_REASON_UNSPECIFIED",t.SAFETY="SAFETY",t.OTHER="OTHER",t.BLOCKLIST="BLOCKLIST",t.PROHIBITED_CONTENT="PROHIBITED_CONTENT",t.IMAGE_SAFETY="IMAGE_SAFETY",t.MODEL_ARMOR="MODEL_ARMOR",t.JAILBREAK="JAILBREAK"}
+)(C_||(C_={
+}
+));
+var x_;
+(function(t){
+t.TRAFFIC_TYPE_UNSPECIFIED="TRAFFIC_TYPE_UNSPECIFIED",t.ON_DEMAND="ON_DEMAND",t.PROVISIONED_THROUGHPUT="PROVISIONED_THROUGHPUT"}
+)(x_||(x_={
+}
+));
+var ou;
+(function(t){
+t.MODALITY_UNSPECIFIED="MODALITY_UNSPECIFIED",t.TEXT="TEXT",t.IMAGE="IMAGE",t.AUDIO="AUDIO"}
+)(ou||(ou={
+}
+));
+var R_;
+(function(t){
+t.MEDIA_RESOLUTION_UNSPECIFIED="MEDIA_RESOLUTION_UNSPECIFIED",t.MEDIA_RESOLUTION_LOW="MEDIA_RESOLUTION_LOW",t.MEDIA_RESOLUTION_MEDIUM="MEDIA_RESOLUTION_MEDIUM",t.MEDIA_RESOLUTION_HIGH="MEDIA_RESOLUTION_HIGH"}
+)(R_||(R_={
+}
+));
+var N_;
+(function(t){
+t.TUNING_MODE_UNSPECIFIED="TUNING_MODE_UNSPECIFIED",t.TUNING_MODE_FULL="TUNING_MODE_FULL",t.TUNING_MODE_PEFT_ADAPTER="TUNING_MODE_PEFT_ADAPTER"}
+)(N_||(N_={
+}
+));
+var M_;
+(function(t){
+t.ADAPTER_SIZE_UNSPECIFIED="ADAPTER_SIZE_UNSPECIFIED",t.ADAPTER_SIZE_ONE="ADAPTER_SIZE_ONE",t.ADAPTER_SIZE_TWO="ADAPTER_SIZE_TWO",t.ADAPTER_SIZE_FOUR="ADAPTER_SIZE_FOUR",t.ADAPTER_SIZE_EIGHT="ADAPTER_SIZE_EIGHT",t.ADAPTER_SIZE_SIXTEEN="ADAPTER_SIZE_SIXTEEN",t.ADAPTER_SIZE_THIRTY_TWO="ADAPTER_SIZE_THIRTY_TWO"}
+)(M_||(M_={
+}
+));
+var th;
+(function(t){
+t.JOB_STATE_UNSPECIFIED="JOB_STATE_UNSPECIFIED",t.JOB_STATE_QUEUED="JOB_STATE_QUEUED",t.JOB_STATE_PENDING="JOB_STATE_PENDING",t.JOB_STATE_RUNNING="JOB_STATE_RUNNING",t.JOB_STATE_SUCCEEDED="JOB_STATE_SUCCEEDED",t.JOB_STATE_FAILED="JOB_STATE_FAILED",t.JOB_STATE_CANCELLING="JOB_STATE_CANCELLING",t.JOB_STATE_CANCELLED="JOB_STATE_CANCELLED",t.JOB_STATE_PAUSED="JOB_STATE_PAUSED",t.JOB_STATE_EXPIRED="JOB_STATE_EXPIRED",t.JOB_STATE_UPDATING="JOB_STATE_UPDATING",t.JOB_STATE_PARTIALLY_SUCCEEDED="JOB_STATE_PARTIALLY_SUCCEEDED"}
+)(th||(th={
+}
+));
+var I_;
+(function(t){
+t.TUNING_TASK_UNSPECIFIED="TUNING_TASK_UNSPECIFIED",t.TUNING_TASK_I2V="TUNING_TASK_I2V",t.TUNING_TASK_T2V="TUNING_TASK_T2V",t.TUNING_TASK_R2V="TUNING_TASK_R2V"}
+)(I_||(I_={
+}
+));
+var D_;
+(function(t){
+t.MEDIA_RESOLUTION_UNSPECIFIED="MEDIA_RESOLUTION_UNSPECIFIED",t.MEDIA_RESOLUTION_LOW="MEDIA_RESOLUTION_LOW",t.MEDIA_RESOLUTION_MEDIUM="MEDIA_RESOLUTION_MEDIUM",t.MEDIA_RESOLUTION_HIGH="MEDIA_RESOLUTION_HIGH",t.MEDIA_RESOLUTION_ULTRA_HIGH="MEDIA_RESOLUTION_ULTRA_HIGH"}
+)(D_||(D_={
+}
+));
+var nh;
+(function(t){
+t.COLLECTION="COLLECTION"}
+)(nh||(nh={
+}
+));
+var k_;
+(function(t){
+t.FEATURE_SELECTION_PREFERENCE_UNSPECIFIED="FEATURE_SELECTION_PREFERENCE_UNSPECIFIED",t.PRIORITIZE_QUALITY="PRIORITIZE_QUALITY",t.BALANCED="BALANCED",t.PRIORITIZE_COST="PRIORITIZE_COST"}
+)(k_||(k_={
+}
+));
+var U_;
+(function(t){
+t.ENVIRONMENT_UNSPECIFIED="ENVIRONMENT_UNSPECIFIED",t.ENVIRONMENT_BROWSER="ENVIRONMENT_BROWSER"}
+)(U_||(U_={
+}
+));
+var P_;
+(function(t){
+t.BLOCK_LOW_AND_ABOVE="BLOCK_LOW_AND_ABOVE",t.BLOCK_MEDIUM_AND_ABOVE="BLOCK_MEDIUM_AND_ABOVE",t.BLOCK_ONLY_HIGH="BLOCK_ONLY_HIGH",t.BLOCK_NONE="BLOCK_NONE"}
+)(P_||(P_={
+}
+));
+var L_;
+(function(t){
+t.DONT_ALLOW="DONT_ALLOW",t.ALLOW_ADULT="ALLOW_ADULT",t.ALLOW_ALL="ALLOW_ALL"}
+)(L_||(L_={
+}
+));
+var O_;
+(function(t){
+t.auto="auto",t.en="en",t.ja="ja",t.ko="ko",t.hi="hi",t.zh="zh",t.pt="pt",t.es="es"}
+)(O_||(O_={
+}
+));
+var V_;
+(function(t){
+t.MASK_MODE_DEFAULT="MASK_MODE_DEFAULT",t.MASK_MODE_USER_PROVIDED="MASK_MODE_USER_PROVIDED",t.MASK_MODE_BACKGROUND="MASK_MODE_BACKGROUND",t.MASK_MODE_FOREGROUND="MASK_MODE_FOREGROUND",t.MASK_MODE_SEMANTIC="MASK_MODE_SEMANTIC"}
+)(V_||(V_={
+}
+));
+var B_;
+(function(t){
+t.CONTROL_TYPE_DEFAULT="CONTROL_TYPE_DEFAULT",t.CONTROL_TYPE_CANNY="CONTROL_TYPE_CANNY",t.CONTROL_TYPE_SCRIBBLE="CONTROL_TYPE_SCRIBBLE",t.CONTROL_TYPE_FACE_MESH="CONTROL_TYPE_FACE_MESH"}
+)(B_||(B_={
+}
+));
+var F_;
+(function(t){
+t.SUBJECT_TYPE_DEFAULT="SUBJECT_TYPE_DEFAULT",t.SUBJECT_TYPE_PERSON="SUBJECT_TYPE_PERSON",t.SUBJECT_TYPE_ANIMAL="SUBJECT_TYPE_ANIMAL",t.SUBJECT_TYPE_PRODUCT="SUBJECT_TYPE_PRODUCT"}
+)(F_||(F_={
+}
+));
+var G_;
+(function(t){
+t.EDIT_MODE_DEFAULT="EDIT_MODE_DEFAULT",t.EDIT_MODE_INPAINT_REMOVAL="EDIT_MODE_INPAINT_REMOVAL",t.EDIT_MODE_INPAINT_INSERTION="EDIT_MODE_INPAINT_INSERTION",t.EDIT_MODE_OUTPAINT="EDIT_MODE_OUTPAINT",t.EDIT_MODE_CONTROLLED_EDITING="EDIT_MODE_CONTROLLED_EDITING",t.EDIT_MODE_STYLE="EDIT_MODE_STYLE",t.EDIT_MODE_BGSWAP="EDIT_MODE_BGSWAP",t.EDIT_MODE_PRODUCT_IMAGE="EDIT_MODE_PRODUCT_IMAGE"}
+)(G_||(G_={
+}
+));
+var q_;
+(function(t){
+t.FOREGROUND="FOREGROUND",t.BACKGROUND="BACKGROUND",t.PROMPT="PROMPT",t.SEMANTIC="SEMANTIC",t.INTERACTIVE="INTERACTIVE"}
+)(q_||(q_={
+}
+));
+var H_;
+(function(t){
+t.ASSET="ASSET",t.STYLE="STYLE"}
+)(H_||(H_={
+}
+));
+var z_;
+(function(t){
+t.INSERT="INSERT",t.REMOVE="REMOVE",t.REMOVE_STATIC="REMOVE_STATIC",t.OUTPAINT="OUTPAINT"}
+)(z_||(z_={
+}
+));
+var $_;
+(function(t){
+t.OPTIMIZED="OPTIMIZED",t.LOSSLESS="LOSSLESS"}
+)($_||($_={
+}
+));
+var J_;
+(function(t){
+t.SUPERVISED_FINE_TUNING="SUPERVISED_FINE_TUNING",t.PREFERENCE_TUNING="PREFERENCE_TUNING"}
+)(J_||(J_={
+}
+));
+var K_;
+(function(t){
+t.STATE_UNSPECIFIED="STATE_UNSPECIFIED",t.STATE_PENDING="STATE_PENDING",t.STATE_ACTIVE="STATE_ACTIVE",t.STATE_FAILED="STATE_FAILED"}
+)(K_||(K_={
+}
+));
+var Y_;
+(function(t){
+t.STATE_UNSPECIFIED="STATE_UNSPECIFIED",t.PROCESSING="PROCESSING",t.ACTIVE="ACTIVE",t.FAILED="FAILED"}
+)(Y_||(Y_={
+}
+));
+var j_;
+(function(t){
+t.SOURCE_UNSPECIFIED="SOURCE_UNSPECIFIED",t.UPLOADED="UPLOADED",t.GENERATED="GENERATED",t.REGISTERED="REGISTERED"}
+)(j_||(j_={
+}
+));
+var W_;
+(function(t){
+t.TURN_COMPLETE_REASON_UNSPECIFIED="TURN_COMPLETE_REASON_UNSPECIFIED",t.MALFORMED_FUNCTION_CALL="MALFORMED_FUNCTION_CALL",t.RESPONSE_REJECTED="RESPONSE_REJECTED",t.NEED_MORE_INPUT="NEED_MORE_INPUT"}
+)(W_||(W_={
+}
+));
+var X_;
+(function(t){
+t.MODALITY_UNSPECIFIED="MODALITY_UNSPECIFIED",t.TEXT="TEXT",t.IMAGE="IMAGE",t.VIDEO="VIDEO",t.AUDIO="AUDIO",t.DOCUMENT="DOCUMENT"}
+)(X_||(X_={
+}
+));
+var Q_;
+(function(t){
+t.VAD_SIGNAL_TYPE_UNSPECIFIED="VAD_SIGNAL_TYPE_UNSPECIFIED",t.VAD_SIGNAL_TYPE_SOS="VAD_SIGNAL_TYPE_SOS",t.VAD_SIGNAL_TYPE_EOS="VAD_SIGNAL_TYPE_EOS"}
+)(Q_||(Q_={
+}
+));
+var Z_;
+(function(t){
+t.TYPE_UNSPECIFIED="TYPE_UNSPECIFIED",t.ACTIVITY_START="ACTIVITY_START",t.ACTIVITY_END="ACTIVITY_END"}
+)(Z_||(Z_={
+}
+));
+var eT;
+(function(t){
+t.START_SENSITIVITY_UNSPECIFIED="START_SENSITIVITY_UNSPECIFIED",t.START_SENSITIVITY_HIGH="START_SENSITIVITY_HIGH",t.START_SENSITIVITY_LOW="START_SENSITIVITY_LOW"}
+)(eT||(eT={
+}
+));
+var tT;
+(function(t){
+t.END_SENSITIVITY_UNSPECIFIED="END_SENSITIVITY_UNSPECIFIED",t.END_SENSITIVITY_HIGH="END_SENSITIVITY_HIGH",t.END_SENSITIVITY_LOW="END_SENSITIVITY_LOW"}
+)(tT||(tT={
+}
+));
+var nT;
+(function(t){
+t.ACTIVITY_HANDLING_UNSPECIFIED="ACTIVITY_HANDLING_UNSPECIFIED",t.START_OF_ACTIVITY_INTERRUPTS="START_OF_ACTIVITY_INTERRUPTS",t.NO_INTERRUPTION="NO_INTERRUPTION"}
+)(nT||(nT={
+}
+));
+var iT;
+(function(t){
+t.TURN_COVERAGE_UNSPECIFIED="TURN_COVERAGE_UNSPECIFIED",t.TURN_INCLUDES_ONLY_ACTIVITY="TURN_INCLUDES_ONLY_ACTIVITY",t.TURN_INCLUDES_ALL_INPUT="TURN_INCLUDES_ALL_INPUT"}
+)(iT||(iT={
+}
+));
+var sT;
+(function(t){
+t.SCALE_UNSPECIFIED="SCALE_UNSPECIFIED",t.C_MAJOR_A_MINOR="C_MAJOR_A_MINOR",t.D_FLAT_MAJOR_B_FLAT_MINOR="D_FLAT_MAJOR_B_FLAT_MINOR",t.D_MAJOR_B_MINOR="D_MAJOR_B_MINOR",t.E_FLAT_MAJOR_C_MINOR="E_FLAT_MAJOR_C_MINOR",t.E_MAJOR_D_FLAT_MINOR="E_MAJOR_D_FLAT_MINOR",t.F_MAJOR_D_MINOR="F_MAJOR_D_MINOR",t.G_FLAT_MAJOR_E_FLAT_MINOR="G_FLAT_MAJOR_E_FLAT_MINOR",t.G_MAJOR_E_MINOR="G_MAJOR_E_MINOR",t.A_FLAT_MAJOR_F_MINOR="A_FLAT_MAJOR_F_MINOR",t.A_MAJOR_G_FLAT_MINOR="A_MAJOR_G_FLAT_MINOR",t.B_FLAT_MAJOR_G_MINOR="B_FLAT_MAJOR_G_MINOR",t.B_MAJOR_A_FLAT_MINOR="B_MAJOR_A_FLAT_MINOR"}
+)(sT||(sT={
+}
+));
+var oT;
+(function(t){
+t.MUSIC_GENERATION_MODE_UNSPECIFIED="MUSIC_GENERATION_MODE_UNSPECIFIED",t.QUALITY="QUALITY",t.DIVERSITY="DIVERSITY",t.VOCALIZATION="VOCALIZATION"}
+)(oT||(oT={
+}
+));
+var To;
+(function(t){
+t.PLAYBACK_CONTROL_UNSPECIFIED="PLAYBACK_CONTROL_UNSPECIFIED",t.PLAY="PLAY",t.PAUSE="PAUSE",t.STOP="STOP",t.RESET_CONTEXT="RESET_CONTEXT"}
+)(To||(To={
+}
+));
+class ih{
+constructor(e){
+const n={
+}
+;
+for(const i of e.headers.entries())n[i[0]]=i[1];
+this.headers=n,this.responseInternal=e}
+json(){
+return this.responseInternal.json()}
+}
+class Mr{
+get text(){
+var e,n,i,r,l,u,d,h;
+if(((r=(i=(n=(e=this.candidates)===null||e===void 0?void 0:e[0])===null||n===void 0?void 0:n.content)===null||i===void 0?void 0:i.parts)===null||r===void 0?void 0:r.length)===0)return;
+this.candidates&&this.candidates.length>1&&console.warn("there are multiple candidates in the response, returning text from the first one.");
+let p="",g=!1;
+const _=[];
+for(const T of(h=(d=(u=(l=this.candidates)===null||l===void 0?void 0:l[0])===null||u===void 0?void 0:u.content)===null||d===void 0?void 0:d.parts)!==null&&h!==void 0?h:[]){
+for(const[w,A]of Object.entries(T))w!=="text"&&w!=="thought"&&w!=="thoughtSignature"&&(A!==null||A!==void 0)&&_.push(w);
+if(typeof T.text=="string"){
+if(typeof T.thought=="boolean"&&T.thought)continue;
+g=!0,p+=T.text}
+}
+return _.length>0&&console.warn(`there are non-text parts ${
+_}
+ in the response, returning concatenation of all text parts. Please refer to the non text parts for a full response from model.`),g?p:void 0}
+get data(){
+var e,n,i,r,l,u,d,h;
+if(((r=(i=(n=(e=this.candidates)===null||e===void 0?void 0:e[0])===null||n===void 0?void 0:n.content)===null||i===void 0?void 0:i.parts)===null||r===void 0?void 0:r.length)===0)return;
+this.candidates&&this.candidates.length>1&&console.warn("there are multiple candidates in the response, returning data from the first one.");
+let p="";
+const g=[];
+for(const _ of(h=(d=(u=(l=this.candidates)===null||l===void 0?void 0:l[0])===null||u===void 0?void 0:u.content)===null||d===void 0?void 0:d.parts)!==null&&h!==void 0?h:[]){
+for(const[T,w]of Object.entries(_))T!=="inlineData"&&(w!==null||w!==void 0)&&g.push(T);
+_.inlineData&&typeof _.inlineData.data=="string"&&(p+=atob(_.inlineData.data))}
+return g.length>0&&console.warn(`there are non-data parts ${
+g}
+ in the response, returning concatenation of all data parts. Please refer to the non data parts for a full response from model.`),p.length>0?btoa(p):void 0}
+get functionCalls(){
+var e,n,i,r,l,u,d,h;
+if(((r=(i=(n=(e=this.candidates)===null||e===void 0?void 0:e[0])===null||n===void 0?void 0:n.content)===null||i===void 0?void 0:i.parts)===null||r===void 0?void 0:r.length)===0)return;
+this.candidates&&this.candidates.length>1&&console.warn("there are multiple candidates in the response, returning function calls from the first one.");
+const p=(h=(d=(u=(l=this.candidates)===null||l===void 0?void 0:l[0])===null||u===void 0?void 0:u.content)===null||d===void 0?void 0:d.parts)===null||h===void 0?void 0:h.filter(g=>g.functionCall).map(g=>g.functionCall).filter(g=>g!==void 0);
+if((p==null?void 0:p.length)!==0)return p}
+get executableCode(){
+var e,n,i,r,l,u,d,h,p;
+if(((r=(i=(n=(e=this.candidates)===null||e===void 0?void 0:e[0])===null||n===void 0?void 0:n.content)===null||i===void 0?void 0:i.parts)===null||r===void 0?void 0:r.length)===0)return;
+this.candidates&&this.candidates.length>1&&console.warn("there are multiple candidates in the response, returning executable code from the first one.");
+const g=(h=(d=(u=(l=this.candidates)===null||l===void 0?void 0:l[0])===null||u===void 0?void 0:u.content)===null||d===void 0?void 0:d.parts)===null||h===void 0?void 0:h.filter(_=>_.executableCode).map(_=>_.executableCode).filter(_=>_!==void 0);
+if((g==null?void 0:g.length)!==0)return(p=g==null?void 0:g[0])===null||p===void 0?void 0:p.code}
+get codeExecutionResult(){
+var e,n,i,r,l,u,d,h,p;
+if(((r=(i=(n=(e=this.candidates)===null||e===void 0?void 0:e[0])===null||n===void 0?void 0:n.content)===null||i===void 0?void 0:i.parts)===null||r===void 0?void 0:r.length)===0)return;
+this.candidates&&this.candidates.length>1&&console.warn("there are multiple candidates in the response, returning code execution result from the first one.");
+const g=(h=(d=(u=(l=this.candidates)===null||l===void 0?void 0:l[0])===null||u===void 0?void 0:u.content)===null||d===void 0?void 0:d.parts)===null||h===void 0?void 0:h.filter(_=>_.codeExecutionResult).map(_=>_.codeExecutionResult).filter(_=>_!==void 0);
+if((g==null?void 0:g.length)!==0)return(p=g==null?void 0:g[0])===null||p===void 0?void 0:p.output}
+}
+class rT{
+}
+class aT{
+}
+class ak{
+}
+class lk{
+}
+class uk{
+}
+class ck{
+}
+class lT{
+}
+class uT{
+}
+class cT{
+}
+class dk{
+}
+class ru{
+_fromAPIResponse({
+apiResponse:e,_isVertexAI:n}
+){
+const i=new ru;
+let r;
+const l=e;
+return n?r=jD(l):r=YD(l),Object.assign(i,r),i}
+}
+class dT{
+}
+class fT{
+}
+class hT{
+}
+class pT{
+}
+class fk{
+}
+class hk{
+}
+class pk{
+}
+class op{
+_fromAPIResponse({
+apiResponse:e,_isVertexAI:n}
+){
+const i=new op,l=nk(e);
+return Object.assign(i,l),i}
+}
+class mk{
+}
+class gk{
+}
+class yk{
+}
+class mT{
+}
+class vk{
+get text(){
+var e,n,i;
+let r="",l=!1;
+const u=[];
+for(const d of(i=(n=(e=this.serverContent)===null||e===void 0?void 0:e.modelTurn)===null||n===void 0?void 0:n.parts)!==null&&i!==void 0?i:[]){
+for(const[h,p]of Object.entries(d))h!=="text"&&h!=="thought"&&p!==null&&u.push(h);
+if(typeof d.text=="string"){
+if(typeof d.thought=="boolean"&&d.thought)continue;
+l=!0,r+=d.text}
+}
+return u.length>0&&console.warn(`there are non-text parts ${
+u}
+ in the response, returning concatenation of all text parts. Please refer to the non text parts for a full response from model.`),l?r:void 0}
+get data(){
+var e,n,i;
+let r="";
+const l=[];
+for(const u of(i=(n=(e=this.serverContent)===null||e===void 0?void 0:e.modelTurn)===null||n===void 0?void 0:n.parts)!==null&&i!==void 0?i:[]){
+for(const[d,h]of Object.entries(u))d!=="inlineData"&&h!==null&&l.push(d);
+u.inlineData&&typeof u.inlineData.data=="string"&&(r+=atob(u.inlineData.data))}
+return l.length>0&&console.warn(`there are non-data parts ${
+l}
+ in the response, returning concatenation of all data parts. Please refer to the non data parts for a full response from model.`),r.length>0?btoa(r):void 0}
+}
+class _k{
+get audioChunk(){
+if(this.serverContent&&this.serverContent.audioChunks&&this.serverContent.audioChunks.length>0)return this.serverContent.audioChunks[0]}
+}
+class rp{
+_fromAPIResponse({
+apiResponse:e,_isVertexAI:n}
+){
+const i=new rp,l=lE(e);
+return Object.assign(i,l),i}
+}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */function Me(t,e){
+if(!e||typeof e!="string")throw new Error("model is required and must be a string");
+if(e.includes("..")||e.includes("?")||e.includes("&"))throw new Error("invalid model parameter");
+if(t.isVertexAI()){
+if(e.startsWith("publishers/")||e.startsWith("projects/")||e.startsWith("models/"))return e;
+if(e.indexOf("/")>=0){
+const n=e.split("/",2);
+return`publishers/${
+n[0]}
+/models/${
+n[1]}
+`}
+else return`publishers/google/models/${
+e}
+`}
+else return e.startsWith("models/")||e.startsWith("tunedModels/")?e:`models/${
+e}
+`}
+function uE(t,e){
+const n=Me(t,e);
+return n?n.startsWith("publishers/")&&t.isVertexAI()?`projects/${
+t.getProject()}
+/locations/${
+t.getLocation()}
+/${
+n}
+`:n.startsWith("models/")&&t.isVertexAI()?`projects/${
+t.getProject()}
+/locations/${
+t.getLocation()}
+/publishers/google/${
+n}
+`:n:""}
+function cE(t){
+return Array.isArray(t)?t.map(e=>au(e)):[au(t)]}
+function au(t){
+if(typeof t=="object"&&t!==null)return t;
+throw new Error(`Could not parse input as Blob. Unsupported blob type: ${
+typeof t}
+`)}
+function dE(t){
+const e=au(t);
+if(e.mimeType&&e.mimeType.startsWith("image/"))return e;
+throw new Error(`Unsupported mime type: ${
+e.mimeType}
+`)}
+function fE(t){
+const e=au(t);
+if(e.mimeType&&e.mimeType.startsWith("audio/"))return e;
+throw new Error(`Unsupported mime type: ${
+e.mimeType}
+`)}
+function gT(t){
+if(t==null)throw new Error("PartUnion is required");
+if(typeof t=="object")return t;
+if(typeof t=="string")return{
+text:t}
+;
+throw new Error(`Unsupported part type: ${
+typeof t}
+`)}
+function hE(t){
+if(t==null||Array.isArray(t)&&t.length===0)throw new Error("PartListUnion is required");
+return Array.isArray(t)?t.map(e=>gT(e)):[gT(t)]}
+function sh(t){
+return t!=null&&typeof t=="object"&&"parts"in t&&Array.isArray(t.parts)}
+function yT(t){
+return t!=null&&typeof t=="object"&&"functionCall"in t}
+function vT(t){
+return t!=null&&typeof t=="object"&&"functionResponse"in t}
+function bt(t){
+if(t==null)throw new Error("ContentUnion is required");
+return sh(t)?t:{
+role:"user",parts:hE(t)}
+}
+function ap(t,e){
+if(!e)return[];
+if(t.isVertexAI()&&Array.isArray(e))return e.flatMap(n=>{
+const i=bt(n);
+return i.parts&&i.parts.length>0&&i.parts[0].text!==void 0?[i.parts[0].text]:[]}
+);
+if(t.isVertexAI()){
+const n=bt(e);
+return n.parts&&n.parts.length>0&&n.parts[0].text!==void 0?[n.parts[0].text]:[]}
+return Array.isArray(e)?e.map(n=>bt(n)):[bt(e)]}
+function fn(t){
+if(t==null||Array.isArray(t)&&t.length===0)throw new Error("contents are required");
+if(!Array.isArray(t)){
+if(yT(t)||vT(t))throw new Error("To specify functionCall or functionResponse parts, please wrap them in a Content object, specifying the role for them");
+return[bt(t)]}
+const e=[],n=[],i=sh(t[0]);
+for(const r of t){
+const l=sh(r);
+if(l!=i)throw new Error("Mixing Content and Parts is not supported, please group the parts into a the appropriate Content objects and specify the roles for them");
+if(l)e.push(r);
+else{
+if(yT(r)||vT(r))throw new Error("To specify functionCall or functionResponse parts, please wrap them, and any other parts, in Content objects as appropriate, specifying the role for them");
+n.push(r)}
+}
+return i||e.push({
+role:"user",parts:hE(n)}
+),e}
+function Tk(t,e){
+t.includes("null")&&(e.nullable=!0);
+const n=t.filter(i=>i!=="null");
+if(n.length===1)e.type=Object.values(Wt).includes(n[0].toUpperCase())?n[0].toUpperCase():Wt.TYPE_UNSPECIFIED;
+else{
+e.anyOf=[];
+for(const i of n)e.anyOf.push({
+type:Object.values(Wt).includes(i.toUpperCase())?i.toUpperCase():Wt.TYPE_UNSPECIFIED}
+)}
+}
+function bo(t){
+const e={
+}
+,n=["items"],i=["anyOf"],r=["properties"];
+if(t.type&&t.anyOf)throw new Error("type and anyOf cannot be both populated.");
+const l=t.anyOf;
+l!=null&&l.length==2&&(l[0].type==="null"?(e.nullable=!0,t=l[1]):l[1].type==="null"&&(e.nullable=!0,t=l[0])),t.type instanceof Array&&Tk(t.type,e);
+for(const[u,d]of Object.entries(t))if(d!=null)if(u=="type"){
+if(d==="null")throw new Error("type: null can not be the only possible type for the field.");
+if(d instanceof Array)continue;
+e.type=Object.values(Wt).includes(d.toUpperCase())?d.toUpperCase():Wt.TYPE_UNSPECIFIED}
+else if(n.includes(u))e[u]=bo(d);
+else if(i.includes(u)){
+const h=[];
+for(const p of d){
+if(p.type=="null"){
+e.nullable=!0;
+continue}
+h.push(bo(p))}
+e[u]=h}
+else if(r.includes(u)){
+const h={
+}
+;
+for(const[p,g]of Object.entries(d))h[p]=bo(g);
+e[u]=h}
+else{
+if(u==="additionalProperties")continue;
+e[u]=d}
+return e}
+function lp(t){
+return bo(t)}
+function up(t){
+if(typeof t=="object")return t;
+if(typeof t=="string")return{
+voiceConfig:{
+prebuiltVoiceConfig:{
+voiceName:t}
+}
+}
+;
+throw new Error(`Unsupported speechConfig type: ${
+typeof t}
+`)}
+function cp(t){
+if("multiSpeakerVoiceConfig"in t)throw new Error("multiSpeakerVoiceConfig is not supported in the live API.");
+return t}
+function Io(t){
+if(t.functionDeclarations)for(const e of t.functionDeclarations)e.parameters&&(Object.keys(e.parameters).includes("$schema")?e.parametersJsonSchema||(e.parametersJsonSchema=e.parameters,delete e.parameters):e.parameters=bo(e.parameters)),e.response&&(Object.keys(e.response).includes("$schema")?e.responseJsonSchema||(e.responseJsonSchema=e.response,delete e.response):e.response=bo(e.response));
+return t}
+function Do(t){
+if(t==null)throw new Error("tools is required");
+if(!Array.isArray(t))throw new Error("tools is required and must be an array of Tools");
+const e=[];
+for(const n of t)e.push(n);
+return e}
+function Sk(t,e,n,i=1){
+const r=!e.startsWith(`${
+n}
+/`)&&e.split("/").length===i;
+return t.isVertexAI()?e.startsWith("projects/")?e:e.startsWith("locations/")?`projects/${
+t.getProject()}
+/${
+e}
+`:e.startsWith(`${
+n}
+/`)?`projects/${
+t.getProject()}
+/locations/${
+t.getLocation()}
+/${
+e}
+`:r?`projects/${
+t.getProject()}
+/locations/${
+t.getLocation()}
+/${
+n}
+/${
+e}
+`:e:r?`${
+n}
+/${
+e}
+`:e}
+function ii(t,e){
+if(typeof e!="string")throw new Error("name must be a string");
+return Sk(t,e,"cachedContents")}
+function pE(t){
+switch(t){
+case"STATE_UNSPECIFIED":return"JOB_STATE_UNSPECIFIED";
+case"CREATING":return"JOB_STATE_RUNNING";
+case"ACTIVE":return"JOB_STATE_SUCCEEDED";
+case"FAILED":return"JOB_STATE_FAILED";
+default:return t}
+}
+function Bi(t){
+return sp(t)}
+function wk(t){
+return t!=null&&typeof t=="object"&&"name"in t}
+function Ek(t){
+return t!=null&&typeof t=="object"&&"video"in t}
+function bk(t){
+return t!=null&&typeof t=="object"&&"uri"in t}
+function mE(t){
+var e;
+let n;
+if(wk(t)&&(n=t.name),!(bk(t)&&(n=t.uri,n===void 0))&&!(Ek(t)&&(n=(e=t.video)===null||e===void 0?void 0:e.uri,n===void 0))){
+if(typeof t=="string"&&(n=t),n===void 0)throw new Error("Could not extract file name from the provided input.");
+if(n.startsWith("https://")){
+const r=n.split("files/")[1].match(/[a-z0-9]+/);
+if(r===null)throw new Error(`Could not extract file name from URI ${
+n}
+`);
+n=r[0]}
+else n.startsWith("files/")&&(n=n.split("files/")[1]);
+return n}
+}
+function gE(t,e){
+let n;
+return t.isVertexAI()?n=e?"publishers/google/models":"models":n=e?"models":"tunedModels",n}
+function yE(t){
+for(const e of["models","tunedModels","publisherModels"])if(Ak(t,e))return t[e];
+return[]}
+function Ak(t,e){
+return t!==null&&typeof t=="object"&&e in t}
+function Ck(t,e={
+}
+){
+const n=t,i={
+name:n.name,description:n.description,parametersJsonSchema:n.inputSchema}
+;
+return n.outputSchema&&(i.responseJsonSchema=n.outputSchema),e.behavior&&(i.behavior=e.behavior),{
+functionDeclarations:[i]}
+}
+function xk(t,e={
+}
+){
+const n=[],i=new Set;
+for(const r of t){
+const l=r.name;
+if(i.has(l))throw new Error(`Duplicate function name ${
+l}
+ found in MCP tools. Please ensure function names are unique.`);
+i.add(l);
+const u=Ck(r,e);
+u.functionDeclarations&&n.push(...u.functionDeclarations)}
+return{
+functionDeclarations:n}
+}
+function vE(t,e){
+let n;
+if(typeof e=="string")if(t.isVertexAI())if(e.startsWith("gs://"))n={
+format:"jsonl",gcsUri:[e]}
+;
+else if(e.startsWith("bq://"))n={
+format:"bigquery",bigqueryUri:e}
+;
+else throw new Error(`Unsupported string source for Vertex AI: ${
+e}
+`);
+else if(e.startsWith("files/"))n={
+fileName:e}
+;
+else throw new Error(`Unsupported string source for Gemini API: ${
+e}
+`);
+else if(Array.isArray(e)){
+if(t.isVertexAI())throw new Error("InlinedRequest[] is not supported in Vertex AI.");
+n={
+inlinedRequests:e}
+}
+else n=e;
+const i=[n.gcsUri,n.bigqueryUri].filter(Boolean).length,r=[n.inlinedRequests,n.fileName].filter(Boolean).length;
+if(t.isVertexAI()){
+if(r>0||i!==1)throw new Error("Exactly one of `gcsUri` or `bigqueryUri` must be set for Vertex AI.")}
+else if(i>0||r!==1)throw new Error("Exactly one of `inlinedRequests`, `fileName`, must be set for Gemini API.");
+return n}
+function Rk(t){
+if(typeof t!="string")return t;
+const e=t;
+if(e.startsWith("gs://"))return{
+format:"jsonl",gcsUri:e}
+;
+if(e.startsWith("bq://"))return{
+format:"bigquery",bigqueryUri:e}
+;
+throw new Error(`Unsupported destination: ${
+e}
+`)}
+function _E(t){
+if(typeof t!="object"||t===null)return{
+}
+;
+const e=t,n=e.inlinedResponses;
+if(typeof n!="object"||n===null)return t;
+const r=n.inlinedResponses;
+if(!Array.isArray(r)||r.length===0)return t;
+let l=!1;
+for(const u of r){
+if(typeof u!="object"||u===null)continue;
+const h=u.response;
+if(typeof h!="object"||h===null)continue;
+if(h.embedding!==void 0){
+l=!0;
+break}
+}
+return l&&(e.inlinedEmbedContentResponses=e.inlinedResponses,delete e.inlinedResponses),t}
+function ko(t,e){
+const n=e;
+if(!t.isVertexAI()){
+if(/batches\/[^/]+$/.test(n))return n.split("/").pop();
+throw new Error(`Invalid batch job name: ${
+n}
+.`)}
+if(/^projects\/[^/]+\/locations\/[^/]+\/batchPredictionJobs\/[^/]+$/.test(n))return n.split("/").pop();
+if(/^\d+$/.test(n))return n;
+throw new Error(`Invalid batch job name: ${
+n}
+.`)}
+function TE(t){
+const e=t;
+return e==="BATCH_STATE_UNSPECIFIED"?"JOB_STATE_UNSPECIFIED":e==="BATCH_STATE_PENDING"?"JOB_STATE_PENDING":e==="BATCH_STATE_RUNNING"?"JOB_STATE_RUNNING":e==="BATCH_STATE_SUCCEEDED"?"JOB_STATE_SUCCEEDED":e==="BATCH_STATE_FAILED"?"JOB_STATE_FAILED":e==="BATCH_STATE_CANCELLED"?"JOB_STATE_CANCELLED":e==="BATCH_STATE_EXPIRED"?"JOB_STATE_EXPIRED":e}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */function Nk(t){
+const e={
+}
+,n=f(t,["responsesFile"]);
+n!=null&&m(e,["fileName"],n);
+const i=f(t,["inlinedResponses","inlinedResponses"]);
+if(i!=null){
+let l=i;
+Array.isArray(l)&&(l=l.map(u=>u2(u))),m(e,["inlinedResponses"],l)}
+const r=f(t,["inlinedEmbedContentResponses","inlinedResponses"]);
+if(r!=null){
+let l=r;
+Array.isArray(l)&&(l=l.map(u=>u)),m(e,["inlinedEmbedContentResponses"],l)}
+return e}
+function Mk(t){
+const e={
+}
+,n=f(t,["predictionsFormat"]);
+n!=null&&m(e,["format"],n);
+const i=f(t,["gcsDestination","outputUriPrefix"]);
+i!=null&&m(e,["gcsUri"],i);
+const r=f(t,["bigqueryDestination","outputUri"]);
+return r!=null&&m(e,["bigqueryUri"],r),e}
+function Ik(t){
+const e={
+}
+,n=f(t,["format"]);
+n!=null&&m(e,["predictionsFormat"],n);
+const i=f(t,["gcsUri"]);
+i!=null&&m(e,["gcsDestination","outputUriPrefix"],i);
+const r=f(t,["bigqueryUri"]);
+if(r!=null&&m(e,["bigqueryDestination","outputUri"],r),f(t,["fileName"])!==void 0)throw new Error("fileName parameter is not supported in Vertex AI.");
+if(f(t,["inlinedResponses"])!==void 0)throw new Error("inlinedResponses parameter is not supported in Vertex AI.");
+if(f(t,["inlinedEmbedContentResponses"])!==void 0)throw new Error("inlinedEmbedContentResponses parameter is not supported in Vertex AI.");
+return e}
+function Kl(t){
+const e={
+}
+,n=f(t,["name"]);
+n!=null&&m(e,["name"],n);
+const i=f(t,["metadata","displayName"]);
+i!=null&&m(e,["displayName"],i);
+const r=f(t,["metadata","state"]);
+r!=null&&m(e,["state"],TE(r));
+const l=f(t,["metadata","createTime"]);
+l!=null&&m(e,["createTime"],l);
+const u=f(t,["metadata","endTime"]);
+u!=null&&m(e,["endTime"],u);
+const d=f(t,["metadata","updateTime"]);
+d!=null&&m(e,["updateTime"],d);
+const h=f(t,["metadata","model"]);
+h!=null&&m(e,["model"],h);
+const p=f(t,["metadata","output"]);
+return p!=null&&m(e,["dest"],Nk(_E(p))),e}
+function oh(t){
+const e={
+}
+,n=f(t,["name"]);
+n!=null&&m(e,["name"],n);
+const i=f(t,["displayName"]);
+i!=null&&m(e,["displayName"],i);
+const r=f(t,["state"]);
+r!=null&&m(e,["state"],TE(r));
+const l=f(t,["error"]);
+l!=null&&m(e,["error"],l);
+const u=f(t,["createTime"]);
+u!=null&&m(e,["createTime"],u);
+const d=f(t,["startTime"]);
+d!=null&&m(e,["startTime"],d);
+const h=f(t,["endTime"]);
+h!=null&&m(e,["endTime"],h);
+const p=f(t,["updateTime"]);
+p!=null&&m(e,["updateTime"],p);
+const g=f(t,["model"]);
+g!=null&&m(e,["model"],g);
+const _=f(t,["inputConfig"]);
+_!=null&&m(e,["src"],Dk(_));
+const T=f(t,["outputConfig"]);
+T!=null&&m(e,["dest"],Mk(_E(T)));
+const w=f(t,["completionStats"]);
+return w!=null&&m(e,["completionStats"],w),e}
+function Dk(t){
+const e={
+}
+,n=f(t,["instancesFormat"]);
+n!=null&&m(e,["format"],n);
+const i=f(t,["gcsSource","uris"]);
+i!=null&&m(e,["gcsUri"],i);
+const r=f(t,["bigquerySource","inputUri"]);
+return r!=null&&m(e,["bigqueryUri"],r),e}
+function kk(t,e){
+const n={
+}
+;
+if(f(e,["format"])!==void 0)throw new Error("format parameter is not supported in Gemini API.");
+if(f(e,["gcsUri"])!==void 0)throw new Error("gcsUri parameter is not supported in Gemini API.");
+if(f(e,["bigqueryUri"])!==void 0)throw new Error("bigqueryUri parameter is not supported in Gemini API.");
+const i=f(e,["fileName"]);
+i!=null&&m(n,["fileName"],i);
+const r=f(e,["inlinedRequests"]);
+if(r!=null){
+let l=r;
+Array.isArray(l)&&(l=l.map(u=>l2(t,u))),m(n,["requests","requests"],l)}
+return n}
+function Uk(t){
+const e={
+}
+,n=f(t,["format"]);
+n!=null&&m(e,["instancesFormat"],n);
+const i=f(t,["gcsUri"]);
+i!=null&&m(e,["gcsSource","uris"],i);
+const r=f(t,["bigqueryUri"]);
+if(r!=null&&m(e,["bigquerySource","inputUri"],r),f(t,["fileName"])!==void 0)throw new Error("fileName parameter is not supported in Vertex AI.");
+if(f(t,["inlinedRequests"])!==void 0)throw new Error("inlinedRequests parameter is not supported in Vertex AI.");
+return e}
+function Pk(t){
+const e={
+}
+,n=f(t,["data"]);
+if(n!=null&&m(e,["data"],n),f(t,["displayName"])!==void 0)throw new Error("displayName parameter is not supported in Gemini API.");
+const i=f(t,["mimeType"]);
+return i!=null&&m(e,["mimeType"],i),e}
+function Lk(t,e){
+const n={
+}
+,i=f(e,["name"]);
+return i!=null&&m(n,["_url","name"],ko(t,i)),n}
+function Ok(t,e){
+const n={
+}
+,i=f(e,["name"]);
+return i!=null&&m(n,["_url","name"],ko(t,i)),n}
+function Vk(t){
+const e={
+}
+,n=f(t,["content"]);
+n!=null&&m(e,["content"],n);
+const i=f(t,["citationMetadata"]);
+i!=null&&m(e,["citationMetadata"],Bk(i));
+const r=f(t,["tokenCount"]);
+r!=null&&m(e,["tokenCount"],r);
+const l=f(t,["finishReason"]);
+l!=null&&m(e,["finishReason"],l);
+const u=f(t,["avgLogprobs"]);
+u!=null&&m(e,["avgLogprobs"],u);
+const d=f(t,["groundingMetadata"]);
+d!=null&&m(e,["groundingMetadata"],d);
+const h=f(t,["index"]);
+h!=null&&m(e,["index"],h);
+const p=f(t,["logprobsResult"]);
+p!=null&&m(e,["logprobsResult"],p);
+const g=f(t,["safetyRatings"]);
+if(g!=null){
+let T=g;
+Array.isArray(T)&&(T=T.map(w=>w)),m(e,["safetyRatings"],T)}
+const _=f(t,["urlContextMetadata"]);
+return _!=null&&m(e,["urlContextMetadata"],_),e}
+function Bk(t){
+const e={
+}
+,n=f(t,["citationSources"]);
+if(n!=null){
+let i=n;
+Array.isArray(i)&&(i=i.map(r=>r)),m(e,["citations"],i)}
+return e}
+function SE(t){
+const e={
+}
+,n=f(t,["parts"]);
+if(n!=null){
+let r=n;
+Array.isArray(r)&&(r=r.map(l=>g2(l))),m(e,["parts"],r)}
+const i=f(t,["role"]);
+return i!=null&&m(e,["role"],i),e}
+function Fk(t,e){
+const n={
+}
+,i=f(t,["displayName"]);
+if(e!==void 0&&i!=null&&m(e,["batch","displayName"],i),f(t,["dest"])!==void 0)throw new Error("dest parameter is not supported in Gemini API.");
+return n}
+function Gk(t,e){
+const n={
+}
+,i=f(t,["displayName"]);
+e!==void 0&&i!=null&&m(e,["displayName"],i);
+const r=f(t,["dest"]);
+return e!==void 0&&r!=null&&m(e,["outputConfig"],Ik(Rk(r))),n}
+function _T(t,e){
+const n={
+}
+,i=f(e,["model"]);
+i!=null&&m(n,["_url","model"],Me(t,i));
+const r=f(e,["src"]);
+r!=null&&m(n,["batch","inputConfig"],kk(t,vE(t,r)));
+const l=f(e,["config"]);
+return l!=null&&Fk(l,n),n}
+function qk(t,e){
+const n={
+}
+,i=f(e,["model"]);
+i!=null&&m(n,["model"],Me(t,i));
+const r=f(e,["src"]);
+r!=null&&m(n,["inputConfig"],Uk(vE(t,r)));
+const l=f(e,["config"]);
+return l!=null&&Gk(l,n),n}
+function Hk(t,e){
+const n={
+}
+,i=f(t,["displayName"]);
+return e!==void 0&&i!=null&&m(e,["batch","displayName"],i),n}
+function zk(t,e){
+const n={
+}
+,i=f(e,["model"]);
+i!=null&&m(n,["_url","model"],Me(t,i));
+const r=f(e,["src"]);
+r!=null&&m(n,["batch","inputConfig"],Xk(t,r));
+const l=f(e,["config"]);
+return l!=null&&Hk(l,n),n}
+function $k(t,e){
+const n={
+}
+,i=f(e,["name"]);
+return i!=null&&m(n,["_url","name"],ko(t,i)),n}
+function Jk(t,e){
+const n={
+}
+,i=f(e,["name"]);
+return i!=null&&m(n,["_url","name"],ko(t,i)),n}
+function Kk(t){
+const e={
+}
+,n=f(t,["sdkHttpResponse"]);
+n!=null&&m(e,["sdkHttpResponse"],n);
+const i=f(t,["name"]);
+i!=null&&m(e,["name"],i);
+const r=f(t,["done"]);
+r!=null&&m(e,["done"],r);
+const l=f(t,["error"]);
+return l!=null&&m(e,["error"],l),e}
+function Yk(t){
+const e={
+}
+,n=f(t,["sdkHttpResponse"]);
+n!=null&&m(e,["sdkHttpResponse"],n);
+const i=f(t,["name"]);
+i!=null&&m(e,["name"],i);
+const r=f(t,["done"]);
+r!=null&&m(e,["done"],r);
+const l=f(t,["error"]);
+return l!=null&&m(e,["error"],l),e}
+function jk(t,e){
+const n={
+}
+,i=f(e,["contents"]);
+if(i!=null){
+let l=ap(t,i);
+Array.isArray(l)&&(l=l.map(u=>u)),m(n,["requests[]","request","content"],l)}
+const r=f(e,["config"]);
+return r!=null&&(m(n,["_self"],Wk(r,n)),JD(n,{
+"requests[].*":"requests[].request.*"}
+)),n}
+function Wk(t,e){
+const n={
+}
+,i=f(t,["taskType"]);
+e!==void 0&&i!=null&&m(e,["requests[]","taskType"],i);
+const r=f(t,["title"]);
+e!==void 0&&r!=null&&m(e,["requests[]","title"],r);
+const l=f(t,["outputDimensionality"]);
+if(e!==void 0&&l!=null&&m(e,["requests[]","outputDimensionality"],l),f(t,["mimeType"])!==void 0)throw new Error("mimeType parameter is not supported in Gemini API.");
+if(f(t,["autoTruncate"])!==void 0)throw new Error("autoTruncate parameter is not supported in Gemini API.");
+return n}
+function Xk(t,e){
+const n={
+}
+,i=f(e,["fileName"]);
+i!=null&&m(n,["file_name"],i);
+const r=f(e,["inlinedRequests"]);
+return r!=null&&m(n,["requests"],jk(t,r)),n}
+function Qk(t){
+const e={
+}
+;
+if(f(t,["displayName"])!==void 0)throw new Error("displayName parameter is not supported in Gemini API.");
+const n=f(t,["fileUri"]);
+n!=null&&m(e,["fileUri"],n);
+const i=f(t,["mimeType"]);
+return i!=null&&m(e,["mimeType"],i),e}
+function Zk(t){
+const e={
+}
+,n=f(t,["id"]);
+n!=null&&m(e,["id"],n);
+const i=f(t,["args"]);
+i!=null&&m(e,["args"],i);
+const r=f(t,["name"]);
+if(r!=null&&m(e,["name"],r),f(t,["partialArgs"])!==void 0)throw new Error("partialArgs parameter is not supported in Gemini API.");
+if(f(t,["willContinue"])!==void 0)throw new Error("willContinue parameter is not supported in Gemini API.");
+return e}
+function e2(t){
+const e={
+}
+,n=f(t,["allowedFunctionNames"]);
+n!=null&&m(e,["allowedFunctionNames"],n);
+const i=f(t,["mode"]);
+if(i!=null&&m(e,["mode"],i),f(t,["streamFunctionCallArguments"])!==void 0)throw new Error("streamFunctionCallArguments parameter is not supported in Gemini API.");
+return e}
+function t2(t,e,n){
+const i={
+}
+,r=f(e,["systemInstruction"]);
+n!==void 0&&r!=null&&m(n,["systemInstruction"],SE(bt(r)));
+const l=f(e,["temperature"]);
+l!=null&&m(i,["temperature"],l);
+const u=f(e,["topP"]);
+u!=null&&m(i,["topP"],u);
+const d=f(e,["topK"]);
+d!=null&&m(i,["topK"],d);
+const h=f(e,["candidateCount"]);
+h!=null&&m(i,["candidateCount"],h);
+const p=f(e,["maxOutputTokens"]);
+p!=null&&m(i,["maxOutputTokens"],p);
+const g=f(e,["stopSequences"]);
+g!=null&&m(i,["stopSequences"],g);
+const _=f(e,["responseLogprobs"]);
+_!=null&&m(i,["responseLogprobs"],_);
+const T=f(e,["logprobs"]);
+T!=null&&m(i,["logprobs"],T);
+const w=f(e,["presencePenalty"]);
+w!=null&&m(i,["presencePenalty"],w);
+const A=f(e,["frequencyPenalty"]);
+A!=null&&m(i,["frequencyPenalty"],A);
+const C=f(e,["seed"]);
+C!=null&&m(i,["seed"],C);
+const x=f(e,["responseMimeType"]);
+x!=null&&m(i,["responseMimeType"],x);
+const R=f(e,["responseSchema"]);
+R!=null&&m(i,["responseSchema"],lp(R));
+const k=f(e,["responseJsonSchema"]);
+if(k!=null&&m(i,["responseJsonSchema"],k),f(e,["routingConfig"])!==void 0)throw new Error("routingConfig parameter is not supported in Gemini API.");
+if(f(e,["modelSelectionConfig"])!==void 0)throw new Error("modelSelectionConfig parameter is not supported in Gemini API.");
+const N=f(e,["safetySettings"]);
+if(n!==void 0&&N!=null){
+let Ae=N;
+Array.isArray(Ae)&&(Ae=Ae.map($e=>y2($e))),m(n,["safetySettings"],Ae)}
+const O=f(e,["tools"]);
+if(n!==void 0&&O!=null){
+let Ae=Do(O);
+Array.isArray(Ae)&&(Ae=Ae.map($e=>_2(Io($e)))),m(n,["tools"],Ae)}
+const F=f(e,["toolConfig"]);
+if(n!==void 0&&F!=null&&m(n,["toolConfig"],v2(F)),f(e,["labels"])!==void 0)throw new Error("labels parameter is not supported in Gemini API.");
+const z=f(e,["cachedContent"]);
+n!==void 0&&z!=null&&m(n,["cachedContent"],ii(t,z));
+const G=f(e,["responseModalities"]);
+G!=null&&m(i,["responseModalities"],G);
+const X=f(e,["mediaResolution"]);
+X!=null&&m(i,["mediaResolution"],X);
+const j=f(e,["speechConfig"]);
+if(j!=null&&m(i,["speechConfig"],up(j)),f(e,["audioTimestamp"])!==void 0)throw new Error("audioTimestamp parameter is not supported in Gemini API.");
+const oe=f(e,["thinkingConfig"]);
+oe!=null&&m(i,["thinkingConfig"],oe);
+const he=f(e,["imageConfig"]);
+he!=null&&m(i,["imageConfig"],a2(he));
+const Ie=f(e,["enableEnhancedCivicAnswers"]);
+if(Ie!=null&&m(i,["enableEnhancedCivicAnswers"],Ie),f(e,["modelArmorConfig"])!==void 0)throw new Error("modelArmorConfig parameter is not supported in Gemini API.");
+return i}
+function n2(t){
+const e={
+}
+,n=f(t,["sdkHttpResponse"]);
+n!=null&&m(e,["sdkHttpResponse"],n);
+const i=f(t,["candidates"]);
+if(i!=null){
+let h=i;
+Array.isArray(h)&&(h=h.map(p=>Vk(p))),m(e,["candidates"],h)}
+const r=f(t,["modelVersion"]);
+r!=null&&m(e,["modelVersion"],r);
+const l=f(t,["promptFeedback"]);
+l!=null&&m(e,["promptFeedback"],l);
+const u=f(t,["responseId"]);
+u!=null&&m(e,["responseId"],u);
+const d=f(t,["usageMetadata"]);
+return d!=null&&m(e,["usageMetadata"],d),e}
+function i2(t,e){
+const n={
+}
+,i=f(e,["name"]);
+return i!=null&&m(n,["_url","name"],ko(t,i)),n}
+function s2(t,e){
+const n={
+}
+,i=f(e,["name"]);
+return i!=null&&m(n,["_url","name"],ko(t,i)),n}
+function o2(t){
+const e={
+}
+;
+if(f(t,["authConfig"])!==void 0)throw new Error("authConfig parameter is not supported in Gemini API.");
+const n=f(t,["enableWidget"]);
+return n!=null&&m(e,["enableWidget"],n),e}
+function r2(t){
+const e={
+}
+;
+if(f(t,["excludeDomains"])!==void 0)throw new Error("excludeDomains parameter is not supported in Gemini API.");
+if(f(t,["blockingConfidence"])!==void 0)throw new Error("blockingConfidence parameter is not supported in Gemini API.");
+const n=f(t,["timeRangeFilter"]);
+return n!=null&&m(e,["timeRangeFilter"],n),e}
+function a2(t){
+const e={
+}
+,n=f(t,["aspectRatio"]);
+n!=null&&m(e,["aspectRatio"],n);
+const i=f(t,["imageSize"]);
+if(i!=null&&m(e,["imageSize"],i),f(t,["personGeneration"])!==void 0)throw new Error("personGeneration parameter is not supported in Gemini API.");
+if(f(t,["outputMimeType"])!==void 0)throw new Error("outputMimeType parameter is not supported in Gemini API.");
+if(f(t,["outputCompressionQuality"])!==void 0)throw new Error("outputCompressionQuality parameter is not supported in Gemini API.");
+return e}
+function l2(t,e){
+const n={
+}
+,i=f(e,["model"]);
+i!=null&&m(n,["request","model"],Me(t,i));
+const r=f(e,["contents"]);
+if(r!=null){
+let d=fn(r);
+Array.isArray(d)&&(d=d.map(h=>SE(h))),m(n,["request","contents"],d)}
+const l=f(e,["metadata"]);
+l!=null&&m(n,["metadata"],l);
+const u=f(e,["config"]);
+return u!=null&&m(n,["request","generationConfig"],t2(t,u,f(n,["request"],{
+}
+))),n}
+function u2(t){
+const e={
+}
+,n=f(t,["response"]);
+n!=null&&m(e,["response"],n2(n));
+const i=f(t,["error"]);
+return i!=null&&m(e,["error"],i),e}
+function c2(t,e){
+const n={
+}
+,i=f(t,["pageSize"]);
+e!==void 0&&i!=null&&m(e,["_query","pageSize"],i);
+const r=f(t,["pageToken"]);
+if(e!==void 0&&r!=null&&m(e,["_query","pageToken"],r),f(t,["filter"])!==void 0)throw new Error("filter parameter is not supported in Gemini API.");
+return n}
+function d2(t,e){
+const n={
+}
+,i=f(t,["pageSize"]);
+e!==void 0&&i!=null&&m(e,["_query","pageSize"],i);
+const r=f(t,["pageToken"]);
+e!==void 0&&r!=null&&m(e,["_query","pageToken"],r);
+const l=f(t,["filter"]);
+return e!==void 0&&l!=null&&m(e,["_query","filter"],l),n}
+function f2(t){
+const e={
+}
+,n=f(t,["config"]);
+return n!=null&&c2(n,e),e}
+function h2(t){
+const e={
+}
+,n=f(t,["config"]);
+return n!=null&&d2(n,e),e}
+function p2(t){
+const e={
+}
+,n=f(t,["sdkHttpResponse"]);
+n!=null&&m(e,["sdkHttpResponse"],n);
+const i=f(t,["nextPageToken"]);
+i!=null&&m(e,["nextPageToken"],i);
+const r=f(t,["operations"]);
+if(r!=null){
+let l=r;
+Array.isArray(l)&&(l=l.map(u=>Kl(u))),m(e,["batchJobs"],l)}
+return e}
+function m2(t){
+const e={
+}
+,n=f(t,["sdkHttpResponse"]);
+n!=null&&m(e,["sdkHttpResponse"],n);
+const i=f(t,["nextPageToken"]);
+i!=null&&m(e,["nextPageToken"],i);
+const r=f(t,["batchPredictionJobs"]);
+if(r!=null){
+let l=r;
+Array.isArray(l)&&(l=l.map(u=>oh(u))),m(e,["batchJobs"],l)}
+return e}
+function g2(t){
+const e={
+}
+,n=f(t,["mediaResolution"]);
+n!=null&&m(e,["mediaResolution"],n);
+const i=f(t,["codeExecutionResult"]);
+i!=null&&m(e,["codeExecutionResult"],i);
+const r=f(t,["executableCode"]);
+r!=null&&m(e,["executableCode"],r);
+const l=f(t,["fileData"]);
+l!=null&&m(e,["fileData"],Qk(l));
+const u=f(t,["functionCall"]);
+u!=null&&m(e,["functionCall"],Zk(u));
+const d=f(t,["functionResponse"]);
+d!=null&&m(e,["functionResponse"],d);
+const h=f(t,["inlineData"]);
+h!=null&&m(e,["inlineData"],Pk(h));
+const p=f(t,["text"]);
+p!=null&&m(e,["text"],p);
+const g=f(t,["thought"]);
+g!=null&&m(e,["thought"],g);
+const _=f(t,["thoughtSignature"]);
+_!=null&&m(e,["thoughtSignature"],_);
+const T=f(t,["videoMetadata"]);
+return T!=null&&m(e,["videoMetadata"],T),e}
+function y2(t){
+const e={
+}
+,n=f(t,["category"]);
+if(n!=null&&m(e,["category"],n),f(t,["method"])!==void 0)throw new Error("method parameter is not supported in Gemini API.");
+const i=f(t,["threshold"]);
+return i!=null&&m(e,["threshold"],i),e}
+function v2(t){
+const e={
+}
+,n=f(t,["retrievalConfig"]);
+n!=null&&m(e,["retrievalConfig"],n);
+const i=f(t,["functionCallingConfig"]);
+return i!=null&&m(e,["functionCallingConfig"],e2(i)),e}
+function _2(t){
+const e={
+}
+;
+if(f(t,["retrieval"])!==void 0)throw new Error("retrieval parameter is not supported in Gemini API.");
+const n=f(t,["computerUse"]);
+n!=null&&m(e,["computerUse"],n);
+const i=f(t,["fileSearch"]);
+i!=null&&m(e,["fileSearch"],i);
+const r=f(t,["codeExecution"]);
+if(r!=null&&m(e,["codeExecution"],r),f(t,["enterpriseWebSearch"])!==void 0)throw new Error("enterpriseWebSearch parameter is not supported in Gemini API.");
+const l=f(t,["functionDeclarations"]);
+if(l!=null){
+let g=l;
+Array.isArray(g)&&(g=g.map(_=>_)),m(e,["functionDeclarations"],g)}
+const u=f(t,["googleMaps"]);
+u!=null&&m(e,["googleMaps"],o2(u));
+const d=f(t,["googleSearch"]);
+d!=null&&m(e,["googleSearch"],r2(d));
+const h=f(t,["googleSearchRetrieval"]);
+h!=null&&m(e,["googleSearchRetrieval"],h);
+const p=f(t,["urlContext"]);
+return p!=null&&m(e,["urlContext"],p),e}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */var ti;
+(function(t){
+t.PAGED_ITEM_BATCH_JOBS="batchJobs",t.PAGED_ITEM_MODELS="models",t.PAGED_ITEM_TUNING_JOBS="tuningJobs",t.PAGED_ITEM_FILES="files",t.PAGED_ITEM_CACHED_CONTENTS="cachedContents",t.PAGED_ITEM_FILE_SEARCH_STORES="fileSearchStores",t.PAGED_ITEM_DOCUMENTS="documents"}
+)(ti||(ti={
+}
+));
+class vs{
+constructor(e,n,i,r){
+this.pageInternal=[],this.paramsInternal={
+}
+,this.requestInternal=n,this.init(e,i,r)}
+init(e,n,i){
+var r,l;
+this.nameInternal=e,this.pageInternal=n[this.nameInternal]||[],this.sdkHttpResponseInternal=n==null?void 0:n.sdkHttpResponse,this.idxInternal=0;
+let u={
+config:{
+}
+}
+;
+!i||Object.keys(i).length===0?u={
+config:{
+}
+}
+:typeof i=="object"?u=Object.assign({
+}
+,i):u=i,u.config&&(u.config.pageToken=n.nextPageToken),this.paramsInternal=u,this.pageInternalSize=(l=(r=u.config)===null||r===void 0?void 0:r.pageSize)!==null&&l!==void 0?l:this.pageInternal.length}
+initNextPage(e){
+this.init(this.nameInternal,e,this.paramsInternal)}
+get page(){
+return this.pageInternal}
+get name(){
+return this.nameInternal}
+get pageSize(){
+return this.pageInternalSize}
+get sdkHttpResponse(){
+return this.sdkHttpResponseInternal}
+get params(){
+return this.paramsInternal}
+get pageLength(){
+return this.pageInternal.length}
+getItem(e){
+return this.pageInternal[e]}
+[Symbol.asyncIterator](){
+return{
+next:async()=>{
+if(this.idxInternal>=this.pageLength)if(this.hasNextPage())await this.nextPage();
+else return{
+value:void 0,done:!0}
+;
+const e=this.getItem(this.idxInternal);
+return this.idxInternal+=1,{
+value:e,done:!1}
+}
+,return:async()=>({
+value:void 0,done:!0}
+)}
+}
+async nextPage(){
+if(!this.hasNextPage())throw new Error("No more pages to fetch.");
+const e=await this.requestInternal(this.params);
+return this.initNextPage(e),this.page}
+hasNextPage(){
+var e;
+return((e=this.params.config)===null||e===void 0?void 0:e.pageToken)!==void 0}
+}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */class T2 extends ni{
+constructor(e){
+super(),this.apiClient=e,this.list=async(n={
+}
+)=>new vs(ti.PAGED_ITEM_BATCH_JOBS,i=>this.listInternal(i),await this.listInternal(n),n),this.create=async n=>(this.apiClient.isVertexAI()&&(n.config=this.formatDestination(n.src,n.config)),this.createInternal(n)),this.createEmbeddings=async n=>{
+if(console.warn("batches.createEmbeddings() is experimental and may change without notice."),this.apiClient.isVertexAI())throw new Error("Vertex AI does not support batches.createEmbeddings.");
+return this.createEmbeddingsInternal(n)}
+}
+createInlinedGenerateContentRequest(e){
+const n=_T(this.apiClient,e),i=n._url,r=Z("{
+model}
+:batchGenerateContent",i),d=n.batch.inputConfig.requests,h=d.requests,p=[];
+for(const g of h){
+const _=Object.assign({
+}
+,g);
+if(_.systemInstruction){
+const T=_.systemInstruction;
+delete _.systemInstruction;
+const w=_.request;
+w.systemInstruction=T,_.request=w}
+p.push(_)}
+return d.requests=p,delete n.config,delete n._url,delete n._query,{
+path:r,body:n}
+}
+getGcsUri(e){
+if(typeof e=="string")return e.startsWith("gs://")?e:void 0;
+if(!Array.isArray(e)&&e.gcsUri&&e.gcsUri.length>0)return e.gcsUri[0]}
+getBigqueryUri(e){
+if(typeof e=="string")return e.startsWith("bq://")?e:void 0;
+if(!Array.isArray(e))return e.bigqueryUri}
+formatDestination(e,n){
+const i=n?Object.assign({
+}
+,n):{
+}
+,r=Date.now().toString();
+if(i.displayName||(i.displayName=`genaiBatchJob_${
+r}
+`),i.dest===void 0){
+const l=this.getGcsUri(e),u=this.getBigqueryUri(e);
+if(l)l.endsWith(".jsonl")?i.dest=`${
+l.slice(0,-6)}
+/dest`:i.dest=`${
+l}
+_dest_${
+r}
+`;
+else if(u)i.dest=`${
+u}
+_dest_${
+r}
+`;
+else throw new Error("Unsupported source for Vertex AI: No GCS or BigQuery URI found.")}
+return i}
+async createInternal(e){
+var n,i,r,l;
+let u,d="",h={
+}
+;
+if(this.apiClient.isVertexAI()){
+const p=qk(this.apiClient,e);
+return d=Z("batchPredictionJobs",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"POST",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(g=>g.json()),u.then(g=>oh(g))}
+else{
+const p=_T(this.apiClient,e);
+return d=Z("{
+model}
+:batchGenerateContent",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"POST",httpOptions:(r=e.config)===null||r===void 0?void 0:r.httpOptions,abortSignal:(l=e.config)===null||l===void 0?void 0:l.abortSignal}
+).then(g=>g.json()),u.then(g=>Kl(g))}
+}
+async createEmbeddingsInternal(e){
+var n,i;
+let r,l="",u={
+}
+;
+if(this.apiClient.isVertexAI())throw new Error("This method is only supported by the Gemini Developer API.");
+{
+const d=zk(this.apiClient,e);
+return l=Z("{
+model}
+:asyncBatchEmbedContent",d._url),u=d._query,delete d._url,delete d._query,r=this.apiClient.request({
+path:l,queryParams:u,body:JSON.stringify(d),httpMethod:"POST",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(h=>h.json()),r.then(h=>Kl(h))}
+}
+async get(e){
+var n,i,r,l;
+let u,d="",h={
+}
+;
+if(this.apiClient.isVertexAI()){
+const p=s2(this.apiClient,e);
+return d=Z("batchPredictionJobs/{
+name}
+",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"GET",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(g=>g.json()),u.then(g=>oh(g))}
+else{
+const p=i2(this.apiClient,e);
+return d=Z("batches/{
+name}
+",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"GET",httpOptions:(r=e.config)===null||r===void 0?void 0:r.httpOptions,abortSignal:(l=e.config)===null||l===void 0?void 0:l.abortSignal}
+).then(g=>g.json()),u.then(g=>Kl(g))}
+}
+async cancel(e){
+var n,i,r,l;
+let u="",d={
+}
+;
+if(this.apiClient.isVertexAI()){
+const h=Ok(this.apiClient,e);
+u=Z("batchPredictionJobs/{
+name}
+:cancel",h._url),d=h._query,delete h._url,delete h._query,await this.apiClient.request({
+path:u,queryParams:d,body:JSON.stringify(h),httpMethod:"POST",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+)}
+else{
+const h=Lk(this.apiClient,e);
+u=Z("batches/{
+name}
+:cancel",h._url),d=h._query,delete h._url,delete h._query,await this.apiClient.request({
+path:u,queryParams:d,body:JSON.stringify(h),httpMethod:"POST",httpOptions:(r=e.config)===null||r===void 0?void 0:r.httpOptions,abortSignal:(l=e.config)===null||l===void 0?void 0:l.abortSignal}
+)}
+}
+async listInternal(e){
+var n,i,r,l;
+let u,d="",h={
+}
+;
+if(this.apiClient.isVertexAI()){
+const p=h2(e);
+return d=Z("batchPredictionJobs",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"GET",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(g=>g.json().then(_=>{
+const T=_;
+return T.sdkHttpResponse={
+headers:g.headers}
+,T}
+)),u.then(g=>{
+const _=m2(g),T=new mT;
+return Object.assign(T,_),T}
+)}
+else{
+const p=f2(e);
+return d=Z("batches",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"GET",httpOptions:(r=e.config)===null||r===void 0?void 0:r.httpOptions,abortSignal:(l=e.config)===null||l===void 0?void 0:l.abortSignal}
+).then(g=>g.json().then(_=>{
+const T=_;
+return T.sdkHttpResponse={
+headers:g.headers}
+,T}
+)),u.then(g=>{
+const _=p2(g),T=new mT;
+return Object.assign(T,_),T}
+)}
+}
+async delete(e){
+var n,i,r,l;
+let u,d="",h={
+}
+;
+if(this.apiClient.isVertexAI()){
+const p=Jk(this.apiClient,e);
+return d=Z("batchPredictionJobs/{
+name}
+",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"DELETE",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(g=>g.json().then(_=>{
+const T=_;
+return T.sdkHttpResponse={
+headers:g.headers}
+,T}
+)),u.then(g=>Yk(g))}
+else{
+const p=$k(this.apiClient,e);
+return d=Z("batches/{
+name}
+",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"DELETE",httpOptions:(r=e.config)===null||r===void 0?void 0:r.httpOptions,abortSignal:(l=e.config)===null||l===void 0?void 0:l.abortSignal}
+).then(g=>g.json().then(_=>{
+const T=_;
+return T.sdkHttpResponse={
+headers:g.headers}
+,T}
+)),u.then(g=>Kk(g))}
+}
+}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */function S2(t){
+const e={
+}
+,n=f(t,["data"]);
+if(n!=null&&m(e,["data"],n),f(t,["displayName"])!==void 0)throw new Error("displayName parameter is not supported in Gemini API.");
+const i=f(t,["mimeType"]);
+return i!=null&&m(e,["mimeType"],i),e}
+function TT(t){
+const e={
+}
+,n=f(t,["parts"]);
+if(n!=null){
+let r=n;
+Array.isArray(r)&&(r=r.map(l=>z2(l))),m(e,["parts"],r)}
+const i=f(t,["role"]);
+return i!=null&&m(e,["role"],i),e}
+function w2(t,e){
+const n={
+}
+,i=f(t,["ttl"]);
+e!==void 0&&i!=null&&m(e,["ttl"],i);
+const r=f(t,["expireTime"]);
+e!==void 0&&r!=null&&m(e,["expireTime"],r);
+const l=f(t,["displayName"]);
+e!==void 0&&l!=null&&m(e,["displayName"],l);
+const u=f(t,["contents"]);
+if(e!==void 0&&u!=null){
+let g=fn(u);
+Array.isArray(g)&&(g=g.map(_=>TT(_))),m(e,["contents"],g)}
+const d=f(t,["systemInstruction"]);
+e!==void 0&&d!=null&&m(e,["systemInstruction"],TT(bt(d)));
+const h=f(t,["tools"]);
+if(e!==void 0&&h!=null){
+let g=h;
+Array.isArray(g)&&(g=g.map(_=>J2(_))),m(e,["tools"],g)}
+const p=f(t,["toolConfig"]);
+if(e!==void 0&&p!=null&&m(e,["toolConfig"],$2(p)),f(t,["kmsKeyName"])!==void 0)throw new Error("kmsKeyName parameter is not supported in Gemini API.");
+return n}
+function E2(t,e){
+const n={
+}
+,i=f(t,["ttl"]);
+e!==void 0&&i!=null&&m(e,["ttl"],i);
+const r=f(t,["expireTime"]);
+e!==void 0&&r!=null&&m(e,["expireTime"],r);
+const l=f(t,["displayName"]);
+e!==void 0&&l!=null&&m(e,["displayName"],l);
+const u=f(t,["contents"]);
+if(e!==void 0&&u!=null){
+let _=fn(u);
+Array.isArray(_)&&(_=_.map(T=>T)),m(e,["contents"],_)}
+const d=f(t,["systemInstruction"]);
+e!==void 0&&d!=null&&m(e,["systemInstruction"],bt(d));
+const h=f(t,["tools"]);
+if(e!==void 0&&h!=null){
+let _=h;
+Array.isArray(_)&&(_=_.map(T=>K2(T))),m(e,["tools"],_)}
+const p=f(t,["toolConfig"]);
+e!==void 0&&p!=null&&m(e,["toolConfig"],p);
+const g=f(t,["kmsKeyName"]);
+return e!==void 0&&g!=null&&m(e,["encryption_spec","kmsKeyName"],g),n}
+function b2(t,e){
+const n={
+}
+,i=f(e,["model"]);
+i!=null&&m(n,["model"],uE(t,i));
+const r=f(e,["config"]);
+return r!=null&&w2(r,n),n}
+function A2(t,e){
+const n={
+}
+,i=f(e,["model"]);
+i!=null&&m(n,["model"],uE(t,i));
+const r=f(e,["config"]);
+return r!=null&&E2(r,n),n}
+function C2(t,e){
+const n={
+}
+,i=f(e,["name"]);
+return i!=null&&m(n,["_url","name"],ii(t,i)),n}
+function x2(t,e){
+const n={
+}
+,i=f(e,["name"]);
+return i!=null&&m(n,["_url","name"],ii(t,i)),n}
+function R2(t){
+const e={
+}
+,n=f(t,["sdkHttpResponse"]);
+return n!=null&&m(e,["sdkHttpResponse"],n),e}
+function N2(t){
+const e={
+}
+,n=f(t,["sdkHttpResponse"]);
+return n!=null&&m(e,["sdkHttpResponse"],n),e}
+function M2(t){
+const e={
+}
+;
+if(f(t,["displayName"])!==void 0)throw new Error("displayName parameter is not supported in Gemini API.");
+const n=f(t,["fileUri"]);
+n!=null&&m(e,["fileUri"],n);
+const i=f(t,["mimeType"]);
+return i!=null&&m(e,["mimeType"],i),e}
+function I2(t){
+const e={
+}
+,n=f(t,["id"]);
+n!=null&&m(e,["id"],n);
+const i=f(t,["args"]);
+i!=null&&m(e,["args"],i);
+const r=f(t,["name"]);
+if(r!=null&&m(e,["name"],r),f(t,["partialArgs"])!==void 0)throw new Error("partialArgs parameter is not supported in Gemini API.");
+if(f(t,["willContinue"])!==void 0)throw new Error("willContinue parameter is not supported in Gemini API.");
+return e}
+function D2(t){
+const e={
+}
+,n=f(t,["allowedFunctionNames"]);
+n!=null&&m(e,["allowedFunctionNames"],n);
+const i=f(t,["mode"]);
+if(i!=null&&m(e,["mode"],i),f(t,["streamFunctionCallArguments"])!==void 0)throw new Error("streamFunctionCallArguments parameter is not supported in Gemini API.");
+return e}
+function k2(t){
+const e={
+}
+,n=f(t,["description"]);
+n!=null&&m(e,["description"],n);
+const i=f(t,["name"]);
+i!=null&&m(e,["name"],i);
+const r=f(t,["parameters"]);
+r!=null&&m(e,["parameters"],r);
+const l=f(t,["parametersJsonSchema"]);
+l!=null&&m(e,["parametersJsonSchema"],l);
+const u=f(t,["response"]);
+u!=null&&m(e,["response"],u);
+const d=f(t,["responseJsonSchema"]);
+if(d!=null&&m(e,["responseJsonSchema"],d),f(t,["behavior"])!==void 0)throw new Error("behavior parameter is not supported in Vertex AI.");
+return e}
+function U2(t,e){
+const n={
+}
+,i=f(e,["name"]);
+return i!=null&&m(n,["_url","name"],ii(t,i)),n}
+function P2(t,e){
+const n={
+}
+,i=f(e,["name"]);
+return i!=null&&m(n,["_url","name"],ii(t,i)),n}
+function L2(t){
+const e={
+}
+;
+if(f(t,["authConfig"])!==void 0)throw new Error("authConfig parameter is not supported in Gemini API.");
+const n=f(t,["enableWidget"]);
+return n!=null&&m(e,["enableWidget"],n),e}
+function O2(t){
+const e={
+}
+;
+if(f(t,["excludeDomains"])!==void 0)throw new Error("excludeDomains parameter is not supported in Gemini API.");
+if(f(t,["blockingConfidence"])!==void 0)throw new Error("blockingConfidence parameter is not supported in Gemini API.");
+const n=f(t,["timeRangeFilter"]);
+return n!=null&&m(e,["timeRangeFilter"],n),e}
+function V2(t,e){
+const n={
+}
+,i=f(t,["pageSize"]);
+e!==void 0&&i!=null&&m(e,["_query","pageSize"],i);
+const r=f(t,["pageToken"]);
+return e!==void 0&&r!=null&&m(e,["_query","pageToken"],r),n}
+function B2(t,e){
+const n={
+}
+,i=f(t,["pageSize"]);
+e!==void 0&&i!=null&&m(e,["_query","pageSize"],i);
+const r=f(t,["pageToken"]);
+return e!==void 0&&r!=null&&m(e,["_query","pageToken"],r),n}
+function F2(t){
+const e={
+}
+,n=f(t,["config"]);
+return n!=null&&V2(n,e),e}
+function G2(t){
+const e={
+}
+,n=f(t,["config"]);
+return n!=null&&B2(n,e),e}
+function q2(t){
+const e={
+}
+,n=f(t,["sdkHttpResponse"]);
+n!=null&&m(e,["sdkHttpResponse"],n);
+const i=f(t,["nextPageToken"]);
+i!=null&&m(e,["nextPageToken"],i);
+const r=f(t,["cachedContents"]);
+if(r!=null){
+let l=r;
+Array.isArray(l)&&(l=l.map(u=>u)),m(e,["cachedContents"],l)}
+return e}
+function H2(t){
+const e={
+}
+,n=f(t,["sdkHttpResponse"]);
+n!=null&&m(e,["sdkHttpResponse"],n);
+const i=f(t,["nextPageToken"]);
+i!=null&&m(e,["nextPageToken"],i);
+const r=f(t,["cachedContents"]);
+if(r!=null){
+let l=r;
+Array.isArray(l)&&(l=l.map(u=>u)),m(e,["cachedContents"],l)}
+return e}
+function z2(t){
+const e={
+}
+,n=f(t,["mediaResolution"]);
+n!=null&&m(e,["mediaResolution"],n);
+const i=f(t,["codeExecutionResult"]);
+i!=null&&m(e,["codeExecutionResult"],i);
+const r=f(t,["executableCode"]);
+r!=null&&m(e,["executableCode"],r);
+const l=f(t,["fileData"]);
+l!=null&&m(e,["fileData"],M2(l));
+const u=f(t,["functionCall"]);
+u!=null&&m(e,["functionCall"],I2(u));
+const d=f(t,["functionResponse"]);
+d!=null&&m(e,["functionResponse"],d);
+const h=f(t,["inlineData"]);
+h!=null&&m(e,["inlineData"],S2(h));
+const p=f(t,["text"]);
+p!=null&&m(e,["text"],p);
+const g=f(t,["thought"]);
+g!=null&&m(e,["thought"],g);
+const _=f(t,["thoughtSignature"]);
+_!=null&&m(e,["thoughtSignature"],_);
+const T=f(t,["videoMetadata"]);
+return T!=null&&m(e,["videoMetadata"],T),e}
+function $2(t){
+const e={
+}
+,n=f(t,["retrievalConfig"]);
+n!=null&&m(e,["retrievalConfig"],n);
+const i=f(t,["functionCallingConfig"]);
+return i!=null&&m(e,["functionCallingConfig"],D2(i)),e}
+function J2(t){
+const e={
+}
+;
+if(f(t,["retrieval"])!==void 0)throw new Error("retrieval parameter is not supported in Gemini API.");
+const n=f(t,["computerUse"]);
+n!=null&&m(e,["computerUse"],n);
+const i=f(t,["fileSearch"]);
+i!=null&&m(e,["fileSearch"],i);
+const r=f(t,["codeExecution"]);
+if(r!=null&&m(e,["codeExecution"],r),f(t,["enterpriseWebSearch"])!==void 0)throw new Error("enterpriseWebSearch parameter is not supported in Gemini API.");
+const l=f(t,["functionDeclarations"]);
+if(l!=null){
+let g=l;
+Array.isArray(g)&&(g=g.map(_=>_)),m(e,["functionDeclarations"],g)}
+const u=f(t,["googleMaps"]);
+u!=null&&m(e,["googleMaps"],L2(u));
+const d=f(t,["googleSearch"]);
+d!=null&&m(e,["googleSearch"],O2(d));
+const h=f(t,["googleSearchRetrieval"]);
+h!=null&&m(e,["googleSearchRetrieval"],h);
+const p=f(t,["urlContext"]);
+return p!=null&&m(e,["urlContext"],p),e}
+function K2(t){
+const e={
+}
+,n=f(t,["retrieval"]);
+n!=null&&m(e,["retrieval"],n);
+const i=f(t,["computerUse"]);
+if(i!=null&&m(e,["computerUse"],i),f(t,["fileSearch"])!==void 0)throw new Error("fileSearch parameter is not supported in Vertex AI.");
+const r=f(t,["codeExecution"]);
+r!=null&&m(e,["codeExecution"],r);
+const l=f(t,["enterpriseWebSearch"]);
+l!=null&&m(e,["enterpriseWebSearch"],l);
+const u=f(t,["functionDeclarations"]);
+if(u!=null){
+let _=u;
+Array.isArray(_)&&(_=_.map(T=>k2(T))),m(e,["functionDeclarations"],_)}
+const d=f(t,["googleMaps"]);
+d!=null&&m(e,["googleMaps"],d);
+const h=f(t,["googleSearch"]);
+h!=null&&m(e,["googleSearch"],h);
+const p=f(t,["googleSearchRetrieval"]);
+p!=null&&m(e,["googleSearchRetrieval"],p);
+const g=f(t,["urlContext"]);
+return g!=null&&m(e,["urlContext"],g),e}
+function Y2(t,e){
+const n={
+}
+,i=f(t,["ttl"]);
+e!==void 0&&i!=null&&m(e,["ttl"],i);
+const r=f(t,["expireTime"]);
+return e!==void 0&&r!=null&&m(e,["expireTime"],r),n}
+function j2(t,e){
+const n={
+}
+,i=f(t,["ttl"]);
+e!==void 0&&i!=null&&m(e,["ttl"],i);
+const r=f(t,["expireTime"]);
+return e!==void 0&&r!=null&&m(e,["expireTime"],r),n}
+function W2(t,e){
+const n={
+}
+,i=f(e,["name"]);
+i!=null&&m(n,["_url","name"],ii(t,i));
+const r=f(e,["config"]);
+return r!=null&&Y2(r,n),n}
+function X2(t,e){
+const n={
+}
+,i=f(e,["name"]);
+i!=null&&m(n,["_url","name"],ii(t,i));
+const r=f(e,["config"]);
+return r!=null&&j2(r,n),n}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */class Q2 extends ni{
+constructor(e){
+super(),this.apiClient=e,this.list=async(n={
+}
+)=>new vs(ti.PAGED_ITEM_CACHED_CONTENTS,i=>this.listInternal(i),await this.listInternal(n),n)}
+async create(e){
+var n,i,r,l;
+let u,d="",h={
+}
+;
+if(this.apiClient.isVertexAI()){
+const p=A2(this.apiClient,e);
+return d=Z("cachedContents",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"POST",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(g=>g.json()),u.then(g=>g)}
+else{
+const p=b2(this.apiClient,e);
+return d=Z("cachedContents",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"POST",httpOptions:(r=e.config)===null||r===void 0?void 0:r.httpOptions,abortSignal:(l=e.config)===null||l===void 0?void 0:l.abortSignal}
+).then(g=>g.json()),u.then(g=>g)}
+}
+async get(e){
+var n,i,r,l;
+let u,d="",h={
+}
+;
+if(this.apiClient.isVertexAI()){
+const p=P2(this.apiClient,e);
+return d=Z("{
+name}
+",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"GET",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(g=>g.json()),u.then(g=>g)}
+else{
+const p=U2(this.apiClient,e);
+return d=Z("{
+name}
+",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"GET",httpOptions:(r=e.config)===null||r===void 0?void 0:r.httpOptions,abortSignal:(l=e.config)===null||l===void 0?void 0:l.abortSignal}
+).then(g=>g.json()),u.then(g=>g)}
+}
+async delete(e){
+var n,i,r,l;
+let u,d="",h={
+}
+;
+if(this.apiClient.isVertexAI()){
+const p=x2(this.apiClient,e);
+return d=Z("{
+name}
+",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"DELETE",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(g=>g.json().then(_=>{
+const T=_;
+return T.sdkHttpResponse={
+headers:g.headers}
+,T}
+)),u.then(g=>{
+const _=N2(g),T=new hT;
+return Object.assign(T,_),T}
+)}
+else{
+const p=C2(this.apiClient,e);
+return d=Z("{
+name}
+",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"DELETE",httpOptions:(r=e.config)===null||r===void 0?void 0:r.httpOptions,abortSignal:(l=e.config)===null||l===void 0?void 0:l.abortSignal}
+).then(g=>g.json().then(_=>{
+const T=_;
+return T.sdkHttpResponse={
+headers:g.headers}
+,T}
+)),u.then(g=>{
+const _=R2(g),T=new hT;
+return Object.assign(T,_),T}
+)}
+}
+async update(e){
+var n,i,r,l;
+let u,d="",h={
+}
+;
+if(this.apiClient.isVertexAI()){
+const p=X2(this.apiClient,e);
+return d=Z("{
+name}
+",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"PATCH",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(g=>g.json()),u.then(g=>g)}
+else{
+const p=W2(this.apiClient,e);
+return d=Z("{
+name}
+",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"PATCH",httpOptions:(r=e.config)===null||r===void 0?void 0:r.httpOptions,abortSignal:(l=e.config)===null||l===void 0?void 0:l.abortSignal}
+).then(g=>g.json()),u.then(g=>g)}
+}
+async listInternal(e){
+var n,i,r,l;
+let u,d="",h={
+}
+;
+if(this.apiClient.isVertexAI()){
+const p=G2(e);
+return d=Z("cachedContents",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"GET",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(g=>g.json().then(_=>{
+const T=_;
+return T.sdkHttpResponse={
+headers:g.headers}
+,T}
+)),u.then(g=>{
+const _=H2(g),T=new pT;
+return Object.assign(T,_),T}
+)}
+else{
+const p=F2(e);
+return d=Z("cachedContents",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"GET",httpOptions:(r=e.config)===null||r===void 0?void 0:r.httpOptions,abortSignal:(l=e.config)===null||l===void 0?void 0:l.abortSignal}
+).then(g=>g.json().then(_=>{
+const T=_;
+return T.sdkHttpResponse={
+headers:g.headers}
+,T}
+)),u.then(g=>{
+const _=q2(g),T=new pT;
+return Object.assign(T,_),T}
+)}
+}
+}
+function lu(t,e){
+var n={
+}
+;
+for(var i in t)Object.prototype.hasOwnProperty.call(t,i)&&e.indexOf(i)<0&&(n[i]=t[i]);
+if(t!=null&&typeof Object.getOwnPropertySymbols=="function")for(var r=0,i=Object.getOwnPropertySymbols(t);
+r<i.length;
+r++)e.indexOf(i[r])<0&&Object.prototype.propertyIsEnumerable.call(t,i[r])&&(n[i[r]]=t[i[r]]);
+return n}
+function ST(t){
+var e=typeof Symbol=="function"&&Symbol.iterator,n=e&&t[e],i=0;
+if(n)return n.call(t);
+if(t&&typeof t.length=="number")return{
+next:function(){
+return t&&i>=t.length&&(t=void 0),{
+value:t&&t[i++],done:!t}
+}
+}
+;
+throw new TypeError(e?"Object is not iterable.":"Symbol.iterator is not defined.")}
+function de(t){
+return this instanceof de?(this.v=t,this):new de(t)}
+function An(t,e,n){
+if(!Symbol.asyncIterator)throw new TypeError("Symbol.asyncIterator is not defined.");
+var i=n.apply(t,e||[]),r,l=[];
+return r=Object.create((typeof AsyncIterator=="function"?AsyncIterator:Object).prototype),d("next"),d("throw"),d("return",u),r[Symbol.asyncIterator]=function(){
+return this}
+,r;
+function u(w){
+return function(A){
+return Promise.resolve(A).then(w,_)}
+}
+function d(w,A){
+i[w]&&(r[w]=function(C){
+return new Promise(function(x,R){
+l.push([w,C,x,R])>1||h(w,C)}
+)}
+,A&&(r[w]=A(r[w])))}
+function h(w,A){
+try{
+p(i[w](A))}
+catch(C){
+T(l[0][3],C)}
+}
+function p(w){
+w.value instanceof de?Promise.resolve(w.value.v).then(g,_):T(l[0][2],w)}
+function g(w){
+h("next",w)}
+function _(w){
+h("throw",w)}
+function T(w,A){
+w(A),l.shift(),l.length&&h(l[0][0],l[0][1])}
+}
+function Cn(t){
+if(!Symbol.asyncIterator)throw new TypeError("Symbol.asyncIterator is not defined.");
+var e=t[Symbol.asyncIterator],n;
+return e?e.call(t):(t=typeof ST=="function"?ST(t):t[Symbol.iterator](),n={
+}
+,i("next"),i("throw"),i("return"),n[Symbol.asyncIterator]=function(){
+return this}
+,n);
+function i(l){
+n[l]=t[l]&&function(u){
+return new Promise(function(d,h){
+u=t[l](u),r(d,h,u.done,u.value)}
+)}
+}
+function r(l,u,d,h){
+Promise.resolve(h).then(function(p){
+l({
+value:p,done:d}
+)}
+,u)}
+}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */function Z2(t){
+var e;
+if(t.candidates==null||t.candidates.length===0)return!1;
+const n=(e=t.candidates[0])===null||e===void 0?void 0:e.content;
+return n===void 0?!1:wE(n)}
+function wE(t){
+if(t.parts===void 0||t.parts.length===0)return!1;
+for(const e of t.parts)if(e===void 0||Object.keys(e).length===0)return!1;
+return!0}
+function eU(t){
+if(t.length!==0){
+for(const e of t)if(e.role!=="user"&&e.role!=="model")throw new Error(`Role must be user or model, but got ${
+e.role}
+.`)}
+}
+function wT(t){
+if(t===void 0||t.length===0)return[];
+const e=[],n=t.length;
+let i=0;
+for(;
+i<n;
+)if(t[i].role==="user")e.push(t[i]),i++;
+else{
+const r=[];
+let l=!0;
+for(;
+i<n&&t[i].role==="model";
+)r.push(t[i]),l&&!wE(t[i])&&(l=!1),i++;
+l?e.push(...r):e.pop()}
+return e}
+class tU{
+constructor(e,n){
+this.modelsModule=e,this.apiClient=n}
+create(e){
+return new nU(this.apiClient,this.modelsModule,e.model,e.config,structuredClone(e.history))}
+}
+class nU{
+constructor(e,n,i,r={
+}
+,l=[]){
+this.apiClient=e,this.modelsModule=n,this.model=i,this.config=r,this.history=l,this.sendPromise=Promise.resolve(),eU(l)}
+async sendMessage(e){
+var n;
+await this.sendPromise;
+const i=bt(e.message),r=this.modelsModule.generateContent({
+model:this.model,contents:this.getHistory(!0).concat(i),config:(n=e.config)!==null&&n!==void 0?n:this.config}
+);
+return this.sendPromise=(async()=>{
+var l,u,d;
+const h=await r,p=(u=(l=h.candidates)===null||l===void 0?void 0:l[0])===null||u===void 0?void 0:u.content,g=h.automaticFunctionCallingHistory,_=this.getHistory(!0).length;
+let T=[];
+g!=null&&(T=(d=g.slice(_))!==null&&d!==void 0?d:[]);
+const w=p?[p]:[];
+this.recordHistory(i,w,T)}
+)(),await this.sendPromise.catch(()=>{
+this.sendPromise=Promise.resolve()}
+),r}
+async sendMessageStream(e){
+var n;
+await this.sendPromise;
+const i=bt(e.message),r=this.modelsModule.generateContentStream({
+model:this.model,contents:this.getHistory(!0).concat(i),config:(n=e.config)!==null&&n!==void 0?n:this.config}
+);
+this.sendPromise=r.then(()=>{
+}
+).catch(()=>{
+}
+);
+const l=await r;
+return this.processStreamResponse(l,i)}
+getHistory(e=!1){
+const n=e?wT(this.history):this.history;
+return structuredClone(n)}
+processStreamResponse(e,n){
+return An(this,arguments,function*(){
+var r,l,u,d,h,p;
+const g=[];
+try{
+for(var _=!0,T=Cn(e),w;
+w=yield de(T.next()),r=w.done,!r;
+_=!0){
+d=w.value,_=!1;
+const A=d;
+if(Z2(A)){
+const C=(p=(h=A.candidates)===null||h===void 0?void 0:h[0])===null||p===void 0?void 0:p.content;
+C!==void 0&&g.push(C)}
+yield yield de(A)}
+}
+catch(A){
+l={
+error:A}
+}
+finally{
+try{
+!_&&!r&&(u=T.return)&&(yield de(u.call(T)))}
+finally{
+if(l)throw l.error}
+}
+this.recordHistory(n,g)}
+)}
+recordHistory(e,n,i){
+let r=[];
+n.length>0&&n.every(l=>l.role!==void 0)?r=n:r.push({
+role:"model",parts:[]}
+),i&&i.length>0?this.history.push(...wT(i)):this.history.push(e),this.history.push(...r)}
+}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */class Yr extends Error{
+constructor(e){
+super(e.message),this.name="ApiError",this.status=e.status,Object.setPrototypeOf(this,Yr.prototype)}
+}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */function iU(t){
+const e={
+}
+,n=f(t,["file"]);
+return n!=null&&m(e,["file"],n),e}
+function sU(t){
+const e={
+}
+,n=f(t,["sdkHttpResponse"]);
+return n!=null&&m(e,["sdkHttpResponse"],n),e}
+function oU(t){
+const e={
+}
+,n=f(t,["name"]);
+return n!=null&&m(e,["_url","file"],mE(n)),e}
+function rU(t){
+const e={
+}
+,n=f(t,["sdkHttpResponse"]);
+return n!=null&&m(e,["sdkHttpResponse"],n),e}
+function aU(t){
+const e={
+}
+,n=f(t,["name"]);
+return n!=null&&m(e,["_url","file"],mE(n)),e}
+function lU(t,e){
+const n={
+}
+,i=f(t,["pageSize"]);
+e!==void 0&&i!=null&&m(e,["_query","pageSize"],i);
+const r=f(t,["pageToken"]);
+return e!==void 0&&r!=null&&m(e,["_query","pageToken"],r),n}
+function uU(t){
+const e={
+}
+,n=f(t,["config"]);
+return n!=null&&lU(n,e),e}
+function cU(t){
+const e={
+}
+,n=f(t,["sdkHttpResponse"]);
+n!=null&&m(e,["sdkHttpResponse"],n);
+const i=f(t,["nextPageToken"]);
+i!=null&&m(e,["nextPageToken"],i);
+const r=f(t,["files"]);
+if(r!=null){
+let l=r;
+Array.isArray(l)&&(l=l.map(u=>u)),m(e,["files"],l)}
+return e}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */class dU extends ni{
+constructor(e){
+super(),this.apiClient=e,this.list=async(n={
+}
+)=>new vs(ti.PAGED_ITEM_FILES,i=>this.listInternal(i),await this.listInternal(n),n)}
+async upload(e){
+if(this.apiClient.isVertexAI())throw new Error("Vertex AI does not support uploading files. You can share files through a GCS bucket.");
+return this.apiClient.uploadFile(e.file,e.config).then(n=>n)}
+async download(e){
+await this.apiClient.downloadFile(e)}
+async listInternal(e){
+var n,i;
+let r,l="",u={
+}
+;
+if(this.apiClient.isVertexAI())throw new Error("This method is only supported by the Gemini Developer API.");
+{
+const d=uU(e);
+return l=Z("files",d._url),u=d._query,delete d._url,delete d._query,r=this.apiClient.request({
+path:l,queryParams:u,body:JSON.stringify(d),httpMethod:"GET",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(h=>h.json().then(p=>{
+const g=p;
+return g.sdkHttpResponse={
+headers:h.headers}
+,g}
+)),r.then(h=>{
+const p=cU(h),g=new mk;
+return Object.assign(g,p),g}
+)}
+}
+async createInternal(e){
+var n,i;
+let r,l="",u={
+}
+;
+if(this.apiClient.isVertexAI())throw new Error("This method is only supported by the Gemini Developer API.");
+{
+const d=iU(e);
+return l=Z("upload/v1beta/files",d._url),u=d._query,delete d._url,delete d._query,r=this.apiClient.request({
+path:l,queryParams:u,body:JSON.stringify(d),httpMethod:"POST",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(h=>h.json()),r.then(h=>{
+const p=sU(h),g=new gk;
+return Object.assign(g,p),g}
+)}
+}
+async get(e){
+var n,i;
+let r,l="",u={
+}
+;
+if(this.apiClient.isVertexAI())throw new Error("This method is only supported by the Gemini Developer API.");
+{
+const d=aU(e);
+return l=Z("files/{
+file}
+",d._url),u=d._query,delete d._url,delete d._query,r=this.apiClient.request({
+path:l,queryParams:u,body:JSON.stringify(d),httpMethod:"GET",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(h=>h.json()),r.then(h=>h)}
+}
+async delete(e){
+var n,i;
+let r,l="",u={
+}
+;
+if(this.apiClient.isVertexAI())throw new Error("This method is only supported by the Gemini Developer API.");
+{
+const d=oU(e);
+return l=Z("files/{
+file}
+",d._url),u=d._query,delete d._url,delete d._query,r=this.apiClient.request({
+path:l,queryParams:u,body:JSON.stringify(d),httpMethod:"DELETE",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(h=>h.json().then(p=>{
+const g=p;
+return g.sdkHttpResponse={
+headers:h.headers}
+,g}
+)),r.then(h=>{
+const p=rU(h),g=new yk;
+return Object.assign(g,p),g}
+)}
+}
+}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */function Yl(t){
+const e={
+}
+,n=f(t,["data"]);
+if(n!=null&&m(e,["data"],n),f(t,["displayName"])!==void 0)throw new Error("displayName parameter is not supported in Gemini API.");
+const i=f(t,["mimeType"]);
+return i!=null&&m(e,["mimeType"],i),e}
+function fU(t){
+const e={
+}
+,n=f(t,["parts"]);
+if(n!=null){
+let r=n;
+Array.isArray(r)&&(r=r.map(l=>RU(l))),m(e,["parts"],r)}
+const i=f(t,["role"]);
+return i!=null&&m(e,["role"],i),e}
+function hU(t){
+const e={
+}
+;
+if(f(t,["displayName"])!==void 0)throw new Error("displayName parameter is not supported in Gemini API.");
+const n=f(t,["fileUri"]);
+n!=null&&m(e,["fileUri"],n);
+const i=f(t,["mimeType"]);
+return i!=null&&m(e,["mimeType"],i),e}
+function pU(t){
+const e={
+}
+,n=f(t,["id"]);
+n!=null&&m(e,["id"],n);
+const i=f(t,["args"]);
+i!=null&&m(e,["args"],i);
+const r=f(t,["name"]);
+if(r!=null&&m(e,["name"],r),f(t,["partialArgs"])!==void 0)throw new Error("partialArgs parameter is not supported in Gemini API.");
+if(f(t,["willContinue"])!==void 0)throw new Error("willContinue parameter is not supported in Gemini API.");
+return e}
+function mU(t){
+const e={
+}
+,n=f(t,["description"]);
+n!=null&&m(e,["description"],n);
+const i=f(t,["name"]);
+i!=null&&m(e,["name"],i);
+const r=f(t,["parameters"]);
+r!=null&&m(e,["parameters"],r);
+const l=f(t,["parametersJsonSchema"]);
+l!=null&&m(e,["parametersJsonSchema"],l);
+const u=f(t,["response"]);
+u!=null&&m(e,["response"],u);
+const d=f(t,["responseJsonSchema"]);
+if(d!=null&&m(e,["responseJsonSchema"],d),f(t,["behavior"])!==void 0)throw new Error("behavior parameter is not supported in Vertex AI.");
+return e}
+function gU(t){
+const e={
+}
+,n=f(t,["modelSelectionConfig"]);
+n!=null&&m(e,["modelConfig"],n);
+const i=f(t,["responseJsonSchema"]);
+i!=null&&m(e,["responseJsonSchema"],i);
+const r=f(t,["audioTimestamp"]);
+r!=null&&m(e,["audioTimestamp"],r);
+const l=f(t,["candidateCount"]);
+l!=null&&m(e,["candidateCount"],l);
+const u=f(t,["enableAffectiveDialog"]);
+u!=null&&m(e,["enableAffectiveDialog"],u);
+const d=f(t,["frequencyPenalty"]);
+d!=null&&m(e,["frequencyPenalty"],d);
+const h=f(t,["logprobs"]);
+h!=null&&m(e,["logprobs"],h);
+const p=f(t,["maxOutputTokens"]);
+p!=null&&m(e,["maxOutputTokens"],p);
+const g=f(t,["mediaResolution"]);
+g!=null&&m(e,["mediaResolution"],g);
+const _=f(t,["presencePenalty"]);
+_!=null&&m(e,["presencePenalty"],_);
+const T=f(t,["responseLogprobs"]);
+T!=null&&m(e,["responseLogprobs"],T);
+const w=f(t,["responseMimeType"]);
+w!=null&&m(e,["responseMimeType"],w);
+const A=f(t,["responseModalities"]);
+A!=null&&m(e,["responseModalities"],A);
+const C=f(t,["responseSchema"]);
+C!=null&&m(e,["responseSchema"],C);
+const x=f(t,["routingConfig"]);
+x!=null&&m(e,["routingConfig"],x);
+const R=f(t,["seed"]);
+R!=null&&m(e,["seed"],R);
+const k=f(t,["speechConfig"]);
+k!=null&&m(e,["speechConfig"],k);
+const N=f(t,["stopSequences"]);
+N!=null&&m(e,["stopSequences"],N);
+const O=f(t,["temperature"]);
+O!=null&&m(e,["temperature"],O);
+const F=f(t,["thinkingConfig"]);
+F!=null&&m(e,["thinkingConfig"],F);
+const z=f(t,["topK"]);
+z!=null&&m(e,["topK"],z);
+const G=f(t,["topP"]);
+if(G!=null&&m(e,["topP"],G),f(t,["enableEnhancedCivicAnswers"])!==void 0)throw new Error("enableEnhancedCivicAnswers parameter is not supported in Vertex AI.");
+return e}
+function yU(t){
+const e={
+}
+;
+if(f(t,["authConfig"])!==void 0)throw new Error("authConfig parameter is not supported in Gemini API.");
+const n=f(t,["enableWidget"]);
+return n!=null&&m(e,["enableWidget"],n),e}
+function vU(t){
+const e={
+}
+;
+if(f(t,["excludeDomains"])!==void 0)throw new Error("excludeDomains parameter is not supported in Gemini API.");
+if(f(t,["blockingConfidence"])!==void 0)throw new Error("blockingConfidence parameter is not supported in Gemini API.");
+const n=f(t,["timeRangeFilter"]);
+return n!=null&&m(e,["timeRangeFilter"],n),e}
+function _U(t,e){
+const n={
+}
+,i=f(t,["generationConfig"]);
+e!==void 0&&i!=null&&m(e,["setup","generationConfig"],i);
+const r=f(t,["responseModalities"]);
+e!==void 0&&r!=null&&m(e,["setup","generationConfig","responseModalities"],r);
+const l=f(t,["temperature"]);
+e!==void 0&&l!=null&&m(e,["setup","generationConfig","temperature"],l);
+const u=f(t,["topP"]);
+e!==void 0&&u!=null&&m(e,["setup","generationConfig","topP"],u);
+const d=f(t,["topK"]);
+e!==void 0&&d!=null&&m(e,["setup","generationConfig","topK"],d);
+const h=f(t,["maxOutputTokens"]);
+e!==void 0&&h!=null&&m(e,["setup","generationConfig","maxOutputTokens"],h);
+const p=f(t,["mediaResolution"]);
+e!==void 0&&p!=null&&m(e,["setup","generationConfig","mediaResolution"],p);
+const g=f(t,["seed"]);
+e!==void 0&&g!=null&&m(e,["setup","generationConfig","seed"],g);
+const _=f(t,["speechConfig"]);
+e!==void 0&&_!=null&&m(e,["setup","generationConfig","speechConfig"],cp(_));
+const T=f(t,["thinkingConfig"]);
+e!==void 0&&T!=null&&m(e,["setup","generationConfig","thinkingConfig"],T);
+const w=f(t,["enableAffectiveDialog"]);
+e!==void 0&&w!=null&&m(e,["setup","generationConfig","enableAffectiveDialog"],w);
+const A=f(t,["systemInstruction"]);
+e!==void 0&&A!=null&&m(e,["setup","systemInstruction"],fU(bt(A)));
+const C=f(t,["tools"]);
+if(e!==void 0&&C!=null){
+let z=Do(C);
+Array.isArray(z)&&(z=z.map(G=>MU(Io(G)))),m(e,["setup","tools"],z)}
+const x=f(t,["sessionResumption"]);
+e!==void 0&&x!=null&&m(e,["setup","sessionResumption"],NU(x));
+const R=f(t,["inputAudioTranscription"]);
+e!==void 0&&R!=null&&m(e,["setup","inputAudioTranscription"],R);
+const k=f(t,["outputAudioTranscription"]);
+e!==void 0&&k!=null&&m(e,["setup","outputAudioTranscription"],k);
+const N=f(t,["realtimeInputConfig"]);
+e!==void 0&&N!=null&&m(e,["setup","realtimeInputConfig"],N);
+const O=f(t,["contextWindowCompression"]);
+e!==void 0&&O!=null&&m(e,["setup","contextWindowCompression"],O);
+const F=f(t,["proactivity"]);
+if(e!==void 0&&F!=null&&m(e,["setup","proactivity"],F),f(t,["explicitVadSignal"])!==void 0)throw new Error("explicitVadSignal parameter is not supported in Gemini API.");
+return n}
+function TU(t,e){
+const n={
+}
+,i=f(t,["generationConfig"]);
+e!==void 0&&i!=null&&m(e,["setup","generationConfig"],gU(i));
+const r=f(t,["responseModalities"]);
+e!==void 0&&r!=null&&m(e,["setup","generationConfig","responseModalities"],r);
+const l=f(t,["temperature"]);
+e!==void 0&&l!=null&&m(e,["setup","generationConfig","temperature"],l);
+const u=f(t,["topP"]);
+e!==void 0&&u!=null&&m(e,["setup","generationConfig","topP"],u);
+const d=f(t,["topK"]);
+e!==void 0&&d!=null&&m(e,["setup","generationConfig","topK"],d);
+const h=f(t,["maxOutputTokens"]);
+e!==void 0&&h!=null&&m(e,["setup","generationConfig","maxOutputTokens"],h);
+const p=f(t,["mediaResolution"]);
+e!==void 0&&p!=null&&m(e,["setup","generationConfig","mediaResolution"],p);
+const g=f(t,["seed"]);
+e!==void 0&&g!=null&&m(e,["setup","generationConfig","seed"],g);
+const _=f(t,["speechConfig"]);
+e!==void 0&&_!=null&&m(e,["setup","generationConfig","speechConfig"],cp(_));
+const T=f(t,["thinkingConfig"]);
+e!==void 0&&T!=null&&m(e,["setup","generationConfig","thinkingConfig"],T);
+const w=f(t,["enableAffectiveDialog"]);
+e!==void 0&&w!=null&&m(e,["setup","generationConfig","enableAffectiveDialog"],w);
+const A=f(t,["systemInstruction"]);
+e!==void 0&&A!=null&&m(e,["setup","systemInstruction"],bt(A));
+const C=f(t,["tools"]);
+if(e!==void 0&&C!=null){
+let G=Do(C);
+Array.isArray(G)&&(G=G.map(X=>IU(Io(X)))),m(e,["setup","tools"],G)}
+const x=f(t,["sessionResumption"]);
+e!==void 0&&x!=null&&m(e,["setup","sessionResumption"],x);
+const R=f(t,["inputAudioTranscription"]);
+e!==void 0&&R!=null&&m(e,["setup","inputAudioTranscription"],R);
+const k=f(t,["outputAudioTranscription"]);
+e!==void 0&&k!=null&&m(e,["setup","outputAudioTranscription"],k);
+const N=f(t,["realtimeInputConfig"]);
+e!==void 0&&N!=null&&m(e,["setup","realtimeInputConfig"],N);
+const O=f(t,["contextWindowCompression"]);
+e!==void 0&&O!=null&&m(e,["setup","contextWindowCompression"],O);
+const F=f(t,["proactivity"]);
+e!==void 0&&F!=null&&m(e,["setup","proactivity"],F);
+const z=f(t,["explicitVadSignal"]);
+return e!==void 0&&z!=null&&m(e,["setup","explicitVadSignal"],z),n}
+function SU(t,e){
+const n={
+}
+,i=f(e,["model"]);
+i!=null&&m(n,["setup","model"],Me(t,i));
+const r=f(e,["config"]);
+return r!=null&&m(n,["config"],_U(r,n)),n}
+function wU(t,e){
+const n={
+}
+,i=f(e,["model"]);
+i!=null&&m(n,["setup","model"],Me(t,i));
+const r=f(e,["config"]);
+return r!=null&&m(n,["config"],TU(r,n)),n}
+function EU(t){
+const e={
+}
+,n=f(t,["musicGenerationConfig"]);
+return n!=null&&m(e,["musicGenerationConfig"],n),e}
+function bU(t){
+const e={
+}
+,n=f(t,["weightedPrompts"]);
+if(n!=null){
+let i=n;
+Array.isArray(i)&&(i=i.map(r=>r)),m(e,["weightedPrompts"],i)}
+return e}
+function AU(t){
+const e={
+}
+,n=f(t,["media"]);
+if(n!=null){
+let p=cE(n);
+Array.isArray(p)&&(p=p.map(g=>Yl(g))),m(e,["mediaChunks"],p)}
+const i=f(t,["audio"]);
+i!=null&&m(e,["audio"],Yl(fE(i)));
+const r=f(t,["audioStreamEnd"]);
+r!=null&&m(e,["audioStreamEnd"],r);
+const l=f(t,["video"]);
+l!=null&&m(e,["video"],Yl(dE(l)));
+const u=f(t,["text"]);
+u!=null&&m(e,["text"],u);
+const d=f(t,["activityStart"]);
+d!=null&&m(e,["activityStart"],d);
+const h=f(t,["activityEnd"]);
+return h!=null&&m(e,["activityEnd"],h),e}
+function CU(t){
+const e={
+}
+,n=f(t,["media"]);
+if(n!=null){
+let p=cE(n);
+Array.isArray(p)&&(p=p.map(g=>g)),m(e,["mediaChunks"],p)}
+const i=f(t,["audio"]);
+i!=null&&m(e,["audio"],fE(i));
+const r=f(t,["audioStreamEnd"]);
+r!=null&&m(e,["audioStreamEnd"],r);
+const l=f(t,["video"]);
+l!=null&&m(e,["video"],dE(l));
+const u=f(t,["text"]);
+u!=null&&m(e,["text"],u);
+const d=f(t,["activityStart"]);
+d!=null&&m(e,["activityStart"],d);
+const h=f(t,["activityEnd"]);
+return h!=null&&m(e,["activityEnd"],h),e}
+function xU(t){
+const e={
+}
+,n=f(t,["setupComplete"]);
+n!=null&&m(e,["setupComplete"],n);
+const i=f(t,["serverContent"]);
+i!=null&&m(e,["serverContent"],i);
+const r=f(t,["toolCall"]);
+r!=null&&m(e,["toolCall"],r);
+const l=f(t,["toolCallCancellation"]);
+l!=null&&m(e,["toolCallCancellation"],l);
+const u=f(t,["usageMetadata"]);
+u!=null&&m(e,["usageMetadata"],DU(u));
+const d=f(t,["goAway"]);
+d!=null&&m(e,["goAway"],d);
+const h=f(t,["sessionResumptionUpdate"]);
+h!=null&&m(e,["sessionResumptionUpdate"],h);
+const p=f(t,["voiceActivityDetectionSignal"]);
+p!=null&&m(e,["voiceActivityDetectionSignal"],p);
+const g=f(t,["voiceActivity"]);
+return g!=null&&m(e,["voiceActivity"],kU(g)),e}
+function RU(t){
+const e={
+}
+,n=f(t,["mediaResolution"]);
+n!=null&&m(e,["mediaResolution"],n);
+const i=f(t,["codeExecutionResult"]);
+i!=null&&m(e,["codeExecutionResult"],i);
+const r=f(t,["executableCode"]);
+r!=null&&m(e,["executableCode"],r);
+const l=f(t,["fileData"]);
+l!=null&&m(e,["fileData"],hU(l));
+const u=f(t,["functionCall"]);
+u!=null&&m(e,["functionCall"],pU(u));
+const d=f(t,["functionResponse"]);
+d!=null&&m(e,["functionResponse"],d);
+const h=f(t,["inlineData"]);
+h!=null&&m(e,["inlineData"],Yl(h));
+const p=f(t,["text"]);
+p!=null&&m(e,["text"],p);
+const g=f(t,["thought"]);
+g!=null&&m(e,["thought"],g);
+const _=f(t,["thoughtSignature"]);
+_!=null&&m(e,["thoughtSignature"],_);
+const T=f(t,["videoMetadata"]);
+return T!=null&&m(e,["videoMetadata"],T),e}
+function NU(t){
+const e={
+}
+,n=f(t,["handle"]);
+if(n!=null&&m(e,["handle"],n),f(t,["transparent"])!==void 0)throw new Error("transparent parameter is not supported in Gemini API.");
+return e}
+function MU(t){
+const e={
+}
+;
+if(f(t,["retrieval"])!==void 0)throw new Error("retrieval parameter is not supported in Gemini API.");
+const n=f(t,["computerUse"]);
+n!=null&&m(e,["computerUse"],n);
+const i=f(t,["fileSearch"]);
+i!=null&&m(e,["fileSearch"],i);
+const r=f(t,["codeExecution"]);
+if(r!=null&&m(e,["codeExecution"],r),f(t,["enterpriseWebSearch"])!==void 0)throw new Error("enterpriseWebSearch parameter is not supported in Gemini API.");
+const l=f(t,["functionDeclarations"]);
+if(l!=null){
+let g=l;
+Array.isArray(g)&&(g=g.map(_=>_)),m(e,["functionDeclarations"],g)}
+const u=f(t,["googleMaps"]);
+u!=null&&m(e,["googleMaps"],yU(u));
+const d=f(t,["googleSearch"]);
+d!=null&&m(e,["googleSearch"],vU(d));
+const h=f(t,["googleSearchRetrieval"]);
+h!=null&&m(e,["googleSearchRetrieval"],h);
+const p=f(t,["urlContext"]);
+return p!=null&&m(e,["urlContext"],p),e}
+function IU(t){
+const e={
+}
+,n=f(t,["retrieval"]);
+n!=null&&m(e,["retrieval"],n);
+const i=f(t,["computerUse"]);
+if(i!=null&&m(e,["computerUse"],i),f(t,["fileSearch"])!==void 0)throw new Error("fileSearch parameter is not supported in Vertex AI.");
+const r=f(t,["codeExecution"]);
+r!=null&&m(e,["codeExecution"],r);
+const l=f(t,["enterpriseWebSearch"]);
+l!=null&&m(e,["enterpriseWebSearch"],l);
+const u=f(t,["functionDeclarations"]);
+if(u!=null){
+let _=u;
+Array.isArray(_)&&(_=_.map(T=>mU(T))),m(e,["functionDeclarations"],_)}
+const d=f(t,["googleMaps"]);
+d!=null&&m(e,["googleMaps"],d);
+const h=f(t,["googleSearch"]);
+h!=null&&m(e,["googleSearch"],h);
+const p=f(t,["googleSearchRetrieval"]);
+p!=null&&m(e,["googleSearchRetrieval"],p);
+const g=f(t,["urlContext"]);
+return g!=null&&m(e,["urlContext"],g),e}
+function DU(t){
+const e={
+}
+,n=f(t,["promptTokenCount"]);
+n!=null&&m(e,["promptTokenCount"],n);
+const i=f(t,["cachedContentTokenCount"]);
+i!=null&&m(e,["cachedContentTokenCount"],i);
+const r=f(t,["candidatesTokenCount"]);
+r!=null&&m(e,["responseTokenCount"],r);
+const l=f(t,["toolUsePromptTokenCount"]);
+l!=null&&m(e,["toolUsePromptTokenCount"],l);
+const u=f(t,["thoughtsTokenCount"]);
+u!=null&&m(e,["thoughtsTokenCount"],u);
+const d=f(t,["totalTokenCount"]);
+d!=null&&m(e,["totalTokenCount"],d);
+const h=f(t,["promptTokensDetails"]);
+if(h!=null){
+let w=h;
+Array.isArray(w)&&(w=w.map(A=>A)),m(e,["promptTokensDetails"],w)}
+const p=f(t,["cacheTokensDetails"]);
+if(p!=null){
+let w=p;
+Array.isArray(w)&&(w=w.map(A=>A)),m(e,["cacheTokensDetails"],w)}
+const g=f(t,["candidatesTokensDetails"]);
+if(g!=null){
+let w=g;
+Array.isArray(w)&&(w=w.map(A=>A)),m(e,["responseTokensDetails"],w)}
+const _=f(t,["toolUsePromptTokensDetails"]);
+if(_!=null){
+let w=_;
+Array.isArray(w)&&(w=w.map(A=>A)),m(e,["toolUsePromptTokensDetails"],w)}
+const T=f(t,["trafficType"]);
+return T!=null&&m(e,["trafficType"],T),e}
+function kU(t){
+const e={
+}
+,n=f(t,["type"]);
+return n!=null&&m(e,["voiceActivityType"],n),e}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */function UU(t){
+const e={
+}
+,n=f(t,["data"]);
+if(n!=null&&m(e,["data"],n),f(t,["displayName"])!==void 0)throw new Error("displayName parameter is not supported in Gemini API.");
+const i=f(t,["mimeType"]);
+return i!=null&&m(e,["mimeType"],i),e}
+function PU(t){
+const e={
+}
+,n=f(t,["content"]);
+n!=null&&m(e,["content"],n);
+const i=f(t,["citationMetadata"]);
+i!=null&&m(e,["citationMetadata"],LU(i));
+const r=f(t,["tokenCount"]);
+r!=null&&m(e,["tokenCount"],r);
+const l=f(t,["finishReason"]);
+l!=null&&m(e,["finishReason"],l);
+const u=f(t,["avgLogprobs"]);
+u!=null&&m(e,["avgLogprobs"],u);
+const d=f(t,["groundingMetadata"]);
+d!=null&&m(e,["groundingMetadata"],d);
+const h=f(t,["index"]);
+h!=null&&m(e,["index"],h);
+const p=f(t,["logprobsResult"]);
+p!=null&&m(e,["logprobsResult"],p);
+const g=f(t,["safetyRatings"]);
+if(g!=null){
+let T=g;
+Array.isArray(T)&&(T=T.map(w=>w)),m(e,["safetyRatings"],T)}
+const _=f(t,["urlContextMetadata"]);
+return _!=null&&m(e,["urlContextMetadata"],_),e}
+function LU(t){
+const e={
+}
+,n=f(t,["citationSources"]);
+if(n!=null){
+let i=n;
+Array.isArray(i)&&(i=i.map(r=>r)),m(e,["citations"],i)}
+return e}
+function OU(t,e){
+const n={
+}
+,i=f(e,["model"]);
+i!=null&&m(n,["_url","model"],Me(t,i));
+const r=f(e,["contents"]);
+if(r!=null){
+let l=fn(r);
+Array.isArray(l)&&(l=l.map(u=>u)),m(n,["contents"],l)}
+return n}
+function VU(t){
+const e={
+}
+,n=f(t,["sdkHttpResponse"]);
+n!=null&&m(e,["sdkHttpResponse"],n);
+const i=f(t,["tokensInfo"]);
+if(i!=null){
+let r=i;
+Array.isArray(r)&&(r=r.map(l=>l)),m(e,["tokensInfo"],r)}
+return e}
+function BU(t){
+const e={
+}
+,n=f(t,["values"]);
+n!=null&&m(e,["values"],n);
+const i=f(t,["statistics"]);
+return i!=null&&m(e,["statistics"],FU(i)),e}
+function FU(t){
+const e={
+}
+,n=f(t,["truncated"]);
+n!=null&&m(e,["truncated"],n);
+const i=f(t,["token_count"]);
+return i!=null&&m(e,["tokenCount"],i),e}
+function Su(t){
+const e={
+}
+,n=f(t,["parts"]);
+if(n!=null){
+let r=n;
+Array.isArray(r)&&(r=r.map(l=>jP(l))),m(e,["parts"],r)}
+const i=f(t,["role"]);
+return i!=null&&m(e,["role"],i),e}
+function GU(t){
+const e={
+}
+,n=f(t,["controlType"]);
+n!=null&&m(e,["controlType"],n);
+const i=f(t,["enableControlImageComputation"]);
+return i!=null&&m(e,["computeControl"],i),e}
+function qU(t){
+const e={
+}
+;
+if(f(t,["systemInstruction"])!==void 0)throw new Error("systemInstruction parameter is not supported in Gemini API.");
+if(f(t,["tools"])!==void 0)throw new Error("tools parameter is not supported in Gemini API.");
+if(f(t,["generationConfig"])!==void 0)throw new Error("generationConfig parameter is not supported in Gemini API.");
+return e}
+function HU(t,e){
+const n={
+}
+,i=f(t,["systemInstruction"]);
+e!==void 0&&i!=null&&m(e,["systemInstruction"],bt(i));
+const r=f(t,["tools"]);
+if(e!==void 0&&r!=null){
+let u=r;
+Array.isArray(u)&&(u=u.map(d=>CE(d))),m(e,["tools"],u)}
+const l=f(t,["generationConfig"]);
+return e!==void 0&&l!=null&&m(e,["generationConfig"],UP(l)),n}
+function zU(t,e){
+const n={
+}
+,i=f(e,["model"]);
+i!=null&&m(n,["_url","model"],Me(t,i));
+const r=f(e,["contents"]);
+if(r!=null){
+let u=fn(r);
+Array.isArray(u)&&(u=u.map(d=>Su(d))),m(n,["contents"],u)}
+const l=f(e,["config"]);
+return l!=null&&qU(l),n}
+function $U(t,e){
+const n={
+}
+,i=f(e,["model"]);
+i!=null&&m(n,["_url","model"],Me(t,i));
+const r=f(e,["contents"]);
+if(r!=null){
+let u=fn(r);
+Array.isArray(u)&&(u=u.map(d=>d)),m(n,["contents"],u)}
+const l=f(e,["config"]);
+return l!=null&&HU(l,n),n}
+function JU(t){
+const e={
+}
+,n=f(t,["sdkHttpResponse"]);
+n!=null&&m(e,["sdkHttpResponse"],n);
+const i=f(t,["totalTokens"]);
+i!=null&&m(e,["totalTokens"],i);
+const r=f(t,["cachedContentTokenCount"]);
+return r!=null&&m(e,["cachedContentTokenCount"],r),e}
+function KU(t){
+const e={
+}
+,n=f(t,["sdkHttpResponse"]);
+n!=null&&m(e,["sdkHttpResponse"],n);
+const i=f(t,["totalTokens"]);
+return i!=null&&m(e,["totalTokens"],i),e}
+function YU(t,e){
+const n={
+}
+,i=f(e,["model"]);
+return i!=null&&m(n,["_url","name"],Me(t,i)),n}
+function jU(t,e){
+const n={
+}
+,i=f(e,["model"]);
+return i!=null&&m(n,["_url","name"],Me(t,i)),n}
+function WU(t){
+const e={
+}
+,n=f(t,["sdkHttpResponse"]);
+return n!=null&&m(e,["sdkHttpResponse"],n),e}
+function XU(t){
+const e={
+}
+,n=f(t,["sdkHttpResponse"]);
+return n!=null&&m(e,["sdkHttpResponse"],n),e}
+function QU(t,e){
+const n={
+}
+,i=f(t,["outputGcsUri"]);
+e!==void 0&&i!=null&&m(e,["parameters","storageUri"],i);
+const r=f(t,["negativePrompt"]);
+e!==void 0&&r!=null&&m(e,["parameters","negativePrompt"],r);
+const l=f(t,["numberOfImages"]);
+e!==void 0&&l!=null&&m(e,["parameters","sampleCount"],l);
+const u=f(t,["aspectRatio"]);
+e!==void 0&&u!=null&&m(e,["parameters","aspectRatio"],u);
+const d=f(t,["guidanceScale"]);
+e!==void 0&&d!=null&&m(e,["parameters","guidanceScale"],d);
+const h=f(t,["seed"]);
+e!==void 0&&h!=null&&m(e,["parameters","seed"],h);
+const p=f(t,["safetyFilterLevel"]);
+e!==void 0&&p!=null&&m(e,["parameters","safetySetting"],p);
+const g=f(t,["personGeneration"]);
+e!==void 0&&g!=null&&m(e,["parameters","personGeneration"],g);
+const _=f(t,["includeSafetyAttributes"]);
+e!==void 0&&_!=null&&m(e,["parameters","includeSafetyAttributes"],_);
+const T=f(t,["includeRaiReason"]);
+e!==void 0&&T!=null&&m(e,["parameters","includeRaiReason"],T);
+const w=f(t,["language"]);
+e!==void 0&&w!=null&&m(e,["parameters","language"],w);
+const A=f(t,["outputMimeType"]);
+e!==void 0&&A!=null&&m(e,["parameters","outputOptions","mimeType"],A);
+const C=f(t,["outputCompressionQuality"]);
+e!==void 0&&C!=null&&m(e,["parameters","outputOptions","compressionQuality"],C);
+const x=f(t,["addWatermark"]);
+e!==void 0&&x!=null&&m(e,["parameters","addWatermark"],x);
+const R=f(t,["labels"]);
+e!==void 0&&R!=null&&m(e,["labels"],R);
+const k=f(t,["editMode"]);
+e!==void 0&&k!=null&&m(e,["parameters","editMode"],k);
+const N=f(t,["baseSteps"]);
+return e!==void 0&&N!=null&&m(e,["parameters","editConfig","baseSteps"],N),n}
+function ZU(t,e){
+const n={
+}
+,i=f(e,["model"]);
+i!=null&&m(n,["_url","model"],Me(t,i));
+const r=f(e,["prompt"]);
+r!=null&&m(n,["instances[0]","prompt"],r);
+const l=f(e,["referenceImages"]);
+if(l!=null){
+let d=l;
+Array.isArray(d)&&(d=d.map(h=>tL(h))),m(n,["instances[0]","referenceImages"],d)}
+const u=f(e,["config"]);
+return u!=null&&QU(u,n),n}
+function eP(t){
+const e={
+}
+,n=f(t,["sdkHttpResponse"]);
+n!=null&&m(e,["sdkHttpResponse"],n);
+const i=f(t,["predictions"]);
+if(i!=null){
+let r=i;
+Array.isArray(r)&&(r=r.map(l=>wu(l))),m(e,["generatedImages"],r)}
+return e}
+function tP(t,e){
+const n={
+}
+,i=f(t,["taskType"]);
+e!==void 0&&i!=null&&m(e,["requests[]","taskType"],i);
+const r=f(t,["title"]);
+e!==void 0&&r!=null&&m(e,["requests[]","title"],r);
+const l=f(t,["outputDimensionality"]);
+if(e!==void 0&&l!=null&&m(e,["requests[]","outputDimensionality"],l),f(t,["mimeType"])!==void 0)throw new Error("mimeType parameter is not supported in Gemini API.");
+if(f(t,["autoTruncate"])!==void 0)throw new Error("autoTruncate parameter is not supported in Gemini API.");
+return n}
+function nP(t,e){
+const n={
+}
+,i=f(t,["taskType"]);
+e!==void 0&&i!=null&&m(e,["instances[]","task_type"],i);
+const r=f(t,["title"]);
+e!==void 0&&r!=null&&m(e,["instances[]","title"],r);
+const l=f(t,["outputDimensionality"]);
+e!==void 0&&l!=null&&m(e,["parameters","outputDimensionality"],l);
+const u=f(t,["mimeType"]);
+e!==void 0&&u!=null&&m(e,["instances[]","mimeType"],u);
+const d=f(t,["autoTruncate"]);
+return e!==void 0&&d!=null&&m(e,["parameters","autoTruncate"],d),n}
+function iP(t,e){
+const n={
+}
+,i=f(e,["model"]);
+i!=null&&m(n,["_url","model"],Me(t,i));
+const r=f(e,["contents"]);
+if(r!=null){
+let d=ap(t,r);
+Array.isArray(d)&&(d=d.map(h=>h)),m(n,["requests[]","content"],d)}
+const l=f(e,["config"]);
+l!=null&&tP(l,n);
+const u=f(e,["model"]);
+return u!==void 0&&m(n,["requests[]","model"],Me(t,u)),n}
+function sP(t,e){
+const n={
+}
+,i=f(e,["model"]);
+i!=null&&m(n,["_url","model"],Me(t,i));
+const r=f(e,["contents"]);
+if(r!=null){
+let u=ap(t,r);
+Array.isArray(u)&&(u=u.map(d=>d)),m(n,["instances[]","content"],u)}
+const l=f(e,["config"]);
+return l!=null&&nP(l,n),n}
+function oP(t){
+const e={
+}
+,n=f(t,["sdkHttpResponse"]);
+n!=null&&m(e,["sdkHttpResponse"],n);
+const i=f(t,["embeddings"]);
+if(i!=null){
+let l=i;
+Array.isArray(l)&&(l=l.map(u=>u)),m(e,["embeddings"],l)}
+const r=f(t,["metadata"]);
+return r!=null&&m(e,["metadata"],r),e}
+function rP(t){
+const e={
+}
+,n=f(t,["sdkHttpResponse"]);
+n!=null&&m(e,["sdkHttpResponse"],n);
+const i=f(t,["predictions[]","embeddings"]);
+if(i!=null){
+let l=i;
+Array.isArray(l)&&(l=l.map(u=>BU(u))),m(e,["embeddings"],l)}
+const r=f(t,["metadata"]);
+return r!=null&&m(e,["metadata"],r),e}
+function aP(t){
+const e={
+}
+,n=f(t,["endpoint"]);
+n!=null&&m(e,["name"],n);
+const i=f(t,["deployedModelId"]);
+return i!=null&&m(e,["deployedModelId"],i),e}
+function lP(t){
+const e={
+}
+;
+if(f(t,["displayName"])!==void 0)throw new Error("displayName parameter is not supported in Gemini API.");
+const n=f(t,["fileUri"]);
+n!=null&&m(e,["fileUri"],n);
+const i=f(t,["mimeType"]);
+return i!=null&&m(e,["mimeType"],i),e}
+function uP(t){
+const e={
+}
+,n=f(t,["id"]);
+n!=null&&m(e,["id"],n);
+const i=f(t,["args"]);
+i!=null&&m(e,["args"],i);
+const r=f(t,["name"]);
+if(r!=null&&m(e,["name"],r),f(t,["partialArgs"])!==void 0)throw new Error("partialArgs parameter is not supported in Gemini API.");
+if(f(t,["willContinue"])!==void 0)throw new Error("willContinue parameter is not supported in Gemini API.");
+return e}
+function cP(t){
+const e={
+}
+,n=f(t,["allowedFunctionNames"]);
+n!=null&&m(e,["allowedFunctionNames"],n);
+const i=f(t,["mode"]);
+if(i!=null&&m(e,["mode"],i),f(t,["streamFunctionCallArguments"])!==void 0)throw new Error("streamFunctionCallArguments parameter is not supported in Gemini API.");
+return e}
+function dP(t){
+const e={
+}
+,n=f(t,["description"]);
+n!=null&&m(e,["description"],n);
+const i=f(t,["name"]);
+i!=null&&m(e,["name"],i);
+const r=f(t,["parameters"]);
+r!=null&&m(e,["parameters"],r);
+const l=f(t,["parametersJsonSchema"]);
+l!=null&&m(e,["parametersJsonSchema"],l);
+const u=f(t,["response"]);
+u!=null&&m(e,["response"],u);
+const d=f(t,["responseJsonSchema"]);
+if(d!=null&&m(e,["responseJsonSchema"],d),f(t,["behavior"])!==void 0)throw new Error("behavior parameter is not supported in Vertex AI.");
+return e}
+function fP(t,e,n){
+const i={
+}
+,r=f(e,["systemInstruction"]);
+n!==void 0&&r!=null&&m(n,["systemInstruction"],Su(bt(r)));
+const l=f(e,["temperature"]);
+l!=null&&m(i,["temperature"],l);
+const u=f(e,["topP"]);
+u!=null&&m(i,["topP"],u);
+const d=f(e,["topK"]);
+d!=null&&m(i,["topK"],d);
+const h=f(e,["candidateCount"]);
+h!=null&&m(i,["candidateCount"],h);
+const p=f(e,["maxOutputTokens"]);
+p!=null&&m(i,["maxOutputTokens"],p);
+const g=f(e,["stopSequences"]);
+g!=null&&m(i,["stopSequences"],g);
+const _=f(e,["responseLogprobs"]);
+_!=null&&m(i,["responseLogprobs"],_);
+const T=f(e,["logprobs"]);
+T!=null&&m(i,["logprobs"],T);
+const w=f(e,["presencePenalty"]);
+w!=null&&m(i,["presencePenalty"],w);
+const A=f(e,["frequencyPenalty"]);
+A!=null&&m(i,["frequencyPenalty"],A);
+const C=f(e,["seed"]);
+C!=null&&m(i,["seed"],C);
+const x=f(e,["responseMimeType"]);
+x!=null&&m(i,["responseMimeType"],x);
+const R=f(e,["responseSchema"]);
+R!=null&&m(i,["responseSchema"],lp(R));
+const k=f(e,["responseJsonSchema"]);
+if(k!=null&&m(i,["responseJsonSchema"],k),f(e,["routingConfig"])!==void 0)throw new Error("routingConfig parameter is not supported in Gemini API.");
+if(f(e,["modelSelectionConfig"])!==void 0)throw new Error("modelSelectionConfig parameter is not supported in Gemini API.");
+const N=f(e,["safetySettings"]);
+if(n!==void 0&&N!=null){
+let Ae=N;
+Array.isArray(Ae)&&(Ae=Ae.map($e=>nL($e))),m(n,["safetySettings"],Ae)}
+const O=f(e,["tools"]);
+if(n!==void 0&&O!=null){
+let Ae=Do(O);
+Array.isArray(Ae)&&(Ae=Ae.map($e=>uL(Io($e)))),m(n,["tools"],Ae)}
+const F=f(e,["toolConfig"]);
+if(n!==void 0&&F!=null&&m(n,["toolConfig"],lL(F)),f(e,["labels"])!==void 0)throw new Error("labels parameter is not supported in Gemini API.");
+const z=f(e,["cachedContent"]);
+n!==void 0&&z!=null&&m(n,["cachedContent"],ii(t,z));
+const G=f(e,["responseModalities"]);
+G!=null&&m(i,["responseModalities"],G);
+const X=f(e,["mediaResolution"]);
+X!=null&&m(i,["mediaResolution"],X);
+const j=f(e,["speechConfig"]);
+if(j!=null&&m(i,["speechConfig"],up(j)),f(e,["audioTimestamp"])!==void 0)throw new Error("audioTimestamp parameter is not supported in Gemini API.");
+const oe=f(e,["thinkingConfig"]);
+oe!=null&&m(i,["thinkingConfig"],oe);
+const he=f(e,["imageConfig"]);
+he!=null&&m(i,["imageConfig"],BP(he));
+const Ie=f(e,["enableEnhancedCivicAnswers"]);
+if(Ie!=null&&m(i,["enableEnhancedCivicAnswers"],Ie),f(e,["modelArmorConfig"])!==void 0)throw new Error("modelArmorConfig parameter is not supported in Gemini API.");
+return i}
+function hP(t,e,n){
+const i={
+}
+,r=f(e,["systemInstruction"]);
+n!==void 0&&r!=null&&m(n,["systemInstruction"],bt(r));
+const l=f(e,["temperature"]);
+l!=null&&m(i,["temperature"],l);
+const u=f(e,["topP"]);
+u!=null&&m(i,["topP"],u);
+const d=f(e,["topK"]);
+d!=null&&m(i,["topK"],d);
+const h=f(e,["candidateCount"]);
+h!=null&&m(i,["candidateCount"],h);
+const p=f(e,["maxOutputTokens"]);
+p!=null&&m(i,["maxOutputTokens"],p);
+const g=f(e,["stopSequences"]);
+g!=null&&m(i,["stopSequences"],g);
+const _=f(e,["responseLogprobs"]);
+_!=null&&m(i,["responseLogprobs"],_);
+const T=f(e,["logprobs"]);
+T!=null&&m(i,["logprobs"],T);
+const w=f(e,["presencePenalty"]);
+w!=null&&m(i,["presencePenalty"],w);
+const A=f(e,["frequencyPenalty"]);
+A!=null&&m(i,["frequencyPenalty"],A);
+const C=f(e,["seed"]);
+C!=null&&m(i,["seed"],C);
+const x=f(e,["responseMimeType"]);
+x!=null&&m(i,["responseMimeType"],x);
+const R=f(e,["responseSchema"]);
+R!=null&&m(i,["responseSchema"],lp(R));
+const k=f(e,["responseJsonSchema"]);
+k!=null&&m(i,["responseJsonSchema"],k);
+const N=f(e,["routingConfig"]);
+N!=null&&m(i,["routingConfig"],N);
+const O=f(e,["modelSelectionConfig"]);
+O!=null&&m(i,["modelConfig"],O);
+const F=f(e,["safetySettings"]);
+if(n!==void 0&&F!=null){
+let W=F;
+Array.isArray(W)&&(W=W.map(ee=>ee)),m(n,["safetySettings"],W)}
+const z=f(e,["tools"]);
+if(n!==void 0&&z!=null){
+let W=Do(z);
+Array.isArray(W)&&(W=W.map(ee=>CE(Io(ee)))),m(n,["tools"],W)}
+const G=f(e,["toolConfig"]);
+n!==void 0&&G!=null&&m(n,["toolConfig"],G);
+const X=f(e,["labels"]);
+n!==void 0&&X!=null&&m(n,["labels"],X);
+const j=f(e,["cachedContent"]);
+n!==void 0&&j!=null&&m(n,["cachedContent"],ii(t,j));
+const oe=f(e,["responseModalities"]);
+oe!=null&&m(i,["responseModalities"],oe);
+const he=f(e,["mediaResolution"]);
+he!=null&&m(i,["mediaResolution"],he);
+const Ie=f(e,["speechConfig"]);
+Ie!=null&&m(i,["speechConfig"],up(Ie));
+const Ae=f(e,["audioTimestamp"]);
+Ae!=null&&m(i,["audioTimestamp"],Ae);
+const $e=f(e,["thinkingConfig"]);
+$e!=null&&m(i,["thinkingConfig"],$e);
+const mt=f(e,["imageConfig"]);
+if(mt!=null&&m(i,["imageConfig"],FP(mt)),f(e,["enableEnhancedCivicAnswers"])!==void 0)throw new Error("enableEnhancedCivicAnswers parameter is not supported in Vertex AI.");
+const q=f(e,["modelArmorConfig"]);
+return n!==void 0&&q!=null&&m(n,["modelArmorConfig"],q),i}
+function ET(t,e){
+const n={
+}
+,i=f(e,["model"]);
+i!=null&&m(n,["_url","model"],Me(t,i));
+const r=f(e,["contents"]);
+if(r!=null){
+let u=fn(r);
+Array.isArray(u)&&(u=u.map(d=>Su(d))),m(n,["contents"],u)}
+const l=f(e,["config"]);
+return l!=null&&m(n,["generationConfig"],fP(t,l,n)),n}
+function bT(t,e){
+const n={
+}
+,i=f(e,["model"]);
+i!=null&&m(n,["_url","model"],Me(t,i));
+const r=f(e,["contents"]);
+if(r!=null){
+let u=fn(r);
+Array.isArray(u)&&(u=u.map(d=>d)),m(n,["contents"],u)}
+const l=f(e,["config"]);
+return l!=null&&m(n,["generationConfig"],hP(t,l,n)),n}
+function AT(t){
+const e={
+}
+,n=f(t,["sdkHttpResponse"]);
+n!=null&&m(e,["sdkHttpResponse"],n);
+const i=f(t,["candidates"]);
+if(i!=null){
+let h=i;
+Array.isArray(h)&&(h=h.map(p=>PU(p))),m(e,["candidates"],h)}
+const r=f(t,["modelVersion"]);
+r!=null&&m(e,["modelVersion"],r);
+const l=f(t,["promptFeedback"]);
+l!=null&&m(e,["promptFeedback"],l);
+const u=f(t,["responseId"]);
+u!=null&&m(e,["responseId"],u);
+const d=f(t,["usageMetadata"]);
+return d!=null&&m(e,["usageMetadata"],d),e}
+function CT(t){
+const e={
+}
+,n=f(t,["sdkHttpResponse"]);
+n!=null&&m(e,["sdkHttpResponse"],n);
+const i=f(t,["candidates"]);
+if(i!=null){
+let p=i;
+Array.isArray(p)&&(p=p.map(g=>g)),m(e,["candidates"],p)}
+const r=f(t,["createTime"]);
+r!=null&&m(e,["createTime"],r);
+const l=f(t,["modelVersion"]);
+l!=null&&m(e,["modelVersion"],l);
+const u=f(t,["promptFeedback"]);
+u!=null&&m(e,["promptFeedback"],u);
+const d=f(t,["responseId"]);
+d!=null&&m(e,["responseId"],d);
+const h=f(t,["usageMetadata"]);
+return h!=null&&m(e,["usageMetadata"],h),e}
+function pP(t,e){
+const n={
+}
+;
+if(f(t,["outputGcsUri"])!==void 0)throw new Error("outputGcsUri parameter is not supported in Gemini API.");
+if(f(t,["negativePrompt"])!==void 0)throw new Error("negativePrompt parameter is not supported in Gemini API.");
+const i=f(t,["numberOfImages"]);
+e!==void 0&&i!=null&&m(e,["parameters","sampleCount"],i);
+const r=f(t,["aspectRatio"]);
+e!==void 0&&r!=null&&m(e,["parameters","aspectRatio"],r);
+const l=f(t,["guidanceScale"]);
+if(e!==void 0&&l!=null&&m(e,["parameters","guidanceScale"],l),f(t,["seed"])!==void 0)throw new Error("seed parameter is not supported in Gemini API.");
+const u=f(t,["safetyFilterLevel"]);
+e!==void 0&&u!=null&&m(e,["parameters","safetySetting"],u);
+const d=f(t,["personGeneration"]);
+e!==void 0&&d!=null&&m(e,["parameters","personGeneration"],d);
+const h=f(t,["includeSafetyAttributes"]);
+e!==void 0&&h!=null&&m(e,["parameters","includeSafetyAttributes"],h);
+const p=f(t,["includeRaiReason"]);
+e!==void 0&&p!=null&&m(e,["parameters","includeRaiReason"],p);
+const g=f(t,["language"]);
+e!==void 0&&g!=null&&m(e,["parameters","language"],g);
+const _=f(t,["outputMimeType"]);
+e!==void 0&&_!=null&&m(e,["parameters","outputOptions","mimeType"],_);
+const T=f(t,["outputCompressionQuality"]);
+if(e!==void 0&&T!=null&&m(e,["parameters","outputOptions","compressionQuality"],T),f(t,["addWatermark"])!==void 0)throw new Error("addWatermark parameter is not supported in Gemini API.");
+if(f(t,["labels"])!==void 0)throw new Error("labels parameter is not supported in Gemini API.");
+const w=f(t,["imageSize"]);
+if(e!==void 0&&w!=null&&m(e,["parameters","sampleImageSize"],w),f(t,["enhancePrompt"])!==void 0)throw new Error("enhancePrompt parameter is not supported in Gemini API.");
+return n}
+function mP(t,e){
+const n={
+}
+,i=f(t,["outputGcsUri"]);
+e!==void 0&&i!=null&&m(e,["parameters","storageUri"],i);
+const r=f(t,["negativePrompt"]);
+e!==void 0&&r!=null&&m(e,["parameters","negativePrompt"],r);
+const l=f(t,["numberOfImages"]);
+e!==void 0&&l!=null&&m(e,["parameters","sampleCount"],l);
+const u=f(t,["aspectRatio"]);
+e!==void 0&&u!=null&&m(e,["parameters","aspectRatio"],u);
+const d=f(t,["guidanceScale"]);
+e!==void 0&&d!=null&&m(e,["parameters","guidanceScale"],d);
+const h=f(t,["seed"]);
+e!==void 0&&h!=null&&m(e,["parameters","seed"],h);
+const p=f(t,["safetyFilterLevel"]);
+e!==void 0&&p!=null&&m(e,["parameters","safetySetting"],p);
+const g=f(t,["personGeneration"]);
+e!==void 0&&g!=null&&m(e,["parameters","personGeneration"],g);
+const _=f(t,["includeSafetyAttributes"]);
+e!==void 0&&_!=null&&m(e,["parameters","includeSafetyAttributes"],_);
+const T=f(t,["includeRaiReason"]);
+e!==void 0&&T!=null&&m(e,["parameters","includeRaiReason"],T);
+const w=f(t,["language"]);
+e!==void 0&&w!=null&&m(e,["parameters","language"],w);
+const A=f(t,["outputMimeType"]);
+e!==void 0&&A!=null&&m(e,["parameters","outputOptions","mimeType"],A);
+const C=f(t,["outputCompressionQuality"]);
+e!==void 0&&C!=null&&m(e,["parameters","outputOptions","compressionQuality"],C);
+const x=f(t,["addWatermark"]);
+e!==void 0&&x!=null&&m(e,["parameters","addWatermark"],x);
+const R=f(t,["labels"]);
+e!==void 0&&R!=null&&m(e,["labels"],R);
+const k=f(t,["imageSize"]);
+e!==void 0&&k!=null&&m(e,["parameters","sampleImageSize"],k);
+const N=f(t,["enhancePrompt"]);
+return e!==void 0&&N!=null&&m(e,["parameters","enhancePrompt"],N),n}
+function gP(t,e){
+const n={
+}
+,i=f(e,["model"]);
+i!=null&&m(n,["_url","model"],Me(t,i));
+const r=f(e,["prompt"]);
+r!=null&&m(n,["instances[0]","prompt"],r);
+const l=f(e,["config"]);
+return l!=null&&pP(l,n),n}
+function yP(t,e){
+const n={
+}
+,i=f(e,["model"]);
+i!=null&&m(n,["_url","model"],Me(t,i));
+const r=f(e,["prompt"]);
+r!=null&&m(n,["instances[0]","prompt"],r);
+const l=f(e,["config"]);
+return l!=null&&mP(l,n),n}
+function vP(t){
+const e={
+}
+,n=f(t,["sdkHttpResponse"]);
+n!=null&&m(e,["sdkHttpResponse"],n);
+const i=f(t,["predictions"]);
+if(i!=null){
+let l=i;
+Array.isArray(l)&&(l=l.map(u=>MP(u))),m(e,["generatedImages"],l)}
+const r=f(t,["positivePromptSafetyAttributes"]);
+return r!=null&&m(e,["positivePromptSafetyAttributes"],bE(r)),e}
+function _P(t){
+const e={
+}
+,n=f(t,["sdkHttpResponse"]);
+n!=null&&m(e,["sdkHttpResponse"],n);
+const i=f(t,["predictions"]);
+if(i!=null){
+let l=i;
+Array.isArray(l)&&(l=l.map(u=>wu(u))),m(e,["generatedImages"],l)}
+const r=f(t,["positivePromptSafetyAttributes"]);
+return r!=null&&m(e,["positivePromptSafetyAttributes"],AE(r)),e}
+function TP(t,e){
+const n={
+}
+,i=f(t,["numberOfVideos"]);
+if(e!==void 0&&i!=null&&m(e,["parameters","sampleCount"],i),f(t,["outputGcsUri"])!==void 0)throw new Error("outputGcsUri parameter is not supported in Gemini API.");
+if(f(t,["fps"])!==void 0)throw new Error("fps parameter is not supported in Gemini API.");
+const r=f(t,["durationSeconds"]);
+if(e!==void 0&&r!=null&&m(e,["parameters","durationSeconds"],r),f(t,["seed"])!==void 0)throw new Error("seed parameter is not supported in Gemini API.");
+const l=f(t,["aspectRatio"]);
+e!==void 0&&l!=null&&m(e,["parameters","aspectRatio"],l);
+const u=f(t,["resolution"]);
+e!==void 0&&u!=null&&m(e,["parameters","resolution"],u);
+const d=f(t,["personGeneration"]);
+if(e!==void 0&&d!=null&&m(e,["parameters","personGeneration"],d),f(t,["pubsubTopic"])!==void 0)throw new Error("pubsubTopic parameter is not supported in Gemini API.");
+const h=f(t,["negativePrompt"]);
+e!==void 0&&h!=null&&m(e,["parameters","negativePrompt"],h);
+const p=f(t,["enhancePrompt"]);
+if(e!==void 0&&p!=null&&m(e,["parameters","enhancePrompt"],p),f(t,["generateAudio"])!==void 0)throw new Error("generateAudio parameter is not supported in Gemini API.");
+const g=f(t,["lastFrame"]);
+e!==void 0&&g!=null&&m(e,["instances[0]","lastFrame"],Eu(g));
+const _=f(t,["referenceImages"]);
+if(e!==void 0&&_!=null){
+let T=_;
+Array.isArray(T)&&(T=T.map(w=>wL(w))),m(e,["instances[0]","referenceImages"],T)}
+if(f(t,["mask"])!==void 0)throw new Error("mask parameter is not supported in Gemini API.");
+if(f(t,["compressionQuality"])!==void 0)throw new Error("compressionQuality parameter is not supported in Gemini API.");
+return n}
+function SP(t,e){
+const n={
+}
+,i=f(t,["numberOfVideos"]);
+e!==void 0&&i!=null&&m(e,["parameters","sampleCount"],i);
+const r=f(t,["outputGcsUri"]);
+e!==void 0&&r!=null&&m(e,["parameters","storageUri"],r);
+const l=f(t,["fps"]);
+e!==void 0&&l!=null&&m(e,["parameters","fps"],l);
+const u=f(t,["durationSeconds"]);
+e!==void 0&&u!=null&&m(e,["parameters","durationSeconds"],u);
+const d=f(t,["seed"]);
+e!==void 0&&d!=null&&m(e,["parameters","seed"],d);
+const h=f(t,["aspectRatio"]);
+e!==void 0&&h!=null&&m(e,["parameters","aspectRatio"],h);
+const p=f(t,["resolution"]);
+e!==void 0&&p!=null&&m(e,["parameters","resolution"],p);
+const g=f(t,["personGeneration"]);
+e!==void 0&&g!=null&&m(e,["parameters","personGeneration"],g);
+const _=f(t,["pubsubTopic"]);
+e!==void 0&&_!=null&&m(e,["parameters","pubsubTopic"],_);
+const T=f(t,["negativePrompt"]);
+e!==void 0&&T!=null&&m(e,["parameters","negativePrompt"],T);
+const w=f(t,["enhancePrompt"]);
+e!==void 0&&w!=null&&m(e,["parameters","enhancePrompt"],w);
+const A=f(t,["generateAudio"]);
+e!==void 0&&A!=null&&m(e,["parameters","generateAudio"],A);
+const C=f(t,["lastFrame"]);
+e!==void 0&&C!=null&&m(e,["instances[0]","lastFrame"],Rn(C));
+const x=f(t,["referenceImages"]);
+if(e!==void 0&&x!=null){
+let N=x;
+Array.isArray(N)&&(N=N.map(O=>EL(O))),m(e,["instances[0]","referenceImages"],N)}
+const R=f(t,["mask"]);
+e!==void 0&&R!=null&&m(e,["instances[0]","mask"],SL(R));
+const k=f(t,["compressionQuality"]);
+return e!==void 0&&k!=null&&m(e,["parameters","compressionQuality"],k),n}
+function wP(t){
+const e={
+}
+,n=f(t,["name"]);
+n!=null&&m(e,["name"],n);
+const i=f(t,["metadata"]);
+i!=null&&m(e,["metadata"],i);
+const r=f(t,["done"]);
+r!=null&&m(e,["done"],r);
+const l=f(t,["error"]);
+l!=null&&m(e,["error"],l);
+const u=f(t,["response","generateVideoResponse"]);
+return u!=null&&m(e,["response"],CP(u)),e}
+function EP(t){
+const e={
+}
+,n=f(t,["name"]);
+n!=null&&m(e,["name"],n);
+const i=f(t,["metadata"]);
+i!=null&&m(e,["metadata"],i);
+const r=f(t,["done"]);
+r!=null&&m(e,["done"],r);
+const l=f(t,["error"]);
+l!=null&&m(e,["error"],l);
+const u=f(t,["response"]);
+return u!=null&&m(e,["response"],xP(u)),e}
+function bP(t,e){
+const n={
+}
+,i=f(e,["model"]);
+i!=null&&m(n,["_url","model"],Me(t,i));
+const r=f(e,["prompt"]);
+r!=null&&m(n,["instances[0]","prompt"],r);
+const l=f(e,["image"]);
+l!=null&&m(n,["instances[0]","image"],Eu(l));
+const u=f(e,["video"]);
+u!=null&&m(n,["instances[0]","video"],xE(u));
+const d=f(e,["source"]);
+d!=null&&RP(d,n);
+const h=f(e,["config"]);
+return h!=null&&TP(h,n),n}
+function AP(t,e){
+const n={
+}
+,i=f(e,["model"]);
+i!=null&&m(n,["_url","model"],Me(t,i));
+const r=f(e,["prompt"]);
+r!=null&&m(n,["instances[0]","prompt"],r);
+const l=f(e,["image"]);
+l!=null&&m(n,["instances[0]","image"],Rn(l));
+const u=f(e,["video"]);
+u!=null&&m(n,["instances[0]","video"],RE(u));
+const d=f(e,["source"]);
+d!=null&&NP(d,n);
+const h=f(e,["config"]);
+return h!=null&&SP(h,n),n}
+function CP(t){
+const e={
+}
+,n=f(t,["generatedSamples"]);
+if(n!=null){
+let l=n;
+Array.isArray(l)&&(l=l.map(u=>DP(u))),m(e,["generatedVideos"],l)}
+const i=f(t,["raiMediaFilteredCount"]);
+i!=null&&m(e,["raiMediaFilteredCount"],i);
+const r=f(t,["raiMediaFilteredReasons"]);
+return r!=null&&m(e,["raiMediaFilteredReasons"],r),e}
+function xP(t){
+const e={
+}
+,n=f(t,["videos"]);
+if(n!=null){
+let l=n;
+Array.isArray(l)&&(l=l.map(u=>kP(u))),m(e,["generatedVideos"],l)}
+const i=f(t,["raiMediaFilteredCount"]);
+i!=null&&m(e,["raiMediaFilteredCount"],i);
+const r=f(t,["raiMediaFilteredReasons"]);
+return r!=null&&m(e,["raiMediaFilteredReasons"],r),e}
+function RP(t,e){
+const n={
+}
+,i=f(t,["prompt"]);
+e!==void 0&&i!=null&&m(e,["instances[0]","prompt"],i);
+const r=f(t,["image"]);
+e!==void 0&&r!=null&&m(e,["instances[0]","image"],Eu(r));
+const l=f(t,["video"]);
+return e!==void 0&&l!=null&&m(e,["instances[0]","video"],xE(l)),n}
+function NP(t,e){
+const n={
+}
+,i=f(t,["prompt"]);
+e!==void 0&&i!=null&&m(e,["instances[0]","prompt"],i);
+const r=f(t,["image"]);
+e!==void 0&&r!=null&&m(e,["instances[0]","image"],Rn(r));
+const l=f(t,["video"]);
+return e!==void 0&&l!=null&&m(e,["instances[0]","video"],RE(l)),n}
+function MP(t){
+const e={
+}
+,n=f(t,["_self"]);
+n!=null&&m(e,["image"],GP(n));
+const i=f(t,["raiFilteredReason"]);
+i!=null&&m(e,["raiFilteredReason"],i);
+const r=f(t,["_self"]);
+return r!=null&&m(e,["safetyAttributes"],bE(r)),e}
+function wu(t){
+const e={
+}
+,n=f(t,["_self"]);
+n!=null&&m(e,["image"],EE(n));
+const i=f(t,["raiFilteredReason"]);
+i!=null&&m(e,["raiFilteredReason"],i);
+const r=f(t,["_self"]);
+r!=null&&m(e,["safetyAttributes"],AE(r));
+const l=f(t,["prompt"]);
+return l!=null&&m(e,["enhancedPrompt"],l),e}
+function IP(t){
+const e={
+}
+,n=f(t,["_self"]);
+n!=null&&m(e,["mask"],EE(n));
+const i=f(t,["labels"]);
+if(i!=null){
+let r=i;
+Array.isArray(r)&&(r=r.map(l=>l)),m(e,["labels"],r)}
+return e}
+function DP(t){
+const e={
+}
+,n=f(t,["video"]);
+return n!=null&&m(e,["video"],_L(n)),e}
+function kP(t){
+const e={
+}
+,n=f(t,["_self"]);
+return n!=null&&m(e,["video"],TL(n)),e}
+function UP(t){
+const e={
+}
+,n=f(t,["modelSelectionConfig"]);
+n!=null&&m(e,["modelConfig"],n);
+const i=f(t,["responseJsonSchema"]);
+i!=null&&m(e,["responseJsonSchema"],i);
+const r=f(t,["audioTimestamp"]);
+r!=null&&m(e,["audioTimestamp"],r);
+const l=f(t,["candidateCount"]);
+l!=null&&m(e,["candidateCount"],l);
+const u=f(t,["enableAffectiveDialog"]);
+u!=null&&m(e,["enableAffectiveDialog"],u);
+const d=f(t,["frequencyPenalty"]);
+d!=null&&m(e,["frequencyPenalty"],d);
+const h=f(t,["logprobs"]);
+h!=null&&m(e,["logprobs"],h);
+const p=f(t,["maxOutputTokens"]);
+p!=null&&m(e,["maxOutputTokens"],p);
+const g=f(t,["mediaResolution"]);
+g!=null&&m(e,["mediaResolution"],g);
+const _=f(t,["presencePenalty"]);
+_!=null&&m(e,["presencePenalty"],_);
+const T=f(t,["responseLogprobs"]);
+T!=null&&m(e,["responseLogprobs"],T);
+const w=f(t,["responseMimeType"]);
+w!=null&&m(e,["responseMimeType"],w);
+const A=f(t,["responseModalities"]);
+A!=null&&m(e,["responseModalities"],A);
+const C=f(t,["responseSchema"]);
+C!=null&&m(e,["responseSchema"],C);
+const x=f(t,["routingConfig"]);
+x!=null&&m(e,["routingConfig"],x);
+const R=f(t,["seed"]);
+R!=null&&m(e,["seed"],R);
+const k=f(t,["speechConfig"]);
+k!=null&&m(e,["speechConfig"],k);
+const N=f(t,["stopSequences"]);
+N!=null&&m(e,["stopSequences"],N);
+const O=f(t,["temperature"]);
+O!=null&&m(e,["temperature"],O);
+const F=f(t,["thinkingConfig"]);
+F!=null&&m(e,["thinkingConfig"],F);
+const z=f(t,["topK"]);
+z!=null&&m(e,["topK"],z);
+const G=f(t,["topP"]);
+if(G!=null&&m(e,["topP"],G),f(t,["enableEnhancedCivicAnswers"])!==void 0)throw new Error("enableEnhancedCivicAnswers parameter is not supported in Vertex AI.");
+return e}
+function PP(t,e){
+const n={
+}
+,i=f(e,["model"]);
+return i!=null&&m(n,["_url","name"],Me(t,i)),n}
+function LP(t,e){
+const n={
+}
+,i=f(e,["model"]);
+return i!=null&&m(n,["_url","name"],Me(t,i)),n}
+function OP(t){
+const e={
+}
+;
+if(f(t,["authConfig"])!==void 0)throw new Error("authConfig parameter is not supported in Gemini API.");
+const n=f(t,["enableWidget"]);
+return n!=null&&m(e,["enableWidget"],n),e}
+function VP(t){
+const e={
+}
+;
+if(f(t,["excludeDomains"])!==void 0)throw new Error("excludeDomains parameter is not supported in Gemini API.");
+if(f(t,["blockingConfidence"])!==void 0)throw new Error("blockingConfidence parameter is not supported in Gemini API.");
+const n=f(t,["timeRangeFilter"]);
+return n!=null&&m(e,["timeRangeFilter"],n),e}
+function BP(t){
+const e={
+}
+,n=f(t,["aspectRatio"]);
+n!=null&&m(e,["aspectRatio"],n);
+const i=f(t,["imageSize"]);
+if(i!=null&&m(e,["imageSize"],i),f(t,["personGeneration"])!==void 0)throw new Error("personGeneration parameter is not supported in Gemini API.");
+if(f(t,["outputMimeType"])!==void 0)throw new Error("outputMimeType parameter is not supported in Gemini API.");
+if(f(t,["outputCompressionQuality"])!==void 0)throw new Error("outputCompressionQuality parameter is not supported in Gemini API.");
+return e}
+function FP(t){
+const e={
+}
+,n=f(t,["aspectRatio"]);
+n!=null&&m(e,["aspectRatio"],n);
+const i=f(t,["imageSize"]);
+i!=null&&m(e,["imageSize"],i);
+const r=f(t,["personGeneration"]);
+r!=null&&m(e,["personGeneration"],r);
+const l=f(t,["outputMimeType"]);
+l!=null&&m(e,["imageOutputOptions","mimeType"],l);
+const u=f(t,["outputCompressionQuality"]);
+return u!=null&&m(e,["imageOutputOptions","compressionQuality"],u),e}
+function GP(t){
+const e={
+}
+,n=f(t,["bytesBase64Encoded"]);
+n!=null&&m(e,["imageBytes"],Bi(n));
+const i=f(t,["mimeType"]);
+return i!=null&&m(e,["mimeType"],i),e}
+function EE(t){
+const e={
+}
+,n=f(t,["gcsUri"]);
+n!=null&&m(e,["gcsUri"],n);
+const i=f(t,["bytesBase64Encoded"]);
+i!=null&&m(e,["imageBytes"],Bi(i));
+const r=f(t,["mimeType"]);
+return r!=null&&m(e,["mimeType"],r),e}
+function Eu(t){
+const e={
+}
+;
+if(f(t,["gcsUri"])!==void 0)throw new Error("gcsUri parameter is not supported in Gemini API.");
+const n=f(t,["imageBytes"]);
+n!=null&&m(e,["bytesBase64Encoded"],Bi(n));
+const i=f(t,["mimeType"]);
+return i!=null&&m(e,["mimeType"],i),e}
+function Rn(t){
+const e={
+}
+,n=f(t,["gcsUri"]);
+n!=null&&m(e,["gcsUri"],n);
+const i=f(t,["imageBytes"]);
+i!=null&&m(e,["bytesBase64Encoded"],Bi(i));
+const r=f(t,["mimeType"]);
+return r!=null&&m(e,["mimeType"],r),e}
+function qP(t,e,n){
+const i={
+}
+,r=f(e,["pageSize"]);
+n!==void 0&&r!=null&&m(n,["_query","pageSize"],r);
+const l=f(e,["pageToken"]);
+n!==void 0&&l!=null&&m(n,["_query","pageToken"],l);
+const u=f(e,["filter"]);
+n!==void 0&&u!=null&&m(n,["_query","filter"],u);
+const d=f(e,["queryBase"]);
+return n!==void 0&&d!=null&&m(n,["_url","models_url"],gE(t,d)),i}
+function HP(t,e,n){
+const i={
+}
+,r=f(e,["pageSize"]);
+n!==void 0&&r!=null&&m(n,["_query","pageSize"],r);
+const l=f(e,["pageToken"]);
+n!==void 0&&l!=null&&m(n,["_query","pageToken"],l);
+const u=f(e,["filter"]);
+n!==void 0&&u!=null&&m(n,["_query","filter"],u);
+const d=f(e,["queryBase"]);
+return n!==void 0&&d!=null&&m(n,["_url","models_url"],gE(t,d)),i}
+function zP(t,e){
+const n={
+}
+,i=f(e,["config"]);
+return i!=null&&qP(t,i,n),n}
+function $P(t,e){
+const n={
+}
+,i=f(e,["config"]);
+return i!=null&&HP(t,i,n),n}
+function JP(t){
+const e={
+}
+,n=f(t,["sdkHttpResponse"]);
+n!=null&&m(e,["sdkHttpResponse"],n);
+const i=f(t,["nextPageToken"]);
+i!=null&&m(e,["nextPageToken"],i);
+const r=f(t,["_self"]);
+if(r!=null){
+let l=yE(r);
+Array.isArray(l)&&(l=l.map(u=>rh(u))),m(e,["models"],l)}
+return e}
+function KP(t){
+const e={
+}
+,n=f(t,["sdkHttpResponse"]);
+n!=null&&m(e,["sdkHttpResponse"],n);
+const i=f(t,["nextPageToken"]);
+i!=null&&m(e,["nextPageToken"],i);
+const r=f(t,["_self"]);
+if(r!=null){
+let l=yE(r);
+Array.isArray(l)&&(l=l.map(u=>ah(u))),m(e,["models"],l)}
+return e}
+function YP(t){
+const e={
+}
+,n=f(t,["maskMode"]);
+n!=null&&m(e,["maskMode"],n);
+const i=f(t,["segmentationClasses"]);
+i!=null&&m(e,["maskClasses"],i);
+const r=f(t,["maskDilation"]);
+return r!=null&&m(e,["dilation"],r),e}
+function rh(t){
+const e={
+}
+,n=f(t,["name"]);
+n!=null&&m(e,["name"],n);
+const i=f(t,["displayName"]);
+i!=null&&m(e,["displayName"],i);
+const r=f(t,["description"]);
+r!=null&&m(e,["description"],r);
+const l=f(t,["version"]);
+l!=null&&m(e,["version"],l);
+const u=f(t,["_self"]);
+u!=null&&m(e,["tunedModelInfo"],cL(u));
+const d=f(t,["inputTokenLimit"]);
+d!=null&&m(e,["inputTokenLimit"],d);
+const h=f(t,["outputTokenLimit"]);
+h!=null&&m(e,["outputTokenLimit"],h);
+const p=f(t,["supportedGenerationMethods"]);
+p!=null&&m(e,["supportedActions"],p);
+const g=f(t,["temperature"]);
+g!=null&&m(e,["temperature"],g);
+const _=f(t,["maxTemperature"]);
+_!=null&&m(e,["maxTemperature"],_);
+const T=f(t,["topP"]);
+T!=null&&m(e,["topP"],T);
+const w=f(t,["topK"]);
+w!=null&&m(e,["topK"],w);
+const A=f(t,["thinking"]);
+return A!=null&&m(e,["thinking"],A),e}
+function ah(t){
+const e={
+}
+,n=f(t,["name"]);
+n!=null&&m(e,["name"],n);
+const i=f(t,["displayName"]);
+i!=null&&m(e,["displayName"],i);
+const r=f(t,["description"]);
+r!=null&&m(e,["description"],r);
+const l=f(t,["versionId"]);
+l!=null&&m(e,["version"],l);
+const u=f(t,["deployedModels"]);
+if(u!=null){
+let _=u;
+Array.isArray(_)&&(_=_.map(T=>aP(T))),m(e,["endpoints"],_)}
+const d=f(t,["labels"]);
+d!=null&&m(e,["labels"],d);
+const h=f(t,["_self"]);
+h!=null&&m(e,["tunedModelInfo"],dL(h));
+const p=f(t,["defaultCheckpointId"]);
+p!=null&&m(e,["defaultCheckpointId"],p);
+const g=f(t,["checkpoints"]);
+if(g!=null){
+let _=g;
+Array.isArray(_)&&(_=_.map(T=>T)),m(e,["checkpoints"],_)}
+return e}
+function jP(t){
+const e={
+}
+,n=f(t,["mediaResolution"]);
+n!=null&&m(e,["mediaResolution"],n);
+const i=f(t,["codeExecutionResult"]);
+i!=null&&m(e,["codeExecutionResult"],i);
+const r=f(t,["executableCode"]);
+r!=null&&m(e,["executableCode"],r);
+const l=f(t,["fileData"]);
+l!=null&&m(e,["fileData"],lP(l));
+const u=f(t,["functionCall"]);
+u!=null&&m(e,["functionCall"],uP(u));
+const d=f(t,["functionResponse"]);
+d!=null&&m(e,["functionResponse"],d);
+const h=f(t,["inlineData"]);
+h!=null&&m(e,["inlineData"],UU(h));
+const p=f(t,["text"]);
+p!=null&&m(e,["text"],p);
+const g=f(t,["thought"]);
+g!=null&&m(e,["thought"],g);
+const _=f(t,["thoughtSignature"]);
+_!=null&&m(e,["thoughtSignature"],_);
+const T=f(t,["videoMetadata"]);
+return T!=null&&m(e,["videoMetadata"],T),e}
+function WP(t){
+const e={
+}
+,n=f(t,["productImage"]);
+return n!=null&&m(e,["image"],Rn(n)),e}
+function XP(t,e){
+const n={
+}
+,i=f(t,["numberOfImages"]);
+e!==void 0&&i!=null&&m(e,["parameters","sampleCount"],i);
+const r=f(t,["baseSteps"]);
+e!==void 0&&r!=null&&m(e,["parameters","baseSteps"],r);
+const l=f(t,["outputGcsUri"]);
+e!==void 0&&l!=null&&m(e,["parameters","storageUri"],l);
+const u=f(t,["seed"]);
+e!==void 0&&u!=null&&m(e,["parameters","seed"],u);
+const d=f(t,["safetyFilterLevel"]);
+e!==void 0&&d!=null&&m(e,["parameters","safetySetting"],d);
+const h=f(t,["personGeneration"]);
+e!==void 0&&h!=null&&m(e,["parameters","personGeneration"],h);
+const p=f(t,["addWatermark"]);
+e!==void 0&&p!=null&&m(e,["parameters","addWatermark"],p);
+const g=f(t,["outputMimeType"]);
+e!==void 0&&g!=null&&m(e,["parameters","outputOptions","mimeType"],g);
+const _=f(t,["outputCompressionQuality"]);
+e!==void 0&&_!=null&&m(e,["parameters","outputOptions","compressionQuality"],_);
+const T=f(t,["enhancePrompt"]);
+e!==void 0&&T!=null&&m(e,["parameters","enhancePrompt"],T);
+const w=f(t,["labels"]);
+return e!==void 0&&w!=null&&m(e,["labels"],w),n}
+function QP(t,e){
+const n={
+}
+,i=f(e,["model"]);
+i!=null&&m(n,["_url","model"],Me(t,i));
+const r=f(e,["source"]);
+r!=null&&eL(r,n);
+const l=f(e,["config"]);
+return l!=null&&XP(l,n),n}
+function ZP(t){
+const e={
+}
+,n=f(t,["predictions"]);
+if(n!=null){
+let i=n;
+Array.isArray(i)&&(i=i.map(r=>wu(r))),m(e,["generatedImages"],i)}
+return e}
+function eL(t,e){
+const n={
+}
+,i=f(t,["prompt"]);
+e!==void 0&&i!=null&&m(e,["instances[0]","prompt"],i);
+const r=f(t,["personImage"]);
+e!==void 0&&r!=null&&m(e,["instances[0]","personImage","image"],Rn(r));
+const l=f(t,["productImages"]);
+if(e!==void 0&&l!=null){
+let u=l;
+Array.isArray(u)&&(u=u.map(d=>WP(d))),m(e,["instances[0]","productImages"],u)}
+return n}
+function tL(t){
+const e={
+}
+,n=f(t,["referenceImage"]);
+n!=null&&m(e,["referenceImage"],Rn(n));
+const i=f(t,["referenceId"]);
+i!=null&&m(e,["referenceId"],i);
+const r=f(t,["referenceType"]);
+r!=null&&m(e,["referenceType"],r);
+const l=f(t,["maskImageConfig"]);
+l!=null&&m(e,["maskImageConfig"],YP(l));
+const u=f(t,["controlImageConfig"]);
+u!=null&&m(e,["controlImageConfig"],GU(u));
+const d=f(t,["styleImageConfig"]);
+d!=null&&m(e,["styleImageConfig"],d);
+const h=f(t,["subjectImageConfig"]);
+return h!=null&&m(e,["subjectImageConfig"],h),e}
+function bE(t){
+const e={
+}
+,n=f(t,["safetyAttributes","categories"]);
+n!=null&&m(e,["categories"],n);
+const i=f(t,["safetyAttributes","scores"]);
+i!=null&&m(e,["scores"],i);
+const r=f(t,["contentType"]);
+return r!=null&&m(e,["contentType"],r),e}
+function AE(t){
+const e={
+}
+,n=f(t,["safetyAttributes","categories"]);
+n!=null&&m(e,["categories"],n);
+const i=f(t,["safetyAttributes","scores"]);
+i!=null&&m(e,["scores"],i);
+const r=f(t,["contentType"]);
+return r!=null&&m(e,["contentType"],r),e}
+function nL(t){
+const e={
+}
+,n=f(t,["category"]);
+if(n!=null&&m(e,["category"],n),f(t,["method"])!==void 0)throw new Error("method parameter is not supported in Gemini API.");
+const i=f(t,["threshold"]);
+return i!=null&&m(e,["threshold"],i),e}
+function iL(t){
+const e={
+}
+,n=f(t,["image"]);
+return n!=null&&m(e,["image"],Rn(n)),e}
+function sL(t,e){
+const n={
+}
+,i=f(t,["mode"]);
+e!==void 0&&i!=null&&m(e,["parameters","mode"],i);
+const r=f(t,["maxPredictions"]);
+e!==void 0&&r!=null&&m(e,["parameters","maxPredictions"],r);
+const l=f(t,["confidenceThreshold"]);
+e!==void 0&&l!=null&&m(e,["parameters","confidenceThreshold"],l);
+const u=f(t,["maskDilation"]);
+e!==void 0&&u!=null&&m(e,["parameters","maskDilation"],u);
+const d=f(t,["binaryColorThreshold"]);
+e!==void 0&&d!=null&&m(e,["parameters","binaryColorThreshold"],d);
+const h=f(t,["labels"]);
+return e!==void 0&&h!=null&&m(e,["labels"],h),n}
+function oL(t,e){
+const n={
+}
+,i=f(e,["model"]);
+i!=null&&m(n,["_url","model"],Me(t,i));
+const r=f(e,["source"]);
+r!=null&&aL(r,n);
+const l=f(e,["config"]);
+return l!=null&&sL(l,n),n}
+function rL(t){
+const e={
+}
+,n=f(t,["predictions"]);
+if(n!=null){
+let i=n;
+Array.isArray(i)&&(i=i.map(r=>IP(r))),m(e,["generatedMasks"],i)}
+return e}
+function aL(t,e){
+const n={
+}
+,i=f(t,["prompt"]);
+e!==void 0&&i!=null&&m(e,["instances[0]","prompt"],i);
+const r=f(t,["image"]);
+e!==void 0&&r!=null&&m(e,["instances[0]","image"],Rn(r));
+const l=f(t,["scribbleImage"]);
+return e!==void 0&&l!=null&&m(e,["instances[0]","scribble"],iL(l)),n}
+function lL(t){
+const e={
+}
+,n=f(t,["retrievalConfig"]);
+n!=null&&m(e,["retrievalConfig"],n);
+const i=f(t,["functionCallingConfig"]);
+return i!=null&&m(e,["functionCallingConfig"],cP(i)),e}
+function uL(t){
+const e={
+}
+;
+if(f(t,["retrieval"])!==void 0)throw new Error("retrieval parameter is not supported in Gemini API.");
+const n=f(t,["computerUse"]);
+n!=null&&m(e,["computerUse"],n);
+const i=f(t,["fileSearch"]);
+i!=null&&m(e,["fileSearch"],i);
+const r=f(t,["codeExecution"]);
+if(r!=null&&m(e,["codeExecution"],r),f(t,["enterpriseWebSearch"])!==void 0)throw new Error("enterpriseWebSearch parameter is not supported in Gemini API.");
+const l=f(t,["functionDeclarations"]);
+if(l!=null){
+let g=l;
+Array.isArray(g)&&(g=g.map(_=>_)),m(e,["functionDeclarations"],g)}
+const u=f(t,["googleMaps"]);
+u!=null&&m(e,["googleMaps"],OP(u));
+const d=f(t,["googleSearch"]);
+d!=null&&m(e,["googleSearch"],VP(d));
+const h=f(t,["googleSearchRetrieval"]);
+h!=null&&m(e,["googleSearchRetrieval"],h);
+const p=f(t,["urlContext"]);
+return p!=null&&m(e,["urlContext"],p),e}
+function CE(t){
+const e={
+}
+,n=f(t,["retrieval"]);
+n!=null&&m(e,["retrieval"],n);
+const i=f(t,["computerUse"]);
+if(i!=null&&m(e,["computerUse"],i),f(t,["fileSearch"])!==void 0)throw new Error("fileSearch parameter is not supported in Vertex AI.");
+const r=f(t,["codeExecution"]);
+r!=null&&m(e,["codeExecution"],r);
+const l=f(t,["enterpriseWebSearch"]);
+l!=null&&m(e,["enterpriseWebSearch"],l);
+const u=f(t,["functionDeclarations"]);
+if(u!=null){
+let _=u;
+Array.isArray(_)&&(_=_.map(T=>dP(T))),m(e,["functionDeclarations"],_)}
+const d=f(t,["googleMaps"]);
+d!=null&&m(e,["googleMaps"],d);
+const h=f(t,["googleSearch"]);
+h!=null&&m(e,["googleSearch"],h);
+const p=f(t,["googleSearchRetrieval"]);
+p!=null&&m(e,["googleSearchRetrieval"],p);
+const g=f(t,["urlContext"]);
+return g!=null&&m(e,["urlContext"],g),e}
+function cL(t){
+const e={
+}
+,n=f(t,["baseModel"]);
+n!=null&&m(e,["baseModel"],n);
+const i=f(t,["createTime"]);
+i!=null&&m(e,["createTime"],i);
+const r=f(t,["updateTime"]);
+return r!=null&&m(e,["updateTime"],r),e}
+function dL(t){
+const e={
+}
+,n=f(t,["labels","google-vertex-llm-tuning-base-model-id"]);
+n!=null&&m(e,["baseModel"],n);
+const i=f(t,["createTime"]);
+i!=null&&m(e,["createTime"],i);
+const r=f(t,["updateTime"]);
+return r!=null&&m(e,["updateTime"],r),e}
+function fL(t,e){
+const n={
+}
+,i=f(t,["displayName"]);
+e!==void 0&&i!=null&&m(e,["displayName"],i);
+const r=f(t,["description"]);
+e!==void 0&&r!=null&&m(e,["description"],r);
+const l=f(t,["defaultCheckpointId"]);
+return e!==void 0&&l!=null&&m(e,["defaultCheckpointId"],l),n}
+function hL(t,e){
+const n={
+}
+,i=f(t,["displayName"]);
+e!==void 0&&i!=null&&m(e,["displayName"],i);
+const r=f(t,["description"]);
+e!==void 0&&r!=null&&m(e,["description"],r);
+const l=f(t,["defaultCheckpointId"]);
+return e!==void 0&&l!=null&&m(e,["defaultCheckpointId"],l),n}
+function pL(t,e){
+const n={
+}
+,i=f(e,["model"]);
+i!=null&&m(n,["_url","name"],Me(t,i));
+const r=f(e,["config"]);
+return r!=null&&fL(r,n),n}
+function mL(t,e){
+const n={
+}
+,i=f(e,["model"]);
+i!=null&&m(n,["_url","model"],Me(t,i));
+const r=f(e,["config"]);
+return r!=null&&hL(r,n),n}
+function gL(t,e){
+const n={
+}
+,i=f(t,["outputGcsUri"]);
+e!==void 0&&i!=null&&m(e,["parameters","storageUri"],i);
+const r=f(t,["safetyFilterLevel"]);
+e!==void 0&&r!=null&&m(e,["parameters","safetySetting"],r);
+const l=f(t,["personGeneration"]);
+e!==void 0&&l!=null&&m(e,["parameters","personGeneration"],l);
+const u=f(t,["includeRaiReason"]);
+e!==void 0&&u!=null&&m(e,["parameters","includeRaiReason"],u);
+const d=f(t,["outputMimeType"]);
+e!==void 0&&d!=null&&m(e,["parameters","outputOptions","mimeType"],d);
+const h=f(t,["outputCompressionQuality"]);
+e!==void 0&&h!=null&&m(e,["parameters","outputOptions","compressionQuality"],h);
+const p=f(t,["enhanceInputImage"]);
+e!==void 0&&p!=null&&m(e,["parameters","upscaleConfig","enhanceInputImage"],p);
+const g=f(t,["imagePreservationFactor"]);
+e!==void 0&&g!=null&&m(e,["parameters","upscaleConfig","imagePreservationFactor"],g);
+const _=f(t,["labels"]);
+e!==void 0&&_!=null&&m(e,["labels"],_);
+const T=f(t,["numberOfImages"]);
+e!==void 0&&T!=null&&m(e,["parameters","sampleCount"],T);
+const w=f(t,["mode"]);
+return e!==void 0&&w!=null&&m(e,["parameters","mode"],w),n}
+function yL(t,e){
+const n={
+}
+,i=f(e,["model"]);
+i!=null&&m(n,["_url","model"],Me(t,i));
+const r=f(e,["image"]);
+r!=null&&m(n,["instances[0]","image"],Rn(r));
+const l=f(e,["upscaleFactor"]);
+l!=null&&m(n,["parameters","upscaleConfig","upscaleFactor"],l);
+const u=f(e,["config"]);
+return u!=null&&gL(u,n),n}
+function vL(t){
+const e={
+}
+,n=f(t,["sdkHttpResponse"]);
+n!=null&&m(e,["sdkHttpResponse"],n);
+const i=f(t,["predictions"]);
+if(i!=null){
+let r=i;
+Array.isArray(r)&&(r=r.map(l=>wu(l))),m(e,["generatedImages"],r)}
+return e}
+function _L(t){
+const e={
+}
+,n=f(t,["uri"]);
+n!=null&&m(e,["uri"],n);
+const i=f(t,["encodedVideo"]);
+i!=null&&m(e,["videoBytes"],Bi(i));
+const r=f(t,["encoding"]);
+return r!=null&&m(e,["mimeType"],r),e}
+function TL(t){
+const e={
+}
+,n=f(t,["gcsUri"]);
+n!=null&&m(e,["uri"],n);
+const i=f(t,["bytesBase64Encoded"]);
+i!=null&&m(e,["videoBytes"],Bi(i));
+const r=f(t,["mimeType"]);
+return r!=null&&m(e,["mimeType"],r),e}
+function SL(t){
+const e={
+}
+,n=f(t,["image"]);
+n!=null&&m(e,["_self"],Rn(n));
+const i=f(t,["maskMode"]);
+return i!=null&&m(e,["maskMode"],i),e}
+function wL(t){
+const e={
+}
+,n=f(t,["image"]);
+n!=null&&m(e,["image"],Eu(n));
+const i=f(t,["referenceType"]);
+return i!=null&&m(e,["referenceType"],i),e}
+function EL(t){
+const e={
+}
+,n=f(t,["image"]);
+n!=null&&m(e,["image"],Rn(n));
+const i=f(t,["referenceType"]);
+return i!=null&&m(e,["referenceType"],i),e}
+function xE(t){
+const e={
+}
+,n=f(t,["uri"]);
+n!=null&&m(e,["uri"],n);
+const i=f(t,["videoBytes"]);
+i!=null&&m(e,["encodedVideo"],Bi(i));
+const r=f(t,["mimeType"]);
+return r!=null&&m(e,["encoding"],r),e}
+function RE(t){
+const e={
+}
+,n=f(t,["uri"]);
+n!=null&&m(e,["gcsUri"],n);
+const i=f(t,["videoBytes"]);
+i!=null&&m(e,["bytesBase64Encoded"],Bi(i));
+const r=f(t,["mimeType"]);
+return r!=null&&m(e,["mimeType"],r),e}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */function bL(t,e){
+const n={
+}
+,i=f(t,["displayName"]);
+return e!==void 0&&i!=null&&m(e,["displayName"],i),n}
+function AL(t){
+const e={
+}
+,n=f(t,["config"]);
+return n!=null&&bL(n,e),e}
+function CL(t,e){
+const n={
+}
+,i=f(t,["force"]);
+return e!==void 0&&i!=null&&m(e,["_query","force"],i),n}
+function xL(t){
+const e={
+}
+,n=f(t,["name"]);
+n!=null&&m(e,["_url","name"],n);
+const i=f(t,["config"]);
+return i!=null&&CL(i,e),e}
+function RL(t){
+const e={
+}
+,n=f(t,["name"]);
+return n!=null&&m(e,["_url","name"],n),e}
+function NL(t,e){
+const n={
+}
+,i=f(t,["customMetadata"]);
+if(e!==void 0&&i!=null){
+let l=i;
+Array.isArray(l)&&(l=l.map(u=>u)),m(e,["customMetadata"],l)}
+const r=f(t,["chunkingConfig"]);
+return e!==void 0&&r!=null&&m(e,["chunkingConfig"],r),n}
+function ML(t){
+const e={
+}
+,n=f(t,["name"]);
+n!=null&&m(e,["name"],n);
+const i=f(t,["metadata"]);
+i!=null&&m(e,["metadata"],i);
+const r=f(t,["done"]);
+r!=null&&m(e,["done"],r);
+const l=f(t,["error"]);
+l!=null&&m(e,["error"],l);
+const u=f(t,["response"]);
+return u!=null&&m(e,["response"],DL(u)),e}
+function IL(t){
+const e={
+}
+,n=f(t,["fileSearchStoreName"]);
+n!=null&&m(e,["_url","file_search_store_name"],n);
+const i=f(t,["fileName"]);
+i!=null&&m(e,["fileName"],i);
+const r=f(t,["config"]);
+return r!=null&&NL(r,e),e}
+function DL(t){
+const e={
+}
+,n=f(t,["sdkHttpResponse"]);
+n!=null&&m(e,["sdkHttpResponse"],n);
+const i=f(t,["parent"]);
+i!=null&&m(e,["parent"],i);
+const r=f(t,["documentName"]);
+return r!=null&&m(e,["documentName"],r),e}
+function kL(t,e){
+const n={
+}
+,i=f(t,["pageSize"]);
+e!==void 0&&i!=null&&m(e,["_query","pageSize"],i);
+const r=f(t,["pageToken"]);
+return e!==void 0&&r!=null&&m(e,["_query","pageToken"],r),n}
+function UL(t){
+const e={
+}
+,n=f(t,["config"]);
+return n!=null&&kL(n,e),e}
+function PL(t){
+const e={
+}
+,n=f(t,["sdkHttpResponse"]);
+n!=null&&m(e,["sdkHttpResponse"],n);
+const i=f(t,["nextPageToken"]);
+i!=null&&m(e,["nextPageToken"],i);
+const r=f(t,["fileSearchStores"]);
+if(r!=null){
+let l=r;
+Array.isArray(l)&&(l=l.map(u=>u)),m(e,["fileSearchStores"],l)}
+return e}
+function NE(t,e){
+const n={
+}
+,i=f(t,["mimeType"]);
+e!==void 0&&i!=null&&m(e,["mimeType"],i);
+const r=f(t,["displayName"]);
+e!==void 0&&r!=null&&m(e,["displayName"],r);
+const l=f(t,["customMetadata"]);
+if(e!==void 0&&l!=null){
+let d=l;
+Array.isArray(d)&&(d=d.map(h=>h)),m(e,["customMetadata"],d)}
+const u=f(t,["chunkingConfig"]);
+return e!==void 0&&u!=null&&m(e,["chunkingConfig"],u),n}
+function LL(t){
+const e={
+}
+,n=f(t,["fileSearchStoreName"]);
+n!=null&&m(e,["_url","file_search_store_name"],n);
+const i=f(t,["config"]);
+return i!=null&&NE(i,e),e}
+function OL(t){
+const e={
+}
+,n=f(t,["sdkHttpResponse"]);
+return n!=null&&m(e,["sdkHttpResponse"],n),e}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */const VL="Content-Type",BL="X-Server-Timeout",FL="User-Agent",lh="x-goog-api-client",GL="1.38.0",qL=`google-genai-sdk/${
+GL}
+`,HL="v1beta1",zL="v1beta";
+class $L{
+constructor(e){
+var n,i,r;
+this.clientOptions=Object.assign({
+}
+,e),this.customBaseUrl=(n=e.httpOptions)===null||n===void 0?void 0:n.baseUrl,this.clientOptions.vertexai&&(this.clientOptions.project&&this.clientOptions.location?this.clientOptions.apiKey=void 0:this.clientOptions.apiKey&&(this.clientOptions.project=void 0,this.clientOptions.location=void 0));
+const l={
+}
+;
+if(this.clientOptions.vertexai){
+if(!this.clientOptions.location&&!this.clientOptions.apiKey&&!this.customBaseUrl&&(this.clientOptions.location="global"),!(this.clientOptions.project&&this.clientOptions.location||this.clientOptions.apiKey)&&!this.customBaseUrl)throw new Error("Authentication is not set up. Please provide either a project and location, or an API key, or a custom base URL.");
+const d=e.project&&e.location||!!e.apiKey;
+this.customBaseUrl&&!d?(l.baseUrl=this.customBaseUrl,this.clientOptions.project=void 0,this.clientOptions.location=void 0):this.clientOptions.apiKey||this.clientOptions.location==="global"?l.baseUrl="https://aiplatform.googleapis.com/":this.clientOptions.project&&this.clientOptions.location&&(l.baseUrl=`https://${
+this.clientOptions.location}
+-aiplatform.googleapis.com/`),l.apiVersion=(i=this.clientOptions.apiVersion)!==null&&i!==void 0?i:HL}
+else{
+if(!this.clientOptions.apiKey)throw new Yr({
+message:"API key must be set when using the Gemini API.",status:403}
+);
+l.apiVersion=(r=this.clientOptions.apiVersion)!==null&&r!==void 0?r:zL,l.baseUrl="https://generativelanguage.googleapis.com/"}
+l.headers=this.getDefaultHeaders(),this.clientOptions.httpOptions=l,e.httpOptions&&(this.clientOptions.httpOptions=this.patchHttpOptions(l,e.httpOptions))}
+isVertexAI(){
+var e;
+return(e=this.clientOptions.vertexai)!==null&&e!==void 0?e:!1}
+getProject(){
+return this.clientOptions.project}
+getLocation(){
+return this.clientOptions.location}
+getCustomBaseUrl(){
+return this.customBaseUrl}
+async getAuthHeaders(){
+const e=new Headers;
+return await this.clientOptions.auth.addAuthHeaders(e),e}
+getApiVersion(){
+if(this.clientOptions.httpOptions&&this.clientOptions.httpOptions.apiVersion!==void 0)return this.clientOptions.httpOptions.apiVersion;
+throw new Error("API version is not set.")}
+getBaseUrl(){
+if(this.clientOptions.httpOptions&&this.clientOptions.httpOptions.baseUrl!==void 0)return this.clientOptions.httpOptions.baseUrl;
+throw new Error("Base URL is not set.")}
+getRequestUrl(){
+return this.getRequestUrlInternal(this.clientOptions.httpOptions)}
+getHeaders(){
+if(this.clientOptions.httpOptions&&this.clientOptions.httpOptions.headers!==void 0)return this.clientOptions.httpOptions.headers;
+throw new Error("Headers are not set.")}
+getRequestUrlInternal(e){
+if(!e||e.baseUrl===void 0||e.apiVersion===void 0)throw new Error("HTTP options are not correctly set.");
+const i=[e.baseUrl.endsWith("/")?e.baseUrl.slice(0,-1):e.baseUrl];
+return e.apiVersion&&e.apiVersion!==""&&i.push(e.apiVersion),i.join("/")}
+getBaseResourcePath(){
+return`projects/${
+this.clientOptions.project}
+/locations/${
+this.clientOptions.location}
+`}
+getApiKey(){
+return this.clientOptions.apiKey}
+getWebsocketBaseUrl(){
+const e=this.getBaseUrl(),n=new URL(e);
+return n.protocol=n.protocol=="http:"?"ws":"wss",n.toString()}
+setBaseUrl(e){
+if(this.clientOptions.httpOptions)this.clientOptions.httpOptions.baseUrl=e;
+else throw new Error("HTTP options are not correctly set.")}
+constructUrl(e,n,i){
+const r=[this.getRequestUrlInternal(n)];
+return i&&r.push(this.getBaseResourcePath()),e!==""&&r.push(e),new URL(`${
+r.join("/")}
+`)}
+shouldPrependVertexProjectPath(e,n){
+return!(n.baseUrl&&n.baseUrlResourceScope===nh.COLLECTION||this.clientOptions.apiKey||!this.clientOptions.vertexai||e.path.startsWith("projects/")||e.httpMethod==="GET"&&e.path.startsWith("publishers/google/models"))}
+async request(e){
+let n=this.clientOptions.httpOptions;
+e.httpOptions&&(n=this.patchHttpOptions(this.clientOptions.httpOptions,e.httpOptions));
+const i=this.shouldPrependVertexProjectPath(e,n),r=this.constructUrl(e.path,n,i);
+if(e.queryParams)for(const[u,d]of Object.entries(e.queryParams))r.searchParams.append(u,String(d));
+let l={
+}
+;
+if(e.httpMethod==="GET"){
+if(e.body&&e.body!=="{
+}
+")throw new Error("Request body should be empty for GET request, but got non empty request body")}
+else l.body=e.body;
+return l=await this.includeExtraHttpOptionsToRequestInit(l,n,r.toString(),e.abortSignal),this.unaryApiCall(r,l,e.httpMethod)}
+patchHttpOptions(e,n){
+const i=JSON.parse(JSON.stringify(e));
+for(const[r,l]of Object.entries(n))typeof l=="object"?i[r]=Object.assign(Object.assign({
+}
+,i[r]),l):l!==void 0&&(i[r]=l);
+return i}
+async requestStream(e){
+let n=this.clientOptions.httpOptions;
+e.httpOptions&&(n=this.patchHttpOptions(this.clientOptions.httpOptions,e.httpOptions));
+const i=this.shouldPrependVertexProjectPath(e,n),r=this.constructUrl(e.path,n,i);
+(!r.searchParams.has("alt")||r.searchParams.get("alt")!=="sse")&&r.searchParams.set("alt","sse");
+let l={
+}
+;
+return l.body=e.body,l=await this.includeExtraHttpOptionsToRequestInit(l,n,r.toString(),e.abortSignal),this.streamApiCall(r,l,e.httpMethod)}
+async includeExtraHttpOptionsToRequestInit(e,n,i,r){
+if(n&&n.timeout||r){
+const l=new AbortController,u=l.signal;
+if(n.timeout&&(n==null?void 0:n.timeout)>0){
+const d=setTimeout(()=>l.abort(),n.timeout);
+d&&typeof d.unref=="function"&&d.unref()}
+r&&r.addEventListener("abort",()=>{
+l.abort()}
+),e.signal=u}
+return n&&n.extraBody!==null&&JL(e,n.extraBody),e.headers=await this.getHeadersInternal(n,i),e}
+async unaryApiCall(e,n,i){
+return this.apiCall(e.toString(),Object.assign(Object.assign({
+}
+,n),{
+method:i}
+)).then(async r=>(await xT(r),new ih(r))).catch(r=>{
+throw r instanceof Error?r:new Error(JSON.stringify(r))}
+)}
+async streamApiCall(e,n,i){
+return this.apiCall(e.toString(),Object.assign(Object.assign({
+}
+,n),{
+method:i}
+)).then(async r=>(await xT(r),this.processStreamResponse(r))).catch(r=>{
+throw r instanceof Error?r:new Error(JSON.stringify(r))}
+)}
+processStreamResponse(e){
+return An(this,arguments,function*(){
+var i;
+const r=(i=e==null?void 0:e.body)===null||i===void 0?void 0:i.getReader(),l=new TextDecoder("utf-8");
+if(!r)throw new Error("Response body is empty");
+try{
+let u="";
+const d="data:",h=[`
+
+`,"\r\r",`\r
+\r
+`];
+for(;
+;
+){
+const{
+done:p,value:g}
+=yield de(r.read());
+if(p){
+if(u.trim().length>0)throw new Error("Incomplete JSON segment at the end");
+break}
+const _=l.decode(g,{
+stream:!0}
+);
+try{
+const A=JSON.parse(_);
+if("error"in A){
+const C=JSON.parse(JSON.stringify(A.error)),x=C.status,R=C.code,k=`got status: ${
+x}
+. ${
+JSON.stringify(A)}
+`;
+if(R>=400&&R<600)throw new Yr({
+message:k,status:R}
+)}
+}
+catch(A){
+if(A.name==="ApiError")throw A}
+u+=_;
+let T=-1,w=0;
+for(;
+;
+){
+T=-1,w=0;
+for(const x of h){
+const R=u.indexOf(x);
+R!==-1&&(T===-1||R<T)&&(T=R,w=x.length)}
+if(T===-1)break;
+const A=u.substring(0,T);
+u=u.substring(T+w);
+const C=A.trim();
+if(C.startsWith(d)){
+const x=C.substring(d.length).trim();
+try{
+const R=new Response(x,{
+headers:e==null?void 0:e.headers,status:e==null?void 0:e.status,statusText:e==null?void 0:e.statusText}
+);
+yield yield de(new ih(R))}
+catch(R){
+throw new Error(`exception parsing stream chunk ${
+x}
+. ${
+R}
+`)}
+}
+}
+}
+}
+finally{
+r.releaseLock()}
+}
+)}
+async apiCall(e,n){
+return fetch(e,n).catch(i=>{
+throw new Error(`exception ${
+i}
+ sending request`)}
+)}
+getDefaultHeaders(){
+const e={
+}
+,n=qL+" "+this.clientOptions.userAgentExtra;
+return e[FL]=n,e[lh]=n,e[VL]="application/json",e}
+async getHeadersInternal(e,n){
+const i=new Headers;
+if(e&&e.headers){
+for(const[r,l]of Object.entries(e.headers))i.append(r,l);
+e.timeout&&e.timeout>0&&i.append(BL,String(Math.ceil(e.timeout/1e3)))}
+return await this.clientOptions.auth.addAuthHeaders(i,n),i}
+getFileName(e){
+var n;
+let i="";
+return typeof e=="string"&&(i=e.replace(/[/\\]+$/,""),i=(n=i.split(/[/\\]/).pop())!==null&&n!==void 0?n:""),i}
+async uploadFile(e,n){
+var i;
+const r={
+}
+;
+n!=null&&(r.mimeType=n.mimeType,r.name=n.name,r.displayName=n.displayName),r.name&&!r.name.startsWith("files/")&&(r.name=`files/${
+r.name}
+`);
+const l=this.clientOptions.uploader,u=await l.stat(e);
+r.sizeBytes=String(u.size);
+const d=(i=n==null?void 0:n.mimeType)!==null&&i!==void 0?i:u.type;
+if(d===void 0||d==="")throw new Error("Can not determine mimeType. Please provide mimeType in the config.");
+r.mimeType=d;
+const h={
+file:r}
+,p=this.getFileName(e),g=Z("upload/v1beta/files",h._url),_=await this.fetchUploadUrl(g,r.sizeBytes,r.mimeType,p,h,n==null?void 0:n.httpOptions);
+return l.upload(e,_,this)}
+async uploadFileToFileSearchStore(e,n,i){
+var r;
+const l=this.clientOptions.uploader,u=await l.stat(n),d=String(u.size),h=(r=i==null?void 0:i.mimeType)!==null&&r!==void 0?r:u.type;
+if(h===void 0||h==="")throw new Error("Can not determine mimeType. Please provide mimeType in the config.");
+const p=`upload/v1beta/${
+e}
+:uploadToFileSearchStore`,g=this.getFileName(n),_={
+}
+;
+i!=null&&NE(i,_);
+const T=await this.fetchUploadUrl(p,d,h,g,_,i==null?void 0:i.httpOptions);
+return l.uploadToFileSearchStore(n,T,this)}
+async downloadFile(e){
+await this.clientOptions.downloader.download(e,this)}
+async fetchUploadUrl(e,n,i,r,l,u){
+var d;
+let h={
+}
+;
+u?h=u:h={
+apiVersion:"",headers:Object.assign({
+"Content-Type":"application/json","X-Goog-Upload-Protocol":"resumable","X-Goog-Upload-Command":"start","X-Goog-Upload-Header-Content-Length":`${
+n}
+`,"X-Goog-Upload-Header-Content-Type":`${
+i}
+`}
+,r?{
+"X-Goog-Upload-File-Name":r}
+:{
+}
+)}
+;
+const p=await this.request({
+path:e,body:JSON.stringify(l),httpMethod:"POST",httpOptions:h}
+);
+if(!p||!(p!=null&&p.headers))throw new Error("Server did not return an HttpResponse or the returned HttpResponse did not have headers.");
+const g=(d=p==null?void 0:p.headers)===null||d===void 0?void 0:d["x-goog-upload-url"];
+if(g===void 0)throw new Error("Failed to get upload url. Server did not return the x-google-upload-url in the headers");
+return g}
+}
+async function xT(t){
+var e;
+if(t===void 0)throw new Error("response is undefined");
+if(!t.ok){
+const n=t.status;
+let i;
+!((e=t.headers.get("content-type"))===null||e===void 0)&&e.includes("application/json")?i=await t.json():i={
+error:{
+message:await t.text(),code:t.status,status:t.statusText}
+}
+;
+const r=JSON.stringify(i);
+throw n>=400&&n<600?new Yr({
+message:r,status:n}
+):new Error(r)}
+}
+function JL(t,e){
+if(!e||Object.keys(e).length===0)return;
+if(t.body instanceof Blob){
+console.warn("includeExtraBodyToRequestInit: extraBody provided but current request body is a Blob. extraBody will be ignored as merging is not supported for Blob bodies.");
+return}
+let n={
+}
+;
+if(typeof t.body=="string"&&t.body.length>0)try{
+const l=JSON.parse(t.body);
+if(typeof l=="object"&&l!==null&&!Array.isArray(l))n=l;
+else{
+console.warn("includeExtraBodyToRequestInit: Original request body is valid JSON but not a non-array object. Skip applying extraBody to the request body.");
+return}
+}
+catch{
+console.warn("includeExtraBodyToRequestInit: Original request body is not valid JSON. Skip applying extraBody to the request body.");
+return}
+function i(l,u){
+const d=Object.assign({
+}
+,l);
+for(const h in u)if(Object.prototype.hasOwnProperty.call(u,h)){
+const p=u[h],g=d[h];
+p&&typeof p=="object"&&!Array.isArray(p)&&g&&typeof g=="object"&&!Array.isArray(g)?d[h]=i(g,p):(g&&p&&typeof g!=typeof p&&console.warn(`includeExtraBodyToRequestInit:deepMerge: Type mismatch for key "${
+h}
+". Original type: ${
+typeof g}
+, New type: ${
+typeof p}
+. Overwriting.`),d[h]=p)}
+return d}
+const r=i(n,e);
+t.body=JSON.stringify(r)}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */const KL="mcp_used/unknown";
+let YL=!1;
+function ME(t){
+for(const e of t)if(jL(e)||typeof e=="object"&&"inputSchema"in e)return!0;
+return YL}
+function IE(t){
+var e;
+const n=(e=t[lh])!==null&&e!==void 0?e:"";
+t[lh]=(n+` ${
+KL}
+`).trimStart()}
+function jL(t){
+return t!==null&&typeof t=="object"&&t instanceof dp}
+function WL(t){
+return An(this,arguments,function*(n,i=100){
+let r,l=0;
+for(;
+l<i;
+){
+const u=yield de(n.listTools({
+cursor:r}
+));
+for(const d of u.tools)yield yield de(d),l++;
+if(!u.nextCursor)break;
+r=u.nextCursor}
+}
+)}
+class dp{
+constructor(e=[],n){
+this.mcpTools=[],this.functionNameToMcpClient={
+}
+,this.mcpClients=e,this.config=n}
+static create(e,n){
+return new dp(e,n)}
+async initialize(){
+var e,n,i,r;
+if(this.mcpTools.length>0)return;
+const l={
+}
+,u=[];
+for(const g of this.mcpClients)try{
+for(var d=!0,h=(n=void 0,Cn(WL(g))),p;
+p=await h.next(),e=p.done,!e;
+d=!0){
+r=p.value,d=!1;
+const _=r;
+u.push(_);
+const T=_.name;
+if(l[T])throw new Error(`Duplicate function name ${
+T}
+ found in MCP tools. Please ensure function names are unique.`);
+l[T]=g}
+}
+catch(_){
+n={
+error:_}
+}
+finally{
+try{
+!d&&!e&&(i=h.return)&&await i.call(h)}
+finally{
+if(n)throw n.error}
+}
+this.mcpTools=u,this.functionNameToMcpClient=l}
+async tool(){
+return await this.initialize(),xk(this.mcpTools,this.config)}
+async callTool(e){
+await this.initialize();
+const n=[];
+for(const i of e)if(i.name in this.functionNameToMcpClient){
+const r=this.functionNameToMcpClient[i.name];
+let l;
+this.config.timeout&&(l={
+timeout:this.config.timeout}
+);
+const u=await r.callTool({
+name:i.name,arguments:i.args}
+,void 0,l);
+n.push({
+functionResponse:{
+name:i.name,response:u.isError?{
+error:u}
+:u}
+}
+)}
+return n}
+}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */async function XL(t,e,n){
+const i=new _k;
+let r;
+n.data instanceof Blob?r=JSON.parse(await n.data.text()):r=JSON.parse(n.data),Object.assign(i,r),e(i)}
+class QL{
+constructor(e,n,i){
+this.apiClient=e,this.auth=n,this.webSocketFactory=i}
+async connect(e){
+var n,i;
+if(this.apiClient.isVertexAI())throw new Error("Live music is not supported for Vertex AI.");
+console.warn("Live music generation is experimental and may change in future versions.");
+const r=this.apiClient.getWebsocketBaseUrl(),l=this.apiClient.getApiVersion(),u=tO(this.apiClient.getDefaultHeaders()),d=this.apiClient.getApiKey(),h=`${
+r}
+/ws/google.ai.generativelanguage.${
+l}
+.GenerativeService.BidiGenerateMusic?key=${
+d}
+`;
+let p=()=>{
+}
+;
+const g=new Promise(N=>{
+p=N}
+),_=e.callbacks,T=function(){
+p({
+}
+)}
+,w=this.apiClient,A={
+onopen:T,onmessage:N=>{
+XL(w,_.onmessage,N)}
+,onerror:(n=_==null?void 0:_.onerror)!==null&&n!==void 0?n:function(N){
+}
+,onclose:(i=_==null?void 0:_.onclose)!==null&&i!==void 0?i:function(N){
+}
+}
+,C=this.webSocketFactory.create(h,eO(u),A);
+C.connect(),await g;
+const k={
+setup:{
+model:Me(this.apiClient,e.model)}
+}
+;
+return C.send(JSON.stringify(k)),new ZL(C,this.apiClient)}
+}
+class ZL{
+constructor(e,n){
+this.conn=e,this.apiClient=n}
+async setWeightedPrompts(e){
+if(!e.weightedPrompts||Object.keys(e.weightedPrompts).length===0)throw new Error("Weighted prompts must be set and contain at least one entry.");
+const n=bU(e);
+this.conn.send(JSON.stringify({
+clientContent:n}
+))}
+async setMusicGenerationConfig(e){
+e.musicGenerationConfig||(e.musicGenerationConfig={
+}
+);
+const n=EU(e);
+this.conn.send(JSON.stringify(n))}
+sendPlaybackControl(e){
+const n={
+playbackControl:e}
+;
+this.conn.send(JSON.stringify(n))}
+play(){
+this.sendPlaybackControl(To.PLAY)}
+pause(){
+this.sendPlaybackControl(To.PAUSE)}
+stop(){
+this.sendPlaybackControl(To.STOP)}
+resetContext(){
+this.sendPlaybackControl(To.RESET_CONTEXT)}
+close(){
+this.conn.close()}
+}
+function eO(t){
+const e={
+}
+;
+return t.forEach((n,i)=>{
+e[i]=n}
+),e}
+function tO(t){
+const e=new Headers;
+for(const[n,i]of Object.entries(t))e.append(n,i);
+return e}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */const nO="FunctionResponse request must have an `id` field from the response of a ToolCall.FunctionalCalls in Google AI.";
+async function iO(t,e,n){
+const i=new vk;
+let r;
+n.data instanceof Blob?r=await n.data.text():n.data instanceof ArrayBuffer?r=new TextDecoder().decode(n.data):r=n.data;
+const l=JSON.parse(r);
+if(t.isVertexAI()){
+const u=xU(l);
+Object.assign(i,u)}
+else Object.assign(i,l);
+e(i)}
+class sO{
+constructor(e,n,i){
+this.apiClient=e,this.auth=n,this.webSocketFactory=i,this.music=new QL(this.apiClient,this.auth,this.webSocketFactory)}
+async connect(e){
+var n,i,r,l,u,d;
+if(e.config&&e.config.httpOptions)throw new Error("The Live module does not support httpOptions at request-level in LiveConnectConfig yet. Please use the client-level httpOptions configuration instead.");
+const h=this.apiClient.getWebsocketBaseUrl(),p=this.apiClient.getApiVersion();
+let g;
+const _=this.apiClient.getHeaders();
+e.config&&e.config.tools&&ME(e.config.tools)&&IE(_);
+const T=lO(_);
+if(this.apiClient.isVertexAI()){
+const j=this.apiClient.getProject(),oe=this.apiClient.getLocation(),he=this.apiClient.getApiKey(),Ie=!!j&&!!oe||!!he;
+this.apiClient.getCustomBaseUrl()&&!Ie?g=h:(g=`${
+h}
+/ws/google.cloud.aiplatform.${
+p}
+.LlmBidiService/BidiGenerateContent`,await this.auth.addAuthHeaders(T,g))}
+else{
+const j=this.apiClient.getApiKey();
+let oe="BidiGenerateContent",he="key";
+j!=null&&j.startsWith("auth_tokens/")&&(console.warn("Warning: Ephemeral token support is experimental and may change in future versions."),p!=="v1alpha"&&console.warn("Warning: The SDK's ephemeral token support is in v1alpha only. Please use const ai = new GoogleGenAI({
+apiKey: token.name, httpOptions: {
+ apiVersion: 'v1alpha' }
+}
+);
+ before session connection."),oe="BidiGenerateContentConstrained",he="access_token"),g=`${
+h}
+/ws/google.ai.generativelanguage.${
+p}
+.GenerativeService.${
+oe}
+?${
+he}
+=${
+j}
+`}
+let w=()=>{
+}
+;
+const A=new Promise(j=>{
+w=j}
+),C=e.callbacks,x=function(){
+var j;
+(j=C==null?void 0:C.onopen)===null||j===void 0||j.call(C),w({
+}
+)}
+,R=this.apiClient,k={
+onopen:x,onmessage:j=>{
+iO(R,C.onmessage,j)}
+,onerror:(n=C==null?void 0:C.onerror)!==null&&n!==void 0?n:function(j){
+}
+,onclose:(i=C==null?void 0:C.onclose)!==null&&i!==void 0?i:function(j){
+}
+}
+,N=this.webSocketFactory.create(g,aO(T),k);
+N.connect(),await A;
+let O=Me(this.apiClient,e.model);
+if(this.apiClient.isVertexAI()&&O.startsWith("publishers/")){
+const j=this.apiClient.getProject(),oe=this.apiClient.getLocation();
+j&&oe&&(O=`projects/${
+j}
+/locations/${
+oe}
+/`+O)}
+let F={
+}
+;
+this.apiClient.isVertexAI()&&((r=e.config)===null||r===void 0?void 0:r.responseModalities)===void 0&&(e.config===void 0?e.config={
+responseModalities:[ou.AUDIO]}
+:e.config.responseModalities=[ou.AUDIO]),!((l=e.config)===null||l===void 0)&&l.generationConfig&&console.warn("Setting `LiveConnectConfig.generation_config` is deprecated, please set the fields on `LiveConnectConfig` directly. This will become an error in a future version (not before Q3 2025).");
+const z=(d=(u=e.config)===null||u===void 0?void 0:u.tools)!==null&&d!==void 0?d:[],G=[];
+for(const j of z)if(this.isCallableTool(j)){
+const oe=j;
+G.push(await oe.tool())}
+else G.push(j);
+G.length>0&&(e.config.tools=G);
+const X={
+model:O,config:e.config,callbacks:e.callbacks}
+;
+return this.apiClient.isVertexAI()?F=wU(this.apiClient,X):F=SU(this.apiClient,X),delete F.config,N.send(JSON.stringify(F)),new rO(N,this.apiClient)}
+isCallableTool(e){
+return"callTool"in e&&typeof e.callTool=="function"}
+}
+const oO={
+turnComplete:!0}
+;
+class rO{
+constructor(e,n){
+this.conn=e,this.apiClient=n}
+tLiveClientContent(e,n){
+if(n.turns!==null&&n.turns!==void 0){
+let i=[];
+try{
+i=fn(n.turns),e.isVertexAI()||(i=i.map(r=>Su(r)))}
+catch{
+throw new Error(`Failed to parse client content "turns", type: '${
+typeof n.turns}
+'`)}
+return{
+clientContent:{
+turns:i,turnComplete:n.turnComplete}
+}
+}
+return{
+clientContent:{
+turnComplete:n.turnComplete}
+}
+}
+tLiveClienttToolResponse(e,n){
+let i=[];
+if(n.functionResponses==null)throw new Error("functionResponses is required.");
+if(Array.isArray(n.functionResponses)?i=n.functionResponses:i=[n.functionResponses],i.length===0)throw new Error("functionResponses is required.");
+for(const l of i){
+if(typeof l!="object"||l===null||!("name"in l)||!("response"in l))throw new Error(`Could not parse function response, type '${
+typeof l}
+'.`);
+if(!e.isVertexAI()&&!("id"in l))throw new Error(nO)}
+return{
+toolResponse:{
+functionResponses:i}
+}
+}
+sendClientContent(e){
+e=Object.assign(Object.assign({
+}
+,oO),e);
+const n=this.tLiveClientContent(this.apiClient,e);
+this.conn.send(JSON.stringify(n))}
+sendRealtimeInput(e){
+let n={
+}
+;
+this.apiClient.isVertexAI()?n={
+realtimeInput:CU(e)}
+:n={
+realtimeInput:AU(e)}
+,this.conn.send(JSON.stringify(n))}
+sendToolResponse(e){
+if(e.functionResponses==null)throw new Error("Tool response parameters are required.");
+const n=this.tLiveClienttToolResponse(this.apiClient,e);
+this.conn.send(JSON.stringify(n))}
+close(){
+this.conn.close()}
+}
+function aO(t){
+const e={
+}
+;
+return t.forEach((n,i)=>{
+e[i]=n}
+),e}
+function lO(t){
+const e=new Headers;
+for(const[n,i]of Object.entries(t))e.append(n,i);
+return e}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */const RT=10;
+function NT(t){
+var e,n,i;
+if(!((e=t==null?void 0:t.automaticFunctionCalling)===null||e===void 0)&&e.disable)return!0;
+let r=!1;
+for(const u of(n=t==null?void 0:t.tools)!==null&&n!==void 0?n:[])if(Ao(u)){
+r=!0;
+break}
+if(!r)return!0;
+const l=(i=t==null?void 0:t.automaticFunctionCalling)===null||i===void 0?void 0:i.maximumRemoteCalls;
+return l&&(l<0||!Number.isInteger(l))||l==0?(console.warn("Invalid maximumRemoteCalls value provided for automatic function calling. Disabled automatic function calling. Please provide a valid integer value greater than 0. maximumRemoteCalls provided:",l),!0):!1}
+function Ao(t){
+return"callTool"in t&&typeof t.callTool=="function"}
+function uO(t){
+var e,n,i;
+return(i=(n=(e=t.config)===null||e===void 0?void 0:e.tools)===null||n===void 0?void 0:n.some(r=>Ao(r)))!==null&&i!==void 0?i:!1}
+function MT(t){
+var e;
+const n=[];
+return!((e=t==null?void 0:t.config)===null||e===void 0)&&e.tools&&t.config.tools.forEach((i,r)=>{
+if(Ao(i))return;
+const l=i;
+l.functionDeclarations&&l.functionDeclarations.length>0&&n.push(r)}
+),n}
+function IT(t){
+var e;
+return!(!((e=t==null?void 0:t.automaticFunctionCalling)===null||e===void 0)&&e.ignoreCallHistory)}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */class cO extends ni{
+constructor(e){
+super(),this.apiClient=e,this.generateContent=async n=>{
+var i,r,l,u,d;
+const h=await this.processParamsMaybeAddMcpUsage(n);
+if(this.maybeMoveToResponseJsonSchem(n),!uO(n)||NT(n.config))return await this.generateContentInternal(h);
+const p=MT(n);
+if(p.length>0){
+const C=p.map(x=>`tools[${
+x}
+]`).join(", ");
+throw new Error(`Automatic function calling with CallableTools (or MCP objects) and basic FunctionDeclarations is not yet supported. Incompatible tools found at ${
+C}
+.`)}
+let g,_;
+const T=fn(h.contents),w=(l=(r=(i=h.config)===null||i===void 0?void 0:i.automaticFunctionCalling)===null||r===void 0?void 0:r.maximumRemoteCalls)!==null&&l!==void 0?l:RT;
+let A=0;
+for(;
+A<w&&(g=await this.generateContentInternal(h),!(!g.functionCalls||g.functionCalls.length===0));
+){
+const C=g.candidates[0].content,x=[];
+for(const R of(d=(u=n.config)===null||u===void 0?void 0:u.tools)!==null&&d!==void 0?d:[])if(Ao(R)){
+const N=await R.callTool(g.functionCalls);
+x.push(...N)}
+A++,_={
+role:"user",parts:x}
+,h.contents=fn(h.contents),h.contents.push(C),h.contents.push(_),IT(h.config)&&(T.push(C),T.push(_))}
+return IT(h.config)&&(g.automaticFunctionCallingHistory=T),g}
+,this.generateContentStream=async n=>{
+var i,r,l,u,d;
+if(this.maybeMoveToResponseJsonSchem(n),NT(n.config)){
+const _=await this.processParamsMaybeAddMcpUsage(n);
+return await this.generateContentStreamInternal(_)}
+const h=MT(n);
+if(h.length>0){
+const _=h.map(T=>`tools[${
+T}
+]`).join(", ");
+throw new Error(`Incompatible tools found at ${
+_}
+. Automatic function calling with CallableTools (or MCP objects) and basic FunctionDeclarations" is not yet supported.`)}
+const p=(l=(r=(i=n==null?void 0:n.config)===null||i===void 0?void 0:i.toolConfig)===null||r===void 0?void 0:r.functionCallingConfig)===null||l===void 0?void 0:l.streamFunctionCallArguments,g=(d=(u=n==null?void 0:n.config)===null||u===void 0?void 0:u.automaticFunctionCalling)===null||d===void 0?void 0:d.disable;
+if(p&&!g)throw new Error("Running in streaming mode with 'streamFunctionCallArguments' enabled, this feature is not compatible with automatic function calling (AFC). Please set 'config.automaticFunctionCalling.disable' to true to disable AFC or leave 'config.toolConfig.functionCallingConfig.streamFunctionCallArguments' to be undefined or set to false to disable streaming function call arguments feature.");
+return await this.processAfcStream(n)}
+,this.generateImages=async n=>await this.generateImagesInternal(n).then(i=>{
+var r;
+let l;
+const u=[];
+if(i!=null&&i.generatedImages)for(const h of i.generatedImages)h&&(h!=null&&h.safetyAttributes)&&((r=h==null?void 0:h.safetyAttributes)===null||r===void 0?void 0:r.contentType)==="Positive Prompt"?l=h==null?void 0:h.safetyAttributes:u.push(h);
+let d;
+return l?d={
+generatedImages:u,positivePromptSafetyAttributes:l,sdkHttpResponse:i.sdkHttpResponse}
+:d={
+generatedImages:u,sdkHttpResponse:i.sdkHttpResponse}
+,d}
+),this.list=async n=>{
+var i;
+const u={
+config:Object.assign(Object.assign({
+}
+,{
+queryBase:!0}
+),n==null?void 0:n.config)}
+;
+if(this.apiClient.isVertexAI()&&!u.config.queryBase){
+if(!((i=u.config)===null||i===void 0)&&i.filter)throw new Error("Filtering tuned models list for Vertex AI is not currently supported");
+u.config.filter="labels.tune-type:*"}
+return new vs(ti.PAGED_ITEM_MODELS,d=>this.listInternal(d),await this.listInternal(u),u)}
+,this.editImage=async n=>{
+const i={
+model:n.model,prompt:n.prompt,referenceImages:[],config:n.config}
+;
+return n.referenceImages&&n.referenceImages&&(i.referenceImages=n.referenceImages.map(r=>r.toReferenceImageAPI())),await this.editImageInternal(i)}
+,this.upscaleImage=async n=>{
+let i={
+numberOfImages:1,mode:"upscale"}
+;
+n.config&&(i=Object.assign(Object.assign({
+}
+,i),n.config));
+const r={
+model:n.model,image:n.image,upscaleFactor:n.upscaleFactor,config:i}
+;
+return await this.upscaleImageInternal(r)}
+,this.generateVideos=async n=>{
+var i,r,l,u,d,h;
+if((n.prompt||n.image||n.video)&&n.source)throw new Error("Source and prompt/image/video are mutually exclusive. Please only use source.");
+return this.apiClient.isVertexAI()||(!((i=n.video)===null||i===void 0)&&i.uri&&(!((r=n.video)===null||r===void 0)&&r.videoBytes)?n.video={
+uri:n.video.uri,mimeType:n.video.mimeType}
+:!((u=(l=n.source)===null||l===void 0?void 0:l.video)===null||u===void 0)&&u.uri&&(!((h=(d=n.source)===null||d===void 0?void 0:d.video)===null||h===void 0)&&h.videoBytes)&&(n.source.video={
+uri:n.source.video.uri,mimeType:n.source.video.mimeType}
+)),await this.generateVideosInternal(n)}
+}
+maybeMoveToResponseJsonSchem(e){
+e.config&&e.config.responseSchema&&(e.config.responseJsonSchema||Object.keys(e.config.responseSchema).includes("$schema")&&(e.config.responseJsonSchema=e.config.responseSchema,delete e.config.responseSchema))}
+async processParamsMaybeAddMcpUsage(e){
+var n,i,r;
+const l=(n=e.config)===null||n===void 0?void 0:n.tools;
+if(!l)return e;
+const u=await Promise.all(l.map(async h=>Ao(h)?await h.tool():h)),d={
+model:e.model,contents:e.contents,config:Object.assign(Object.assign({
+}
+,e.config),{
+tools:u}
+)}
+;
+if(d.config.tools=u,e.config&&e.config.tools&&ME(e.config.tools)){
+const h=(r=(i=e.config.httpOptions)===null||i===void 0?void 0:i.headers)!==null&&r!==void 0?r:{
+}
+;
+let p=Object.assign({
+}
+,h);
+Object.keys(p).length===0&&(p=this.apiClient.getDefaultHeaders()),IE(p),d.config.httpOptions=Object.assign(Object.assign({
+}
+,e.config.httpOptions),{
+headers:p}
+)}
+return d}
+async initAfcToolsMap(e){
+var n,i,r;
+const l=new Map;
+for(const u of(i=(n=e.config)===null||n===void 0?void 0:n.tools)!==null&&i!==void 0?i:[])if(Ao(u)){
+const d=u,h=await d.tool();
+for(const p of(r=h.functionDeclarations)!==null&&r!==void 0?r:[]){
+if(!p.name)throw new Error("Function declaration name is required.");
+if(l.has(p.name))throw new Error(`Duplicate tool declaration name: ${
+p.name}
+`);
+l.set(p.name,d)}
+}
+return l}
+async processAfcStream(e){
+var n,i,r;
+const l=(r=(i=(n=e.config)===null||n===void 0?void 0:n.automaticFunctionCalling)===null||i===void 0?void 0:i.maximumRemoteCalls)!==null&&r!==void 0?r:RT;
+let u=!1,d=0;
+const h=await this.initAfcToolsMap(e);
+return(function(p,g,_){
+return An(this,arguments,function*(){
+for(var T,w,A,C,x,R;
+d<l;
+){
+u&&(d++,u=!1);
+const F=yield de(p.processParamsMaybeAddMcpUsage(_)),z=yield de(p.generateContentStreamInternal(F)),G=[],X=[];
+try{
+for(var k=!0,N=(w=void 0,Cn(z)),O;
+O=yield de(N.next()),T=O.done,!T;
+k=!0){
+C=O.value,k=!1;
+const j=C;
+if(yield yield de(j),j.candidates&&(!((x=j.candidates[0])===null||x===void 0)&&x.content)){
+X.push(j.candidates[0].content);
+for(const oe of(R=j.candidates[0].content.parts)!==null&&R!==void 0?R:[])if(d<l&&oe.functionCall){
+if(!oe.functionCall.name)throw new Error("Function call name was not returned by the model.");
+if(g.has(oe.functionCall.name)){
+const he=yield de(g.get(oe.functionCall.name).callTool([oe.functionCall]));
+G.push(...he)}
+else throw new Error(`Automatic function calling was requested, but not all the tools the model used implement the CallableTool interface. Available tools: ${
+g.keys()}
+, mising tool: ${
+oe.functionCall.name}
+`)}
+}
+}
+}
+catch(j){
+w={
+error:j}
+}
+finally{
+try{
+!k&&!T&&(A=N.return)&&(yield de(A.call(N)))}
+finally{
+if(w)throw w.error}
+}
+if(G.length>0){
+u=!0;
+const j=new Mr;
+j.candidates=[{
+content:{
+role:"user",parts:G}
+}
+],yield yield de(j);
+const oe=[];
+oe.push(...X),oe.push({
+role:"user",parts:G}
+);
+const he=fn(_.contents).concat(oe);
+_.contents=he}
+else break}
+}
+)}
+)(this,h,e)}
+async generateContentInternal(e){
+var n,i,r,l;
+let u,d="",h={
+}
+;
+if(this.apiClient.isVertexAI()){
+const p=bT(this.apiClient,e);
+return d=Z("{
+model}
+:generateContent",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"POST",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(g=>g.json().then(_=>{
+const T=_;
+return T.sdkHttpResponse={
+headers:g.headers}
+,T}
+)),u.then(g=>{
+const _=CT(g),T=new Mr;
+return Object.assign(T,_),T}
+)}
+else{
+const p=ET(this.apiClient,e);
+return d=Z("{
+model}
+:generateContent",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"POST",httpOptions:(r=e.config)===null||r===void 0?void 0:r.httpOptions,abortSignal:(l=e.config)===null||l===void 0?void 0:l.abortSignal}
+).then(g=>g.json().then(_=>{
+const T=_;
+return T.sdkHttpResponse={
+headers:g.headers}
+,T}
+)),u.then(g=>{
+const _=AT(g),T=new Mr;
+return Object.assign(T,_),T}
+)}
+}
+async generateContentStreamInternal(e){
+var n,i,r,l;
+let u,d="",h={
+}
+;
+if(this.apiClient.isVertexAI()){
+const p=bT(this.apiClient,e);
+return d=Z("{
+model}
+:streamGenerateContent?alt=sse",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.requestStream({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"POST",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+),u.then(function(_){
+return An(this,arguments,function*(){
+var T,w,A,C;
+try{
+for(var x=!0,R=Cn(_),k;
+k=yield de(R.next()),T=k.done,!T;
+x=!0){
+C=k.value,x=!1;
+const N=C,O=CT(yield de(N.json()));
+O.sdkHttpResponse={
+headers:N.headers}
+;
+const F=new Mr;
+Object.assign(F,O),yield yield de(F)}
+}
+catch(N){
+w={
+error:N}
+}
+finally{
+try{
+!x&&!T&&(A=R.return)&&(yield de(A.call(R)))}
+finally{
+if(w)throw w.error}
+}
+}
+)}
+)}
+else{
+const p=ET(this.apiClient,e);
+return d=Z("{
+model}
+:streamGenerateContent?alt=sse",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.requestStream({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"POST",httpOptions:(r=e.config)===null||r===void 0?void 0:r.httpOptions,abortSignal:(l=e.config)===null||l===void 0?void 0:l.abortSignal}
+),u.then(function(_){
+return An(this,arguments,function*(){
+var T,w,A,C;
+try{
+for(var x=!0,R=Cn(_),k;
+k=yield de(R.next()),T=k.done,!T;
+x=!0){
+C=k.value,x=!1;
+const N=C,O=AT(yield de(N.json()));
+O.sdkHttpResponse={
+headers:N.headers}
+;
+const F=new Mr;
+Object.assign(F,O),yield yield de(F)}
+}
+catch(N){
+w={
+error:N}
+}
+finally{
+try{
+!x&&!T&&(A=R.return)&&(yield de(A.call(R)))}
+finally{
+if(w)throw w.error}
+}
+}
+)}
+)}
+}
+async embedContent(e){
+var n,i,r,l;
+let u,d="",h={
+}
+;
+if(this.apiClient.isVertexAI()){
+const p=sP(this.apiClient,e);
+return d=Z("{
+model}
+:predict",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"POST",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(g=>g.json().then(_=>{
+const T=_;
+return T.sdkHttpResponse={
+headers:g.headers}
+,T}
+)),u.then(g=>{
+const _=rP(g),T=new rT;
+return Object.assign(T,_),T}
+)}
+else{
+const p=iP(this.apiClient,e);
+return d=Z("{
+model}
+:batchEmbedContents",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"POST",httpOptions:(r=e.config)===null||r===void 0?void 0:r.httpOptions,abortSignal:(l=e.config)===null||l===void 0?void 0:l.abortSignal}
+).then(g=>g.json().then(_=>{
+const T=_;
+return T.sdkHttpResponse={
+headers:g.headers}
+,T}
+)),u.then(g=>{
+const _=oP(g),T=new rT;
+return Object.assign(T,_),T}
+)}
+}
+async generateImagesInternal(e){
+var n,i,r,l;
+let u,d="",h={
+}
+;
+if(this.apiClient.isVertexAI()){
+const p=yP(this.apiClient,e);
+return d=Z("{
+model}
+:predict",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"POST",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(g=>g.json().then(_=>{
+const T=_;
+return T.sdkHttpResponse={
+headers:g.headers}
+,T}
+)),u.then(g=>{
+const _=_P(g),T=new aT;
+return Object.assign(T,_),T}
+)}
+else{
+const p=gP(this.apiClient,e);
+return d=Z("{
+model}
+:predict",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"POST",httpOptions:(r=e.config)===null||r===void 0?void 0:r.httpOptions,abortSignal:(l=e.config)===null||l===void 0?void 0:l.abortSignal}
+).then(g=>g.json().then(_=>{
+const T=_;
+return T.sdkHttpResponse={
+headers:g.headers}
+,T}
+)),u.then(g=>{
+const _=vP(g),T=new aT;
+return Object.assign(T,_),T}
+)}
+}
+async editImageInternal(e){
+var n,i;
+let r,l="",u={
+}
+;
+if(this.apiClient.isVertexAI()){
+const d=ZU(this.apiClient,e);
+return l=Z("{
+model}
+:predict",d._url),u=d._query,delete d._url,delete d._query,r=this.apiClient.request({
+path:l,queryParams:u,body:JSON.stringify(d),httpMethod:"POST",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(h=>h.json().then(p=>{
+const g=p;
+return g.sdkHttpResponse={
+headers:h.headers}
+,g}
+)),r.then(h=>{
+const p=eP(h),g=new ak;
+return Object.assign(g,p),g}
+)}
+else throw new Error("This method is only supported by the Vertex AI.")}
+async upscaleImageInternal(e){
+var n,i;
+let r,l="",u={
+}
+;
+if(this.apiClient.isVertexAI()){
+const d=yL(this.apiClient,e);
+return l=Z("{
+model}
+:predict",d._url),u=d._query,delete d._url,delete d._query,r=this.apiClient.request({
+path:l,queryParams:u,body:JSON.stringify(d),httpMethod:"POST",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(h=>h.json().then(p=>{
+const g=p;
+return g.sdkHttpResponse={
+headers:h.headers}
+,g}
+)),r.then(h=>{
+const p=vL(h),g=new lk;
+return Object.assign(g,p),g}
+)}
+else throw new Error("This method is only supported by the Vertex AI.")}
+async recontextImage(e){
+var n,i;
+let r,l="",u={
+}
+;
+if(this.apiClient.isVertexAI()){
+const d=QP(this.apiClient,e);
+return l=Z("{
+model}
+:predict",d._url),u=d._query,delete d._url,delete d._query,r=this.apiClient.request({
+path:l,queryParams:u,body:JSON.stringify(d),httpMethod:"POST",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(h=>h.json()),r.then(h=>{
+const p=ZP(h),g=new uk;
+return Object.assign(g,p),g}
+)}
+else throw new Error("This method is only supported by the Vertex AI.")}
+async segmentImage(e){
+var n,i;
+let r,l="",u={
+}
+;
+if(this.apiClient.isVertexAI()){
+const d=oL(this.apiClient,e);
+return l=Z("{
+model}
+:predict",d._url),u=d._query,delete d._url,delete d._query,r=this.apiClient.request({
+path:l,queryParams:u,body:JSON.stringify(d),httpMethod:"POST",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(h=>h.json()),r.then(h=>{
+const p=rL(h),g=new ck;
+return Object.assign(g,p),g}
+)}
+else throw new Error("This method is only supported by the Vertex AI.")}
+async get(e){
+var n,i,r,l;
+let u,d="",h={
+}
+;
+if(this.apiClient.isVertexAI()){
+const p=LP(this.apiClient,e);
+return d=Z("{
+name}
+",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"GET",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(g=>g.json()),u.then(g=>ah(g))}
+else{
+const p=PP(this.apiClient,e);
+return d=Z("{
+name}
+",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"GET",httpOptions:(r=e.config)===null||r===void 0?void 0:r.httpOptions,abortSignal:(l=e.config)===null||l===void 0?void 0:l.abortSignal}
+).then(g=>g.json()),u.then(g=>rh(g))}
+}
+async listInternal(e){
+var n,i,r,l;
+let u,d="",h={
+}
+;
+if(this.apiClient.isVertexAI()){
+const p=$P(this.apiClient,e);
+return d=Z("{
+models_url}
+",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"GET",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(g=>g.json().then(_=>{
+const T=_;
+return T.sdkHttpResponse={
+headers:g.headers}
+,T}
+)),u.then(g=>{
+const _=KP(g),T=new lT;
+return Object.assign(T,_),T}
+)}
+else{
+const p=zP(this.apiClient,e);
+return d=Z("{
+models_url}
+",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"GET",httpOptions:(r=e.config)===null||r===void 0?void 0:r.httpOptions,abortSignal:(l=e.config)===null||l===void 0?void 0:l.abortSignal}
+).then(g=>g.json().then(_=>{
+const T=_;
+return T.sdkHttpResponse={
+headers:g.headers}
+,T}
+)),u.then(g=>{
+const _=JP(g),T=new lT;
+return Object.assign(T,_),T}
+)}
+}
+async update(e){
+var n,i,r,l;
+let u,d="",h={
+}
+;
+if(this.apiClient.isVertexAI()){
+const p=mL(this.apiClient,e);
+return d=Z("{
+model}
+",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"PATCH",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(g=>g.json()),u.then(g=>ah(g))}
+else{
+const p=pL(this.apiClient,e);
+return d=Z("{
+name}
+",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"PATCH",httpOptions:(r=e.config)===null||r===void 0?void 0:r.httpOptions,abortSignal:(l=e.config)===null||l===void 0?void 0:l.abortSignal}
+).then(g=>g.json()),u.then(g=>rh(g))}
+}
+async delete(e){
+var n,i,r,l;
+let u,d="",h={
+}
+;
+if(this.apiClient.isVertexAI()){
+const p=jU(this.apiClient,e);
+return d=Z("{
+name}
+",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"DELETE",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(g=>g.json().then(_=>{
+const T=_;
+return T.sdkHttpResponse={
+headers:g.headers}
+,T}
+)),u.then(g=>{
+const _=XU(g),T=new uT;
+return Object.assign(T,_),T}
+)}
+else{
+const p=YU(this.apiClient,e);
+return d=Z("{
+name}
+",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"DELETE",httpOptions:(r=e.config)===null||r===void 0?void 0:r.httpOptions,abortSignal:(l=e.config)===null||l===void 0?void 0:l.abortSignal}
+).then(g=>g.json().then(_=>{
+const T=_;
+return T.sdkHttpResponse={
+headers:g.headers}
+,T}
+)),u.then(g=>{
+const _=WU(g),T=new uT;
+return Object.assign(T,_),T}
+)}
+}
+async countTokens(e){
+var n,i,r,l;
+let u,d="",h={
+}
+;
+if(this.apiClient.isVertexAI()){
+const p=$U(this.apiClient,e);
+return d=Z("{
+model}
+:countTokens",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"POST",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(g=>g.json().then(_=>{
+const T=_;
+return T.sdkHttpResponse={
+headers:g.headers}
+,T}
+)),u.then(g=>{
+const _=KU(g),T=new cT;
+return Object.assign(T,_),T}
+)}
+else{
+const p=zU(this.apiClient,e);
+return d=Z("{
+model}
+:countTokens",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"POST",httpOptions:(r=e.config)===null||r===void 0?void 0:r.httpOptions,abortSignal:(l=e.config)===null||l===void 0?void 0:l.abortSignal}
+).then(g=>g.json().then(_=>{
+const T=_;
+return T.sdkHttpResponse={
+headers:g.headers}
+,T}
+)),u.then(g=>{
+const _=JU(g),T=new cT;
+return Object.assign(T,_),T}
+)}
+}
+async computeTokens(e){
+var n,i;
+let r,l="",u={
+}
+;
+if(this.apiClient.isVertexAI()){
+const d=OU(this.apiClient,e);
+return l=Z("{
+model}
+:computeTokens",d._url),u=d._query,delete d._url,delete d._query,r=this.apiClient.request({
+path:l,queryParams:u,body:JSON.stringify(d),httpMethod:"POST",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(h=>h.json().then(p=>{
+const g=p;
+return g.sdkHttpResponse={
+headers:h.headers}
+,g}
+)),r.then(h=>{
+const p=VU(h),g=new dk;
+return Object.assign(g,p),g}
+)}
+else throw new Error("This method is only supported by the Vertex AI.")}
+async generateVideosInternal(e){
+var n,i,r,l;
+let u,d="",h={
+}
+;
+if(this.apiClient.isVertexAI()){
+const p=AP(this.apiClient,e);
+return d=Z("{
+model}
+:predictLongRunning",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"POST",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(g=>g.json()),u.then(g=>{
+const _=EP(g),T=new ru;
+return Object.assign(T,_),T}
+)}
+else{
+const p=bP(this.apiClient,e);
+return d=Z("{
+model}
+:predictLongRunning",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"POST",httpOptions:(r=e.config)===null||r===void 0?void 0:r.httpOptions,abortSignal:(l=e.config)===null||l===void 0?void 0:l.abortSignal}
+).then(g=>g.json()),u.then(g=>{
+const _=wP(g),T=new ru;
+return Object.assign(T,_),T}
+)}
+}
+}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */class dO extends ni{
+constructor(e){
+super(),this.apiClient=e}
+async getVideosOperation(e){
+const n=e.operation,i=e.config;
+if(n.name===void 0||n.name==="")throw new Error("Operation name is required.");
+if(this.apiClient.isVertexAI()){
+const r=n.name.split("/operations/")[0];
+let l;
+i&&"httpOptions"in i&&(l=i.httpOptions);
+const u=await this.fetchPredictVideosOperationInternal({
+operationName:n.name,resourceName:r,config:{
+httpOptions:l}
+}
+);
+return n._fromAPIResponse({
+apiResponse:u,_isVertexAI:!0}
+)}
+else{
+const r=await this.getVideosOperationInternal({
+operationName:n.name,config:i}
+);
+return n._fromAPIResponse({
+apiResponse:r,_isVertexAI:!1}
+)}
+}
+async get(e){
+const n=e.operation,i=e.config;
+if(n.name===void 0||n.name==="")throw new Error("Operation name is required.");
+if(this.apiClient.isVertexAI()){
+const r=n.name.split("/operations/")[0];
+let l;
+i&&"httpOptions"in i&&(l=i.httpOptions);
+const u=await this.fetchPredictVideosOperationInternal({
+operationName:n.name,resourceName:r,config:{
+httpOptions:l}
+}
+);
+return n._fromAPIResponse({
+apiResponse:u,_isVertexAI:!0}
+)}
+else{
+const r=await this.getVideosOperationInternal({
+operationName:n.name,config:i}
+);
+return n._fromAPIResponse({
+apiResponse:r,_isVertexAI:!1}
+)}
+}
+async getVideosOperationInternal(e){
+var n,i,r,l;
+let u,d="",h={
+}
+;
+if(this.apiClient.isVertexAI()){
+const p=tk(e);
+return d=Z("{
+operationName}
+",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"GET",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(g=>g.json()),u}
+else{
+const p=ek(e);
+return d=Z("{
+operationName}
+",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"GET",httpOptions:(r=e.config)===null||r===void 0?void 0:r.httpOptions,abortSignal:(l=e.config)===null||l===void 0?void 0:l.abortSignal}
+).then(g=>g.json()),u}
+}
+async fetchPredictVideosOperationInternal(e){
+var n,i;
+let r,l="",u={
+}
+;
+if(this.apiClient.isVertexAI()){
+const d=KD(e);
+return l=Z("{
+resourceName}
+:fetchPredictOperation",d._url),u=d._query,delete d._url,delete d._query,r=this.apiClient.request({
+path:l,queryParams:u,body:JSON.stringify(d),httpMethod:"POST",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(h=>h.json()),r}
+else throw new Error("This method is only supported by the Vertex AI.")}
+}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */function fO(t){
+const e={
+}
+,n=f(t,["data"]);
+if(n!=null&&m(e,["data"],n),f(t,["displayName"])!==void 0)throw new Error("displayName parameter is not supported in Gemini API.");
+const i=f(t,["mimeType"]);
+return i!=null&&m(e,["mimeType"],i),e}
+function hO(t){
+const e={
+}
+,n=f(t,["parts"]);
+if(n!=null){
+let r=n;
+Array.isArray(r)&&(r=r.map(l=>wO(l))),m(e,["parts"],r)}
+const i=f(t,["role"]);
+return i!=null&&m(e,["role"],i),e}
+function pO(t,e,n){
+const i={
+}
+,r=f(e,["expireTime"]);
+n!==void 0&&r!=null&&m(n,["expireTime"],r);
+const l=f(e,["newSessionExpireTime"]);
+n!==void 0&&l!=null&&m(n,["newSessionExpireTime"],l);
+const u=f(e,["uses"]);
+n!==void 0&&u!=null&&m(n,["uses"],u);
+const d=f(e,["liveConnectConstraints"]);
+n!==void 0&&d!=null&&m(n,["bidiGenerateContentSetup"],SO(t,d));
+const h=f(e,["lockAdditionalFields"]);
+return n!==void 0&&h!=null&&m(n,["fieldMask"],h),i}
+function mO(t,e){
+const n={
+}
+,i=f(e,["config"]);
+return i!=null&&m(n,["config"],pO(t,i,n)),n}
+function gO(t){
+const e={
+}
+;
+if(f(t,["displayName"])!==void 0)throw new Error("displayName parameter is not supported in Gemini API.");
+const n=f(t,["fileUri"]);
+n!=null&&m(e,["fileUri"],n);
+const i=f(t,["mimeType"]);
+return i!=null&&m(e,["mimeType"],i),e}
+function yO(t){
+const e={
+}
+,n=f(t,["id"]);
+n!=null&&m(e,["id"],n);
+const i=f(t,["args"]);
+i!=null&&m(e,["args"],i);
+const r=f(t,["name"]);
+if(r!=null&&m(e,["name"],r),f(t,["partialArgs"])!==void 0)throw new Error("partialArgs parameter is not supported in Gemini API.");
+if(f(t,["willContinue"])!==void 0)throw new Error("willContinue parameter is not supported in Gemini API.");
+return e}
+function vO(t){
+const e={
+}
+;
+if(f(t,["authConfig"])!==void 0)throw new Error("authConfig parameter is not supported in Gemini API.");
+const n=f(t,["enableWidget"]);
+return n!=null&&m(e,["enableWidget"],n),e}
+function _O(t){
+const e={
+}
+;
+if(f(t,["excludeDomains"])!==void 0)throw new Error("excludeDomains parameter is not supported in Gemini API.");
+if(f(t,["blockingConfidence"])!==void 0)throw new Error("blockingConfidence parameter is not supported in Gemini API.");
+const n=f(t,["timeRangeFilter"]);
+return n!=null&&m(e,["timeRangeFilter"],n),e}
+function TO(t,e){
+const n={
+}
+,i=f(t,["generationConfig"]);
+e!==void 0&&i!=null&&m(e,["setup","generationConfig"],i);
+const r=f(t,["responseModalities"]);
+e!==void 0&&r!=null&&m(e,["setup","generationConfig","responseModalities"],r);
+const l=f(t,["temperature"]);
+e!==void 0&&l!=null&&m(e,["setup","generationConfig","temperature"],l);
+const u=f(t,["topP"]);
+e!==void 0&&u!=null&&m(e,["setup","generationConfig","topP"],u);
+const d=f(t,["topK"]);
+e!==void 0&&d!=null&&m(e,["setup","generationConfig","topK"],d);
+const h=f(t,["maxOutputTokens"]);
+e!==void 0&&h!=null&&m(e,["setup","generationConfig","maxOutputTokens"],h);
+const p=f(t,["mediaResolution"]);
+e!==void 0&&p!=null&&m(e,["setup","generationConfig","mediaResolution"],p);
+const g=f(t,["seed"]);
+e!==void 0&&g!=null&&m(e,["setup","generationConfig","seed"],g);
+const _=f(t,["speechConfig"]);
+e!==void 0&&_!=null&&m(e,["setup","generationConfig","speechConfig"],cp(_));
+const T=f(t,["thinkingConfig"]);
+e!==void 0&&T!=null&&m(e,["setup","generationConfig","thinkingConfig"],T);
+const w=f(t,["enableAffectiveDialog"]);
+e!==void 0&&w!=null&&m(e,["setup","generationConfig","enableAffectiveDialog"],w);
+const A=f(t,["systemInstruction"]);
+e!==void 0&&A!=null&&m(e,["setup","systemInstruction"],hO(bt(A)));
+const C=f(t,["tools"]);
+if(e!==void 0&&C!=null){
+let z=Do(C);
+Array.isArray(z)&&(z=z.map(G=>bO(Io(G)))),m(e,["setup","tools"],z)}
+const x=f(t,["sessionResumption"]);
+e!==void 0&&x!=null&&m(e,["setup","sessionResumption"],EO(x));
+const R=f(t,["inputAudioTranscription"]);
+e!==void 0&&R!=null&&m(e,["setup","inputAudioTranscription"],R);
+const k=f(t,["outputAudioTranscription"]);
+e!==void 0&&k!=null&&m(e,["setup","outputAudioTranscription"],k);
+const N=f(t,["realtimeInputConfig"]);
+e!==void 0&&N!=null&&m(e,["setup","realtimeInputConfig"],N);
+const O=f(t,["contextWindowCompression"]);
+e!==void 0&&O!=null&&m(e,["setup","contextWindowCompression"],O);
+const F=f(t,["proactivity"]);
+if(e!==void 0&&F!=null&&m(e,["setup","proactivity"],F),f(t,["explicitVadSignal"])!==void 0)throw new Error("explicitVadSignal parameter is not supported in Gemini API.");
+return n}
+function SO(t,e){
+const n={
+}
+,i=f(e,["model"]);
+i!=null&&m(n,["setup","model"],Me(t,i));
+const r=f(e,["config"]);
+return r!=null&&m(n,["config"],TO(r,n)),n}
+function wO(t){
+const e={
+}
+,n=f(t,["mediaResolution"]);
+n!=null&&m(e,["mediaResolution"],n);
+const i=f(t,["codeExecutionResult"]);
+i!=null&&m(e,["codeExecutionResult"],i);
+const r=f(t,["executableCode"]);
+r!=null&&m(e,["executableCode"],r);
+const l=f(t,["fileData"]);
+l!=null&&m(e,["fileData"],gO(l));
+const u=f(t,["functionCall"]);
+u!=null&&m(e,["functionCall"],yO(u));
+const d=f(t,["functionResponse"]);
+d!=null&&m(e,["functionResponse"],d);
+const h=f(t,["inlineData"]);
+h!=null&&m(e,["inlineData"],fO(h));
+const p=f(t,["text"]);
+p!=null&&m(e,["text"],p);
+const g=f(t,["thought"]);
+g!=null&&m(e,["thought"],g);
+const _=f(t,["thoughtSignature"]);
+_!=null&&m(e,["thoughtSignature"],_);
+const T=f(t,["videoMetadata"]);
+return T!=null&&m(e,["videoMetadata"],T),e}
+function EO(t){
+const e={
+}
+,n=f(t,["handle"]);
+if(n!=null&&m(e,["handle"],n),f(t,["transparent"])!==void 0)throw new Error("transparent parameter is not supported in Gemini API.");
+return e}
+function bO(t){
+const e={
+}
+;
+if(f(t,["retrieval"])!==void 0)throw new Error("retrieval parameter is not supported in Gemini API.");
+const n=f(t,["computerUse"]);
+n!=null&&m(e,["computerUse"],n);
+const i=f(t,["fileSearch"]);
+i!=null&&m(e,["fileSearch"],i);
+const r=f(t,["codeExecution"]);
+if(r!=null&&m(e,["codeExecution"],r),f(t,["enterpriseWebSearch"])!==void 0)throw new Error("enterpriseWebSearch parameter is not supported in Gemini API.");
+const l=f(t,["functionDeclarations"]);
+if(l!=null){
+let g=l;
+Array.isArray(g)&&(g=g.map(_=>_)),m(e,["functionDeclarations"],g)}
+const u=f(t,["googleMaps"]);
+u!=null&&m(e,["googleMaps"],vO(u));
+const d=f(t,["googleSearch"]);
+d!=null&&m(e,["googleSearch"],_O(d));
+const h=f(t,["googleSearchRetrieval"]);
+h!=null&&m(e,["googleSearchRetrieval"],h);
+const p=f(t,["urlContext"]);
+return p!=null&&m(e,["urlContext"],p),e}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */function AO(t){
+const e=[];
+for(const n in t)if(Object.prototype.hasOwnProperty.call(t,n)){
+const i=t[n];
+if(typeof i=="object"&&i!=null&&Object.keys(i).length>0){
+const r=Object.keys(i).map(l=>`${
+n}
+.${
+l}
+`);
+e.push(...r)}
+else e.push(n)}
+return e.join(",")}
+function CO(t,e){
+let n=null;
+const i=t.bidiGenerateContentSetup;
+if(typeof i=="object"&&i!==null&&"setup"in i){
+const l=i.setup;
+typeof l=="object"&&l!==null?(t.bidiGenerateContentSetup=l,n=l):delete t.bidiGenerateContentSetup}
+else i!==void 0&&delete t.bidiGenerateContentSetup;
+const r=t.fieldMask;
+if(n){
+const l=AO(n);
+if(Array.isArray(e==null?void 0:e.lockAdditionalFields)&&(e==null?void 0:e.lockAdditionalFields.length)===0)l?t.fieldMask=l:delete t.fieldMask;
+else if(e!=null&&e.lockAdditionalFields&&e.lockAdditionalFields.length>0&&r!==null&&Array.isArray(r)&&r.length>0){
+const u=["temperature","topK","topP","maxOutputTokens","responseModalities","seed","speechConfig"];
+let d=[];
+r.length>0&&(d=r.map(p=>u.includes(p)?`generationConfig.${
+p}
+`:p));
+const h=[];
+l&&h.push(l),d.length>0&&h.push(...d),h.length>0?t.fieldMask=h.join(","):delete t.fieldMask}
+else delete t.fieldMask}
+else r!==null&&Array.isArray(r)&&r.length>0?t.fieldMask=r.join(","):delete t.fieldMask;
+return t}
+class xO extends ni{
+constructor(e){
+super(),this.apiClient=e}
+async create(e){
+var n,i;
+let r,l="",u={
+}
+;
+if(this.apiClient.isVertexAI())throw new Error("The client.tokens.create method is only supported by the Gemini Developer API.");
+{
+const d=mO(this.apiClient,e);
+l=Z("auth_tokens",d._url),u=d._query,delete d.config,delete d._url,delete d._query;
+const h=CO(d,e.config);
+return r=this.apiClient.request({
+path:l,queryParams:u,body:JSON.stringify(h),httpMethod:"POST",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(p=>p.json()),r.then(p=>p)}
+}
+}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */function RO(t,e){
+const n={
+}
+,i=f(t,["force"]);
+return e!==void 0&&i!=null&&m(e,["_query","force"],i),n}
+function NO(t){
+const e={
+}
+,n=f(t,["name"]);
+n!=null&&m(e,["_url","name"],n);
+const i=f(t,["config"]);
+return i!=null&&RO(i,e),e}
+function MO(t){
+const e={
+}
+,n=f(t,["name"]);
+return n!=null&&m(e,["_url","name"],n),e}
+function IO(t,e){
+const n={
+}
+,i=f(t,["pageSize"]);
+e!==void 0&&i!=null&&m(e,["_query","pageSize"],i);
+const r=f(t,["pageToken"]);
+return e!==void 0&&r!=null&&m(e,["_query","pageToken"],r),n}
+function DO(t){
+const e={
+}
+,n=f(t,["parent"]);
+n!=null&&m(e,["_url","parent"],n);
+const i=f(t,["config"]);
+return i!=null&&IO(i,e),e}
+function kO(t){
+const e={
+}
+,n=f(t,["sdkHttpResponse"]);
+n!=null&&m(e,["sdkHttpResponse"],n);
+const i=f(t,["nextPageToken"]);
+i!=null&&m(e,["nextPageToken"],i);
+const r=f(t,["documents"]);
+if(r!=null){
+let l=r;
+Array.isArray(l)&&(l=l.map(u=>u)),m(e,["documents"],l)}
+return e}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */class UO extends ni{
+constructor(e){
+super(),this.apiClient=e,this.list=async n=>new vs(ti.PAGED_ITEM_DOCUMENTS,i=>this.listInternal({
+parent:n.parent,config:i.config}
+),await this.listInternal(n),n)}
+async get(e){
+var n,i;
+let r,l="",u={
+}
+;
+if(this.apiClient.isVertexAI())throw new Error("This method is only supported by the Gemini Developer API.");
+{
+const d=MO(e);
+return l=Z("{
+name}
+",d._url),u=d._query,delete d._url,delete d._query,r=this.apiClient.request({
+path:l,queryParams:u,body:JSON.stringify(d),httpMethod:"GET",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(h=>h.json()),r.then(h=>h)}
+}
+async delete(e){
+var n,i;
+let r="",l={
+}
+;
+if(this.apiClient.isVertexAI())throw new Error("This method is only supported by the Gemini Developer API.");
+{
+const u=NO(e);
+r=Z("{
+name}
+",u._url),l=u._query,delete u._url,delete u._query,await this.apiClient.request({
+path:r,queryParams:l,body:JSON.stringify(u),httpMethod:"DELETE",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+)}
+}
+async listInternal(e){
+var n,i;
+let r,l="",u={
+}
+;
+if(this.apiClient.isVertexAI())throw new Error("This method is only supported by the Gemini Developer API.");
+{
+const d=DO(e);
+return l=Z("{
+parent}
+/documents",d._url),u=d._query,delete d._url,delete d._query,r=this.apiClient.request({
+path:l,queryParams:u,body:JSON.stringify(d),httpMethod:"GET",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(h=>h.json()),r.then(h=>{
+const p=kO(h),g=new fk;
+return Object.assign(g,p),g}
+)}
+}
+}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */class PO extends ni{
+constructor(e,n=new UO(e)){
+super(),this.apiClient=e,this.documents=n,this.list=async(i={
+}
+)=>new vs(ti.PAGED_ITEM_FILE_SEARCH_STORES,r=>this.listInternal(r),await this.listInternal(i),i)}
+async uploadToFileSearchStore(e){
+if(this.apiClient.isVertexAI())throw new Error("Vertex AI does not support uploading files to a file search store.");
+return this.apiClient.uploadFileToFileSearchStore(e.fileSearchStoreName,e.file,e.config)}
+async create(e){
+var n,i;
+let r,l="",u={
+}
+;
+if(this.apiClient.isVertexAI())throw new Error("This method is only supported by the Gemini Developer API.");
+{
+const d=AL(e);
+return l=Z("fileSearchStores",d._url),u=d._query,delete d._url,delete d._query,r=this.apiClient.request({
+path:l,queryParams:u,body:JSON.stringify(d),httpMethod:"POST",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(h=>h.json()),r.then(h=>h)}
+}
+async get(e){
+var n,i;
+let r,l="",u={
+}
+;
+if(this.apiClient.isVertexAI())throw new Error("This method is only supported by the Gemini Developer API.");
+{
+const d=RL(e);
+return l=Z("{
+name}
+",d._url),u=d._query,delete d._url,delete d._query,r=this.apiClient.request({
+path:l,queryParams:u,body:JSON.stringify(d),httpMethod:"GET",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(h=>h.json()),r.then(h=>h)}
+}
+async delete(e){
+var n,i;
+let r="",l={
+}
+;
+if(this.apiClient.isVertexAI())throw new Error("This method is only supported by the Gemini Developer API.");
+{
+const u=xL(e);
+r=Z("{
+name}
+",u._url),l=u._query,delete u._url,delete u._query,await this.apiClient.request({
+path:r,queryParams:l,body:JSON.stringify(u),httpMethod:"DELETE",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+)}
+}
+async listInternal(e){
+var n,i;
+let r,l="",u={
+}
+;
+if(this.apiClient.isVertexAI())throw new Error("This method is only supported by the Gemini Developer API.");
+{
+const d=UL(e);
+return l=Z("fileSearchStores",d._url),u=d._query,delete d._url,delete d._query,r=this.apiClient.request({
+path:l,queryParams:u,body:JSON.stringify(d),httpMethod:"GET",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(h=>h.json()),r.then(h=>{
+const p=PL(h),g=new hk;
+return Object.assign(g,p),g}
+)}
+}
+async uploadToFileSearchStoreInternal(e){
+var n,i;
+let r,l="",u={
+}
+;
+if(this.apiClient.isVertexAI())throw new Error("This method is only supported by the Gemini Developer API.");
+{
+const d=LL(e);
+return l=Z("upload/v1beta/{
+file_search_store_name}
+:uploadToFileSearchStore",d._url),u=d._query,delete d._url,delete d._query,r=this.apiClient.request({
+path:l,queryParams:u,body:JSON.stringify(d),httpMethod:"POST",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(h=>h.json()),r.then(h=>{
+const p=OL(h),g=new pk;
+return Object.assign(g,p),g}
+)}
+}
+async importFile(e){
+var n,i;
+let r,l="",u={
+}
+;
+if(this.apiClient.isVertexAI())throw new Error("This method is only supported by the Gemini Developer API.");
+{
+const d=IL(e);
+return l=Z("{
+file_search_store_name}
+:importFile",d._url),u=d._query,delete d._url,delete d._query,r=this.apiClient.request({
+path:l,queryParams:u,body:JSON.stringify(d),httpMethod:"POST",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(h=>h.json()),r.then(h=>{
+const p=ML(h),g=new op;
+return Object.assign(g,p),g}
+)}
+}
+}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */let DE=function(){
+const{
+crypto:t}
+=globalThis;
+if(t!=null&&t.randomUUID)return DE=t.randomUUID.bind(t),t.randomUUID();
+const e=new Uint8Array(1),n=t?()=>t.getRandomValues(e)[0]:()=>Math.random()*255&255;
+return"10000000-1000-4000-8000-100000000000".replace(/[018]/g,i=>(+i^n()&15>>+i/4).toString(16))}
+;
+const LO=()=>DE();
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */function uh(t){
+return typeof t=="object"&&t!==null&&("name"in t&&t.name==="AbortError"||"message"in t&&String(t.message).includes("FetchRequestCanceledException"))}
+const ch=t=>{
+if(t instanceof Error)return t;
+if(typeof t=="object"&&t!==null){
+try{
+if(Object.prototype.toString.call(t)==="[object Error]"){
+const e=new Error(t.message,t.cause?{
+cause:t.cause}
+:{
+}
+);
+return t.stack&&(e.stack=t.stack),t.cause&&!e.cause&&(e.cause=t.cause),t.name&&(e.name=t.name),e}
+}
+catch{
+}
+try{
+return new Error(JSON.stringify(t))}
+catch{
+}
+}
+return new Error(t)}
+;
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */class pn extends Error{
+}
+class Mt extends pn{
+constructor(e,n,i,r){
+super(`${
+Mt.makeMessage(e,n,i)}
+`),this.status=e,this.headers=r,this.error=n}
+static makeMessage(e,n,i){
+const r=n!=null&&n.message?typeof n.message=="string"?n.message:JSON.stringify(n.message):n?JSON.stringify(n):i;
+return e&&r?`${
+e}
+ ${
+r}
+`:e?`${
+e}
+ status code (no body)`:r||"(no status code or body)"}
+static generate(e,n,i,r){
+if(!e||!r)return new bu({
+message:i,cause:ch(n)}
+);
+const l=n;
+return e===400?new UE(e,l,i,r):e===401?new PE(e,l,i,r):e===403?new LE(e,l,i,r):e===404?new OE(e,l,i,r):e===409?new VE(e,l,i,r):e===422?new BE(e,l,i,r):e===429?new FE(e,l,i,r):e>=500?new GE(e,l,i,r):new Mt(e,l,i,r)}
+}
+class dh extends Mt{
+constructor({
+message:e}
+={
+}
+){
+super(void 0,void 0,e||"Request was aborted.",void 0)}
+}
+class bu extends Mt{
+constructor({
+message:e,cause:n}
+){
+super(void 0,void 0,e||"Connection error.",void 0),n&&(this.cause=n)}
+}
+class kE extends bu{
+constructor({
+message:e}
+={
+}
+){
+super({
+message:e??"Request timed out."}
+)}
+}
+class UE extends Mt{
+}
+class PE extends Mt{
+}
+class LE extends Mt{
+}
+class OE extends Mt{
+}
+class VE extends Mt{
+}
+class BE extends Mt{
+}
+class FE extends Mt{
+}
+class GE extends Mt{
+}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */const OO=/^[a-z][a-z0-9+.-]*:/i,VO=t=>OO.test(t);
+let fh=t=>(fh=Array.isArray,fh(t));
+const BO=fh;
+let FO=BO;
+const DT=FO;
+function GO(t){
+if(!t)return!0;
+for(const e in t)return!1;
+return!0}
+function qO(t,e){
+return Object.prototype.hasOwnProperty.call(t,e)}
+const HO=(t,e)=>{
+if(typeof e!="number"||!Number.isInteger(e))throw new pn(`${
+t}
+ must be an integer`);
+if(e<0)throw new pn(`${
+t}
+ must be a positive integer`);
+return e}
+,zO=t=>{
+try{
+return JSON.parse(t)}
+catch{
+return}
+}
+;
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */const $O=t=>new Promise(e=>setTimeout(e,t));
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */const co="0.0.1";
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */function JO(){
+return typeof Deno<"u"&&Deno.build!=null?"deno":typeof EdgeRuntime<"u"?"edge":Object.prototype.toString.call(typeof globalThis.process<"u"?globalThis.process:0)==="[object process]"?"node":"unknown"}
+const KO=()=>{
+var t,e,n,i,r;
+const l=JO();
+if(l==="deno")return{
+"X-Stainless-Lang":"js","X-Stainless-Package-Version":co,"X-Stainless-OS":UT(Deno.build.os),"X-Stainless-Arch":kT(Deno.build.arch),"X-Stainless-Runtime":"deno","X-Stainless-Runtime-Version":typeof Deno.version=="string"?Deno.version:(e=(t=Deno.version)===null||t===void 0?void 0:t.deno)!==null&&e!==void 0?e:"unknown"}
+;
+if(typeof EdgeRuntime<"u")return{
+"X-Stainless-Lang":"js","X-Stainless-Package-Version":co,"X-Stainless-OS":"Unknown","X-Stainless-Arch":`other:${
+EdgeRuntime}
+`,"X-Stainless-Runtime":"edge","X-Stainless-Runtime-Version":globalThis.process.version}
+;
+if(l==="node")return{
+"X-Stainless-Lang":"js","X-Stainless-Package-Version":co,"X-Stainless-OS":UT((n=globalThis.process.platform)!==null&&n!==void 0?n:"unknown"),"X-Stainless-Arch":kT((i=globalThis.process.arch)!==null&&i!==void 0?i:"unknown"),"X-Stainless-Runtime":"node","X-Stainless-Runtime-Version":(r=globalThis.process.version)!==null&&r!==void 0?r:"unknown"}
+;
+const u=YO();
+return u?{
+"X-Stainless-Lang":"js","X-Stainless-Package-Version":co,"X-Stainless-OS":"Unknown","X-Stainless-Arch":"unknown","X-Stainless-Runtime":`browser:${
+u.browser}
+`,"X-Stainless-Runtime-Version":u.version}
+:{
+"X-Stainless-Lang":"js","X-Stainless-Package-Version":co,"X-Stainless-OS":"Unknown","X-Stainless-Arch":"unknown","X-Stainless-Runtime":"unknown","X-Stainless-Runtime-Version":"unknown"}
+}
+;
+function YO(){
+if(typeof navigator>"u"||!navigator)return null;
+const t=[{
+key:"edge",pattern:/Edge(?:\W+(\d+)\.(\d+)(?:\.(\d+))?)?/}
+,{
+key:"ie",pattern:/MSIE(?:\W+(\d+)\.(\d+)(?:\.(\d+))?)?/}
+,{
+key:"ie",pattern:/Trident(?:.*rv\:(\d+)\.(\d+)(?:\.(\d+))?)?/}
+,{
+key:"chrome",pattern:/Chrome(?:\W+(\d+)\.(\d+)(?:\.(\d+))?)?/}
+,{
+key:"firefox",pattern:/Firefox(?:\W+(\d+)\.(\d+)(?:\.(\d+))?)?/}
+,{
+key:"safari",pattern:/(?:Version\W+(\d+)\.(\d+)(?:\.(\d+))?)?(?:\W+Mobile\S*)?\W+Safari/}
+];
+for(const{
+key:e,pattern:n}
+of t){
+const i=n.exec(navigator.userAgent);
+if(i){
+const r=i[1]||0,l=i[2]||0,u=i[3]||0;
+return{
+browser:e,version:`${
+r}
+.${
+l}
+.${
+u}
+`}
+}
+}
+return null}
+const kT=t=>t==="x32"?"x32":t==="x86_64"||t==="x64"?"x64":t==="arm"?"arm":t==="aarch64"||t==="arm64"?"arm64":t?`other:${
+t}
+`:"unknown",UT=t=>(t=t.toLowerCase(),t.includes("ios")?"iOS":t==="android"?"Android":t==="darwin"?"MacOS":t==="win32"?"Windows":t==="freebsd"?"FreeBSD":t==="openbsd"?"OpenBSD":t==="linux"?"Linux":t?`Other:${
+t}
+`:"Unknown");
+let Dl;
+const jO=()=>Dl??(Dl=KO());
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */function WO(){
+if(typeof fetch<"u")return fetch;
+throw new Error("`fetch` is not defined as a global;
+ Either pass `fetch` to the client, `new GeminiNextGenAPIClient({
+ fetch }
+)` or polyfill the global, `globalThis.fetch = fetch`")}
+function qE(...t){
+const e=globalThis.ReadableStream;
+if(typeof e>"u")throw new Error("`ReadableStream` is not defined as a global;
+ You will need to polyfill it, `globalThis.ReadableStream = ReadableStream`");
+return new e(...t)}
+function XO(t){
+let e=Symbol.asyncIterator in t?t[Symbol.asyncIterator]():t[Symbol.iterator]();
+return qE({
+start(){
+}
+,async pull(n){
+const{
+done:i,value:r}
+=await e.next();
+i?n.close():n.enqueue(r)}
+,async cancel(){
+var n;
+await((n=e.return)===null||n===void 0?void 0:n.call(e))}
+}
+)}
+function HE(t){
+if(t[Symbol.asyncIterator])return t;
+const e=t.getReader();
+return{
+async next(){
+try{
+const n=await e.read();
+return n!=null&&n.done&&e.releaseLock(),n}
+catch(n){
+throw e.releaseLock(),n}
+}
+,async return(){
+const n=e.cancel();
+return e.releaseLock(),await n,{
+done:!0,value:void 0}
+}
+,[Symbol.asyncIterator](){
+return this}
+}
+}
+async function QO(t){
+var e,n;
+if(t===null||typeof t!="object")return;
+if(t[Symbol.asyncIterator]){
+await((n=(e=t[Symbol.asyncIterator]()).return)===null||n===void 0?void 0:n.call(e));
+return}
+const i=t.getReader(),r=i.cancel();
+i.releaseLock(),await r}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */const ZO=({
+headers:t,body:e}
+)=>({
+bodyHeaders:{
+"content-type":"application/json"}
+,body:JSON.stringify(e)}
+);
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */const zE=()=>{
+var t;
+if(typeof File>"u"){
+const{
+process:e}
+=globalThis,n=typeof((t=e==null?void 0:e.versions)===null||t===void 0?void 0:t.node)=="string"&&parseInt(e.versions.node.split("."))<20;
+throw new Error("`File` is not defined as a global, which is required for file uploads."+(n?" Update to Node 20 LTS or newer, or set `globalThis.File` to `import('node:buffer').File`.":""))}
+}
+;
+function _f(t,e,n){
+return zE(),new File(t,e??"unknown_file",n)}
+function eV(t){
+return(typeof t=="object"&&t!==null&&("name"in t&&t.name&&String(t.name)||"url"in t&&t.url&&String(t.url)||"filename"in t&&t.filename&&String(t.filename)||"path"in t&&t.path&&String(t.path))||"").split(/[\\/]/).pop()||void 0}
+const tV=t=>t!=null&&typeof t=="object"&&typeof t[Symbol.asyncIterator]=="function";
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */const $E=t=>t!=null&&typeof t=="object"&&typeof t.size=="number"&&typeof t.type=="string"&&typeof t.text=="function"&&typeof t.slice=="function"&&typeof t.arrayBuffer=="function",nV=t=>t!=null&&typeof t=="object"&&typeof t.name=="string"&&typeof t.lastModified=="number"&&$E(t),iV=t=>t!=null&&typeof t=="object"&&typeof t.url=="string"&&typeof t.blob=="function";
+async function sV(t,e,n){
+if(zE(),t=await t,nV(t))return t instanceof File?t:_f([await t.arrayBuffer()],t.name);
+if(iV(t)){
+const r=await t.blob();
+return e||(e=new URL(t.url).pathname.split(/[\\/]/).pop()),_f(await hh(r),e,n)}
+const i=await hh(t);
+if(e||(e=eV(t)),!(n!=null&&n.type)){
+const r=i.find(l=>typeof l=="object"&&"type"in l&&l.type);
+typeof r=="string"&&(n=Object.assign(Object.assign({
+}
+,n),{
+type:r}
+))}
+return _f(i,e,n)}
+async function hh(t){
+var e,n,i,r,l;
+let u=[];
+if(typeof t=="string"||ArrayBuffer.isView(t)||t instanceof ArrayBuffer)u.push(t);
+else if($E(t))u.push(t instanceof Blob?t:await t.arrayBuffer());
+else if(tV(t))try{
+for(var d=!0,h=Cn(t),p;
+p=await h.next(),e=p.done,!e;
+d=!0){
+r=p.value,d=!1;
+const g=r;
+u.push(...await hh(g))}
+}
+catch(g){
+n={
+error:g}
+}
+finally{
+try{
+!d&&!e&&(i=h.return)&&await i.call(h)}
+finally{
+if(n)throw n.error}
+}
+else{
+const g=(l=t==null?void 0:t.constructor)===null||l===void 0?void 0:l.name;
+throw new Error(`Unexpected data type: ${
+typeof t}
+${
+g?`;
+ constructor: ${
+g}
+`:""}
+${
+oV(t)}
+`)}
+return u}
+function oV(t){
+return typeof t!="object"||t===null?"":`;
+ props: [${
+Object.getOwnPropertyNames(t).map(n=>`"${
+n}
+"`).join(", ")}
+]`}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */class JE{
+constructor(e){
+this._client=e}
+}
+JE._key=[];
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */function KE(t){
+return t.replace(/[^A-Za-z0-9\-._~!$&'()*+,;
+=:@]+/g,encodeURIComponent)}
+const PT=Object.freeze(Object.create(null)),rV=(t=KE)=>(function(n,...i){
+if(n.length===1)return n[0];
+let r=!1;
+const l=[],u=n.reduce((g,_,T)=>{
+var w,A,C;
+/[?#]/.test(_)&&(r=!0);
+const x=i[T];
+let R=(r?encodeURIComponent:t)(""+x);
+return T!==i.length&&(x==null||typeof x=="object"&&x.toString===((C=Object.getPrototypeOf((A=Object.getPrototypeOf((w=x.hasOwnProperty)!==null&&w!==void 0?w:PT))!==null&&A!==void 0?A:PT))===null||C===void 0?void 0:C.toString))&&(R=x+"",l.push({
+start:g.length+_.length,length:R.length,error:`Value of type ${
+Object.prototype.toString.call(x).slice(8,-1)}
+ is not a valid path parameter`}
+)),g+_+(T===i.length?"":R)}
+,""),d=u.split(/[?#]/,1)[0],h=new RegExp("(?<=^|\\/)(?:\\.|%2e){
+1,2}
+(?=\\/|$)","gi");
+let p;
+for(;
+(p=h.exec(d))!==null;
+)l.push({
+start:p.index,length:p[0].length,error:`Value "${
+p[0]}
+" can't be safely passed as a path parameter`}
+);
+if(l.sort((g,_)=>g.start-_.start),l.length>0){
+let g=0;
+const _=l.reduce((T,w)=>{
+const A=" ".repeat(w.start-g),C="^".repeat(w.length);
+return g=w.start+w.length,T+A+C}
+,"");
+throw new pn(`Path parameters result in path with invalid segments:
+${
+l.map(T=>T.error).join(`
+`)}
+
+${
+u}
+
+${
+_}
+`)}
+return u}
+),kl=rV(KE);
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */class YE extends JE{
+create(e,n){
+var i;
+const{
+api_version:r=this._client.apiVersion}
+=e,l=lu(e,["api_version"]);
+if("model"in l&&"agent_config"in l)throw new pn("Invalid request: specified `model` and `agent_config`. If specifying `model`, use `generation_config`.");
+if("agent"in l&&"generation_config"in l)throw new pn("Invalid request: specified `agent` and `generation_config`. If specifying `agent`, use `agent_config`.");
+return this._client.post(kl`/${
+r}
+/interactions`,Object.assign(Object.assign({
+body:l}
+,n),{
+stream:(i=e.stream)!==null&&i!==void 0?i:!1}
+))}
+delete(e,n={
+}
+,i){
+const{
+api_version:r=this._client.apiVersion}
+=n??{
+}
+;
+return this._client.delete(kl`/${
+r}
+/interactions/${
+e}
+`,i)}
+cancel(e,n={
+}
+,i){
+const{
+api_version:r=this._client.apiVersion}
+=n??{
+}
+;
+return this._client.post(kl`/${
+r}
+/interactions/${
+e}
+/cancel`,i)}
+get(e,n={
+}
+,i){
+var r;
+const l=n??{
+}
+,{
+api_version:u=this._client.apiVersion}
+=l,d=lu(l,["api_version"]);
+return this._client.get(kl`/${
+u}
+/interactions/${
+e}
+`,Object.assign(Object.assign({
+query:d}
+,i),{
+stream:(r=n==null?void 0:n.stream)!==null&&r!==void 0?r:!1}
+))}
+}
+YE._key=Object.freeze(["interactions"]);
+class jE extends YE{
+}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */function aV(t){
+let e=0;
+for(const r of t)e+=r.length;
+const n=new Uint8Array(e);
+let i=0;
+for(const r of t)n.set(r,i),i+=r.length;
+return n}
+let Ul;
+function fp(t){
+let e;
+return(Ul??(e=new globalThis.TextEncoder,Ul=e.encode.bind(e)))(t)}
+let Pl;
+function LT(t){
+let e;
+return(Pl??(e=new globalThis.TextDecoder,Pl=e.decode.bind(e)))(t)}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */class Au{
+constructor(){
+this.buffer=new Uint8Array,this.carriageReturnIndex=null}
+decode(e){
+if(e==null)return[];
+const n=e instanceof ArrayBuffer?new Uint8Array(e):typeof e=="string"?fp(e):e;
+this.buffer=aV([this.buffer,n]);
+const i=[];
+let r;
+for(;
+(r=lV(this.buffer,this.carriageReturnIndex))!=null;
+){
+if(r.carriage&&this.carriageReturnIndex==null){
+this.carriageReturnIndex=r.index;
+continue}
+if(this.carriageReturnIndex!=null&&(r.index!==this.carriageReturnIndex+1||r.carriage)){
+i.push(LT(this.buffer.subarray(0,this.carriageReturnIndex-1))),this.buffer=this.buffer.subarray(this.carriageReturnIndex),this.carriageReturnIndex=null;
+continue}
+const l=this.carriageReturnIndex!==null?r.preceding-1:r.preceding,u=LT(this.buffer.subarray(0,l));
+i.push(u),this.buffer=this.buffer.subarray(r.index),this.carriageReturnIndex=null}
+return i}
+flush(){
+return this.buffer.length?this.decode(`
+`):[]}
+}
+Au.NEWLINE_CHARS=new Set([`
+`,"\r"]);
+Au.NEWLINE_REGEXP=/\r\n|[\n\r]/g;
+function lV(t,e){
+for(let r=e??0;
+r<t.length;
+r++){
+if(t[r]===10)return{
+preceding:r,index:r+1,carriage:!1}
+;
+if(t[r]===13)return{
+preceding:r,index:r+1,carriage:!0}
+}
+return null}
+function uV(t){
+for(let i=0;
+i<t.length-1;
+i++){
+if(t[i]===10&&t[i+1]===10||t[i]===13&&t[i+1]===13)return i+2;
+if(t[i]===13&&t[i+1]===10&&i+3<t.length&&t[i+2]===13&&t[i+3]===10)return i+4}
+return-1}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */const uu={
+off:0,error:200,warn:300,info:400,debug:500}
+,OT=(t,e,n)=>{
+if(t){
+if(qO(uu,t))return t;
+xt(n).warn(`${
+e}
+ was set to ${
+JSON.stringify(t)}
+, expected one of ${
+JSON.stringify(Object.keys(uu))}
+`)}
+}
+;
+function Ur(){
+}
+function Ll(t,e,n){
+return!e||uu[t]>uu[n]?Ur:e[t].bind(e)}
+const cV={
+error:Ur,warn:Ur,info:Ur,debug:Ur}
+;
+let VT=new WeakMap;
+function xt(t){
+var e;
+const n=t.logger,i=(e=t.logLevel)!==null&&e!==void 0?e:"off";
+if(!n)return cV;
+const r=VT.get(n);
+if(r&&r[0]===i)return r[1];
+const l={
+error:Ll("error",n,i),warn:Ll("warn",n,i),info:Ll("info",n,i),debug:Ll("debug",n,i)}
+;
+return VT.set(n,[i,l]),l}
+const us=t=>(t.options&&(t.options=Object.assign({
+}
+,t.options),delete t.options.headers),t.headers&&(t.headers=Object.fromEntries((t.headers instanceof Headers?[...t.headers]:Object.entries(t.headers)).map(([e,n])=>[e,e.toLowerCase()==="x-goog-api-key"||e.toLowerCase()==="authorization"||e.toLowerCase()==="cookie"||e.toLowerCase()==="set-cookie"?"***":n]))),"retryOfRequestLogID"in t&&(t.retryOfRequestLogID&&(t.retryOf=t.retryOfRequestLogID),delete t.retryOfRequestLogID),t);
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */class So{
+constructor(e,n,i){
+this.iterator=e,this.controller=n,this.client=i}
+static fromSSEResponse(e,n,i){
+let r=!1;
+const l=i?xt(i):console;
+function u(){
+return An(this,arguments,function*(){
+var h,p,g,_;
+if(r)throw new pn("Cannot iterate over a consumed stream, use `.tee()` to split the stream.");
+r=!0;
+let T=!1;
+try{
+try{
+for(var w=!0,A=Cn(dV(e,n)),C;
+C=yield de(A.next()),h=C.done,!h;
+w=!0){
+_=C.value,w=!1;
+const x=_;
+if(!T)if(x.data.startsWith("[DONE]")){
+T=!0;
+continue}
+else try{
+yield yield de(JSON.parse(x.data))}
+catch(R){
+throw l.error("Could not parse message into JSON:",x.data),l.error("From chunk:",x.raw),R}
+}
+}
+catch(x){
+p={
+error:x}
+}
+finally{
+try{
+!w&&!h&&(g=A.return)&&(yield de(g.call(A)))}
+finally{
+if(p)throw p.error}
+}
+T=!0}
+catch(x){
+if(uh(x))return yield de(void 0);
+throw x}
+finally{
+T||n.abort()}
+}
+)}
+return new So(u,n,i)}
+static fromReadableStream(e,n,i){
+let r=!1;
+function l(){
+return An(this,arguments,function*(){
+var h,p,g,_;
+const T=new Au,w=HE(e);
+try{
+for(var A=!0,C=Cn(w),x;
+x=yield de(C.next()),h=x.done,!h;
+A=!0){
+_=x.value,A=!1;
+const R=_;
+for(const k of T.decode(R))yield yield de(k)}
+}
+catch(R){
+p={
+error:R}
+}
+finally{
+try{
+!A&&!h&&(g=C.return)&&(yield de(g.call(C)))}
+finally{
+if(p)throw p.error}
+}
+for(const R of T.flush())yield yield de(R)}
+)}
+function u(){
+return An(this,arguments,function*(){
+var h,p,g,_;
+if(r)throw new pn("Cannot iterate over a consumed stream, use `.tee()` to split the stream.");
+r=!0;
+let T=!1;
+try{
+try{
+for(var w=!0,A=Cn(l()),C;
+C=yield de(A.next()),h=C.done,!h;
+w=!0){
+_=C.value,w=!1;
+const x=_;
+T||x&&(yield yield de(JSON.parse(x)))}
+}
+catch(x){
+p={
+error:x}
+}
+finally{
+try{
+!w&&!h&&(g=A.return)&&(yield de(g.call(A)))}
+finally{
+if(p)throw p.error}
+}
+T=!0}
+catch(x){
+if(uh(x))return yield de(void 0);
+throw x}
+finally{
+T||n.abort()}
+}
+)}
+return new So(u,n,i)}
+[Symbol.asyncIterator](){
+return this.iterator()}
+tee(){
+const e=[],n=[],i=this.iterator(),r=l=>({
+next:()=>{
+if(l.length===0){
+const u=i.next();
+e.push(u),n.push(u)}
+return l.shift()}
+}
+);
+return[new So(()=>r(e),this.controller,this.client),new So(()=>r(n),this.controller,this.client)]}
+toReadableStream(){
+const e=this;
+let n;
+return qE({
+async start(){
+n=e[Symbol.asyncIterator]()}
+,async pull(i){
+try{
+const{
+value:r,done:l}
+=await n.next();
+if(l)return i.close();
+const u=fp(JSON.stringify(r)+`
+`);
+i.enqueue(u)}
+catch(r){
+i.error(r)}
+}
+,async cancel(){
+var i;
+await((i=n.return)===null||i===void 0?void 0:i.call(n))}
+}
+)}
+}
+function dV(t,e){
+return An(this,arguments,function*(){
+var i,r,l,u;
+if(!t.body)throw e.abort(),typeof globalThis.navigator<"u"&&globalThis.navigator.product==="ReactNative"?new pn("The default react-native fetch implementation does not support streaming. Please use expo/fetch: https://docs.expo.dev/versions/latest/sdk/expo/#expofetch-api"):new pn("Attempted to iterate over a response with no body");
+const d=new hV,h=new Au,p=HE(t.body);
+try{
+for(var g=!0,_=Cn(fV(p)),T;
+T=yield de(_.next()),i=T.done,!i;
+g=!0){
+u=T.value,g=!1;
+const w=u;
+for(const A of h.decode(w)){
+const C=d.decode(A);
+C&&(yield yield de(C))}
+}
+}
+catch(w){
+r={
+error:w}
+}
+finally{
+try{
+!g&&!i&&(l=_.return)&&(yield de(l.call(_)))}
+finally{
+if(r)throw r.error}
+}
+for(const w of h.flush()){
+const A=d.decode(w);
+A&&(yield yield de(A))}
+}
+)}
+function fV(t){
+return An(this,arguments,function*(){
+var n,i,r,l;
+let u=new Uint8Array;
+try{
+for(var d=!0,h=Cn(t),p;
+p=yield de(h.next()),n=p.done,!n;
+d=!0){
+l=p.value,d=!1;
+const g=l;
+if(g==null)continue;
+const _=g instanceof ArrayBuffer?new Uint8Array(g):typeof g=="string"?fp(g):g;
+let T=new Uint8Array(u.length+_.length);
+T.set(u),T.set(_,u.length),u=T;
+let w;
+for(;
+(w=uV(u))!==-1;
+)yield yield de(u.slice(0,w)),u=u.slice(w)}
+}
+catch(g){
+i={
+error:g}
+}
+finally{
+try{
+!d&&!n&&(r=h.return)&&(yield de(r.call(h)))}
+finally{
+if(i)throw i.error}
+}
+u.length>0&&(yield yield de(u))}
+)}
+class hV{
+constructor(){
+this.event=null,this.data=[],this.chunks=[]}
+decode(e){
+if(e.endsWith("\r")&&(e=e.substring(0,e.length-1)),!e){
+if(!this.event&&!this.data.length)return null;
+const l={
+event:this.event,data:this.data.join(`
+`),raw:this.chunks}
+;
+return this.event=null,this.data=[],this.chunks=[],l}
+if(this.chunks.push(e),e.startsWith(":"))return null;
+let[n,i,r]=pV(e,":");
+return r.startsWith(" ")&&(r=r.substring(1)),n==="event"?this.event=r:n==="data"&&this.data.push(r),null}
+}
+function pV(t,e){
+const n=t.indexOf(e);
+return n!==-1?[t.substring(0,n),e,t.substring(n+e.length)]:[t,"",""]}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */async function mV(t,e){
+const{
+response:n,requestLogID:i,retryOfRequestLogID:r,startTime:l}
+=e,u=await(async()=>{
+var d;
+if(e.options.stream)return xt(t).debug("response",n.status,n.url,n.headers,n.body),e.options.__streamClass?e.options.__streamClass.fromSSEResponse(n,e.controller,t):So.fromSSEResponse(n,e.controller,t);
+if(n.status===204)return null;
+if(e.options.__binaryResponse)return n;
+const h=n.headers.get("content-type"),p=(d=h==null?void 0:h.split(";
+")[0])===null||d===void 0?void 0:d.trim();
+return(p==null?void 0:p.includes("application/json"))||(p==null?void 0:p.endsWith("+json"))?await n.json():await n.text()}
+)();
+return xt(t).debug(`[${
+i}
+] response parsed`,us({
+retryOfRequestLogID:r,url:n.url,status:n.status,body:u,durationMs:Date.now()-l}
+)),u}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */class hp extends Promise{
+constructor(e,n,i=mV){
+super(r=>{
+r(null)}
+),this.responsePromise=n,this.parseResponse=i,this.client=e}
+_thenUnwrap(e){
+return new hp(this.client,this.responsePromise,async(n,i)=>e(await this.parseResponse(n,i),i))}
+asResponse(){
+return this.responsePromise.then(e=>e.response)}
+async withResponse(){
+const[e,n]=await Promise.all([this.parse(),this.asResponse()]);
+return{
+data:e,response:n}
+}
+parse(){
+return this.parsedPromise||(this.parsedPromise=this.responsePromise.then(e=>this.parseResponse(this.client,e))),this.parsedPromise}
+then(e,n){
+return this.parse().then(e,n)}
+catch(e){
+return this.parse().catch(e)}
+finally(e){
+return this.parse().finally(e)}
+}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */const WE=Symbol("brand.privateNullableHeaders");
+function*gV(t){
+if(!t)return;
+if(WE in t){
+const{
+values:i,nulls:r}
+=t;
+yield*i.entries();
+for(const l of r)yield[l,null];
+return}
+let e=!1,n;
+t instanceof Headers?n=t.entries():DT(t)?n=t:(e=!0,n=Object.entries(t??{
+}
+));
+for(let i of n){
+const r=i[0];
+if(typeof r!="string")throw new TypeError("expected header name to be a string");
+const l=DT(i[1])?i[1]:[i[1]];
+let u=!1;
+for(const d of l)d!==void 0&&(e&&!u&&(u=!0,yield[r,null]),yield[r,d])}
+}
+const Ir=t=>{
+const e=new Headers,n=new Set;
+for(const i of t){
+const r=new Set;
+for(const[l,u]of gV(i)){
+const d=l.toLowerCase();
+r.has(d)||(e.delete(l),r.add(d)),u===null?(e.delete(l),n.add(d)):(e.append(l,u),n.delete(d))}
+}
+return{
+[WE]:!0,values:e,nulls:n}
+}
+;
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */const Tf=t=>{
+var e,n,i,r,l,u;
+if(typeof globalThis.process<"u")return(i=(n=(e=GD)===null||e===void 0?void 0:e[t])===null||n===void 0?void 0:n.trim())!==null&&i!==void 0?i:void 0;
+if(typeof globalThis.Deno<"u")return(u=(l=(r=globalThis.Deno.env)===null||r===void 0?void 0:r.get)===null||l===void 0?void 0:l.call(r,t))===null||u===void 0?void 0:u.trim()}
+;
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */var XE;
+class Cu{
+constructor(e){
+var n,i,r,l,u,d,h,{
+baseURL:p=Tf("GEMINI_NEXT_GEN_API_BASE_URL"),apiKey:g=(n=Tf("GEMINI_API_KEY"))!==null&&n!==void 0?n:null,apiVersion:_="v1beta"}
+=e,T=lu(e,["baseURL","apiKey","apiVersion"]);
+const w=Object.assign(Object.assign({
+apiKey:g,apiVersion:_}
+,T),{
+baseURL:p||"https://generativelanguage.googleapis.com"}
+);
+this.baseURL=w.baseURL,this.timeout=(i=w.timeout)!==null&&i!==void 0?i:Cu.DEFAULT_TIMEOUT,this.logger=(r=w.logger)!==null&&r!==void 0?r:console;
+const A="warn";
+this.logLevel=A,this.logLevel=(u=(l=OT(w.logLevel,"ClientOptions.logLevel",this))!==null&&l!==void 0?l:OT(Tf("GEMINI_NEXT_GEN_API_LOG"),"process.env['GEMINI_NEXT_GEN_API_LOG']",this))!==null&&u!==void 0?u:A,this.fetchOptions=w.fetchOptions,this.maxRetries=(d=w.maxRetries)!==null&&d!==void 0?d:2,this.fetch=(h=w.fetch)!==null&&h!==void 0?h:WO(),this.encoder=ZO,this._options=w,this.apiKey=g,this.apiVersion=_,this.clientAdapter=w.clientAdapter}
+withOptions(e){
+return new this.constructor(Object.assign(Object.assign(Object.assign({
+}
+,this._options),{
+baseURL:this.baseURL,maxRetries:this.maxRetries,timeout:this.timeout,logger:this.logger,logLevel:this.logLevel,fetch:this.fetch,fetchOptions:this.fetchOptions,apiKey:this.apiKey,apiVersion:this.apiVersion}
+),e))}
+baseURLOverridden(){
+return this.baseURL!=="https://generativelanguage.googleapis.com"}
+defaultQuery(){
+return this._options.defaultQuery}
+validateHeaders({
+values:e,nulls:n}
+){
+if(!(e.has("authorization")||e.has("x-goog-api-key"))&&!(this.apiKey&&e.get("x-goog-api-key"))&&!n.has("x-goog-api-key"))throw new Error('Could not resolve authentication method. Expected the apiKey to be set. Or for the "x-goog-api-key" headers to be explicitly omitted')}
+async authHeaders(e){
+const n=Ir([e.headers]);
+if(!(n.values.has("authorization")||n.values.has("x-goog-api-key"))){
+if(this.apiKey)return Ir([{
+"x-goog-api-key":this.apiKey}
+]);
+if(this.clientAdapter.isVertexAI())return Ir([await this.clientAdapter.getAuthHeaders()])}
+}
+stringifyQuery(e){
+return Object.entries(e).filter(([n,i])=>typeof i<"u").map(([n,i])=>{
+if(typeof i=="string"||typeof i=="number"||typeof i=="boolean")return`${
+encodeURIComponent(n)}
+=${
+encodeURIComponent(i)}
+`;
+if(i===null)return`${
+encodeURIComponent(n)}
+=`;
+throw new pn(`Cannot stringify type ${
+typeof i}
+;
+ Expected string, number, boolean, or null. If you need to pass nested query parameters, you can manually encode them, e.g. {
+ query: {
+ 'foo[key1]': value1, 'foo[key2]': value2 }
+ }
+, and please open a GitHub issue requesting better support for your use case.`)}
+).join("&")}
+getUserAgent(){
+return`${
+this.constructor.name}
+/JS ${
+co}
+`}
+defaultIdempotencyKey(){
+return`stainless-node-retry-${
+LO()}
+`}
+makeStatusError(e,n,i,r){
+return Mt.generate(e,n,i,r)}
+buildURL(e,n,i){
+const r=!this.baseURLOverridden()&&i||this.baseURL,l=VO(e)?new URL(e):new URL(r+(r.endsWith("/")&&e.startsWith("/")?e.slice(1):e)),u=this.defaultQuery();
+return GO(u)||(n=Object.assign(Object.assign({
+}
+,u),n)),typeof n=="object"&&n&&!Array.isArray(n)&&(l.search=this.stringifyQuery(n)),l.toString()}
+async prepareOptions(e){
+if(this.clientAdapter&&this.clientAdapter.isVertexAI()&&!e.path.startsWith(`/${
+this.apiVersion}
+/projects/`)){
+const n=e.path.slice(this.apiVersion.length+1);
+e.path=`/${
+this.apiVersion}
+/projects/${
+this.clientAdapter.getProject()}
+/locations/${
+this.clientAdapter.getLocation()}
+${
+n}
+`}
+}
+async prepareRequest(e,{
+url:n,options:i}
+){
+}
+get(e,n){
+return this.methodRequest("get",e,n)}
+post(e,n){
+return this.methodRequest("post",e,n)}
+patch(e,n){
+return this.methodRequest("patch",e,n)}
+put(e,n){
+return this.methodRequest("put",e,n)}
+delete(e,n){
+return this.methodRequest("delete",e,n)}
+methodRequest(e,n,i){
+return this.request(Promise.resolve(i).then(r=>Object.assign({
+method:e,path:n}
+,r)))}
+request(e,n=null){
+return new hp(this,this.makeRequest(e,n,void 0))}
+async makeRequest(e,n,i){
+var r,l,u;
+const d=await e,h=(r=d.maxRetries)!==null&&r!==void 0?r:this.maxRetries;
+n==null&&(n=h),await this.prepareOptions(d);
+const{
+req:p,url:g,timeout:_}
+=await this.buildRequest(d,{
+retryCount:h-n}
+);
+await this.prepareRequest(p,{
+url:g,options:d}
+);
+const T="log_"+(Math.random()*(1<<24)|0).toString(16).padStart(6,"0"),w=i===void 0?"":`, retryOf: ${
+i}
+`,A=Date.now();
+if(xt(this).debug(`[${
+T}
+] sending request`,us({
+retryOfRequestLogID:i,method:d.method,url:g,options:d,headers:p.headers}
+)),!((l=d.signal)===null||l===void 0)&&l.aborted)throw new dh;
+const C=new AbortController,x=await this.fetchWithTimeout(g,p,_,C).catch(ch),R=Date.now();
+if(x instanceof globalThis.Error){
+const N=`retrying, ${
+n}
+ attempts remaining`;
+if(!((u=d.signal)===null||u===void 0)&&u.aborted)throw new dh;
+const O=uh(x)||/timed? ?out/i.test(String(x)+("cause"in x?String(x.cause):""));
+if(n)return xt(this).info(`[${
+T}
+] connection ${
+O?"timed out":"failed"}
+ - ${
+N}
+`),xt(this).debug(`[${
+T}
+] connection ${
+O?"timed out":"failed"}
+ (${
+N}
+)`,us({
+retryOfRequestLogID:i,url:g,durationMs:R-A,message:x.message}
+)),this.retryRequest(d,n,i??T);
+throw xt(this).info(`[${
+T}
+] connection ${
+O?"timed out":"failed"}
+ - error;
+ no more retries left`),xt(this).debug(`[${
+T}
+] connection ${
+O?"timed out":"failed"}
+ (error;
+ no more retries left)`,us({
+retryOfRequestLogID:i,url:g,durationMs:R-A,message:x.message}
+)),O?new kE:new bu({
+cause:x}
+)}
+const k=`[${
+T}
+${
+w}
+] ${
+p.method}
+ ${
+g}
+ ${
+x.ok?"succeeded":"failed"}
+ with status ${
+x.status}
+ in ${
+R-A}
+ms`;
+if(!x.ok){
+const N=await this.shouldRetry(x);
+if(n&&N){
+const j=`retrying, ${
+n}
+ attempts remaining`;
+return await QO(x.body),xt(this).info(`${
+k}
+ - ${
+j}
+`),xt(this).debug(`[${
+T}
+] response error (${
+j}
+)`,us({
+retryOfRequestLogID:i,url:x.url,status:x.status,headers:x.headers,durationMs:R-A}
+)),this.retryRequest(d,n,i??T,x.headers)}
+const O=N?"error;
+ no more retries left":"error;
+ not retryable";
+xt(this).info(`${
+k}
+ - ${
+O}
+`);
+const F=await x.text().catch(j=>ch(j).message),z=zO(F),G=z?void 0:F;
+throw xt(this).debug(`[${
+T}
+] response error (${
+O}
+)`,us({
+retryOfRequestLogID:i,url:x.url,status:x.status,headers:x.headers,message:G,durationMs:Date.now()-A}
+)),this.makeStatusError(x.status,z,G,x.headers)}
+return xt(this).info(k),xt(this).debug(`[${
+T}
+] response start`,us({
+retryOfRequestLogID:i,url:x.url,status:x.status,headers:x.headers,durationMs:R-A}
+)),{
+response:x,options:d,controller:C,requestLogID:T,retryOfRequestLogID:i,startTime:A}
+}
+async fetchWithTimeout(e,n,i,r){
+const l=n||{
+}
+,{
+signal:u,method:d}
+=l,h=lu(l,["signal","method"]);
+u&&u.addEventListener("abort",()=>r.abort());
+const p=setTimeout(()=>r.abort(),i),g=globalThis.ReadableStream&&h.body instanceof globalThis.ReadableStream||typeof h.body=="object"&&h.body!==null&&Symbol.asyncIterator in h.body,_=Object.assign(Object.assign(Object.assign({
+signal:r.signal}
+,g?{
+duplex:"half"}
+:{
+}
+),{
+method:"GET"}
+),h);
+d&&(_.method=d.toUpperCase());
+try{
+return await this.fetch.call(void 0,e,_)}
+finally{
+clearTimeout(p)}
+}
+async shouldRetry(e){
+const n=e.headers.get("x-should-retry");
+return n==="true"?!0:n==="false"?!1:e.status===408||e.status===409||e.status===429||e.status>=500}
+async retryRequest(e,n,i,r){
+var l;
+let u;
+const d=r==null?void 0:r.get("retry-after-ms");
+if(d){
+const p=parseFloat(d);
+Number.isNaN(p)||(u=p)}
+const h=r==null?void 0:r.get("retry-after");
+if(h&&!u){
+const p=parseFloat(h);
+Number.isNaN(p)?u=Date.parse(h)-Date.now():u=p*1e3}
+if(!(u&&0<=u&&u<60*1e3)){
+const p=(l=e.maxRetries)!==null&&l!==void 0?l:this.maxRetries;
+u=this.calculateDefaultRetryTimeoutMillis(n,p)}
+return await $O(u),this.makeRequest(e,n-1,i)}
+calculateDefaultRetryTimeoutMillis(e,n){
+const l=n-e,u=Math.min(.5*Math.pow(2,l),8),d=1-Math.random()*.25;
+return u*d*1e3}
+async buildRequest(e,{
+retryCount:n=0}
+={
+}
+){
+var i,r,l;
+const u=Object.assign({
+}
+,e),{
+method:d,path:h,query:p,defaultBaseURL:g}
+=u,_=this.buildURL(h,p,g);
+"timeout"in u&&HO("timeout",u.timeout),u.timeout=(i=u.timeout)!==null&&i!==void 0?i:this.timeout;
+const{
+bodyHeaders:T,body:w}
+=this.buildBody({
+options:u}
+),A=await this.buildHeaders({
+options:e,method:d,bodyHeaders:T,retryCount:n}
+);
+return{
+req:Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({
+method:d,headers:A}
+,u.signal&&{
+signal:u.signal}
+),globalThis.ReadableStream&&w instanceof globalThis.ReadableStream&&{
+duplex:"half"}
+),w&&{
+body:w}
+),(r=this.fetchOptions)!==null&&r!==void 0?r:{
+}
+),(l=u.fetchOptions)!==null&&l!==void 0?l:{
+}
+),url:_,timeout:u.timeout}
+}
+async buildHeaders({
+options:e,method:n,bodyHeaders:i,retryCount:r}
+){
+let l={
+}
+;
+this.idempotencyHeader&&n!=="get"&&(e.idempotencyKey||(e.idempotencyKey=this.defaultIdempotencyKey()),l[this.idempotencyHeader]=e.idempotencyKey);
+const u=await this.authHeaders(e);
+let d=Ir([l,Object.assign(Object.assign({
+Accept:"application/json","User-Agent":this.getUserAgent(),"X-Stainless-Retry-Count":String(r)}
+,e.timeout?{
+"X-Stainless-Timeout":String(Math.trunc(e.timeout/1e3))}
+:{
+}
+),jO()),this._options.defaultHeaders,i,e.headers,u]);
+return this.validateHeaders(d),d.values}
+buildBody({
+options:{
+body:e,headers:n}
+}
+){
+if(!e)return{
+bodyHeaders:void 0,body:void 0}
+;
+const i=Ir([n]);
+return ArrayBuffer.isView(e)||e instanceof ArrayBuffer||e instanceof DataView||typeof e=="string"&&i.values.has("content-type")||globalThis.Blob&&e instanceof globalThis.Blob||e instanceof FormData||e instanceof URLSearchParams||globalThis.ReadableStream&&e instanceof globalThis.ReadableStream?{
+bodyHeaders:void 0,body:e}
+:typeof e=="object"&&(Symbol.asyncIterator in e||Symbol.iterator in e&&"next"in e&&typeof e.next=="function")?{
+bodyHeaders:void 0,body:XO(e)}
+:this.encoder({
+body:e,headers:i}
+)}
+}
+Cu.DEFAULT_TIMEOUT=6e4;
+class pt extends Cu{
+constructor(){
+super(...arguments),this.interactions=new jE(this)}
+}
+XE=pt;
+pt.GeminiNextGenAPIClient=XE;
+pt.GeminiNextGenAPIClientError=pn;
+pt.APIError=Mt;
+pt.APIConnectionError=bu;
+pt.APIConnectionTimeoutError=kE;
+pt.APIUserAbortError=dh;
+pt.NotFoundError=OE;
+pt.ConflictError=VE;
+pt.RateLimitError=FE;
+pt.BadRequestError=UE;
+pt.AuthenticationError=PE;
+pt.InternalServerError=GE;
+pt.PermissionDeniedError=LE;
+pt.UnprocessableEntityError=BE;
+pt.toFile=sV;
+pt.Interactions=jE;
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */function yV(t,e){
+const n={
+}
+,i=f(t,["name"]);
+return i!=null&&m(n,["_url","name"],i),n}
+function vV(t,e){
+const n={
+}
+,i=f(t,["name"]);
+return i!=null&&m(n,["_url","name"],i),n}
+function _V(t,e){
+const n={
+}
+,i=f(t,["sdkHttpResponse"]);
+return i!=null&&m(n,["sdkHttpResponse"],i),n}
+function TV(t,e){
+const n={
+}
+,i=f(t,["sdkHttpResponse"]);
+return i!=null&&m(n,["sdkHttpResponse"],i),n}
+function SV(t,e,n){
+const i={
+}
+;
+if(f(t,["validationDataset"])!==void 0)throw new Error("validationDataset parameter is not supported in Gemini API.");
+const r=f(t,["tunedModelDisplayName"]);
+if(e!==void 0&&r!=null&&m(e,["displayName"],r),f(t,["description"])!==void 0)throw new Error("description parameter is not supported in Gemini API.");
+const l=f(t,["epochCount"]);
+e!==void 0&&l!=null&&m(e,["tuningTask","hyperparameters","epochCount"],l);
+const u=f(t,["learningRateMultiplier"]);
+if(u!=null&&m(i,["tuningTask","hyperparameters","learningRateMultiplier"],u),f(t,["exportLastCheckpointOnly"])!==void 0)throw new Error("exportLastCheckpointOnly parameter is not supported in Gemini API.");
+if(f(t,["preTunedModelCheckpointId"])!==void 0)throw new Error("preTunedModelCheckpointId parameter is not supported in Gemini API.");
+if(f(t,["adapterSize"])!==void 0)throw new Error("adapterSize parameter is not supported in Gemini API.");
+const d=f(t,["batchSize"]);
+e!==void 0&&d!=null&&m(e,["tuningTask","hyperparameters","batchSize"],d);
+const h=f(t,["learningRate"]);
+if(e!==void 0&&h!=null&&m(e,["tuningTask","hyperparameters","learningRate"],h),f(t,["labels"])!==void 0)throw new Error("labels parameter is not supported in Gemini API.");
+if(f(t,["beta"])!==void 0)throw new Error("beta parameter is not supported in Gemini API.");
+return i}
+function wV(t,e,n){
+const i={
+}
+;
+let r=f(n,["config","method"]);
+if(r===void 0&&(r="SUPERVISED_FINE_TUNING"),r==="SUPERVISED_FINE_TUNING"){
+const w=f(t,["validationDataset"]);
+e!==void 0&&w!=null&&m(e,["supervisedTuningSpec"],BT(w))}
+else if(r==="PREFERENCE_TUNING"){
+const w=f(t,["validationDataset"]);
+e!==void 0&&w!=null&&m(e,["preferenceOptimizationSpec"],BT(w))}
+const l=f(t,["tunedModelDisplayName"]);
+e!==void 0&&l!=null&&m(e,["tunedModelDisplayName"],l);
+const u=f(t,["description"]);
+e!==void 0&&u!=null&&m(e,["description"],u);
+let d=f(n,["config","method"]);
+if(d===void 0&&(d="SUPERVISED_FINE_TUNING"),d==="SUPERVISED_FINE_TUNING"){
+const w=f(t,["epochCount"]);
+e!==void 0&&w!=null&&m(e,["supervisedTuningSpec","hyperParameters","epochCount"],w)}
+else if(d==="PREFERENCE_TUNING"){
+const w=f(t,["epochCount"]);
+e!==void 0&&w!=null&&m(e,["preferenceOptimizationSpec","hyperParameters","epochCount"],w)}
+let h=f(n,["config","method"]);
+if(h===void 0&&(h="SUPERVISED_FINE_TUNING"),h==="SUPERVISED_FINE_TUNING"){
+const w=f(t,["learningRateMultiplier"]);
+e!==void 0&&w!=null&&m(e,["supervisedTuningSpec","hyperParameters","learningRateMultiplier"],w)}
+else if(h==="PREFERENCE_TUNING"){
+const w=f(t,["learningRateMultiplier"]);
+e!==void 0&&w!=null&&m(e,["preferenceOptimizationSpec","hyperParameters","learningRateMultiplier"],w)}
+let p=f(n,["config","method"]);
+if(p===void 0&&(p="SUPERVISED_FINE_TUNING"),p==="SUPERVISED_FINE_TUNING"){
+const w=f(t,["exportLastCheckpointOnly"]);
+e!==void 0&&w!=null&&m(e,["supervisedTuningSpec","exportLastCheckpointOnly"],w)}
+else if(p==="PREFERENCE_TUNING"){
+const w=f(t,["exportLastCheckpointOnly"]);
+e!==void 0&&w!=null&&m(e,["preferenceOptimizationSpec","exportLastCheckpointOnly"],w)}
+let g=f(n,["config","method"]);
+if(g===void 0&&(g="SUPERVISED_FINE_TUNING"),g==="SUPERVISED_FINE_TUNING"){
+const w=f(t,["adapterSize"]);
+e!==void 0&&w!=null&&m(e,["supervisedTuningSpec","hyperParameters","adapterSize"],w)}
+else if(g==="PREFERENCE_TUNING"){
+const w=f(t,["adapterSize"]);
+e!==void 0&&w!=null&&m(e,["preferenceOptimizationSpec","hyperParameters","adapterSize"],w)}
+if(f(t,["batchSize"])!==void 0)throw new Error("batchSize parameter is not supported in Vertex AI.");
+if(f(t,["learningRate"])!==void 0)throw new Error("learningRate parameter is not supported in Vertex AI.");
+const _=f(t,["labels"]);
+e!==void 0&&_!=null&&m(e,["labels"],_);
+const T=f(t,["beta"]);
+return e!==void 0&&T!=null&&m(e,["preferenceOptimizationSpec","hyperParameters","beta"],T),i}
+function EV(t,e){
+const n={
+}
+,i=f(t,["baseModel"]);
+i!=null&&m(n,["baseModel"],i);
+const r=f(t,["preTunedModel"]);
+r!=null&&m(n,["preTunedModel"],r);
+const l=f(t,["trainingDataset"]);
+l!=null&&UV(l);
+const u=f(t,["config"]);
+return u!=null&&SV(u,n),n}
+function bV(t,e){
+const n={
+}
+,i=f(t,["baseModel"]);
+i!=null&&m(n,["baseModel"],i);
+const r=f(t,["preTunedModel"]);
+r!=null&&m(n,["preTunedModel"],r);
+const l=f(t,["trainingDataset"]);
+l!=null&&PV(l,n,e);
+const u=f(t,["config"]);
+return u!=null&&wV(u,n,e),n}
+function AV(t,e){
+const n={
+}
+,i=f(t,["name"]);
+return i!=null&&m(n,["_url","name"],i),n}
+function CV(t,e){
+const n={
+}
+,i=f(t,["name"]);
+return i!=null&&m(n,["_url","name"],i),n}
+function xV(t,e,n){
+const i={
+}
+,r=f(t,["pageSize"]);
+e!==void 0&&r!=null&&m(e,["_query","pageSize"],r);
+const l=f(t,["pageToken"]);
+e!==void 0&&l!=null&&m(e,["_query","pageToken"],l);
+const u=f(t,["filter"]);
+return e!==void 0&&u!=null&&m(e,["_query","filter"],u),i}
+function RV(t,e,n){
+const i={
+}
+,r=f(t,["pageSize"]);
+e!==void 0&&r!=null&&m(e,["_query","pageSize"],r);
+const l=f(t,["pageToken"]);
+e!==void 0&&l!=null&&m(e,["_query","pageToken"],l);
+const u=f(t,["filter"]);
+return e!==void 0&&u!=null&&m(e,["_query","filter"],u),i}
+function NV(t,e){
+const n={
+}
+,i=f(t,["config"]);
+return i!=null&&xV(i,n),n}
+function MV(t,e){
+const n={
+}
+,i=f(t,["config"]);
+return i!=null&&RV(i,n),n}
+function IV(t,e){
+const n={
+}
+,i=f(t,["sdkHttpResponse"]);
+i!=null&&m(n,["sdkHttpResponse"],i);
+const r=f(t,["nextPageToken"]);
+r!=null&&m(n,["nextPageToken"],r);
+const l=f(t,["tunedModels"]);
+if(l!=null){
+let u=l;
+Array.isArray(u)&&(u=u.map(d=>QE(d))),m(n,["tuningJobs"],u)}
+return n}
+function DV(t,e){
+const n={
+}
+,i=f(t,["sdkHttpResponse"]);
+i!=null&&m(n,["sdkHttpResponse"],i);
+const r=f(t,["nextPageToken"]);
+r!=null&&m(n,["nextPageToken"],r);
+const l=f(t,["tuningJobs"]);
+if(l!=null){
+let u=l;
+Array.isArray(u)&&(u=u.map(d=>ph(d))),m(n,["tuningJobs"],u)}
+return n}
+function kV(t,e){
+const n={
+}
+,i=f(t,["name"]);
+i!=null&&m(n,["model"],i);
+const r=f(t,["name"]);
+return r!=null&&m(n,["endpoint"],r),n}
+function UV(t,e){
+const n={
+}
+;
+if(f(t,["gcsUri"])!==void 0)throw new Error("gcsUri parameter is not supported in Gemini API.");
+if(f(t,["vertexDatasetResource"])!==void 0)throw new Error("vertexDatasetResource parameter is not supported in Gemini API.");
+const i=f(t,["examples"]);
+if(i!=null){
+let r=i;
+Array.isArray(r)&&(r=r.map(l=>l)),m(n,["examples","examples"],r)}
+return n}
+function PV(t,e,n){
+const i={
+}
+;
+let r=f(n,["config","method"]);
+if(r===void 0&&(r="SUPERVISED_FINE_TUNING"),r==="SUPERVISED_FINE_TUNING"){
+const u=f(t,["gcsUri"]);
+e!==void 0&&u!=null&&m(e,["supervisedTuningSpec","trainingDatasetUri"],u)}
+else if(r==="PREFERENCE_TUNING"){
+const u=f(t,["gcsUri"]);
+e!==void 0&&u!=null&&m(e,["preferenceOptimizationSpec","trainingDatasetUri"],u)}
+let l=f(n,["config","method"]);
+if(l===void 0&&(l="SUPERVISED_FINE_TUNING"),l==="SUPERVISED_FINE_TUNING"){
+const u=f(t,["vertexDatasetResource"]);
+e!==void 0&&u!=null&&m(e,["supervisedTuningSpec","trainingDatasetUri"],u)}
+else if(l==="PREFERENCE_TUNING"){
+const u=f(t,["vertexDatasetResource"]);
+e!==void 0&&u!=null&&m(e,["preferenceOptimizationSpec","trainingDatasetUri"],u)}
+if(f(t,["examples"])!==void 0)throw new Error("examples parameter is not supported in Vertex AI.");
+return i}
+function QE(t,e){
+const n={
+}
+,i=f(t,["sdkHttpResponse"]);
+i!=null&&m(n,["sdkHttpResponse"],i);
+const r=f(t,["name"]);
+r!=null&&m(n,["name"],r);
+const l=f(t,["state"]);
+l!=null&&m(n,["state"],pE(l));
+const u=f(t,["createTime"]);
+u!=null&&m(n,["createTime"],u);
+const d=f(t,["tuningTask","startTime"]);
+d!=null&&m(n,["startTime"],d);
+const h=f(t,["tuningTask","completeTime"]);
+h!=null&&m(n,["endTime"],h);
+const p=f(t,["updateTime"]);
+p!=null&&m(n,["updateTime"],p);
+const g=f(t,["description"]);
+g!=null&&m(n,["description"],g);
+const _=f(t,["baseModel"]);
+_!=null&&m(n,["baseModel"],_);
+const T=f(t,["_self"]);
+return T!=null&&m(n,["tunedModel"],kV(T)),n}
+function ph(t,e){
+const n={
+}
+,i=f(t,["sdkHttpResponse"]);
+i!=null&&m(n,["sdkHttpResponse"],i);
+const r=f(t,["name"]);
+r!=null&&m(n,["name"],r);
+const l=f(t,["state"]);
+l!=null&&m(n,["state"],pE(l));
+const u=f(t,["createTime"]);
+u!=null&&m(n,["createTime"],u);
+const d=f(t,["startTime"]);
+d!=null&&m(n,["startTime"],d);
+const h=f(t,["endTime"]);
+h!=null&&m(n,["endTime"],h);
+const p=f(t,["updateTime"]);
+p!=null&&m(n,["updateTime"],p);
+const g=f(t,["error"]);
+g!=null&&m(n,["error"],g);
+const _=f(t,["description"]);
+_!=null&&m(n,["description"],_);
+const T=f(t,["baseModel"]);
+T!=null&&m(n,["baseModel"],T);
+const w=f(t,["tunedModel"]);
+w!=null&&m(n,["tunedModel"],w);
+const A=f(t,["preTunedModel"]);
+A!=null&&m(n,["preTunedModel"],A);
+const C=f(t,["supervisedTuningSpec"]);
+C!=null&&m(n,["supervisedTuningSpec"],C);
+const x=f(t,["preferenceOptimizationSpec"]);
+x!=null&&m(n,["preferenceOptimizationSpec"],x);
+const R=f(t,["tuningDataStats"]);
+R!=null&&m(n,["tuningDataStats"],R);
+const k=f(t,["encryptionSpec"]);
+k!=null&&m(n,["encryptionSpec"],k);
+const N=f(t,["partnerModelTuningSpec"]);
+N!=null&&m(n,["partnerModelTuningSpec"],N);
+const O=f(t,["customBaseModel"]);
+O!=null&&m(n,["customBaseModel"],O);
+const F=f(t,["experiment"]);
+F!=null&&m(n,["experiment"],F);
+const z=f(t,["labels"]);
+z!=null&&m(n,["labels"],z);
+const G=f(t,["outputUri"]);
+G!=null&&m(n,["outputUri"],G);
+const X=f(t,["pipelineJob"]);
+X!=null&&m(n,["pipelineJob"],X);
+const j=f(t,["serviceAccount"]);
+j!=null&&m(n,["serviceAccount"],j);
+const oe=f(t,["tunedModelDisplayName"]);
+oe!=null&&m(n,["tunedModelDisplayName"],oe);
+const he=f(t,["veoTuningSpec"]);
+return he!=null&&m(n,["veoTuningSpec"],he),n}
+function LV(t,e){
+const n={
+}
+,i=f(t,["sdkHttpResponse"]);
+i!=null&&m(n,["sdkHttpResponse"],i);
+const r=f(t,["name"]);
+r!=null&&m(n,["name"],r);
+const l=f(t,["metadata"]);
+l!=null&&m(n,["metadata"],l);
+const u=f(t,["done"]);
+u!=null&&m(n,["done"],u);
+const d=f(t,["error"]);
+return d!=null&&m(n,["error"],d),n}
+function BT(t,e){
+const n={
+}
+,i=f(t,["gcsUri"]);
+i!=null&&m(n,["validationDatasetUri"],i);
+const r=f(t,["vertexDatasetResource"]);
+return r!=null&&m(n,["validationDatasetUri"],r),n}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */class OV extends ni{
+constructor(e){
+super(),this.apiClient=e,this.list=async(n={
+}
+)=>new vs(ti.PAGED_ITEM_TUNING_JOBS,i=>this.listInternal(i),await this.listInternal(n),n),this.get=async n=>await this.getInternal(n),this.tune=async n=>{
+var i;
+if(this.apiClient.isVertexAI())if(n.baseModel.startsWith("projects/")){
+const r={
+tunedModelName:n.baseModel}
+;
+!((i=n.config)===null||i===void 0)&&i.preTunedModelCheckpointId&&(r.checkpointId=n.config.preTunedModelCheckpointId);
+const l=Object.assign(Object.assign({
+}
+,n),{
+preTunedModel:r}
+);
+return l.baseModel=void 0,await this.tuneInternal(l)}
+else{
+const r=Object.assign({
+}
+,n);
+return await this.tuneInternal(r)}
+else{
+const r=Object.assign({
+}
+,n),l=await this.tuneMldevInternal(r);
+let u="";
+return l.metadata!==void 0&&l.metadata.tunedModel!==void 0?u=l.metadata.tunedModel:l.name!==void 0&&l.name.includes("/operations/")&&(u=l.name.split("/operations/")[0]),{
+name:u,state:th.JOB_STATE_QUEUED}
+}
+}
+}
+async getInternal(e){
+var n,i,r,l;
+let u,d="",h={
+}
+;
+if(this.apiClient.isVertexAI()){
+const p=CV(e);
+return d=Z("{
+name}
+",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"GET",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(g=>g.json().then(_=>{
+const T=_;
+return T.sdkHttpResponse={
+headers:g.headers}
+,T}
+)),u.then(g=>ph(g))}
+else{
+const p=AV(e);
+return d=Z("{
+name}
+",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"GET",httpOptions:(r=e.config)===null||r===void 0?void 0:r.httpOptions,abortSignal:(l=e.config)===null||l===void 0?void 0:l.abortSignal}
+).then(g=>g.json().then(_=>{
+const T=_;
+return T.sdkHttpResponse={
+headers:g.headers}
+,T}
+)),u.then(g=>QE(g))}
+}
+async listInternal(e){
+var n,i,r,l;
+let u,d="",h={
+}
+;
+if(this.apiClient.isVertexAI()){
+const p=MV(e);
+return d=Z("tuningJobs",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"GET",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(g=>g.json().then(_=>{
+const T=_;
+return T.sdkHttpResponse={
+headers:g.headers}
+,T}
+)),u.then(g=>{
+const _=DV(g),T=new dT;
+return Object.assign(T,_),T}
+)}
+else{
+const p=NV(e);
+return d=Z("tunedModels",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"GET",httpOptions:(r=e.config)===null||r===void 0?void 0:r.httpOptions,abortSignal:(l=e.config)===null||l===void 0?void 0:l.abortSignal}
+).then(g=>g.json().then(_=>{
+const T=_;
+return T.sdkHttpResponse={
+headers:g.headers}
+,T}
+)),u.then(g=>{
+const _=IV(g),T=new dT;
+return Object.assign(T,_),T}
+)}
+}
+async cancel(e){
+var n,i,r,l;
+let u,d="",h={
+}
+;
+if(this.apiClient.isVertexAI()){
+const p=vV(e);
+return d=Z("{
+name}
+:cancel",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"POST",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(g=>g.json().then(_=>{
+const T=_;
+return T.sdkHttpResponse={
+headers:g.headers}
+,T}
+)),u.then(g=>{
+const _=TV(g),T=new fT;
+return Object.assign(T,_),T}
+)}
+else{
+const p=yV(e);
+return d=Z("{
+name}
+:cancel",p._url),h=p._query,delete p._url,delete p._query,u=this.apiClient.request({
+path:d,queryParams:h,body:JSON.stringify(p),httpMethod:"POST",httpOptions:(r=e.config)===null||r===void 0?void 0:r.httpOptions,abortSignal:(l=e.config)===null||l===void 0?void 0:l.abortSignal}
+).then(g=>g.json().then(_=>{
+const T=_;
+return T.sdkHttpResponse={
+headers:g.headers}
+,T}
+)),u.then(g=>{
+const _=_V(g),T=new fT;
+return Object.assign(T,_),T}
+)}
+}
+async tuneInternal(e){
+var n,i;
+let r,l="",u={
+}
+;
+if(this.apiClient.isVertexAI()){
+const d=bV(e,e);
+return l=Z("tuningJobs",d._url),u=d._query,delete d._url,delete d._query,r=this.apiClient.request({
+path:l,queryParams:u,body:JSON.stringify(d),httpMethod:"POST",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(h=>h.json().then(p=>{
+const g=p;
+return g.sdkHttpResponse={
+headers:h.headers}
+,g}
+)),r.then(h=>ph(h))}
+else throw new Error("This method is only supported by the Vertex AI.")}
+async tuneMldevInternal(e){
+var n,i;
+let r,l="",u={
+}
+;
+if(this.apiClient.isVertexAI())throw new Error("This method is only supported by the Gemini Developer API.");
+{
+const d=EV(e);
+return l=Z("tunedModels",d._url),u=d._query,delete d._url,delete d._query,r=this.apiClient.request({
+path:l,queryParams:u,body:JSON.stringify(d),httpMethod:"POST",httpOptions:(n=e.config)===null||n===void 0?void 0:n.httpOptions,abortSignal:(i=e.config)===null||i===void 0?void 0:i.abortSignal}
+).then(h=>h.json().then(p=>{
+const g=p;
+return g.sdkHttpResponse={
+headers:h.headers}
+,g}
+)),r.then(h=>LV(h))}
+}
+}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */class VV{
+async download(e,n){
+throw new Error("Download to file is not supported in the browser, please use a browser compliant download like an <a> tag.")}
+}
+const BV=1024*1024*8,FV=3,GV=1e3,qV=2,cu="x-goog-upload-status";
+async function HV(t,e,n){
+var i;
+const r=await ZE(t,e,n),l=await(r==null?void 0:r.json());
+if(((i=r==null?void 0:r.headers)===null||i===void 0?void 0:i[cu])!=="final")throw new Error("Failed to upload file: Upload status is not finalized.");
+return l.file}
+async function zV(t,e,n){
+var i;
+const r=await ZE(t,e,n),l=await(r==null?void 0:r.json());
+if(((i=r==null?void 0:r.headers)===null||i===void 0?void 0:i[cu])!=="final")throw new Error("Failed to upload file: Upload status is not finalized.");
+const u=lE(l),d=new rp;
+return Object.assign(d,u),d}
+async function ZE(t,e,n){
+var i,r;
+let l=0,u=0,d=new ih(new Response),h="upload";
+for(l=t.size;
+u<l;
+){
+const p=Math.min(BV,l-u),g=t.slice(u,u+p);
+u+p>=l&&(h+=", finalize");
+let _=0,T=GV;
+for(;
+_<FV&&(d=await n.request({
+path:"",body:g,httpMethod:"POST",httpOptions:{
+apiVersion:"",baseUrl:e,headers:{
+"X-Goog-Upload-Command":h,"X-Goog-Upload-Offset":String(u),"Content-Length":String(p)}
+}
+}
+),!(!((i=d==null?void 0:d.headers)===null||i===void 0)&&i[cu]));
+)_++,await JV(T),T=T*qV;
+if(u+=p,((r=d==null?void 0:d.headers)===null||r===void 0?void 0:r[cu])!=="active")break;
+if(l<=u)throw new Error("All content has been uploaded, but the upload status is not finalized.")}
+return d}
+async function $V(t){
+return{
+size:t.size,type:t.type}
+}
+function JV(t){
+return new Promise(e=>setTimeout(e,t))}
+class KV{
+async upload(e,n,i){
+if(typeof e=="string")throw new Error("File path is not supported in browser uploader.");
+return await HV(e,n,i)}
+async uploadToFileSearchStore(e,n,i){
+if(typeof e=="string")throw new Error("File path is not supported in browser uploader.");
+return await zV(e,n,i)}
+async stat(e){
+if(typeof e=="string")throw new Error("File path is not supported in browser uploader.");
+return await $V(e)}
+}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */class YV{
+create(e,n,i){
+return new jV(e,n,i)}
+}
+class jV{
+constructor(e,n,i){
+this.url=e,this.headers=n,this.callbacks=i}
+connect(){
+this.ws=new WebSocket(this.url),this.ws.onopen=this.callbacks.onopen,this.ws.onerror=this.callbacks.onerror,this.ws.onclose=this.callbacks.onclose,this.ws.onmessage=this.callbacks.onmessage}
+send(e){
+if(this.ws===void 0)throw new Error("WebSocket is not connected");
+this.ws.send(e)}
+close(){
+if(this.ws===void 0)throw new Error("WebSocket is not connected");
+this.ws.close()}
+}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */const FT="x-goog-api-key";
+class WV{
+constructor(e){
+this.apiKey=e}
+async addAuthHeaders(e,n){
+if(e.get(FT)===null){
+if(this.apiKey.startsWith("auth_tokens/"))throw new Error("Ephemeral tokens are only supported by the live API.");
+if(!this.apiKey)throw new Error("API key is missing. Please provide a valid API key.");
+e.append(FT,this.apiKey)}
+}
+}
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */const XV="gl-node/";
+class QV{
+get interactions(){
+if(this._interactions!==void 0)return this._interactions;
+console.warn("GoogleGenAI.interactions: Interactions usage is experimental and may change in future versions.");
+const e=this.httpOptions;
+e!=null&&e.extraBody&&console.warn("GoogleGenAI.interactions: Client level httpOptions.extraBody is not supported by the interactions client and will be ignored.");
+const n=new pt({
+baseURL:this.apiClient.getBaseUrl(),apiKey:this.apiKey,apiVersion:this.apiClient.getApiVersion(),clientAdapter:this.apiClient,defaultHeaders:this.apiClient.getDefaultHeaders(),timeout:e==null?void 0:e.timeout}
+);
+return this._interactions=n.interactions,this._interactions}
+constructor(e){
+var n;
+if(e.apiKey==null)throw new Error("An API Key must be set when running in a browser");
+if(e.project||e.location)throw new Error("Vertex AI project based authentication is not supported on browser runtimes. Please do not provide a project or location.");
+this.vertexai=(n=e.vertexai)!==null&&n!==void 0?n:!1,this.apiKey=e.apiKey;
+const i=$D(e.httpOptions,e.vertexai,void 0,void 0);
+i&&(e.httpOptions?e.httpOptions.baseUrl=i:e.httpOptions={
+baseUrl:i}
+),this.apiVersion=e.apiVersion,this.httpOptions=e.httpOptions;
+const r=new WV(this.apiKey);
+this.apiClient=new $L({
+auth:r,apiVersion:this.apiVersion,apiKey:this.apiKey,vertexai:this.vertexai,httpOptions:this.httpOptions,userAgentExtra:XV+"web",uploader:new KV,downloader:new VV}
+),this.models=new cO(this.apiClient),this.live=new sO(this.apiClient,r,new YV),this.batches=new T2(this.apiClient),this.chats=new tU(this.models,this.apiClient),this.caches=new Q2(this.apiClient),this.files=new dU(this.apiClient),this.operations=new dO(this.apiClient),this.authTokens=new xO(this.apiClient),this.tunings=new OV(this.apiClient),this.fileSearchStores=new PO(this.apiClient)}
+}
+const ZV=async t=>{
+var i;
+const e=new QV({
+apiKey:void 0}
+),n=`
+    Act as a world-class conversion rate optimization (CRO) expert. 
+    Analyze the following website context or URL: "${
+t}
+".
+    Provide a professional conversion critique in JSON format.
+    Include a conversion score (0-100), a short summary critique, and 3 actionable recommendations.
+  `;
+try{
+const l=((i=(await e.models.generateContent({
+model:"gemini-3-pro-preview",contents:n,config:{
+responseMimeType:"application/json",responseSchema:{
+type:Wt.OBJECT,properties:{
+score:{
+type:Wt.NUMBER}
+,critique:{
+type:Wt.STRING}
+,recommendations:{
+type:Wt.ARRAY,items:{
+type:Wt.STRING}
+}
+}
+,required:["score","critique","recommendations"]}
+}
+}
+)).text)==null?void 0:i.trim())||"{
+}
+";
+return JSON.parse(l)}
+catch(r){
+throw console.error("Gemini Analysis Error:",r),r}
+}
+,e5=()=>{
+const[t,e]=J.useState(""),[n,i]=J.useState(!1),[r,l]=J.useState(null),u=async d=>{
+if(d.preventDefault(),!!t.trim()){
+i(!0),l(null);
+try{
+const h=await ZV(t);
+l(h)}
+catch(h){
+console.error(h)}
+finally{
+i(!1)}
+}
+}
+;
+return E.jsxs("section",{
+id:"audit",className:"relative py-40 bg-black overflow-hidden",children:[E.jsx("div",{
+className:"absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-[#BFF549]/10 rounded-full blur-[180px] pointer-events-none z-0"}
+),E.jsx("div",{
+className:"container relative z-10 mx-auto px-6",children:E.jsxs("div",{
+className:"max-w-5xl mx-auto",children:[E.jsx("div",{
+className:"text-center mb-20",children:E.jsxs(ye.div,{
+initial:{
+opacity:0,y:20}
+,whileInView:{
+opacity:1,y:0}
+,viewport:{
+once:!0}
+,children:[E.jsxs("h2",{
+className:"text-5xl md:text-[84px] font-black leading-[0.9] tracking-tighter mb-8 uppercase",children:["FREE AI ",E.jsx("span",{
+className:"text-transparent border-white/20 [-webkit-text-stroke:1px_white]",children:"CONVERSION"}
+)," ",E.jsx("br",{
+}
+),E.jsx("span",{
+className:"text-[#BFF549]",children:"CRITIQUE"}
+)]}
+),E.jsx("p",{
+className:"text-xl md:text-2xl text-[#99A1AF] font-light max-w-3xl mx-auto",children:"Paste your URL or explain your funnel. Our AI CRO expert identifies profit leaks in under 10 seconds."}
+)]}
+)}
+),E.jsxs("div",{
+className:"relative",children:[E.jsx("div",{
+className:"absolute inset-0 bg-gradient-to-r from-[#BFF549]/20 to-transparent blur-3xl opacity-20 -z-10"}
+),E.jsxs("form",{
+onSubmit:u,className:"bg-white/[0.03] border border-white/10 hover:border-white/20 p-2 md:p-3 rounded-[40px] flex flex-col md:flex-row gap-4 backdrop-blur-3xl shadow-2xl transition-all duration-300",children:[E.jsx("input",{
+type:"text",value:t,onChange:d=>e(d.target.value),placeholder:"Ex: My Shopify store landing page isn't converting traffic...",className:"flex-1 bg-transparent border-none rounded-[32px] px-8 py-6 text-white placeholder:text-white/30 focus:ring-0 outline-none text-xl focus:placeholder:text-white/50 transition-all"}
+),E.jsx("button",{
+disabled:n,className:"px-10 py-6 bg-[#BFF549] text-black font-black rounded-[32px] flex items-center justify-center gap-3 hover:bg-white hover:scale-105 transition-all duration-300 transform active:scale-95 disabled:opacity-50 disabled:hover:scale-100 shadow-lg hover:shadow-[0_0_40px_rgba(191,245,73,0.5)]",children:n?E.jsx(Ux,{
+className:"w-7 h-7 animate-spin"}
+):E.jsx(E.Fragment,{
+children:"Analyze Now"}
+)}
+)]}
+)]}
+),E.jsx(qw,{
+children:r&&E.jsxs(ye.div,{
+initial:{
+opacity:0,scale:.95,y:40}
+,animate:{
+opacity:1,scale:1,y:0}
+,exit:{
+opacity:0,scale:.95}
+,className:"mt-12 grid grid-cols-1 lg:grid-cols-12 gap-8",children:[E.jsxs("div",{
+className:"lg:col-span-4 bg-white/[0.03] border border-white/10 p-10 rounded-[40px] backdrop-blur-xl flex flex-col items-center justify-center text-center",children:[E.jsxs("div",{
+className:"relative mb-6",children:[E.jsxs("svg",{
+className:"w-40 h-40 transform -rotate-90",children:[E.jsx("circle",{
+cx:"80",cy:"80",r:"70",stroke:"currentColor",strokeWidth:"8",fill:"transparent",className:"text-white/5"}
+),E.jsx("circle",{
+cx:"80",cy:"80",r:"70",stroke:"currentColor",strokeWidth:"8",fill:"transparent",strokeDasharray:440,strokeDashoffset:440-440*r.score/100,className:"text-[#BFF549] transition-all duration-1000 ease-out"}
+)]}
+),E.jsxs("div",{
+className:"absolute inset-0 flex flex-col items-center justify-center",children:[E.jsx("span",{
+className:"text-4xl font-black",children:r.score}
+),E.jsx("span",{
+className:"text-[10px] uppercase font-bold text-[#99A1AF] tracking-widest",children:"Score"}
+)]}
+)]}
+),E.jsxs("div",{
+className:"flex items-center gap-2 px-4 py-1.5 bg-[#BFF549]/10 text-[#BFF549] rounded-full text-xs font-bold uppercase tracking-widest",children:[E.jsx(Yx,{
+className:"w-3 h-3"}
+)," Potential Found"]}
+)]}
+),E.jsxs("div",{
+className:"lg:col-span-8 space-y-8",children:[E.jsxs("div",{
+className:"bg-white/[0.03] border border-white/10 p-10 rounded-[40px] backdrop-blur-xl",children:[E.jsx("h4",{
+className:"text-[#BFF549] font-bold uppercase text-xs tracking-widest mb-6",children:"Expert Summary"}
+),E.jsxs("p",{
+className:"text-2xl text-white/90 font-light leading-relaxed",children:['"',r.critique,'"']}
+)]}
+),E.jsx("div",{
+className:"grid grid-cols-1 md:grid-cols-3 gap-4",children:r.recommendations.map((d,h)=>E.jsxs("div",{
+className:"bg-white/[0.03] border border-white/10 p-6 rounded-[30px] flex items-start gap-4",children:[E.jsx(Tx,{
+className:"w-5 h-5 text-[#BFF549] shrink-0 mt-1"}
+),E.jsx("span",{
+className:"text-sm text-[#99A1AF] leading-snug",children:d}
+)]}
+,h))}
+)]}
+)]}
+)}
+)]}
+)}
+)]}
+)}
+,t5=[{
+name:"Starter",subtitle:"For emerging brands",price:"4,500",features:["Custom Landing Page Design","Mobile-First Optimization","Basic SEO Implementation","5-Day Turnaround"],highlight:!1,color:"bg-blue-600"}
+,{
+name:"Growth",subtitle:"Most popular choice",price:"8,500",features:["Full 5-Page Website","Advanced CRO Strategy","CMS Integration","Interactive Motion Effects","Copywriting Assistance"],highlight:!0,color:"bg-[#BFF549]"}
+,{
+name:"Enterprise",subtitle:"For market leaders",price:"15,000+",features:["Complete Design System","Headless Architecture","A/B Testing Setup","Priority 24/7 Support","Monthly Conversion Audits"],highlight:!1,color:"bg-purple-600"}
+],n5=()=>E.jsxs("section",{
+id:"pricing",className:"py-32 bg-[#02040a] relative overflow-hidden overflow-x-hidden",children:[E.jsx("div",{
+className:"absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-white/[0.02] rounded-full blur-[120px] pointer-events-none"}
+),E.jsxs("div",{
+className:"container mx-auto px-6 relative z-10",children:[E.jsxs("div",{
+className:"text-center mb-24",children:[E.jsxs(ye.h2,{
+initial:{
+opacity:0,y:20}
+,whileInView:{
+opacity:1,y:0}
+,className:"text-4xl md:text-7xl font-black tracking-tighter text-white mb-6 uppercase",children:["INVEST IN ",E.jsx("span",{
+className:"text-[#BFF549]",children:"ROI"}
+)]}
+),E.jsx("p",{
+className:"text-[#99A1AF] text-xl font-light max-w-2xl mx-auto px-6 md:px-0",children:"Clear, transparent pricing. No hidden fees. Just results."}
+)]}
+),E.jsx("div",{
+className:"grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto items-center",children:t5.map((t,e)=>E.jsxs(ye.div,{
+initial:{
+opacity:0,y:30}
+,whileInView:{
+opacity:1,y:0}
+,transition:{
+delay:e*.1}
+,whileHover:{
+y:-10}
+,className:`relative flex flex-col p-10 rounded-[40px] border ${
+t.highlight?"bg-white/[0.05] border-[#BFF549]/50 shadow-[0_0_50px_rgba(191,245,73,0.1)]":"bg-white/[0.02] border-white/5"}
+ backdrop-blur-xl transition-all duration-300`,children:[t.highlight&&E.jsx("div",{
+className:"absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-[#BFF549] text-black text-xs font-bold uppercase tracking-widest rounded-full",children:"Recommended"}
+),E.jsxs("div",{
+className:"mb-10",children:[E.jsx("h3",{
+className:"text-2xl font-bold mb-2",children:t.name}
+),E.jsx("p",{
+className:"text-[#99A1AF] text-sm",children:t.subtitle}
+)]}
+),E.jsxs("div",{
+className:"mb-10 flex items-baseline gap-1",children:[E.jsx("span",{
+className:"text-sm align-top text-[#99A1AF]",children:"$"}
+),E.jsx("span",{
+className:"text-5xl font-black tracking-tight",children:t.price}
+)]}
+),E.jsx("div",{
+className:"space-y-5 mb-12 flex-1",children:t.features.map((n,i)=>E.jsxs("div",{
+className:"flex items-start gap-3",children:[E.jsx("div",{
+className:`mt-1 w-5 h-5 rounded-full flex items-center justify-center ${
+t.highlight?"bg-[#BFF549] text-black":"bg-white/10 text-white"}
+`,children:E.jsx(vx,{
+className:"w-3 h-3",strokeWidth:3}
+)}
+),E.jsx("span",{
+className:"text-white/80 font-light",children:n}
+)]}
+,i))}
+),E.jsxs("button",{
+className:`w-full py-5 rounded-2xl font-bold text-lg transition-all transform active:scale-95 ${
+t.highlight?"bg-[#BFF549] text-black hover:bg-white":"bg-white/10 text-white hover:bg-white hover:text-black"}
+`,children:["Choose ",t.name]}
+)]}
+,e))}
+)]}
+)]}
+),i5=()=>{
+const t=J.useRef(null),e=J.useRef(!1);
+J.useEffect(()=>{
+if(e.current)n();
+else{
+const i=document.createElement("script");
+i.src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js",i.async=!0,i.onload=()=>{
+e.current=!0,n()}
+,document.body.appendChild(i)}
+return()=>{
+var i,r,l,u;
+window.cardStream&&(window.cardStream=null),window.particleSystem&&((r=(i=window.particleSystem).destroy)==null||r.call(i),window.particleSystem=null),window.particleScanner&&((u=(l=window.particleScanner).destroy)==null||u.call(l),window.particleScanner=null)}
+}
+,[]);
+const n=()=>{
+const i=document.createElement("script");
+i.src="/card-scanner.js",i.async=!0,document.body.appendChild(i)}
+;
+return E.jsx("section",{
+className:"relative w-full bg-black overflow-hidden",ref:t,children:E.jsxs("div",{
+className:"container relative w-screen h-[400px] flex items-center justify-center",children:[E.jsx("canvas",{
+id:"particleCanvas",className:"absolute top-1/2 left-0 -translate-y-1/2 w-screen h-[250px] z-0 pointer-events-none"}
+),E.jsx("canvas",{
+id:"scannerCanvas",className:"absolute top-1/2 left-[-3px] -translate-y-1/2 w-screen h-[300px] z-[15] pointer-events-none"}
+),E.jsx("div",{
+className:"scanner hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-1 h-[300px] rounded-[30px] bg-gradient-to-b from-transparent via-cyan-400 to-transparent shadow-[0_0_20px_rgba(0,255,255,0.8),0_0_40px_rgba(0,255,255,0.4)] z-10 animate-scanPulse"}
+),E.jsx("div",{
+className:"card-stream absolute w-screen h-[180px] flex items-center overflow-visible",id:"cardStream",children:E.jsx("div",{
+className:"card-line flex items-center gap-[60px] whitespace-nowrap cursor-grab select-none will-change-transform",id:"cardLine"}
+)}
+)]}
+)}
+)}
+,s5=()=>E.jsxs("section",{
+className:"relative bg-black py-12",children:[E.jsxs("div",{
+className:"max-w-7xl mx-auto px-6 text-center",children:[E.jsxs("h2",{
+className:"text-5xl md:text-7xl font-black mb-6 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent leading-tight",children:["Stop Burning Cash on",E.jsx("br",{
+}
+),E.jsx("span",{
+className:"bg-gradient-to-r from-[#BFF549] via-[#FACC15] to-[#BFF549] bg-clip-text text-transparent",children:"Bad Websites"}
+)]}
+),E.jsx("p",{
+className:"text-xl md:text-2xl text-gray-400 font-medium max-w-3xl mx-auto",children:"We scan your business and reveal the hidden code to high-converting websites—without the expensive trial and error."}
+)]}
+),E.jsx(i5,{
+}
+)]}
+);
+function xu(t,e){
+var n={
+}
+;
+for(var i in t)Object.prototype.hasOwnProperty.call(t,i)&&e.indexOf(i)<0&&(n[i]=t[i]);
+if(t!=null&&typeof Object.getOwnPropertySymbols=="function")for(var r=0,i=Object.getOwnPropertySymbols(t);
+r<i.length;
+r++)e.indexOf(i[r])<0&&Object.prototype.propertyIsEnumerable.call(t,i[r])&&(n[i[r]]=t[i[r]]);
+return n}
+function o5(t,e,n,i){
+function r(l){
+return l instanceof n?l:new n(function(u){
+u(l)}
+)}
+return new(n||(n=Promise))(function(l,u){
+function d(g){
+try{
+p(i.next(g))}
+catch(_){
+u(_)}
+}
+function h(g){
+try{
+p(i.throw(g))}
+catch(_){
+u(_)}
+}
+function p(g){
+g.done?l(g.value):r(g.value).then(d,h)}
+p((i=i.apply(t,e||[])).next())}
+)}
+const r5=t=>t?(...e)=>t(...e):(...e)=>fetch(...e);
+class pp extends Error{
+constructor(e,n="FunctionsError",i){
+super(e),this.name=n,this.context=i}
+}
+class a5 extends pp{
+constructor(e){
+super("Failed to send a request to the Edge Function","FunctionsFetchError",e)}
+}
+class GT extends pp{
+constructor(e){
+super("Relay Error invoking the Edge Function","FunctionsRelayError",e)}
+}
+class qT extends pp{
+constructor(e){
+super("Edge Function returned a non-2xx status code","FunctionsHttpError",e)}
+}
+var mh;
+(function(t){
+t.Any="any",t.ApNortheast1="ap-northeast-1",t.ApNortheast2="ap-northeast-2",t.ApSouth1="ap-south-1",t.ApSoutheast1="ap-southeast-1",t.ApSoutheast2="ap-southeast-2",t.CaCentral1="ca-central-1",t.EuCentral1="eu-central-1",t.EuWest1="eu-west-1",t.EuWest2="eu-west-2",t.EuWest3="eu-west-3",t.SaEast1="sa-east-1",t.UsEast1="us-east-1",t.UsWest1="us-west-1",t.UsWest2="us-west-2"}
+)(mh||(mh={
+}
+));
+class l5{
+constructor(e,{
+headers:n={
+}
+,customFetch:i,region:r=mh.Any}
+={
+}
+){
+this.url=e,this.headers=n,this.region=r,this.fetch=r5(i)}
+setAuth(e){
+this.headers.Authorization=`Bearer ${
+e}
+`}
+invoke(e){
+return o5(this,arguments,void 0,function*(n,i={
+}
+){
+var r;
+let l,u;
+try{
+const{
+headers:d,method:h,body:p,signal:g,timeout:_}
+=i;
+let T={
+}
+,{
+region:w}
+=i;
+w||(w=this.region);
+const A=new URL(`${
+this.url}
+/${
+n}
+`);
+w&&w!=="any"&&(T["x-region"]=w,A.searchParams.set("forceFunctionRegion",w));
+let C;
+p&&(d&&!Object.prototype.hasOwnProperty.call(d,"Content-Type")||!d)?typeof Blob<"u"&&p instanceof Blob||p instanceof ArrayBuffer?(T["Content-Type"]="application/octet-stream",C=p):typeof p=="string"?(T["Content-Type"]="text/plain",C=p):typeof FormData<"u"&&p instanceof FormData?C=p:(T["Content-Type"]="application/json",C=JSON.stringify(p)):p&&typeof p!="string"&&!(typeof Blob<"u"&&p instanceof Blob)&&!(p instanceof ArrayBuffer)&&!(typeof FormData<"u"&&p instanceof FormData)?C=JSON.stringify(p):C=p;
+let x=g;
+_&&(u=new AbortController,l=setTimeout(()=>u.abort(),_),g?(x=u.signal,g.addEventListener("abort",()=>u.abort())):x=u.signal);
+const R=yield this.fetch(A.toString(),{
+method:h||"POST",headers:Object.assign(Object.assign(Object.assign({
+}
+,T),this.headers),d),body:C,signal:x}
+).catch(F=>{
+throw new a5(F)}
+),k=R.headers.get("x-relay-error");
+if(k&&k==="true")throw new GT(R);
+if(!R.ok)throw new qT(R);
+let N=((r=R.headers.get("Content-Type"))!==null&&r!==void 0?r:"text/plain").split(";
+")[0].trim(),O;
+return N==="application/json"?O=yield R.json():N==="application/octet-stream"||N==="application/pdf"?O=yield R.blob():N==="text/event-stream"?O=R:N==="multipart/form-data"?O=yield R.formData():O=yield R.text(),{
+data:O,error:null,response:R}
+}
+catch(d){
+return{
+data:null,error:d,response:d instanceof qT||d instanceof GT?d.context:void 0}
+}
+finally{
+l&&clearTimeout(l)}
+}
+)}
+}
+var u5=class extends Error{
+constructor(t){
+super(t.message),this.name="PostgrestError",this.details=t.details,this.hint=t.hint,this.code=t.code}
+}
+,c5=class{
+constructor(t){
+var e,n;
+this.shouldThrowOnError=!1,this.method=t.method,this.url=t.url,this.headers=new Headers(t.headers),this.schema=t.schema,this.body=t.body,this.shouldThrowOnError=(e=t.shouldThrowOnError)!==null&&e!==void 0?e:!1,this.signal=t.signal,this.isMaybeSingle=(n=t.isMaybeSingle)!==null&&n!==void 0?n:!1,t.fetch?this.fetch=t.fetch:this.fetch=fetch}
+throwOnError(){
+return this.shouldThrowOnError=!0,this}
+setHeader(t,e){
+return this.headers=new Headers(this.headers),this.headers.set(t,e),this}
+then(t,e){
+var n=this;
+this.schema===void 0||(["GET","HEAD"].includes(this.method)?this.headers.set("Accept-Profile",this.schema):this.headers.set("Content-Profile",this.schema)),this.method!=="GET"&&this.method!=="HEAD"&&this.headers.set("Content-Type","application/json");
+const i=this.fetch;
+let r=i(this.url.toString(),{
+method:this.method,headers:this.headers,body:JSON.stringify(this.body),signal:this.signal}
+).then(async l=>{
+let u=null,d=null,h=null,p=l.status,g=l.statusText;
+if(l.ok){
+var _,T;
+if(n.method!=="HEAD"){
+var w;
+const R=await l.text();
+R===""||(n.headers.get("Accept")==="text/csv"||n.headers.get("Accept")&&(!((w=n.headers.get("Accept"))===null||w===void 0)&&w.includes("application/vnd.pgrst.plan+text"))?d=R:d=JSON.parse(R))}
+const C=(_=n.headers.get("Prefer"))===null||_===void 0?void 0:_.match(/count=(exact|planned|estimated)/),x=(T=l.headers.get("content-range"))===null||T===void 0?void 0:T.split("/");
+C&&x&&x.length>1&&(h=parseInt(x[1])),n.isMaybeSingle&&n.method==="GET"&&Array.isArray(d)&&(d.length>1?(u={
+code:"PGRST116",details:`Results contain ${
+d.length}
+ rows, application/vnd.pgrst.object+json requires 1 row`,hint:null,message:"JSON object requested, multiple (or no) rows returned"}
+,d=null,h=null,p=406,g="Not Acceptable"):d.length===1?d=d[0]:d=null)}
+else{
+var A;
+const C=await l.text();
+try{
+u=JSON.parse(C),Array.isArray(u)&&l.status===404&&(d=[],u=null,p=200,g="OK")}
+catch{
+l.status===404&&C===""?(p=204,g="No Content"):u={
+message:C}
+}
+if(u&&n.isMaybeSingle&&(!(u==null||(A=u.details)===null||A===void 0)&&A.includes("0 rows"))&&(u=null,p=200,g="OK"),u&&n.shouldThrowOnError)throw new u5(u)}
+return{
+error:u,data:d,count:h,status:p,statusText:g}
+}
+);
+return this.shouldThrowOnError||(r=r.catch(l=>{
+var u;
+let d="";
+const h=l==null?void 0:l.cause;
+if(h){
+var p,g,_,T;
+const A=(p=h==null?void 0:h.message)!==null&&p!==void 0?p:"",C=(g=h==null?void 0:h.code)!==null&&g!==void 0?g:"";
+d=`${
+(_=l==null?void 0:l.name)!==null&&_!==void 0?_:"FetchError"}
+: ${
+l==null?void 0:l.message}
+`,d+=`
+
+Caused by: ${
+(T=h==null?void 0:h.name)!==null&&T!==void 0?T:"Error"}
+: ${
+A}
+`,C&&(d+=` (${
+C}
+)`),h!=null&&h.stack&&(d+=`
+${
+h.stack}
+`)}
+else{
+var w;
+d=(w=l==null?void 0:l.stack)!==null&&w!==void 0?w:""}
+return{
+error:{
+message:`${
+(u=l==null?void 0:l.name)!==null&&u!==void 0?u:"FetchError"}
+: ${
+l==null?void 0:l.message}
+`,details:d,hint:"",code:""}
+,data:null,count:null,status:0,statusText:""}
+}
+)),r.then(t,e)}
+returns(){
+return this}
+overrideTypes(){
+return this}
+}
+,d5=class extends c5{
+select(t){
+let e=!1;
+const n=(t??"*").split("").map(i=>/\s/.test(i)&&!e?"":(i==='"'&&(e=!e),i)).join("");
+return this.url.searchParams.set("select",n),this.headers.append("Prefer","return=representation"),this}
+order(t,{
+ascending:e=!0,nullsFirst:n,foreignTable:i,referencedTable:r=i}
+={
+}
+){
+const l=r?`${
+r}
+.order`:"order",u=this.url.searchParams.get(l);
+return this.url.searchParams.set(l,`${
+u?`${
+u}
+,`:""}
+${
+t}
+.${
+e?"asc":"desc"}
+${
+n===void 0?"":n?".nullsfirst":".nullslast"}
+`),this}
+limit(t,{
+foreignTable:e,referencedTable:n=e}
+={
+}
+){
+const i=typeof n>"u"?"limit":`${
+n}
+.limit`;
+return this.url.searchParams.set(i,`${
+t}
+`),this}
+range(t,e,{
+foreignTable:n,referencedTable:i=n}
+={
+}
+){
+const r=typeof i>"u"?"offset":`${
+i}
+.offset`,l=typeof i>"u"?"limit":`${
+i}
+.limit`;
+return this.url.searchParams.set(r,`${
+t}
+`),this.url.searchParams.set(l,`${
+e-t+1}
+`),this}
+abortSignal(t){
+return this.signal=t,this}
+single(){
+return this.headers.set("Accept","application/vnd.pgrst.object+json"),this}
+maybeSingle(){
+return this.method==="GET"?this.headers.set("Accept","application/json"):this.headers.set("Accept","application/vnd.pgrst.object+json"),this.isMaybeSingle=!0,this}
+csv(){
+return this.headers.set("Accept","text/csv"),this}
+geojson(){
+return this.headers.set("Accept","application/geo+json"),this}
+explain({
+analyze:t=!1,verbose:e=!1,settings:n=!1,buffers:i=!1,wal:r=!1,format:l="text"}
+={
+}
+){
+var u;
+const d=[t?"analyze":null,e?"verbose":null,n?"settings":null,i?"buffers":null,r?"wal":null].filter(Boolean).join("|"),h=(u=this.headers.get("Accept"))!==null&&u!==void 0?u:"application/json";
+return this.headers.set("Accept",`application/vnd.pgrst.plan+${
+l}
+;
+ for="${
+h}
+";
+ options=${
+d}
+;
+`),l==="json"?this:this}
+rollback(){
+return this.headers.append("Prefer","tx=rollback"),this}
+returns(){
+return this}
+maxAffected(t){
+return this.headers.append("Prefer","handling=strict"),this.headers.append("Prefer",`max-affected=${
+t}
+`),this}
+}
+;
+const HT=new RegExp("[,()]");
+var fo=class extends d5{
+eq(t,e){
+return this.url.searchParams.append(t,`eq.${
+e}
+`),this}
+neq(t,e){
+return this.url.searchParams.append(t,`neq.${
+e}
+`),this}
+gt(t,e){
+return this.url.searchParams.append(t,`gt.${
+e}
+`),this}
+gte(t,e){
+return this.url.searchParams.append(t,`gte.${
+e}
+`),this}
+lt(t,e){
+return this.url.searchParams.append(t,`lt.${
+e}
+`),this}
+lte(t,e){
+return this.url.searchParams.append(t,`lte.${
+e}
+`),this}
+like(t,e){
+return this.url.searchParams.append(t,`like.${
+e}
+`),this}
+likeAllOf(t,e){
+return this.url.searchParams.append(t,`like(all).{
+${
+e.join(",")}
+}
+`),this}
+likeAnyOf(t,e){
+return this.url.searchParams.append(t,`like(any).{
+${
+e.join(",")}
+}
+`),this}
+ilike(t,e){
+return this.url.searchParams.append(t,`ilike.${
+e}
+`),this}
+ilikeAllOf(t,e){
+return this.url.searchParams.append(t,`ilike(all).{
+${
+e.join(",")}
+}
+`),this}
+ilikeAnyOf(t,e){
+return this.url.searchParams.append(t,`ilike(any).{
+${
+e.join(",")}
+}
+`),this}
+regexMatch(t,e){
+return this.url.searchParams.append(t,`match.${
+e}
+`),this}
+regexIMatch(t,e){
+return this.url.searchParams.append(t,`imatch.${
+e}
+`),this}
+is(t,e){
+return this.url.searchParams.append(t,`is.${
+e}
+`),this}
+isDistinct(t,e){
+return this.url.searchParams.append(t,`isdistinct.${
+e}
+`),this}
+in(t,e){
+const n=Array.from(new Set(e)).map(i=>typeof i=="string"&&HT.test(i)?`"${
+i}
+"`:`${
+i}
+`).join(",");
+return this.url.searchParams.append(t,`in.(${
+n}
+)`),this}
+notIn(t,e){
+const n=Array.from(new Set(e)).map(i=>typeof i=="string"&&HT.test(i)?`"${
+i}
+"`:`${
+i}
+`).join(",");
+return this.url.searchParams.append(t,`not.in.(${
+n}
+)`),this}
+contains(t,e){
+return typeof e=="string"?this.url.searchParams.append(t,`cs.${
+e}
+`):Array.isArray(e)?this.url.searchParams.append(t,`cs.{
+${
+e.join(",")}
+}
+`):this.url.searchParams.append(t,`cs.${
+JSON.stringify(e)}
+`),this}
+containedBy(t,e){
+return typeof e=="string"?this.url.searchParams.append(t,`cd.${
+e}
+`):Array.isArray(e)?this.url.searchParams.append(t,`cd.{
+${
+e.join(",")}
+}
+`):this.url.searchParams.append(t,`cd.${
+JSON.stringify(e)}
+`),this}
+rangeGt(t,e){
+return this.url.searchParams.append(t,`sr.${
+e}
+`),this}
+rangeGte(t,e){
+return this.url.searchParams.append(t,`nxl.${
+e}
+`),this}
+rangeLt(t,e){
+return this.url.searchParams.append(t,`sl.${
+e}
+`),this}
+rangeLte(t,e){
+return this.url.searchParams.append(t,`nxr.${
+e}
+`),this}
+rangeAdjacent(t,e){
+return this.url.searchParams.append(t,`adj.${
+e}
+`),this}
+overlaps(t,e){
+return typeof e=="string"?this.url.searchParams.append(t,`ov.${
+e}
+`):this.url.searchParams.append(t,`ov.{
+${
+e.join(",")}
+}
+`),this}
+textSearch(t,e,{
+config:n,type:i}
+={
+}
+){
+let r="";
+i==="plain"?r="pl":i==="phrase"?r="ph":i==="websearch"&&(r="w");
+const l=n===void 0?"":`(${
+n}
+)`;
+return this.url.searchParams.append(t,`${
+r}
+fts${
+l}
+.${
+e}
+`),this}
+match(t){
+return Object.entries(t).forEach(([e,n])=>{
+this.url.searchParams.append(e,`eq.${
+n}
+`)}
+),this}
+not(t,e,n){
+return this.url.searchParams.append(t,`not.${
+e}
+.${
+n}
+`),this}
+or(t,{
+foreignTable:e,referencedTable:n=e}
+={
+}
+){
+const i=n?`${
+n}
+.or`:"or";
+return this.url.searchParams.append(i,`(${
+t}
+)`),this}
+filter(t,e,n){
+return this.url.searchParams.append(t,`${
+e}
+.${
+n}
+`),this}
+}
+,f5=class{
+constructor(t,{
+headers:e={
+}
+,schema:n,fetch:i}
+){
+this.url=t,this.headers=new Headers(e),this.schema=n,this.fetch=i}
+cloneRequestState(){
+return{
+url:new URL(this.url.toString()),headers:new Headers(this.headers)}
+}
+select(t,e){
+const{
+head:n=!1,count:i}
+=e??{
+}
+,r=n?"HEAD":"GET";
+let l=!1;
+const u=(t??"*").split("").map(p=>/\s/.test(p)&&!l?"":(p==='"'&&(l=!l),p)).join(""),{
+url:d,headers:h}
+=this.cloneRequestState();
+return d.searchParams.set("select",u),i&&h.append("Prefer",`count=${
+i}
+`),new fo({
+method:r,url:d,headers:h,schema:this.schema,fetch:this.fetch}
+)}
+insert(t,{
+count:e,defaultToNull:n=!0}
+={
+}
+){
+var i;
+const r="POST",{
+url:l,headers:u}
+=this.cloneRequestState();
+if(e&&u.append("Prefer",`count=${
+e}
+`),n||u.append("Prefer","missing=default"),Array.isArray(t)){
+const d=t.reduce((h,p)=>h.concat(Object.keys(p)),[]);
+if(d.length>0){
+const h=[...new Set(d)].map(p=>`"${
+p}
+"`);
+l.searchParams.set("columns",h.join(","))}
+}
+return new fo({
+method:r,url:l,headers:u,schema:this.schema,body:t,fetch:(i=this.fetch)!==null&&i!==void 0?i:fetch}
+)}
+upsert(t,{
+onConflict:e,ignoreDuplicates:n=!1,count:i,defaultToNull:r=!0}
+={
+}
+){
+var l;
+const u="POST",{
+url:d,headers:h}
+=this.cloneRequestState();
+if(h.append("Prefer",`resolution=${
+n?"ignore":"merge"}
+-duplicates`),e!==void 0&&d.searchParams.set("on_conflict",e),i&&h.append("Prefer",`count=${
+i}
+`),r||h.append("Prefer","missing=default"),Array.isArray(t)){
+const p=t.reduce((g,_)=>g.concat(Object.keys(_)),[]);
+if(p.length>0){
+const g=[...new Set(p)].map(_=>`"${
+_}
+"`);
+d.searchParams.set("columns",g.join(","))}
+}
+return new fo({
+method:u,url:d,headers:h,schema:this.schema,body:t,fetch:(l=this.fetch)!==null&&l!==void 0?l:fetch}
+)}
+update(t,{
+count:e}
+={
+}
+){
+var n;
+const i="PATCH",{
+url:r,headers:l}
+=this.cloneRequestState();
+return e&&l.append("Prefer",`count=${
+e}
+`),new fo({
+method:i,url:r,headers:l,schema:this.schema,body:t,fetch:(n=this.fetch)!==null&&n!==void 0?n:fetch}
+)}
+delete({
+count:t}
+={
+}
+){
+var e;
+const n="DELETE",{
+url:i,headers:r}
+=this.cloneRequestState();
+return t&&r.append("Prefer",`count=${
+t}
+`),new fo({
+method:n,url:i,headers:r,schema:this.schema,fetch:(e=this.fetch)!==null&&e!==void 0?e:fetch}
+)}
+}
+,h5=class eb{
+constructor(e,{
+headers:n={
+}
+,schema:i,fetch:r}
+={
+}
+){
+this.url=e,this.headers=new Headers(n),this.schemaName=i,this.fetch=r}
+from(e){
+if(!e||typeof e!="string"||e.trim()==="")throw new Error("Invalid relation name: relation must be a non-empty string.");
+return new f5(new URL(`${
+this.url}
+/${
+e}
+`),{
+headers:new Headers(this.headers),schema:this.schemaName,fetch:this.fetch}
+)}
+schema(e){
+return new eb(this.url,{
+headers:this.headers,schema:e,fetch:this.fetch}
+)}
+rpc(e,n={
+}
+,{
+head:i=!1,get:r=!1,count:l}
+={
+}
+){
+var u;
+let d;
+const h=new URL(`${
+this.url}
+/rpc/${
+e}
+`);
+let p;
+const g=w=>w!==null&&typeof w=="object"&&(!Array.isArray(w)||w.some(g)),_=i&&Object.values(n).some(g);
+_?(d="POST",p=n):i||r?(d=i?"HEAD":"GET",Object.entries(n).filter(([w,A])=>A!==void 0).map(([w,A])=>[w,Array.isArray(A)?`{
+${
+A.join(",")}
+}
+`:`${
+A}
+`]).forEach(([w,A])=>{
+h.searchParams.append(w,A)}
+)):(d="POST",p=n);
+const T=new Headers(this.headers);
+return _?T.set("Prefer",l?`count=${
+l}
+,return=minimal`:"return=minimal"):l&&T.set("Prefer",`count=${
+l}
+`),new fo({
+method:d,url:h,headers:T,schema:this.schemaName,body:p,fetch:(u=this.fetch)!==null&&u!==void 0?u:fetch}
+)}
+}
+;
+class p5{
+constructor(){
+}
+static detectEnvironment(){
+var e;
+if(typeof WebSocket<"u")return{
+type:"native",constructor:WebSocket}
+;
+if(typeof globalThis<"u"&&typeof globalThis.WebSocket<"u")return{
+type:"native",constructor:globalThis.WebSocket}
+;
+if(typeof global<"u"&&typeof global.WebSocket<"u")return{
+type:"native",constructor:global.WebSocket}
+;
+if(typeof globalThis<"u"&&typeof globalThis.WebSocketPair<"u"&&typeof globalThis.WebSocket>"u")return{
+type:"cloudflare",error:"Cloudflare Workers detected. WebSocket clients are not supported in Cloudflare Workers.",workaround:"Use Cloudflare Workers WebSocket API for server-side WebSocket handling, or deploy to a different runtime."}
+;
+if(typeof globalThis<"u"&&globalThis.EdgeRuntime||typeof navigator<"u"&&(!((e=navigator.userAgent)===null||e===void 0)&&e.includes("Vercel-Edge")))return{
+type:"unsupported",error:"Edge runtime detected (Vercel Edge/Netlify Edge). WebSockets are not supported in edge functions.",workaround:"Use serverless functions or a different deployment target for WebSocket functionality."}
+;
+const n=globalThis.process;
+if(n){
+const i=n.versions;
+if(i&&i.node){
+const r=i.node,l=parseInt(r.replace(/^v/,"").split(".")[0]);
+return l>=22?typeof globalThis.WebSocket<"u"?{
+type:"native",constructor:globalThis.WebSocket}
+:{
+type:"unsupported",error:`Node.js ${
+l}
+ detected but native WebSocket not found.`,workaround:"Provide a WebSocket implementation via the transport option."}
+:{
+type:"unsupported",error:`Node.js ${
+l}
+ detected without native WebSocket support.`,workaround:`For Node.js < 22, install "ws" package and provide it via the transport option:
+import ws from "ws"
+new RealtimeClient(url, {
+ transport: ws }
+)`}
+}
+}
+return{
+type:"unsupported",error:"Unknown JavaScript runtime without WebSocket support.",workaround:"Ensure you're running in a supported environment (browser, Node.js, Deno) or provide a custom WebSocket implementation."}
+}
+static getWebSocketConstructor(){
+const e=this.detectEnvironment();
+if(e.constructor)return e.constructor;
+let n=e.error||"WebSocket not supported in this environment.";
+throw e.workaround&&(n+=`
+
+Suggested solution: ${
+e.workaround}
+`),new Error(n)}
+static createWebSocket(e,n){
+const i=this.getWebSocketConstructor();
+return new i(e,n)}
+static isWebSocketSupported(){
+try{
+const e=this.detectEnvironment();
+return e.type==="native"||e.type==="ws"}
+catch{
+return!1}
+}
+}
+const m5="2.91.1",g5=`realtime-js/${
+m5}
+`,y5="1.0.0",tb="2.0.0",zT=tb,gh=1e4,v5=1e3,_5=100;
+var Di;
+(function(t){
+t[t.connecting=0]="connecting",t[t.open=1]="open",t[t.closing=2]="closing",t[t.closed=3]="closed"}
+)(Di||(Di={
+}
+));
+var lt;
+(function(t){
+t.closed="closed",t.errored="errored",t.joined="joined",t.joining="joining",t.leaving="leaving"}
+)(lt||(lt={
+}
+));
+var En;
+(function(t){
+t.close="phx_close",t.error="phx_error",t.join="phx_join",t.reply="phx_reply",t.leave="phx_leave",t.access_token="access_token"}
+)(En||(En={
+}
+));
+var yh;
+(function(t){
+t.websocket="websocket"}
+)(yh||(yh={
+}
+));
+var ds;
+(function(t){
+t.Connecting="connecting",t.Open="open",t.Closing="closing",t.Closed="closed"}
+)(ds||(ds={
+}
+));
+class T5{
+constructor(e){
+this.HEADER_LENGTH=1,this.USER_BROADCAST_PUSH_META_LENGTH=6,this.KINDS={
+userBroadcastPush:3,userBroadcast:4}
+,this.BINARY_ENCODING=0,this.JSON_ENCODING=1,this.BROADCAST_EVENT="broadcast",this.allowedMetadataKeys=[],this.allowedMetadataKeys=e??[]}
+encode(e,n){
+if(e.event===this.BROADCAST_EVENT&&!(e.payload instanceof ArrayBuffer)&&typeof e.payload.event=="string")return n(this._binaryEncodeUserBroadcastPush(e));
+let i=[e.join_ref,e.ref,e.topic,e.event,e.payload];
+return n(JSON.stringify(i))}
+_binaryEncodeUserBroadcastPush(e){
+var n;
+return this._isArrayBuffer((n=e.payload)===null||n===void 0?void 0:n.payload)?this._encodeBinaryUserBroadcastPush(e):this._encodeJsonUserBroadcastPush(e)}
+_encodeBinaryUserBroadcastPush(e){
+var n,i;
+const r=(i=(n=e.payload)===null||n===void 0?void 0:n.payload)!==null&&i!==void 0?i:new ArrayBuffer(0);
+return this._encodeUserBroadcastPush(e,this.BINARY_ENCODING,r)}
+_encodeJsonUserBroadcastPush(e){
+var n,i;
+const r=(i=(n=e.payload)===null||n===void 0?void 0:n.payload)!==null&&i!==void 0?i:{
+}
+,u=new TextEncoder().encode(JSON.stringify(r)).buffer;
+return this._encodeUserBroadcastPush(e,this.JSON_ENCODING,u)}
+_encodeUserBroadcastPush(e,n,i){
+var r,l;
+const u=e.topic,d=(r=e.ref)!==null&&r!==void 0?r:"",h=(l=e.join_ref)!==null&&l!==void 0?l:"",p=e.payload.event,g=this.allowedMetadataKeys?this._pick(e.payload,this.allowedMetadataKeys):{
+}
+,_=Object.keys(g).length===0?"":JSON.stringify(g);
+if(h.length>255)throw new Error(`joinRef length ${
+h.length}
+ exceeds maximum of 255`);
+if(d.length>255)throw new Error(`ref length ${
+d.length}
+ exceeds maximum of 255`);
+if(u.length>255)throw new Error(`topic length ${
+u.length}
+ exceeds maximum of 255`);
+if(p.length>255)throw new Error(`userEvent length ${
+p.length}
+ exceeds maximum of 255`);
+if(_.length>255)throw new Error(`metadata length ${
+_.length}
+ exceeds maximum of 255`);
+const T=this.USER_BROADCAST_PUSH_META_LENGTH+h.length+d.length+u.length+p.length+_.length,w=new ArrayBuffer(this.HEADER_LENGTH+T);
+let A=new DataView(w),C=0;
+A.setUint8(C++,this.KINDS.userBroadcastPush),A.setUint8(C++,h.length),A.setUint8(C++,d.length),A.setUint8(C++,u.length),A.setUint8(C++,p.length),A.setUint8(C++,_.length),A.setUint8(C++,n),Array.from(h,R=>A.setUint8(C++,R.charCodeAt(0))),Array.from(d,R=>A.setUint8(C++,R.charCodeAt(0))),Array.from(u,R=>A.setUint8(C++,R.charCodeAt(0))),Array.from(p,R=>A.setUint8(C++,R.charCodeAt(0))),Array.from(_,R=>A.setUint8(C++,R.charCodeAt(0)));
+var x=new Uint8Array(w.byteLength+i.byteLength);
+return x.set(new Uint8Array(w),0),x.set(new Uint8Array(i),w.byteLength),x.buffer}
+decode(e,n){
+if(this._isArrayBuffer(e)){
+let i=this._binaryDecode(e);
+return n(i)}
+if(typeof e=="string"){
+const i=JSON.parse(e),[r,l,u,d,h]=i;
+return n({
+join_ref:r,ref:l,topic:u,event:d,payload:h}
+)}
+return n({
+}
+)}
+_binaryDecode(e){
+const n=new DataView(e),i=n.getUint8(0),r=new TextDecoder;
+switch(i){
+case this.KINDS.userBroadcast:return this._decodeUserBroadcast(e,n,r)}
+}
+_decodeUserBroadcast(e,n,i){
+const r=n.getUint8(1),l=n.getUint8(2),u=n.getUint8(3),d=n.getUint8(4);
+let h=this.HEADER_LENGTH+4;
+const p=i.decode(e.slice(h,h+r));
+h=h+r;
+const g=i.decode(e.slice(h,h+l));
+h=h+l;
+const _=i.decode(e.slice(h,h+u));
+h=h+u;
+const T=e.slice(h,e.byteLength),w=d===this.JSON_ENCODING?JSON.parse(i.decode(T)):T,A={
+type:this.BROADCAST_EVENT,event:g,payload:w}
+;
+return u>0&&(A.meta=JSON.parse(_)),{
+join_ref:null,ref:null,topic:p,event:this.BROADCAST_EVENT,payload:A}
+}
+_isArrayBuffer(e){
+var n;
+return e instanceof ArrayBuffer||((n=e==null?void 0:e.constructor)===null||n===void 0?void 0:n.name)==="ArrayBuffer"}
+_pick(e,n){
+return!e||typeof e!="object"?{
+}
+:Object.fromEntries(Object.entries(e).filter(([i])=>n.includes(i)))}
+}
+class nb{
+constructor(e,n){
+this.callback=e,this.timerCalc=n,this.timer=void 0,this.tries=0,this.callback=e,this.timerCalc=n}
+reset(){
+this.tries=0,clearTimeout(this.timer),this.timer=void 0}
+scheduleTimeout(){
+clearTimeout(this.timer),this.timer=setTimeout(()=>{
+this.tries=this.tries+1,this.callback()}
+,this.timerCalc(this.tries+1))}
+}
+var Ge;
+(function(t){
+t.abstime="abstime",t.bool="bool",t.date="date",t.daterange="daterange",t.float4="float4",t.float8="float8",t.int2="int2",t.int4="int4",t.int4range="int4range",t.int8="int8",t.int8range="int8range",t.json="json",t.jsonb="jsonb",t.money="money",t.numeric="numeric",t.oid="oid",t.reltime="reltime",t.text="text",t.time="time",t.timestamp="timestamp",t.timestamptz="timestamptz",t.timetz="timetz",t.tsrange="tsrange",t.tstzrange="tstzrange"}
+)(Ge||(Ge={
+}
+));
+const $T=(t,e,n={
+}
+)=>{
+var i;
+const r=(i=n.skipTypes)!==null&&i!==void 0?i:[];
+return e?Object.keys(e).reduce((l,u)=>(l[u]=S5(u,t,e,r),l),{
+}
+):{
+}
+}
+,S5=(t,e,n,i)=>{
+const r=e.find(d=>d.name===t),l=r==null?void 0:r.type,u=n[t];
+return l&&!i.includes(l)?ib(l,u):vh(u)}
+,ib=(t,e)=>{
+if(t.charAt(0)==="_"){
+const n=t.slice(1,t.length);
+return A5(e,n)}
+switch(t){
+case Ge.bool:return w5(e);
+case Ge.float4:case Ge.float8:case Ge.int2:case Ge.int4:case Ge.int8:case Ge.numeric:case Ge.oid:return E5(e);
+case Ge.json:case Ge.jsonb:return b5(e);
+case Ge.timestamp:return C5(e);
+case Ge.abstime:case Ge.date:case Ge.daterange:case Ge.int4range:case Ge.int8range:case Ge.money:case Ge.reltime:case Ge.text:case Ge.time:case Ge.timestamptz:case Ge.timetz:case Ge.tsrange:case Ge.tstzrange:return vh(e);
+default:return vh(e)}
+}
+,vh=t=>t,w5=t=>{
+switch(t){
+case"t":return!0;
+case"f":return!1;
+default:return t}
+}
+,E5=t=>{
+if(typeof t=="string"){
+const e=parseFloat(t);
+if(!Number.isNaN(e))return e}
+return t}
+,b5=t=>{
+if(typeof t=="string")try{
+return JSON.parse(t)}
+catch{
+return t}
+return t}
+,A5=(t,e)=>{
+if(typeof t!="string")return t;
+const n=t.length-1,i=t[n];
+if(t[0]==="{
+"&&i==="}
+"){
+let l;
+const u=t.slice(1,n);
+try{
+l=JSON.parse("["+u+"]")}
+catch{
+l=u?u.split(","):[]}
+return l.map(d=>ib(e,d))}
+return t}
+,C5=t=>typeof t=="string"?t.replace(" ","T"):t,sb=t=>{
+const e=new URL(t);
+return e.protocol=e.protocol.replace(/^ws/i,"http"),e.pathname=e.pathname.replace(/\/+$/,"").replace(/\/socket\/websocket$/i,"").replace(/\/socket$/i,"").replace(/\/websocket$/i,""),e.pathname===""||e.pathname==="/"?e.pathname="/api/broadcast":e.pathname=e.pathname+"/api/broadcast",e.href}
+;
+class Sf{
+constructor(e,n,i={
+}
+,r=gh){
+this.channel=e,this.event=n,this.payload=i,this.timeout=r,this.sent=!1,this.timeoutTimer=void 0,this.ref="",this.receivedResp=null,this.recHooks=[],this.refEvent=null}
+resend(e){
+this.timeout=e,this._cancelRefEvent(),this.ref="",this.refEvent=null,this.receivedResp=null,this.sent=!1,this.send()}
+send(){
+this._hasReceived("timeout")||(this.startTimeout(),this.sent=!0,this.channel.socket.push({
+topic:this.channel.topic,event:this.event,payload:this.payload,ref:this.ref,join_ref:this.channel._joinRef()}
+))}
+updatePayload(e){
+this.payload=Object.assign(Object.assign({
+}
+,this.payload),e)}
+receive(e,n){
+var i;
+return this._hasReceived(e)&&n((i=this.receivedResp)===null||i===void 0?void 0:i.response),this.recHooks.push({
+status:e,callback:n}
+),this}
+startTimeout(){
+if(this.timeoutTimer)return;
+this.ref=this.channel.socket._makeRef(),this.refEvent=this.channel._replyEventName(this.ref);
+const e=n=>{
+this._cancelRefEvent(),this._cancelTimeout(),this.receivedResp=n,this._matchReceive(n)}
+;
+this.channel._on(this.refEvent,{
+}
+,e),this.timeoutTimer=setTimeout(()=>{
+this.trigger("timeout",{
+}
+)}
+,this.timeout)}
+trigger(e,n){
+this.refEvent&&this.channel._trigger(this.refEvent,{
+status:e,response:n}
+)}
+destroy(){
+this._cancelRefEvent(),this._cancelTimeout()}
+_cancelRefEvent(){
+this.refEvent&&this.channel._off(this.refEvent,{
+}
+)}
+_cancelTimeout(){
+clearTimeout(this.timeoutTimer),this.timeoutTimer=void 0}
+_matchReceive({
+status:e,response:n}
+){
+this.recHooks.filter(i=>i.status===e).forEach(i=>i.callback(n))}
+_hasReceived(e){
+return this.receivedResp&&this.receivedResp.status===e}
+}
+var JT;
+(function(t){
+t.SYNC="sync",t.JOIN="join",t.LEAVE="leave"}
+)(JT||(JT={
+}
+));
+class Gr{
+constructor(e,n){
+this.channel=e,this.state={
+}
+,this.pendingDiffs=[],this.joinRef=null,this.enabled=!1,this.caller={
+onJoin:()=>{
+}
+,onLeave:()=>{
+}
+,onSync:()=>{
+}
+}
+;
+const i=(n==null?void 0:n.events)||{
+state:"presence_state",diff:"presence_diff"}
+;
+this.channel._on(i.state,{
+}
+,r=>{
+const{
+onJoin:l,onLeave:u,onSync:d}
+=this.caller;
+this.joinRef=this.channel._joinRef(),this.state=Gr.syncState(this.state,r,l,u),this.pendingDiffs.forEach(h=>{
+this.state=Gr.syncDiff(this.state,h,l,u)}
+),this.pendingDiffs=[],d()}
+),this.channel._on(i.diff,{
+}
+,r=>{
+const{
+onJoin:l,onLeave:u,onSync:d}
+=this.caller;
+this.inPendingSyncState()?this.pendingDiffs.push(r):(this.state=Gr.syncDiff(this.state,r,l,u),d())}
+),this.onJoin((r,l,u)=>{
+this.channel._trigger("presence",{
+event:"join",key:r,currentPresences:l,newPresences:u}
+)}
+),this.onLeave((r,l,u)=>{
+this.channel._trigger("presence",{
+event:"leave",key:r,currentPresences:l,leftPresences:u}
+)}
+),this.onSync(()=>{
+this.channel._trigger("presence",{
+event:"sync"}
+)}
+)}
+static syncState(e,n,i,r){
+const l=this.cloneDeep(e),u=this.transformState(n),d={
+}
+,h={
+}
+;
+return this.map(l,(p,g)=>{
+u[p]||(h[p]=g)}
+),this.map(u,(p,g)=>{
+const _=l[p];
+if(_){
+const T=g.map(x=>x.presence_ref),w=_.map(x=>x.presence_ref),A=g.filter(x=>w.indexOf(x.presence_ref)<0),C=_.filter(x=>T.indexOf(x.presence_ref)<0);
+A.length>0&&(d[p]=A),C.length>0&&(h[p]=C)}
+else d[p]=g}
+),this.syncDiff(l,{
+joins:d,leaves:h}
+,i,r)}
+static syncDiff(e,n,i,r){
+const{
+joins:l,leaves:u}
+={
+joins:this.transformState(n.joins),leaves:this.transformState(n.leaves)}
+;
+return i||(i=()=>{
+}
+),r||(r=()=>{
+}
+),this.map(l,(d,h)=>{
+var p;
+const g=(p=e[d])!==null&&p!==void 0?p:[];
+if(e[d]=this.cloneDeep(h),g.length>0){
+const _=e[d].map(w=>w.presence_ref),T=g.filter(w=>_.indexOf(w.presence_ref)<0);
+e[d].unshift(...T)}
+i(d,g,h)}
+),this.map(u,(d,h)=>{
+let p=e[d];
+if(!p)return;
+const g=h.map(_=>_.presence_ref);
+p=p.filter(_=>g.indexOf(_.presence_ref)<0),e[d]=p,r(d,p,h),p.length===0&&delete e[d]}
+),e}
+static map(e,n){
+return Object.getOwnPropertyNames(e).map(i=>n(i,e[i]))}
+static transformState(e){
+return e=this.cloneDeep(e),Object.getOwnPropertyNames(e).reduce((n,i)=>{
+const r=e[i];
+return"metas"in r?n[i]=r.metas.map(l=>(l.presence_ref=l.phx_ref,delete l.phx_ref,delete l.phx_ref_prev,l)):n[i]=r,n}
+,{
+}
+)}
+static cloneDeep(e){
+return JSON.parse(JSON.stringify(e))}
+onJoin(e){
+this.caller.onJoin=e}
+onLeave(e){
+this.caller.onLeave=e}
+onSync(e){
+this.caller.onSync=e}
+inPendingSyncState(){
+return!this.joinRef||this.joinRef!==this.channel._joinRef()}
+}
+var KT;
+(function(t){
+t.ALL="*",t.INSERT="INSERT",t.UPDATE="UPDATE",t.DELETE="DELETE"}
+)(KT||(KT={
+}
+));
+var qr;
+(function(t){
+t.BROADCAST="broadcast",t.PRESENCE="presence",t.POSTGRES_CHANGES="postgres_changes",t.SYSTEM="system"}
+)(qr||(qr={
+}
+));
+var Qn;
+(function(t){
+t.SUBSCRIBED="SUBSCRIBED",t.TIMED_OUT="TIMED_OUT",t.CLOSED="CLOSED",t.CHANNEL_ERROR="CHANNEL_ERROR"}
+)(Qn||(Qn={
+}
+));
+class wo{
+constructor(e,n={
+config:{
+}
+}
+,i){
+var r,l;
+if(this.topic=e,this.params=n,this.socket=i,this.bindings={
+}
+,this.state=lt.closed,this.joinedOnce=!1,this.pushBuffer=[],this.subTopic=e.replace(/^realtime:/i,""),this.params.config=Object.assign({
+broadcast:{
+ack:!1,self:!1}
+,presence:{
+key:"",enabled:!1}
+,private:!1}
+,n.config),this.timeout=this.socket.timeout,this.joinPush=new Sf(this,En.join,this.params,this.timeout),this.rejoinTimer=new nb(()=>this._rejoinUntilConnected(),this.socket.reconnectAfterMs),this.joinPush.receive("ok",()=>{
+this.state=lt.joined,this.rejoinTimer.reset(),this.pushBuffer.forEach(u=>u.send()),this.pushBuffer=[]}
+),this._onClose(()=>{
+this.rejoinTimer.reset(),this.socket.log("channel",`close ${
+this.topic}
+ ${
+this._joinRef()}
+`),this.state=lt.closed,this.socket._remove(this)}
+),this._onError(u=>{
+this._isLeaving()||this._isClosed()||(this.socket.log("channel",`error ${
+this.topic}
+`,u),this.state=lt.errored,this.rejoinTimer.scheduleTimeout())}
+),this.joinPush.receive("timeout",()=>{
+this._isJoining()&&(this.socket.log("channel",`timeout ${
+this.topic}
+`,this.joinPush.timeout),this.state=lt.errored,this.rejoinTimer.scheduleTimeout())}
+),this.joinPush.receive("error",u=>{
+this._isLeaving()||this._isClosed()||(this.socket.log("channel",`error ${
+this.topic}
+`,u),this.state=lt.errored,this.rejoinTimer.scheduleTimeout())}
+),this._on(En.reply,{
+}
+,(u,d)=>{
+this._trigger(this._replyEventName(d),u)}
+),this.presence=new Gr(this),this.broadcastEndpointURL=sb(this.socket.endPoint),this.private=this.params.config.private||!1,!this.private&&(!((l=(r=this.params.config)===null||r===void 0?void 0:r.broadcast)===null||l===void 0)&&l.replay))throw`tried to use replay on public channel '${
+this.topic}
+'. It must be a private channel.`}
+subscribe(e,n=this.timeout){
+var i,r,l;
+if(this.socket.isConnected()||this.socket.connect(),this.state==lt.closed){
+const{
+config:{
+broadcast:u,presence:d,private:h}
+}
+=this.params,p=(r=(i=this.bindings.postgres_changes)===null||i===void 0?void 0:i.map(w=>w.filter))!==null&&r!==void 0?r:[],g=!!this.bindings[qr.PRESENCE]&&this.bindings[qr.PRESENCE].length>0||((l=this.params.config.presence)===null||l===void 0?void 0:l.enabled)===!0,_={
+}
+,T={
+broadcast:u,presence:Object.assign(Object.assign({
+}
+,d),{
+enabled:g}
+),postgres_changes:p,private:h}
+;
+this.socket.accessTokenValue&&(_.access_token=this.socket.accessTokenValue),this._onError(w=>e==null?void 0:e(Qn.CHANNEL_ERROR,w)),this._onClose(()=>e==null?void 0:e(Qn.CLOSED)),this.updateJoinPayload(Object.assign({
+config:T}
+,_)),this.joinedOnce=!0,this._rejoin(n),this.joinPush.receive("ok",async({
+postgres_changes:w}
+)=>{
+var A;
+if(this.socket._isManualToken()||this.socket.setAuth(),w===void 0){
+e==null||e(Qn.SUBSCRIBED);
+return}
+else{
+const C=this.bindings.postgres_changes,x=(A=C==null?void 0:C.length)!==null&&A!==void 0?A:0,R=[];
+for(let k=0;
+k<x;
+k++){
+const N=C[k],{
+filter:{
+event:O,schema:F,table:z,filter:G}
+}
+=N,X=w&&w[k];
+if(X&&X.event===O&&wo.isFilterValueEqual(X.schema,F)&&wo.isFilterValueEqual(X.table,z)&&wo.isFilterValueEqual(X.filter,G))R.push(Object.assign(Object.assign({
+}
+,N),{
+id:X.id}
+));
+else{
+this.unsubscribe(),this.state=lt.errored,e==null||e(Qn.CHANNEL_ERROR,new Error("mismatch between server and client bindings for postgres changes"));
+return}
+}
+this.bindings.postgres_changes=R,e&&e(Qn.SUBSCRIBED);
+return}
+}
+).receive("error",w=>{
+this.state=lt.errored,e==null||e(Qn.CHANNEL_ERROR,new Error(JSON.stringify(Object.values(w).join(", ")||"error")))}
+).receive("timeout",()=>{
+e==null||e(Qn.TIMED_OUT)}
+)}
+return this}
+presenceState(){
+return this.presence.state}
+async track(e,n={
+}
+){
+return await this.send({
+type:"presence",event:"track",payload:e}
+,n.timeout||this.timeout)}
+async untrack(e={
+}
+){
+return await this.send({
+type:"presence",event:"untrack"}
+,e)}
+on(e,n,i){
+return this.state===lt.joined&&e===qr.PRESENCE&&(this.socket.log("channel",`resubscribe to ${
+this.topic}
+ due to change in presence callbacks on joined channel`),this.unsubscribe().then(async()=>await this.subscribe())),this._on(e,n,i)}
+async httpSend(e,n,i={
+}
+){
+var r;
+if(n==null)return Promise.reject("Payload is required for httpSend()");
+const l={
+apikey:this.socket.apiKey?this.socket.apiKey:"","Content-Type":"application/json"}
+;
+this.socket.accessTokenValue&&(l.Authorization=`Bearer ${
+this.socket.accessTokenValue}
+`);
+const u={
+method:"POST",headers:l,body:JSON.stringify({
+messages:[{
+topic:this.subTopic,event:e,payload:n,private:this.private}
+]}
+)}
+,d=await this._fetchWithTimeout(this.broadcastEndpointURL,u,(r=i.timeout)!==null&&r!==void 0?r:this.timeout);
+if(d.status===202)return{
+success:!0}
+;
+let h=d.statusText;
+try{
+const p=await d.json();
+h=p.error||p.message||h}
+catch{
+}
+return Promise.reject(new Error(h))}
+async send(e,n={
+}
+){
+var i,r;
+if(!this._canPush()&&e.type==="broadcast"){
+console.warn("Realtime send() is automatically falling back to REST API. This behavior will be deprecated in the future. Please use httpSend() explicitly for REST delivery.");
+const{
+event:l,payload:u}
+=e,d={
+apikey:this.socket.apiKey?this.socket.apiKey:"","Content-Type":"application/json"}
+;
+this.socket.accessTokenValue&&(d.Authorization=`Bearer ${
+this.socket.accessTokenValue}
+`);
+const h={
+method:"POST",headers:d,body:JSON.stringify({
+messages:[{
+topic:this.subTopic,event:l,payload:u,private:this.private}
+]}
+)}
+;
+try{
+const p=await this._fetchWithTimeout(this.broadcastEndpointURL,h,(i=n.timeout)!==null&&i!==void 0?i:this.timeout);
+return await((r=p.body)===null||r===void 0?void 0:r.cancel()),p.ok?"ok":"error"}
+catch(p){
+return p.name==="AbortError"?"timed out":"error"}
+}
+else return new Promise(l=>{
+var u,d,h;
+const p=this._push(e.type,e,n.timeout||this.timeout);
+e.type==="broadcast"&&!(!((h=(d=(u=this.params)===null||u===void 0?void 0:u.config)===null||d===void 0?void 0:d.broadcast)===null||h===void 0)&&h.ack)&&l("ok"),p.receive("ok",()=>l("ok")),p.receive("error",()=>l("error")),p.receive("timeout",()=>l("timed out"))}
+)}
+updateJoinPayload(e){
+this.joinPush.updatePayload(e)}
+unsubscribe(e=this.timeout){
+this.state=lt.leaving;
+const n=()=>{
+this.socket.log("channel",`leave ${
+this.topic}
+`),this._trigger(En.close,"leave",this._joinRef())}
+;
+this.joinPush.destroy();
+let i=null;
+return new Promise(r=>{
+i=new Sf(this,En.leave,{
+}
+,e),i.receive("ok",()=>{
+n(),r("ok")}
+).receive("timeout",()=>{
+n(),r("timed out")}
+).receive("error",()=>{
+r("error")}
+),i.send(),this._canPush()||i.trigger("ok",{
+}
+)}
+).finally(()=>{
+i==null||i.destroy()}
+)}
+teardown(){
+this.pushBuffer.forEach(e=>e.destroy()),this.pushBuffer=[],this.rejoinTimer.reset(),this.joinPush.destroy(),this.state=lt.closed,this.bindings={
+}
+}
+async _fetchWithTimeout(e,n,i){
+const r=new AbortController,l=setTimeout(()=>r.abort(),i),u=await this.socket.fetch(e,Object.assign(Object.assign({
+}
+,n),{
+signal:r.signal}
+));
+return clearTimeout(l),u}
+_push(e,n,i=this.timeout){
+if(!this.joinedOnce)throw`tried to push '${
+e}
+' to '${
+this.topic}
+' before joining. Use channel.subscribe() before pushing events`;
+let r=new Sf(this,e,n,i);
+return this._canPush()?r.send():this._addToPushBuffer(r),r}
+_addToPushBuffer(e){
+if(e.startTimeout(),this.pushBuffer.push(e),this.pushBuffer.length>_5){
+const n=this.pushBuffer.shift();
+n&&(n.destroy(),this.socket.log("channel",`discarded push due to buffer overflow: ${
+n.event}
+`,n.payload))}
+}
+_onMessage(e,n,i){
+return n}
+_isMember(e){
+return this.topic===e}
+_joinRef(){
+return this.joinPush.ref}
+_trigger(e,n,i){
+var r,l;
+const u=e.toLocaleLowerCase(),{
+close:d,error:h,leave:p,join:g}
+=En;
+if(i&&[d,h,p,g].indexOf(u)>=0&&i!==this._joinRef())return;
+let T=this._onMessage(u,n,i);
+if(n&&!T)throw"channel onMessage callbacks must return the payload, modified or unmodified";
+["insert","update","delete"].includes(u)?(r=this.bindings.postgres_changes)===null||r===void 0||r.filter(w=>{
+var A,C,x;
+return((A=w.filter)===null||A===void 0?void 0:A.event)==="*"||((x=(C=w.filter)===null||C===void 0?void 0:C.event)===null||x===void 0?void 0:x.toLocaleLowerCase())===u}
+).map(w=>w.callback(T,i)):(l=this.bindings[u])===null||l===void 0||l.filter(w=>{
+var A,C,x,R,k,N,O,F;
+if(["broadcast","presence","postgres_changes"].includes(u))if("id"in w){
+const z=w.id,G=(A=w.filter)===null||A===void 0?void 0:A.event;
+return z&&((C=n.ids)===null||C===void 0?void 0:C.includes(z))&&(G==="*"||(G==null?void 0:G.toLocaleLowerCase())===((x=n.data)===null||x===void 0?void 0:x.type.toLocaleLowerCase()))&&(!(!((R=w.filter)===null||R===void 0)&&R.table)||w.filter.table===((k=n.data)===null||k===void 0?void 0:k.table))}
+else{
+const z=(O=(N=w==null?void 0:w.filter)===null||N===void 0?void 0:N.event)===null||O===void 0?void 0:O.toLocaleLowerCase();
+return z==="*"||z===((F=n==null?void 0:n.event)===null||F===void 0?void 0:F.toLocaleLowerCase())}
+else return w.type.toLocaleLowerCase()===u}
+).map(w=>{
+if(typeof T=="object"&&"ids"in T){
+const A=T.data,{
+schema:C,table:x,commit_timestamp:R,type:k,errors:N}
+=A;
+T=Object.assign(Object.assign({
+}
+,{
+schema:C,table:x,commit_timestamp:R,eventType:k,new:{
+}
+,old:{
+}
+,errors:N}
+),this._getPayloadRecords(A))}
+w.callback(T,i)}
+)}
+_isClosed(){
+return this.state===lt.closed}
+_isJoined(){
+return this.state===lt.joined}
+_isJoining(){
+return this.state===lt.joining}
+_isLeaving(){
+return this.state===lt.leaving}
+_replyEventName(e){
+return`chan_reply_${
+e}
+`}
+_on(e,n,i){
+const r=e.toLocaleLowerCase(),l={
+type:r,filter:n,callback:i}
+;
+return this.bindings[r]?this.bindings[r].push(l):this.bindings[r]=[l],this}
+_off(e,n){
+const i=e.toLocaleLowerCase();
+return this.bindings[i]&&(this.bindings[i]=this.bindings[i].filter(r=>{
+var l;
+return!(((l=r.type)===null||l===void 0?void 0:l.toLocaleLowerCase())===i&&wo.isEqual(r.filter,n))}
+)),this}
+static isEqual(e,n){
+if(Object.keys(e).length!==Object.keys(n).length)return!1;
+for(const i in e)if(e[i]!==n[i])return!1;
+return!0}
+static isFilterValueEqual(e,n){
+return(e??void 0)===(n??void 0)}
+_rejoinUntilConnected(){
+this.rejoinTimer.scheduleTimeout(),this.socket.isConnected()&&this._rejoin()}
+_onClose(e){
+this._on(En.close,{
+}
+,e)}
+_onError(e){
+this._on(En.error,{
+}
+,n=>e(n))}
+_canPush(){
+return this.socket.isConnected()&&this._isJoined()}
+_rejoin(e=this.timeout){
+this._isLeaving()||(this.socket._leaveOpenTopic(this.topic),this.state=lt.joining,this.joinPush.resend(e))}
+_getPayloadRecords(e){
+const n={
+new:{
+}
+,old:{
+}
+}
+;
+return(e.type==="INSERT"||e.type==="UPDATE")&&(n.new=$T(e.columns,e.record)),(e.type==="UPDATE"||e.type==="DELETE")&&(n.old=$T(e.columns,e.old_record)),n}
+}
+const wf=()=>{
+}
+,Ol={
+HEARTBEAT_INTERVAL:25e3,RECONNECT_DELAY:10,HEARTBEAT_TIMEOUT_FALLBACK:100}
+,x5=[1e3,2e3,5e3,1e4],R5=1e4,N5=`
+  addEventListener("message", (e) => {
+
+    if (e.data.event === "start") {
+
+      setInterval(() => postMessage({
+ event: "keepAlive" }
+), e.data.interval);
+
+    }
+
+  }
+);
+`;
+class M5{
+constructor(e,n){
+var i;
+if(this.accessTokenValue=null,this.apiKey=null,this._manuallySetToken=!1,this.channels=new Array,this.endPoint="",this.httpEndpoint="",this.headers={
+}
+,this.params={
+}
+,this.timeout=gh,this.transport=null,this.heartbeatIntervalMs=Ol.HEARTBEAT_INTERVAL,this.heartbeatTimer=void 0,this.pendingHeartbeatRef=null,this.heartbeatCallback=wf,this.ref=0,this.reconnectTimer=null,this.vsn=zT,this.logger=wf,this.conn=null,this.sendBuffer=[],this.serializer=new T5,this.stateChangeCallbacks={
+open:[],close:[],error:[],message:[]}
+,this.accessToken=null,this._connectionState="disconnected",this._wasManualDisconnect=!1,this._authPromise=null,this._heartbeatSentAt=null,this._resolveFetch=r=>r?(...l)=>r(...l):(...l)=>fetch(...l),!(!((i=n==null?void 0:n.params)===null||i===void 0)&&i.apikey))throw new Error("API key is required to connect to Realtime");
+this.apiKey=n.params.apikey,this.endPoint=`${
+e}
+/${
+yh.websocket}
+`,this.httpEndpoint=sb(e),this._initializeOptions(n),this._setupReconnectionTimer(),this.fetch=this._resolveFetch(n==null?void 0:n.fetch)}
+connect(){
+if(!(this.isConnecting()||this.isDisconnecting()||this.conn!==null&&this.isConnected())){
+if(this._setConnectionState("connecting"),this.accessToken&&!this._authPromise&&this._setAuthSafely("connect"),this.transport)this.conn=new this.transport(this.endpointURL());
+else try{
+this.conn=p5.createWebSocket(this.endpointURL())}
+catch(e){
+this._setConnectionState("disconnected");
+const n=e.message;
+throw n.includes("Node.js")?new Error(`${
+n}
+
+
+To use Realtime in Node.js, you need to provide a WebSocket implementation:
+
+Option 1: Use Node.js 22+ which has native WebSocket support
+Option 2: Install and provide the "ws" package:
+
+  npm install ws
+
+  import ws from "ws"
+  const client = new RealtimeClient(url, {
+
+    ...options,
+    transport: ws
+  }
+)`):new Error(`WebSocket not available: ${
+n}
+`)}
+this._setupConnectionHandlers()}
+}
+endpointURL(){
+return this._appendParams(this.endPoint,Object.assign({
+}
+,this.params,{
+vsn:this.vsn}
+))}
+disconnect(e,n){
+if(!this.isDisconnecting())if(this._setConnectionState("disconnecting",!0),this.conn){
+const i=setTimeout(()=>{
+this._setConnectionState("disconnected")}
+,100);
+this.conn.onclose=()=>{
+clearTimeout(i),this._setConnectionState("disconnected")}
+,typeof this.conn.close=="function"&&(e?this.conn.close(e,n??""):this.conn.close()),this._teardownConnection()}
+else this._setConnectionState("disconnected")}
+getChannels(){
+return this.channels}
+async removeChannel(e){
+const n=await e.unsubscribe();
+return this.channels.length===0&&this.disconnect(),n}
+async removeAllChannels(){
+const e=await Promise.all(this.channels.map(n=>n.unsubscribe()));
+return this.channels=[],this.disconnect(),e}
+log(e,n,i){
+this.logger(e,n,i)}
+connectionState(){
+switch(this.conn&&this.conn.readyState){
+case Di.connecting:return ds.Connecting;
+case Di.open:return ds.Open;
+case Di.closing:return ds.Closing;
+default:return ds.Closed}
+}
+isConnected(){
+return this.connectionState()===ds.Open}
+isConnecting(){
+return this._connectionState==="connecting"}
+isDisconnecting(){
+return this._connectionState==="disconnecting"}
+channel(e,n={
+config:{
+}
+}
+){
+const i=`realtime:${
+e}
+`,r=this.getChannels().find(l=>l.topic===i);
+if(r)return r;
+{
+const l=new wo(`realtime:${
+e}
+`,n,this);
+return this.channels.push(l),l}
+}
+push(e){
+const{
+topic:n,event:i,payload:r,ref:l}
+=e,u=()=>{
+this.encode(e,d=>{
+var h;
+(h=this.conn)===null||h===void 0||h.send(d)}
+)}
+;
+this.log("push",`${
+n}
+ ${
+i}
+ (${
+l}
+)`,r),this.isConnected()?u():this.sendBuffer.push(u)}
+async setAuth(e=null){
+this._authPromise=this._performAuth(e);
+try{
+await this._authPromise}
+finally{
+this._authPromise=null}
+}
+_isManualToken(){
+return this._manuallySetToken}
+async sendHeartbeat(){
+var e;
+if(!this.isConnected()){
+try{
+this.heartbeatCallback("disconnected")}
+catch(n){
+this.log("error","error in heartbeat callback",n)}
+return}
+if(this.pendingHeartbeatRef){
+this.pendingHeartbeatRef=null,this._heartbeatSentAt=null,this.log("transport","heartbeat timeout. Attempting to re-establish connection");
+try{
+this.heartbeatCallback("timeout")}
+catch(n){
+this.log("error","error in heartbeat callback",n)}
+this._wasManualDisconnect=!1,(e=this.conn)===null||e===void 0||e.close(v5,"heartbeat timeout"),setTimeout(()=>{
+var n;
+this.isConnected()||(n=this.reconnectTimer)===null||n===void 0||n.scheduleTimeout()}
+,Ol.HEARTBEAT_TIMEOUT_FALLBACK);
+return}
+this._heartbeatSentAt=Date.now(),this.pendingHeartbeatRef=this._makeRef(),this.push({
+topic:"phoenix",event:"heartbeat",payload:{
+}
+,ref:this.pendingHeartbeatRef}
+);
+try{
+this.heartbeatCallback("sent")}
+catch(n){
+this.log("error","error in heartbeat callback",n)}
+this._setAuthSafely("heartbeat")}
+onHeartbeat(e){
+this.heartbeatCallback=e}
+flushSendBuffer(){
+this.isConnected()&&this.sendBuffer.length>0&&(this.sendBuffer.forEach(e=>e()),this.sendBuffer=[])}
+_makeRef(){
+let e=this.ref+1;
+return e===this.ref?this.ref=0:this.ref=e,this.ref.toString()}
+_leaveOpenTopic(e){
+let n=this.channels.find(i=>i.topic===e&&(i._isJoined()||i._isJoining()));
+n&&(this.log("transport",`leaving duplicate topic "${
+e}
+"`),n.unsubscribe())}
+_remove(e){
+this.channels=this.channels.filter(n=>n.topic!==e.topic)}
+_onConnMessage(e){
+this.decode(e.data,n=>{
+if(n.topic==="phoenix"&&n.event==="phx_reply"&&n.ref&&n.ref===this.pendingHeartbeatRef){
+const p=this._heartbeatSentAt?Date.now()-this._heartbeatSentAt:void 0;
+try{
+this.heartbeatCallback(n.payload.status==="ok"?"ok":"error",p)}
+catch(g){
+this.log("error","error in heartbeat callback",g)}
+this._heartbeatSentAt=null,this.pendingHeartbeatRef=null}
+const{
+topic:i,event:r,payload:l,ref:u}
+=n,d=u?`(${
+u}
+)`:"",h=l.status||"";
+this.log("receive",`${
+h}
+ ${
+i}
+ ${
+r}
+ ${
+d}
+`.trim(),l),this.channels.filter(p=>p._isMember(i)).forEach(p=>p._trigger(r,l,u)),this._triggerStateCallbacks("message",n)}
+)}
+_clearTimer(e){
+var n;
+e==="heartbeat"&&this.heartbeatTimer?(clearInterval(this.heartbeatTimer),this.heartbeatTimer=void 0):e==="reconnect"&&((n=this.reconnectTimer)===null||n===void 0||n.reset())}
+_clearAllTimers(){
+this._clearTimer("heartbeat"),this._clearTimer("reconnect")}
+_setupConnectionHandlers(){
+this.conn&&("binaryType"in this.conn&&(this.conn.binaryType="arraybuffer"),this.conn.onopen=()=>this._onConnOpen(),this.conn.onerror=e=>this._onConnError(e),this.conn.onmessage=e=>this._onConnMessage(e),this.conn.onclose=e=>this._onConnClose(e),this.conn.readyState===Di.open&&this._onConnOpen())}
+_teardownConnection(){
+if(this.conn){
+if(this.conn.readyState===Di.open||this.conn.readyState===Di.connecting)try{
+this.conn.close()}
+catch(e){
+this.log("error","Error closing connection",e)}
+this.conn.onopen=null,this.conn.onerror=null,this.conn.onmessage=null,this.conn.onclose=null,this.conn=null}
+this._clearAllTimers(),this._terminateWorker(),this.channels.forEach(e=>e.teardown())}
+_onConnOpen(){
+this._setConnectionState("connected"),this.log("transport",`connected to ${
+this.endpointURL()}
+`),(this._authPromise||(this.accessToken&&!this.accessTokenValue?this.setAuth():Promise.resolve())).then(()=>{
+this.flushSendBuffer()}
+).catch(n=>{
+this.log("error","error waiting for auth on connect",n),this.flushSendBuffer()}
+),this._clearTimer("reconnect"),this.worker?this.workerRef||this._startWorkerHeartbeat():this._startHeartbeat(),this._triggerStateCallbacks("open")}
+_startHeartbeat(){
+this.heartbeatTimer&&clearInterval(this.heartbeatTimer),this.heartbeatTimer=setInterval(()=>this.sendHeartbeat(),this.heartbeatIntervalMs)}
+_startWorkerHeartbeat(){
+this.workerUrl?this.log("worker",`starting worker for from ${
+this.workerUrl}
+`):this.log("worker","starting default worker");
+const e=this._workerObjectUrl(this.workerUrl);
+this.workerRef=new Worker(e),this.workerRef.onerror=n=>{
+this.log("worker","worker error",n.message),this._terminateWorker()}
+,this.workerRef.onmessage=n=>{
+n.data.event==="keepAlive"&&this.sendHeartbeat()}
+,this.workerRef.postMessage({
+event:"start",interval:this.heartbeatIntervalMs}
+)}
+_terminateWorker(){
+this.workerRef&&(this.log("worker","terminating worker"),this.workerRef.terminate(),this.workerRef=void 0)}
+_onConnClose(e){
+var n;
+this._setConnectionState("disconnected"),this.log("transport","close",e),this._triggerChanError(),this._clearTimer("heartbeat"),this._wasManualDisconnect||(n=this.reconnectTimer)===null||n===void 0||n.scheduleTimeout(),this._triggerStateCallbacks("close",e)}
+_onConnError(e){
+this._setConnectionState("disconnected"),this.log("transport",`${
+e}
+`),this._triggerChanError(),this._triggerStateCallbacks("error",e)}
+_triggerChanError(){
+this.channels.forEach(e=>e._trigger(En.error))}
+_appendParams(e,n){
+if(Object.keys(n).length===0)return e;
+const i=e.match(/\?/)?"&":"?",r=new URLSearchParams(n);
+return`${
+e}
+${
+i}
+${
+r}
+`}
+_workerObjectUrl(e){
+let n;
+if(e)n=e;
+else{
+const i=new Blob([N5],{
+type:"application/javascript"}
+);
+n=URL.createObjectURL(i)}
+return n}
+_setConnectionState(e,n=!1){
+this._connectionState=e,e==="connecting"?this._wasManualDisconnect=!1:e==="disconnecting"&&(this._wasManualDisconnect=n)}
+async _performAuth(e=null){
+let n,i=!1;
+if(e)n=e,i=!0;
+else if(this.accessToken)try{
+n=await this.accessToken()}
+catch(r){
+this.log("error","Error fetching access token from callback",r),n=this.accessTokenValue}
+else n=this.accessTokenValue;
+i?this._manuallySetToken=!0:this.accessToken&&(this._manuallySetToken=!1),this.accessTokenValue!=n&&(this.accessTokenValue=n,this.channels.forEach(r=>{
+const l={
+access_token:n,version:g5}
+;
+n&&r.updateJoinPayload(l),r.joinedOnce&&r._isJoined()&&r._push(En.access_token,{
+access_token:n}
+)}
+))}
+async _waitForAuthIfNeeded(){
+this._authPromise&&await this._authPromise}
+_setAuthSafely(e="general"){
+this._isManualToken()||this.setAuth().catch(n=>{
+this.log("error",`Error setting auth in ${
+e}
+`,n)}
+)}
+_triggerStateCallbacks(e,n){
+try{
+this.stateChangeCallbacks[e].forEach(i=>{
+try{
+i(n)}
+catch(r){
+this.log("error",`error in ${
+e}
+ callback`,r)}
+}
+)}
+catch(i){
+this.log("error",`error triggering ${
+e}
+ callbacks`,i)}
+}
+_setupReconnectionTimer(){
+this.reconnectTimer=new nb(async()=>{
+setTimeout(async()=>{
+await this._waitForAuthIfNeeded(),this.isConnected()||this.connect()}
+,Ol.RECONNECT_DELAY)}
+,this.reconnectAfterMs)}
+_initializeOptions(e){
+var n,i,r,l,u,d,h,p,g,_,T,w;
+switch(this.transport=(n=e==null?void 0:e.transport)!==null&&n!==void 0?n:null,this.timeout=(i=e==null?void 0:e.timeout)!==null&&i!==void 0?i:gh,this.heartbeatIntervalMs=(r=e==null?void 0:e.heartbeatIntervalMs)!==null&&r!==void 0?r:Ol.HEARTBEAT_INTERVAL,this.worker=(l=e==null?void 0:e.worker)!==null&&l!==void 0?l:!1,this.accessToken=(u=e==null?void 0:e.accessToken)!==null&&u!==void 0?u:null,this.heartbeatCallback=(d=e==null?void 0:e.heartbeatCallback)!==null&&d!==void 0?d:wf,this.vsn=(h=e==null?void 0:e.vsn)!==null&&h!==void 0?h:zT,e!=null&&e.params&&(this.params=e.params),e!=null&&e.logger&&(this.logger=e.logger),(e!=null&&e.logLevel||e!=null&&e.log_level)&&(this.logLevel=e.logLevel||e.log_level,this.params=Object.assign(Object.assign({
+}
+,this.params),{
+log_level:this.logLevel}
+)),this.reconnectAfterMs=(p=e==null?void 0:e.reconnectAfterMs)!==null&&p!==void 0?p:(A=>x5[A-1]||R5),this.vsn){
+case y5:this.encode=(g=e==null?void 0:e.encode)!==null&&g!==void 0?g:((A,C)=>C(JSON.stringify(A))),this.decode=(_=e==null?void 0:e.decode)!==null&&_!==void 0?_:((A,C)=>C(JSON.parse(A)));
+break;
+case tb:this.encode=(T=e==null?void 0:e.encode)!==null&&T!==void 0?T:this.serializer.encode.bind(this.serializer),this.decode=(w=e==null?void 0:e.decode)!==null&&w!==void 0?w:this.serializer.decode.bind(this.serializer);
+break;
+default:throw new Error(`Unsupported serializer version: ${
+this.vsn}
+`)}
+if(this.worker){
+if(typeof window<"u"&&!window.Worker)throw new Error("Web Worker is not supported");
+this.workerUrl=e==null?void 0:e.workerUrl}
+}
+}
+var jr=class extends Error{
+constructor(t,e){
+var n;
+super(t),this.name="IcebergError",this.status=e.status,this.icebergType=e.icebergType,this.icebergCode=e.icebergCode,this.details=e.details,this.isCommitStateUnknown=e.icebergType==="CommitStateUnknownException"||[500,502,504].includes(e.status)&&((n=e.icebergType)==null?void 0:n.includes("CommitState"))===!0}
+isNotFound(){
+return this.status===404}
+isConflict(){
+return this.status===409}
+isAuthenticationTimeout(){
+return this.status===419}
+}
+;
+function I5(t,e,n){
+const i=new URL(e,t);
+if(n)for(const[r,l]of Object.entries(n))l!==void 0&&i.searchParams.set(r,l);
+return i.toString()}
+async function D5(t){
+return!t||t.type==="none"?{
+}
+:t.type==="bearer"?{
+Authorization:`Bearer ${
+t.token}
+`}
+:t.type==="header"?{
+[t.name]:t.value}
+:t.type==="custom"?await t.getHeaders():{
+}
+}
+function k5(t){
+const e=t.fetchImpl??globalThis.fetch;
+return{
+async request({
+method:n,path:i,query:r,body:l,headers:u}
+){
+const d=I5(t.baseUrl,i,r),h=await D5(t.auth),p=await e(d,{
+method:n,headers:{
+...l?{
+"Content-Type":"application/json"}
+:{
+}
+,...h,...u}
+,body:l?JSON.stringify(l):void 0}
+),g=await p.text(),_=(p.headers.get("content-type")||"").includes("application/json"),T=_&&g?JSON.parse(g):g;
+if(!p.ok){
+const w=_?T:void 0,A=w==null?void 0:w.error;
+throw new jr((A==null?void 0:A.message)??`Request failed with status ${
+p.status}
+`,{
+status:p.status,icebergType:A==null?void 0:A.type,icebergCode:A==null?void 0:A.code,details:w}
+)}
+return{
+status:p.status,headers:p.headers,data:T}
+}
+}
+}
+function Vl(t){
+return t.join("")}
+var U5=class{
+constructor(t,e=""){
+this.client=t,this.prefix=e}
+async listNamespaces(t){
+const e=t?{
+parent:Vl(t.namespace)}
+:void 0;
+return(await this.client.request({
+method:"GET",path:`${
+this.prefix}
+/namespaces`,query:e}
+)).data.namespaces.map(i=>({
+namespace:i}
+))}
+async createNamespace(t,e){
+const n={
+namespace:t.namespace,properties:e==null?void 0:e.properties}
+;
+return(await this.client.request({
+method:"POST",path:`${
+this.prefix}
+/namespaces`,body:n}
+)).data}
+async dropNamespace(t){
+await this.client.request({
+method:"DELETE",path:`${
+this.prefix}
+/namespaces/${
+Vl(t.namespace)}
+`}
+)}
+async loadNamespaceMetadata(t){
+return{
+properties:(await this.client.request({
+method:"GET",path:`${
+this.prefix}
+/namespaces/${
+Vl(t.namespace)}
+`}
+)).data.properties}
+}
+async namespaceExists(t){
+try{
+return await this.client.request({
+method:"HEAD",path:`${
+this.prefix}
+/namespaces/${
+Vl(t.namespace)}
+`}
+),!0}
+catch(e){
+if(e instanceof jr&&e.status===404)return!1;
+throw e}
+}
+async createNamespaceIfNotExists(t,e){
+try{
+return await this.createNamespace(t,e)}
+catch(n){
+if(n instanceof jr&&n.status===409)return;
+throw n}
+}
+}
+;
+function so(t){
+return t.join("")}
+var P5=class{
+constructor(t,e="",n){
+this.client=t,this.prefix=e,this.accessDelegation=n}
+async listTables(t){
+return(await this.client.request({
+method:"GET",path:`${
+this.prefix}
+/namespaces/${
+so(t.namespace)}
+/tables`}
+)).data.identifiers}
+async createTable(t,e){
+const n={
+}
+;
+return this.accessDelegation&&(n["X-Iceberg-Access-Delegation"]=this.accessDelegation),(await this.client.request({
+method:"POST",path:`${
+this.prefix}
+/namespaces/${
+so(t.namespace)}
+/tables`,body:e,headers:n}
+)).data.metadata}
+async updateTable(t,e){
+const n=await this.client.request({
+method:"POST",path:`${
+this.prefix}
+/namespaces/${
+so(t.namespace)}
+/tables/${
+t.name}
+`,body:e}
+);
+return{
+"metadata-location":n.data["metadata-location"],metadata:n.data.metadata}
+}
+async dropTable(t,e){
+await this.client.request({
+method:"DELETE",path:`${
+this.prefix}
+/namespaces/${
+so(t.namespace)}
+/tables/${
+t.name}
+`,query:{
+purgeRequested:String((e==null?void 0:e.purge)??!1)}
+}
+)}
+async loadTable(t){
+const e={
+}
+;
+return this.accessDelegation&&(e["X-Iceberg-Access-Delegation"]=this.accessDelegation),(await this.client.request({
+method:"GET",path:`${
+this.prefix}
+/namespaces/${
+so(t.namespace)}
+/tables/${
+t.name}
+`,headers:e}
+)).data.metadata}
+async tableExists(t){
+const e={
+}
+;
+this.accessDelegation&&(e["X-Iceberg-Access-Delegation"]=this.accessDelegation);
+try{
+return await this.client.request({
+method:"HEAD",path:`${
+this.prefix}
+/namespaces/${
+so(t.namespace)}
+/tables/${
+t.name}
+`,headers:e}
+),!0}
+catch(n){
+if(n instanceof jr&&n.status===404)return!1;
+throw n}
+}
+async createTableIfNotExists(t,e){
+try{
+return await this.createTable(t,e)}
+catch(n){
+if(n instanceof jr&&n.status===409)return await this.loadTable({
+namespace:t.namespace,name:e.name}
+);
+throw n}
+}
+}
+,L5=class{
+constructor(t){
+var i;
+let e="v1";
+t.catalogName&&(e+=`/${
+t.catalogName}
+`);
+const n=t.baseUrl.endsWith("/")?t.baseUrl:`${
+t.baseUrl}
+/`;
+this.client=k5({
+baseUrl:n,auth:t.auth,fetchImpl:t.fetch}
+),this.accessDelegation=(i=t.accessDelegation)==null?void 0:i.join(","),this.namespaceOps=new U5(this.client,e),this.tableOps=new P5(this.client,e,this.accessDelegation)}
+async listNamespaces(t){
+return this.namespaceOps.listNamespaces(t)}
+async createNamespace(t,e){
+return this.namespaceOps.createNamespace(t,e)}
+async dropNamespace(t){
+await this.namespaceOps.dropNamespace(t)}
+async loadNamespaceMetadata(t){
+return this.namespaceOps.loadNamespaceMetadata(t)}
+async listTables(t){
+return this.tableOps.listTables(t)}
+async createTable(t,e){
+return this.tableOps.createTable(t,e)}
+async updateTable(t,e){
+return this.tableOps.updateTable(t,e)}
+async dropTable(t,e){
+await this.tableOps.dropTable(t,e)}
+async loadTable(t){
+return this.tableOps.loadTable(t)}
+async namespaceExists(t){
+return this.namespaceOps.namespaceExists(t)}
+async tableExists(t){
+return this.tableOps.tableExists(t)}
+async createNamespaceIfNotExists(t,e){
+return this.namespaceOps.createNamespaceIfNotExists(t,e)}
+async createTableIfNotExists(t,e){
+return this.tableOps.createTableIfNotExists(t,e)}
+}
+,Ru=class extends Error{
+constructor(t){
+super(t),this.__isStorageError=!0,this.name="StorageError"}
+}
+;
+function Je(t){
+return typeof t=="object"&&t!==null&&"__isStorageError"in t}
+var O5=class extends Ru{
+constructor(t,e,n){
+super(t),this.name="StorageApiError",this.status=e,this.statusCode=n}
+toJSON(){
+return{
+name:this.name,message:this.message,status:this.status,statusCode:this.statusCode}
+}
+}
+,_h=class extends Ru{
+constructor(t,e){
+super(t),this.name="StorageUnknownError",this.originalError=e}
+}
+;
+const mp=t=>t?(...e)=>t(...e):(...e)=>fetch(...e),V5=()=>Response,Th=t=>{
+if(Array.isArray(t))return t.map(n=>Th(n));
+if(typeof t=="function"||t!==Object(t))return t;
+const e={
+}
+;
+return Object.entries(t).forEach(([n,i])=>{
+const r=n.replace(/([-_][a-z])/gi,l=>l.toUpperCase().replace(/[-_]/g,""));
+e[r]=Th(i)}
+),e}
+,B5=t=>{
+if(typeof t!="object"||t===null)return!1;
+const e=Object.getPrototypeOf(t);
+return(e===null||e===Object.prototype||Object.getPrototypeOf(e)===null)&&!(Symbol.toStringTag in t)&&!(Symbol.iterator in t)}
+,F5=t=>!t||typeof t!="string"||t.length===0||t.length>100||t.trim()!==t||t.includes("/")||t.includes("\\")?!1:/^[\w!.\*'() &$@=;
+:+,?-]+$/.test(t);
+function Wr(t){
+"@babel/helpers - typeof";
+return Wr=typeof Symbol=="function"&&typeof Symbol.iterator=="symbol"?function(e){
+return typeof e}
+:function(e){
+return e&&typeof Symbol=="function"&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e}
+,Wr(t)}
+function G5(t,e){
+if(Wr(t)!="object"||!t)return t;
+var n=t[Symbol.toPrimitive];
+if(n!==void 0){
+var i=n.call(t,e);
+if(Wr(i)!="object")return i;
+throw new TypeError("@@toPrimitive must return a primitive value.")}
+return(e==="string"?String:Number)(t)}
+function q5(t){
+var e=G5(t,"string");
+return Wr(e)=="symbol"?e:e+""}
+function H5(t,e,n){
+return(e=q5(e))in t?Object.defineProperty(t,e,{
+value:n,enumerable:!0,configurable:!0,writable:!0}
+):t[e]=n,t}
+function YT(t,e){
+var n=Object.keys(t);
+if(Object.getOwnPropertySymbols){
+var i=Object.getOwnPropertySymbols(t);
+e&&(i=i.filter(function(r){
+return Object.getOwnPropertyDescriptor(t,r).enumerable}
+)),n.push.apply(n,i)}
+return n}
+function ce(t){
+for(var e=1;
+e<arguments.length;
+e++){
+var n=arguments[e]!=null?arguments[e]:{
+}
+;
+e%2?YT(Object(n),!0).forEach(function(i){
+H5(t,i,n[i])}
+):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(n)):YT(Object(n)).forEach(function(i){
+Object.defineProperty(t,i,Object.getOwnPropertyDescriptor(n,i))}
+)}
+return t}
+const Ef=t=>{
+var e;
+return t.msg||t.message||t.error_description||(typeof t.error=="string"?t.error:(e=t.error)===null||e===void 0?void 0:e.message)||JSON.stringify(t)}
+,z5=async(t,e,n)=>{
+t instanceof await V5()&&!(n!=null&&n.noResolveJson)?t.json().then(i=>{
+const r=t.status||500,l=(i==null?void 0:i.statusCode)||r+"";
+e(new O5(Ef(i),r,l))}
+).catch(i=>{
+e(new _h(Ef(i),i))}
+):e(new _h(Ef(t),t))}
+,$5=(t,e,n,i)=>{
+const r={
+method:t,headers:(e==null?void 0:e.headers)||{
+}
+}
+;
+return t==="GET"||!i?r:(B5(i)?(r.headers=ce({
+"Content-Type":"application/json"}
+,e==null?void 0:e.headers),r.body=JSON.stringify(i)):r.body=i,e!=null&&e.duplex&&(r.duplex=e.duplex),ce(ce({
+}
+,r),n))}
+;
+async function aa(t,e,n,i,r,l){
+return new Promise((u,d)=>{
+t(n,$5(e,i,r,l)).then(h=>{
+if(!h.ok)throw h;
+return i!=null&&i.noResolveJson?h:h.json()}
+).then(h=>u(h)).catch(h=>z5(h,d,i))}
+)}
+async function Xr(t,e,n,i){
+return aa(t,"GET",e,n,i)}
+async function wn(t,e,n,i,r){
+return aa(t,"POST",e,i,r,n)}
+async function Sh(t,e,n,i,r){
+return aa(t,"PUT",e,i,r,n)}
+async function J5(t,e,n,i){
+return aa(t,"HEAD",e,ce(ce({
+}
+,n),{
+}
+,{
+noResolveJson:!0}
+),i)}
+async function gp(t,e,n,i,r){
+return aa(t,"DELETE",e,i,r,n)}
+var K5=class{
+constructor(t,e){
+this.downloadFn=t,this.shouldThrowOnError=e}
+then(t,e){
+return this.execute().then(t,e)}
+async execute(){
+var t=this;
+try{
+return{
+data:(await t.downloadFn()).body,error:null}
+}
+catch(e){
+if(t.shouldThrowOnError)throw e;
+if(Je(e))return{
+data:null,error:e}
+;
+throw e}
+}
+}
+;
+let ob;
+ob=Symbol.toStringTag;
+var Y5=class{
+constructor(t,e){
+this.downloadFn=t,this.shouldThrowOnError=e,this[ob]="BlobDownloadBuilder",this.promise=null}
+asStream(){
+return new K5(this.downloadFn,this.shouldThrowOnError)}
+then(t,e){
+return this.getPromise().then(t,e)}
+catch(t){
+return this.getPromise().catch(t)}
+finally(t){
+return this.getPromise().finally(t)}
+getPromise(){
+return this.promise||(this.promise=this.execute()),this.promise}
+async execute(){
+var t=this;
+try{
+return{
+data:await(await t.downloadFn()).blob(),error:null}
+}
+catch(e){
+if(t.shouldThrowOnError)throw e;
+if(Je(e))return{
+data:null,error:e}
+;
+throw e}
+}
+}
+;
+const j5={
+limit:100,offset:0,sortBy:{
+column:"name",order:"asc"}
+}
+,jT={
+cacheControl:"3600",contentType:"text/plain;
+charset=UTF-8",upsert:!1}
+;
+var W5=class{
+constructor(t,e={
+}
+,n,i){
+this.shouldThrowOnError=!1,this.url=t,this.headers=e,this.bucketId=n,this.fetch=mp(i)}
+throwOnError(){
+return this.shouldThrowOnError=!0,this}
+async uploadOrUpdate(t,e,n,i){
+var r=this;
+try{
+let l;
+const u=ce(ce({
+}
+,jT),i);
+let d=ce(ce({
+}
+,r.headers),t==="POST"&&{
+"x-upsert":String(u.upsert)}
+);
+const h=u.metadata;
+typeof Blob<"u"&&n instanceof Blob?(l=new FormData,l.append("cacheControl",u.cacheControl),h&&l.append("metadata",r.encodeMetadata(h)),l.append("",n)):typeof FormData<"u"&&n instanceof FormData?(l=n,l.has("cacheControl")||l.append("cacheControl",u.cacheControl),h&&!l.has("metadata")&&l.append("metadata",r.encodeMetadata(h))):(l=n,d["cache-control"]=`max-age=${
+u.cacheControl}
+`,d["content-type"]=u.contentType,h&&(d["x-metadata"]=r.toBase64(r.encodeMetadata(h))),(typeof ReadableStream<"u"&&l instanceof ReadableStream||l&&typeof l=="object"&&"pipe"in l&&typeof l.pipe=="function")&&!u.duplex&&(u.duplex="half")),i!=null&&i.headers&&(d=ce(ce({
+}
+,d),i.headers));
+const p=r._removeEmptyFolders(e),g=r._getFinalPath(p),_=await(t=="PUT"?Sh:wn)(r.fetch,`${
+r.url}
+/object/${
+g}
+`,l,ce({
+headers:d}
+,u!=null&&u.duplex?{
+duplex:u.duplex}
+:{
+}
+));
+return{
+data:{
+path:p,id:_.Id,fullPath:_.Key}
+,error:null}
+}
+catch(l){
+if(r.shouldThrowOnError)throw l;
+if(Je(l))return{
+data:null,error:l}
+;
+throw l}
+}
+async upload(t,e,n){
+return this.uploadOrUpdate("POST",t,e,n)}
+async uploadToSignedUrl(t,e,n,i){
+var r=this;
+const l=r._removeEmptyFolders(t),u=r._getFinalPath(l),d=new URL(r.url+`/object/upload/sign/${
+u}
+`);
+d.searchParams.set("token",e);
+try{
+let h;
+const p=ce({
+upsert:jT.upsert}
+,i),g=ce(ce({
+}
+,r.headers),{
+"x-upsert":String(p.upsert)}
+);
+return typeof Blob<"u"&&n instanceof Blob?(h=new FormData,h.append("cacheControl",p.cacheControl),h.append("",n)):typeof FormData<"u"&&n instanceof FormData?(h=n,h.append("cacheControl",p.cacheControl)):(h=n,g["cache-control"]=`max-age=${
+p.cacheControl}
+`,g["content-type"]=p.contentType),{
+data:{
+path:l,fullPath:(await Sh(r.fetch,d.toString(),h,{
+headers:g}
+)).Key}
+,error:null}
+}
+catch(h){
+if(r.shouldThrowOnError)throw h;
+if(Je(h))return{
+data:null,error:h}
+;
+throw h}
+}
+async createSignedUploadUrl(t,e){
+var n=this;
+try{
+let i=n._getFinalPath(t);
+const r=ce({
+}
+,n.headers);
+e!=null&&e.upsert&&(r["x-upsert"]="true");
+const l=await wn(n.fetch,`${
+n.url}
+/object/upload/sign/${
+i}
+`,{
+}
+,{
+headers:r}
+),u=new URL(n.url+l.url),d=u.searchParams.get("token");
+if(!d)throw new Ru("No token returned by API");
+return{
+data:{
+signedUrl:u.toString(),path:t,token:d}
+,error:null}
+}
+catch(i){
+if(n.shouldThrowOnError)throw i;
+if(Je(i))return{
+data:null,error:i}
+;
+throw i}
+}
+async update(t,e,n){
+return this.uploadOrUpdate("PUT",t,e,n)}
+async move(t,e,n){
+var i=this;
+try{
+return{
+data:await wn(i.fetch,`${
+i.url}
+/object/move`,{
+bucketId:i.bucketId,sourceKey:t,destinationKey:e,destinationBucket:n==null?void 0:n.destinationBucket}
+,{
+headers:i.headers}
+),error:null}
+}
+catch(r){
+if(i.shouldThrowOnError)throw r;
+if(Je(r))return{
+data:null,error:r}
+;
+throw r}
+}
+async copy(t,e,n){
+var i=this;
+try{
+return{
+data:{
+path:(await wn(i.fetch,`${
+i.url}
+/object/copy`,{
+bucketId:i.bucketId,sourceKey:t,destinationKey:e,destinationBucket:n==null?void 0:n.destinationBucket}
+,{
+headers:i.headers}
+)).Key}
+,error:null}
+}
+catch(r){
+if(i.shouldThrowOnError)throw r;
+if(Je(r))return{
+data:null,error:r}
+;
+throw r}
+}
+async createSignedUrl(t,e,n){
+var i=this;
+try{
+let r=i._getFinalPath(t),l=await wn(i.fetch,`${
+i.url}
+/object/sign/${
+r}
+`,ce({
+expiresIn:e}
+,n!=null&&n.transform?{
+transform:n.transform}
+:{
+}
+),{
+headers:i.headers}
+);
+const u=n!=null&&n.download?`&download=${
+n.download===!0?"":n.download}
+`:"";
+return l={
+signedUrl:encodeURI(`${
+i.url}
+${
+l.signedURL}
+${
+u}
+`)}
+,{
+data:l,error:null}
+}
+catch(r){
+if(i.shouldThrowOnError)throw r;
+if(Je(r))return{
+data:null,error:r}
+;
+throw r}
+}
+async createSignedUrls(t,e,n){
+var i=this;
+try{
+const r=await wn(i.fetch,`${
+i.url}
+/object/sign/${
+i.bucketId}
+`,{
+expiresIn:e,paths:t}
+,{
+headers:i.headers}
+),l=n!=null&&n.download?`&download=${
+n.download===!0?"":n.download}
+`:"";
+return{
+data:r.map(u=>ce(ce({
+}
+,u),{
+}
+,{
+signedUrl:u.signedURL?encodeURI(`${
+i.url}
+${
+u.signedURL}
+${
+l}
+`):null}
+)),error:null}
+}
+catch(r){
+if(i.shouldThrowOnError)throw r;
+if(Je(r))return{
+data:null,error:r}
+;
+throw r}
+}
+download(t,e){
+const n=typeof(e==null?void 0:e.transform)<"u"?"render/image/authenticated":"object",i=this.transformOptsToQueryString((e==null?void 0:e.transform)||{
+}
+),r=i?`?${
+i}
+`:"",l=this._getFinalPath(t),u=()=>Xr(this.fetch,`${
+this.url}
+/${
+n}
+/${
+l}
+${
+r}
+`,{
+headers:this.headers,noResolveJson:!0}
+);
+return new Y5(u,this.shouldThrowOnError)}
+async info(t){
+var e=this;
+const n=e._getFinalPath(t);
+try{
+return{
+data:Th(await Xr(e.fetch,`${
+e.url}
+/object/info/${
+n}
+`,{
+headers:e.headers}
+)),error:null}
+}
+catch(i){
+if(e.shouldThrowOnError)throw i;
+if(Je(i))return{
+data:null,error:i}
+;
+throw i}
+}
+async exists(t){
+var e=this;
+const n=e._getFinalPath(t);
+try{
+return await J5(e.fetch,`${
+e.url}
+/object/${
+n}
+`,{
+headers:e.headers}
+),{
+data:!0,error:null}
+}
+catch(i){
+if(e.shouldThrowOnError)throw i;
+if(Je(i)&&i instanceof _h){
+const r=i.originalError;
+if([400,404].includes(r==null?void 0:r.status))return{
+data:!1,error:i}
+}
+throw i}
+}
+getPublicUrl(t,e){
+const n=this._getFinalPath(t),i=[],r=e!=null&&e.download?`download=${
+e.download===!0?"":e.download}
+`:"";
+r!==""&&i.push(r);
+const l=typeof(e==null?void 0:e.transform)<"u"?"render/image":"object",u=this.transformOptsToQueryString((e==null?void 0:e.transform)||{
+}
+);
+u!==""&&i.push(u);
+let d=i.join("&");
+return d!==""&&(d=`?${
+d}
+`),{
+data:{
+publicUrl:encodeURI(`${
+this.url}
+/${
+l}
+/public/${
+n}
+${
+d}
+`)}
+}
+}
+async remove(t){
+var e=this;
+try{
+return{
+data:await gp(e.fetch,`${
+e.url}
+/object/${
+e.bucketId}
+`,{
+prefixes:t}
+,{
+headers:e.headers}
+),error:null}
+}
+catch(n){
+if(e.shouldThrowOnError)throw n;
+if(Je(n))return{
+data:null,error:n}
+;
+throw n}
+}
+async list(t,e,n){
+var i=this;
+try{
+const r=ce(ce(ce({
+}
+,j5),e),{
+}
+,{
+prefix:t||""}
+);
+return{
+data:await wn(i.fetch,`${
+i.url}
+/object/list/${
+i.bucketId}
+`,r,{
+headers:i.headers}
+,n),error:null}
+}
+catch(r){
+if(i.shouldThrowOnError)throw r;
+if(Je(r))return{
+data:null,error:r}
+;
+throw r}
+}
+async listV2(t,e){
+var n=this;
+try{
+const i=ce({
+}
+,t);
+return{
+data:await wn(n.fetch,`${
+n.url}
+/object/list-v2/${
+n.bucketId}
+`,i,{
+headers:n.headers}
+,e),error:null}
+}
+catch(i){
+if(n.shouldThrowOnError)throw i;
+if(Je(i))return{
+data:null,error:i}
+;
+throw i}
+}
+encodeMetadata(t){
+return JSON.stringify(t)}
+toBase64(t){
+return typeof Buffer<"u"?Buffer.from(t).toString("base64"):btoa(t)}
+_getFinalPath(t){
+return`${
+this.bucketId}
+/${
+t.replace(/^\/+/,"")}
+`}
+_removeEmptyFolders(t){
+return t.replace(/^\/|\/$/g,"").replace(/\/+/g,"/")}
+transformOptsToQueryString(t){
+const e=[];
+return t.width&&e.push(`width=${
+t.width}
+`),t.height&&e.push(`height=${
+t.height}
+`),t.resize&&e.push(`resize=${
+t.resize}
+`),t.format&&e.push(`format=${
+t.format}
+`),t.quality&&e.push(`quality=${
+t.quality}
+`),e.join("&")}
+}
+;
+const rb="2.91.1",ab={
+"X-Client-Info":`storage-js/${
+rb}
+`}
+;
+var X5=class{
+constructor(t,e={
+}
+,n,i){
+this.shouldThrowOnError=!1;
+const r=new URL(t);
+i!=null&&i.useNewHostname&&/supabase\.(co|in|red)$/.test(r.hostname)&&!r.hostname.includes("storage.supabase.")&&(r.hostname=r.hostname.replace("supabase.","storage.supabase.")),this.url=r.href.replace(/\/$/,""),this.headers=ce(ce({
+}
+,ab),e),this.fetch=mp(n)}
+throwOnError(){
+return this.shouldThrowOnError=!0,this}
+async listBuckets(t){
+var e=this;
+try{
+const n=e.listBucketOptionsToQueryString(t);
+return{
+data:await Xr(e.fetch,`${
+e.url}
+/bucket${
+n}
+`,{
+headers:e.headers}
+),error:null}
+}
+catch(n){
+if(e.shouldThrowOnError)throw n;
+if(Je(n))return{
+data:null,error:n}
+;
+throw n}
+}
+async getBucket(t){
+var e=this;
+try{
+return{
+data:await Xr(e.fetch,`${
+e.url}
+/bucket/${
+t}
+`,{
+headers:e.headers}
+),error:null}
+}
+catch(n){
+if(e.shouldThrowOnError)throw n;
+if(Je(n))return{
+data:null,error:n}
+;
+throw n}
+}
+async createBucket(t,e={
+public:!1}
+){
+var n=this;
+try{
+return{
+data:await wn(n.fetch,`${
+n.url}
+/bucket`,{
+id:t,name:t,type:e.type,public:e.public,file_size_limit:e.fileSizeLimit,allowed_mime_types:e.allowedMimeTypes}
+,{
+headers:n.headers}
+),error:null}
+}
+catch(i){
+if(n.shouldThrowOnError)throw i;
+if(Je(i))return{
+data:null,error:i}
+;
+throw i}
+}
+async updateBucket(t,e){
+var n=this;
+try{
+return{
+data:await Sh(n.fetch,`${
+n.url}
+/bucket/${
+t}
+`,{
+id:t,name:t,public:e.public,file_size_limit:e.fileSizeLimit,allowed_mime_types:e.allowedMimeTypes}
+,{
+headers:n.headers}
+),error:null}
+}
+catch(i){
+if(n.shouldThrowOnError)throw i;
+if(Je(i))return{
+data:null,error:i}
+;
+throw i}
+}
+async emptyBucket(t){
+var e=this;
+try{
+return{
+data:await wn(e.fetch,`${
+e.url}
+/bucket/${
+t}
+/empty`,{
+}
+,{
+headers:e.headers}
+),error:null}
+}
+catch(n){
+if(e.shouldThrowOnError)throw n;
+if(Je(n))return{
+data:null,error:n}
+;
+throw n}
+}
+async deleteBucket(t){
+var e=this;
+try{
+return{
+data:await gp(e.fetch,`${
+e.url}
+/bucket/${
+t}
+`,{
+}
+,{
+headers:e.headers}
+),error:null}
+}
+catch(n){
+if(e.shouldThrowOnError)throw n;
+if(Je(n))return{
+data:null,error:n}
+;
+throw n}
+}
+listBucketOptionsToQueryString(t){
+const e={
+}
+;
+return t&&("limit"in t&&(e.limit=String(t.limit)),"offset"in t&&(e.offset=String(t.offset)),t.search&&(e.search=t.search),t.sortColumn&&(e.sortColumn=t.sortColumn),t.sortOrder&&(e.sortOrder=t.sortOrder)),Object.keys(e).length>0?"?"+new URLSearchParams(e).toString():""}
+}
+,Q5=class{
+constructor(t,e={
+}
+,n){
+this.shouldThrowOnError=!1,this.url=t.replace(/\/$/,""),this.headers=ce(ce({
+}
+,ab),e),this.fetch=mp(n)}
+throwOnError(){
+return this.shouldThrowOnError=!0,this}
+async createBucket(t){
+var e=this;
+try{
+return{
+data:await wn(e.fetch,`${
+e.url}
+/bucket`,{
+name:t}
+,{
+headers:e.headers}
+),error:null}
+}
+catch(n){
+if(e.shouldThrowOnError)throw n;
+if(Je(n))return{
+data:null,error:n}
+;
+throw n}
+}
+async listBuckets(t){
+var e=this;
+try{
+const n=new URLSearchParams;
+(t==null?void 0:t.limit)!==void 0&&n.set("limit",t.limit.toString()),(t==null?void 0:t.offset)!==void 0&&n.set("offset",t.offset.toString()),t!=null&&t.sortColumn&&n.set("sortColumn",t.sortColumn),t!=null&&t.sortOrder&&n.set("sortOrder",t.sortOrder),t!=null&&t.search&&n.set("search",t.search);
+const i=n.toString(),r=i?`${
+e.url}
+/bucket?${
+i}
+`:`${
+e.url}
+/bucket`;
+return{
+data:await Xr(e.fetch,r,{
+headers:e.headers}
+),error:null}
+}
+catch(n){
+if(e.shouldThrowOnError)throw n;
+if(Je(n))return{
+data:null,error:n}
+;
+throw n}
+}
+async deleteBucket(t){
+var e=this;
+try{
+return{
+data:await gp(e.fetch,`${
+e.url}
+/bucket/${
+t}
+`,{
+}
+,{
+headers:e.headers}
+),error:null}
+}
+catch(n){
+if(e.shouldThrowOnError)throw n;
+if(Je(n))return{
+data:null,error:n}
+;
+throw n}
+}
+from(t){
+var e=this;
+if(!F5(t))throw new Ru("Invalid bucket name: File, folder, and bucket names must follow AWS object key naming guidelines and should avoid the use of any other characters.");
+const n=new L5({
+baseUrl:this.url,catalogName:t,auth:{
+type:"custom",getHeaders:async()=>e.headers}
+,fetch:this.fetch}
+),i=this.shouldThrowOnError;
+return new Proxy(n,{
+get(r,l){
+const u=r[l];
+return typeof u!="function"?u:async(...d)=>{
+try{
+return{
+data:await u.apply(r,d),error:null}
+}
+catch(h){
+if(i)throw h;
+return{
+data:null,error:h}
+}
+}
+}
+}
+)}
+}
+;
+const yp={
+"X-Client-Info":`storage-js/${
+rb}
+`,"Content-Type":"application/json"}
+;
+var lb=class extends Error{
+constructor(t){
+super(t),this.__isStorageVectorsError=!0,this.name="StorageVectorsError"}
+}
+;
+function Xt(t){
+return typeof t=="object"&&t!==null&&"__isStorageVectorsError"in t}
+var bf=class extends lb{
+constructor(t,e,n){
+super(t),this.name="StorageVectorsApiError",this.status=e,this.statusCode=n}
+toJSON(){
+return{
+name:this.name,message:this.message,status:this.status,statusCode:this.statusCode}
+}
+}
+,Z5=class extends lb{
+constructor(t,e){
+super(t),this.name="StorageVectorsUnknownError",this.originalError=e}
+}
+;
+const vp=t=>t?(...e)=>t(...e):(...e)=>fetch(...e),eB=t=>{
+if(typeof t!="object"||t===null)return!1;
+const e=Object.getPrototypeOf(t);
+return(e===null||e===Object.prototype||Object.getPrototypeOf(e)===null)&&!(Symbol.toStringTag in t)&&!(Symbol.iterator in t)}
+,WT=t=>t.msg||t.message||t.error_description||t.error||JSON.stringify(t),tB=async(t,e,n)=>{
+if(t&&typeof t=="object"&&"status"in t&&"ok"in t&&typeof t.status=="number"&&!(n!=null&&n.noResolveJson)){
+const i=t.status||500,r=t;
+if(typeof r.json=="function")r.json().then(l=>{
+const u=(l==null?void 0:l.statusCode)||(l==null?void 0:l.code)||i+"";
+e(new bf(WT(l),i,u))}
+).catch(()=>{
+const l=i+"";
+e(new bf(r.statusText||`HTTP ${
+i}
+ error`,i,l))}
+);
+else{
+const l=i+"";
+e(new bf(r.statusText||`HTTP ${
+i}
+ error`,i,l))}
+}
+else e(new Z5(WT(t),t))}
+,nB=(t,e,n,i)=>{
+const r={
+method:t,headers:(e==null?void 0:e.headers)||{
+}
+}
+;
+return i?(eB(i)?(r.headers=ce({
+"Content-Type":"application/json"}
+,e==null?void 0:e.headers),r.body=JSON.stringify(i)):r.body=i,ce(ce({
+}
+,r),n)):r}
+;
+async function iB(t,e,n,i,r,l){
+return new Promise((u,d)=>{
+t(n,nB(e,i,r,l)).then(h=>{
+if(!h.ok)throw h;
+if(i!=null&&i.noResolveJson)return h;
+const p=h.headers.get("content-type");
+return!p||!p.includes("application/json")?{
+}
+:h.json()}
+).then(h=>u(h)).catch(h=>tB(h,d,i))}
+)}
+async function Qt(t,e,n,i,r){
+return iB(t,"POST",e,i,r,n)}
+var sB=class{
+constructor(t,e={
+}
+,n){
+this.shouldThrowOnError=!1,this.url=t.replace(/\/$/,""),this.headers=ce(ce({
+}
+,yp),e),this.fetch=vp(n)}
+throwOnError(){
+return this.shouldThrowOnError=!0,this}
+async createIndex(t){
+var e=this;
+try{
+return{
+data:await Qt(e.fetch,`${
+e.url}
+/CreateIndex`,t,{
+headers:e.headers}
+)||{
+}
+,error:null}
+}
+catch(n){
+if(e.shouldThrowOnError)throw n;
+if(Xt(n))return{
+data:null,error:n}
+;
+throw n}
+}
+async getIndex(t,e){
+var n=this;
+try{
+return{
+data:await Qt(n.fetch,`${
+n.url}
+/GetIndex`,{
+vectorBucketName:t,indexName:e}
+,{
+headers:n.headers}
+),error:null}
+}
+catch(i){
+if(n.shouldThrowOnError)throw i;
+if(Xt(i))return{
+data:null,error:i}
+;
+throw i}
+}
+async listIndexes(t){
+var e=this;
+try{
+return{
+data:await Qt(e.fetch,`${
+e.url}
+/ListIndexes`,t,{
+headers:e.headers}
+),error:null}
+}
+catch(n){
+if(e.shouldThrowOnError)throw n;
+if(Xt(n))return{
+data:null,error:n}
+;
+throw n}
+}
+async deleteIndex(t,e){
+var n=this;
+try{
+return{
+data:await Qt(n.fetch,`${
+n.url}
+/DeleteIndex`,{
+vectorBucketName:t,indexName:e}
+,{
+headers:n.headers}
+)||{
+}
+,error:null}
+}
+catch(i){
+if(n.shouldThrowOnError)throw i;
+if(Xt(i))return{
+data:null,error:i}
+;
+throw i}
+}
+}
+,oB=class{
+constructor(t,e={
+}
+,n){
+this.shouldThrowOnError=!1,this.url=t.replace(/\/$/,""),this.headers=ce(ce({
+}
+,yp),e),this.fetch=vp(n)}
+throwOnError(){
+return this.shouldThrowOnError=!0,this}
+async putVectors(t){
+var e=this;
+try{
+if(t.vectors.length<1||t.vectors.length>500)throw new Error("Vector batch size must be between 1 and 500 items");
+return{
+data:await Qt(e.fetch,`${
+e.url}
+/PutVectors`,t,{
+headers:e.headers}
+)||{
+}
+,error:null}
+}
+catch(n){
+if(e.shouldThrowOnError)throw n;
+if(Xt(n))return{
+data:null,error:n}
+;
+throw n}
+}
+async getVectors(t){
+var e=this;
+try{
+return{
+data:await Qt(e.fetch,`${
+e.url}
+/GetVectors`,t,{
+headers:e.headers}
+),error:null}
+}
+catch(n){
+if(e.shouldThrowOnError)throw n;
+if(Xt(n))return{
+data:null,error:n}
+;
+throw n}
+}
+async listVectors(t){
+var e=this;
+try{
+if(t.segmentCount!==void 0){
+if(t.segmentCount<1||t.segmentCount>16)throw new Error("segmentCount must be between 1 and 16");
+if(t.segmentIndex!==void 0&&(t.segmentIndex<0||t.segmentIndex>=t.segmentCount))throw new Error(`segmentIndex must be between 0 and ${
+t.segmentCount-1}
+`)}
+return{
+data:await Qt(e.fetch,`${
+e.url}
+/ListVectors`,t,{
+headers:e.headers}
+),error:null}
+}
+catch(n){
+if(e.shouldThrowOnError)throw n;
+if(Xt(n))return{
+data:null,error:n}
+;
+throw n}
+}
+async queryVectors(t){
+var e=this;
+try{
+return{
+data:await Qt(e.fetch,`${
+e.url}
+/QueryVectors`,t,{
+headers:e.headers}
+),error:null}
+}
+catch(n){
+if(e.shouldThrowOnError)throw n;
+if(Xt(n))return{
+data:null,error:n}
+;
+throw n}
+}
+async deleteVectors(t){
+var e=this;
+try{
+if(t.keys.length<1||t.keys.length>500)throw new Error("Keys batch size must be between 1 and 500 items");
+return{
+data:await Qt(e.fetch,`${
+e.url}
+/DeleteVectors`,t,{
+headers:e.headers}
+)||{
+}
+,error:null}
+}
+catch(n){
+if(e.shouldThrowOnError)throw n;
+if(Xt(n))return{
+data:null,error:n}
+;
+throw n}
+}
+}
+,rB=class{
+constructor(t,e={
+}
+,n){
+this.shouldThrowOnError=!1,this.url=t.replace(/\/$/,""),this.headers=ce(ce({
+}
+,yp),e),this.fetch=vp(n)}
+throwOnError(){
+return this.shouldThrowOnError=!0,this}
+async createBucket(t){
+var e=this;
+try{
+return{
+data:await Qt(e.fetch,`${
+e.url}
+/CreateVectorBucket`,{
+vectorBucketName:t}
+,{
+headers:e.headers}
+)||{
+}
+,error:null}
+}
+catch(n){
+if(e.shouldThrowOnError)throw n;
+if(Xt(n))return{
+data:null,error:n}
+;
+throw n}
+}
+async getBucket(t){
+var e=this;
+try{
+return{
+data:await Qt(e.fetch,`${
+e.url}
+/GetVectorBucket`,{
+vectorBucketName:t}
+,{
+headers:e.headers}
+),error:null}
+}
+catch(n){
+if(e.shouldThrowOnError)throw n;
+if(Xt(n))return{
+data:null,error:n}
+;
+throw n}
+}
+async listBuckets(t={
+}
+){
+var e=this;
+try{
+return{
+data:await Qt(e.fetch,`${
+e.url}
+/ListVectorBuckets`,t,{
+headers:e.headers}
+),error:null}
+}
+catch(n){
+if(e.shouldThrowOnError)throw n;
+if(Xt(n))return{
+data:null,error:n}
+;
+throw n}
+}
+async deleteBucket(t){
+var e=this;
+try{
+return{
+data:await Qt(e.fetch,`${
+e.url}
+/DeleteVectorBucket`,{
+vectorBucketName:t}
+,{
+headers:e.headers}
+)||{
+}
+,error:null}
+}
+catch(n){
+if(e.shouldThrowOnError)throw n;
+if(Xt(n))return{
+data:null,error:n}
+;
+throw n}
+}
+}
+,aB=class extends rB{
+constructor(t,e={
+}
+){
+super(t,e.headers||{
+}
+,e.fetch)}
+from(t){
+return new lB(this.url,this.headers,t,this.fetch)}
+async createBucket(t){
+var e=()=>super.createBucket,n=this;
+return e().call(n,t)}
+async getBucket(t){
+var e=()=>super.getBucket,n=this;
+return e().call(n,t)}
+async listBuckets(t={
+}
+){
+var e=()=>super.listBuckets,n=this;
+return e().call(n,t)}
+async deleteBucket(t){
+var e=()=>super.deleteBucket,n=this;
+return e().call(n,t)}
+}
+,lB=class extends sB{
+constructor(t,e,n,i){
+super(t,e,i),this.vectorBucketName=n}
+async createIndex(t){
+var e=()=>super.createIndex,n=this;
+return e().call(n,ce(ce({
+}
+,t),{
+}
+,{
+vectorBucketName:n.vectorBucketName}
+))}
+async listIndexes(t={
+}
+){
+var e=()=>super.listIndexes,n=this;
+return e().call(n,ce(ce({
+}
+,t),{
+}
+,{
+vectorBucketName:n.vectorBucketName}
+))}
+async getIndex(t){
+var e=()=>super.getIndex,n=this;
+return e().call(n,n.vectorBucketName,t)}
+async deleteIndex(t){
+var e=()=>super.deleteIndex,n=this;
+return e().call(n,n.vectorBucketName,t)}
+index(t){
+return new uB(this.url,this.headers,this.vectorBucketName,t,this.fetch)}
+}
+,uB=class extends oB{
+constructor(t,e,n,i,r){
+super(t,e,r),this.vectorBucketName=n,this.indexName=i}
+async putVectors(t){
+var e=()=>super.putVectors,n=this;
+return e().call(n,ce(ce({
+}
+,t),{
+}
+,{
+vectorBucketName:n.vectorBucketName,indexName:n.indexName}
+))}
+async getVectors(t){
+var e=()=>super.getVectors,n=this;
+return e().call(n,ce(ce({
+}
+,t),{
+}
+,{
+vectorBucketName:n.vectorBucketName,indexName:n.indexName}
+))}
+async listVectors(t={
+}
+){
+var e=()=>super.listVectors,n=this;
+return e().call(n,ce(ce({
+}
+,t),{
+}
+,{
+vectorBucketName:n.vectorBucketName,indexName:n.indexName}
+))}
+async queryVectors(t){
+var e=()=>super.queryVectors,n=this;
+return e().call(n,ce(ce({
+}
+,t),{
+}
+,{
+vectorBucketName:n.vectorBucketName,indexName:n.indexName}
+))}
+async deleteVectors(t){
+var e=()=>super.deleteVectors,n=this;
+return e().call(n,ce(ce({
+}
+,t),{
+}
+,{
+vectorBucketName:n.vectorBucketName,indexName:n.indexName}
+))}
+}
+,cB=class extends X5{
+constructor(t,e={
+}
+,n,i){
+super(t,e,n,i)}
+from(t){
+return new W5(this.url,this.headers,t,this.fetch)}
+get vectors(){
+return new aB(this.url+"/vector",{
+headers:this.headers,fetch:this.fetch}
+)}
+get analytics(){
+return new Q5(this.url+"/iceberg",this.headers,this.fetch)}
+}
+;
+const ub="2.91.1",ho=30*1e3,wh=3,Af=wh*ho,dB="http://localhost:9999",fB="supabase.auth.token",hB={
+"X-Client-Info":`gotrue-js/${
+ub}
+`}
+,Eh="X-Supabase-Api-Version",cb={
+"2024-01-01":{
+timestamp:Date.parse("2024-01-01T00:00:00.0Z"),name:"2024-01-01"}
+}
+,pB=/^([a-z0-9_-]{
+4}
+)*($|[a-z0-9_-]{
+3}
+$|[a-z0-9_-]{
+2}
+$)$/i,mB=600*1e3;
+class Qr extends Error{
+constructor(e,n,i){
+super(e),this.__isAuthError=!0,this.name="AuthError",this.status=n,this.code=i}
+}
+function re(t){
+return typeof t=="object"&&t!==null&&"__isAuthError"in t}
+class gB extends Qr{
+constructor(e,n,i){
+super(e,n,i),this.name="AuthApiError",this.status=n,this.code=i}
+}
+function yB(t){
+return re(t)&&t.name==="AuthApiError"}
+class fs extends Qr{
+constructor(e,n){
+super(e),this.name="AuthUnknownError",this.originalError=n}
+}
+class si extends Qr{
+constructor(e,n,i,r){
+super(e,i,r),this.name=n,this.status=i}
+}
+class jt extends si{
+constructor(){
+super("Auth session missing!","AuthSessionMissingError",400,void 0)}
+}
+function vB(t){
+return re(t)&&t.name==="AuthSessionMissingError"}
+class oo extends si{
+constructor(){
+super("Auth session or user missing","AuthInvalidTokenResponseError",500,void 0)}
+}
+class Bl extends si{
+constructor(e){
+super(e,"AuthInvalidCredentialsError",400,void 0)}
+}
+class Fl extends si{
+constructor(e,n=null){
+super(e,"AuthImplicitGrantRedirectError",500,void 0),this.details=null,this.details=n}
+toJSON(){
+return{
+name:this.name,message:this.message,status:this.status,details:this.details}
+}
+}
+function _B(t){
+return re(t)&&t.name==="AuthImplicitGrantRedirectError"}
+class XT extends si{
+constructor(e,n=null){
+super(e,"AuthPKCEGrantCodeExchangeError",500,void 0),this.details=null,this.details=n}
+toJSON(){
+return{
+name:this.name,message:this.message,status:this.status,details:this.details}
+}
+}
+class TB extends si{
+constructor(){
+super("PKCE code verifier not found in storage. This can happen if the auth flow was initiated in a different browser or device, or if the storage was cleared. For SSR frameworks (Next.js, SvelteKit, etc.), use @supabase/ssr on both the server and client to store the code verifier in cookies.","AuthPKCECodeVerifierMissingError",400,"pkce_code_verifier_not_found")}
+}
+class bh extends si{
+constructor(e,n){
+super(e,"AuthRetryableFetchError",n,void 0)}
+}
+function Cf(t){
+return re(t)&&t.name==="AuthRetryableFetchError"}
+class QT extends si{
+constructor(e,n,i){
+super(e,"AuthWeakPasswordError",n,"weak_password"),this.reasons=i}
+}
+class Ah extends si{
+constructor(e){
+super(e,"AuthInvalidJwtError",400,"invalid_jwt")}
+}
+const du="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_".split(""),ZT=` 	
+\r=`.split(""),SB=(()=>{
+const t=new Array(128);
+for(let e=0;
+e<t.length;
+e+=1)t[e]=-1;
+for(let e=0;
+e<ZT.length;
+e+=1)t[ZT[e].charCodeAt(0)]=-2;
+for(let e=0;
+e<du.length;
+e+=1)t[du[e].charCodeAt(0)]=e;
+return t}
+)();
+function eS(t,e,n){
+if(t!==null)for(e.queue=e.queue<<8|t,e.queuedBits+=8;
+e.queuedBits>=6;
+){
+const i=e.queue>>e.queuedBits-6&63;
+n(du[i]),e.queuedBits-=6}
+else if(e.queuedBits>0)for(e.queue=e.queue<<6-e.queuedBits,e.queuedBits=6;
+e.queuedBits>=6;
+){
+const i=e.queue>>e.queuedBits-6&63;
+n(du[i]),e.queuedBits-=6}
+}
+function db(t,e,n){
+const i=SB[t];
+if(i>-1)for(e.queue=e.queue<<6|i,e.queuedBits+=6;
+e.queuedBits>=8;
+)n(e.queue>>e.queuedBits-8&255),e.queuedBits-=8;
+else{
+if(i===-2)return;
+throw new Error(`Invalid Base64-URL character "${
+String.fromCharCode(t)}
+"`)}
+}
+function tS(t){
+const e=[],n=u=>{
+e.push(String.fromCodePoint(u))}
+,i={
+utf8seq:0,codepoint:0}
+,r={
+queue:0,queuedBits:0}
+,l=u=>{
+bB(u,i,n)}
+;
+for(let u=0;
+u<t.length;
+u+=1)db(t.charCodeAt(u),r,l);
+return e.join("")}
+function wB(t,e){
+if(t<=127){
+e(t);
+return}
+else if(t<=2047){
+e(192|t>>6),e(128|t&63);
+return}
+else if(t<=65535){
+e(224|t>>12),e(128|t>>6&63),e(128|t&63);
+return}
+else if(t<=1114111){
+e(240|t>>18),e(128|t>>12&63),e(128|t>>6&63),e(128|t&63);
+return}
+throw new Error(`Unrecognized Unicode codepoint: ${
+t.toString(16)}
+`)}
+function EB(t,e){
+for(let n=0;
+n<t.length;
+n+=1){
+let i=t.charCodeAt(n);
+if(i>55295&&i<=56319){
+const r=(i-55296)*1024&65535;
+i=(t.charCodeAt(n+1)-56320&65535|r)+65536,n+=1}
+wB(i,e)}
+}
+function bB(t,e,n){
+if(e.utf8seq===0){
+if(t<=127){
+n(t);
+return}
+for(let i=1;
+i<6;
+i+=1)if((t>>7-i&1)===0){
+e.utf8seq=i;
+break}
+if(e.utf8seq===2)e.codepoint=t&31;
+else if(e.utf8seq===3)e.codepoint=t&15;
+else if(e.utf8seq===4)e.codepoint=t&7;
+else throw new Error("Invalid UTF-8 sequence");
+e.utf8seq-=1}
+else if(e.utf8seq>0){
+if(t<=127)throw new Error("Invalid UTF-8 sequence");
+e.codepoint=e.codepoint<<6|t&63,e.utf8seq-=1,e.utf8seq===0&&n(e.codepoint)}
+}
+function Co(t){
+const e=[],n={
+queue:0,queuedBits:0}
+,i=r=>{
+e.push(r)}
+;
+for(let r=0;
+r<t.length;
+r+=1)db(t.charCodeAt(r),n,i);
+return new Uint8Array(e)}
+function AB(t){
+const e=[];
+return EB(t,n=>e.push(n)),new Uint8Array(e)}
+function ms(t){
+const e=[],n={
+queue:0,queuedBits:0}
+,i=r=>{
+e.push(r)}
+;
+return t.forEach(r=>eS(r,n,i)),eS(null,n,i),e.join("")}
+function CB(t){
+return Math.round(Date.now()/1e3)+t}
+function xB(){
+return Symbol("auth-callback")}
+const wt=()=>typeof window<"u"&&typeof document<"u",rs={
+tested:!1,writable:!1}
+,fb=()=>{
+if(!wt())return!1;
+try{
+if(typeof globalThis.localStorage!="object")return!1}
+catch{
+return!1}
+if(rs.tested)return rs.writable;
+const t=`lswt-${
+Math.random()}
+${
+Math.random()}
+`;
+try{
+globalThis.localStorage.setItem(t,t),globalThis.localStorage.removeItem(t),rs.tested=!0,rs.writable=!0}
+catch{
+rs.tested=!0,rs.writable=!1}
+return rs.writable}
+;
+function RB(t){
+const e={
+}
+,n=new URL(t);
+if(n.hash&&n.hash[0]==="#")try{
+new URLSearchParams(n.hash.substring(1)).forEach((r,l)=>{
+e[l]=r}
+)}
+catch{
+}
+return n.searchParams.forEach((i,r)=>{
+e[r]=i}
+),e}
+const hb=t=>t?(...e)=>t(...e):(...e)=>fetch(...e),NB=t=>typeof t=="object"&&t!==null&&"status"in t&&"ok"in t&&"json"in t&&typeof t.json=="function",po=async(t,e,n)=>{
+await t.setItem(e,JSON.stringify(n))}
+,as=async(t,e)=>{
+const n=await t.getItem(e);
+if(!n)return null;
+try{
+return JSON.parse(n)}
+catch{
+return n}
+}
+,St=async(t,e)=>{
+await t.removeItem(e)}
+;
+class Nu{
+constructor(){
+this.promise=new Nu.promiseConstructor((e,n)=>{
+this.resolve=e,this.reject=n}
+)}
+}
+Nu.promiseConstructor=Promise;
+function xf(t){
+const e=t.split(".");
+if(e.length!==3)throw new Ah("Invalid JWT structure");
+for(let i=0;
+i<e.length;
+i++)if(!pB.test(e[i]))throw new Ah("JWT not in base64url format");
+return{
+header:JSON.parse(tS(e[0])),payload:JSON.parse(tS(e[1])),signature:Co(e[2]),raw:{
+header:e[0],payload:e[1]}
+}
+}
+async function MB(t){
+return await new Promise(e=>{
+setTimeout(()=>e(null),t)}
+)}
+function IB(t,e){
+return new Promise((i,r)=>{
+(async()=>{
+for(let l=0;
+l<1/0;
+l++)try{
+const u=await t(l);
+if(!e(l,null,u)){
+i(u);
+return}
+}
+catch(u){
+if(!e(l,u)){
+r(u);
+return}
+}
+}
+)()}
+)}
+function DB(t){
+return("0"+t.toString(16)).substr(-2)}
+function kB(){
+const e=new Uint32Array(56);
+if(typeof crypto>"u"){
+const n="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~",i=n.length;
+let r="";
+for(let l=0;
+l<56;
+l++)r+=n.charAt(Math.floor(Math.random()*i));
+return r}
+return crypto.getRandomValues(e),Array.from(e,DB).join("")}
+async function UB(t){
+const n=new TextEncoder().encode(t),i=await crypto.subtle.digest("SHA-256",n),r=new Uint8Array(i);
+return Array.from(r).map(l=>String.fromCharCode(l)).join("")}
+async function PB(t){
+if(!(typeof crypto<"u"&&typeof crypto.subtle<"u"&&typeof TextEncoder<"u"))return console.warn("WebCrypto API is not supported. Code challenge method will default to use plain instead of sha256."),t;
+const n=await UB(t);
+return btoa(n).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")}
+async function ro(t,e,n=!1){
+const i=kB();
+let r=i;
+n&&(r+="/PASSWORD_RECOVERY"),await po(t,`${
+e}
+-code-verifier`,r);
+const l=await PB(i);
+return[l,i===l?"plain":"s256"]}
+const LB=/^2[0-9]{
+3}
+-(0[1-9]|1[0-2])-(0[1-9]|1[0-9]|2[0-9]|3[0-1])$/i;
+function OB(t){
+const e=t.headers.get(Eh);
+if(!e||!e.match(LB))return null;
+try{
+return new Date(`${
+e}
+T00:00:00.0Z`)}
+catch{
+return null}
+}
+function VB(t){
+if(!t)throw new Error("Missing exp claim");
+const e=Math.floor(Date.now()/1e3);
+if(t<=e)throw new Error("JWT has expired")}
+function BB(t){
+switch(t){
+case"RS256":return{
+name:"RSASSA-PKCS1-v1_5",hash:{
+name:"SHA-256"}
+}
+;
+case"ES256":return{
+name:"ECDSA",namedCurve:"P-256",hash:{
+name:"SHA-256"}
+}
+;
+default:throw new Error("Invalid alg claim")}
+}
+const FB=/^[0-9a-f]{
+8}
+-[0-9a-f]{
+4}
+-[0-9a-f]{
+4}
+-[0-9a-f]{
+4}
+-[0-9a-f]{
+12}
+$/;
+function ao(t){
+if(!FB.test(t))throw new Error("@supabase/auth-js: Expected parameter to be UUID but is not")}
+function Rf(){
+const t={
+}
+;
+return new Proxy(t,{
+get:(e,n)=>{
+if(n==="__isUserNotAvailableProxy")return!0;
+if(typeof n=="symbol"){
+const i=n.toString();
+if(i==="Symbol(Symbol.toPrimitive)"||i==="Symbol(Symbol.toStringTag)"||i==="Symbol(util.inspect.custom)")return}
+throw new Error(`@supabase/auth-js: client was created with userStorage option and there was no user stored in the user storage. Accessing the "${
+n}
+" property of the session object is not supported. Please use getUser() instead.`)}
+,set:(e,n)=>{
+throw new Error(`@supabase/auth-js: client was created with userStorage option and there was no user stored in the user storage. Setting the "${
+n}
+" property of the session object is not supported. Please use getUser() to fetch a user object you can manipulate.`)}
+,deleteProperty:(e,n)=>{
+throw new Error(`@supabase/auth-js: client was created with userStorage option and there was no user stored in the user storage. Deleting the "${
+n}
+" property of the session object is not supported. Please use getUser() to fetch a user object you can manipulate.`)}
+}
+)}
+function GB(t,e){
+return new Proxy(t,{
+get:(n,i,r)=>{
+if(i==="__isInsecureUserWarningProxy")return!0;
+if(typeof i=="symbol"){
+const l=i.toString();
+if(l==="Symbol(Symbol.toPrimitive)"||l==="Symbol(Symbol.toStringTag)"||l==="Symbol(util.inspect.custom)"||l==="Symbol(nodejs.util.inspect.custom)")return Reflect.get(n,i,r)}
+return!e.value&&typeof i=="string"&&(console.warn("Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server."),e.value=!0),Reflect.get(n,i,r)}
+}
+)}
+function nS(t){
+return JSON.parse(JSON.stringify(t))}
+const cs=t=>t.msg||t.message||t.error_description||t.error||JSON.stringify(t),qB=[502,503,504];
+async function iS(t){
+var e;
+if(!NB(t))throw new bh(cs(t),0);
+if(qB.includes(t.status))throw new bh(cs(t),t.status);
+let n;
+try{
+n=await t.json()}
+catch(l){
+throw new fs(cs(l),l)}
+let i;
+const r=OB(t);
+if(r&&r.getTime()>=cb["2024-01-01"].timestamp&&typeof n=="object"&&n&&typeof n.code=="string"?i=n.code:typeof n=="object"&&n&&typeof n.error_code=="string"&&(i=n.error_code),i){
+if(i==="weak_password")throw new QT(cs(n),t.status,((e=n.weak_password)===null||e===void 0?void 0:e.reasons)||[]);
+if(i==="session_not_found")throw new jt}
+else if(typeof n=="object"&&n&&typeof n.weak_password=="object"&&n.weak_password&&Array.isArray(n.weak_password.reasons)&&n.weak_password.reasons.length&&n.weak_password.reasons.reduce((l,u)=>l&&typeof u=="string",!0))throw new QT(cs(n),t.status,n.weak_password.reasons);
+throw new gB(cs(n),t.status||500,i)}
+const HB=(t,e,n,i)=>{
+const r={
+method:t,headers:(e==null?void 0:e.headers)||{
+}
+}
+;
+return t==="GET"?r:(r.headers=Object.assign({
+"Content-Type":"application/json;
+charset=UTF-8"}
+,e==null?void 0:e.headers),r.body=JSON.stringify(i),Object.assign(Object.assign({
+}
+,r),n))}
+;
+async function ue(t,e,n,i){
+var r;
+const l=Object.assign({
+}
+,i==null?void 0:i.headers);
+l[Eh]||(l[Eh]=cb["2024-01-01"].name),i!=null&&i.jwt&&(l.Authorization=`Bearer ${
+i.jwt}
+`);
+const u=(r=i==null?void 0:i.query)!==null&&r!==void 0?r:{
+}
+;
+i!=null&&i.redirectTo&&(u.redirect_to=i.redirectTo);
+const d=Object.keys(u).length?"?"+new URLSearchParams(u).toString():"",h=await zB(t,e,n+d,{
+headers:l,noResolveJson:i==null?void 0:i.noResolveJson}
+,{
+}
+,i==null?void 0:i.body);
+return i!=null&&i.xform?i==null?void 0:i.xform(h):{
+data:Object.assign({
+}
+,h),error:null}
+}
+async function zB(t,e,n,i,r,l){
+const u=HB(e,i,r,l);
+let d;
+try{
+d=await t(n,Object.assign({
+}
+,u))}
+catch(h){
+throw console.error(h),new bh(cs(h),0)}
+if(d.ok||await iS(d),i!=null&&i.noResolveJson)return d;
+try{
+return await d.json()}
+catch(h){
+await iS(h)}
+}
+function _n(t){
+var e;
+let n=null;
+KB(t)&&(n=Object.assign({
+}
+,t),t.expires_at||(n.expires_at=CB(t.expires_in)));
+const i=(e=t.user)!==null&&e!==void 0?e:t;
+return{
+data:{
+session:n,user:i}
+,error:null}
+}
+function sS(t){
+const e=_n(t);
+return!e.error&&t.weak_password&&typeof t.weak_password=="object"&&Array.isArray(t.weak_password.reasons)&&t.weak_password.reasons.length&&t.weak_password.message&&typeof t.weak_password.message=="string"&&t.weak_password.reasons.reduce((n,i)=>n&&typeof i=="string",!0)&&(e.data.weak_password=t.weak_password),e}
+function ki(t){
+var e;
+return{
+data:{
+user:(e=t.user)!==null&&e!==void 0?e:t}
+,error:null}
+}
+function $B(t){
+return{
+data:t,error:null}
+}
+function JB(t){
+const{
+action_link:e,email_otp:n,hashed_token:i,redirect_to:r,verification_type:l}
+=t,u=xu(t,["action_link","email_otp","hashed_token","redirect_to","verification_type"]),d={
+action_link:e,email_otp:n,hashed_token:i,redirect_to:r,verification_type:l}
+,h=Object.assign({
+}
+,u);
+return{
+data:{
+properties:d,user:h}
+,error:null}
+}
+function oS(t){
+return t}
+function KB(t){
+return t.access_token&&t.refresh_token&&t.expires_in}
+const Nf=["global","local","others"];
+class YB{
+constructor({
+url:e="",headers:n={
+}
+,fetch:i}
+){
+this.url=e,this.headers=n,this.fetch=hb(i),this.mfa={
+listFactors:this._listFactors.bind(this),deleteFactor:this._deleteFactor.bind(this)}
+,this.oauth={
+listClients:this._listOAuthClients.bind(this),createClient:this._createOAuthClient.bind(this),getClient:this._getOAuthClient.bind(this),updateClient:this._updateOAuthClient.bind(this),deleteClient:this._deleteOAuthClient.bind(this),regenerateClientSecret:this._regenerateOAuthClientSecret.bind(this)}
+}
+async signOut(e,n=Nf[0]){
+if(Nf.indexOf(n)<0)throw new Error(`@supabase/auth-js: Parameter scope must be one of ${
+Nf.join(", ")}
+`);
+try{
+return await ue(this.fetch,"POST",`${
+this.url}
+/logout?scope=${
+n}
+`,{
+headers:this.headers,jwt:e,noResolveJson:!0}
+),{
+data:null,error:null}
+}
+catch(i){
+if(re(i))return{
+data:null,error:i}
+;
+throw i}
+}
+async inviteUserByEmail(e,n={
+}
+){
+try{
+return await ue(this.fetch,"POST",`${
+this.url}
+/invite`,{
+body:{
+email:e,data:n.data}
+,headers:this.headers,redirectTo:n.redirectTo,xform:ki}
+)}
+catch(i){
+if(re(i))return{
+data:{
+user:null}
+,error:i}
+;
+throw i}
+}
+async generateLink(e){
+try{
+const{
+options:n}
+=e,i=xu(e,["options"]),r=Object.assign(Object.assign({
+}
+,i),n);
+return"newEmail"in i&&(r.new_email=i==null?void 0:i.newEmail,delete r.newEmail),await ue(this.fetch,"POST",`${
+this.url}
+/admin/generate_link`,{
+body:r,headers:this.headers,xform:JB,redirectTo:n==null?void 0:n.redirectTo}
+)}
+catch(n){
+if(re(n))return{
+data:{
+properties:null,user:null}
+,error:n}
+;
+throw n}
+}
+async createUser(e){
+try{
+return await ue(this.fetch,"POST",`${
+this.url}
+/admin/users`,{
+body:e,headers:this.headers,xform:ki}
+)}
+catch(n){
+if(re(n))return{
+data:{
+user:null}
+,error:n}
+;
+throw n}
+}
+async listUsers(e){
+var n,i,r,l,u,d,h;
+try{
+const p={
+nextPage:null,lastPage:0,total:0}
+,g=await ue(this.fetch,"GET",`${
+this.url}
+/admin/users`,{
+headers:this.headers,noResolveJson:!0,query:{
+page:(i=(n=e==null?void 0:e.page)===null||n===void 0?void 0:n.toString())!==null&&i!==void 0?i:"",per_page:(l=(r=e==null?void 0:e.perPage)===null||r===void 0?void 0:r.toString())!==null&&l!==void 0?l:""}
+,xform:oS}
+);
+if(g.error)throw g.error;
+const _=await g.json(),T=(u=g.headers.get("x-total-count"))!==null&&u!==void 0?u:0,w=(h=(d=g.headers.get("link"))===null||d===void 0?void 0:d.split(","))!==null&&h!==void 0?h:[];
+return w.length>0&&(w.forEach(A=>{
+const C=parseInt(A.split(";
+")[0].split("=")[1].substring(0,1)),x=JSON.parse(A.split(";
+")[1].split("=")[1]);
+p[`${
+x}
+Page`]=C}
+),p.total=parseInt(T)),{
+data:Object.assign(Object.assign({
+}
+,_),p),error:null}
+}
+catch(p){
+if(re(p))return{
+data:{
+users:[]}
+,error:p}
+;
+throw p}
+}
+async getUserById(e){
+ao(e);
+try{
+return await ue(this.fetch,"GET",`${
+this.url}
+/admin/users/${
+e}
+`,{
+headers:this.headers,xform:ki}
+)}
+catch(n){
+if(re(n))return{
+data:{
+user:null}
+,error:n}
+;
+throw n}
+}
+async updateUserById(e,n){
+ao(e);
+try{
+return await ue(this.fetch,"PUT",`${
+this.url}
+/admin/users/${
+e}
+`,{
+body:n,headers:this.headers,xform:ki}
+)}
+catch(i){
+if(re(i))return{
+data:{
+user:null}
+,error:i}
+;
+throw i}
+}
+async deleteUser(e,n=!1){
+ao(e);
+try{
+return await ue(this.fetch,"DELETE",`${
+this.url}
+/admin/users/${
+e}
+`,{
+headers:this.headers,body:{
+should_soft_delete:n}
+,xform:ki}
+)}
+catch(i){
+if(re(i))return{
+data:{
+user:null}
+,error:i}
+;
+throw i}
+}
+async _listFactors(e){
+ao(e.userId);
+try{
+const{
+data:n,error:i}
+=await ue(this.fetch,"GET",`${
+this.url}
+/admin/users/${
+e.userId}
+/factors`,{
+headers:this.headers,xform:r=>({
+data:{
+factors:r}
+,error:null}
+)}
+);
+return{
+data:n,error:i}
+}
+catch(n){
+if(re(n))return{
+data:null,error:n}
+;
+throw n}
+}
+async _deleteFactor(e){
+ao(e.userId),ao(e.id);
+try{
+return{
+data:await ue(this.fetch,"DELETE",`${
+this.url}
+/admin/users/${
+e.userId}
+/factors/${
+e.id}
+`,{
+headers:this.headers}
+),error:null}
+}
+catch(n){
+if(re(n))return{
+data:null,error:n}
+;
+throw n}
+}
+async _listOAuthClients(e){
+var n,i,r,l,u,d,h;
+try{
+const p={
+nextPage:null,lastPage:0,total:0}
+,g=await ue(this.fetch,"GET",`${
+this.url}
+/admin/oauth/clients`,{
+headers:this.headers,noResolveJson:!0,query:{
+page:(i=(n=e==null?void 0:e.page)===null||n===void 0?void 0:n.toString())!==null&&i!==void 0?i:"",per_page:(l=(r=e==null?void 0:e.perPage)===null||r===void 0?void 0:r.toString())!==null&&l!==void 0?l:""}
+,xform:oS}
+);
+if(g.error)throw g.error;
+const _=await g.json(),T=(u=g.headers.get("x-total-count"))!==null&&u!==void 0?u:0,w=(h=(d=g.headers.get("link"))===null||d===void 0?void 0:d.split(","))!==null&&h!==void 0?h:[];
+return w.length>0&&(w.forEach(A=>{
+const C=parseInt(A.split(";
+")[0].split("=")[1].substring(0,1)),x=JSON.parse(A.split(";
+")[1].split("=")[1]);
+p[`${
+x}
+Page`]=C}
+),p.total=parseInt(T)),{
+data:Object.assign(Object.assign({
+}
+,_),p),error:null}
+}
+catch(p){
+if(re(p))return{
+data:{
+clients:[]}
+,error:p}
+;
+throw p}
+}
+async _createOAuthClient(e){
+try{
+return await ue(this.fetch,"POST",`${
+this.url}
+/admin/oauth/clients`,{
+body:e,headers:this.headers,xform:n=>({
+data:n,error:null}
+)}
+)}
+catch(n){
+if(re(n))return{
+data:null,error:n}
+;
+throw n}
+}
+async _getOAuthClient(e){
+try{
+return await ue(this.fetch,"GET",`${
+this.url}
+/admin/oauth/clients/${
+e}
+`,{
+headers:this.headers,xform:n=>({
+data:n,error:null}
+)}
+)}
+catch(n){
+if(re(n))return{
+data:null,error:n}
+;
+throw n}
+}
+async _updateOAuthClient(e,n){
+try{
+return await ue(this.fetch,"PUT",`${
+this.url}
+/admin/oauth/clients/${
+e}
+`,{
+body:n,headers:this.headers,xform:i=>({
+data:i,error:null}
+)}
+)}
+catch(i){
+if(re(i))return{
+data:null,error:i}
+;
+throw i}
+}
+async _deleteOAuthClient(e){
+try{
+return await ue(this.fetch,"DELETE",`${
+this.url}
+/admin/oauth/clients/${
+e}
+`,{
+headers:this.headers,noResolveJson:!0}
+),{
+data:null,error:null}
+}
+catch(n){
+if(re(n))return{
+data:null,error:n}
+;
+throw n}
+}
+async _regenerateOAuthClientSecret(e){
+try{
+return await ue(this.fetch,"POST",`${
+this.url}
+/admin/oauth/clients/${
+e}
+/regenerate_secret`,{
+headers:this.headers,xform:n=>({
+data:n,error:null}
+)}
+)}
+catch(n){
+if(re(n))return{
+data:null,error:n}
+;
+throw n}
+}
+}
+function rS(t={
+}
+){
+return{
+getItem:e=>t[e]||null,setItem:(e,n)=>{
+t[e]=n}
+,removeItem:e=>{
+delete t[e]}
+}
+}
+const lo={
+debug:!!(globalThis&&fb()&&globalThis.localStorage&&globalThis.localStorage.getItem("supabase.gotrue-js.locks.debug")==="true")}
+;
+class pb extends Error{
+constructor(e){
+super(e),this.isAcquireTimeout=!0}
+}
+class jB extends pb{
+}
+async function WB(t,e,n){
+lo.debug&&console.log("@supabase/gotrue-js: navigatorLock: acquire lock",t,e);
+const i=new globalThis.AbortController;
+return e>0&&setTimeout(()=>{
+i.abort(),lo.debug&&console.log("@supabase/gotrue-js: navigatorLock acquire timed out",t)}
+,e),await Promise.resolve().then(()=>globalThis.navigator.locks.request(t,e===0?{
+mode:"exclusive",ifAvailable:!0}
+:{
+mode:"exclusive",signal:i.signal}
+,async r=>{
+if(r){
+lo.debug&&console.log("@supabase/gotrue-js: navigatorLock: acquired",t,r.name);
+try{
+return await n()}
+finally{
+lo.debug&&console.log("@supabase/gotrue-js: navigatorLock: released",t,r.name)}
+}
+else{
+if(e===0)throw lo.debug&&console.log("@supabase/gotrue-js: navigatorLock: not immediately available",t),new jB(`Acquiring an exclusive Navigator LockManager lock "${
+t}
+" immediately failed`);
+if(lo.debug)try{
+const l=await globalThis.navigator.locks.query();
+console.log("@supabase/gotrue-js: Navigator LockManager state",JSON.stringify(l,null,"  "))}
+catch(l){
+console.warn("@supabase/gotrue-js: Error when querying Navigator LockManager state",l)}
+return console.warn("@supabase/gotrue-js: Navigator LockManager returned a null lock when using #request without ifAvailable set to true, it appears this browser is not following the LockManager spec https://developer.mozilla.org/en-US/docs/Web/API/LockManager/request"),await n()}
+}
+))}
+function XB(){
+if(typeof globalThis!="object")try{
+Object.defineProperty(Object.prototype,"__magic__",{
+get:function(){
+return this}
+,configurable:!0}
+),__magic__.globalThis=__magic__,delete Object.prototype.__magic__}
+catch{
+typeof self<"u"&&(self.globalThis=self)}
+}
+function mb(t){
+if(!/^0x[a-fA-F0-9]{
+40}
+$/.test(t))throw new Error(`@supabase/auth-js: Address "${
+t}
+" is invalid.`);
+return t.toLowerCase()}
+function QB(t){
+return parseInt(t,16)}
+function ZB(t){
+const e=new TextEncoder().encode(t);
+return"0x"+Array.from(e,i=>i.toString(16).padStart(2,"0")).join("")}
+function e4(t){
+var e;
+const{
+chainId:n,domain:i,expirationTime:r,issuedAt:l=new Date,nonce:u,notBefore:d,requestId:h,resources:p,scheme:g,uri:_,version:T}
+=t;
+{
+if(!Number.isInteger(n))throw new Error(`@supabase/auth-js: Invalid SIWE message field "chainId". Chain ID must be a EIP-155 chain ID. Provided value: ${
+n}
+`);
+if(!i)throw new Error('@supabase/auth-js: Invalid SIWE message field "domain". Domain must be provided.');
+if(u&&u.length<8)throw new Error(`@supabase/auth-js: Invalid SIWE message field "nonce". Nonce must be at least 8 characters. Provided value: ${
+u}
+`);
+if(!_)throw new Error('@supabase/auth-js: Invalid SIWE message field "uri". URI must be provided.');
+if(T!=="1")throw new Error(`@supabase/auth-js: Invalid SIWE message field "version". Version must be '1'. Provided value: ${
+T}
+`);
+if(!((e=t.statement)===null||e===void 0)&&e.includes(`
+`))throw new Error(`@supabase/auth-js: Invalid SIWE message field "statement". Statement must not include '\\n'. Provided value: ${
+t.statement}
+`)}
+const w=mb(t.address),A=g?`${
+g}
+://${
+i}
+`:i,C=t.statement?`${
+t.statement}
+
+`:"",x=`${
+A}
+ wants you to sign in with your Ethereum account:
+${
+w}
+
+
+${
+C}
+`;
+let R=`URI: ${
+_}
+
+Version: ${
+T}
+
+Chain ID: ${
+n}
+${
+u?`
+Nonce: ${
+u}
+`:""}
+
+Issued At: ${
+l.toISOString()}
+`;
+if(r&&(R+=`
+Expiration Time: ${
+r.toISOString()}
+`),d&&(R+=`
+Not Before: ${
+d.toISOString()}
+`),h&&(R+=`
+Request ID: ${
+h}
+`),p){
+let k=`
+Resources:`;
+for(const N of p){
+if(!N||typeof N!="string")throw new Error(`@supabase/auth-js: Invalid SIWE message field "resources". Every resource must be a valid string. Provided value: ${
+N}
+`);
+k+=`
+- ${
+N}
+`}
+R+=k}
+return`${
+x}
+
+${
+R}
+`}
+class ot extends Error{
+constructor({
+message:e,code:n,cause:i,name:r}
+){
+var l;
+super(e,{
+cause:i}
+),this.__isWebAuthnError=!0,this.name=(l=r??(i instanceof Error?i.name:void 0))!==null&&l!==void 0?l:"Unknown Error",this.code=n}
+}
+class fu extends ot{
+constructor(e,n){
+super({
+code:"ERROR_PASSTHROUGH_SEE_CAUSE_PROPERTY",cause:n,message:e}
+),this.name="WebAuthnUnknownError",this.originalError=n}
+}
+function t4({
+error:t,options:e}
+){
+var n,i,r;
+const{
+publicKey:l}
+=e;
+if(!l)throw Error("options was missing required publicKey property");
+if(t.name==="AbortError"){
+if(e.signal instanceof AbortSignal)return new ot({
+message:"Registration ceremony was sent an abort signal",code:"ERROR_CEREMONY_ABORTED",cause:t}
+)}
+else if(t.name==="ConstraintError"){
+if(((n=l.authenticatorSelection)===null||n===void 0?void 0:n.requireResidentKey)===!0)return new ot({
+message:"Discoverable credentials were required but no available authenticator supported it",code:"ERROR_AUTHENTICATOR_MISSING_DISCOVERABLE_CREDENTIAL_SUPPORT",cause:t}
+);
+if(e.mediation==="conditional"&&((i=l.authenticatorSelection)===null||i===void 0?void 0:i.userVerification)==="required")return new ot({
+message:"User verification was required during automatic registration but it could not be performed",code:"ERROR_AUTO_REGISTER_USER_VERIFICATION_FAILURE",cause:t}
+);
+if(((r=l.authenticatorSelection)===null||r===void 0?void 0:r.userVerification)==="required")return new ot({
+message:"User verification was required but no available authenticator supported it",code:"ERROR_AUTHENTICATOR_MISSING_USER_VERIFICATION_SUPPORT",cause:t}
+)}
+else{
+if(t.name==="InvalidStateError")return new ot({
+message:"The authenticator was previously registered",code:"ERROR_AUTHENTICATOR_PREVIOUSLY_REGISTERED",cause:t}
+);
+if(t.name==="NotAllowedError")return new ot({
+message:t.message,code:"ERROR_PASSTHROUGH_SEE_CAUSE_PROPERTY",cause:t}
+);
+if(t.name==="NotSupportedError")return l.pubKeyCredParams.filter(d=>d.type==="public-key").length===0?new ot({
+message:'No entry in pubKeyCredParams was of type "public-key"',code:"ERROR_MALFORMED_PUBKEYCREDPARAMS",cause:t}
+):new ot({
+message:"No available authenticator supported any of the specified pubKeyCredParams algorithms",code:"ERROR_AUTHENTICATOR_NO_SUPPORTED_PUBKEYCREDPARAMS_ALG",cause:t}
+);
+if(t.name==="SecurityError"){
+const u=window.location.hostname;
+if(gb(u)){
+if(l.rp.id!==u)return new ot({
+message:`The RP ID "${
+l.rp.id}
+" is invalid for this domain`,code:"ERROR_INVALID_RP_ID",cause:t}
+)}
+else return new ot({
+message:`${
+window.location.hostname}
+ is an invalid domain`,code:"ERROR_INVALID_DOMAIN",cause:t}
+)}
+else if(t.name==="TypeError"){
+if(l.user.id.byteLength<1||l.user.id.byteLength>64)return new ot({
+message:"User ID was not between 1 and 64 characters",code:"ERROR_INVALID_USER_ID_LENGTH",cause:t}
+)}
+else if(t.name==="UnknownError")return new ot({
+message:"The authenticator was unable to process the specified options, or could not create a new credential",code:"ERROR_AUTHENTICATOR_GENERAL_ERROR",cause:t}
+)}
+return new ot({
+message:"a Non-Webauthn related error has occurred",code:"ERROR_PASSTHROUGH_SEE_CAUSE_PROPERTY",cause:t}
+)}
+function n4({
+error:t,options:e}
+){
+const{
+publicKey:n}
+=e;
+if(!n)throw Error("options was missing required publicKey property");
+if(t.name==="AbortError"){
+if(e.signal instanceof AbortSignal)return new ot({
+message:"Authentication ceremony was sent an abort signal",code:"ERROR_CEREMONY_ABORTED",cause:t}
+)}
+else{
+if(t.name==="NotAllowedError")return new ot({
+message:t.message,code:"ERROR_PASSTHROUGH_SEE_CAUSE_PROPERTY",cause:t}
+);
+if(t.name==="SecurityError"){
+const i=window.location.hostname;
+if(gb(i)){
+if(n.rpId!==i)return new ot({
+message:`The RP ID "${
+n.rpId}
+" is invalid for this domain`,code:"ERROR_INVALID_RP_ID",cause:t}
+)}
+else return new ot({
+message:`${
+window.location.hostname}
+ is an invalid domain`,code:"ERROR_INVALID_DOMAIN",cause:t}
+)}
+else if(t.name==="UnknownError")return new ot({
+message:"The authenticator was unable to process the specified options, or could not create a new assertion signature",code:"ERROR_AUTHENTICATOR_GENERAL_ERROR",cause:t}
+)}
+return new ot({
+message:"a Non-Webauthn related error has occurred",code:"ERROR_PASSTHROUGH_SEE_CAUSE_PROPERTY",cause:t}
+)}
+class i4{
+createNewAbortSignal(){
+if(this.controller){
+const n=new Error("Cancelling existing WebAuthn API call for new one");
+n.name="AbortError",this.controller.abort(n)}
+const e=new AbortController;
+return this.controller=e,e.signal}
+cancelCeremony(){
+if(this.controller){
+const e=new Error("Manually cancelling existing WebAuthn API call");
+e.name="AbortError",this.controller.abort(e),this.controller=void 0}
+}
+}
+const s4=new i4;
+function o4(t){
+if(!t)throw new Error("Credential creation options are required");
+if(typeof PublicKeyCredential<"u"&&"parseCreationOptionsFromJSON"in PublicKeyCredential&&typeof PublicKeyCredential.parseCreationOptionsFromJSON=="function")return PublicKeyCredential.parseCreationOptionsFromJSON(t);
+const{
+challenge:e,user:n,excludeCredentials:i}
+=t,r=xu(t,["challenge","user","excludeCredentials"]),l=Co(e).buffer,u=Object.assign(Object.assign({
+}
+,n),{
+id:Co(n.id).buffer}
+),d=Object.assign(Object.assign({
+}
+,r),{
+challenge:l,user:u}
+);
+if(i&&i.length>0){
+d.excludeCredentials=new Array(i.length);
+for(let h=0;
+h<i.length;
+h++){
+const p=i[h];
+d.excludeCredentials[h]=Object.assign(Object.assign({
+}
+,p),{
+id:Co(p.id).buffer,type:p.type||"public-key",transports:p.transports}
+)}
+}
+return d}
+function r4(t){
+if(!t)throw new Error("Credential request options are required");
+if(typeof PublicKeyCredential<"u"&&"parseRequestOptionsFromJSON"in PublicKeyCredential&&typeof PublicKeyCredential.parseRequestOptionsFromJSON=="function")return PublicKeyCredential.parseRequestOptionsFromJSON(t);
+const{
+challenge:e,allowCredentials:n}
+=t,i=xu(t,["challenge","allowCredentials"]),r=Co(e).buffer,l=Object.assign(Object.assign({
+}
+,i),{
+challenge:r}
+);
+if(n&&n.length>0){
+l.allowCredentials=new Array(n.length);
+for(let u=0;
+u<n.length;
+u++){
+const d=n[u];
+l.allowCredentials[u]=Object.assign(Object.assign({
+}
+,d),{
+id:Co(d.id).buffer,type:d.type||"public-key",transports:d.transports}
+)}
+}
+return l}
+function a4(t){
+var e;
+if("toJSON"in t&&typeof t.toJSON=="function")return t.toJSON();
+const n=t;
+return{
+id:t.id,rawId:t.id,response:{
+attestationObject:ms(new Uint8Array(t.response.attestationObject)),clientDataJSON:ms(new Uint8Array(t.response.clientDataJSON))}
+,type:"public-key",clientExtensionResults:t.getClientExtensionResults(),authenticatorAttachment:(e=n.authenticatorAttachment)!==null&&e!==void 0?e:void 0}
+}
+function l4(t){
+var e;
+if("toJSON"in t&&typeof t.toJSON=="function")return t.toJSON();
+const n=t,i=t.getClientExtensionResults(),r=t.response;
+return{
+id:t.id,rawId:t.id,response:{
+authenticatorData:ms(new Uint8Array(r.authenticatorData)),clientDataJSON:ms(new Uint8Array(r.clientDataJSON)),signature:ms(new Uint8Array(r.signature)),userHandle:r.userHandle?ms(new Uint8Array(r.userHandle)):void 0}
+,type:"public-key",clientExtensionResults:i,authenticatorAttachment:(e=n.authenticatorAttachment)!==null&&e!==void 0?e:void 0}
+}
+function gb(t){
+return t==="localhost"||/^([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{
+2,}
+$/i.test(t)}
+function aS(){
+var t,e;
+return!!(wt()&&"PublicKeyCredential"in window&&window.PublicKeyCredential&&"credentials"in navigator&&typeof((t=navigator==null?void 0:navigator.credentials)===null||t===void 0?void 0:t.create)=="function"&&typeof((e=navigator==null?void 0:navigator.credentials)===null||e===void 0?void 0:e.get)=="function")}
+async function u4(t){
+try{
+const e=await navigator.credentials.create(t);
+return e?e instanceof PublicKeyCredential?{
+data:e,error:null}
+:{
+data:null,error:new fu("Browser returned unexpected credential type",e)}
+:{
+data:null,error:new fu("Empty credential response",e)}
+}
+catch(e){
+return{
+data:null,error:t4({
+error:e,options:t}
+)}
+}
+}
+async function c4(t){
+try{
+const e=await navigator.credentials.get(t);
+return e?e instanceof PublicKeyCredential?{
+data:e,error:null}
+:{
+data:null,error:new fu("Browser returned unexpected credential type",e)}
+:{
+data:null,error:new fu("Empty credential response",e)}
+}
+catch(e){
+return{
+data:null,error:n4({
+error:e,options:t}
+)}
+}
+}
+const d4={
+hints:["security-key"],authenticatorSelection:{
+authenticatorAttachment:"cross-platform",requireResidentKey:!1,userVerification:"preferred",residentKey:"discouraged"}
+,attestation:"direct"}
+,f4={
+userVerification:"preferred",hints:["security-key"],attestation:"direct"}
+;
+function hu(...t){
+const e=r=>r!==null&&typeof r=="object"&&!Array.isArray(r),n=r=>r instanceof ArrayBuffer||ArrayBuffer.isView(r),i={
+}
+;
+for(const r of t)if(r)for(const l in r){
+const u=r[l];
+if(u!==void 0)if(Array.isArray(u))i[l]=u;
+else if(n(u))i[l]=u;
+else if(e(u)){
+const d=i[l];
+e(d)?i[l]=hu(d,u):i[l]=hu(u)}
+else i[l]=u}
+return i}
+function h4(t,e){
+return hu(d4,t,e||{
+}
+)}
+function p4(t,e){
+return hu(f4,t,e||{
+}
+)}
+class m4{
+constructor(e){
+this.client=e,this.enroll=this._enroll.bind(this),this.challenge=this._challenge.bind(this),this.verify=this._verify.bind(this),this.authenticate=this._authenticate.bind(this),this.register=this._register.bind(this)}
+async _enroll(e){
+return this.client.mfa.enroll(Object.assign(Object.assign({
+}
+,e),{
+factorType:"webauthn"}
+))}
+async _challenge({
+factorId:e,webauthn:n,friendlyName:i,signal:r}
+,l){
+try{
+const{
+data:u,error:d}
+=await this.client.mfa.challenge({
+factorId:e,webauthn:n}
+);
+if(!u)return{
+data:null,error:d}
+;
+const h=r??s4.createNewAbortSignal();
+if(u.webauthn.type==="create"){
+const{
+user:p}
+=u.webauthn.credential_options.publicKey;
+p.name||(p.name=`${
+p.id}
+:${
+i}
+`),p.displayName||(p.displayName=p.name)}
+switch(u.webauthn.type){
+case"create":{
+const p=h4(u.webauthn.credential_options.publicKey,l==null?void 0:l.create),{
+data:g,error:_}
+=await u4({
+publicKey:p,signal:h}
+);
+return g?{
+data:{
+factorId:e,challengeId:u.id,webauthn:{
+type:u.webauthn.type,credential_response:g}
+}
+,error:null}
+:{
+data:null,error:_}
+}
+case"request":{
+const p=p4(u.webauthn.credential_options.publicKey,l==null?void 0:l.request),{
+data:g,error:_}
+=await c4(Object.assign(Object.assign({
+}
+,u.webauthn.credential_options),{
+publicKey:p,signal:h}
+));
+return g?{
+data:{
+factorId:e,challengeId:u.id,webauthn:{
+type:u.webauthn.type,credential_response:g}
+}
+,error:null}
+:{
+data:null,error:_}
+}
+}
+}
+catch(u){
+return re(u)?{
+data:null,error:u}
+:{
+data:null,error:new fs("Unexpected error in challenge",u)}
+}
+}
+async _verify({
+challengeId:e,factorId:n,webauthn:i}
+){
+return this.client.mfa.verify({
+factorId:n,challengeId:e,webauthn:i}
+)}
+async _authenticate({
+factorId:e,webauthn:{
+rpId:n=typeof window<"u"?window.location.hostname:void 0,rpOrigins:i=typeof window<"u"?[window.location.origin]:void 0,signal:r}
+={
+}
+}
+,l){
+if(!n)return{
+data:null,error:new Qr("rpId is required for WebAuthn authentication")}
+;
+try{
+if(!aS())return{
+data:null,error:new fs("Browser does not support WebAuthn",null)}
+;
+const{
+data:u,error:d}
+=await this.challenge({
+factorId:e,webauthn:{
+rpId:n,rpOrigins:i}
+,signal:r}
+,{
+request:l}
+);
+if(!u)return{
+data:null,error:d}
+;
+const{
+webauthn:h}
+=u;
+return this._verify({
+factorId:e,challengeId:u.challengeId,webauthn:{
+type:h.type,rpId:n,rpOrigins:i,credential_response:h.credential_response}
+}
+)}
+catch(u){
+return re(u)?{
+data:null,error:u}
+:{
+data:null,error:new fs("Unexpected error in authenticate",u)}
+}
+}
+async _register({
+friendlyName:e,webauthn:{
+rpId:n=typeof window<"u"?window.location.hostname:void 0,rpOrigins:i=typeof window<"u"?[window.location.origin]:void 0,signal:r}
+={
+}
+}
+,l){
+if(!n)return{
+data:null,error:new Qr("rpId is required for WebAuthn registration")}
+;
+try{
+if(!aS())return{
+data:null,error:new fs("Browser does not support WebAuthn",null)}
+;
+const{
+data:u,error:d}
+=await this._enroll({
+friendlyName:e}
+);
+if(!u)return await this.client.mfa.listFactors().then(g=>{
+var _;
+return(_=g.data)===null||_===void 0?void 0:_.all.find(T=>T.factor_type==="webauthn"&&T.friendly_name===e&&T.status!=="unverified")}
+).then(g=>g?this.client.mfa.unenroll({
+factorId:g==null?void 0:g.id}
+):void 0),{
+data:null,error:d}
+;
+const{
+data:h,error:p}
+=await this._challenge({
+factorId:u.id,friendlyName:u.friendly_name,webauthn:{
+rpId:n,rpOrigins:i}
+,signal:r}
+,{
+create:l}
+);
+return h?this._verify({
+factorId:u.id,challengeId:h.challengeId,webauthn:{
+rpId:n,rpOrigins:i,type:h.webauthn.type,credential_response:h.webauthn.credential_response}
+}
+):{
+data:null,error:p}
+}
+catch(u){
+return re(u)?{
+data:null,error:u}
+:{
+data:null,error:new fs("Unexpected error in register",u)}
+}
+}
+}
+XB();
+const g4={
+url:dB,storageKey:fB,autoRefreshToken:!0,persistSession:!0,detectSessionInUrl:!0,headers:hB,flowType:"implicit",debug:!1,hasCustomAuthorizationHeader:!1,throwOnError:!1,lockAcquireTimeout:1e4}
+;
+async function lS(t,e,n){
+return await n()}
+const uo={
+}
+;
+class Zr{
+get jwks(){
+var e,n;
+return(n=(e=uo[this.storageKey])===null||e===void 0?void 0:e.jwks)!==null&&n!==void 0?n:{
+keys:[]}
+}
+set jwks(e){
+uo[this.storageKey]=Object.assign(Object.assign({
+}
+,uo[this.storageKey]),{
+jwks:e}
+)}
+get jwks_cached_at(){
+var e,n;
+return(n=(e=uo[this.storageKey])===null||e===void 0?void 0:e.cachedAt)!==null&&n!==void 0?n:Number.MIN_SAFE_INTEGER}
+set jwks_cached_at(e){
+uo[this.storageKey]=Object.assign(Object.assign({
+}
+,uo[this.storageKey]),{
+cachedAt:e}
+)}
+constructor(e){
+var n,i,r;
+this.userStorage=null,this.memoryStorage=null,this.stateChangeEmitters=new Map,this.autoRefreshTicker=null,this.autoRefreshTickTimeout=null,this.visibilityChangedCallback=null,this.refreshingDeferred=null,this.initializePromise=null,this.detectSessionInUrl=!0,this.hasCustomAuthorizationHeader=!1,this.suppressGetSessionWarning=!1,this.lockAcquired=!1,this.pendingInLock=[],this.broadcastChannel=null,this.logger=console.log;
+const l=Object.assign(Object.assign({
+}
+,g4),e);
+if(this.storageKey=l.storageKey,this.instanceID=(n=Zr.nextInstanceID[this.storageKey])!==null&&n!==void 0?n:0,Zr.nextInstanceID[this.storageKey]=this.instanceID+1,this.logDebugMessages=!!l.debug,typeof l.debug=="function"&&(this.logger=l.debug),this.instanceID>0&&wt()){
+const u=`${
+this._logPrefix()}
+ Multiple GoTrueClient instances detected in the same browser context. It is not an error, but this should be avoided as it may produce undefined behavior when used concurrently under the same storage key.`;
+console.warn(u),this.logDebugMessages&&console.trace(u)}
+if(this.persistSession=l.persistSession,this.autoRefreshToken=l.autoRefreshToken,this.admin=new YB({
+url:l.url,headers:l.headers,fetch:l.fetch}
+),this.url=l.url,this.headers=l.headers,this.fetch=hb(l.fetch),this.lock=l.lock||lS,this.detectSessionInUrl=l.detectSessionInUrl,this.flowType=l.flowType,this.hasCustomAuthorizationHeader=l.hasCustomAuthorizationHeader,this.throwOnError=l.throwOnError,this.lockAcquireTimeout=l.lockAcquireTimeout,l.lock?this.lock=l.lock:this.persistSession&&wt()&&(!((i=globalThis==null?void 0:globalThis.navigator)===null||i===void 0)&&i.locks)?this.lock=WB:this.lock=lS,this.jwks||(this.jwks={
+keys:[]}
+,this.jwks_cached_at=Number.MIN_SAFE_INTEGER),this.mfa={
+verify:this._verify.bind(this),enroll:this._enroll.bind(this),unenroll:this._unenroll.bind(this),challenge:this._challenge.bind(this),listFactors:this._listFactors.bind(this),challengeAndVerify:this._challengeAndVerify.bind(this),getAuthenticatorAssuranceLevel:this._getAuthenticatorAssuranceLevel.bind(this),webauthn:new m4(this)}
+,this.oauth={
+getAuthorizationDetails:this._getAuthorizationDetails.bind(this),approveAuthorization:this._approveAuthorization.bind(this),denyAuthorization:this._denyAuthorization.bind(this),listGrants:this._listOAuthGrants.bind(this),revokeGrant:this._revokeOAuthGrant.bind(this)}
+,this.persistSession?(l.storage?this.storage=l.storage:fb()?this.storage=globalThis.localStorage:(this.memoryStorage={
+}
+,this.storage=rS(this.memoryStorage)),l.userStorage&&(this.userStorage=l.userStorage)):(this.memoryStorage={
+}
+,this.storage=rS(this.memoryStorage)),wt()&&globalThis.BroadcastChannel&&this.persistSession&&this.storageKey){
+try{
+this.broadcastChannel=new globalThis.BroadcastChannel(this.storageKey)}
+catch(u){
+console.error("Failed to create a new BroadcastChannel, multi-tab state changes will not be available",u)}
+(r=this.broadcastChannel)===null||r===void 0||r.addEventListener("message",async u=>{
+this._debug("received broadcast notification from other tab or client",u),await this._notifyAllSubscribers(u.data.event,u.data.session,!1)}
+)}
+this.initialize()}
+isThrowOnErrorEnabled(){
+return this.throwOnError}
+_returnResult(e){
+if(this.throwOnError&&e&&e.error)throw e.error;
+return e}
+_logPrefix(){
+return`GoTrueClient@${
+this.storageKey}
+:${
+this.instanceID}
+ (${
+ub}
+) ${
+new Date().toISOString()}
+`}
+_debug(...e){
+return this.logDebugMessages&&this.logger(this._logPrefix(),...e),this}
+async initialize(){
+return this.initializePromise?await this.initializePromise:(this.initializePromise=(async()=>await this._acquireLock(this.lockAcquireTimeout,async()=>await this._initialize()))(),await this.initializePromise)}
+async _initialize(){
+var e;
+try{
+let n={
+}
+,i="none";
+if(wt()&&(n=RB(window.location.href),this._isImplicitGrantCallback(n)?i="implicit":await this._isPKCECallback(n)&&(i="pkce")),wt()&&this.detectSessionInUrl&&i!=="none"){
+const{
+data:r,error:l}
+=await this._getSessionFromURL(n,i);
+if(l){
+if(this._debug("#_initialize()","error detecting session from URL",l),_B(l)){
+const h=(e=l.details)===null||e===void 0?void 0:e.code;
+if(h==="identity_already_exists"||h==="identity_not_found"||h==="single_identity_not_deletable")return{
+error:l}
+}
+return{
+error:l}
+}
+const{
+session:u,redirectType:d}
+=r;
+return this._debug("#_initialize()","detected session in URL",u,"redirect type",d),await this._saveSession(u),setTimeout(async()=>{
+d==="recovery"?await this._notifyAllSubscribers("PASSWORD_RECOVERY",u):await this._notifyAllSubscribers("SIGNED_IN",u)}
+,0),{
+error:null}
+}
+return await this._recoverAndRefresh(),{
+error:null}
+}
+catch(n){
+return re(n)?this._returnResult({
+error:n}
+):this._returnResult({
+error:new fs("Unexpected error during initialization",n)}
+)}
+finally{
+await this._handleVisibilityChange(),this._debug("#_initialize()","end")}
+}
+async signInAnonymously(e){
+var n,i,r;
+try{
+const l=await ue(this.fetch,"POST",`${
+this.url}
+/signup`,{
+headers:this.headers,body:{
+data:(i=(n=e==null?void 0:e.options)===null||n===void 0?void 0:n.data)!==null&&i!==void 0?i:{
+}
+,gotrue_meta_security:{
+captcha_token:(r=e==null?void 0:e.options)===null||r===void 0?void 0:r.captchaToken}
+}
+,xform:_n}
+),{
+data:u,error:d}
+=l;
+if(d||!u)return this._returnResult({
+data:{
+user:null,session:null}
+,error:d}
+);
+const h=u.session,p=u.user;
+return u.session&&(await this._saveSession(u.session),await this._notifyAllSubscribers("SIGNED_IN",h)),this._returnResult({
+data:{
+user:p,session:h}
+,error:null}
+)}
+catch(l){
+if(re(l))return this._returnResult({
+data:{
+user:null,session:null}
+,error:l}
+);
+throw l}
+}
+async signUp(e){
+var n,i,r;
+try{
+let l;
+if("email"in e){
+const{
+email:g,password:_,options:T}
+=e;
+let w=null,A=null;
+this.flowType==="pkce"&&([w,A]=await ro(this.storage,this.storageKey)),l=await ue(this.fetch,"POST",`${
+this.url}
+/signup`,{
+headers:this.headers,redirectTo:T==null?void 0:T.emailRedirectTo,body:{
+email:g,password:_,data:(n=T==null?void 0:T.data)!==null&&n!==void 0?n:{
+}
+,gotrue_meta_security:{
+captcha_token:T==null?void 0:T.captchaToken}
+,code_challenge:w,code_challenge_method:A}
+,xform:_n}
+)}
+else if("phone"in e){
+const{
+phone:g,password:_,options:T}
+=e;
+l=await ue(this.fetch,"POST",`${
+this.url}
+/signup`,{
+headers:this.headers,body:{
+phone:g,password:_,data:(i=T==null?void 0:T.data)!==null&&i!==void 0?i:{
+}
+,channel:(r=T==null?void 0:T.channel)!==null&&r!==void 0?r:"sms",gotrue_meta_security:{
+captcha_token:T==null?void 0:T.captchaToken}
+}
+,xform:_n}
+)}
+else throw new Bl("You must provide either an email or phone number and a password");
+const{
+data:u,error:d}
+=l;
+if(d||!u)return await St(this.storage,`${
+this.storageKey}
+-code-verifier`),this._returnResult({
+data:{
+user:null,session:null}
+,error:d}
+);
+const h=u.session,p=u.user;
+return u.session&&(await this._saveSession(u.session),await this._notifyAllSubscribers("SIGNED_IN",h)),this._returnResult({
+data:{
+user:p,session:h}
+,error:null}
+)}
+catch(l){
+if(await St(this.storage,`${
+this.storageKey}
+-code-verifier`),re(l))return this._returnResult({
+data:{
+user:null,session:null}
+,error:l}
+);
+throw l}
+}
+async signInWithPassword(e){
+try{
+let n;
+if("email"in e){
+const{
+email:l,password:u,options:d}
+=e;
+n=await ue(this.fetch,"POST",`${
+this.url}
+/token?grant_type=password`,{
+headers:this.headers,body:{
+email:l,password:u,gotrue_meta_security:{
+captcha_token:d==null?void 0:d.captchaToken}
+}
+,xform:sS}
+)}
+else if("phone"in e){
+const{
+phone:l,password:u,options:d}
+=e;
+n=await ue(this.fetch,"POST",`${
+this.url}
+/token?grant_type=password`,{
+headers:this.headers,body:{
+phone:l,password:u,gotrue_meta_security:{
+captcha_token:d==null?void 0:d.captchaToken}
+}
+,xform:sS}
+)}
+else throw new Bl("You must provide either an email or phone number and a password");
+const{
+data:i,error:r}
+=n;
+if(r)return this._returnResult({
+data:{
+user:null,session:null}
+,error:r}
+);
+if(!i||!i.session||!i.user){
+const l=new oo;
+return this._returnResult({
+data:{
+user:null,session:null}
+,error:l}
+)}
+return i.session&&(await this._saveSession(i.session),await this._notifyAllSubscribers("SIGNED_IN",i.session)),this._returnResult({
+data:Object.assign({
+user:i.user,session:i.session}
+,i.weak_password?{
+weakPassword:i.weak_password}
+:null),error:r}
+)}
+catch(n){
+if(re(n))return this._returnResult({
+data:{
+user:null,session:null}
+,error:n}
+);
+throw n}
+}
+async signInWithOAuth(e){
+var n,i,r,l;
+return await this._handleProviderSignIn(e.provider,{
+redirectTo:(n=e.options)===null||n===void 0?void 0:n.redirectTo,scopes:(i=e.options)===null||i===void 0?void 0:i.scopes,queryParams:(r=e.options)===null||r===void 0?void 0:r.queryParams,skipBrowserRedirect:(l=e.options)===null||l===void 0?void 0:l.skipBrowserRedirect}
+)}
+async exchangeCodeForSession(e){
+return await this.initializePromise,this._acquireLock(this.lockAcquireTimeout,async()=>this._exchangeCodeForSession(e))}
+async signInWithWeb3(e){
+const{
+chain:n}
+=e;
+switch(n){
+case"ethereum":return await this.signInWithEthereum(e);
+case"solana":return await this.signInWithSolana(e);
+default:throw new Error(`@supabase/auth-js: Unsupported chain "${
+n}
+"`)}
+}
+async signInWithEthereum(e){
+var n,i,r,l,u,d,h,p,g,_,T;
+let w,A;
+if("message"in e)w=e.message,A=e.signature;
+else{
+const{
+chain:C,wallet:x,statement:R,options:k}
+=e;
+let N;
+if(wt())if(typeof x=="object")N=x;
+else{
+const j=window;
+if("ethereum"in j&&typeof j.ethereum=="object"&&"request"in j.ethereum&&typeof j.ethereum.request=="function")N=j.ethereum;
+else throw new Error("@supabase/auth-js: No compatible Ethereum wallet interface on the window object (window.ethereum) detected. Make sure the user already has a wallet installed and connected for this app. Prefer passing the wallet interface object directly to signInWithWeb3({
+ chain: 'ethereum', wallet: resolvedUserWallet }
+) instead.")}
+else{
+if(typeof x!="object"||!(k!=null&&k.url))throw new Error("@supabase/auth-js: Both wallet and url must be specified in non-browser environments.");
+N=x}
+const O=new URL((n=k==null?void 0:k.url)!==null&&n!==void 0?n:window.location.href),F=await N.request({
+method:"eth_requestAccounts"}
+).then(j=>j).catch(()=>{
+throw new Error("@supabase/auth-js: Wallet method eth_requestAccounts is missing or invalid")}
+);
+if(!F||F.length===0)throw new Error("@supabase/auth-js: No accounts available. Please ensure the wallet is connected.");
+const z=mb(F[0]);
+let G=(i=k==null?void 0:k.signInWithEthereum)===null||i===void 0?void 0:i.chainId;
+if(!G){
+const j=await N.request({
+method:"eth_chainId"}
+);
+G=QB(j)}
+const X={
+domain:O.host,address:z,statement:R,uri:O.href,version:"1",chainId:G,nonce:(r=k==null?void 0:k.signInWithEthereum)===null||r===void 0?void 0:r.nonce,issuedAt:(u=(l=k==null?void 0:k.signInWithEthereum)===null||l===void 0?void 0:l.issuedAt)!==null&&u!==void 0?u:new Date,expirationTime:(d=k==null?void 0:k.signInWithEthereum)===null||d===void 0?void 0:d.expirationTime,notBefore:(h=k==null?void 0:k.signInWithEthereum)===null||h===void 0?void 0:h.notBefore,requestId:(p=k==null?void 0:k.signInWithEthereum)===null||p===void 0?void 0:p.requestId,resources:(g=k==null?void 0:k.signInWithEthereum)===null||g===void 0?void 0:g.resources}
+;
+w=e4(X),A=await N.request({
+method:"personal_sign",params:[ZB(w),z]}
+)}
+try{
+const{
+data:C,error:x}
+=await ue(this.fetch,"POST",`${
+this.url}
+/token?grant_type=web3`,{
+headers:this.headers,body:Object.assign({
+chain:"ethereum",message:w,signature:A}
+,!((_=e.options)===null||_===void 0)&&_.captchaToken?{
+gotrue_meta_security:{
+captcha_token:(T=e.options)===null||T===void 0?void 0:T.captchaToken}
+}
+:null),xform:_n}
+);
+if(x)throw x;
+if(!C||!C.session||!C.user){
+const R=new oo;
+return this._returnResult({
+data:{
+user:null,session:null}
+,error:R}
+)}
+return C.session&&(await this._saveSession(C.session),await this._notifyAllSubscribers("SIGNED_IN",C.session)),this._returnResult({
+data:Object.assign({
+}
+,C),error:x}
+)}
+catch(C){
+if(re(C))return this._returnResult({
+data:{
+user:null,session:null}
+,error:C}
+);
+throw C}
+}
+async signInWithSolana(e){
+var n,i,r,l,u,d,h,p,g,_,T,w;
+let A,C;
+if("message"in e)A=e.message,C=e.signature;
+else{
+const{
+chain:x,wallet:R,statement:k,options:N}
+=e;
+let O;
+if(wt())if(typeof R=="object")O=R;
+else{
+const z=window;
+if("solana"in z&&typeof z.solana=="object"&&("signIn"in z.solana&&typeof z.solana.signIn=="function"||"signMessage"in z.solana&&typeof z.solana.signMessage=="function"))O=z.solana;
+else throw new Error("@supabase/auth-js: No compatible Solana wallet interface on the window object (window.solana) detected. Make sure the user already has a wallet installed and connected for this app. Prefer passing the wallet interface object directly to signInWithWeb3({
+ chain: 'solana', wallet: resolvedUserWallet }
+) instead.")}
+else{
+if(typeof R!="object"||!(N!=null&&N.url))throw new Error("@supabase/auth-js: Both wallet and url must be specified in non-browser environments.");
+O=R}
+const F=new URL((n=N==null?void 0:N.url)!==null&&n!==void 0?n:window.location.href);
+if("signIn"in O&&O.signIn){
+const z=await O.signIn(Object.assign(Object.assign(Object.assign({
+issuedAt:new Date().toISOString()}
+,N==null?void 0:N.signInWithSolana),{
+version:"1",domain:F.host,uri:F.href}
+),k?{
+statement:k}
+:null));
+let G;
+if(Array.isArray(z)&&z[0]&&typeof z[0]=="object")G=z[0];
+else if(z&&typeof z=="object"&&"signedMessage"in z&&"signature"in z)G=z;
+else throw new Error("@supabase/auth-js: Wallet method signIn() returned unrecognized value");
+if("signedMessage"in G&&"signature"in G&&(typeof G.signedMessage=="string"||G.signedMessage instanceof Uint8Array)&&G.signature instanceof Uint8Array)A=typeof G.signedMessage=="string"?G.signedMessage:new TextDecoder().decode(G.signedMessage),C=G.signature;
+else throw new Error("@supabase/auth-js: Wallet method signIn() API returned object without signedMessage and signature fields")}
+else{
+if(!("signMessage"in O)||typeof O.signMessage!="function"||!("publicKey"in O)||typeof O!="object"||!O.publicKey||!("toBase58"in O.publicKey)||typeof O.publicKey.toBase58!="function")throw new Error("@supabase/auth-js: Wallet does not have a compatible signMessage() and publicKey.toBase58() API");
+A=[`${
+F.host}
+ wants you to sign in with your Solana account:`,O.publicKey.toBase58(),...k?["",k,""]:[""],"Version: 1",`URI: ${
+F.href}
+`,`Issued At: ${
+(r=(i=N==null?void 0:N.signInWithSolana)===null||i===void 0?void 0:i.issuedAt)!==null&&r!==void 0?r:new Date().toISOString()}
+`,...!((l=N==null?void 0:N.signInWithSolana)===null||l===void 0)&&l.notBefore?[`Not Before: ${
+N.signInWithSolana.notBefore}
+`]:[],...!((u=N==null?void 0:N.signInWithSolana)===null||u===void 0)&&u.expirationTime?[`Expiration Time: ${
+N.signInWithSolana.expirationTime}
+`]:[],...!((d=N==null?void 0:N.signInWithSolana)===null||d===void 0)&&d.chainId?[`Chain ID: ${
+N.signInWithSolana.chainId}
+`]:[],...!((h=N==null?void 0:N.signInWithSolana)===null||h===void 0)&&h.nonce?[`Nonce: ${
+N.signInWithSolana.nonce}
+`]:[],...!((p=N==null?void 0:N.signInWithSolana)===null||p===void 0)&&p.requestId?[`Request ID: ${
+N.signInWithSolana.requestId}
+`]:[],...!((_=(g=N==null?void 0:N.signInWithSolana)===null||g===void 0?void 0:g.resources)===null||_===void 0)&&_.length?["Resources",...N.signInWithSolana.resources.map(G=>`- ${
+G}
+`)]:[]].join(`
+`);
+const z=await O.signMessage(new TextEncoder().encode(A),"utf8");
+if(!z||!(z instanceof Uint8Array))throw new Error("@supabase/auth-js: Wallet signMessage() API returned an recognized value");
+C=z}
+}
+try{
+const{
+data:x,error:R}
+=await ue(this.fetch,"POST",`${
+this.url}
+/token?grant_type=web3`,{
+headers:this.headers,body:Object.assign({
+chain:"solana",message:A,signature:ms(C)}
+,!((T=e.options)===null||T===void 0)&&T.captchaToken?{
+gotrue_meta_security:{
+captcha_token:(w=e.options)===null||w===void 0?void 0:w.captchaToken}
+}
+:null),xform:_n}
+);
+if(R)throw R;
+if(!x||!x.session||!x.user){
+const k=new oo;
+return this._returnResult({
+data:{
+user:null,session:null}
+,error:k}
+)}
+return x.session&&(await this._saveSession(x.session),await this._notifyAllSubscribers("SIGNED_IN",x.session)),this._returnResult({
+data:Object.assign({
+}
+,x),error:R}
+)}
+catch(x){
+if(re(x))return this._returnResult({
+data:{
+user:null,session:null}
+,error:x}
+);
+throw x}
+}
+async _exchangeCodeForSession(e){
+const n=await as(this.storage,`${
+this.storageKey}
+-code-verifier`),[i,r]=(n??"").split("/");
+try{
+if(!i&&this.flowType==="pkce")throw new TB;
+const{
+data:l,error:u}
+=await ue(this.fetch,"POST",`${
+this.url}
+/token?grant_type=pkce`,{
+headers:this.headers,body:{
+auth_code:e,code_verifier:i}
+,xform:_n}
+);
+if(await St(this.storage,`${
+this.storageKey}
+-code-verifier`),u)throw u;
+if(!l||!l.session||!l.user){
+const d=new oo;
+return this._returnResult({
+data:{
+user:null,session:null,redirectType:null}
+,error:d}
+)}
+return l.session&&(await this._saveSession(l.session),await this._notifyAllSubscribers("SIGNED_IN",l.session)),this._returnResult({
+data:Object.assign(Object.assign({
+}
+,l),{
+redirectType:r??null}
+),error:u}
+)}
+catch(l){
+if(await St(this.storage,`${
+this.storageKey}
+-code-verifier`),re(l))return this._returnResult({
+data:{
+user:null,session:null,redirectType:null}
+,error:l}
+);
+throw l}
+}
+async signInWithIdToken(e){
+try{
+const{
+options:n,provider:i,token:r,access_token:l,nonce:u}
+=e,d=await ue(this.fetch,"POST",`${
+this.url}
+/token?grant_type=id_token`,{
+headers:this.headers,body:{
+provider:i,id_token:r,access_token:l,nonce:u,gotrue_meta_security:{
+captcha_token:n==null?void 0:n.captchaToken}
+}
+,xform:_n}
+),{
+data:h,error:p}
+=d;
+if(p)return this._returnResult({
+data:{
+user:null,session:null}
+,error:p}
+);
+if(!h||!h.session||!h.user){
+const g=new oo;
+return this._returnResult({
+data:{
+user:null,session:null}
+,error:g}
+)}
+return h.session&&(await this._saveSession(h.session),await this._notifyAllSubscribers("SIGNED_IN",h.session)),this._returnResult({
+data:h,error:p}
+)}
+catch(n){
+if(re(n))return this._returnResult({
+data:{
+user:null,session:null}
+,error:n}
+);
+throw n}
+}
+async signInWithOtp(e){
+var n,i,r,l,u;
+try{
+if("email"in e){
+const{
+email:d,options:h}
+=e;
+let p=null,g=null;
+this.flowType==="pkce"&&([p,g]=await ro(this.storage,this.storageKey));
+const{
+error:_}
+=await ue(this.fetch,"POST",`${
+this.url}
+/otp`,{
+headers:this.headers,body:{
+email:d,data:(n=h==null?void 0:h.data)!==null&&n!==void 0?n:{
+}
+,create_user:(i=h==null?void 0:h.shouldCreateUser)!==null&&i!==void 0?i:!0,gotrue_meta_security:{
+captcha_token:h==null?void 0:h.captchaToken}
+,code_challenge:p,code_challenge_method:g}
+,redirectTo:h==null?void 0:h.emailRedirectTo}
+);
+return this._returnResult({
+data:{
+user:null,session:null}
+,error:_}
+)}
+if("phone"in e){
+const{
+phone:d,options:h}
+=e,{
+data:p,error:g}
+=await ue(this.fetch,"POST",`${
+this.url}
+/otp`,{
+headers:this.headers,body:{
+phone:d,data:(r=h==null?void 0:h.data)!==null&&r!==void 0?r:{
+}
+,create_user:(l=h==null?void 0:h.shouldCreateUser)!==null&&l!==void 0?l:!0,gotrue_meta_security:{
+captcha_token:h==null?void 0:h.captchaToken}
+,channel:(u=h==null?void 0:h.channel)!==null&&u!==void 0?u:"sms"}
+}
+);
+return this._returnResult({
+data:{
+user:null,session:null,messageId:p==null?void 0:p.message_id}
+,error:g}
+)}
+throw new Bl("You must provide either an email or phone number.")}
+catch(d){
+if(await St(this.storage,`${
+this.storageKey}
+-code-verifier`),re(d))return this._returnResult({
+data:{
+user:null,session:null}
+,error:d}
+);
+throw d}
+}
+async verifyOtp(e){
+var n,i;
+try{
+let r,l;
+"options"in e&&(r=(n=e.options)===null||n===void 0?void 0:n.redirectTo,l=(i=e.options)===null||i===void 0?void 0:i.captchaToken);
+const{
+data:u,error:d}
+=await ue(this.fetch,"POST",`${
+this.url}
+/verify`,{
+headers:this.headers,body:Object.assign(Object.assign({
+}
+,e),{
+gotrue_meta_security:{
+captcha_token:l}
+}
+),redirectTo:r,xform:_n}
+);
+if(d)throw d;
+if(!u)throw new Error("An error occurred on token verification.");
+const h=u.session,p=u.user;
+return h!=null&&h.access_token&&(await this._saveSession(h),await this._notifyAllSubscribers(e.type=="recovery"?"PASSWORD_RECOVERY":"SIGNED_IN",h)),this._returnResult({
+data:{
+user:p,session:h}
+,error:null}
+)}
+catch(r){
+if(re(r))return this._returnResult({
+data:{
+user:null,session:null}
+,error:r}
+);
+throw r}
+}
+async signInWithSSO(e){
+var n,i,r,l,u;
+try{
+let d=null,h=null;
+this.flowType==="pkce"&&([d,h]=await ro(this.storage,this.storageKey));
+const p=await ue(this.fetch,"POST",`${
+this.url}
+/sso`,{
+body:Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({
+}
+,"providerId"in e?{
+provider_id:e.providerId}
+:null),"domain"in e?{
+domain:e.domain}
+:null),{
+redirect_to:(i=(n=e.options)===null||n===void 0?void 0:n.redirectTo)!==null&&i!==void 0?i:void 0}
+),!((r=e==null?void 0:e.options)===null||r===void 0)&&r.captchaToken?{
+gotrue_meta_security:{
+captcha_token:e.options.captchaToken}
+}
+:null),{
+skip_http_redirect:!0,code_challenge:d,code_challenge_method:h}
+),headers:this.headers,xform:$B}
+);
+return!((l=p.data)===null||l===void 0)&&l.url&&wt()&&!(!((u=e.options)===null||u===void 0)&&u.skipBrowserRedirect)&&window.location.assign(p.data.url),this._returnResult(p)}
+catch(d){
+if(await St(this.storage,`${
+this.storageKey}
+-code-verifier`),re(d))return this._returnResult({
+data:null,error:d}
+);
+throw d}
+}
+async reauthenticate(){
+return await this.initializePromise,await this._acquireLock(this.lockAcquireTimeout,async()=>await this._reauthenticate())}
+async _reauthenticate(){
+try{
+return await this._useSession(async e=>{
+const{
+data:{
+session:n}
+,error:i}
+=e;
+if(i)throw i;
+if(!n)throw new jt;
+const{
+error:r}
+=await ue(this.fetch,"GET",`${
+this.url}
+/reauthenticate`,{
+headers:this.headers,jwt:n.access_token}
+);
+return this._returnResult({
+data:{
+user:null,session:null}
+,error:r}
+)}
+)}
+catch(e){
+if(re(e))return this._returnResult({
+data:{
+user:null,session:null}
+,error:e}
+);
+throw e}
+}
+async resend(e){
+try{
+const n=`${
+this.url}
+/resend`;
+if("email"in e){
+const{
+email:i,type:r,options:l}
+=e,{
+error:u}
+=await ue(this.fetch,"POST",n,{
+headers:this.headers,body:{
+email:i,type:r,gotrue_meta_security:{
+captcha_token:l==null?void 0:l.captchaToken}
+}
+,redirectTo:l==null?void 0:l.emailRedirectTo}
+);
+return this._returnResult({
+data:{
+user:null,session:null}
+,error:u}
+)}
+else if("phone"in e){
+const{
+phone:i,type:r,options:l}
+=e,{
+data:u,error:d}
+=await ue(this.fetch,"POST",n,{
+headers:this.headers,body:{
+phone:i,type:r,gotrue_meta_security:{
+captcha_token:l==null?void 0:l.captchaToken}
+}
+}
+);
+return this._returnResult({
+data:{
+user:null,session:null,messageId:u==null?void 0:u.message_id}
+,error:d}
+)}
+throw new Bl("You must provide either an email or phone number and a type")}
+catch(n){
+if(re(n))return this._returnResult({
+data:{
+user:null,session:null}
+,error:n}
+);
+throw n}
+}
+async getSession(){
+return await this.initializePromise,await this._acquireLock(this.lockAcquireTimeout,async()=>this._useSession(async n=>n))}
+async _acquireLock(e,n){
+this._debug("#_acquireLock","begin",e);
+try{
+if(this.lockAcquired){
+const i=this.pendingInLock.length?this.pendingInLock[this.pendingInLock.length-1]:Promise.resolve(),r=(async()=>(await i,await n()))();
+return this.pendingInLock.push((async()=>{
+try{
+await r}
+catch{
+}
+}
+)()),r}
+return await this.lock(`lock:${
+this.storageKey}
+`,e,async()=>{
+this._debug("#_acquireLock","lock acquired for storage key",this.storageKey);
+try{
+this.lockAcquired=!0;
+const i=n();
+for(this.pendingInLock.push((async()=>{
+try{
+await i}
+catch{
+}
+}
+)()),await i;
+this.pendingInLock.length;
+){
+const r=[...this.pendingInLock];
+await Promise.all(r),this.pendingInLock.splice(0,r.length)}
+return await i}
+finally{
+this._debug("#_acquireLock","lock released for storage key",this.storageKey),this.lockAcquired=!1}
+}
+)}
+finally{
+this._debug("#_acquireLock","end")}
+}
+async _useSession(e){
+this._debug("#_useSession","begin");
+try{
+const n=await this.__loadSession();
+return await e(n)}
+finally{
+this._debug("#_useSession","end")}
+}
+async __loadSession(){
+this._debug("#__loadSession()","begin"),this.lockAcquired||this._debug("#__loadSession()","used outside of an acquired lock!",new Error().stack);
+try{
+let e=null;
+const n=await as(this.storage,this.storageKey);
+if(this._debug("#getSession()","session from storage",n),n!==null&&(this._isValidSession(n)?e=n:(this._debug("#getSession()","session from storage is not valid"),await this._removeSession())),!e)return{
+data:{
+session:null}
+,error:null}
+;
+const i=e.expires_at?e.expires_at*1e3-Date.now()<Af:!1;
+if(this._debug("#__loadSession()",`session has${
+i?"":" not"}
+ expired`,"expires_at",e.expires_at),!i){
+if(this.userStorage){
+const u=await as(this.userStorage,this.storageKey+"-user");
+u!=null&&u.user?e.user=u.user:e.user=Rf()}
+if(this.storage.isServer&&e.user&&!e.user.__isUserNotAvailableProxy){
+const u={
+value:this.suppressGetSessionWarning}
+;
+e.user=GB(e.user,u),u.value&&(this.suppressGetSessionWarning=!0)}
+return{
+data:{
+session:e}
+,error:null}
+}
+const{
+data:r,error:l}
+=await this._callRefreshToken(e.refresh_token);
+return l?this._returnResult({
+data:{
+session:null}
+,error:l}
+):this._returnResult({
+data:{
+session:r}
+,error:null}
+)}
+finally{
+this._debug("#__loadSession()","end")}
+}
+async getUser(e){
+if(e)return await this._getUser(e);
+await this.initializePromise;
+const n=await this._acquireLock(this.lockAcquireTimeout,async()=>await this._getUser());
+return n.data.user&&(this.suppressGetSessionWarning=!0),n}
+async _getUser(e){
+try{
+return e?await ue(this.fetch,"GET",`${
+this.url}
+/user`,{
+headers:this.headers,jwt:e,xform:ki}
+):await this._useSession(async n=>{
+var i,r,l;
+const{
+data:u,error:d}
+=n;
+if(d)throw d;
+return!(!((i=u.session)===null||i===void 0)&&i.access_token)&&!this.hasCustomAuthorizationHeader?{
+data:{
+user:null}
+,error:new jt}
+:await ue(this.fetch,"GET",`${
+this.url}
+/user`,{
+headers:this.headers,jwt:(l=(r=u.session)===null||r===void 0?void 0:r.access_token)!==null&&l!==void 0?l:void 0,xform:ki}
+)}
+)}
+catch(n){
+if(re(n))return vB(n)&&(await this._removeSession(),await St(this.storage,`${
+this.storageKey}
+-code-verifier`)),this._returnResult({
+data:{
+user:null}
+,error:n}
+);
+throw n}
+}
+async updateUser(e,n={
+}
+){
+return await this.initializePromise,await this._acquireLock(this.lockAcquireTimeout,async()=>await this._updateUser(e,n))}
+async _updateUser(e,n={
+}
+){
+try{
+return await this._useSession(async i=>{
+const{
+data:r,error:l}
+=i;
+if(l)throw l;
+if(!r.session)throw new jt;
+const u=r.session;
+let d=null,h=null;
+this.flowType==="pkce"&&e.email!=null&&([d,h]=await ro(this.storage,this.storageKey));
+const{
+data:p,error:g}
+=await ue(this.fetch,"PUT",`${
+this.url}
+/user`,{
+headers:this.headers,redirectTo:n==null?void 0:n.emailRedirectTo,body:Object.assign(Object.assign({
+}
+,e),{
+code_challenge:d,code_challenge_method:h}
+),jwt:u.access_token,xform:ki}
+);
+if(g)throw g;
+return u.user=p.user,await this._saveSession(u),await this._notifyAllSubscribers("USER_UPDATED",u),this._returnResult({
+data:{
+user:u.user}
+,error:null}
+)}
+)}
+catch(i){
+if(await St(this.storage,`${
+this.storageKey}
+-code-verifier`),re(i))return this._returnResult({
+data:{
+user:null}
+,error:i}
+);
+throw i}
+}
+async setSession(e){
+return await this.initializePromise,await this._acquireLock(this.lockAcquireTimeout,async()=>await this._setSession(e))}
+async _setSession(e){
+try{
+if(!e.access_token||!e.refresh_token)throw new jt;
+const n=Date.now()/1e3;
+let i=n,r=!0,l=null;
+const{
+payload:u}
+=xf(e.access_token);
+if(u.exp&&(i=u.exp,r=i<=n),r){
+const{
+data:d,error:h}
+=await this._callRefreshToken(e.refresh_token);
+if(h)return this._returnResult({
+data:{
+user:null,session:null}
+,error:h}
+);
+if(!d)return{
+data:{
+user:null,session:null}
+,error:null}
+;
+l=d}
+else{
+const{
+data:d,error:h}
+=await this._getUser(e.access_token);
+if(h)throw h;
+l={
+access_token:e.access_token,refresh_token:e.refresh_token,user:d.user,token_type:"bearer",expires_in:i-n,expires_at:i}
+,await this._saveSession(l),await this._notifyAllSubscribers("SIGNED_IN",l)}
+return this._returnResult({
+data:{
+user:l.user,session:l}
+,error:null}
+)}
+catch(n){
+if(re(n))return this._returnResult({
+data:{
+session:null,user:null}
+,error:n}
+);
+throw n}
+}
+async refreshSession(e){
+return await this.initializePromise,await this._acquireLock(this.lockAcquireTimeout,async()=>await this._refreshSession(e))}
+async _refreshSession(e){
+try{
+return await this._useSession(async n=>{
+var i;
+if(!e){
+const{
+data:u,error:d}
+=n;
+if(d)throw d;
+e=(i=u.session)!==null&&i!==void 0?i:void 0}
+if(!(e!=null&&e.refresh_token))throw new jt;
+const{
+data:r,error:l}
+=await this._callRefreshToken(e.refresh_token);
+return l?this._returnResult({
+data:{
+user:null,session:null}
+,error:l}
+):r?this._returnResult({
+data:{
+user:r.user,session:r}
+,error:null}
+):this._returnResult({
+data:{
+user:null,session:null}
+,error:null}
+)}
+)}
+catch(n){
+if(re(n))return this._returnResult({
+data:{
+user:null,session:null}
+,error:n}
+);
+throw n}
+}
+async _getSessionFromURL(e,n){
+try{
+if(!wt())throw new Fl("No browser detected.");
+if(e.error||e.error_description||e.error_code)throw new Fl(e.error_description||"Error in URL with unspecified error_description",{
+error:e.error||"unspecified_error",code:e.error_code||"unspecified_code"}
+);
+switch(n){
+case"implicit":if(this.flowType==="pkce")throw new XT("Not a valid PKCE flow url.");
+break;
+case"pkce":if(this.flowType==="implicit")throw new Fl("Not a valid implicit grant flow url.");
+break;
+default:}
+if(n==="pkce"){
+if(this._debug("#_initialize()","begin","is PKCE flow",!0),!e.code)throw new XT("No code detected.");
+const{
+data:k,error:N}
+=await this._exchangeCodeForSession(e.code);
+if(N)throw N;
+const O=new URL(window.location.href);
+return O.searchParams.delete("code"),window.history.replaceState(window.history.state,"",O.toString()),{
+data:{
+session:k.session,redirectType:null}
+,error:null}
+}
+const{
+provider_token:i,provider_refresh_token:r,access_token:l,refresh_token:u,expires_in:d,expires_at:h,token_type:p}
+=e;
+if(!l||!d||!u||!p)throw new Fl("No session defined in URL");
+const g=Math.round(Date.now()/1e3),_=parseInt(d);
+let T=g+_;
+h&&(T=parseInt(h));
+const w=T-g;
+w*1e3<=ho&&console.warn(`@supabase/gotrue-js: Session as retrieved from URL expires in ${
+w}
+s, should have been closer to ${
+_}
+s`);
+const A=T-_;
+g-A>=120?console.warn("@supabase/gotrue-js: Session as retrieved from URL was issued over 120s ago, URL could be stale",A,T,g):g-A<0&&console.warn("@supabase/gotrue-js: Session as retrieved from URL was issued in the future? Check the device clock for skew",A,T,g);
+const{
+data:C,error:x}
+=await this._getUser(l);
+if(x)throw x;
+const R={
+provider_token:i,provider_refresh_token:r,access_token:l,expires_in:_,expires_at:T,refresh_token:u,token_type:p,user:C.user}
+;
+return window.location.hash="",this._debug("#_getSessionFromURL()","clearing window.location.hash"),this._returnResult({
+data:{
+session:R,redirectType:e.type}
+,error:null}
+)}
+catch(i){
+if(re(i))return this._returnResult({
+data:{
+session:null,redirectType:null}
+,error:i}
+);
+throw i}
+}
+_isImplicitGrantCallback(e){
+return typeof this.detectSessionInUrl=="function"?this.detectSessionInUrl(new URL(window.location.href),e):!!(e.access_token||e.error_description)}
+async _isPKCECallback(e){
+const n=await as(this.storage,`${
+this.storageKey}
+-code-verifier`);
+return!!(e.code&&n)}
+async signOut(e={
+scope:"global"}
+){
+return await this.initializePromise,await this._acquireLock(this.lockAcquireTimeout,async()=>await this._signOut(e))}
+async _signOut({
+scope:e}
+={
+scope:"global"}
+){
+return await this._useSession(async n=>{
+var i;
+const{
+data:r,error:l}
+=n;
+if(l)return this._returnResult({
+error:l}
+);
+const u=(i=r.session)===null||i===void 0?void 0:i.access_token;
+if(u){
+const{
+error:d}
+=await this.admin.signOut(u,e);
+if(d&&!(yB(d)&&(d.status===404||d.status===401||d.status===403)))return this._returnResult({
+error:d}
+)}
+return e!=="others"&&(await this._removeSession(),await St(this.storage,`${
+this.storageKey}
+-code-verifier`)),this._returnResult({
+error:null}
+)}
+)}
+onAuthStateChange(e){
+const n=xB(),i={
+id:n,callback:e,unsubscribe:()=>{
+this._debug("#unsubscribe()","state change callback with id removed",n),this.stateChangeEmitters.delete(n)}
+}
+;
+return this._debug("#onAuthStateChange()","registered callback with id",n),this.stateChangeEmitters.set(n,i),(async()=>(await this.initializePromise,await this._acquireLock(this.lockAcquireTimeout,async()=>{
+this._emitInitialSession(n)}
+)))(),{
+data:{
+subscription:i}
+}
+}
+async _emitInitialSession(e){
+return await this._useSession(async n=>{
+var i,r;
+try{
+const{
+data:{
+session:l}
+,error:u}
+=n;
+if(u)throw u;
+await((i=this.stateChangeEmitters.get(e))===null||i===void 0?void 0:i.callback("INITIAL_SESSION",l)),this._debug("INITIAL_SESSION","callback id",e,"session",l)}
+catch(l){
+await((r=this.stateChangeEmitters.get(e))===null||r===void 0?void 0:r.callback("INITIAL_SESSION",null)),this._debug("INITIAL_SESSION","callback id",e,"error",l),console.error(l)}
+}
+)}
+async resetPasswordForEmail(e,n={
+}
+){
+let i=null,r=null;
+this.flowType==="pkce"&&([i,r]=await ro(this.storage,this.storageKey,!0));
+try{
+return await ue(this.fetch,"POST",`${
+this.url}
+/recover`,{
+body:{
+email:e,code_challenge:i,code_challenge_method:r,gotrue_meta_security:{
+captcha_token:n.captchaToken}
+}
+,headers:this.headers,redirectTo:n.redirectTo}
+)}
+catch(l){
+if(await St(this.storage,`${
+this.storageKey}
+-code-verifier`),re(l))return this._returnResult({
+data:null,error:l}
+);
+throw l}
+}
+async getUserIdentities(){
+var e;
+try{
+const{
+data:n,error:i}
+=await this.getUser();
+if(i)throw i;
+return this._returnResult({
+data:{
+identities:(e=n.user.identities)!==null&&e!==void 0?e:[]}
+,error:null}
+)}
+catch(n){
+if(re(n))return this._returnResult({
+data:null,error:n}
+);
+throw n}
+}
+async linkIdentity(e){
+return"token"in e?this.linkIdentityIdToken(e):this.linkIdentityOAuth(e)}
+async linkIdentityOAuth(e){
+var n;
+try{
+const{
+data:i,error:r}
+=await this._useSession(async l=>{
+var u,d,h,p,g;
+const{
+data:_,error:T}
+=l;
+if(T)throw T;
+const w=await this._getUrlForProvider(`${
+this.url}
+/user/identities/authorize`,e.provider,{
+redirectTo:(u=e.options)===null||u===void 0?void 0:u.redirectTo,scopes:(d=e.options)===null||d===void 0?void 0:d.scopes,queryParams:(h=e.options)===null||h===void 0?void 0:h.queryParams,skipBrowserRedirect:!0}
+);
+return await ue(this.fetch,"GET",w,{
+headers:this.headers,jwt:(g=(p=_.session)===null||p===void 0?void 0:p.access_token)!==null&&g!==void 0?g:void 0}
+)}
+);
+if(r)throw r;
+return wt()&&!(!((n=e.options)===null||n===void 0)&&n.skipBrowserRedirect)&&window.location.assign(i==null?void 0:i.url),this._returnResult({
+data:{
+provider:e.provider,url:i==null?void 0:i.url}
+,error:null}
+)}
+catch(i){
+if(re(i))return this._returnResult({
+data:{
+provider:e.provider,url:null}
+,error:i}
+);
+throw i}
+}
+async linkIdentityIdToken(e){
+return await this._useSession(async n=>{
+var i;
+try{
+const{
+error:r,data:{
+session:l}
+}
+=n;
+if(r)throw r;
+const{
+options:u,provider:d,token:h,access_token:p,nonce:g}
+=e,_=await ue(this.fetch,"POST",`${
+this.url}
+/token?grant_type=id_token`,{
+headers:this.headers,jwt:(i=l==null?void 0:l.access_token)!==null&&i!==void 0?i:void 0,body:{
+provider:d,id_token:h,access_token:p,nonce:g,link_identity:!0,gotrue_meta_security:{
+captcha_token:u==null?void 0:u.captchaToken}
+}
+,xform:_n}
+),{
+data:T,error:w}
+=_;
+return w?this._returnResult({
+data:{
+user:null,session:null}
+,error:w}
+):!T||!T.session||!T.user?this._returnResult({
+data:{
+user:null,session:null}
+,error:new oo}
+):(T.session&&(await this._saveSession(T.session),await this._notifyAllSubscribers("USER_UPDATED",T.session)),this._returnResult({
+data:T,error:w}
+))}
+catch(r){
+if(await St(this.storage,`${
+this.storageKey}
+-code-verifier`),re(r))return this._returnResult({
+data:{
+user:null,session:null}
+,error:r}
+);
+throw r}
+}
+)}
+async unlinkIdentity(e){
+try{
+return await this._useSession(async n=>{
+var i,r;
+const{
+data:l,error:u}
+=n;
+if(u)throw u;
+return await ue(this.fetch,"DELETE",`${
+this.url}
+/user/identities/${
+e.identity_id}
+`,{
+headers:this.headers,jwt:(r=(i=l.session)===null||i===void 0?void 0:i.access_token)!==null&&r!==void 0?r:void 0}
+)}
+)}
+catch(n){
+if(re(n))return this._returnResult({
+data:null,error:n}
+);
+throw n}
+}
+async _refreshAccessToken(e){
+const n=`#_refreshAccessToken(${
+e.substring(0,5)}
+...)`;
+this._debug(n,"begin");
+try{
+const i=Date.now();
+return await IB(async r=>(r>0&&await MB(200*Math.pow(2,r-1)),this._debug(n,"refreshing attempt",r),await ue(this.fetch,"POST",`${
+this.url}
+/token?grant_type=refresh_token`,{
+body:{
+refresh_token:e}
+,headers:this.headers,xform:_n}
+)),(r,l)=>{
+const u=200*Math.pow(2,r);
+return l&&Cf(l)&&Date.now()+u-i<ho}
+)}
+catch(i){
+if(this._debug(n,"error",i),re(i))return this._returnResult({
+data:{
+session:null,user:null}
+,error:i}
+);
+throw i}
+finally{
+this._debug(n,"end")}
+}
+_isValidSession(e){
+return typeof e=="object"&&e!==null&&"access_token"in e&&"refresh_token"in e&&"expires_at"in e}
+async _handleProviderSignIn(e,n){
+const i=await this._getUrlForProvider(`${
+this.url}
+/authorize`,e,{
+redirectTo:n.redirectTo,scopes:n.scopes,queryParams:n.queryParams}
+);
+return this._debug("#_handleProviderSignIn()","provider",e,"options",n,"url",i),wt()&&!n.skipBrowserRedirect&&window.location.assign(i),{
+data:{
+provider:e,url:i}
+,error:null}
+}
+async _recoverAndRefresh(){
+var e,n;
+const i="#_recoverAndRefresh()";
+this._debug(i,"begin");
+try{
+const r=await as(this.storage,this.storageKey);
+if(r&&this.userStorage){
+let u=await as(this.userStorage,this.storageKey+"-user");
+!this.storage.isServer&&Object.is(this.storage,this.userStorage)&&!u&&(u={
+user:r.user}
+,await po(this.userStorage,this.storageKey+"-user",u)),r.user=(e=u==null?void 0:u.user)!==null&&e!==void 0?e:Rf()}
+else if(r&&!r.user&&!r.user){
+const u=await as(this.storage,this.storageKey+"-user");
+u&&(u!=null&&u.user)?(r.user=u.user,await St(this.storage,this.storageKey+"-user"),await po(this.storage,this.storageKey,r)):r.user=Rf()}
+if(this._debug(i,"session from storage",r),!this._isValidSession(r)){
+this._debug(i,"session is not valid"),r!==null&&await this._removeSession();
+return}
+const l=((n=r.expires_at)!==null&&n!==void 0?n:1/0)*1e3-Date.now()<Af;
+if(this._debug(i,`session has${
+l?"":" not"}
+ expired with margin of ${
+Af}
+s`),l){
+if(this.autoRefreshToken&&r.refresh_token){
+const{
+error:u}
+=await this._callRefreshToken(r.refresh_token);
+u&&(console.error(u),Cf(u)||(this._debug(i,"refresh failed with a non-retryable error, removing the session",u),await this._removeSession()))}
+}
+else if(r.user&&r.user.__isUserNotAvailableProxy===!0)try{
+const{
+data:u,error:d}
+=await this._getUser(r.access_token);
+!d&&(u!=null&&u.user)?(r.user=u.user,await this._saveSession(r),await this._notifyAllSubscribers("SIGNED_IN",r)):this._debug(i,"could not get user data, skipping SIGNED_IN notification")}
+catch(u){
+console.error("Error getting user data:",u),this._debug(i,"error getting user data, skipping SIGNED_IN notification",u)}
+else await this._notifyAllSubscribers("SIGNED_IN",r)}
+catch(r){
+this._debug(i,"error",r),console.error(r);
+return}
+finally{
+this._debug(i,"end")}
+}
+async _callRefreshToken(e){
+var n,i;
+if(!e)throw new jt;
+if(this.refreshingDeferred)return this.refreshingDeferred.promise;
+const r=`#_callRefreshToken(${
+e.substring(0,5)}
+...)`;
+this._debug(r,"begin");
+try{
+this.refreshingDeferred=new Nu;
+const{
+data:l,error:u}
+=await this._refreshAccessToken(e);
+if(u)throw u;
+if(!l.session)throw new jt;
+await this._saveSession(l.session),await this._notifyAllSubscribers("TOKEN_REFRESHED",l.session);
+const d={
+data:l.session,error:null}
+;
+return this.refreshingDeferred.resolve(d),d}
+catch(l){
+if(this._debug(r,"error",l),re(l)){
+const u={
+data:null,error:l}
+;
+return Cf(l)||await this._removeSession(),(n=this.refreshingDeferred)===null||n===void 0||n.resolve(u),u}
+throw(i=this.refreshingDeferred)===null||i===void 0||i.reject(l),l}
+finally{
+this.refreshingDeferred=null,this._debug(r,"end")}
+}
+async _notifyAllSubscribers(e,n,i=!0){
+const r=`#_notifyAllSubscribers(${
+e}
+)`;
+this._debug(r,"begin",n,`broadcast = ${
+i}
+`);
+try{
+this.broadcastChannel&&i&&this.broadcastChannel.postMessage({
+event:e,session:n}
+);
+const l=[],u=Array.from(this.stateChangeEmitters.values()).map(async d=>{
+try{
+await d.callback(e,n)}
+catch(h){
+l.push(h)}
+}
+);
+if(await Promise.all(u),l.length>0){
+for(let d=0;
+d<l.length;
+d+=1)console.error(l[d]);
+throw l[0]}
+}
+finally{
+this._debug(r,"end")}
+}
+async _saveSession(e){
+this._debug("#_saveSession()",e),this.suppressGetSessionWarning=!0,await St(this.storage,`${
+this.storageKey}
+-code-verifier`);
+const n=Object.assign({
+}
+,e),i=n.user&&n.user.__isUserNotAvailableProxy===!0;
+if(this.userStorage){
+!i&&n.user&&await po(this.userStorage,this.storageKey+"-user",{
+user:n.user}
+);
+const r=Object.assign({
+}
+,n);
+delete r.user;
+const l=nS(r);
+await po(this.storage,this.storageKey,l)}
+else{
+const r=nS(n);
+await po(this.storage,this.storageKey,r)}
+}
+async _removeSession(){
+this._debug("#_removeSession()"),this.suppressGetSessionWarning=!1,await St(this.storage,this.storageKey),await St(this.storage,this.storageKey+"-code-verifier"),await St(this.storage,this.storageKey+"-user"),this.userStorage&&await St(this.userStorage,this.storageKey+"-user"),await this._notifyAllSubscribers("SIGNED_OUT",null)}
+_removeVisibilityChangedCallback(){
+this._debug("#_removeVisibilityChangedCallback()");
+const e=this.visibilityChangedCallback;
+this.visibilityChangedCallback=null;
+try{
+e&&wt()&&(window!=null&&window.removeEventListener)&&window.removeEventListener("visibilitychange",e)}
+catch(n){
+console.error("removing visibilitychange callback failed",n)}
+}
+async _startAutoRefresh(){
+await this._stopAutoRefresh(),this._debug("#_startAutoRefresh()");
+const e=setInterval(()=>this._autoRefreshTokenTick(),ho);
+this.autoRefreshTicker=e,e&&typeof e=="object"&&typeof e.unref=="function"?e.unref():typeof Deno<"u"&&typeof Deno.unrefTimer=="function"&&Deno.unrefTimer(e);
+const n=setTimeout(async()=>{
+await this.initializePromise,await this._autoRefreshTokenTick()}
+,0);
+this.autoRefreshTickTimeout=n,n&&typeof n=="object"&&typeof n.unref=="function"?n.unref():typeof Deno<"u"&&typeof Deno.unrefTimer=="function"&&Deno.unrefTimer(n)}
+async _stopAutoRefresh(){
+this._debug("#_stopAutoRefresh()");
+const e=this.autoRefreshTicker;
+this.autoRefreshTicker=null,e&&clearInterval(e);
+const n=this.autoRefreshTickTimeout;
+this.autoRefreshTickTimeout=null,n&&clearTimeout(n)}
+async startAutoRefresh(){
+this._removeVisibilityChangedCallback(),await this._startAutoRefresh()}
+async stopAutoRefresh(){
+this._removeVisibilityChangedCallback(),await this._stopAutoRefresh()}
+async _autoRefreshTokenTick(){
+this._debug("#_autoRefreshTokenTick()","begin");
+try{
+await this._acquireLock(0,async()=>{
+try{
+const e=Date.now();
+try{
+return await this._useSession(async n=>{
+const{
+data:{
+session:i}
+}
+=n;
+if(!i||!i.refresh_token||!i.expires_at){
+this._debug("#_autoRefreshTokenTick()","no session");
+return}
+const r=Math.floor((i.expires_at*1e3-e)/ho);
+this._debug("#_autoRefreshTokenTick()",`access token expires in ${
+r}
+ ticks, a tick lasts ${
+ho}
+ms, refresh threshold is ${
+wh}
+ ticks`),r<=wh&&await this._callRefreshToken(i.refresh_token)}
+)}
+catch(n){
+console.error("Auto refresh tick failed with error. This is likely a transient error.",n)}
+}
+finally{
+this._debug("#_autoRefreshTokenTick()","end")}
+}
+)}
+catch(e){
+if(e.isAcquireTimeout||e instanceof pb)this._debug("auto refresh token tick lock not available");
+else throw e}
+}
+async _handleVisibilityChange(){
+if(this._debug("#_handleVisibilityChange()"),!wt()||!(window!=null&&window.addEventListener))return this.autoRefreshToken&&this.startAutoRefresh(),!1;
+try{
+this.visibilityChangedCallback=async()=>await this._onVisibilityChanged(!1),window==null||window.addEventListener("visibilitychange",this.visibilityChangedCallback),await this._onVisibilityChanged(!0)}
+catch(e){
+console.error("_handleVisibilityChange",e)}
+}
+async _onVisibilityChanged(e){
+const n=`#_onVisibilityChanged(${
+e}
+)`;
+this._debug(n,"visibilityState",document.visibilityState),document.visibilityState==="visible"?(this.autoRefreshToken&&this._startAutoRefresh(),e||(await this.initializePromise,await this._acquireLock(this.lockAcquireTimeout,async()=>{
+if(document.visibilityState!=="visible"){
+this._debug(n,"acquired the lock to recover the session, but the browser visibilityState is no longer visible, aborting");
+return}
+await this._recoverAndRefresh()}
+))):document.visibilityState==="hidden"&&this.autoRefreshToken&&this._stopAutoRefresh()}
+async _getUrlForProvider(e,n,i){
+const r=[`provider=${
+encodeURIComponent(n)}
+`];
+if(i!=null&&i.redirectTo&&r.push(`redirect_to=${
+encodeURIComponent(i.redirectTo)}
+`),i!=null&&i.scopes&&r.push(`scopes=${
+encodeURIComponent(i.scopes)}
+`),this.flowType==="pkce"){
+const[l,u]=await ro(this.storage,this.storageKey),d=new URLSearchParams({
+code_challenge:`${
+encodeURIComponent(l)}
+`,code_challenge_method:`${
+encodeURIComponent(u)}
+`}
+);
+r.push(d.toString())}
+if(i!=null&&i.queryParams){
+const l=new URLSearchParams(i.queryParams);
+r.push(l.toString())}
+return i!=null&&i.skipBrowserRedirect&&r.push(`skip_http_redirect=${
+i.skipBrowserRedirect}
+`),`${
+e}
+?${
+r.join("&")}
+`}
+async _unenroll(e){
+try{
+return await this._useSession(async n=>{
+var i;
+const{
+data:r,error:l}
+=n;
+return l?this._returnResult({
+data:null,error:l}
+):await ue(this.fetch,"DELETE",`${
+this.url}
+/factors/${
+e.factorId}
+`,{
+headers:this.headers,jwt:(i=r==null?void 0:r.session)===null||i===void 0?void 0:i.access_token}
+)}
+)}
+catch(n){
+if(re(n))return this._returnResult({
+data:null,error:n}
+);
+throw n}
+}
+async _enroll(e){
+try{
+return await this._useSession(async n=>{
+var i,r;
+const{
+data:l,error:u}
+=n;
+if(u)return this._returnResult({
+data:null,error:u}
+);
+const d=Object.assign({
+friendly_name:e.friendlyName,factor_type:e.factorType}
+,e.factorType==="phone"?{
+phone:e.phone}
+:e.factorType==="totp"?{
+issuer:e.issuer}
+:{
+}
+),{
+data:h,error:p}
+=await ue(this.fetch,"POST",`${
+this.url}
+/factors`,{
+body:d,headers:this.headers,jwt:(i=l==null?void 0:l.session)===null||i===void 0?void 0:i.access_token}
+);
+return p?this._returnResult({
+data:null,error:p}
+):(e.factorType==="totp"&&h.type==="totp"&&(!((r=h==null?void 0:h.totp)===null||r===void 0)&&r.qr_code)&&(h.totp.qr_code=`data:image/svg+xml;
+utf-8,${
+h.totp.qr_code}
+`),this._returnResult({
+data:h,error:null}
+))}
+)}
+catch(n){
+if(re(n))return this._returnResult({
+data:null,error:n}
+);
+throw n}
+}
+async _verify(e){
+return this._acquireLock(this.lockAcquireTimeout,async()=>{
+try{
+return await this._useSession(async n=>{
+var i;
+const{
+data:r,error:l}
+=n;
+if(l)return this._returnResult({
+data:null,error:l}
+);
+const u=Object.assign({
+challenge_id:e.challengeId}
+,"webauthn"in e?{
+webauthn:Object.assign(Object.assign({
+}
+,e.webauthn),{
+credential_response:e.webauthn.type==="create"?a4(e.webauthn.credential_response):l4(e.webauthn.credential_response)}
+)}
+:{
+code:e.code}
+),{
+data:d,error:h}
+=await ue(this.fetch,"POST",`${
+this.url}
+/factors/${
+e.factorId}
+/verify`,{
+body:u,headers:this.headers,jwt:(i=r==null?void 0:r.session)===null||i===void 0?void 0:i.access_token}
+);
+return h?this._returnResult({
+data:null,error:h}
+):(await this._saveSession(Object.assign({
+expires_at:Math.round(Date.now()/1e3)+d.expires_in}
+,d)),await this._notifyAllSubscribers("MFA_CHALLENGE_VERIFIED",d),this._returnResult({
+data:d,error:h}
+))}
+)}
+catch(n){
+if(re(n))return this._returnResult({
+data:null,error:n}
+);
+throw n}
+}
+)}
+async _challenge(e){
+return this._acquireLock(this.lockAcquireTimeout,async()=>{
+try{
+return await this._useSession(async n=>{
+var i;
+const{
+data:r,error:l}
+=n;
+if(l)return this._returnResult({
+data:null,error:l}
+);
+const u=await ue(this.fetch,"POST",`${
+this.url}
+/factors/${
+e.factorId}
+/challenge`,{
+body:e,headers:this.headers,jwt:(i=r==null?void 0:r.session)===null||i===void 0?void 0:i.access_token}
+);
+if(u.error)return u;
+const{
+data:d}
+=u;
+if(d.type!=="webauthn")return{
+data:d,error:null}
+;
+switch(d.webauthn.type){
+case"create":return{
+data:Object.assign(Object.assign({
+}
+,d),{
+webauthn:Object.assign(Object.assign({
+}
+,d.webauthn),{
+credential_options:Object.assign(Object.assign({
+}
+,d.webauthn.credential_options),{
+publicKey:o4(d.webauthn.credential_options.publicKey)}
+)}
+)}
+),error:null}
+;
+case"request":return{
+data:Object.assign(Object.assign({
+}
+,d),{
+webauthn:Object.assign(Object.assign({
+}
+,d.webauthn),{
+credential_options:Object.assign(Object.assign({
+}
+,d.webauthn.credential_options),{
+publicKey:r4(d.webauthn.credential_options.publicKey)}
+)}
+)}
+),error:null}
+}
+}
+)}
+catch(n){
+if(re(n))return this._returnResult({
+data:null,error:n}
+);
+throw n}
+}
+)}
+async _challengeAndVerify(e){
+const{
+data:n,error:i}
+=await this._challenge({
+factorId:e.factorId}
+);
+return i?this._returnResult({
+data:null,error:i}
+):await this._verify({
+factorId:e.factorId,challengeId:n.id,code:e.code}
+)}
+async _listFactors(){
+var e;
+const{
+data:{
+user:n}
+,error:i}
+=await this.getUser();
+if(i)return{
+data:null,error:i}
+;
+const r={
+all:[],phone:[],totp:[],webauthn:[]}
+;
+for(const l of(e=n==null?void 0:n.factors)!==null&&e!==void 0?e:[])r.all.push(l),l.status==="verified"&&r[l.factor_type].push(l);
+return{
+data:r,error:null}
+}
+async _getAuthenticatorAssuranceLevel(){
+var e,n;
+const{
+data:{
+session:i}
+,error:r}
+=await this.getSession();
+if(r)return this._returnResult({
+data:null,error:r}
+);
+if(!i)return{
+data:{
+currentLevel:null,nextLevel:null,currentAuthenticationMethods:[]}
+,error:null}
+;
+const{
+payload:l}
+=xf(i.access_token);
+let u=null;
+l.aal&&(u=l.aal);
+let d=u;
+((n=(e=i.user.factors)===null||e===void 0?void 0:e.filter(g=>g.status==="verified"))!==null&&n!==void 0?n:[]).length>0&&(d="aal2");
+const p=l.amr||[];
+return{
+data:{
+currentLevel:u,nextLevel:d,currentAuthenticationMethods:p}
+,error:null}
+}
+async _getAuthorizationDetails(e){
+try{
+return await this._useSession(async n=>{
+const{
+data:{
+session:i}
+,error:r}
+=n;
+return r?this._returnResult({
+data:null,error:r}
+):i?await ue(this.fetch,"GET",`${
+this.url}
+/oauth/authorizations/${
+e}
+`,{
+headers:this.headers,jwt:i.access_token,xform:l=>({
+data:l,error:null}
+)}
+):this._returnResult({
+data:null,error:new jt}
+)}
+)}
+catch(n){
+if(re(n))return this._returnResult({
+data:null,error:n}
+);
+throw n}
+}
+async _approveAuthorization(e,n){
+try{
+return await this._useSession(async i=>{
+const{
+data:{
+session:r}
+,error:l}
+=i;
+if(l)return this._returnResult({
+data:null,error:l}
+);
+if(!r)return this._returnResult({
+data:null,error:new jt}
+);
+const u=await ue(this.fetch,"POST",`${
+this.url}
+/oauth/authorizations/${
+e}
+/consent`,{
+headers:this.headers,jwt:r.access_token,body:{
+action:"approve"}
+,xform:d=>({
+data:d,error:null}
+)}
+);
+return u.data&&u.data.redirect_url&&wt()&&!(n!=null&&n.skipBrowserRedirect)&&window.location.assign(u.data.redirect_url),u}
+)}
+catch(i){
+if(re(i))return this._returnResult({
+data:null,error:i}
+);
+throw i}
+}
+async _denyAuthorization(e,n){
+try{
+return await this._useSession(async i=>{
+const{
+data:{
+session:r}
+,error:l}
+=i;
+if(l)return this._returnResult({
+data:null,error:l}
+);
+if(!r)return this._returnResult({
+data:null,error:new jt}
+);
+const u=await ue(this.fetch,"POST",`${
+this.url}
+/oauth/authorizations/${
+e}
+/consent`,{
+headers:this.headers,jwt:r.access_token,body:{
+action:"deny"}
+,xform:d=>({
+data:d,error:null}
+)}
+);
+return u.data&&u.data.redirect_url&&wt()&&!(n!=null&&n.skipBrowserRedirect)&&window.location.assign(u.data.redirect_url),u}
+)}
+catch(i){
+if(re(i))return this._returnResult({
+data:null,error:i}
+);
+throw i}
+}
+async _listOAuthGrants(){
+try{
+return await this._useSession(async e=>{
+const{
+data:{
+session:n}
+,error:i}
+=e;
+return i?this._returnResult({
+data:null,error:i}
+):n?await ue(this.fetch,"GET",`${
+this.url}
+/user/oauth/grants`,{
+headers:this.headers,jwt:n.access_token,xform:r=>({
+data:r,error:null}
+)}
+):this._returnResult({
+data:null,error:new jt}
+)}
+)}
+catch(e){
+if(re(e))return this._returnResult({
+data:null,error:e}
+);
+throw e}
+}
+async _revokeOAuthGrant(e){
+try{
+return await this._useSession(async n=>{
+const{
+data:{
+session:i}
+,error:r}
+=n;
+return r?this._returnResult({
+data:null,error:r}
+):i?(await ue(this.fetch,"DELETE",`${
+this.url}
+/user/oauth/grants`,{
+headers:this.headers,jwt:i.access_token,query:{
+client_id:e.clientId}
+,noResolveJson:!0}
+),{
+data:{
+}
+,error:null}
+):this._returnResult({
+data:null,error:new jt}
+)}
+)}
+catch(n){
+if(re(n))return this._returnResult({
+data:null,error:n}
+);
+throw n}
+}
+async fetchJwk(e,n={
+keys:[]}
+){
+let i=n.keys.find(d=>d.kid===e);
+if(i)return i;
+const r=Date.now();
+if(i=this.jwks.keys.find(d=>d.kid===e),i&&this.jwks_cached_at+mB>r)return i;
+const{
+data:l,error:u}
+=await ue(this.fetch,"GET",`${
+this.url}
+/.well-known/jwks.json`,{
+headers:this.headers}
+);
+if(u)throw u;
+return!l.keys||l.keys.length===0||(this.jwks=l,this.jwks_cached_at=r,i=l.keys.find(d=>d.kid===e),!i)?null:i}
+async getClaims(e,n={
+}
+){
+try{
+let i=e;
+if(!i){
+const{
+data:w,error:A}
+=await this.getSession();
+if(A||!w.session)return this._returnResult({
+data:null,error:A}
+);
+i=w.session.access_token}
+const{
+header:r,payload:l,signature:u,raw:{
+header:d,payload:h}
+}
+=xf(i);
+n!=null&&n.allowExpired||VB(l.exp);
+const p=!r.alg||r.alg.startsWith("HS")||!r.kid||!("crypto"in globalThis&&"subtle"in globalThis.crypto)?null:await this.fetchJwk(r.kid,n!=null&&n.keys?{
+keys:n.keys}
+:n==null?void 0:n.jwks);
+if(!p){
+const{
+error:w}
+=await this.getUser(i);
+if(w)throw w;
+return{
+data:{
+claims:l,header:r,signature:u}
+,error:null}
+}
+const g=BB(r.alg),_=await crypto.subtle.importKey("jwk",p,g,!0,["verify"]);
+if(!await crypto.subtle.verify(g,_,u,AB(`${
+d}
+.${
+h}
+`)))throw new Ah("Invalid JWT signature");
+return{
+data:{
+claims:l,header:r,signature:u}
+,error:null}
+}
+catch(i){
+if(re(i))return this._returnResult({
+data:null,error:i}
+);
+throw i}
+}
+}
+Zr.nextInstanceID={
+}
+;
+const y4=Zr,v4="2.91.1";
+let Pr="";
+typeof Deno<"u"?Pr="deno":typeof document<"u"?Pr="web":typeof navigator<"u"&&navigator.product==="ReactNative"?Pr="react-native":Pr="node";
+const _4={
+"X-Client-Info":`supabase-js-${
+Pr}
+/${
+v4}
+`}
+,T4={
+headers:_4}
+,S4={
+schema:"public"}
+,w4={
+autoRefreshToken:!0,persistSession:!0,detectSessionInUrl:!0,flowType:"implicit"}
+,E4={
+}
+;
+function ea(t){
+"@babel/helpers - typeof";
+return ea=typeof Symbol=="function"&&typeof Symbol.iterator=="symbol"?function(e){
+return typeof e}
+:function(e){
+return e&&typeof Symbol=="function"&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e}
+,ea(t)}
+function b4(t,e){
+if(ea(t)!="object"||!t)return t;
+var n=t[Symbol.toPrimitive];
+if(n!==void 0){
+var i=n.call(t,e);
+if(ea(i)!="object")return i;
+throw new TypeError("@@toPrimitive must return a primitive value.")}
+return(e==="string"?String:Number)(t)}
+function A4(t){
+var e=b4(t,"string");
+return ea(e)=="symbol"?e:e+""}
+function C4(t,e,n){
+return(e=A4(e))in t?Object.defineProperty(t,e,{
+value:n,enumerable:!0,configurable:!0,writable:!0}
+):t[e]=n,t}
+function uS(t,e){
+var n=Object.keys(t);
+if(Object.getOwnPropertySymbols){
+var i=Object.getOwnPropertySymbols(t);
+e&&(i=i.filter(function(r){
+return Object.getOwnPropertyDescriptor(t,r).enumerable}
+)),n.push.apply(n,i)}
+return n}
+function We(t){
+for(var e=1;
+e<arguments.length;
+e++){
+var n=arguments[e]!=null?arguments[e]:{
+}
+;
+e%2?uS(Object(n),!0).forEach(function(i){
+C4(t,i,n[i])}
+):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(n)):uS(Object(n)).forEach(function(i){
+Object.defineProperty(t,i,Object.getOwnPropertyDescriptor(n,i))}
+)}
+return t}
+const x4=t=>t?(...e)=>t(...e):(...e)=>fetch(...e),R4=()=>Headers,N4=(t,e,n)=>{
+const i=x4(n),r=R4();
+return async(l,u)=>{
+var d;
+const h=(d=await e())!==null&&d!==void 0?d:t;
+let p=new r(u==null?void 0:u.headers);
+return p.has("apikey")||p.set("apikey",t),p.has("Authorization")||p.set("Authorization",`Bearer ${
+h}
+`),i(l,We(We({
+}
+,u),{
+}
+,{
+headers:p}
+))}
+}
+;
+function M4(t){
+return t.endsWith("/")?t:t+"/"}
+function I4(t,e){
+var n,i;
+const{
+db:r,auth:l,realtime:u,global:d}
+=t,{
+db:h,auth:p,realtime:g,global:_}
+=e,T={
+db:We(We({
+}
+,h),r),auth:We(We({
+}
+,p),l),realtime:We(We({
+}
+,g),u),storage:{
+}
+,global:We(We(We({
+}
+,_),d),{
+}
+,{
+headers:We(We({
+}
+,(n=_==null?void 0:_.headers)!==null&&n!==void 0?n:{
+}
+),(i=d==null?void 0:d.headers)!==null&&i!==void 0?i:{
+}
+)}
+),accessToken:async()=>""}
+;
+return t.accessToken?T.accessToken=t.accessToken:delete T.accessToken,T}
+function D4(t){
+const e=t==null?void 0:t.trim();
+if(!e)throw new Error("supabaseUrl is required.");
+if(!e.match(/^https?:\/\//i))throw new Error("Invalid supabaseUrl: Must be a valid HTTP or HTTPS URL.");
+try{
+return new URL(M4(e))}
+catch{
+throw Error("Invalid supabaseUrl: Provided URL is malformed.")}
+}
+var k4=class extends y4{
+constructor(t){
+super(t)}
+}
+,U4=class{
+constructor(t,e,n){
+var i,r;
+this.supabaseUrl=t,this.supabaseKey=e;
+const l=D4(t);
+if(!e)throw new Error("supabaseKey is required.");
+this.realtimeUrl=new URL("realtime/v1",l),this.realtimeUrl.protocol=this.realtimeUrl.protocol.replace("http","ws"),this.authUrl=new URL("auth/v1",l),this.storageUrl=new URL("storage/v1",l),this.functionsUrl=new URL("functions/v1",l);
+const u=`sb-${
+l.hostname.split(".")[0]}
+-auth-token`,d={
+db:S4,realtime:E4,auth:We(We({
+}
+,w4),{
+}
+,{
+storageKey:u}
+),global:T4}
+,h=I4(n??{
+}
+,d);
+if(this.storageKey=(i=h.auth.storageKey)!==null&&i!==void 0?i:"",this.headers=(r=h.global.headers)!==null&&r!==void 0?r:{
+}
+,h.accessToken)this.accessToken=h.accessToken,this.auth=new Proxy({
+}
+,{
+get:(g,_)=>{
+throw new Error(`@supabase/supabase-js: Supabase Client is configured with the accessToken option, accessing supabase.auth.${
+String(_)}
+ is not possible`)}
+}
+);
+else{
+var p;
+this.auth=this._initSupabaseAuthClient((p=h.auth)!==null&&p!==void 0?p:{
+}
+,this.headers,h.global.fetch)}
+this.fetch=N4(e,this._getAccessToken.bind(this),h.global.fetch),this.realtime=this._initRealtimeClient(We({
+headers:this.headers,accessToken:this._getAccessToken.bind(this)}
+,h.realtime)),this.accessToken&&Promise.resolve(this.accessToken()).then(g=>this.realtime.setAuth(g)).catch(g=>console.warn("Failed to set initial Realtime auth token:",g)),this.rest=new h5(new URL("rest/v1",l).href,{
+headers:this.headers,schema:h.db.schema,fetch:this.fetch}
+),this.storage=new cB(this.storageUrl.href,this.headers,this.fetch,n==null?void 0:n.storage),h.accessToken||this._listenForAuthEvents()}
+get functions(){
+return new l5(this.functionsUrl.href,{
+headers:this.headers,customFetch:this.fetch}
+)}
+from(t){
+return this.rest.from(t)}
+schema(t){
+return this.rest.schema(t)}
+rpc(t,e={
+}
+,n={
+head:!1,get:!1,count:void 0}
+){
+return this.rest.rpc(t,e,n)}
+channel(t,e={
+config:{
+}
+}
+){
+return this.realtime.channel(t,e)}
+getChannels(){
+return this.realtime.getChannels()}
+removeChannel(t){
+return this.realtime.removeChannel(t)}
+removeAllChannels(){
+return this.realtime.removeAllChannels()}
+async _getAccessToken(){
+var t=this,e,n;
+if(t.accessToken)return await t.accessToken();
+const{
+data:i}
+=await t.auth.getSession();
+return(e=(n=i.session)===null||n===void 0?void 0:n.access_token)!==null&&e!==void 0?e:t.supabaseKey}
+_initSupabaseAuthClient({
+autoRefreshToken:t,persistSession:e,detectSessionInUrl:n,storage:i,userStorage:r,storageKey:l,flowType:u,lock:d,debug:h,throwOnError:p}
+,g,_){
+const T={
+Authorization:`Bearer ${
+this.supabaseKey}
+`,apikey:`${
+this.supabaseKey}
+`}
+;
+return new k4({
+url:this.authUrl.href,headers:We(We({
+}
+,T),g),storageKey:l,autoRefreshToken:t,persistSession:e,detectSessionInUrl:n,storage:i,userStorage:r,flowType:u,lock:d,debug:h,throwOnError:p,fetch:_,hasCustomAuthorizationHeader:Object.keys(this.headers).some(w=>w.toLowerCase()==="authorization")}
+)}
+_initRealtimeClient(t){
+return new M5(this.realtimeUrl.href,We(We({
+}
+,t),{
+}
+,{
+params:We(We({
+}
+,{
+apikey:this.supabaseKey}
+),t==null?void 0:t.params)}
+))}
+_listenForAuthEvents(){
+return this.auth.onAuthStateChange((t,e)=>{
+this._handleTokenChanged(t,"CLIENT",e==null?void 0:e.access_token)}
+)}
+_handleTokenChanged(t,e,n){
+(t==="TOKEN_REFRESHED"||t==="SIGNED_IN")&&this.changedAccessToken!==n?(this.changedAccessToken=n,this.realtime.setAuth(n)):t==="SIGNED_OUT"&&(this.realtime.setAuth(),e=="STORAGE"&&this.auth.signOut(),this.changedAccessToken=void 0)}
+}
+;
+const P4=(t,e,n)=>new U4(t,e,n);
+function L4(){
+if(typeof window<"u")return!1;
+const t=globalThis.process;
+if(!t)return!1;
+const e=t.version;
+if(e==null)return!1;
+const n=e.match(/^v(\d+)\./);
+return n?parseInt(n[1],10)<=18:!1}
+L4()&&console.warn("⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 20 or later. For more information, visit: https://github.com/orgs/supabase/discussions/37217");
+const O4="https://zfxfggtumxhahuioshca.supabase.co",V4="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpmeGZnZ3R1bXhoYWh1aW9zaGNhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjcwMDExMjQsImV4cCI6MjA4MjU3NzEyNH0.4-a8oaf565OGLb3_MJG806qn3sK0dhaAqOMQuAEGz24",gs=P4(O4,V4),B4=({
+onAuthSuccess:t}
+)=>{
+const[e,n]=J.useState(""),[i,r]=J.useState(""),[l,u]=J.useState(""),[d,h]=J.useState(""),[p,g]=J.useState(!1),[_,T]=J.useState(""),[w,A]=J.useState(!1),C=async x=>{
+x.preventDefault(),g(!0),T("");
+try{
+if(w){
+const{
+data:R,error:k}
+=await gs.from("users").select("*").eq("email",e).eq("password",i).single();
+if(k||!R)throw new Error("Invalid email or password");
+localStorage.setItem("userId",R.id),t(R.id)}
+else{
+const{
+data:R}
+=await gs.from("users").select("*").eq("email",e).single();
+if(R)throw new Error("An account with this email already exists. Please login instead.");
+const{
+data:k,error:N}
+=await gs.from("users").insert([{
+email:e,password:i,name:l,website:d}
+]).select().single();
+if(N)throw N;
+await gs.from("user_dashboard").insert([{
+user_id:k.id}
+]),localStorage.setItem("userId",k.id),t(k.id)}
+}
+catch(R){
+T(R.message||"An error occurred")}
+finally{
+g(!1)}
+}
+;
+return E.jsxs("section",{
+className:"relative bg-black px-6 py-32",children:[E.jsxs("div",{
+className:"absolute inset-0 overflow-hidden pointer-events-none",children:[E.jsx(ye.div,{
+animate:{
+opacity:[.1,.2,.1],scale:[1,1.1,1]}
+,transition:{
+duration:8,repeat:1/0}
+,className:"absolute top-1/4 -left-1/4 w-[600px] h-[600px] bg-[#BFF549] rounded-full blur-[150px]"}
+),E.jsx(ye.div,{
+animate:{
+opacity:[.1,.15,.1],scale:[1,1.2,1]}
+,transition:{
+duration:10,repeat:1/0,delay:1}
+,className:"absolute bottom-1/4 -right-1/4 w-[500px] h-[500px] bg-purple-600 rounded-full blur-[150px]"}
+)]}
+),E.jsxs(ye.div,{
+initial:{
+opacity:0,y:20}
+,animate:{
+opacity:1,y:0}
+,transition:{
+duration:.8}
+,className:"relative z-10 w-full max-w-md mx-auto",children:[E.jsxs("div",{
+className:"text-center mb-10",children:[E.jsx(ye.div,{
+initial:{
+scale:0}
+,animate:{
+scale:1}
+,transition:{
+duration:.5,delay:.2}
+,className:"inline-flex items-center justify-center w-20 h-20 mb-6 rounded-full bg-gradient-to-br from-[#BFF549] to-[#FACC15] shadow-[0_0_60px_rgba(191,245,73,0.4)]",children:E.jsx(Wx,{
+className:"w-10 h-10 text-black"}
+)}
+),E.jsx("h2",{
+className:"text-5xl font-black mb-4 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent",children:w?"Welcome Back":"Get Started Today"}
+),E.jsx("p",{
+className:"text-xl text-gray-400",children:w?"Enter your credentials to access your dashboard":"Create your account and unlock your personalized dashboard"}
+)]}
+),E.jsxs(ye.form,{
+initial:{
+opacity:0}
+,animate:{
+opacity:1}
+,transition:{
+delay:.4}
+,onSubmit:C,className:"relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl p-8 shadow-2xl",children:[E.jsx("div",{
+className:"absolute inset-0 rounded-3xl bg-gradient-to-br from-[#BFF549]/10 to-purple-600/10 blur-xl -z-10"}
+),_&&E.jsx("div",{
+className:"mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm",children:_}
+),E.jsxs("div",{
+className:"mb-6",children:[E.jsx("label",{
+className:"block text-sm font-bold text-gray-300 mb-2 uppercase tracking-wider",children:"Email Address"}
+),E.jsxs("div",{
+className:"relative group",children:[E.jsx(Fx,{
+className:"absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-[#BFF549] transition-colors"}
+),E.jsx("input",{
+type:"email",value:e,onChange:x=>n(x.target.value),required:!0,className:"w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#BFF549] focus:ring-2 focus:ring-[#BFF549]/20 transition-all",placeholder:"you@example.com"}
+)]}
+)]}
+),E.jsxs("div",{
+className:"mb-6",children:[E.jsx("label",{
+className:"block text-sm font-bold text-gray-300 mb-2 uppercase tracking-wider",children:"Password"}
+),E.jsxs("div",{
+className:"relative group",children:[E.jsx(Lx,{
+className:"absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-[#BFF549] transition-colors"}
+),E.jsx("input",{
+type:"password",value:i,onChange:x=>r(x.target.value),required:!0,className:"w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#BFF549] focus:ring-2 focus:ring-[#BFF549]/20 transition-all",placeholder:"••••••••"}
+)]}
+)]}
+),!w&&E.jsxs("div",{
+className:"mb-6",children:[E.jsx("label",{
+className:"block text-sm font-bold text-gray-300 mb-2 uppercase tracking-wider",children:"Full Name"}
+),E.jsxs("div",{
+className:"relative group",children:[E.jsx(oR,{
+className:"absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-[#BFF549] transition-colors"}
+),E.jsx("input",{
+type:"text",value:l,onChange:x=>u(x.target.value),required:!0,className:"w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#BFF549] focus:ring-2 focus:ring-[#BFF549]/20 transition-all",placeholder:"John Doe"}
+)]}
+)]}
+),!w&&E.jsxs("div",{
+className:"mb-8",children:[E.jsxs("label",{
+className:"block text-sm font-bold text-gray-300 mb-2 uppercase tracking-wider",children:["Website ",E.jsx("span",{
+className:"text-gray-500 font-normal",children:"(Optional)"}
+)]}
+),E.jsxs("div",{
+className:"relative group",children:[E.jsx(Cx,{
+className:"absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-[#BFF549] transition-colors"}
+),E.jsx("input",{
+type:"url",value:d,onChange:x=>h(x.target.value),className:"w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#BFF549] focus:ring-2 focus:ring-[#BFF549]/20 transition-all",placeholder:"https://yourwebsite.com"}
+)]}
+)]}
+),E.jsxs("button",{
+type:"submit",disabled:p,className:"group relative w-full py-5 bg-gradient-to-r from-[#BFF549] to-[#FACC15] text-black font-black text-lg rounded-xl overflow-hidden transition-all hover:shadow-[0_0_60px_rgba(191,245,73,0.5)] hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed",children:[E.jsxs("span",{
+className:"relative z-10 flex items-center justify-center gap-3",children:[p?"Loading...":w?"Login":"Access Dashboard",E.jsx(pS,{
+className:"w-6 h-6 group-hover:translate-x-2 transition-transform"}
+)]}
+),E.jsx("div",{
+className:"absolute inset-0 bg-gradient-to-r from-white to-[#BFF549] transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"}
+)]}
+),E.jsx("p",{
+className:"mt-6 text-center text-sm text-gray-400",children:w?E.jsxs(E.Fragment,{
+children:["New here?"," ",E.jsx("button",{
+type:"button",onClick:()=>A(!1),className:"text-[#BFF549] font-bold hover:underline",children:"Create an account"}
+)]}
+):E.jsxs(E.Fragment,{
+children:["Already have an account?"," ",E.jsx("button",{
+type:"button",onClick:()=>A(!0),className:"text-[#BFF549] font-bold hover:underline",children:"Login"}
+)]}
+)}
+)]}
+)]}
+)]}
+)}
+,F4=({
+userId:t,onLogout:e}
+)=>{
+const[n,i]=J.useState(null),[r,l]=J.useState(null),[u,d]=J.useState(""),[h,p]=J.useState(""),[g,_]=J.useState(""),[T,w]=J.useState(!0),[A,C]=J.useState(!1),[x,R]=J.useState("");
+J.useEffect(()=>{
+k()}
+,[t]);
+const k=async()=>{
+var F,z;
+try{
+const{
+data:G}
+=await gs.from("users").select("*").eq("id",t).single();
+i(G);
+const{
+data:X}
+=await gs.from("user_dashboard").select("*").eq("user_id",t).single();
+X&&(l(X),d(X.goal||""),p(((F=X.income)==null?void 0:F.toString())||""),_(((z=X.clients)==null?void 0:z.toString())||""))}
+catch(G){
+console.error("Error loading data:",G)}
+finally{
+w(!1)}
+}
+,N=async()=>{
+C(!0),R("");
+try{
+const{
+error:F}
+=await gs.from("user_dashboard").update({
+goal:u,income:h?parseFloat(h):null,clients:g?parseInt(g):null,updated_at:new Date().toISOString()}
+).eq("user_id",t);
+if(F)throw F;
+R("✓ Saved successfully!"),setTimeout(()=>R(""),3e3)}
+catch(F){
+R("✗ Error saving: "+F.message)}
+finally{
+C(!1)}
+}
+,O=()=>{
+localStorage.removeItem("userId"),e()}
+;
+return T?E.jsx("div",{
+className:"min-h-screen bg-black flex items-center justify-center",children:E.jsx("div",{
+className:"text-2xl text-white",children:"Loading..."}
+)}
+):E.jsxs("div",{
+className:"min-h-screen bg-black px-6 py-20",children:[E.jsxs("div",{
+className:"absolute inset-0 overflow-hidden pointer-events-none",children:[E.jsx(ye.div,{
+animate:{
+opacity:[.05,.1,.05],scale:[1,1.1,1]}
+,transition:{
+duration:8,repeat:1/0}
+,className:"absolute top-0 left-1/4 w-[800px] h-[800px] bg-[#BFF549] rounded-full blur-[200px]"}
+),E.jsx(ye.div,{
+animate:{
+opacity:[.05,.08,.05],scale:[1,1.2,1]}
+,transition:{
+duration:10,repeat:1/0,delay:2}
+,className:"absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-purple-600 rounded-full blur-[200px]"}
+)]}
+),E.jsxs("div",{
+className:"relative z-10 max-w-6xl mx-auto",children:[E.jsxs(ye.div,{
+initial:{
+opacity:0,y:-20}
+,animate:{
+opacity:1,y:0}
+,className:"mb-12 flex items-center justify-between",children:[E.jsxs("div",{
+children:[E.jsx("h1",{
+className:"text-6xl font-black mb-2 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent",children:"Dashboard"}
+),E.jsxs("p",{
+className:"text-xl text-gray-400",children:["Welcome back, ",E.jsx("span",{
+className:"text-[#BFF549] font-bold",children:n==null?void 0:n.name}
+)]}
+)]}
+),E.jsxs("button",{
+onClick:O,className:"flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-xl text-white hover:bg-white/10 transition-all",children:[E.jsx(Vx,{
+className:"w-5 h-5"}
+),"Logout"]}
+)]}
+),E.jsx(ye.div,{
+initial:{
+opacity:0,y:20}
+,animate:{
+opacity:1,y:0}
+,transition:{
+delay:.1}
+,className:"mb-8 p-6 backdrop-blur-xl bg-gradient-to-br from-white/10 to-white/5 border border-white/10 rounded-2xl",children:E.jsxs("div",{
+className:"grid grid-cols-1 md:grid-cols-3 gap-4",children:[E.jsxs("div",{
+children:[E.jsx("p",{
+className:"text-sm text-gray-400 mb-1",children:"Email"}
+),E.jsx("p",{
+className:"text-white font-semibold",children:n==null?void 0:n.email}
+)]}
+),E.jsxs("div",{
+children:[E.jsx("p",{
+className:"text-sm text-gray-400 mb-1",children:"Name"}
+),E.jsx("p",{
+className:"text-white font-semibold",children:n==null?void 0:n.name}
+)]}
+),E.jsxs("div",{
+children:[E.jsx("p",{
+className:"text-sm text-gray-400 mb-1",children:"Website"}
+),E.jsx("p",{
+className:"text-white font-semibold",children:(n==null?void 0:n.website)||"Not provided"}
+)]}
+)]}
+)}
+),E.jsxs("div",{
+className:"grid grid-cols-1 md:grid-cols-3 gap-6 mb-8",children:[E.jsxs(ye.div,{
+initial:{
+opacity:0,y:20}
+,animate:{
+opacity:1,y:0}
+,transition:{
+delay:.2}
+,className:"relative group",children:[E.jsx("div",{
+className:"absolute inset-0 bg-gradient-to-br from-[#BFF549]/20 to-[#FACC15]/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"}
+),E.jsxs("div",{
+className:"relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-[#BFF549]/50 transition-all",children:[E.jsxs("div",{
+className:"flex items-center gap-3 mb-4",children:[E.jsx("div",{
+className:"p-3 bg-gradient-to-br from-[#BFF549] to-[#FACC15] rounded-xl",children:E.jsx(mS,{
+className:"w-6 h-6 text-black"}
+)}
+),E.jsx("h3",{
+className:"text-lg font-bold text-white",children:"Goal"}
+)]}
+),E.jsx("textarea",{
+value:u,onChange:F=>d(F.target.value),placeholder:"What's your main goal?",className:"w-full h-24 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#BFF549] focus:ring-2 focus:ring-[#BFF549]/20 transition-all resize-none"}
+)]}
+)]}
+),E.jsxs(ye.div,{
+initial:{
+opacity:0,y:20}
+,animate:{
+opacity:1,y:0}
+,transition:{
+delay:.3}
+,className:"relative group",children:[E.jsx("div",{
+className:"absolute inset-0 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"}
+),E.jsxs("div",{
+className:"relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-green-500/50 transition-all",children:[E.jsxs("div",{
+className:"flex items-center gap-3 mb-4",children:[E.jsx("div",{
+className:"p-3 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl",children:E.jsx(wx,{
+className:"w-6 h-6 text-white"}
+)}
+),E.jsx("h3",{
+className:"text-lg font-bold text-white",children:"Monthly Income"}
+)]}
+),E.jsxs("div",{
+className:"relative",children:[E.jsx("span",{
+className:"absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl",children:"$"}
+),E.jsx("input",{
+type:"number",value:h,onChange:F=>p(F.target.value),placeholder:"0",className:"w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white text-2xl font-bold placeholder-gray-500 focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-500/20 transition-all"}
+)]}
+)]}
+)]}
+),E.jsxs(ye.div,{
+initial:{
+opacity:0,y:20}
+,animate:{
+opacity:1,y:0}
+,transition:{
+delay:.4}
+,className:"relative group",children:[E.jsx("div",{
+className:"absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"}
+),E.jsxs("div",{
+className:"relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-purple-500/50 transition-all",children:[E.jsxs("div",{
+className:"flex items-center gap-3 mb-4",children:[E.jsx("div",{
+className:"p-3 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl",children:E.jsx(aR,{
+className:"w-6 h-6 text-white"}
+)}
+),E.jsx("h3",{
+className:"text-lg font-bold text-white",children:"Active Clients"}
+)]}
+),E.jsx("input",{
+type:"number",value:g,onChange:F=>_(F.target.value),placeholder:"0",className:"w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white text-2xl font-bold placeholder-gray-500 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all"}
+)]}
+)]}
+)]}
+),E.jsxs(ye.div,{
+initial:{
+opacity:0,y:20}
+,animate:{
+opacity:1,y:0}
+,transition:{
+delay:.5}
+,className:"flex items-center justify-center gap-4",children:[E.jsxs("button",{
+onClick:N,disabled:A,className:"group relative px-12 py-5 bg-gradient-to-r from-[#BFF549] to-[#FACC15] text-black font-black text-xl rounded-xl overflow-hidden transition-all hover:shadow-[0_0_60px_rgba(191,245,73,0.5)] hover:scale-[1.05] active:scale-95 disabled:opacity-50",children:[E.jsxs("span",{
+className:"relative z-10 flex items-center gap-3",children:[E.jsx(Jx,{
+className:"w-6 h-6"}
+),A?"Saving...":"Save Changes"]}
+),E.jsx("div",{
+className:"absolute inset-0 bg-gradient-to-r from-white to-[#BFF549] transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"}
+)]}
+),x&&E.jsx(ye.div,{
+initial:{
+opacity:0,x:-10}
+,animate:{
+opacity:1,x:0}
+,className:`px-6 py-3 rounded-xl font-semibold ${
+x.includes("✓")?"bg-green-500/20 text-green-400 border border-green-500/30":"bg-red-500/20 text-red-400 border border-red-500/30"}
+`,children:x}
+)]}
+),E.jsxs(ye.div,{
+initial:{
+opacity:0,y:20}
+,animate:{
+opacity:1,y:0}
+,transition:{
+delay:.6}
+,className:"mt-12 p-8 backdrop-blur-xl bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 rounded-2xl",children:[E.jsxs("div",{
+className:"flex items-center gap-3 mb-6",children:[E.jsx(tR,{
+className:"w-6 h-6 text-[#BFF549]"}
+),E.jsx("h3",{
+className:"text-2xl font-black text-white",children:"Your Progress"}
+)]}
+),E.jsxs("div",{
+className:"grid grid-cols-1 md:grid-cols-3 gap-6",children:[E.jsxs("div",{
+className:"text-center",children:[E.jsx("p",{
+className:"text-4xl font-black text-[#BFF549] mb-2",children:g||"0"}
+),E.jsx("p",{
+className:"text-gray-400",children:"Active Clients"}
+)]}
+),E.jsxs("div",{
+className:"text-center",children:[E.jsxs("p",{
+className:"text-4xl font-black text-green-400 mb-2",children:["$",h?parseFloat(h).toLocaleString():"0"]}
+),E.jsx("p",{
+className:"text-gray-400",children:"Monthly Revenue"}
+)]}
+),E.jsxs("div",{
+className:"text-center",children:[E.jsx("p",{
+className:"text-4xl font-black text-purple-400 mb-2",children:u?"🎯":"—"}
+),E.jsx("p",{
+className:"text-gray-400",children:"Goal Set"}
+)]}
+)]}
+)]}
+)]}
+)]}
+)}
+,G4=()=>E.jsx("footer",{
+className:"bg-black pt-32 pb-12 border-t border-white/5",children:E.jsxs("div",{
+className:"container mx-auto px-6",children:[E.jsxs("div",{
+className:"grid grid-cols-1 md:grid-cols-4 gap-16 mb-32",children:[E.jsxs("div",{
+className:"col-span-1 md:col-span-1",children:[E.jsxs("div",{
+className:"flex items-center gap-2 mb-8",children:[E.jsx("div",{
+className:"w-8 h-8 bg-[#BFF549] rounded-lg flex items-center justify-center",children:E.jsx(pu,{
+className:"text-black w-5 h-5",fill:"currentColor"}
+)}
+),E.jsx("span",{
+className:"text-lg font-black tracking-tighter text-white uppercase",children:"VOLTFLOW"}
+)]}
+),E.jsx("p",{
+className:"text-[#99A1AF] font-light leading-relaxed mb-8",children:"We help elite businesses dominate their market through performance-first web design. No fluff. Just ROI."}
+),E.jsx("div",{
+className:"flex gap-4",children:[iR,bx,Dx,Rx].map((t,e)=>E.jsx("a",{
+href:"#",className:"w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:border-[#BFF549] hover:text-[#BFF549] transition-all",children:E.jsx(t,{
+className:"w-5 h-5"}
+)}
+,e))}
+)]}
+),[{
+title:"Expertise",links:["Neuro-Design","SaaS Growth","E-commerce","Conversion Audits"]}
+,{
+title:"Agency",links:["Case Studies","Our Process","Careers","Blog"]}
+,{
+title:"Support",links:["Contact Us","Privacy Policy","Terms of Service","Help Center"]}
+].map((t,e)=>E.jsxs("div",{
+children:[E.jsx("h4",{
+className:"text-white font-bold mb-8 uppercase tracking-widest text-sm",children:t.title}
+),E.jsx("ul",{
+className:"space-y-4",children:t.links.map(n=>E.jsx("li",{
+children:E.jsx("a",{
+href:"#",className:"text-[#99A1AF] hover:text-[#BFF549] transition-colors font-light",children:n}
+)}
+,n))}
+)]}
+,e))]}
+),E.jsxs("div",{
+className:"flex flex-col md:flex-row items-center justify-between gap-8 pt-8 border-t border-white/5 text-[#99A1AF] text-sm",children:[E.jsx("p",{
+children:"© 2026 VoltFlow Design Agency. All rights reserved."}
+),E.jsx("p",{
+children:"Built with ❤️ for performance."}
+)]}
+)]}
+)}
+),q4=()=>{
+const[t,e]=J.useState(!1),[n,i]=J.useState(null),[r,l]=J.useState(!1);
+J.useEffect(()=>{
+const g=()=>{
+e(window.scrollY>50)}
+;
+return window.addEventListener("scroll",g),()=>window.removeEventListener("scroll",g)}
+,[]),J.useEffect(()=>{
+const g=localStorage.getItem("userId");
+g&&i(g)}
+,[]);
+const u=g=>{
+i(g),l(!0)}
+,d=()=>{
+localStorage.removeItem("userId"),i(null),l(!1)}
+,h=()=>{
+l(!0)}
+,p=()=>{
+const g=document.querySelector("section.relative.bg-black.px-6.py-32");
+g&&g.scrollIntoView({
+behavior:"smooth"}
+)}
+;
+return r&&n?E.jsxs(E.Fragment,{
+children:[E.jsx(F4,{
+userId:n,onLogout:d}
+),E.jsx(Iv,{
+}
+)]}
+):E.jsxs("div",{
+className:"relative min-h-screen bg-[#02040a] text-white selection:bg-[#BFF549] selection:text-black font-sans overflow-x-hidden",children:[E.jsx(SD,{
+isScrolled:t,userId:n,onLoginClick:p,onDashboardClick:h}
+),E.jsxs("main",{
+className:"relative z-10",children:[E.jsx(OD,{
+}
+),E.jsx(VD,{
+}
+),E.jsx(BD,{
+}
+),E.jsx(e5,{
+}
+),E.jsx(n5,{
+}
+),E.jsx(FD,{
+}
+),E.jsx(s5,{
+}
+),!n&&E.jsx(B4,{
+onAuthSuccess:u}
+)]}
+),E.jsx(G4,{
+}
+),E.jsx(Iv,{
+}
+)]}
+)}
+,yb=document.getElementById("root");
+if(!yb)throw new Error("Could not find root element to mount to");
+const H4=XC.createRoot(yb);
+H4.render(E.jsx(Pi.StrictMode,{
+children:E.jsx(q4,{
+}
+)}
+));
+
+
+
