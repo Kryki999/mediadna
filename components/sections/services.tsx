@@ -1,21 +1,6 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import {
-  BadgeCheck,
-  Clapperboard,
-  Code2,
-  Compass,
-  Figma,
-  Film,
-  Globe2,
-  Palette,
-  PenTool,
-  Rocket,
-  Search,
-  Sparkles,
-  TrendingUp,
-} from "lucide-react"
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts"
 import {
   Accordion,
@@ -23,23 +8,18 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
-import { Globe } from "@/components/magicui/globe"
-import { IconCloud } from "@/components/magicui/icon-cloud"
 import { Iphone15Pro } from "@/components/magicui/iphone-15-pro"
-import { OrbitingCircles } from "@/components/magicui/orbiting-circles"
 import { ChartContainer, type ChartConfig } from "@/components/ui/chart"
 
 const services = [
   {
     id: "www",
-    icon: Code2,
     title: "Strony WWW",
     subtitle: "Build",
     description:
       "Projektujemy i kodujemy strony premium, które ładują się błyskawicznie i konwertują jak maszyna. Next.js, headless CMS, animacje z charakterem.",
     lead: "Nowoczesne doświadczenia webowe, które spinają design, technologię i konwersję.",
-    visual: "orbit",
-    techIcons: [Code2, Rocket, Search, BadgeCheck],
+    visual: "none",
     reel: {
       src: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
       poster: "/mockup-1.jpg",
@@ -48,14 +28,12 @@ const services = [
   },
   {
     id: "design",
-    icon: Sparkles,
     title: "Design & Branding",
     subtitle: "Brand",
     description:
       "Tworzymy systemy wizualne, które budują zaufanie w mniej niż 3 sekundy. Logo, identyfikacja, UI kit i wytyczne gotowe do skalowania.",
     lead: "Spójna tożsamość marki oparta o ruch, typografię i premium detale.",
-    visual: "cloud",
-    techIcons: [Figma, Palette, PenTool, Sparkles, Compass],
+    visual: "none",
     reel: {
       src: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
       poster: "/mockup-2.jpg",
@@ -64,14 +42,12 @@ const services = [
   },
   {
     id: "wideo",
-    icon: Clapperboard,
     title: "Wideo & Content",
     subtitle: "Operate",
     description:
       "Produkujemy content, który sam się dystrybuuje. Reels, shorts, podcasty i kampanie wizerunkowe — wszystko w jednym abonamencie.",
     lead: "Content engine zaprojektowany do regularnej publikacji i mocnego storytellingu.",
-    visual: "globe",
-    techIcons: [Film, Clapperboard, Globe2],
+    visual: "none",
     reel: {
       src: "https://media.w3.org/2010/05/sintel/trailer.mp4",
       poster: "/reel-1.jpg",
@@ -80,7 +56,6 @@ const services = [
   },
   {
     id: "ads",
-    icon: TrendingUp,
     title: "Marketing & Ads",
     subtitle: "Grow",
     description:
@@ -119,32 +94,8 @@ function ServiceVisual({
   service: ServiceItem
   activeKey: string
 }) {
-  if (service.visual === "orbit") {
-    return (
-      <OrbitingCircles
-        centerIcon={service.icon}
-        centerLabel={service.title}
-        items={(service.techIcons ?? []).map((icon, index) => ({
-          icon,
-          label: `${service.title}-${index}`,
-        }))}
-      />
-    )
-  }
-
-  if (service.visual === "cloud") {
-    return (
-      <IconCloud
-        items={(service.techIcons ?? []).map((icon, index) => ({
-          icon,
-          label: `${service.title}-cloud-${index}`,
-        }))}
-      />
-    )
-  }
-
-  if (service.visual === "globe") {
-    return <Globe />
+  if (service.visual !== "chart") {
+    return null
   }
 
   return (
@@ -249,7 +200,6 @@ export function Services() {
 
   const current = services.find((s) => s.id === activeServiceId) ?? services[0]
   const leavingPreview = services.find((s) => s.id === leavingPreviewId) ?? null
-  const Icon = current.icon
   const handleAccordionChange = (value: string) => {
     if (!value) return
     setActiveServiceId(value)
@@ -264,7 +214,7 @@ export function Services() {
               Build · Operate · Grow
             </span>
             <h2 className="text-display-fade mt-3 max-w-3xl text-balance text-4xl font-black leading-[1.02] tracking-tight md:text-6xl">
-              Nasze <span className="italic text-brand-fade">usługi</span>.
+              Nasze <span className="italic text-brand-fade">usługi</span>
             </h2>
           </div>
           <p className="max-w-sm text-base font-medium leading-relaxed text-muted-foreground md:text-lg">
@@ -283,7 +233,6 @@ export function Services() {
             <ul className="relative flex h-full flex-col gap-3" role="tablist" aria-label="Usługi">
               {services.map((s) => {
                 const isActive = s.id === activeServiceId
-                const ItemIcon = s.icon
                 return (
                   <li key={s.id} className="flex-1">
                     <button
@@ -294,18 +243,10 @@ export function Services() {
                       onFocus={() => setActiveServiceId(s.id)}
                       onClick={() => setActiveServiceId(s.id)}
                       className={`group flex h-full min-h-[106px] w-full items-center gap-4 rounded-2xl border px-5 py-5 text-left transition-all duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] ${isActive
-                          ? "border-primary/40 bg-background/90 shadow-[0_0_28px_-18px_var(--primary)]"
-                          : "border-border/80 bg-background/40 hover:border-primary/25 hover:bg-background/70"
+                        ? "border-primary/40 bg-background/90 shadow-[0_0_28px_-18px_var(--primary)]"
+                        : "border-border/80 bg-background/40 hover:border-primary/25 hover:bg-background/70"
                         }`}
                     >
-                      <span
-                        className={`inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border transition-colors ${isActive
-                            ? "border-primary/40 bg-primary/10 text-primary"
-                            : "border-border bg-background text-muted-foreground"
-                          }`}
-                      >
-                        <ItemIcon className="h-4.5 w-4.5" />
-                      </span>
                       <div className="flex-1">
                         <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
                           {s.subtitle}
@@ -335,9 +276,6 @@ export function Services() {
 
             <div className="relative grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_300px] xl:grid-cols-[minmax(0,1fr)_330px]">
               <div className="pr-2">
-                <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl border border-primary/30 bg-primary/10 text-primary">
-                  <Icon className="h-5 w-5" />
-                </div>
                 <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
                   {current.subtitle}
                 </p>
@@ -350,9 +288,11 @@ export function Services() {
                 <p className="mt-7 max-w-xl text-pretty text-sm leading-relaxed text-muted-foreground/90">
                   {current.lead}
                 </p>
-                <div className="mt-6 h-72 rounded-2xl border border-border/80 bg-background/55 p-3">
-                  <ServiceVisual service={current} activeKey={activeServiceId} />
-                </div>
+                {current.visual === "chart" ? (
+                  <div className="mt-6 h-60 rounded-2xl border border-border/80 bg-background/55 p-3">
+                    <ServiceVisual service={current} activeKey={activeServiceId} />
+                  </div>
+                ) : null}
               </div>
 
               <div className="mx-auto w-full max-w-[330px]">
@@ -371,7 +311,6 @@ export function Services() {
             className="-mx-5 divide-y divide-border overflow-hidden rounded-none border-y border-x-0 border-border bg-card sm:-mx-6"
           >
             {services.map((s) => {
-              const ItemIcon = s.icon
               return (
                 <AccordionItem
                   key={s.id}
@@ -384,21 +323,18 @@ export function Services() {
                     }}
                   />
                   <AccordionTrigger className="py-5 transition-all duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:no-underline">
-                    <div className="flex items-center gap-3">
-                      <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-background text-primary">
-                        <ItemIcon className="h-4 w-4" />
-                      </span>
-                      <span className="text-xl font-extrabold tracking-tight">{s.title}</span>
-                    </div>
+                    <span className="text-xl font-extrabold tracking-tight">{s.title}</span>
                   </AccordionTrigger>
                   <AccordionContent className="pb-5">
                     <p className="text-sm leading-relaxed text-muted-foreground">
                       {s.description}
                     </p>
                     <p className="mt-4 text-sm text-muted-foreground/90">{s.lead}</p>
-                    <div className="mt-5 h-60 rounded-2xl border border-border/80 bg-background/55 p-3">
-                      <ServiceVisual service={s} activeKey={activeServiceId} />
-                    </div>
+                    {s.visual === "chart" ? (
+                      <div className="mt-5 h-52 rounded-2xl border border-border/80 bg-background/55 p-3">
+                        <ServiceVisual service={s} activeKey={activeServiceId} />
+                      </div>
+                    ) : null}
                     <div className="mt-5">
                       <PhonePreview current={s} leaving={null} className="max-w-[250px]" />
                     </div>
