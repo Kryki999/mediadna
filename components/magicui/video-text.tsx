@@ -11,6 +11,11 @@ type VideoTextProps = {
   textX?: number
   textY?: number
   textLength?: number
+  viewX?: number
+  viewY?: number
+  viewWidth?: number
+  viewHeight?: number
+  overscanX?: number
 }
 
 export function VideoText({
@@ -21,13 +26,13 @@ export function VideoText({
   textX = 500,
   textY = 160,
   textLength = 760,
+  viewX = -120,
+  viewY = -10,
+  viewWidth = 1240,
+  viewHeight = 340,
+  overscanX = 240,
 }: VideoTextProps) {
   const maskId = useId().replace(/:/g, "")
-  const viewX = -120
-  const viewY = -10
-  const viewWidth = 1240
-  const viewHeight = 340
-  const overscanX = 240
 
   return (
     <div className={cn("relative w-full overflow-visible", className)}>

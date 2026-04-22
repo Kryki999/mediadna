@@ -3,7 +3,6 @@
 import { ArrowRight } from "lucide-react"
 import { motion, useReducedMotion } from "motion/react"
 import type { CSSProperties } from "react"
-import { FloatingDock } from "@/components/magicui/floating-dock"
 import { VideoText } from "@/components/magicui/video-text"
 import { Button } from "@/components/ui/button"
 
@@ -123,14 +122,31 @@ export function Hero() {
             cyfrowe
           </h2>
           <div className="mt-2 w-full max-w-[99vw] sm:max-w-[96vw] md:max-w-[1120px]">
+            <div className="md:hidden">
+              <VideoText
+                text="DNA"
+                src="/dna-fluid.mp4"
+                className="drop-shadow-[0_0_42px_rgba(0,85,255,0.3)]"
+                textX={500}
+                textY={188}
+                textLength={1240}
+                viewY={-18}
+                viewHeight={420}
+                overscanX={280}
+                textClassName="text-[390px] sm:text-[430px]"
+              />
+            </div>
+
+            <div className="hidden md:block">
             <VideoText
               text="DNA"
               src="/dna-fluid.mp4"
               className="drop-shadow-[0_0_42px_rgba(0,85,255,0.3)]"
               textX={500}
               textLength={1320}
-              textClassName="text-[380px] sm:text-[420px] md:text-[460px] lg:text-[500px]"
+                textClassName="text-[460px] lg:text-[500px]"
             />
+            </div>
           </div>
         </div>
 
@@ -164,8 +180,6 @@ export function Hero() {
             </Button>
           </motion.div>
         </div>
-
-        <FloatingDock className="mt-8 sm:mt-10" />
       </div>
 
       <style jsx>{`
