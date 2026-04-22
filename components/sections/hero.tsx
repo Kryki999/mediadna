@@ -1,236 +1,280 @@
- "use client"
+"use client"
 
 import { ArrowRight } from "lucide-react"
-import type { CSSProperties, MouseEvent } from "react"
+import { motion, useReducedMotion } from "motion/react"
+import type { CSSProperties } from "react"
+import { FloatingDock } from "@/components/magicui/floating-dock"
+import { VideoText } from "@/components/magicui/video-text"
 import { Button } from "@/components/ui/button"
 
 export function Hero() {
-  const handlePointerMove = (event: MouseEvent<HTMLElement>) => {
-    const rect = event.currentTarget.getBoundingClientRect()
-    const x = (event.clientX - rect.left) / rect.width
-    const y = (event.clientY - rect.top) / rect.height
-
-    event.currentTarget.style.setProperty("--mx", `${x}`)
-    event.currentTarget.style.setProperty("--my", `${y}`)
-  }
-
-  const handlePointerLeave = (event: MouseEvent<HTMLElement>) => {
-    event.currentTarget.style.setProperty("--mx", "0.72")
-    event.currentTarget.style.setProperty("--my", "0.42")
-  }
+  const prefersReducedMotion = useReducedMotion()
 
   return (
     <section
       id="top"
-      className="relative isolate flex min-h-[100svh] items-center justify-center overflow-hidden pt-20 md:pt-24"
-      onMouseMove={handlePointerMove}
-      onMouseLeave={handlePointerLeave}
-      style={
-        {
-          "--mx": "0.72",
-          "--my": "0.42",
-        } as CSSProperties
-      }
+      className="relative isolate flex min-h-[100svh] items-center justify-center overflow-hidden bg-[#020305] px-5 pt-24 sm:px-6 md:px-8 md:pt-32 lg:px-10"
     >
-      {/* Background video banner */}
-      <div className="absolute inset-0 -z-30">
-        <video
-          className="h-full w-full object-cover"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="metadata"
-          poster="/hero-dna.jpg"
-        >
-          <source src="/animatedna.mp4" type="video/mp4" />
-        </video>
-      </div>
-
-      {/* Dynamic blur glow field */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-20 overflow-hidden">
-        <div className="hero-glow hero-glow-blue-2" />
-        <div className="hero-glow hero-glow-magenta" />
-      </div>
-
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-[8] overflow-hidden">
-        <div className="hero-glow-top-ray" />
-      </div>
-
-      {/* Contrast overlay for legibility over video */}
-      <div className="absolute inset-0 -z-10 bg-background/18" />
-
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,transparent_18%,var(--background)_90%)]" />
-      <div className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-b from-transparent to-background" />
-
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 opacity-[0.06] [background-image:linear-gradient(var(--foreground)_1px,transparent_1px),linear-gradient(90deg,var(--foreground)_1px,transparent_1px)] [background-size:64px_64px]"
+        className="pointer-events-none absolute inset-x-[-32%] top-[-16rem] -z-10 h-[40rem] bg-[radial-gradient(ellipse_at_top,rgba(0,85,255,0.78)_0%,rgba(0,85,255,0.36)_34%,rgba(2,3,5,0)_76%)] blur-3xl"
       />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-[-14%] top-[-8rem] -z-10 h-[24rem] bg-[radial-gradient(ellipse_at_top,rgba(120,170,255,0.36)_0%,rgba(0,85,255,0.14)_46%,rgba(2,3,5,0)_78%)] blur-2xl"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(circle_at_50%_36%,rgba(255,255,255,0.06)_0%,rgba(2,3,5,0)_34%)]"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 -z-20 h-40 bg-gradient-to-b from-transparent to-[#020305]"
+      />
+      <div className="ambient-dust" aria-hidden>
+        {Array.from({ length: 72 }).map((_, idx) => {
+          const left = (idx * 31) % 100
+          const top = (idx * 17 + 9) % 100
+          const size = 3 + ((idx * 7) % 10)
+          const delay = `-${(idx * 1.25).toFixed(2)}s`
+          const duration = `${8 + (idx % 7) * 1.8}s`
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-6 md:px-8 lg:px-10">
-        <div className="max-w-4xl text-left md:max-w-3xl lg:max-w-4xl">
-          <h1 className="text-display-fade text-balance text-4xl font-black leading-[1.06] tracking-tight md:pr-20 md:text-5xl lg:pr-28 lg:text-6xl">
-          Tworzymy cyfrowe rozwiązania,
-          <br />
-          <span className="italic text-brand-fade">które rozwijają Twój biznes</span>
+          return (
+            <span
+              key={`speck-${idx}`}
+              className={`ambient-speck ${idx > 17 ? "hidden md:block" : ""}`}
+              style={
+                {
+                  left: `${left}%`,
+                  top: `${top}%`,
+                  width: `${size}px`,
+                  height: `${size}px`,
+                  animationDelay: delay,
+                  animationDuration: duration,
+                  ["--drift-x" as string]: `${((idx % 7) - 3) * 2}px`,
+                  ["--drift-y" as string]: `${((idx % 5) - 2) * 3}px`,
+                } as CSSProperties
+              }
+            />
+          )
+        })}
+
+        {Array.from({ length: 28 }).map((_, idx) => {
+          const left = (idx * 23 + 11) % 100
+          const top = (idx * 19 + 22) % 100
+          const size = 14 + ((idx * 5) % 20)
+          const delay = `-${(idx * 1.7).toFixed(2)}s`
+          const duration = `${12 + (idx % 6) * 2.4}s`
+
+          return (
+            <span
+              key={`mote-${idx}`}
+              className={`ambient-mote ${idx > 7 ? "hidden md:block" : ""}`}
+              style={
+                {
+                  left: `${left}%`,
+                  top: `${top}%`,
+                  width: `${size}px`,
+                  height: `${size}px`,
+                  animationDelay: delay,
+                  animationDuration: duration,
+                  ["--drift-x" as string]: `${((idx % 6) - 2.5) * 4}px`,
+                  ["--drift-y" as string]: `${((idx % 4) - 1.5) * 5}px`,
+                } as CSSProperties
+              }
+            />
+          )
+        })}
+
+        {Array.from({ length: 20 }).map((_, idx) => {
+          const left = (idx * 27 + 6) % 100
+          const top = (idx * 21 + 14) % 100
+          const size = 7 + ((idx * 3) % 6)
+          const delay = `-${(idx * 0.9).toFixed(2)}s`
+          const duration = `${7 + (idx % 5) * 1.2}s`
+
+          return (
+            <span
+              key={`spark-${idx}`}
+              className={`ambient-spark ${idx > 5 ? "hidden md:block" : ""}`}
+              style={
+                {
+                  left: `${left}%`,
+                  top: `${top}%`,
+                  width: `${size}px`,
+                  height: `${size}px`,
+                  animationDelay: delay,
+                  animationDuration: duration,
+                  ["--drift-x" as string]: `${((idx % 5) - 2) * 2.5}px`,
+                  ["--drift-y" as string]: `${((idx % 3) - 1) * 3.5}px`,
+                } as CSSProperties
+              }
+            />
+          )
+        })}
+      </div>
+
+      <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center pt-6 text-center sm:pt-8 md:pt-10">
+        <div className="flex flex-col items-center">
+          <h1 className="text-balance text-center text-6xl font-black leading-[0.9] tracking-[-0.055em] text-white sm:text-7xl md:text-8xl">
+            Budujemy
           </h1>
-
-          <p className="mt-6 max-w-2xl text-pretty text-lg font-medium leading-relaxed text-muted-foreground md:mt-8 md:text-xl">
-            Łączymy design, development, e-commerce, marketing i techniczne wsparcie w jednej
-            usłudze. Tworzymy rozwiązania, które działają, sprzedają i rosną razem z Twoją marką.
-          </p>
-
-          <div className="mt-8 md:mt-10">
-            <Button asChild size="lg" className="dna-glow w-full rounded-full px-7 sm:w-auto">
-              <a href="#cta" data-contact-trigger="true">
-                Umów darmową strategię
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
-            </Button>
+          <h2 className="mt-1 text-balance text-center text-6xl font-black leading-[0.9] tracking-[-0.055em] text-white sm:text-7xl md:text-8xl">
+            cyfrowe
+          </h2>
+          <div className="mt-2 w-full max-w-[96vw] sm:max-w-[92vw] md:max-w-[980px]">
+            <VideoText
+              text="DNA"
+              src="/dna-fluid.mp4"
+              className="drop-shadow-[0_0_42px_rgba(0,85,255,0.3)]"
+              textClassName="text-[290px] sm:text-[330px] md:text-[390px] lg:text-[430px]"
+            />
           </div>
         </div>
+
+        <p className="mt-3 max-w-2xl text-pretty text-base font-medium leading-relaxed tracking-[-0.01em] text-neutral-300/90 sm:mt-4 sm:text-lg md:text-xl">
+          Projektujemy i wdrażamy strony oraz systemy, które skalują markę, sprzedaż i zaufanie.
+        </p>
+
+        <div className="mt-10 flex w-full max-w-xl flex-col items-center justify-center gap-3 sm:mt-12 sm:flex-row sm:gap-4">
+          <motion.div
+            className="w-full sm:w-auto"
+            whileHover={prefersReducedMotion ? undefined : { y: -2, scale: 1.01 }}
+            whileTap={prefersReducedMotion ? undefined : { scale: 0.985, y: 0 }}
+            transition={prefersReducedMotion ? undefined : { type: "spring", stiffness: 320, damping: 24 }}
+          >
+            <Button asChild size="hero" variant="heroPrimary" className="w-full sm:w-auto">
+              <a href="#cta" data-contact-trigger="true">
+                Umów konsultację
+                <ArrowRight className="ml-1.5 h-4 w-4" />
+              </a>
+            </Button>
+          </motion.div>
+
+          <motion.div
+            className="w-full sm:w-auto"
+            whileHover={prefersReducedMotion ? undefined : { y: -1, scale: 1.006 }}
+            whileTap={prefersReducedMotion ? undefined : { scale: 0.988, y: 0 }}
+            transition={prefersReducedMotion ? undefined : { type: "spring", stiffness: 300, damping: 22 }}
+          >
+            <Button asChild size="hero" variant="heroSecondary" className="w-full sm:w-auto">
+              <a href="#impact">Zobacz realizacje</a>
+            </Button>
+          </motion.div>
+        </div>
+
+        <FloatingDock className="mt-8 sm:mt-10" />
       </div>
 
       <style jsx>{`
-        .hero-glow {
+        .ambient-dust {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .ambient-speck {
           position: absolute;
           border-radius: 9999px;
-          filter: blur(95px);
-          opacity: 0.45;
-          transform: translate3d(
-            calc((var(--mx, 0.72) - 0.5) * 38px),
-            calc((var(--my, 0.42) - 0.5) * 38px),
-            0
+          background: radial-gradient(
+            circle at 42% 42%,
+            rgba(210, 231, 255, 0.96) 0%,
+            rgba(118, 177, 255, 0.62) 38%,
+            rgba(32, 90, 196, 0) 74%
           );
-          transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
-          will-change: transform, opacity;
+          mix-blend-mode: screen;
+          filter: blur(0.25px);
+          animation-name: speckFloat;
+          animation-timing-function: ease-in-out;
+          animation-iteration-count: infinite;
         }
 
-        .hero-glow-blue-2 {
-          right: 18%;
-          bottom: -14%;
-          width: min(44vw, 620px);
-          height: min(44vw, 620px);
-          background: radial-gradient(circle at 50% 50%, rgba(0, 85, 255, 0.5) 0%, rgba(0, 85, 255, 0.18) 46%, rgba(0, 0, 0, 0) 72%);
-          animation: heroGlowDriftB 16s ease-in-out infinite alternate, heroGlowPulse 8.4s ease-in-out infinite;
-        }
-
-        .hero-glow-magenta {
-          right: 28%;
-          top: 26%;
-          width: min(30vw, 420px);
-          height: min(30vw, 420px);
-          opacity: 0.2;
-          background: radial-gradient(circle at 35% 40%, rgba(132, 43, 255, 0.5) 0%, rgba(132, 43, 255, 0.14) 50%, rgba(0, 0, 0, 0) 74%);
-          animation: heroGlowDriftC 18s ease-in-out infinite alternate, heroGlowPulse 9s ease-in-out infinite;
-        }
-
-        .hero-glow-top-ray {
+        .ambient-mote {
           position: absolute;
-          left: -24%;
-          top: -34%;
-          width: min(108vw, 1580px);
-          height: min(48vh, 520px);
-          opacity: 0.86;
-          filter: blur(56px);
           border-radius: 9999px;
-          transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
-          will-change: transform, opacity;
-          transform: rotate(24deg)
-            translate3d(
-              calc((var(--mx, 0.72) - 0.5) * 40px),
-              calc((var(--my, 0.42) - 0.5) * 34px),
-              0
-            );
-          background: linear-gradient(
-            62deg,
-            rgba(0, 0, 0, 0) 2%,
-            rgba(0, 85, 255, 0.46) 24%,
-            rgba(0, 85, 255, 0.98) 50%,
-            rgba(0, 85, 255, 0.56) 72%,
-            rgba(0, 0, 0, 0) 98%
+          background: radial-gradient(
+            circle at 40% 40%,
+            rgba(162, 203, 255, 0.5) 0%,
+            rgba(90, 150, 248, 0.34) 46%,
+            rgba(14, 44, 108, 0) 80%
           );
-          box-shadow: 0 0 120px rgba(0, 85, 255, 0.5);
-          animation: heroTopRayDrift 14s ease-in-out infinite alternate, heroTopRayPulse 7.8s ease-in-out infinite;
+          mix-blend-mode: screen;
+          filter: blur(1.4px);
+          animation-name: moteFloat;
+          animation-timing-function: ease-in-out;
+          animation-iteration-count: infinite;
         }
 
-        @keyframes heroGlowPulse {
+        .ambient-spark {
+          position: absolute;
+          border-radius: 9999px;
+          background: radial-gradient(
+            circle at 46% 46%,
+            rgba(236, 245, 255, 1) 0%,
+            rgba(176, 212, 255, 0.78) 34%,
+            rgba(92, 148, 255, 0) 68%
+          );
+          mix-blend-mode: screen;
+          filter: blur(0px);
+          animation-name: sparkFloat;
+          animation-timing-function: ease-in-out;
+          animation-iteration-count: infinite;
+        }
+
+        @keyframes speckFloat {
           0%,
           100% {
-            opacity: 0.25;
+            transform: translate3d(calc(var(--drift-x, 0px) * -0.2), calc(var(--drift-y, 0px) * -0.15), 0) scale(0.88);
+            opacity: 0.22;
           }
-          50% {
-            opacity: 0.52;
+          35% {
+            transform: translate3d(calc(var(--drift-x, 0px) * 0.55), calc(var(--drift-y, 0px) * -1.2 - 9px), 0) scale(1.04);
+            opacity: 0.62;
           }
-        }
-
-        @keyframes heroGlowDriftB {
-          from {
-            translate: 10px 8px;
-          }
-          to {
-            translate: -10px -12px;
+          68% {
+            transform: translate3d(calc(var(--drift-x, 0px) * -0.75), calc(var(--drift-y, 0px) * -0.5 - 4px), 0) scale(0.96);
+            opacity: 0.4;
           }
         }
 
-        @keyframes heroGlowDriftC {
-          from {
-            translate: -6px 9px;
-          }
-          to {
-            translate: 9px -8px;
-          }
-        }
-
-        @keyframes heroTopRayDrift {
-          from {
-            rotate: 20deg;
-            translate: -8px -8px;
-          }
-          to {
-            rotate: 25deg;
-            translate: 10px 10px;
-          }
-        }
-
-        @keyframes heroTopRayPulse {
+        @keyframes moteFloat {
           0%,
           100% {
-            opacity: 0.7;
+            transform: translate3d(calc(var(--drift-x, 0px) * -0.35), calc(var(--drift-y, 0px) * -0.2), 0) scale(0.94);
+            opacity: 0.14;
           }
-          50% {
-            opacity: 0.95;
+          40% {
+            transform: translate3d(calc(var(--drift-x, 0px) * 0.8), calc(var(--drift-y, 0px) * -1.1 - 12px), 0) scale(1.06);
+            opacity: 0.34;
+          }
+          75% {
+            transform: translate3d(calc(var(--drift-x, 0px) * -0.6), calc(var(--drift-y, 0px) * -0.45 - 6px), 0) scale(0.98);
+            opacity: 0.2;
           }
         }
 
-        @media (max-width: 768px) {
-          .hero-glow {
-            filter: blur(76px);
-            transform: translate3d(0, 0, 0);
-            transition: none;
+        @keyframes sparkFloat {
+          0%,
+          100% {
+            transform: translate3d(calc(var(--drift-x, 0px) * -0.2), calc(var(--drift-y, 0px) * -0.2), 0) scale(0.94);
+            opacity: 0.22;
           }
-
-          .hero-glow-blue-2 {
-            right: -24%;
-            bottom: -14%;
-            width: 86vw;
-            height: 86vw;
+          28% {
+            transform: translate3d(calc(var(--drift-x, 0px) * 0.5), calc(var(--drift-y, 0px) * -1.05 - 8px), 0) scale(1.06);
+            opacity: 0.74;
           }
-
-          .hero-glow-magenta {
-            right: 12%;
-            top: 30%;
-            width: 58vw;
-            height: 58vw;
+          62% {
+            transform: translate3d(calc(var(--drift-x, 0px) * -0.65), calc(var(--drift-y, 0px) * -0.45 - 3px), 0) scale(0.98);
+            opacity: 0.5;
           }
+        }
 
-          .hero-glow-top-ray {
-            left: -30%;
-            top: -28%;
-            width: 140vw;
-            height: 220px;
-            opacity: 0.84;
+        @media (prefers-reduced-motion: reduce) {
+          .ambient-speck,
+          .ambient-mote,
+          .ambient-spark {
+            animation: none !important;
           }
         }
       `}</style>

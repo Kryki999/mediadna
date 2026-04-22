@@ -14,7 +14,6 @@ import { WebsiteShredder } from "@/components/sections/website-shredder"
 import { FeatureMatrix } from "@/components/sections/feature-matrix"
 import { BookingSection } from "@/components/sections/booking-section"
 import { SiteFooter } from "@/components/site-footer"
-import { StickyMobileCta } from "@/components/sticky-mobile-cta"
 
 export default function Page() {
   const LETTER_PORTAL_ENABLED = false
@@ -37,7 +36,6 @@ export default function Page() {
       <Faq />
       <BookingSection />
       <SiteFooter />
-      {/* <StickyMobileCta /> */}
     </main>
   )
 }
