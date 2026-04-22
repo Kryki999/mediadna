@@ -35,7 +35,7 @@ export function VideoText({
   const maskId = useId().replace(/:/g, "")
 
   return (
-    <div className={cn("relative w-full overflow-visible", className)}>
+    <div className={cn("relative w-full overflow-visible [transform:translateZ(0)]", className)}>
       <svg
         viewBox={`${viewX} ${viewY} ${viewWidth} ${viewHeight}`}
         className="block h-auto w-full overflow-visible"
@@ -89,7 +89,7 @@ export function VideoText({
             mask={`url(#${maskId})`}
           >
             <video
-              className="block h-full w-full object-cover [transform:translateZ(0)]"
+              className="block h-full w-full object-cover"
               src={src}
               autoPlay
               muted
