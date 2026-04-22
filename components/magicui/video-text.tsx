@@ -35,7 +35,12 @@ export function VideoText({
   const maskId = useId().replace(/:/g, "")
 
   return (
-    <div className={cn("relative w-full overflow-visible [transform:translateZ(0)]", className)}>
+    <div
+      className={cn(
+        "relative w-full [overflow-x:visible] [overflow-y:clip] [transform:translateZ(0)]",
+        className,
+      )}
+    >
       <svg
         viewBox={`${viewX} ${viewY} ${viewWidth} ${viewHeight}`}
         className="block h-auto w-full overflow-visible"
@@ -96,6 +101,11 @@ export function VideoText({
               loop
               playsInline
               preload="metadata"
+              style={{
+                contain: "paint",
+                backfaceVisibility: "hidden",
+                WebkitBackfaceVisibility: "hidden",
+              }}
             />
           </foreignObject>
         </g>

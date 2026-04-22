@@ -152,7 +152,7 @@ export function Hero() {
         </div>
 
         <p className="mt-3 max-w-2xl text-pretty text-base font-medium leading-relaxed tracking-[-0.01em] text-neutral-300/90 sm:mt-4 sm:text-lg md:text-xl">
-          Łączymy nowoczesne strony, aplikacje, angażujący content, wideo, precyzyjne reklamy i SEO w jeden zyskowny system. Tworzymy cyfrowe środowisko, które działa, sprzedaje i bez przerwy skaluje Twoją markę.
+          Łączymy nowoczesne strony, aplikacje, angażujący content, wideo, precyzyjne reklamy i SEO w jeden zyskowny system. Tworzymy cyfrowe środowisko, które pozyskuje dla ciebie klientów.
         </p>
 
         <div className="mt-10 flex w-full max-w-2xl flex-col items-center justify-center gap-3 sm:mt-12 sm:flex-row sm:gap-4">
