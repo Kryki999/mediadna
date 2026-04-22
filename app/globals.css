@@ -415,12 +415,12 @@
   @keyframes lead-hub-halo {
     0%,
     100% {
-      opacity: 0.55;
-      transform: translate(-50%, -50%) scale(0.92);
+      opacity: 0.48;
+      transform: scale(0.9);
     }
     50% {
       opacity: 1;
-      transform: translate(-50%, -50%) scale(1.08);
+      transform: scale(1.14);
     }
   }
   .lead-hub-halo {

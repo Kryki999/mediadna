@@ -236,34 +236,37 @@ export function LeadMachine() {
         </div>
 
         <div className="relative flex items-center justify-center">
-          <div
-            aria-hidden="true"
-            className={cn(
-              "pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2",
-              "h-60 w-60 rounded-full bg-[rgb(0,85,255)]/30 blur-[90px] lead-hub-halo",
-              "md:h-80 md:w-80",
-            )}
-          />
-          <div
-            ref={hubRef}
-            className={cn(
-              "lead-hub-glass relative flex flex-col items-center justify-center gap-2 rounded-3xl",
-              "h-36 w-36 md:h-48 md:w-48",
-            )}
-          >
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[rgb(0,85,255)]/15 ring-1 ring-[rgb(0,85,255)]/40 md:h-14 md:w-14">
-              <Cpu
-                className="h-6 w-6 text-[rgb(0,85,255)] md:h-7 md:w-7"
-                strokeWidth={1.75}
-              />
-            </div>
-            <div className="text-center">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/95 md:text-xs">
-                Nasz System
-              </p>
-              <p className="mt-0.5 text-[9px] uppercase tracking-[0.28em] text-white/45 md:text-[10px]">
-                Digital DNA Engine
-              </p>
+          <div className="relative">
+            <div
+              aria-hidden="true"
+              className={cn(
+                "pointer-events-none absolute -inset-10 rounded-[2.4rem] md:-inset-14",
+                "border border-[rgb(0,85,255)]/35",
+                "bg-[radial-gradient(circle_at_center,rgba(0,85,255,0.42),rgba(0,85,255,0.18)_50%,rgba(0,85,255,0.06)_72%,transparent_88%)]",
+                "blur-[14px] lead-hub-halo",
+              )}
+            />
+            <div
+              ref={hubRef}
+              className={cn(
+                "lead-hub-glass relative flex flex-col items-center justify-center gap-2 rounded-3xl",
+                "h-36 w-36 md:h-48 md:w-48",
+              )}
+            >
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[rgb(0,85,255)]/15 ring-1 ring-[rgb(0,85,255)]/40 md:h-14 md:w-14">
+                <Cpu
+                  className="h-6 w-6 text-[rgb(0,85,255)] md:h-7 md:w-7"
+                  strokeWidth={1.75}
+                />
+              </div>
+              <div className="text-center">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/95 md:text-xs">
+                  Nasz System
+                </p>
+                <p className="mt-0.5 text-[9px] uppercase tracking-[0.28em] text-white/45 md:text-[10px]">
+                  Digital DNA Engine
+                </p>
+              </div>
             </div>
           </div>
         </div>
