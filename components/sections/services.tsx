@@ -238,9 +238,13 @@ export function Services() {
       window.scrollTo({ top, behavior: "smooth" })
     }
 
-    // Wait for accordion height transition to settle before scrolling.
-    const timer = window.setTimeout(performScroll, 120)
-    return () => window.clearTimeout(timer)
+    // First pass right after opening, second pass after layout settles.
+    const timerA = window.setTimeout(performScroll, 80)
+    const timerB = window.setTimeout(performScroll, 360)
+    return () => {
+      window.clearTimeout(timerA)
+      window.clearTimeout(timerB)
+    }
   }, [activeServiceId])
 
   const current = services.find((s) => s.id === activeServiceId) ?? services[0]
@@ -372,11 +376,13 @@ export function Services() {
                 <AccordionItem
                   key={s.id}
                   value={s.id}
-                  ref={(node) => {
-                    mobileItemRefs.current[s.id] = node
-                  }}
                   className="border-0 px-5 transition-colors duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] [&[data-state=open]]:bg-background/40"
                 >
+                  <div
+                    ref={(node) => {
+                      mobileItemRefs.current[s.id] = node
+                    }}
+                  />
                   <AccordionTrigger className="py-5 transition-all duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:no-underline">
                     <div className="flex items-center gap-3">
                       <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-background text-primary">
