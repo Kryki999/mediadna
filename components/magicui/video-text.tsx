@@ -8,24 +8,62 @@ type VideoTextProps = {
   src: string
   className?: string
   textClassName?: string
+  textX?: number
+  textY?: number
+  textLength?: number
 }
 
-export function VideoText({ text, src, className, textClassName }: VideoTextProps) {
+export function VideoText({
+  text,
+  src,
+  className,
+  textClassName,
+  textX = 500,
+  textY = 160,
+  textLength = 760,
+}: VideoTextProps) {
   const maskId = useId().replace(/:/g, "")
+  const viewX = -120
+  const viewY = -10
+  const viewWidth = 1240
+  const viewHeight = 340
+  const overscanX = 240
 
   return (
-    <div className={cn("relative w-full", className)}>
-      <svg viewBox="0 0 1000 320" className="h-auto w-full" role="img" aria-label={text}>
+    <div className={cn("relative w-full overflow-visible", className)}>
+      <svg
+        viewBox={`${viewX} ${viewY} ${viewWidth} ${viewHeight}`}
+        className="block h-auto w-full overflow-visible"
+        role="img"
+        aria-label={text}
+        preserveAspectRatio="xMidYMid meet"
+      >
         <defs>
-          <mask id={maskId}>
-            <rect width="100%" height="100%" fill="black" />
+          <mask
+            id={maskId}
+            x={viewX - overscanX}
+            y={viewY}
+            width={viewWidth + overscanX * 2}
+            height={viewHeight}
+            maskUnits="userSpaceOnUse"
+            maskContentUnits="userSpaceOnUse"
+          >
+            <rect
+              x={viewX - overscanX}
+              y={viewY}
+              width={viewWidth + overscanX * 2}
+              height={viewHeight}
+              fill="black"
+            />
             <text
-              x="50%"
-              y="50%"
+              x={textX}
+              y={textY}
               textAnchor="middle"
               dominantBaseline="central"
+              lengthAdjust="spacingAndGlyphs"
+              textLength={textLength}
               className={cn(
-                "fill-white font-black tracking-[-0.08em]",
+                "fill-white font-black tracking-[-0.04em]",
                 textClassName,
               )}
             >
@@ -34,9 +72,15 @@ export function VideoText({ text, src, className, textClassName }: VideoTextProp
           </mask>
         </defs>
 
-        <foreignObject x="0" y="0" width="100%" height="100%" mask={`url(#${maskId})`}>
+        <foreignObject
+          x={viewX - overscanX}
+          y={viewY}
+          width={viewWidth + overscanX * 2}
+          height={viewHeight}
+          mask={`url(#${maskId})`}
+        >
           <video
-            className="h-full w-full object-cover"
+            className="block h-full w-full object-cover [transform:translateZ(0)]"
             src={src}
             autoPlay
             muted

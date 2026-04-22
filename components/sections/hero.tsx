@@ -122,12 +122,14 @@ export function Hero() {
           <h2 className="mt-1 text-balance text-center text-6xl font-black leading-[0.9] tracking-[-0.055em] text-white sm:text-7xl md:text-8xl">
             cyfrowe
           </h2>
-          <div className="mt-2 w-full max-w-[96vw] sm:max-w-[92vw] md:max-w-[980px]">
+          <div className="mt-2 w-full max-w-[99vw] sm:max-w-[96vw] md:max-w-[1120px]">
             <VideoText
               text="DNA"
               src="/dna-fluid.mp4"
               className="drop-shadow-[0_0_42px_rgba(0,85,255,0.3)]"
-              textClassName="text-[290px] sm:text-[330px] md:text-[390px] lg:text-[430px]"
+              textX={500}
+              textLength={1320}
+              textClassName="text-[380px] sm:text-[420px] md:text-[460px] lg:text-[500px]"
             />
           </div>
         </div>
@@ -184,7 +186,7 @@ export function Hero() {
             rgba(32, 90, 196, 0) 74%
           );
           mix-blend-mode: screen;
-          filter: blur(0.25px);
+          filter: none;
           animation-name: speckFloat;
           animation-timing-function: ease-in-out;
           animation-iteration-count: infinite;
@@ -200,7 +202,7 @@ export function Hero() {
             rgba(14, 44, 108, 0) 80%
           );
           mix-blend-mode: screen;
-          filter: blur(1.4px);
+          filter: none;
           animation-name: moteFloat;
           animation-timing-function: ease-in-out;
           animation-iteration-count: infinite;
@@ -216,7 +218,7 @@ export function Hero() {
             rgba(92, 148, 255, 0) 68%
           );
           mix-blend-mode: screen;
-          filter: blur(0px);
+          filter: none;
           animation-name: sparkFloat;
           animation-timing-function: ease-in-out;
           animation-iteration-count: infinite;
