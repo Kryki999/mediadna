@@ -45,9 +45,9 @@ type LootConfig = {
 }
 
 const GENERATORS: GeneratorConfig[] = [
-  { id: "social", label: "Instagram", Icon: SiInstagram, color: "#E4405F" },
+  { id: "social", label: "Social", Icon: SiInstagram, color: "#E4405F" },
   { id: "search", label: "Google", Icon: SiGoogle, color: "#4285F4" },
-  { id: "ads", label: "Meta", Icon: SiMeta, color: "#0467DF" },
+  { id: "ads", label: "Ads", Icon: SiMeta, color: "#0467DF" },
 ]
 
 const LOOT_POOL: LootConfig[] = [
@@ -198,7 +198,7 @@ export function LeadMachine() {
   // Keep list cadence tied to beam rhythm, but a bit faster.
   const listDelay = prefersReduced
     ? 10_000_000
-    : Math.round((hubBeamDuration + hubBeamDelay) * 1000 * 0.6)
+    : Math.round((hubBeamDuration + hubBeamDelay) * 1000 * 0.5)
 
   return (
     <div
@@ -218,7 +218,7 @@ export function LeadMachine() {
       <div
         className={cn(
           "relative z-10 grid h-full w-full",
-          "grid-cols-1 grid-rows-[auto_auto_auto] gap-10 px-4 py-8",
+          "grid-cols-1 grid-rows-[auto_auto_auto] gap-14 px-4 py-8",
           "md:grid-cols-[200px_minmax(0,1fr)_minmax(280px,340px)] md:grid-rows-1 md:items-center md:gap-10 md:p-10",
         )}
       >
@@ -235,7 +235,7 @@ export function LeadMachine() {
           ))}
         </div>
 
-        <div className="relative flex items-center justify-center">
+        <div className="relative flex items-center justify-center md:translate-x-[60px]">
           <div className="relative">
             <div
               aria-hidden="true"
@@ -271,7 +271,7 @@ export function LeadMachine() {
           </div>
         </div>
 
-        <div ref={listAnchorRef} className="relative mx-auto w-full">
+        <div ref={listAnchorRef} className="relative mx-auto mt-2 w-full md:mt-0">
           <div className="relative max-h-[320px] overflow-hidden rounded-2xl border border-white/10 bg-black/40 p-2 backdrop-blur-md md:max-h-[400px] md:p-3">
             <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-8 bg-gradient-to-b from-black/90 to-transparent" />
             <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-14 bg-gradient-to-t from-black/90 to-transparent" />
