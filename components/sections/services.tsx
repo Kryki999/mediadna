@@ -171,12 +171,14 @@ function ServiceVisual({
 function PhonePreview({
   current,
   leaving,
+  className,
 }: {
   current: ServiceItem
   leaving: ServiceItem | null
+  className?: string
 }) {
   return (
-    <Iphone15Pro className="max-w-[330px]">
+    <Iphone15Pro className={className}>
       {leaving ? (
         <video
           src={leaving.reel.src}
@@ -208,6 +210,8 @@ export function Services() {
   const [activeServiceId, setActiveServiceId] = useState(services[0].id)
   const [leavingPreviewId, setLeavingPreviewId] = useState<string | null>(null)
   const previousActiveRef = useRef(activeServiceId)
+  const previousMobileActiveRef = useRef(activeServiceId)
+  const mobileItemRefs = useRef<Record<string, HTMLDivElement | null>>({})
 
   useEffect(() => {
     if (previousActiveRef.current === activeServiceId) return
@@ -215,6 +219,28 @@ export function Services() {
     previousActiveRef.current = activeServiceId
     const timeout = setTimeout(() => setLeavingPreviewId(null), 420)
     return () => clearTimeout(timeout)
+  }, [activeServiceId])
+
+  useEffect(() => {
+    if (window.innerWidth >= 768) {
+      previousMobileActiveRef.current = activeServiceId
+      return
+    }
+
+    if (previousMobileActiveRef.current === activeServiceId) return
+    previousMobileActiveRef.current = activeServiceId
+
+    const target = mobileItemRefs.current[activeServiceId]
+    if (!target) return
+
+    const performScroll = () => {
+      const top = target.getBoundingClientRect().top + window.scrollY - 88
+      window.scrollTo({ top, behavior: "smooth" })
+    }
+
+    // Wait for accordion height transition to settle before scrolling.
+    const timer = window.setTimeout(performScroll, 120)
+    return () => window.clearTimeout(timer)
   }, [activeServiceId])
 
   const current = services.find((s) => s.id === activeServiceId) ?? services[0]
@@ -326,7 +352,7 @@ export function Services() {
               </div>
 
               <div className="mx-auto w-full max-w-[330px]">
-                <PhonePreview current={current} leaving={leavingPreview} />
+                <PhonePreview current={current} leaving={leavingPreview} className="max-w-[330px]" />
               </div>
             </div>
           </div>
@@ -338,7 +364,7 @@ export function Services() {
             type="single"
             value={activeServiceId}
             onValueChange={handleAccordionChange}
-            className="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-card"
+            className="-mx-5 divide-y divide-border overflow-hidden rounded-none border-y border-x-0 border-border bg-card sm:-mx-6"
           >
             {services.map((s) => {
               const ItemIcon = s.icon
@@ -346,6 +372,9 @@ export function Services() {
                 <AccordionItem
                   key={s.id}
                   value={s.id}
+                  ref={(node) => {
+                    mobileItemRefs.current[s.id] = node
+                  }}
                   className="border-0 px-5 transition-colors duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] [&[data-state=open]]:bg-background/40"
                 >
                   <AccordionTrigger className="py-5 transition-all duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:no-underline">
@@ -365,7 +394,7 @@ export function Services() {
                       <ServiceVisual service={s} activeKey={activeServiceId} />
                     </div>
                     <div className="mt-5">
-                      <PhonePreview current={s} leaving={null} />
+                      <PhonePreview current={s} leaving={null} className="max-w-[250px]" />
                     </div>
                   </AccordionContent>
                 </AccordionItem>
