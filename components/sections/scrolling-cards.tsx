@@ -59,21 +59,15 @@ const columnCards = [cards.slice(0, 3), cards.slice(3, 6), cards.slice(6, 9)]
 
 export function ScrollingCards() {
   return (
-    <section className="relative border-t border-border bg-background py-20 md:py-32">
-      <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-6 md:px-8 lg:px-10 xl:px-12">
-        <div className="mb-12 max-w-3xl md:mb-16">
-          <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            Wow section
-          </span>
-          <h2 className="text-display-fade mt-3 text-balance text-4xl font-black leading-[1.02] tracking-tight md:text-6xl">
-            Liczby, które <span className="italic text-brand-fade">mówią same</span> za siebie.
-          </h2>
-        </div>
-
+    <section className="relative border-t border-border bg-background pt-12 pb-14 md:pt-20 md:pb-24">
+      <div className="mx-auto w-full max-w-[1400px] px-0 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-[minmax(300px,420px)_1fr] md:gap-10">
-          <div className="grid h-[24rem] grid-cols-3 gap-2 overflow-hidden rounded-3xl border border-border/70 bg-card/30 p-2 md:hidden">
+          <div className="grid h-[24rem] grid-cols-3 gap-1 overflow-hidden border-y border-border/70 bg-card/30 p-1 md:hidden sm:gap-2 sm:rounded-3xl sm:border sm:p-2">
             {columnCards.map((column, columnIndex) => (
-              <div key={`mobile-col-${columnIndex}`} className="relative overflow-hidden rounded-2xl border border-border/60 bg-card/40 p-1">
+              <div
+                key={`mobile-col-${columnIndex}`}
+                className="relative overflow-hidden rounded-xl border border-border/60 bg-card/40 p-0.5 sm:rounded-2xl sm:p-1"
+              >
                 <div
                   className={`flex flex-col gap-2 ${
                     columnIndex === 1 ? "animate-scroll-up-slow" : "animate-scroll-down-slow"
@@ -95,23 +89,17 @@ export function ScrollingCards() {
             ))}
           </div>
 
-          <aside className="md:sticky md:top-28 md:h-fit">
-            <div className="space-y-5">
-              <p className="rounded-3xl border border-border bg-card px-6 py-6 text-base font-medium leading-relaxed text-foreground md:px-8 md:text-lg">
+          <aside className="px-5 sm:px-0 md:sticky md:top-28 md:h-fit">
+            <div className="space-y-10 md:space-y-12">
+              <p className="text-lg font-medium leading-relaxed text-foreground md:text-xl">
                 Zaufanie{" "}
-                <span className="text-brand-fade text-xl font-black tracking-tight md:text-2xl">+50</span>{" "}
+                <span className="text-brand-fade text-2xl font-black tracking-tight md:text-3xl">+50</span>{" "}
                 dynamicznie rosnących marek i liderów w swoich branżach.
               </p>
 
-              <p className="rounded-3xl border border-border bg-card px-6 py-6 text-base font-medium leading-relaxed text-foreground md:px-8 md:text-lg">
+              <p className="text-lg font-medium leading-relaxed text-foreground md:text-xl">
                 Ponad{" "}
-                <span className="text-brand-fade text-xl font-black tracking-tight md:text-2xl">5000</span>{" "}
-                zapytań od nowych klientów, wygenerowanych na pełnym autopilocie.
-              </p>
-
-              <p className="rounded-3xl border border-border bg-card px-6 py-6 text-base font-medium leading-relaxed text-foreground md:px-8 md:text-lg">
-                Ponad{" "}
-                <span className="text-brand-fade text-xl font-black tracking-tight md:text-2xl">10 milionów</span>{" "}
+                <span className="text-brand-fade text-2xl font-black tracking-tight md:text-3xl">10 milionów</span>{" "}
                 wyświetleń naszych rolek, które zamieniły czystą uwagę w realny zysk.
               </p>
             </div>

@@ -23,9 +23,9 @@ export default function Page() {
     <main className="relative min-h-screen overflow-x-clip bg-background text-foreground">
       <SiteNav />
       <Hero />
-      <LogoMarquee />
       <LetterPortalTransition enabled={LETTER_PORTAL_ENABLED} letter="E" />
       <ScrollingCards />
+      <LogoMarquee />
       <Ecosystem />
       <Services />
       <Impact />
