@@ -192,9 +192,19 @@ export function LeadMachine() {
   }, [])
 
   const beamsActive = isMounted && isInView
-  const genBeamDuration = prefersReduced ? 0.0001 : 8
-  const hubBeamDuration = prefersReduced ? 0.0001 : 9
-  const hubBeamDelay = 0.6
+  const sourceBeamTimings = prefersReduced
+    ? [
+        { duration: 0.0001, delay: 0 },
+        { duration: 0.0001, delay: 0 },
+        { duration: 0.0001, delay: 0 },
+      ]
+    : [
+        { duration: 5.2, delay: 0 },
+        { duration: 6.0, delay: 1.1 },
+        { duration: 6.8, delay: 2.0 },
+      ]
+  const hubBeamDuration = prefersReduced ? 0.0001 : 6.4
+  const hubBeamDelay = 0.35
   // Keep list cadence tied to beam rhythm, but a bit faster.
   const listDelay = prefersReduced
     ? 10_000_000
@@ -218,7 +228,7 @@ export function LeadMachine() {
       <div
         className={cn(
           "relative z-10 grid h-full w-full",
-          "grid-cols-1 grid-rows-[auto_auto_auto] gap-14 px-4 py-8",
+          "grid-cols-1 grid-rows-[auto_auto_auto] gap-[4.5rem] px-4 py-10",
           "md:grid-cols-[200px_minmax(0,1fr)_minmax(280px,340px)] md:grid-rows-1 md:items-center md:gap-10 md:p-10",
         )}
       >
@@ -235,7 +245,7 @@ export function LeadMachine() {
           ))}
         </div>
 
-        <div className="relative flex items-center justify-center md:translate-x-[60px]">
+        <div className="relative my-2 flex items-center justify-center md:my-0 md:translate-x-[60px]">
           <div className="relative">
             <div
               aria-hidden="true"
@@ -271,9 +281,8 @@ export function LeadMachine() {
           </div>
         </div>
 
-        <div ref={listAnchorRef} className="relative mx-auto mt-2 w-full md:mt-0">
+        <div ref={listAnchorRef} className="relative mx-auto mt-4 w-full md:mt-0">
           <div className="relative max-h-[320px] overflow-hidden rounded-2xl border border-white/10 bg-black/40 p-2 backdrop-blur-md md:max-h-[400px] md:p-3">
-            <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-8 bg-gradient-to-b from-black/90 to-transparent" />
             <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-14 bg-gradient-to-t from-black/90 to-transparent" />
             <AnimatedList delay={listDelay} className="gap-2.5">
               {LOOT_STREAM.map((item) => (
@@ -297,8 +306,8 @@ export function LeadMachine() {
             fromRef={generatorRefs[0]}
             toRef={hubRef}
             curvature={isDesktop ? 34 : 0}
-            duration={genBeamDuration}
-            delay={0}
+            duration={sourceBeamTimings[0].duration}
+            delay={sourceBeamTimings[0].delay}
             pathWidth={3}
           />
           <AnimatedBeam
@@ -306,8 +315,8 @@ export function LeadMachine() {
             fromRef={generatorRefs[1]}
             toRef={hubRef}
             curvature={0}
-            duration={genBeamDuration}
-            delay={1.2}
+            duration={sourceBeamTimings[1].duration}
+            delay={sourceBeamTimings[1].delay}
             pathWidth={3}
           />
           <AnimatedBeam
@@ -315,8 +324,8 @@ export function LeadMachine() {
             fromRef={generatorRefs[2]}
             toRef={hubRef}
             curvature={isDesktop ? -34 : 0}
-            duration={genBeamDuration}
-            delay={2.4}
+            duration={sourceBeamTimings[2].duration}
+            delay={sourceBeamTimings[2].delay}
             pathWidth={3}
           />
           <AnimatedBeam
