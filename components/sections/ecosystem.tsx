@@ -32,8 +32,8 @@ export function Ecosystem() {
     >
       <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-display-fade mt-3 text-balance text-4xl font-black leading-[1.02] tracking-tight md:text-6xl">
-            <span className="italic text-brand-fade">System, </span>który sprzedaje, gdy Ty prowadzisz firmę.
+          <h2 className="text-display-fade mt-3 text-balance text-4xl font-black leading-[1.02] tracking-tight md:text-6xl">Ty prowadzisz biznes.
+            <span className="italic text-brand-fade"> System zajmuje się sprzedażą.</span>
           </h2>
         </div>
 
@@ -60,8 +60,7 @@ export function Ecosystem() {
         </div>
 
         <p className="mx-auto mt-5 max-w-3xl text-center text-pretty text-base font-medium leading-relaxed text-muted-foreground md:text-lg">
-          Sekcja jest przygotowana pod zapętlone wizualizacje wideo, które pokażą cały przepływ
-          Twojego systemu od pierwszego kontaktu po domknięcie sprzedaży.
+          Pozyskiwanie klientów nie powinno zależeć od szczęścia. Wykres, który widzisz wyżej, to efekt działania bezawaryjnej maszyny. Poniżej pokazujemy jej budowę. To zautomatyzowany proces, który każdego miesiąca napędza sprzedaż, dając Ci finansowy spokój.
         </p>
 
         <div className="-mx-5 mt-14 sm:-mx-6 md:mx-0 md:mt-20">

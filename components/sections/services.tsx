@@ -1,13 +1,33 @@
 "use client"
 
-import { useState } from "react"
-import { Code2, Sparkles, Clapperboard, TrendingUp } from "lucide-react"
+import { useEffect, useRef, useState } from "react"
+import {
+  BadgeCheck,
+  Clapperboard,
+  Code2,
+  Compass,
+  Figma,
+  Film,
+  Globe2,
+  Palette,
+  PenTool,
+  Rocket,
+  Search,
+  Sparkles,
+  TrendingUp,
+} from "lucide-react"
+import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts"
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import { Globe } from "@/components/magicui/globe"
+import { IconCloud } from "@/components/magicui/icon-cloud"
+import { Iphone15Pro } from "@/components/magicui/iphone-15-pro"
+import { OrbitingCircles } from "@/components/magicui/orbiting-circles"
+import { ChartContainer, type ChartConfig } from "@/components/ui/chart"
 
 const services = [
   {
@@ -17,11 +37,9 @@ const services = [
     subtitle: "Build",
     description:
       "Projektujemy i kodujemy strony premium, które ładują się błyskawicznie i konwertują jak maszyna. Next.js, headless CMS, animacje z charakterem.",
-    bullets: [
-      "Projekt + development od zera",
-      "Optymalizacja Core Web Vitals",
-      "Integracje z CRM i analityką",
-    ],
+    lead: "Nowoczesne doświadczenia webowe, które spinają design, technologię i konwersję.",
+    visual: "orbit",
+    techIcons: [Code2, Rocket, Search, BadgeCheck],
     reel: {
       src: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
       poster: "/mockup-1.jpg",
@@ -35,11 +53,9 @@ const services = [
     subtitle: "Brand",
     description:
       "Tworzymy systemy wizualne, które budują zaufanie w mniej niż 3 sekundy. Logo, identyfikacja, UI kit i wytyczne gotowe do skalowania.",
-    bullets: [
-      "Strategia marki i positioning",
-      "System designu i UI kit",
-      "Key visuale i materiały drukowane",
-    ],
+    lead: "Spójna tożsamość marki oparta o ruch, typografię i premium detale.",
+    visual: "cloud",
+    techIcons: [Figma, Palette, PenTool, Sparkles, Compass],
     reel: {
       src: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
       poster: "/mockup-2.jpg",
@@ -53,11 +69,9 @@ const services = [
     subtitle: "Operate",
     description:
       "Produkujemy content, który sam się dystrybuuje. Reels, shorts, podcasty i kampanie wizerunkowe — wszystko w jednym abonamencie.",
-    bullets: [
-      "Produkcja reelsów i shortów",
-      "Scenariusze i post-produkcja",
-      "Strategia kontentu 30 / 60 / 90 dni",
-    ],
+    lead: "Content engine zaprojektowany do regularnej publikacji i mocnego storytellingu.",
+    visual: "globe",
+    techIcons: [Film, Clapperboard, Globe2],
     reel: {
       src: "https://media.w3.org/2010/05/sintel/trailer.mp4",
       poster: "/reel-1.jpg",
@@ -71,10 +85,15 @@ const services = [
     subtitle: "Grow",
     description:
       "Skalujemy sprzedaż przez Meta Ads, Google Ads i TikTok. Pracujemy na KPI, nie na wyświetleniach — z raportowaniem co tydzień.",
-    bullets: [
-      "Performance marketing 360°",
-      "Lejki sprzedażowe i automatyzacja",
-      "Dashboard z KPI w czasie rzeczywistym",
+    lead: "Wyniki kampanii widoczne od pierwszych iteracji i stale poprawiane przez dane.",
+    visual: "chart",
+    chartData: [
+      { month: "I", growth: 14 },
+      { month: "II", growth: 28 },
+      { month: "III", growth: 34 },
+      { month: "IV", growth: 52 },
+      { month: "V", growth: 69 },
+      { month: "VI", growth: 88 },
     ],
     reel: {
       src: "https://media.w3.org/2010/05/bunny/movie.mp4",
@@ -84,10 +103,127 @@ const services = [
   },
 ]
 
+type ServiceItem = (typeof services)[number]
+
+const chartConfig = {
+  growth: {
+    label: "Growth",
+    color: "#1D9BFF",
+  },
+} satisfies ChartConfig
+
+function ServiceVisual({
+  service,
+  activeKey,
+}: {
+  service: ServiceItem
+  activeKey: string
+}) {
+  if (service.visual === "orbit") {
+    return (
+      <OrbitingCircles
+        centerIcon={service.icon}
+        centerLabel={service.title}
+        items={service.techIcons.map((icon, index) => ({
+          icon,
+          label: `${service.title}-${index}`,
+        }))}
+      />
+    )
+  }
+
+  if (service.visual === "cloud") {
+    return (
+      <IconCloud
+        items={service.techIcons.map((icon, index) => ({
+          icon,
+          label: `${service.title}-cloud-${index}`,
+        }))}
+      />
+    )
+  }
+
+  if (service.visual === "globe") {
+    return <Globe />
+  }
+
+  return (
+    <ChartContainer config={chartConfig} className="h-full w-full" key={`${service.id}-${activeKey}`}>
+      <LineChart data={service.chartData} margin={{ top: 20, right: 6, left: -16, bottom: 10 }}>
+        <CartesianGrid vertical={false} stroke="rgba(255,255,255,0.08)" />
+        <XAxis dataKey="month" tickLine={false} axisLine={false} />
+        <YAxis tickLine={false} axisLine={false} width={24} />
+        <Line
+          type="monotone"
+          dataKey="growth"
+          stroke="var(--color-growth)"
+          strokeWidth={3}
+          dot={false}
+          isAnimationActive
+          animationDuration={920}
+          animationEasing="ease-in-out"
+        />
+      </LineChart>
+    </ChartContainer>
+  )
+}
+
+function PhonePreview({
+  current,
+  leaving,
+}: {
+  current: ServiceItem
+  leaving: ServiceItem | null
+}) {
+  return (
+    <Iphone15Pro className="max-w-[330px]">
+      {leaving ? (
+        <video
+          src={leaving.reel.src}
+          poster={leaving.reel.poster}
+          autoPlay
+          loop
+          muted
+          playsInline
+          aria-label={leaving.reel.alt}
+          className="animate-out fade-out-0 absolute inset-0 h-full w-full object-cover blur-sm duration-500 [animation-timing-function:cubic-bezier(0.2,0.8,0.2,1)]"
+        />
+      ) : null}
+      <video
+        src={current.reel.src}
+        poster={current.reel.poster}
+        autoPlay
+        loop
+        muted
+        playsInline
+        aria-label={current.reel.alt}
+        className="animate-in fade-in-0 absolute inset-0 h-full w-full object-cover blur-0 duration-500 [animation-timing-function:cubic-bezier(0.2,0.8,0.2,1)]"
+      />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+    </Iphone15Pro>
+  )
+}
+
 export function Services() {
-  const [active, setActive] = useState(services[0].id)
-  const current = services.find((s) => s.id === active) ?? services[0]
+  const [activeServiceId, setActiveServiceId] = useState(services[0].id)
+  const [leavingPreviewId, setLeavingPreviewId] = useState<string | null>(null)
+  const previousActiveRef = useRef(activeServiceId)
+
+  useEffect(() => {
+    if (previousActiveRef.current === activeServiceId) return
+    setLeavingPreviewId(previousActiveRef.current)
+    previousActiveRef.current = activeServiceId
+    const timeout = setTimeout(() => setLeavingPreviewId(null), 420)
+    return () => clearTimeout(timeout)
+  }, [activeServiceId])
+
+  const current = services.find((s) => s.id === activeServiceId) ?? services[0]
+  const leavingPreview = services.find((s) => s.id === leavingPreviewId) ?? null
   const Icon = current.icon
+  const handleAccordionChange = (value: string) => {
+    if (!value) return
+    setActiveServiceId(value)
+  }
 
   return (
     <section id="services" className="relative border-t border-border bg-background py-20 md:py-32">
@@ -98,7 +234,7 @@ export function Services() {
               Build · Operate · Grow
             </span>
             <h2 className="text-display-fade mt-3 max-w-3xl text-balance text-4xl font-black leading-[1.02] tracking-tight md:text-6xl">
-              Cztery filary, <span className="italic text-brand-fade">jeden zespół</span>.
+              Nasze <span className="italic text-brand-fade">usługi</span>.
             </h2>
           </div>
           <p className="max-w-sm text-base font-medium leading-relaxed text-muted-foreground md:text-lg">
@@ -116,7 +252,7 @@ export function Services() {
             />
             <ul className="relative flex h-full flex-col gap-3" role="tablist" aria-label="Usługi">
               {services.map((s) => {
-                const isActive = s.id === active
+                const isActive = s.id === activeServiceId
                 const ItemIcon = s.icon
                 return (
                   <li key={s.id} className="flex-1">
@@ -124,21 +260,19 @@ export function Services() {
                       type="button"
                       role="tab"
                       aria-selected={isActive}
-                      onMouseEnter={() => setActive(s.id)}
-                      onFocus={() => setActive(s.id)}
-                      onClick={() => setActive(s.id)}
-                      className={`group flex h-full min-h-[106px] w-full items-center gap-4 rounded-2xl border px-5 py-5 text-left transition-all ${
-                        isActive
+                      onMouseEnter={() => setActiveServiceId(s.id)}
+                      onFocus={() => setActiveServiceId(s.id)}
+                      onClick={() => setActiveServiceId(s.id)}
+                      className={`group flex h-full min-h-[106px] w-full items-center gap-4 rounded-2xl border px-5 py-5 text-left transition-all duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] ${isActive
                           ? "border-primary/40 bg-background/90 shadow-[0_0_28px_-18px_var(--primary)]"
                           : "border-border/80 bg-background/40 hover:border-primary/25 hover:bg-background/70"
-                      }`}
+                        }`}
                     >
                       <span
-                        className={`inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border transition-colors ${
-                          isActive
+                        className={`inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border transition-colors ${isActive
                             ? "border-primary/40 bg-primary/10 text-primary"
                             : "border-border bg-background text-muted-foreground"
-                        }`}
+                          }`}
                       >
                         <ItemIcon className="h-4.5 w-4.5" />
                       </span>
@@ -149,9 +283,8 @@ export function Services() {
                         <p className="mt-0.5 text-2xl font-extrabold tracking-tight">{s.title}</p>
                       </div>
                       <span
-                        className={`text-muted-foreground transition-transform ${
-                          isActive ? "translate-x-1 text-primary" : ""
-                        }`}
+                        className={`text-muted-foreground transition-transform ${isActive ? "translate-x-1 text-primary" : ""
+                          }`}
                         aria-hidden
                       >
                         →
@@ -184,37 +317,16 @@ export function Services() {
                 <p className="mt-5 max-w-xl text-pretty text-base font-medium leading-relaxed text-muted-foreground md:text-lg">
                   {current.description}
                 </p>
-
-                <ul className="mt-8 grid gap-3 md:grid-cols-2">
-                  {current.bullets.map((b) => (
-                    <li
-                      key={b}
-                      className="flex items-start gap-3 rounded-xl border border-border bg-background/50 px-4 py-3"
-                    >
-                      <span className="mt-1 inline-flex h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-                      <span className="text-sm text-foreground">{b}</span>
-                    </li>
-                  ))}
-                </ul>
+                <p className="mt-7 max-w-xl text-pretty text-sm leading-relaxed text-muted-foreground/90">
+                  {current.lead}
+                </p>
+                <div className="mt-6 h-72 rounded-2xl border border-border/80 bg-background/55 p-3">
+                  <ServiceVisual service={current} activeKey={activeServiceId} />
+                </div>
               </div>
 
               <div className="mx-auto w-full max-w-[330px]">
-                <div className="relative overflow-hidden rounded-3xl border border-border/80 bg-background p-2 shadow-[0_0_36px_-16px_var(--primary)]">
-                  <div className="relative aspect-[9/16.6] overflow-hidden rounded-2xl bg-black">
-                    <video
-                      key={current.id}
-                      src={current.reel.src}
-                      poster={current.reel.poster}
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      aria-label={current.reel.alt}
-                      className="h-full w-full object-cover"
-                    />
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/15 to-transparent" />
-                  </div>
-                </div>
+                <PhonePreview current={current} leaving={leavingPreview} />
               </div>
             </div>
           </div>
@@ -222,10 +334,13 @@ export function Services() {
 
         {/* Mobile: accordion */}
         <div className="md:hidden">
+          <div className="mb-5 rounded-2xl border border-border bg-card p-4">
+            <PhonePreview current={current} leaving={leavingPreview} />
+          </div>
           <Accordion
             type="single"
-            collapsible
-            defaultValue={services[0].id}
+            value={activeServiceId}
+            onValueChange={handleAccordionChange}
             className="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-card"
           >
             {services.map((s) => {
@@ -236,7 +351,7 @@ export function Services() {
                   value={s.id}
                   className="border-0 px-5 [&[data-state=open]]:bg-background/40"
                 >
-                  <AccordionTrigger className="py-5 hover:no-underline">
+                  <AccordionTrigger className="py-5 transition-all duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:no-underline">
                     <div className="flex items-center gap-3">
                       <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-background text-primary">
                         <ItemIcon className="h-4 w-4" />
@@ -244,35 +359,13 @@ export function Services() {
                       <span className="text-xl font-extrabold tracking-tight">{s.title}</span>
                     </div>
                   </AccordionTrigger>
-                  <AccordionContent className="pb-5">
+                  <AccordionContent className="pb-5 data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=open]:[animation-timing-function:cubic-bezier(0.22,1,0.36,1)]">
                     <p className="text-sm leading-relaxed text-muted-foreground">
                       {s.description}
                     </p>
-                    <ul className="mt-4 space-y-2">
-                      {s.bullets.map((b) => (
-                        <li key={b} className="flex items-start gap-3 text-sm">
-                          <span className="mt-2 inline-flex h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-                          <span>{b}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    <div className="mt-5">
-                      <div className="relative mx-auto w-full max-w-[250px] overflow-hidden rounded-2xl border border-border/80 bg-background p-1.5 shadow-[0_0_30px_-14px_var(--primary)]">
-                        <div className="relative aspect-[9/16.4] overflow-hidden rounded-xl bg-black">
-                          <video
-                            src={s.reel.src}
-                            poster={s.reel.poster}
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
-                            aria-label={s.reel.alt}
-                            className="h-full w-full object-cover"
-                          />
-                          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
-                        </div>
-                      </div>
+                    <p className="mt-4 text-sm text-muted-foreground/90">{s.lead}</p>
+                    <div className="mt-5 h-60 rounded-2xl border border-border/80 bg-background/55 p-3">
+                      <ServiceVisual service={s} activeKey={activeServiceId} />
                     </div>
                   </AccordionContent>
                 </AccordionItem>
