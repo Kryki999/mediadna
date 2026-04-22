@@ -75,25 +75,30 @@ export function VideoText({
               {text}
             </text>
           </mask>
+          <clipPath id={`${maskId}clip`} clipPathUnits="userSpaceOnUse">
+            <rect x={viewX - overscanX} y={viewY} width={viewWidth + overscanX * 2} height={viewHeight} />
+          </clipPath>
         </defs>
 
-        <foreignObject
-          x={viewX - overscanX}
-          y={viewY}
-          width={viewWidth + overscanX * 2}
-          height={viewHeight}
-          mask={`url(#${maskId})`}
-        >
-          <video
-            className="block h-full w-full object-cover [transform:translateZ(0)]"
-            src={src}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-          />
-        </foreignObject>
+        <g clipPath={`url(#${maskId}clip)`}>
+          <foreignObject
+            x={viewX - overscanX}
+            y={viewY}
+            width={viewWidth + overscanX * 2}
+            height={viewHeight}
+            mask={`url(#${maskId})`}
+          >
+            <video
+              className="block h-full w-full object-cover [transform:translateZ(0)]"
+              src={src}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+            />
+          </foreignObject>
+        </g>
       </svg>
     </div>
   )

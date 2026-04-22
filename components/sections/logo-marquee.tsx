@@ -15,12 +15,6 @@ export function LogoMarquee() {
       aria-label="Marki, które nam zaufały"
       className="relative border-y border-border bg-background py-10 md:py-14"
     >
-      <div className="mx-auto mb-8 w-full max-w-[1400px] px-5 sm:px-6 md:px-8 lg:px-10 xl:px-12">
-        <p className="text-center text-xs uppercase tracking-[0.24em] text-muted-foreground">
-          Zaufali nam:
-        </p>
-      </div>
-
       <div className="group relative overflow-hidden">
         {/* Edge fades */}
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-background to-transparent md:w-40" />
