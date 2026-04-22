@@ -3,10 +3,9 @@
 import type { LucideIcon } from "lucide-react"
 import {
   Facebook,
-  Globe,
   Instagram,
   Mail,
-  PlaySquare,
+  Phone,
 } from "lucide-react"
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react"
 import { useRef } from "react"
@@ -19,11 +18,10 @@ type DockLink = {
 }
 
 const dockLinks: DockLink[] = [
-  { label: "Strony internetowe", href: "#services", icon: Globe },
-  { label: "Wideo", href: "#reels", icon: PlaySquare },
+  { label: "Telefon", href: "#cta", icon: Phone },
+  { label: "Email", href: "#cta", icon: Mail },
   { label: "Facebook", href: "#cta", icon: Facebook },
   { label: "Instagram", href: "#cta", icon: Instagram },
-  { label: "Email", href: "#cta", icon: Mail },
 ]
 
 type DockItemProps = {
@@ -39,11 +37,6 @@ function DockItem({ item, mouseX }: DockItemProps) {
     return value - (bounds.x + bounds.width / 2)
   })
 
-  const width = useSpring(useTransform(distance, [-160, 0, 160], [48, 70, 48]), {
-    stiffness: 260,
-    damping: 18,
-    mass: 0.2,
-  })
   const tabScale = useSpring(useTransform(distance, [-180, 0, 180], [1, 1.06, 1]), {
     stiffness: 260,
     damping: 20,
@@ -98,7 +91,7 @@ export function FloatingDock({ className }: { className?: string }) {
     >
       <motion.nav
         aria-label="Szybka nawigacja"
-        className="pointer-events-auto flex flex-wrap items-center justify-center gap-2 rounded-3xl border border-white/10 bg-black/42 p-2 backdrop-blur-xl"
+        className="pointer-events-auto flex flex-nowrap items-center justify-center gap-2 rounded-3xl border border-white/10 bg-black/42 p-2 backdrop-blur-xl"
         onMouseMove={(event) => mouseX.set(event.clientX)}
         onMouseLeave={() => mouseX.set(Number.NEGATIVE_INFINITY)}
       >

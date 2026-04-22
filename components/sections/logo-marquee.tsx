@@ -17,7 +17,7 @@ export function LogoMarquee() {
     >
       <div className="mx-auto mb-8 w-full max-w-[1400px] px-5 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         <p className="text-center text-xs uppercase tracking-[0.24em] text-muted-foreground">
-          Zaufali nam liderzy w swoich branżach
+          Zaufali nam:
         </p>
       </div>
 

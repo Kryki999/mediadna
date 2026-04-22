@@ -32,16 +32,9 @@ export function Ecosystem() {
     >
       <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         <div className="mx-auto max-w-3xl text-center">
-          <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            Pełny ekosystem
-          </span>
           <h2 className="text-display-fade mt-3 text-balance text-4xl font-black leading-[1.02] tracking-tight md:text-6xl">
-            Tworzymy Twoje <span className="italic text-brand-fade">Cyfrowe DNA</span>.
+            <span className="italic text-brand-fade">System, </span>który sprzedaje, gdy Ty prowadzisz firmę.
           </h2>
-          <p className="mt-5 text-pretty text-base font-medium leading-relaxed text-muted-foreground md:text-lg">
-            Sekcja jest przygotowana pod zapętlone wizualizacje wideo, które pokażą cały przepływ
-            Twojego systemu od pierwszego kontaktu po domknięcie sprzedaży.
-          </p>
         </div>
 
         <div className="mt-10 w-full overflow-hidden rounded-2xl border border-border/70 bg-card/40 px-3 py-4 md:mt-12 md:px-4 md:py-5">
@@ -52,9 +45,8 @@ export function Ecosystem() {
               {bars.map((height, index) => (
                 <div
                   key={`eco-bar-${index}`}
-                  className={`eco-growth-bar flex-1 rounded-t-sm md:rounded-t-md ${
-                    isChartActive ? "is-active" : ""
-                  }`}
+                  className={`eco-growth-bar flex-1 rounded-t-sm md:rounded-t-md ${isChartActive ? "is-active" : ""
+                    }`}
                   style={
                     {
                       "--bar-height": `${height}%`,
@@ -66,6 +58,11 @@ export function Ecosystem() {
             </div>
           </div>
         </div>
+
+        <p className="mx-auto mt-5 max-w-3xl text-center text-pretty text-base font-medium leading-relaxed text-muted-foreground md:text-lg">
+          Sekcja jest przygotowana pod zapętlone wizualizacje wideo, które pokażą cały przepływ
+          Twojego systemu od pierwszego kontaktu po domknięcie sprzedaży.
+        </p>
 
         <div className="-mx-5 mt-14 sm:-mx-6 md:mx-0 md:mt-20">
           <LeadMachine />
