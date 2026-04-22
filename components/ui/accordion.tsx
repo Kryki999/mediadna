@@ -55,10 +55,15 @@ function AccordionContent({
   return (
     <AccordionPrimitive.Content
       data-slot="accordion-content"
-      className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-sm"
+      className={cn(
+        "group overflow-hidden text-sm data-[state=closed]:animate-accordion-up data-[state=closed]:duration-400 data-[state=closed]:ease-[cubic-bezier(0.3,0,0.2,1)] data-[state=open]:animate-accordion-down data-[state=open]:duration-700 data-[state=open]:ease-[cubic-bezier(0.22,1,0.36,1)]",
+        className,
+      )}
       {...props}
     >
-      <div className={cn('pt-0 pb-4', className)}>{children}</div>
+      <div className="pt-0 pb-4 transition-all duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-data-[state=closed]:translate-y-[-2px] group-data-[state=closed]:opacity-95 group-data-[state=open]:translate-y-0 group-data-[state=open]:opacity-100">
+        {children}
+      </div>
     </AccordionPrimitive.Content>
   )
 }

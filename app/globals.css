@@ -234,6 +234,33 @@
     animation: slow-spin 40s linear infinite;
   }
 
+  @keyframes orbit-drift {
+    0% {
+      transform: rotate(var(--orbit-angle)) translateY(calc(var(--orbit-radius) * -1))
+        rotate(calc(var(--orbit-angle) * -1));
+    }
+    100% {
+      transform: rotate(calc(var(--orbit-angle) + 360deg))
+        translateY(calc(var(--orbit-radius) * -1))
+        rotate(calc(var(--orbit-angle) * -1 - 360deg));
+    }
+  }
+  .animate-orbit-drift {
+    animation: orbit-drift 18s linear infinite;
+  }
+
+  @keyframes icon-cloud-orbit {
+    0% {
+      transform: rotate(var(--orbit-angle)) translateY(calc(var(--orbit-radius) * -1))
+        rotate(calc(var(--orbit-angle) * -1));
+    }
+    100% {
+      transform: rotate(calc(var(--orbit-angle) + 360deg))
+        translateY(calc(var(--orbit-radius) * -1))
+        rotate(calc(var(--orbit-angle) * -1 - 360deg));
+    }
+  }
+
   @keyframes scroll-up-slow {
     from {
       transform: translateY(0);

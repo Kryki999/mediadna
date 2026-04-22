@@ -124,7 +124,7 @@ function ServiceVisual({
       <OrbitingCircles
         centerIcon={service.icon}
         centerLabel={service.title}
-        items={service.techIcons.map((icon, index) => ({
+        items={(service.techIcons ?? []).map((icon, index) => ({
           icon,
           label: `${service.title}-${index}`,
         }))}
@@ -135,7 +135,7 @@ function ServiceVisual({
   if (service.visual === "cloud") {
     return (
       <IconCloud
-        items={service.techIcons.map((icon, index) => ({
+        items={(service.techIcons ?? []).map((icon, index) => ({
           icon,
           label: `${service.title}-cloud-${index}`,
         }))}
@@ -334,9 +334,6 @@ export function Services() {
 
         {/* Mobile: accordion */}
         <div className="md:hidden">
-          <div className="mb-5 rounded-2xl border border-border bg-card p-4">
-            <PhonePreview current={current} leaving={leavingPreview} />
-          </div>
           <Accordion
             type="single"
             value={activeServiceId}
@@ -349,7 +346,7 @@ export function Services() {
                 <AccordionItem
                   key={s.id}
                   value={s.id}
-                  className="border-0 px-5 [&[data-state=open]]:bg-background/40"
+                  className="border-0 px-5 transition-colors duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] [&[data-state=open]]:bg-background/40"
                 >
                   <AccordionTrigger className="py-5 transition-all duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:no-underline">
                     <div className="flex items-center gap-3">
@@ -359,13 +356,16 @@ export function Services() {
                       <span className="text-xl font-extrabold tracking-tight">{s.title}</span>
                     </div>
                   </AccordionTrigger>
-                  <AccordionContent className="pb-5 data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=open]:[animation-timing-function:cubic-bezier(0.22,1,0.36,1)]">
+                  <AccordionContent className="pb-5">
                     <p className="text-sm leading-relaxed text-muted-foreground">
                       {s.description}
                     </p>
                     <p className="mt-4 text-sm text-muted-foreground/90">{s.lead}</p>
                     <div className="mt-5 h-60 rounded-2xl border border-border/80 bg-background/55 p-3">
                       <ServiceVisual service={s} activeKey={activeServiceId} />
+                    </div>
+                    <div className="mt-5">
+                      <PhonePreview current={s} leaving={null} />
                     </div>
                   </AccordionContent>
                 </AccordionItem>
