@@ -2,11 +2,11 @@
 
 import type { LucideIcon } from "lucide-react"
 import {
-  BriefcaseBusiness,
-  Home,
-  Layers3,
+  Facebook,
+  Globe,
+  Instagram,
   Mail,
-  Sparkles,
+  PlaySquare,
 } from "lucide-react"
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react"
 import { useRef } from "react"
@@ -19,11 +19,11 @@ type DockLink = {
 }
 
 const dockLinks: DockLink[] = [
-  { label: "Start", href: "#top", icon: Home },
-  { label: "Realizacje", href: "#impact", icon: Layers3 },
-  { label: "Oferta", href: "#services", icon: BriefcaseBusiness },
-  { label: "Proces", href: "#ecosystem", icon: Sparkles },
-  { label: "Kontakt", href: "#cta", icon: Mail },
+  { label: "Strony internetowe", href: "#services", icon: Globe },
+  { label: "Wideo", href: "#reels", icon: PlaySquare },
+  { label: "Facebook", href: "#cta", icon: Facebook },
+  { label: "Instagram", href: "#cta", icon: Instagram },
+  { label: "Email", href: "#cta", icon: Mail },
 ]
 
 type DockItemProps = {
@@ -44,6 +44,11 @@ function DockItem({ item, mouseX }: DockItemProps) {
     damping: 18,
     mass: 0.2,
   })
+  const tabScale = useSpring(useTransform(distance, [-180, 0, 180], [1, 1.06, 1]), {
+    stiffness: 260,
+    damping: 20,
+    mass: 0.24,
+  })
   const iconScale = useSpring(useTransform(distance, [-150, 0, 150], [1, 1.22, 1]), {
     stiffness: 280,
     damping: 20,
@@ -62,8 +67,8 @@ function DockItem({ item, mouseX }: DockItemProps) {
       ref={itemRef}
       href={item.href}
       aria-label={item.label}
-      className="group relative inline-flex size-12 items-center justify-center rounded-full text-white/85 outline-none transition-colors hover:text-white focus-visible:ring-2 focus-visible:ring-[#5aa6ff]"
-      style={{ width, height: width }}
+      className="group relative inline-flex h-14 w-14 items-center justify-center rounded-full text-white/90 outline-none transition-colors hover:text-white focus-visible:ring-2 focus-visible:ring-[#5aa6ff]"
+      style={{ scale: tabScale }}
     >
       <motion.span
         aria-hidden
@@ -75,11 +80,8 @@ function DockItem({ item, mouseX }: DockItemProps) {
         }}
       />
       <motion.span style={{ scale: iconScale }} className="relative z-10">
-        <item.icon className="size-5" />
+        <item.icon className="size-6" />
       </motion.span>
-      <span className="pointer-events-none absolute -top-9 rounded-md border border-white/15 bg-[#0a0d14]/95 px-2 py-1 text-xs text-white/80 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-        {item.label}
-      </span>
     </motion.a>
   )
 }
@@ -96,7 +98,7 @@ export function FloatingDock({ className }: { className?: string }) {
     >
       <motion.nav
         aria-label="Szybka nawigacja"
-        className="pointer-events-auto flex items-center gap-1 rounded-full border border-white/10 bg-black/42 p-2 backdrop-blur-xl"
+        className="pointer-events-auto flex flex-wrap items-center justify-center gap-2 rounded-3xl border border-white/10 bg-black/42 p-2 backdrop-blur-xl"
         onMouseMove={(event) => mouseX.set(event.clientX)}
         onMouseLeave={() => mouseX.set(Number.NEGATIVE_INFINITY)}
       >

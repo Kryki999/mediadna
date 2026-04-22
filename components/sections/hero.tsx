@@ -1,8 +1,9 @@
 "use client"
 
-import { ArrowRight } from "lucide-react"
+import { ArrowUpRight } from "lucide-react"
 import { motion, useReducedMotion } from "motion/react"
 import type { CSSProperties } from "react"
+import { FloatingDock } from "@/components/magicui/floating-dock"
 import { VideoText } from "@/components/magicui/video-text"
 import { Button } from "@/components/ui/button"
 
@@ -116,10 +117,10 @@ export function Hero() {
       <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center pt-6 text-center sm:pt-8 md:pt-10">
         <div className="flex flex-col items-center">
           <h1 className="text-balance text-center text-6xl font-black leading-[0.9] tracking-[-0.055em] text-white sm:text-7xl md:text-8xl">
-            Budujemy
+            BUDUJMY
           </h1>
-          <h2 className="mt-1 text-balance text-center text-6xl font-black leading-[0.9] tracking-[-0.055em] text-white sm:text-7xl md:text-8xl">
-            cyfrowe
+          <h2 className="text-display-fade mt-1 text-balance text-center text-6xl font-black leading-[0.9] tracking-[-0.055em] sm:text-7xl md:text-8xl">
+            CYFROWE
           </h2>
           <div className="mt-2 w-full max-w-[99vw] sm:max-w-[96vw] md:max-w-[1120px]">
             <div className="md:hidden">
@@ -138,14 +139,14 @@ export function Hero() {
             </div>
 
             <div className="hidden md:block">
-            <VideoText
-              text="DNA"
-              src="/dna-fluid.mp4"
-              className="drop-shadow-[0_0_42px_rgba(0,85,255,0.3)]"
-              textX={500}
-              textLength={1320}
+              <VideoText
+                text="DNA"
+                src="/dna-fluid.mp4"
+                className="drop-shadow-[0_0_42px_rgba(0,85,255,0.3)]"
+                textX={500}
+                textLength={1320}
                 textClassName="text-[460px] lg:text-[500px]"
-            />
+              />
             </div>
           </div>
         </div>
@@ -154,17 +155,22 @@ export function Hero() {
           Projektujemy i wdrażamy strony oraz systemy, które skalują markę, sprzedaż i zaufanie.
         </p>
 
-        <div className="mt-10 flex w-full max-w-xl flex-col items-center justify-center gap-3 sm:mt-12 sm:flex-row sm:gap-4">
+        <div className="mt-10 flex w-full max-w-2xl flex-col items-center justify-center gap-3 sm:mt-12 sm:flex-row sm:gap-4">
           <motion.div
             className="w-full sm:w-auto"
             whileHover={prefersReducedMotion ? undefined : { y: -2, scale: 1.01 }}
             whileTap={prefersReducedMotion ? undefined : { scale: 0.985, y: 0 }}
             transition={prefersReducedMotion ? undefined : { type: "spring", stiffness: 320, damping: 24 }}
           >
-            <Button asChild size="hero" variant="heroPrimary" className="w-full sm:w-auto">
+            <Button
+              asChild
+              size="hero"
+              variant="default"
+              className="w-full rounded-full border border-primary/80 bg-primary px-10 text-base font-bold text-white shadow-[0_14px_36px_rgba(0,85,255,0.42)] hover:bg-primary/90 sm:w-auto"
+            >
               <a href="#cta" data-contact-trigger="true">
-                Umów konsultację
-                <ArrowRight className="ml-1.5 h-4 w-4" />
+                Skontaktuj się
+                <ArrowUpRight className="ml-1.5 h-4 w-4" />
               </a>
             </Button>
           </motion.div>
@@ -175,11 +181,21 @@ export function Hero() {
             whileTap={prefersReducedMotion ? undefined : { scale: 0.988, y: 0 }}
             transition={prefersReducedMotion ? undefined : { type: "spring", stiffness: 300, damping: 22 }}
           >
-            <Button asChild size="hero" variant="heroSecondary" className="w-full sm:w-auto">
-              <a href="#impact">Zobacz realizacje</a>
+            <Button
+              asChild
+              size="hero"
+              variant="heroSecondary"
+              className="w-full rounded-full border border-white/20 bg-black/80 px-10 text-base font-bold text-white hover:bg-black sm:w-auto"
+            >
+              <a href="#impact">
+                Zobacz realizacje
+                <ArrowUpRight className="ml-1.5 h-4 w-4" />
+              </a>
             </Button>
           </motion.div>
         </div>
+
+        <FloatingDock className="mt-8" />
       </div>
 
       <style jsx>{`
