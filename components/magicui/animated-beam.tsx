@@ -17,6 +17,10 @@ export interface AnimatedBeamProps {
   pathOpacity?: number
   gradientStartColor?: string
   gradientStopColor?: string
+  glowColor?: string
+  glowWidth?: number
+  glowOpacity?: number
+  glowBlur?: number
   delay?: number
   duration?: number
   startXOffset?: number
@@ -34,16 +38,22 @@ export function AnimatedBeam({
   reverse = false,
   duration = 5,
   delay = 0,
-  pathColor = "rgba(255,255,255,0.08)",
+  pathColor = "rgba(255,255,255,0.12)",
   pathWidth = 2,
-  pathOpacity = 0.35,
+  pathOpacity = 0.55,
   gradientStartColor = "#2f7cff",
   gradientStopColor = "rgb(0, 85, 255)",
+  glowColor,
+  glowWidth,
+  glowOpacity = 0.45,
+  glowBlur = 6,
   startXOffset = 0,
   startYOffset = 0,
   endXOffset = 0,
   endYOffset = 0,
 }: AnimatedBeamProps) {
+  const resolvedGlowColor = glowColor ?? gradientStopColor
+  const resolvedGlowWidth = glowWidth ?? pathWidth * 3
   const id = useId()
   const [pathD, setPathD] = useState("")
   const [svgDimensions, setSvgDimensions] = useState({ width: 0, height: 0 })
@@ -120,6 +130,14 @@ export function AnimatedBeam({
       )}
       viewBox={`0 0 ${svgDimensions.width} ${svgDimensions.height}`}
     >
+      <path
+        d={pathD}
+        stroke={resolvedGlowColor}
+        strokeWidth={resolvedGlowWidth}
+        strokeOpacity={glowOpacity}
+        strokeLinecap="round"
+        style={{ filter: `blur(${glowBlur}px)` }}
+      />
       <path
         d={pathD}
         stroke={pathColor}

@@ -67,7 +67,7 @@ export function Ecosystem() {
           </div>
         </div>
 
-        <div className="mt-14 md:mt-20">
+        <div className="-mx-5 mt-14 sm:-mx-6 md:mx-0 md:mt-20">
           <LeadMachine />
         </div>
       </div>
