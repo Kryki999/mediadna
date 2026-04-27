@@ -23,23 +23,23 @@ export function Hero() {
 
   const videoConfig = isDesktop
     ? {
-        textX: 500,
-        textY: 160,
-        textLength: 1320,
-        viewY: -10,
-        viewHeight: 340,
-        overscanX: 240,
-        textClassName: "text-[460px] lg:text-[500px]",
-      }
+      textX: 500,
+      textY: 160,
+      textLength: 1320,
+      viewY: -10,
+      viewHeight: 340,
+      overscanX: 240,
+      textClassName: "text-[460px] lg:text-[500px]",
+    }
     : {
-        textX: 500,
-        textY: 188,
-        textLength: 1240,
-        viewY: -18,
-        viewHeight: 420,
-        overscanX: 280,
-        textClassName: "text-[390px] sm:text-[430px]",
-      }
+      textX: 500,
+      textY: 188,
+      textLength: 1240,
+      viewY: -18,
+      viewHeight: 420,
+      overscanX: 280,
+      textClassName: "text-[390px] sm:text-[430px]",
+    }
 
   const ambientCounts = isDesktop
     ? { specks: 24, motes: 10, sparks: 8 }
@@ -171,7 +171,11 @@ export function Hero() {
         </div>
 
         <p className="mt-3 max-w-2xl text-pretty text-base font-medium leading-relaxed tracking-[-0.01em] text-neutral-300/90 sm:mt-4 sm:text-lg md:text-xl">
-          Łączymy nowoczesne strony, aplikacje, angażujący content, wideo, precyzyjne reklamy i SEO w jeden zyskowny system. Tworzymy cyfrowe środowisko, które pozyskuje dla ciebie klientów.
+          Łączymy nowoczesne{" "}
+          <strong className="font-bold text-neutral-100">
+            strony, aplikacje, wideo, branding, precyzyjne reklamy i SEO
+          </strong>{" "}
+          w jeden zyskowny system. Tworzymy cyfrowe środowisko, które pozyskuje dla ciebie klientów.
         </p>
 
         <div className="mt-10 flex w-full max-w-2xl flex-col items-center justify-center gap-3 sm:mt-12 sm:flex-row sm:gap-4">
@@ -188,7 +192,7 @@ export function Hero() {
               className="w-full rounded-full border border-primary/80 bg-primary px-10 text-base font-bold text-white shadow-[0_14px_36px_rgba(0,85,255,0.42)] hover:bg-primary/90 sm:w-auto"
             >
               <a href="#cta" data-contact-trigger="true">
-                Skontaktuj się
+                Umów konsultację
                 <ArrowUpRight className="ml-1.5 h-4 w-4" />
               </a>
             </Button>

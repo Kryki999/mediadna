@@ -2,52 +2,35 @@
 
 import {
   type CSSProperties,
-  type ComponentType,
   forwardRef,
   useEffect,
   useRef,
   useState,
 } from "react"
 import { useReducedMotion } from "motion/react"
-import {
-  Banknote,
-  CalendarCheck,
-  Cpu,
-  UserPlus,
-  type LucideIcon,
-} from "lucide-react"
-import {
-  SiGoogle,
-  SiInstagram,
-  SiMeta,
-  SiStripe,
-} from "@icons-pack/react-simple-icons"
+import { Icon } from "@iconify/react"
 
 import { AnimatedBeam } from "@/components/magicui/animated-beam"
 import { AnimatedList } from "@/components/magicui/animated-list"
 import { cn } from "@/lib/utils"
 
-type IconLike = LucideIcon | ComponentType<{ className?: string; color?: string; size?: number | string }>
-
 type GeneratorConfig = {
   id: string
   label: string
-  Icon: IconLike
-  color: string
+  icon: string
 }
 
 type LootConfig = {
   id: string
   title: string
   source: string
-  Icon: IconLike
-  color: string
+  icon: string
 }
 
 const GENERATORS: GeneratorConfig[] = [
-  { id: "social", label: "Social", Icon: SiInstagram, color: "#E4405F" },
-  { id: "search", label: "Google", Icon: SiGoogle, color: "#4285F4" },
-  { id: "ads", label: "Ads", Icon: SiMeta, color: "#0467DF" },
+  { id: "social", label: "Social", icon: "skill-icons:instagram" },
+  { id: "search", label: "Google", icon: "logos:google-icon" },
+  { id: "ads", label: "Ads", icon: "logos:meta-icon" },
 ]
 
 const LOOT_POOL: LootConfig[] = [
@@ -55,50 +38,44 @@ const LOOT_POOL: LootConfig[] = [
     id: "contact",
     title: "Nowy kontakt — Anna K.",
     source: "Formularz na stronie",
-    Icon: UserPlus,
-    color: "#a78bfa",
+    icon: "fluent-emoji:inbox-tray",
   },
   {
     id: "invoice",
     title: "Opłacona faktura — 14 850 zł",
     source: "Stripe",
-    Icon: SiStripe,
-    color: "#635BFF",
+    icon: "logos:stripe",
   },
   {
     id: "call",
     title: "Rezerwacja konsultacji",
     source: "Cal.com",
-    Icon: CalendarCheck,
-    color: "#10b981",
+    icon: "fluent-emoji:spiral-calendar",
   },
   {
     id: "lead-meta",
     title: "Lead z kampanii Meta",
     source: "Ads Manager",
-    Icon: SiMeta,
-    color: "#0467DF",
+    icon: "logos:meta-icon",
   },
   {
     id: "dm",
     title: "Nowa wiadomość DM",
     source: "Instagram",
-    Icon: SiInstagram,
-    color: "#E4405F",
+    icon: "skill-icons:instagram",
   },
   {
     id: "closed",
     title: "Zamknięta sprzedaż",
     source: "CRM",
-    Icon: Banknote,
-    color: "#10b981",
+    icon: "fluent-emoji:money-with-wings",
   },
 ]
 
 const GeneratorTile = forwardRef<
   HTMLDivElement,
-  { label: string; Icon: IconLike; color: string; delay: number }
->(function GeneratorTile({ label, Icon, color, delay }, ref) {
+  { label: string; icon: string; delay: number }
+>(function GeneratorTile({ label, icon, delay }, ref) {
   return (
     <div className="flex flex-col items-center gap-2">
       <div
@@ -110,7 +87,7 @@ const GeneratorTile = forwardRef<
         style={{ animationDelay: `${delay}s` } as CSSProperties}
       >
         <div className="flex h-11 w-11 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/10 md:h-12 md:w-12">
-          <Icon className="h-5 w-5 md:h-6 md:w-6" color={color} />
+          <Icon icon={icon} className="h-6 w-6 md:h-7 md:w-7" aria-hidden />
         </div>
       </div>
       <span className="text-[10px] uppercase tracking-[0.18em] text-white/55 md:text-[11px]">
@@ -123,16 +100,20 @@ const GeneratorTile = forwardRef<
 function LootCard({
   title,
   source,
-  Icon,
-  color,
-}: Pick<LootConfig, "title" | "source" | "Icon" | "color">) {
+  icon,
+}: Pick<LootConfig, "title" | "source" | "icon">) {
   return (
     <figure
       className="flex w-full items-center gap-3 rounded-xl border border-white/[0.07] bg-[#0c0d12]/95 p-2.5 shadow-[0_12px_36px_rgba(0,0,0,0.45)] backdrop-blur-sm md:p-3"
-      style={{ "--accent": color } as CSSProperties}
     >
-      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[color:var(--accent)]/15 ring-1 ring-[color:var(--accent)]/35 md:h-11 md:w-11">
-        <Icon className="h-[18px] w-[18px] md:h-5 md:w-5" color={color} />
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/[0.06] ring-1 ring-white/12 md:h-11 md:w-11 [&_svg]:block">
+        <Icon
+          icon={icon}
+          width={26}
+          height={26}
+          className="h-[26px] w-[26px] shrink-0 md:h-7 md:w-7"
+          aria-hidden
+        />
       </div>
       <div className="min-w-0 flex-1">
         <figcaption className="line-clamp-1 text-sm font-semibold text-white">
@@ -205,7 +186,6 @@ export function LeadMachine() {
       ]
   const hubBeamDuration = prefersReduced ? 0.0001 : 6.4
   const hubBeamDelay = 0.35
-  // Keep list cadence tied to beam rhythm, but a bit faster.
   const listDelay = prefersReduced
     ? 10_000_000
     : Math.round((hubBeamDuration + hubBeamDelay) * 1000 * 0.5)
@@ -237,8 +217,7 @@ export function LeadMachine() {
             <GeneratorTile
               key={g.id}
               label={g.label}
-              Icon={g.Icon}
-              color={g.color}
+              icon={g.icon}
               delay={i * 1.2}
               ref={generatorRefs[i]}
             />
@@ -264,9 +243,10 @@ export function LeadMachine() {
               )}
             >
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[rgb(0,85,255)]/15 ring-1 ring-[rgb(0,85,255)]/40 md:h-14 md:w-14">
-                <Cpu
-                  className="h-6 w-6 text-[rgb(0,85,255)] md:h-7 md:w-7"
-                  strokeWidth={1.75}
+                <Icon
+                  icon="fluent-emoji:gear"
+                  className="h-7 w-7 md:h-8 md:w-8"
+                  aria-hidden
                 />
               </div>
               <div className="text-center">
@@ -290,8 +270,7 @@ export function LeadMachine() {
                   key={item.key}
                   title={item.title}
                   source={item.source}
-                  Icon={item.Icon}
-                  color={item.color}
+                  icon={item.icon}
                 />
               ))}
             </AnimatedList>

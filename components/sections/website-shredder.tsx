@@ -18,22 +18,22 @@ export function WebsiteShredder() {
   }, [])
 
   return (
-    <section className="relative bg-black py-12">
+    <section className="relative bg-black pb-2 pt-12 md:pb-4 md:pt-16">
       <div className="mx-auto w-full max-w-[1400px] px-5 text-center sm:px-6 md:px-8 lg:px-10 xl:px-12">
-        <h2 className="mb-6 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-5xl font-black leading-tight text-transparent md:text-7xl">
-          Stop Burning Cash on
+        <h2 className="mb-4 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-4xl font-black leading-[1.05] text-transparent sm:text-5xl md:mb-5 md:text-6xl lg:text-7xl">
+          Nie przepalaj budżetu
           <br />
           <span className="bg-gradient-to-r from-primary via-[#4d85ff] to-primary bg-clip-text text-transparent">
-            Bad Websites
+            na stronę bez zwrotu
           </span>
         </h2>
-        <p className="mx-auto max-w-3xl text-xl font-medium text-gray-400 md:text-2xl">
-          We scan your business and reveal the hidden code to high-converting websites-without the
-          expensive trial and error.
+        <p className="mx-auto max-w-3xl text-pretty text-base font-medium leading-relaxed text-gray-400 md:text-xl">
+          Słaba strona to koszt, który nie wraca — tylko udaje inwestycję. Poniżej widać różnicę: gdzie giną pieniądze,
+          a gdzie dostajesz system, który realnie dowozi leady i sprzedaż.
         </p>
       </div>
 
-      <section className="relative w-full overflow-hidden bg-black">
+      <div className="relative mt-8 w-full overflow-hidden bg-black md:mt-10">
         <div className="relative flex h-[400px] w-full items-center justify-center overflow-hidden">
           <canvas
             id="particleCanvas"
@@ -51,8 +51,7 @@ export function WebsiteShredder() {
             />
           </div>
         </div>
-      </section>
+      </div>
     </section>
   )
 }
-

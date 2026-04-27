@@ -1,5 +1,6 @@
 "use client"
 
+import { Icon } from "@iconify/react"
 import { useEffect, useRef, useState } from "react"
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts"
 import {
@@ -16,6 +17,7 @@ const services = [
   {
     id: "www",
     title: "Strony WWW",
+    tabIcon: "fluent-emoji:laptop",
     subtitle: "Build",
     description:
       "Projektujemy i kodujemy strony premium, które ładują się błyskawicznie i konwertują jak maszyna. Next.js, headless CMS, animacje z charakterem.",
@@ -30,6 +32,7 @@ const services = [
   {
     id: "design",
     title: "Design & Branding",
+    tabIcon: "fluent-emoji:artist-palette",
     subtitle: "Brand",
     description:
       "Tworzymy systemy wizualne, które budują zaufanie w mniej niż 3 sekundy. Logo, identyfikacja, UI kit i wytyczne gotowe do skalowania.",
@@ -44,6 +47,7 @@ const services = [
   {
     id: "wideo",
     title: "Wideo & Content",
+    tabIcon: "fluent-emoji:movie-camera",
     subtitle: "Operate",
     description:
       "Produkujemy content, który sam się dystrybuuje. Reels, shorts, podcasty i kampanie wizerunkowe — wszystko w jednym abonamencie.",
@@ -58,6 +62,7 @@ const services = [
   {
     id: "ads",
     title: "Marketing & Ads",
+    tabIcon: "fluent-emoji:rocket",
     subtitle: "Grow",
     description:
       "Skalujemy sprzedaż przez Meta Ads, Google Ads i TikTok. Pracujemy na KPI, nie na wyświetleniach — z raportowaniem co tydzień.",
@@ -243,12 +248,17 @@ export function Services() {
                       onMouseEnter={() => setActiveServiceId(s.id)}
                       onFocus={() => setActiveServiceId(s.id)}
                       onClick={() => setActiveServiceId(s.id)}
-                      className={`group flex h-full min-h-[106px] w-full items-center gap-4 rounded-2xl border px-5 py-5 text-left transition-all duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] ${isActive
+                      className={`group flex h-full min-h-[106px] w-full items-center gap-3 rounded-2xl border px-5 py-5 text-left transition-all duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] ${isActive
                         ? "border-primary/40 bg-background/90 shadow-[0_0_28px_-18px_var(--primary)]"
                         : "border-border/80 bg-background/40 hover:border-primary/25 hover:bg-background/70"
                         }`}
                     >
-                      <div className="flex-1">
+                      <Icon
+                        icon={s.tabIcon}
+                        className="size-9 shrink-0 md:size-10"
+                        aria-hidden
+                      />
+                      <div className="min-w-0 flex-1">
                         <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
                           {s.subtitle}
                         </p>
@@ -323,8 +333,11 @@ export function Services() {
                       mobileItemRefs.current[s.id] = node
                     }}
                   />
-                  <AccordionTrigger className="py-5 transition-all duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:no-underline">
-                    <span className="text-xl font-extrabold tracking-tight">{s.title}</span>
+                  <AccordionTrigger className="items-center py-5 transition-all duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:no-underline">
+                    <span className="flex min-w-0 flex-1 items-center gap-3 text-left">
+                      <Icon icon={s.tabIcon} className="size-9 shrink-0" aria-hidden />
+                      <span className="text-xl font-extrabold tracking-tight">{s.title}</span>
+                    </span>
                   </AccordionTrigger>
                   <AccordionContent className="pb-5">
                     <p className="text-sm leading-relaxed text-muted-foreground">

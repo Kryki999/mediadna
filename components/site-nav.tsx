@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { ArrowUpRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const links = [
@@ -195,9 +196,15 @@ export function SiteNav() {
                   className={`pt-4 transition-all duration-500 ${open ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}
                   style={{ transitionDelay: open ? `${160 + links.length * 80}ms` : "0ms" }}
                 >
-                  <Button asChild size="lg" className="w-full rounded-full bg-white text-black hover:bg-white/90">
+                  <Button
+                    asChild
+                    size="hero"
+                    variant="default"
+                    className="w-full rounded-full border border-primary/80 bg-primary px-10 text-base font-bold text-white shadow-[0_14px_36px_rgba(0,85,255,0.42)] hover:bg-primary/90"
+                  >
                     <a href="#cta" data-contact-trigger="true" onClick={() => setOpen(false)}>
                       Umów strategię
+                      <ArrowUpRight className="ml-1.5 h-4 w-4" />
                     </a>
                   </Button>
                 </div>

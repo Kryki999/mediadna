@@ -30,7 +30,7 @@ export function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="relative border-y border-border bg-background py-20 md:py-28"
+      className="relative overflow-x-hidden border-y border-border bg-background py-20 md:py-28"
     >
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 md:px-8 lg:px-10">
         <div className="mx-auto max-w-3xl text-center">
@@ -45,15 +45,18 @@ export function Testimonials() {
           </p>
         </div>
 
-        <div className="group relative mt-12 overflow-hidden rounded-3xl border border-border/80 bg-card/30 p-3 md:mt-14 md:p-4">
-          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-background to-transparent md:w-32" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-background to-transparent md:w-32" />
+        {/* Mobile: pełna szerokość viewportu (bez „pudła”); md+: jak wcześniej w boxie */}
+        <div
+          className="group relative mt-12 ml-[calc(50%-50vw)] w-screen max-w-[100vw] overflow-hidden rounded-none border-0 bg-transparent p-0 md:mt-14 md:ml-0 md:w-full md:max-w-none md:rounded-3xl md:border md:border-border/80 md:bg-card/30 md:p-4"
+        >
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-background to-transparent sm:w-14 md:w-32" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-background to-transparent sm:w-14 md:w-32" />
 
           <div className="flex w-max animate-marquee gap-4 [animation-duration:34s] group-hover:[animation-play-state:paused] md:gap-6">
             {[...reviews, ...reviews].map((r, idx) => (
               <article
                 key={`${r.author}-${idx}`}
-                className="relative w-[310px] shrink-0 rounded-2xl border border-border bg-card p-6 pt-14 shadow-[0_0_0_1px_rgba(255,255,255,0.02)] md:w-[380px]"
+                className="relative w-[min(310px,calc(100vw-3rem))] shrink-0 rounded-2xl border border-border bg-card p-6 pt-14 shadow-[0_0_0_1px_rgba(255,255,255,0.02)] md:w-[380px]"
               >
                 <Quote className="absolute right-5 top-5 h-8 w-8 text-primary/25" aria-hidden />
 
