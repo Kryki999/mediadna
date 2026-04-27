@@ -13,7 +13,7 @@ export function BookingSection() {
 
   return (
     <section id="cta" className="w-full border-t border-border bg-background py-16 md:py-28">
-      <div className="mx-auto w-full max-w-[1200px] px-5 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+      <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         <div className="rounded-[32px] border border-border bg-card/50 p-4 md:p-12">
           <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-2 md:gap-12">
             <div className="flex h-full flex-col justify-between space-y-8">

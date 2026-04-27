@@ -147,7 +147,9 @@ export function ReelsCarousel() {
                     <div className="flex flex-1 flex-col md:overflow-y-auto md:p-8 md:pt-10 md:pb-8 md:justify-center">
                       <DialogHeader className="mb-5 pr-10">
                         <DialogTitle className="text-3xl font-black tracking-tight">{current.title}</DialogTitle>
-                        <DialogDescription>{current.views}</DialogDescription>
+                        <DialogDescription className="text-lg font-bold tracking-tight text-primary md:text-xl">
+                          {current.views}
+                        </DialogDescription>
                       </DialogHeader>
 
                       {current.services && current.services.length > 0 && (
@@ -230,7 +232,7 @@ function ReelCard({ reel, onOpen }: { reel: ReelItem; onOpen: () => void }) {
       <div className="space-y-2 bg-card/95 px-4 py-4">
         <p className="line-clamp-2 text-sm font-semibold leading-tight text-foreground">{reel.title}</p>
         <div className="flex items-center justify-between gap-2">
-          <p className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">{reel.views}</p>
+          <p className="text-sm font-bold uppercase tracking-[0.14em] text-primary md:text-base">{reel.views}</p>
         </div>
       </div>
     </button>

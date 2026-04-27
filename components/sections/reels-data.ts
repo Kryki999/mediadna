@@ -13,7 +13,7 @@ export const reelsData: ReelItem[] = [
     title: "Detailing premium - proces i efekt wow",
     videoUrl: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
     posterUrl: "/reel-1.jpg",
-    views: "1.2M wyswietlen",
+    views: "1.2M wyświetleń",
     services: ["Auto Detailing", "Social Video"],
   },
   {
@@ -21,7 +21,7 @@ export const reelsData: ReelItem[] = [
     title: "Architektura i wnetrza - metamorfoza przestrzeni",
     videoUrl: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
     posterUrl: "/reel-2.jpg",
-    views: "864K wyswietlen",
+    views: "864K wyświetleń",
     services: ["Architektura", "Performance"],
   },
   {
@@ -29,7 +29,7 @@ export const reelsData: ReelItem[] = [
     title: "Branza eventowa - promocja wydarzenia",
     videoUrl: "https://media.w3.org/2010/05/sintel/trailer.mp4",
     posterUrl: "/reel-3.jpg",
-    views: "2.3M wyswietlen",
+    views: "2.3M wyświetleń",
     services: ["Eventy", "Video Ads"],
   },
 ]

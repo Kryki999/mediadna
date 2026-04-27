@@ -30,7 +30,7 @@ export function FinalCta() {
 
   return (
     <section id="cta" className="relative border-t border-border bg-background py-20 md:py-32">
-      <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+      <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         {/* Teaser banner */}
         <div className="relative mb-12 overflow-hidden rounded-3xl border border-border bg-card md:mb-16">
           <div
@@ -61,7 +61,7 @@ export function FinalCta() {
         </div>
 
         {/* Booking card */}
-        <div className="mx-auto max-w-4xl">
+        <div className="mx-auto w-full">
           <div className="text-center">
             <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
               Konsultacja strategiczna
@@ -75,9 +75,9 @@ export function FinalCta() {
             </p>
           </div>
 
-          <div className="mt-10 overflow-hidden rounded-3xl border border-border bg-card md:mt-14">
+          <div className="-mx-4 mt-10 overflow-hidden rounded-3xl border border-border bg-card md:mx-0 md:mt-14">
             {/* Meta bar */}
-            <div className="flex flex-wrap items-center gap-4 border-b border-border bg-background/40 px-6 py-4 text-sm text-muted-foreground md:px-8">
+            <div className="flex flex-wrap items-center gap-4 border-b border-border bg-background/40 px-4 py-4 text-sm text-muted-foreground md:px-8">
               <span className="inline-flex items-center gap-2">
                 <Clock className="h-4 w-4" />
                 30 min
@@ -94,7 +94,7 @@ export function FinalCta() {
 
             <div className="grid grid-cols-1 md:grid-cols-2">
               {/* Date picker */}
-              <div className="border-b border-border p-6 md:border-b-0 md:border-r md:p-8">
+              <div className="border-b border-border p-4 md:border-b-0 md:border-r md:p-8">
                 <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
                   Wybierz dzień
                 </p>
@@ -133,7 +133,7 @@ export function FinalCta() {
               </div>
 
               {/* Time slots */}
-              <div className="p-6 md:p-8">
+              <div className="p-4 md:p-8">
                 <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
                   Dostępne godziny
                 </p>

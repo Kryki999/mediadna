@@ -32,7 +32,7 @@ const faqItems = [
 export function Faq() {
   return (
     <section className="relative border-t border-border bg-background py-20 md:py-32">
-      <div className="mx-auto w-full max-w-5xl px-5 sm:px-6 md:px-8 lg:px-10">
+      <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         <div className="mb-10 text-center md:mb-14">
           <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
             Najczęstsze pytania

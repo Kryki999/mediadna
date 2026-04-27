@@ -160,8 +160,8 @@ function PortfolioTeaserCard({ card }: { card: CtaPortfolioCard }) {
                 }`}
               >
                 {tile.isFeatured ? (
-                  <div className="absolute inset-0 flex items-center justify-center bg-[#f4f7ff] px-4 text-center">
-                    <span className="text-sm font-semibold text-[#0c1330] md:text-base">{tile.title}</span>
+                  <div className="absolute inset-0 flex items-center justify-center bg-[#101a34] px-4 text-center">
+                    <span className="text-sm font-semibold text-[#eaf1ff] md:text-base">{tile.title}</span>
                   </div>
                 ) : (
                   <>
