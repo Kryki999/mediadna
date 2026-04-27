@@ -1,7 +1,6 @@
 "use client"
 
-import { useState } from "react"
-import { ArrowLeft, ArrowRight, Quote } from "lucide-react"
+import { Quote, Star } from "lucide-react"
 
 const reviews = [
   {
@@ -28,85 +27,58 @@ const reviews = [
 ]
 
 export function Testimonials() {
-  const [i, setI] = useState(0)
-  const r = reviews[i]
-
-  const prev = () => setI((v) => (v - 1 + reviews.length) % reviews.length)
-  const next = () => setI((v) => (v + 1) % reviews.length)
-
   return (
     <section
       id="testimonials"
-      className="relative border-t border-border bg-background py-20 md:py-32"
+      className="relative border-y border-border bg-background py-20 md:py-28"
     >
-      <div className="mx-auto w-full max-w-4xl px-5 text-center sm:px-6 md:px-8 lg:px-10">
-        <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-          Słowem klientów
-        </span>
-        <h2 className="text-display-fade mt-3 text-balance text-4xl font-black leading-[1.02] tracking-tight md:text-6xl">
-          ROI w czystej postaci.
-        </h2>
-
-        <div className="relative mt-12 overflow-hidden rounded-3xl border border-border bg-card p-8 text-left md:mt-16 md:p-14">
-          <Quote
-            className="absolute right-8 top-8 h-16 w-16 text-primary/20 md:h-24 md:w-24"
-            aria-hidden
-          />
-
-          <blockquote className="relative">
-            <p className="text-balance text-2xl font-semibold leading-[1.25] tracking-tight md:text-4xl">
-              “{r.quote}”
-            </p>
-
-            <footer className="mt-8 flex flex-col items-start justify-between gap-6 border-t border-border pt-6 md:flex-row md:items-center">
-              <div className="flex items-center gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-background text-lg font-extrabold tracking-tight">
-                  {r.author
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")}
-                </div>
-                <div>
-                  <p className="font-semibold tracking-tight text-foreground">{r.author}</p>
-                  <p className="text-sm font-medium text-muted-foreground">{r.role}</p>
-                </div>
-              </div>
-              <div className="rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">
-                {r.metric}
-              </div>
-            </footer>
-          </blockquote>
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 md:px-8 lg:px-10">
+        <div className="mx-auto max-w-3xl text-center">
+          <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+            Słowem klientów
+          </span>
+          <h2 className="text-display-fade mt-3 text-balance text-4xl font-black leading-[1.02] tracking-tight md:text-6xl">
+            Opinie, które robią wynik.
+          </h2>
+          <p className="mt-4 text-balance text-base text-muted-foreground md:text-lg">
+            Realne efekty, realne marki. Każda karta to konkretny wynik, który dowożą nasze działania.
+          </p>
         </div>
 
-        <div className="mt-8 flex items-center justify-center gap-4">
-          <button
-            type="button"
-            onClick={prev}
-            aria-label="Poprzednia opinia"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary"
-          >
-            <ArrowLeft className="h-4 w-4" />
-          </button>
+        <div className="group relative mt-12 overflow-hidden rounded-3xl border border-border/80 bg-card/30 p-3 md:mt-14 md:p-4">
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-background to-transparent md:w-32" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-background to-transparent md:w-32" />
 
-          <div className="flex items-center gap-2" aria-hidden>
-            {reviews.map((_, idx) => (
-              <span
-                key={idx}
-                className={`h-1.5 rounded-full transition-all ${
-                  idx === i ? "w-8 bg-primary" : "w-1.5 bg-border"
-                }`}
-              />
+          <div className="flex w-max animate-marquee gap-4 [animation-duration:34s] group-hover:[animation-play-state:paused] md:gap-6">
+            {[...reviews, ...reviews].map((r, idx) => (
+              <article
+                key={`${r.author}-${idx}`}
+                className="relative w-[310px] shrink-0 rounded-2xl border border-border bg-card p-6 pt-14 shadow-[0_0_0_1px_rgba(255,255,255,0.02)] md:w-[380px]"
+              >
+                <Quote className="absolute right-5 top-5 h-8 w-8 text-primary/25" aria-hidden />
+
+                <div
+                  className="absolute left-6 top-5 flex items-center gap-1.5 text-primary"
+                  aria-label="Ocena 5 na 5"
+                >
+                  {Array.from({ length: 5 }).map((_, starIdx) => (
+                    <Star key={starIdx} className="h-4 w-4 fill-current" />
+                  ))}
+                </div>
+
+                <p className="pr-8 text-sm leading-relaxed text-foreground/90 md:text-base">
+                  “{r.quote}”
+                </p>
+
+                <footer className="mt-4 flex items-end justify-between gap-3 border-t border-border pt-4">
+                  <div>
+                    <p className="font-semibold tracking-tight text-foreground">{r.author}</p>
+                    <p className="text-xs font-medium text-muted-foreground md:text-sm">{r.role}</p>
+                  </div>
+                </footer>
+              </article>
             ))}
           </div>
-
-          <button
-            type="button"
-            onClick={next}
-            aria-label="Następna opinia"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary"
-          >
-            <ArrowRight className="h-4 w-4" />
-          </button>
         </div>
       </div>
     </section>
