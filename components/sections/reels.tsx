@@ -1,4 +1,5 @@
 import { ReelsCarousel } from "@/components/sections/reels-carousel"
+import { HintCard } from "@/components/ui/HintCard"
 
 export function Reels() {
   return (
@@ -12,6 +13,13 @@ export function Reels() {
 
         <div data-component-slot="external-reels">
           <ReelsCarousel />
+        </div>
+
+        <div className="mt-10 flex justify-center md:mt-14">
+          <HintCard
+            title="WSKAZÓWKA"
+            text="W krótkich filmach masz dokładnie 3 sekundy, żeby zatrzymać uwagę widza. Jeśli początek jest nudny, klient przewinie dalej. Zaczynamy mocno, bo to daje gigantyczne, darmowe zasięgi."
+          />
         </div>
       </div>
     </section>

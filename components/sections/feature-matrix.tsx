@@ -1,4 +1,5 @@
 import { ArrowUpRight, Bolt, Check, ChevronRight, Clock3, Minus, ShieldCheck, Sparkles } from "lucide-react"
+import { HintCard } from "@/components/ui/HintCard"
 
 type MatrixRow = {
   feature: string
@@ -199,6 +200,13 @@ export function FeatureMatrix() {
             Zobacz realizacje
             <ChevronRight className="ml-1.5 h-4 w-4" />
           </a>
+        </div>
+
+        <div className="mt-10 flex justify-center md:mt-14">
+          <HintCard
+            title="WSKAZÓWKA"
+            text="Nie traktuj profesjonalnej strony jako wydatku. Dobrze zaprogramowany system ma się szybko zwrócić, a przez kolejne lata pracować na Ciebie jak handlowiec, który nigdy nie śpi."
+          />
         </div>
       </div>
     </section>

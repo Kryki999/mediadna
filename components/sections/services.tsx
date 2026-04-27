@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/accordion"
 import { Iphone15Pro } from "@/components/magicui/iphone-15-pro"
 import { ChartContainer, type ChartConfig } from "@/components/ui/chart"
+import { HintCard } from "@/components/ui/HintCard"
 
 const services = [
   {
@@ -343,6 +344,13 @@ export function Services() {
               )
             })}
           </Accordion>
+        </div>
+
+        <div className="mt-10 flex justify-center md:hidden">
+          <HintCard
+            title="WSKAZÓWKA"
+            text="Prawie 9 na 10 Twoich klientów przegląda strony na telefonie. Dlatego nasze systemy projektujemy tak, aby to właśnie na małym ekranie działały najszybciej i wyglądały najlepiej."
+          />
         </div>
       </div>
     </section>
