@@ -16,6 +16,7 @@ class CardStreamController {
     this.minVelocity = 30;
     this.containerWidth = 0;
     this.cardLineWidth = 0;
+    this.loopWidth = 0;
     this.images = [
       "https://cdn.prod.website-files.com/68789c86c8bc802d61932544/689f20b55e654d1341fb06f8_4.1.png",
       "https://cdn.prod.website-files.com/68789c86c8bc802d61932544/689f20b5a080a31ee7154b19_1.png",
@@ -38,8 +39,8 @@ class CardStreamController {
 
   calculateDimensions() {
     this.containerWidth = this.container.offsetWidth;
-    const cardCount = this.cardLine.children.length;
-    this.cardLineWidth = (400 + 60) * cardCount;
+    this.cardLineWidth = this.cardLine.scrollWidth;
+    this.loopWidth = this.cardLineWidth / 2;
   }
 
   setupEventListeners() {
@@ -117,8 +118,10 @@ class CardStreamController {
   }
 
   updateCardPosition() {
-    if (this.position < -this.cardLineWidth) this.position = this.containerWidth;
-    else if (this.position > this.containerWidth) this.position = -this.cardLineWidth;
+    if (this.loopWidth > 0) {
+      while (this.position <= -this.loopWidth) this.position += this.loopWidth;
+      while (this.position > 0) this.position -= this.loopWidth;
+    }
     this.cardLine.style.transform = `translateX(${this.position}px)`;
     this.updateCardClipping();
   }
@@ -182,7 +185,9 @@ class CardStreamController {
 
   populateCardLine() {
     this.cardLine.innerHTML = "";
-    for (let i = 0; i < 30; i++) this.cardLine.appendChild(this.createCardWrapper(i));
+    const baseCount = 30;
+    for (let i = 0; i < baseCount; i++) this.cardLine.appendChild(this.createCardWrapper(i));
+    for (let i = 0; i < baseCount; i++) this.cardLine.appendChild(this.createCardWrapper(i));
   }
 
   updateCardClipping() {

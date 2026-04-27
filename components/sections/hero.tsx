@@ -2,13 +2,52 @@
 
 import { ArrowUpRight } from "lucide-react"
 import { motion, useReducedMotion } from "motion/react"
-import type { CSSProperties } from "react"
+import { useEffect, useMemo, useState, type CSSProperties } from "react"
 import { FloatingDock } from "@/components/magicui/floating-dock"
 import { VideoText } from "@/components/magicui/video-text"
 import { Button } from "@/components/ui/button"
 
 export function Hero() {
   const prefersReducedMotion = useReducedMotion()
+  const [isDesktop, setIsDesktop] = useState(false)
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 768px)")
+    const syncBreakpoint = () => setIsDesktop(mediaQuery.matches)
+
+    syncBreakpoint()
+    mediaQuery.addEventListener("change", syncBreakpoint)
+
+    return () => mediaQuery.removeEventListener("change", syncBreakpoint)
+  }, [])
+
+  const videoConfig = isDesktop
+    ? {
+        textX: 500,
+        textY: 160,
+        textLength: 1320,
+        viewY: -10,
+        viewHeight: 340,
+        overscanX: 240,
+        textClassName: "text-[460px] lg:text-[500px]",
+      }
+    : {
+        textX: 500,
+        textY: 188,
+        textLength: 1240,
+        viewY: -18,
+        viewHeight: 420,
+        overscanX: 280,
+        textClassName: "text-[390px] sm:text-[430px]",
+      }
+
+  const ambientCounts = isDesktop
+    ? { specks: 24, motes: 10, sparks: 8 }
+    : { specks: 12, motes: 5, sparks: 4 }
+
+  const specks = useMemo(() => Array.from({ length: ambientCounts.specks }), [ambientCounts.specks])
+  const motes = useMemo(() => Array.from({ length: ambientCounts.motes }), [ambientCounts.motes])
+  const sparks = useMemo(() => Array.from({ length: ambientCounts.sparks }), [ambientCounts.sparks])
 
   return (
     <section
@@ -17,11 +56,11 @@ export function Hero() {
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-[-32%] top-[-16rem] -z-10 h-[40rem] bg-[radial-gradient(ellipse_at_top,rgba(0,85,255,0.78)_0%,rgba(0,85,255,0.36)_34%,rgba(2,3,5,0)_76%)] blur-3xl"
+        className="pointer-events-none absolute inset-x-[-32%] top-[-16rem] -z-10 h-[40rem] bg-[radial-gradient(ellipse_at_top,rgba(0,85,255,0.78)_0%,rgba(0,85,255,0.36)_34%,rgba(2,3,5,0)_76%)] blur-xl"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-[-14%] top-[-8rem] -z-10 h-[24rem] bg-[radial-gradient(ellipse_at_top,rgba(120,170,255,0.36)_0%,rgba(0,85,255,0.14)_46%,rgba(2,3,5,0)_78%)] blur-2xl"
+        className="pointer-events-none absolute inset-x-[-14%] top-[-8rem] -z-10 h-[24rem] bg-[radial-gradient(ellipse_at_top,rgba(120,170,255,0.36)_0%,rgba(0,85,255,0.14)_46%,rgba(2,3,5,0)_78%)] blur-lg"
       />
       <div
         aria-hidden
@@ -32,7 +71,7 @@ export function Hero() {
         className="pointer-events-none absolute inset-x-0 bottom-0 -z-20 h-40 bg-gradient-to-b from-transparent to-[#020305]"
       />
       <div className="ambient-dust" aria-hidden>
-        {Array.from({ length: 72 }).map((_, idx) => {
+        {specks.map((_, idx) => {
           const left = (idx * 31) % 100
           const top = (idx * 17 + 9) % 100
           const size = 3 + ((idx * 7) % 10)
@@ -42,7 +81,7 @@ export function Hero() {
           return (
             <span
               key={`speck-${idx}`}
-              className={`ambient-speck ${idx > 17 ? "hidden md:block" : ""}`}
+              className="ambient-speck"
               style={
                 {
                   left: `${left}%`,
@@ -59,7 +98,7 @@ export function Hero() {
           )
         })}
 
-        {Array.from({ length: 28 }).map((_, idx) => {
+        {motes.map((_, idx) => {
           const left = (idx * 23 + 11) % 100
           const top = (idx * 19 + 22) % 100
           const size = 14 + ((idx * 5) % 20)
@@ -69,7 +108,7 @@ export function Hero() {
           return (
             <span
               key={`mote-${idx}`}
-              className={`ambient-mote ${idx > 7 ? "hidden md:block" : ""}`}
+              className="ambient-mote"
               style={
                 {
                   left: `${left}%`,
@@ -86,7 +125,7 @@ export function Hero() {
           )
         })}
 
-        {Array.from({ length: 20 }).map((_, idx) => {
+        {sparks.map((_, idx) => {
           const left = (idx * 27 + 6) % 100
           const top = (idx * 21 + 14) % 100
           const size = 7 + ((idx * 3) % 6)
@@ -96,7 +135,7 @@ export function Hero() {
           return (
             <span
               key={`spark-${idx}`}
-              className={`ambient-spark ${idx > 5 ? "hidden md:block" : ""}`}
+              className="ambient-spark"
               style={
                 {
                   left: `${left}%`,
@@ -122,32 +161,12 @@ export function Hero() {
           <h2 className="text-display-fade mt-1 text-balance text-center text-6xl font-black leading-[0.9] tracking-[-0.055em] sm:text-7xl md:text-8xl">
             CYFROWE
           </h2>
-          <div className="mt-2 w-full max-w-[99vw] sm:max-w-[96vw] md:max-w-[1120px]">
-            <div className="md:hidden">
-              <VideoText
-                text="DNA"
-                src="/dna-fluid.mp4"
-                className="drop-shadow-[0_0_42px_rgba(0,85,255,0.3)]"
-                textX={500}
-                textY={188}
-                textLength={1240}
-                viewY={-18}
-                viewHeight={420}
-                overscanX={280}
-                textClassName="text-[390px] sm:text-[430px]"
-              />
-            </div>
-
-            <div className="hidden md:block">
-              <VideoText
-                text="DNA"
-                src="/dna-fluid.mp4"
-                className="drop-shadow-[0_0_42px_rgba(0,85,255,0.3)]"
-                textX={500}
-                textLength={1320}
-                textClassName="text-[460px] lg:text-[500px]"
-              />
-            </div>
+          <div className="relative mt-2 w-full max-w-[99vw] sm:max-w-[96vw] md:max-w-[1120px]">
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-x-[12%] top-1/2 h-16 -translate-y-1/2 rounded-full bg-primary/45 blur-[72px] md:inset-x-[18%] md:h-20"
+            />
+            <VideoText text="DNA" src="/dna-fluid.mp4" {...videoConfig} />
           </div>
         </div>
 
