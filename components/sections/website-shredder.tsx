@@ -11,9 +11,9 @@ export function WebsiteShredder() {
 
     return () => {
       if (scannerScript.parentNode) scannerScript.parentNode.removeChild(scannerScript)
-      ;(window as Window & { cardStream?: unknown }).cardStream = null
-      ;(window as Window & { particleSystem?: { destroy?: () => void } }).particleSystem?.destroy?.()
-      ;(window as Window & { particleScanner?: { destroy?: () => void } }).particleScanner?.destroy?.()
+        ; (window as Window & { cardStream?: unknown }).cardStream = null
+        ; (window as Window & { particleSystem?: { destroy?: () => void } }).particleSystem?.destroy?.()
+        ; (window as Window & { particleScanner?: { destroy?: () => void } }).particleScanner?.destroy?.()
     }
   }, [])
 
@@ -24,13 +24,9 @@ export function WebsiteShredder() {
           Nie przepalaj budżetu
           <br />
           <span className="bg-gradient-to-r from-primary via-[#4d85ff] to-primary bg-clip-text text-transparent">
-            na stronę bez zwrotu
+            na słabą stronę internetową
           </span>
         </h2>
-        <p className="mx-auto max-w-3xl text-pretty text-base font-medium leading-relaxed text-gray-400 md:text-xl">
-          Słaba strona to koszt, który nie wraca — tylko udaje inwestycję. Poniżej widać różnicę: gdzie giną pieniądze,
-          a gdzie dostajesz system, który realnie dowozi leady i sprzedaż.
-        </p>
       </div>
 
       <div className="relative mt-8 w-full overflow-hidden bg-black md:mt-10">

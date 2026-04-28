@@ -21,26 +21,6 @@ export function Hero() {
     return () => mediaQuery.removeEventListener("change", syncBreakpoint)
   }, [])
 
-  const videoConfig = isDesktop
-    ? {
-      textX: 500,
-      textY: 160,
-      textLength: 1320,
-      viewY: -10,
-      viewHeight: 340,
-      overscanX: 240,
-      textClassName: "text-[460px] lg:text-[500px]",
-    }
-    : {
-      textX: 500,
-      textY: 188,
-      textLength: 1240,
-      viewY: -18,
-      viewHeight: 420,
-      overscanX: 280,
-      textClassName: "text-[390px] sm:text-[430px]",
-    }
-
   const ambientCounts = isDesktop
     ? { specks: 24, motes: 10, sparks: 8 }
     : { specks: 12, motes: 5, sparks: 4 }
@@ -161,12 +141,16 @@ export function Hero() {
           <h2 className="text-display-fade mt-1 text-balance text-center text-6xl font-black leading-[0.9] tracking-[-0.055em] sm:text-7xl md:text-8xl">
             CYFROWE
           </h2>
-          <div className="relative mt-2 w-full max-w-[99vw] sm:max-w-[96vw] md:max-w-[1120px]">
+          <div className="relative mt-2 flex w-full justify-center">
             <div
               aria-hidden
               className="pointer-events-none absolute inset-x-[12%] top-1/2 h-16 -translate-y-1/2 rounded-full bg-primary/45 blur-[72px] md:inset-x-[18%] md:h-20"
             />
-            <VideoText text="DNA" src="/dna-fluid.mp4" {...videoConfig} />
+            <VideoText
+              text="DNA"
+              src="/dna-fluid.mp4"
+              className="font-black leading-none tracking-[-0.04em] text-[clamp(150px,32vw,240px)]"
+            />
           </div>
         </div>
 
