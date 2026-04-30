@@ -1,7 +1,8 @@
 "use client"
 
 import { Icon } from "@iconify/react"
-import { useEffect, useRef, useState } from "react"
+import * as AccordionPrimitive from "@radix-ui/react-accordion"
+import { type ReactNode, useEffect, useRef, useState } from "react"
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts"
 import {
   Accordion,
@@ -163,11 +164,26 @@ function PhonePreview({
   )
 }
 
+function MobileAccordionContent({
+  className,
+  children,
+}: {
+  className?: string
+  children: ReactNode
+}) {
+  return (
+    <AccordionPrimitive.Content
+      className={`overflow-hidden text-sm data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down data-[state=closed]:duration-200 data-[state=open]:duration-260 ${className ?? ""}`}
+    >
+      <div className="pt-0 pb-4">{children}</div>
+    </AccordionPrimitive.Content>
+  )
+}
+
 export function Services() {
   const [activeServiceId, setActiveServiceId] = useState(services[0].id)
   const [leavingPreviewId, setLeavingPreviewId] = useState<string | null>(null)
   const previousActiveRef = useRef(activeServiceId)
-  const previousMobileActiveRef = useRef(activeServiceId)
   const mobileItemRefs = useRef<Record<string, HTMLDivElement | null>>({})
 
   useEffect(() => {
@@ -178,37 +194,26 @@ export function Services() {
     return () => clearTimeout(timeout)
   }, [activeServiceId])
 
-  useEffect(() => {
-    if (window.innerWidth >= 768) {
-      previousMobileActiveRef.current = activeServiceId
-      return
-    }
-
-    if (previousMobileActiveRef.current === activeServiceId) return
-    previousMobileActiveRef.current = activeServiceId
-
-    const target = mobileItemRefs.current[activeServiceId]
-    if (!target) return
-
-    const performScroll = () => {
-      const top = target.getBoundingClientRect().top + window.scrollY - 88
-      window.scrollTo({ top, behavior: "smooth" })
-    }
-
-    // First pass right after opening, second pass after layout settles.
-    const timerA = window.setTimeout(performScroll, 80)
-    const timerB = window.setTimeout(performScroll, 360)
-    return () => {
-      window.clearTimeout(timerA)
-      window.clearTimeout(timerB)
-    }
-  }, [activeServiceId])
-
   const current = services.find((s) => s.id === activeServiceId) ?? services[0]
   const leavingPreview = services.find((s) => s.id === leavingPreviewId) ?? null
+  const scrollMobileItemIntoView = (id: string) => {
+    const target = mobileItemRefs.current[id]
+    if (!target) return
+    const stickyNav =
+      document.querySelector("[data-dynamic-island]") ??
+      document.querySelector("[data-site-nav]") ??
+      document.querySelector("header")
+    const stickyOffset =
+      stickyNav instanceof HTMLElement ? stickyNav.getBoundingClientRect().height + 16 : 100
+    const top = target.getBoundingClientRect().top + window.scrollY - stickyOffset
+    window.scrollTo({ top: Math.max(0, top), behavior: "smooth" })
+  }
+
   const handleAccordionChange = (value: string) => {
     if (!value) return
     setActiveServiceId(value)
+    if (window.innerWidth >= 768) return
+    window.setTimeout(() => scrollMobileItemIntoView(value), 120)
   }
 
   return (
@@ -339,7 +344,7 @@ export function Services() {
                       <span className="text-xl font-extrabold tracking-tight">{s.title}</span>
                     </span>
                   </AccordionTrigger>
-                  <AccordionContent className="pb-5">
+                  <MobileAccordionContent className="pb-5">
                     <p className="text-sm leading-relaxed text-muted-foreground">
                       {s.description}
                     </p>
@@ -352,7 +357,7 @@ export function Services() {
                     <div className="mt-5">
                       <PhonePreview current={s} leaving={null} className="max-w-[250px]" />
                     </div>
-                  </AccordionContent>
+                  </MobileAccordionContent>
                 </AccordionItem>
               )
             })}
