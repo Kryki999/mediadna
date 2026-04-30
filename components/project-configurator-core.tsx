@@ -40,6 +40,7 @@ const budgetRanges = [
   "Poniżej 5 000 zł",
   "5 000 - 15 000 zł",
   "Powyżej 15 000 zł",
+  "Wolę omówić budżet podczas rozmowy",
 ]
 
 const formSchema = z.object({
@@ -301,7 +302,7 @@ export function ProjectConfiguratorCore({
                   <FormItem>
                     <FormLabel>Budżet projektu *</FormLabel>
                     <FormControl>
-                      <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
+                      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                         {budgetRanges.map((budget) => (
                           <button
                             key={budget}
@@ -363,7 +364,7 @@ export function ProjectConfiguratorCore({
                 )}
               />
 
-              <div className="flex gap-3">
+              <div className="flex flex-col gap-3 sm:flex-row">
                 <Button type="button" variant="outline" className="h-12 flex-1" onClick={handleBack}>
                   <ChevronLeft className="mr-2 h-4 w-4" />
                   Wstecz
@@ -472,7 +473,7 @@ export function ProjectConfiguratorCore({
                 )}
               />
 
-              <div className="flex gap-3">
+              <div className="flex flex-col gap-3 sm:flex-row">
                 <Button type="button" variant="outline" className="h-12 flex-1" onClick={handleBack}>
                   <ChevronLeft className="mr-2 h-4 w-4" />
                   Wstecz
