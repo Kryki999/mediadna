@@ -14,7 +14,7 @@ const leadSchema = z.object({
   projectContext: z.string().optional(),
   name: z.string().min(2),
   phone: z.string().regex(/^\d{9}$/),
-  email: z.string().email(),
+  email: z.string().email().optional().or(z.literal("")),
   fax: z.string().optional(),
 })
 
@@ -73,7 +73,7 @@ export async function POST(request: Request) {
           <tr><th align="left">Link do audytu</th><td>${data.currentLink || "Nie podano"}</td></tr>
           <tr><th align="left">Imię</th><td>${data.name}</td></tr>
           <tr><th align="left">Telefon</th><td>${data.phone}</td></tr>
-          <tr><th align="left">Email</th><td>${data.email}</td></tr>
+          <tr><th align="left">Email</th><td>${data.email || "Nie podano"}</td></tr>
         </table>
         <h3>Priorytety klienta (Diagnoza)</h3>
         <ul>${diagnosisList}</ul>
@@ -86,7 +86,7 @@ export async function POST(request: Request) {
     const { error } = await resend.emails.send({
       from: fromEmail,
       to: [toEmail],
-      replyTo: data.email,
+      replyTo: data.email || undefined,
       subject: `Nowy lead: ${data.budgetRange} - ${data.name}`,
       html,
     })

@@ -58,72 +58,79 @@ export function BookingSection() {
             <div className="min-w-0 md:flex md:w-full md:flex-col md:items-end">
               <div className="ml-[calc(50%-50vw)] w-screen max-w-[100vw] md:ml-0 md:w-full md:max-w-none">
                 <div className="mx-auto w-full max-w-md space-y-6 px-4 pb-8 pt-2 md:px-0 md:pb-0 md:pt-0">
-                  <div className="space-y-2 rounded-xl border border-primary/20 bg-primary/10 p-4">
-                    <div className="flex items-center gap-2">
-                      <Badge className="rounded-full px-2 py-0 text-[10px]">SZYBKO</Badge>
-                      <span className="text-sm font-bold text-foreground">Wysokie zainteresowanie</span>
-                    </div>
-                    <p className="text-sm leading-relaxed text-muted-foreground">
-                      Jeśli nie znajdziesz terminu, zostaw kontakt przez szybki formularz — odezwiemy się z
-                      alternatywnymi godzinami.
-                    </p>
-                  </div>
-
-                  <div className="flex flex-col gap-6 overflow-hidden rounded-none border-x-0 border-b-0 border-t border-border bg-background/70 p-4 shadow-2xl md:rounded-[24px] md:border md:p-6">
-                    <div className="flex w-full justify-center">
-                      <Calendar
-                        mode="single"
-                        selected={date}
-                        onSelect={(value) => {
-                          setDate(value)
-                          setSelectedSlot(null)
-                        }}
-                        className="w-full rounded-md border-none bg-transparent p-0 shadow-none"
-                      />
-                    </div>
-
-                    <Separator className="bg-border" />
-
-                    <div className="w-full space-y-3">
-                      <p className="text-center text-xs font-bold uppercase text-muted-foreground">
-                        Dostępne godziny
-                      </p>
-                      <div className="grid grid-cols-2 gap-2">
-                        {["9:00", "10:30", "14:00", "16:30"].map((time) => (
-                          <Button
-                            key={time}
-                            variant={selectedSlot === time ? "default" : "outline"}
-                            className="w-full"
-                            onClick={() => setSelectedSlot(time)}
-                          >
-                            {time}
-                          </Button>
-                        ))}
+                  {!showInlineConfigurator ? (
+                    <>
+                      <div className="space-y-2 rounded-xl border border-primary/20 bg-primary/10 p-4">
+                        <div className="flex items-center gap-2">
+                          <Badge className="rounded-full px-2 py-0 text-[10px]">KROK 0</Badge>
+                          <span className="text-sm font-bold text-foreground">Wybierz termin konsultacji</span>
+                        </div>
+                        <p className="text-sm leading-relaxed text-muted-foreground">
+                          Po wyborze godziny od razu przejdziesz do konfiguratora projektu w tym samym miejscu.
+                        </p>
                       </div>
-                      <Button className="mt-2 w-full rounded-full" disabled={!date || !selectedSlot} onClick={handleGoToConfigurator}>
-                        {selectedSlot ? `Dalej do konfiguratora (${selectedSlot})` : "Wybierz godzinę"}
-                      </Button>
+
+                      <div className="flex flex-col gap-6 overflow-hidden rounded-none border-x-0 border-b-0 border-t border-border bg-background/70 p-4 shadow-2xl md:rounded-[24px] md:border md:p-6">
+                        <div className="flex w-full justify-center">
+                          <Calendar
+                            mode="single"
+                            selected={date}
+                            onSelect={(value) => {
+                              setDate(value)
+                              setSelectedSlot(null)
+                            }}
+                            className="w-full rounded-md border-none bg-transparent p-0 shadow-none"
+                          />
+                        </div>
+
+                        <Separator className="bg-border" />
+
+                        <div className="w-full space-y-3">
+                          <p className="text-center text-xs font-bold uppercase text-muted-foreground">
+                            Dostępne godziny
+                          </p>
+                          <div className="grid grid-cols-2 gap-2">
+                            {["9:00", "10:30", "14:00", "16:30"].map((time) => (
+                              <Button
+                                key={time}
+                                variant={selectedSlot === time ? "default" : "outline"}
+                                className="w-full"
+                                onClick={() => setSelectedSlot(time)}
+                              >
+                                {time}
+                              </Button>
+                            ))}
+                          </div>
+                          <Button className="mt-2 w-full rounded-full" disabled={!date || !selectedSlot} onClick={handleGoToConfigurator}>
+                            {selectedSlot ? `Dalej do konfiguratora (${selectedSlot})` : "Wybierz godzinę"}
+                          </Button>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <div ref={inlineConfiguratorRef} className="space-y-4">
+                      <div className="space-y-2 rounded-xl border border-primary/20 bg-primary/10 p-4">
+                        <div className="flex items-center gap-2">
+                          <Badge className="rounded-full px-2 py-0 text-[10px]">KROK 1</Badge>
+                          <span className="text-sm font-bold text-foreground">Konfigurator projektu</span>
+                        </div>
+                        <p className="text-sm leading-relaxed text-muted-foreground">
+                          Termin zapisany: {meetingPrefill?.date} o {meetingPrefill?.slot}. Dokończ konfigurację.
+                        </p>
+                      </div>
+                      <div className="rounded-none border-x-0 border-b-0 border-t border-border bg-background/70 p-4 shadow-2xl md:rounded-[24px] md:border md:p-6">
+                        <ProjectConfiguratorCore
+                          variant="inline"
+                          initialSource="calendar_configurator"
+                          initialMeeting={meetingPrefill}
+                        />
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               </div>
             </div>
           </div>
-          {showInlineConfigurator ? (
-            <div ref={inlineConfiguratorRef} className="mt-8 border-t border-border p-5 md:mt-10 md:p-0 md:pt-10">
-              <div className="mb-5 space-y-2">
-                <h3 className="text-2xl font-black tracking-tight md:text-3xl">Krok 2: dokończ konfigurator projektu</h3>
-                <p className="text-sm text-muted-foreground md:text-base">
-                  Termin spotkania jest już zapisany. Uzupełnij szczegóły, żebyśmy mogli przygotować rozmowę pod Twój cel.
-                </p>
-              </div>
-              <ProjectConfiguratorCore
-                variant="inline"
-                initialSource="calendar_configurator"
-                initialMeeting={meetingPrefill}
-              />
-            </div>
-          ) : null}
         </div>
       </div>
     </section>

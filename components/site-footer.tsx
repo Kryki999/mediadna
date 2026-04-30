@@ -20,7 +20,7 @@ export function SiteFooter() {
               data-configurator-trigger="true"
               className="mt-5 inline-block text-sm text-foreground transition-colors hover:text-primary"
             >
-              Pokaż numer
+              Skonfiguruj projekt
             </a>
           </div>
 
@@ -39,7 +39,7 @@ export function SiteFooter() {
                 Realizacje
               </a>
               <a href="#cta" data-configurator-trigger="true" className="text-muted-foreground transition-colors hover:text-foreground">
-                Kontakt
+                Skonfiguruj projekt
               </a>
               <a href="#careers" className="text-muted-foreground transition-colors hover:text-foreground">
                 Kariera

@@ -1,19 +1,14 @@
 "use client"
 
 import * as React from "react"
+import { Icon } from "@iconify/react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import {
   CheckCircle2,
   ChevronLeft,
   ChevronRight,
-  Gem,
-  HandHelping,
-  RefreshCcw,
+  Clock3,
   Send,
-  ShoppingCart,
-  Target,
-  Wallet,
-  Workflow,
 } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
@@ -33,12 +28,12 @@ import { Progress } from "@/components/ui/progress"
 import { Textarea } from "@/components/ui/textarea"
 
 const diagnosisTiles = [
-  { id: "lead-generation", label: "Pozyskiwanie leadów / Zwiększenie sprzedaży", icon: Target },
-  { id: "premium-website", label: "Nowy, prestiżowy wizerunek (Strona WWW)", icon: Gem },
-  { id: "ecommerce-sales", label: "Sprzedaż produktów online (E-commerce)", icon: ShoppingCart },
-  { id: "process-automation", label: "Automatyzacja procesów w firmie", icon: Workflow },
-  { id: "website-modernization", label: "Modernizacja obecnej, niedziałającej strony", icon: RefreshCcw },
-  { id: "need-consulting", label: "Nie jestem pewien / Potrzebuję doradztwa", icon: HandHelping },
+  { id: "premium-website", label: "Nowy, prestiżowy wizerunek (Strona WWW)", icon: "fluent-emoji:gem-stone" },
+  { id: "lead-generation", label: "Pozyskiwanie leadów / Zwiększenie sprzedaży", icon: "fluent-emoji:bullseye" },
+  { id: "ecommerce-sales", label: "Sprzedaż produktów online (E-commerce)", icon: "fluent-emoji:shopping-cart" },
+  { id: "process-automation", label: "Automatyzacja procesów w firmie", icon: "fluent-emoji:gear" },
+  { id: "website-modernization", label: "Modernizacja obecnej, niedziałającej strony", icon: "fluent-emoji:hammer-and-wrench" },
+  { id: "need-consulting", label: "Nie jestem pewien / Potrzebuję doradztwa", icon: "fluent-emoji:person-raising-hand" },
 ]
 
 const budgetRanges = [
@@ -57,7 +52,7 @@ const formSchema = z.object({
   projectContext: z.string().optional(),
   name: z.string().min(2, "Imię musi mieć minimum 2 znaki"),
   phone: z.string().regex(/^\d{9}$/, "Numer telefonu musi mieć dokładnie 9 cyfr"),
-  email: z.string().email("Niepoprawny adres e-mail"),
+  email: z.string().email("Niepoprawny adres e-mail").optional().or(z.literal("")),
   fax: z.string().optional(),
 })
 
@@ -202,7 +197,7 @@ export function ProjectConfiguratorCore({
         <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/15">
           <CheckCircle2 className="h-8 w-8 text-primary" />
         </div>
-        <h3 className="text-2xl font-black tracking-tight">Planer projektu wysłany</h3>
+        <h3 className="text-2xl font-black tracking-tight">Konfigurator projektu wysłany</h3>
         <p className="max-w-xl text-muted-foreground">
           Dziękujemy za szczegóły. Wracamy do Ciebie z bezpłatną, spersonalizowaną wyceną.
         </p>
@@ -221,16 +216,24 @@ export function ProjectConfiguratorCore({
 
   return (
     <div ref={formContainerRef} className="space-y-4 scroll-mt-24">
-      <div className="rounded-xl border border-primary/20 bg-primary/10 p-3 text-sm text-primary-foreground">
-        {meetingPrefill ? (
+      {step === 1 && (
+        <div className="rounded-xl border border-green-500/25 bg-green-500/10 p-3">
+          <div className="flex items-start gap-3">
+            <Clock3 className="mt-0.5 h-5 w-5 shrink-0 text-green-400" />
+            <p className="text-sm text-green-100">
+              Skonfiguruj projekt. Wybierz parametry projektu, aby otrzymać <strong>precyzyjną wycenę</strong>.
+            </p>
+          </div>
+        </div>
+      )}
+      {meetingPrefill ? (
+        <div className="rounded-xl border border-primary/20 bg-primary/10 p-3 text-sm text-primary-foreground">
           <span>
             Wybrany termin spotkania: <strong>{meetingPrefill.date}</strong> o <strong>{meetingPrefill.slot}</strong>.
             Dokończ konfigurację, abyśmy mogli się przygotować.
           </span>
-        ) : (
-          <span>Wypełnij 3 krótkie kroki i odbierz konkretny plan działania dla Twojego projektu.</span>
-        )}
-      </div>
+        </div>
+      ) : null}
 
       <div className="space-y-2">
         <div className="flex justify-between text-sm text-muted-foreground">
@@ -254,7 +257,7 @@ export function ProjectConfiguratorCore({
                       <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                         {diagnosisTiles.map((item) => {
                           const active = field.value.includes(item.id)
-                          const Icon = item.icon
+                          const iconName = item.icon
                           return (
                           <button
                             key={item.id}
@@ -269,7 +272,7 @@ export function ProjectConfiguratorCore({
                             }`}
                           >
                             <span className="flex items-start gap-3">
-                              <Icon className="mt-0.5 h-4 w-4 shrink-0" />
+                              <Icon icon={iconName} className="mt-0.5 h-5 w-5 shrink-0" />
                               <span>{item.label}</span>
                             </span>
                           </button>
@@ -309,7 +312,7 @@ export function ProjectConfiguratorCore({
                             }`}
                           >
                             <span className="flex items-center gap-2">
-                              <Wallet className="h-4 w-4 shrink-0" />
+                              <Icon icon="fluent-emoji:money-bag" className="h-5 w-5 shrink-0" />
                               <span>{budget}</span>
                             </span>
                           </button>
@@ -328,7 +331,7 @@ export function ProjectConfiguratorCore({
                   <FormItem>
                     <FormLabel>Link do obecnej strony lub Social Media (Do darmowego audytu)</FormLabel>
                     <FormControl>
-                      <Input placeholder="https://..." {...field} />
+                      <Input placeholder="Twoja strona / profil firmowy" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -424,7 +427,6 @@ export function ProjectConfiguratorCore({
                       />
                     </FormControl>
                     <FormMessage />
-                    <p className="text-xs text-muted-foreground">Zadzwonimy tylko z konkretem.</p>
                   </FormItem>
                 )}
               />
@@ -434,7 +436,7 @@ export function ProjectConfiguratorCore({
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email *</FormLabel>
+                    <FormLabel>Email (opcjonalnie)</FormLabel>
                     <FormControl>
                       <Input
                         type="email"

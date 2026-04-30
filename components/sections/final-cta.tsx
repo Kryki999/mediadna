@@ -53,7 +53,7 @@ export function FinalCta() {
             </div>
             <Button asChild variant="outline" className="rounded-full bg-transparent">
               <a href="#cta" data-configurator-trigger="true">
-                Zapisz się na early access
+                Skonfiguruj projekt
                 <ArrowRight className="ml-2 h-4 w-4" />
               </a>
             </Button>

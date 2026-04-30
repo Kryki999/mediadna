@@ -203,7 +203,7 @@ export function SiteNav() {
                     className="w-full rounded-full border border-primary/80 bg-primary px-10 text-base font-bold text-white shadow-[0_14px_36px_rgba(0,85,255,0.42)] hover:bg-primary/90"
                   >
                     <a href="#cta" data-configurator-trigger="true" onClick={() => setOpen(false)}>
-                      Umów strategię
+                      Skonfiguruj projekt
                       <ArrowUpRight className="ml-1.5 h-4 w-4" />
                     </a>
                   </Button>

@@ -42,7 +42,7 @@ export function StickyMobileCta() {
           data-configurator-trigger="true"
           className="dna-glow inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-5 py-3.5 text-sm font-medium text-primary-foreground shadow-[0_0_30px_-10px_var(--primary)]"
         >
-          Umów strategię
+          Skonfiguruj projekt
           <ArrowRight className="h-4 w-4" />
         </a>
       </div>

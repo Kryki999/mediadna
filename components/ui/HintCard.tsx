@@ -22,7 +22,7 @@ export function HintCard({
   title,
   text,
   className,
-  ctaLabel = "Umów konsultację",
+  ctaLabel = "Skonfiguruj projekt",
   ctaHref = "#cta",
   hideCta = false,
 }: HintCardProps) {

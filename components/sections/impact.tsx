@@ -137,7 +137,7 @@ function PortfolioTeaserCard({ card }: { card: CtaPortfolioCard }) {
             className="mt-6 h-12 w-full rounded-xl border-[#3a4354] bg-white text-black transition-colors hover:bg-[#dce7ff] md:w-[320px]"
           >
             <a href="#cta" data-configurator-trigger="true">
-              {card.cta}
+              Skonfiguruj projekt
               <ArrowUpRight className="ml-1.5 h-4 w-4" />
             </a>
           </Button>
@@ -218,7 +218,7 @@ function ProjectCard({ project, index }: { project: CaseStudyCard; index: number
               className="h-12 w-full rounded-xl border-[#3a4354] bg-white text-black transition-colors hover:bg-[#dce7ff]"
             >
               <a href="#cta" data-configurator-trigger="true">
-                {project.cta}
+                Skonfiguruj projekt
                 <ArrowUpRight className="ml-1.5 h-4 w-4" />
               </a>
             </Button>

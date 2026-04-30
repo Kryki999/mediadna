@@ -27,9 +27,9 @@ export function ContactModalRoot() {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent className="max-h-[90svh] overflow-y-auto border-border bg-card p-6 sm:max-w-2xl">
         <DialogHeader>
-          <DialogTitle className="text-3xl font-black tracking-tight">Planer projektu</DialogTitle>
+          <DialogTitle className="text-3xl font-black tracking-tight">Konfigurator projektu</DialogTitle>
           <DialogDescription>
-            Odpowiedz na kilka pytań i otrzymaj dopasowany plan działania.
+            Odpowiedz na kilka pytań i odbierz precyzyjną wycenę.
           </DialogDescription>
         </DialogHeader>
         <ProjectConfiguratorCore variant="modal" onSuccess={() => setOpen(false)} />
