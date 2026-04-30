@@ -12,7 +12,7 @@ type HintCardProps = {
   className?: string
   /** Tekst przycisku CTA pod wskazówką */
   ctaLabel?: string
-  /** Docelowy anchor (domyślnie sekcja kontaktu) */
+  /** Docelowy anchor (domyślnie sekcja kalendarza) */
   ctaHref?: string
   /** Ukryj przycisk (np. gdy CTA jest już obok) */
   hideCta?: boolean
@@ -98,7 +98,7 @@ export function HintCard({
             variant="default"
             className="h-9 shrink-0 rounded-full border border-primary/80 bg-primary px-4 text-xs font-semibold text-white shadow-[0_10px_26px_rgba(0,85,255,0.32)] hover:bg-primary/90 sm:px-5 sm:text-sm"
           >
-            <a href={ctaHref} data-contact-trigger="true">
+            <a href={ctaHref} data-configurator-trigger="true">
               {ctaLabel}
               <ArrowUpRight className="ml-1 h-3.5 w-3.5" />
             </a>

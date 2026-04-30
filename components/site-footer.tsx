@@ -17,7 +17,7 @@ export function SiteFooter() {
             </div>
             <a
               href="#cta"
-              data-contact-trigger="true"
+              data-configurator-trigger="true"
               className="mt-5 inline-block text-sm text-foreground transition-colors hover:text-primary"
             >
               Pokaż numer
@@ -38,7 +38,7 @@ export function SiteFooter() {
               <a href="#impact" className="text-muted-foreground transition-colors hover:text-foreground">
                 Realizacje
               </a>
-              <a href="#cta" className="text-muted-foreground transition-colors hover:text-foreground">
+              <a href="#cta" data-configurator-trigger="true" className="text-muted-foreground transition-colors hover:text-foreground">
                 Kontakt
               </a>
               <a href="#careers" className="text-muted-foreground transition-colors hover:text-foreground">

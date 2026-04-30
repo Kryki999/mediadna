@@ -136,7 +136,7 @@ function PortfolioTeaserCard({ card }: { card: CtaPortfolioCard }) {
             variant="outline"
             className="mt-6 h-12 w-full rounded-xl border-[#3a4354] bg-white text-black transition-colors hover:bg-[#dce7ff] md:w-[320px]"
           >
-            <a href="#cta" data-contact-trigger="true">
+            <a href="#cta" data-configurator-trigger="true">
               {card.cta}
               <ArrowUpRight className="ml-1.5 h-4 w-4" />
             </a>
@@ -149,7 +149,7 @@ function PortfolioTeaserCard({ card }: { card: CtaPortfolioCard }) {
               <a
                 key={tile.id}
                 href={tile.href ?? "#cta"}
-                data-contact-trigger={tile.href ? undefined : "true"}
+                data-configurator-trigger={tile.href ? undefined : "true"}
                 aria-label={tile.isFeatured ? "Tu będzie Twój projekt" : `Projekt referencyjny: ${tile.title}`}
                 onMouseEnter={() => setActiveTileId(tile.id)}
                 onFocus={() => setActiveTileId(tile.id)}
@@ -217,7 +217,7 @@ function ProjectCard({ project, index }: { project: CaseStudyCard; index: number
               variant="outline"
               className="h-12 w-full rounded-xl border-[#3a4354] bg-white text-black transition-colors hover:bg-[#dce7ff]"
             >
-              <a href="#cta" data-contact-trigger="true">
+              <a href="#cta" data-configurator-trigger="true">
                 {project.cta}
                 <ArrowUpRight className="ml-1.5 h-4 w-4" />
               </a>

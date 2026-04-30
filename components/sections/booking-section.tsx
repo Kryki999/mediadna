@@ -6,10 +6,27 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"
 import { Separator } from "@/components/ui/separator"
+import { ProjectConfiguratorCore } from "@/components/project-configurator-core"
 
 export function BookingSection() {
   const [date, setDate] = React.useState<Date | undefined>(new Date())
   const [selectedSlot, setSelectedSlot] = React.useState<string | null>(null)
+  const [showInlineConfigurator, setShowInlineConfigurator] = React.useState(false)
+  const [meetingPrefill, setMeetingPrefill] = React.useState<{ date: string; slot: string } | null>(null)
+  const inlineConfiguratorRef = React.useRef<HTMLDivElement>(null)
+
+  const handleGoToConfigurator = () => {
+    if (!date || !selectedSlot) return
+    const payload = {
+      date: date.toLocaleDateString("pl-PL"),
+      slot: selectedSlot,
+    }
+    setMeetingPrefill(payload)
+    setShowInlineConfigurator(true)
+    window.setTimeout(() => {
+      inlineConfiguratorRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+    }, 80)
+  }
 
   return (
     <section id="cta" className="w-full overflow-x-hidden border-t border-border bg-background py-16 md:py-28">
@@ -83,8 +100,8 @@ export function BookingSection() {
                           </Button>
                         ))}
                       </div>
-                      <Button className="mt-2 w-full rounded-full" disabled={!date || !selectedSlot}>
-                        {selectedSlot ? `Potwierdź ${selectedSlot}` : "Wybierz godzinę"}
+                      <Button className="mt-2 w-full rounded-full" disabled={!date || !selectedSlot} onClick={handleGoToConfigurator}>
+                        {selectedSlot ? `Dalej do konfiguratora (${selectedSlot})` : "Wybierz godzinę"}
                       </Button>
                     </div>
                   </div>
@@ -92,6 +109,21 @@ export function BookingSection() {
               </div>
             </div>
           </div>
+          {showInlineConfigurator ? (
+            <div ref={inlineConfiguratorRef} className="mt-8 border-t border-border p-5 md:mt-10 md:p-0 md:pt-10">
+              <div className="mb-5 space-y-2">
+                <h3 className="text-2xl font-black tracking-tight md:text-3xl">Krok 2: dokończ konfigurator projektu</h3>
+                <p className="text-sm text-muted-foreground md:text-base">
+                  Termin spotkania jest już zapisany. Uzupełnij szczegóły, żebyśmy mogli przygotować rozmowę pod Twój cel.
+                </p>
+              </div>
+              <ProjectConfiguratorCore
+                variant="inline"
+                initialSource="calendar_configurator"
+                initialMeeting={meetingPrefill}
+              />
+            </div>
+          ) : null}
         </div>
       </div>
     </section>

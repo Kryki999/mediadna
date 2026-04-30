@@ -6,7 +6,6 @@ import { type ReactNode, useEffect, useRef, useState } from "react"
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts"
 import {
   Accordion,
-  AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
@@ -126,6 +125,7 @@ function ServiceVisual({
   )
 }
 
+// Desktop only: crossfade between services
 function PhonePreview({
   current,
   leaving,
@@ -164,21 +164,44 @@ function PhonePreview({
   )
 }
 
-function MobileAccordionContent({
+// Mobile only: plain video, no crossfade transitions
+function MobilePhonePreview({
+  service,
   className,
-  children,
 }: {
+  service: ServiceItem
   className?: string
-  children: ReactNode
 }) {
   return (
-    <AccordionPrimitive.Content
-      className={`overflow-hidden text-sm data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down data-[state=closed]:duration-200 data-[state=open]:duration-260 ${className ?? ""}`}
-    >
-      <div className="pt-0 pb-4">{children}</div>
+    <Iphone15Pro className={className}>
+      <video
+        key={service.id}
+        src={service.reel.src}
+        poster={service.reel.poster}
+        autoPlay
+        loop
+        muted
+        playsInline
+        aria-label={service.reel.alt}
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+    </Iphone15Pro>
+  )
+}
+
+// Mobile only: plain height animation, no inner transitions
+function MobileAccordionContent({ children }: { children: ReactNode }) {
+  return (
+    <AccordionPrimitive.Content className="overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
+      <div className="pb-4">{children}</div>
     </AccordionPrimitive.Content>
   )
 }
+
+// Both accordion animations run from t=0. Close: 200ms, Open: ~260ms (default Radix).
+// We wait for the longer one + a small buffer before measuring scroll position.
+const ACCORDION_SETTLE_MS = 320
 
 export function Services() {
   const [activeServiceId, setActiveServiceId] = useState(services[0].id)
@@ -186,6 +209,7 @@ export function Services() {
   const previousActiveRef = useRef(activeServiceId)
   const mobileItemRefs = useRef<Record<string, HTMLDivElement | null>>({})
 
+  // Desktop: drive the leaving-preview crossfade in PhonePreview
   useEffect(() => {
     if (previousActiveRef.current === activeServiceId) return
     setLeavingPreviewId(previousActiveRef.current)
@@ -196,24 +220,29 @@ export function Services() {
 
   const current = services.find((s) => s.id === activeServiceId) ?? services[0]
   const leavingPreview = services.find((s) => s.id === leavingPreviewId) ?? null
-  const scrollMobileItemIntoView = (id: string) => {
-    const target = mobileItemRefs.current[id]
-    if (!target) return
-    const stickyNav =
-      document.querySelector("[data-dynamic-island]") ??
-      document.querySelector("[data-site-nav]") ??
-      document.querySelector("header")
-    const stickyOffset =
-      stickyNav instanceof HTMLElement ? stickyNav.getBoundingClientRect().height + 16 : 100
-    const top = target.getBoundingClientRect().top + window.scrollY - stickyOffset
-    window.scrollTo({ top: Math.max(0, top), behavior: "smooth" })
-  }
 
   const handleAccordionChange = (value: string) => {
     if (!value) return
     setActiveServiceId(value)
     if (window.innerWidth >= 768) return
-    window.setTimeout(() => scrollMobileItemIntoView(value), 120)
+
+    // Wait until accordion animations have settled, then measure and scroll.
+    // requestAnimationFrame ensures the browser has committed the final layout.
+    window.setTimeout(() => {
+      window.requestAnimationFrame(() => {
+        const target = mobileItemRefs.current[value]
+        if (!target) return
+
+        // The sticky <header> is h-14 (56px) + pt-2.5 (10px) = ~66px on mobile.
+        // We read offsetHeight directly so we stay correct if the nav ever changes size.
+        const nav = document.querySelector("header")
+        const navHeight = nav instanceof HTMLElement ? nav.offsetHeight : 56
+        const offset = navHeight + 16
+
+        const top = target.getBoundingClientRect().top + window.scrollY - offset
+        window.scrollTo({ top: Math.max(0, top), behavior: "smooth" })
+      })
+    }, ACCORDION_SETTLE_MS)
   }
 
   return (
@@ -284,7 +313,6 @@ export function Services() {
           </div>
 
           <div role="tabpanel" className="relative overflow-hidden rounded-3xl border border-border bg-card p-8 md:p-10">
-            {/* Soft background glow */}
             <div
               aria-hidden
               className="absolute right-0 top-0 h-64 w-64 rounded-full bg-primary/10 blur-3xl"
@@ -326,41 +354,39 @@ export function Services() {
             onValueChange={handleAccordionChange}
             className="-mx-5 divide-y divide-border overflow-hidden rounded-none border-y border-x-0 border-border bg-card sm:-mx-6"
           >
-            {services.map((s) => {
-              return (
-                <AccordionItem
-                  key={s.id}
-                  value={s.id}
-                  className="border-0 px-5 transition-colors duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] [&[data-state=open]]:bg-background/40"
-                >
-                  <div
-                    ref={(node) => {
-                      mobileItemRefs.current[s.id] = node
-                    }}
-                  />
-                  <AccordionTrigger className="items-center py-5 transition-all duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:no-underline">
-                    <span className="flex min-w-0 flex-1 items-center gap-3 text-left">
-                      <Icon icon={s.tabIcon} className="size-9 shrink-0" aria-hidden />
-                      <span className="text-xl font-extrabold tracking-tight">{s.title}</span>
-                    </span>
-                  </AccordionTrigger>
-                  <MobileAccordionContent className="pb-5">
-                    <p className="text-sm leading-relaxed text-muted-foreground">
-                      {s.description}
-                    </p>
-                    <p className="mt-4 text-sm text-muted-foreground/90">{s.lead}</p>
-                    {s.visual === "chart" ? (
-                      <div className="mt-5 h-52 rounded-2xl border border-border/80 bg-background/55 p-3">
-                        <ServiceVisual service={s} activeKey={activeServiceId} />
-                      </div>
-                    ) : null}
-                    <div className="mt-5">
-                      <PhonePreview current={s} leaving={null} className="max-w-[250px]" />
+            {services.map((s) => (
+              <AccordionItem
+                key={s.id}
+                value={s.id}
+                className="border-0 px-5 [&[data-state=open]]:bg-background/40"
+              >
+                <div
+                  ref={(node) => {
+                    mobileItemRefs.current[s.id] = node
+                  }}
+                />
+                <AccordionTrigger className="items-center py-5 hover:no-underline">
+                  <span className="flex min-w-0 flex-1 items-center gap-3 text-left">
+                    <Icon icon={s.tabIcon} className="size-9 shrink-0" aria-hidden />
+                    <span className="text-xl font-extrabold tracking-tight">{s.title}</span>
+                  </span>
+                </AccordionTrigger>
+                <MobileAccordionContent>
+                  <p className="text-sm leading-relaxed text-muted-foreground">
+                    {s.description}
+                  </p>
+                  <p className="mt-4 text-sm text-muted-foreground/90">{s.lead}</p>
+                  {s.visual === "chart" ? (
+                    <div className="mt-5 h-52 rounded-2xl border border-border/80 bg-background/55 p-3">
+                      <ServiceVisual service={s} activeKey={activeServiceId} />
                     </div>
-                  </MobileAccordionContent>
-                </AccordionItem>
-              )
-            })}
+                  ) : null}
+                  <div className="mt-5">
+                    <MobilePhonePreview service={s} className="max-w-[250px]" />
+                  </div>
+                </MobileAccordionContent>
+              </AccordionItem>
+            ))}
           </Accordion>
         </div>
 
@@ -374,4 +400,3 @@ export function Services() {
     </section>
   )
 }
-

@@ -59,6 +59,7 @@ function DockItem({ item, mouseX }: DockItemProps) {
     <motion.a
       ref={itemRef}
       href={item.href}
+      data-configurator-trigger="true"
       aria-label={item.label}
       className="group relative inline-flex h-14 w-14 items-center justify-center rounded-full text-white/90 outline-none transition-colors hover:text-white focus-visible:ring-2 focus-visible:ring-[#5aa6ff]"
       style={{ scale: tabScale }}

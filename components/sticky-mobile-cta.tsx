@@ -39,7 +39,7 @@ export function StickyMobileCta() {
       <div className="pointer-events-auto border-t border-border bg-background/90 px-4 pb-[max(env(safe-area-inset-bottom),0.75rem)] pt-3 backdrop-blur-xl">
         <a
           href="#cta"
-          data-contact-trigger="true"
+          data-configurator-trigger="true"
           className="dna-glow inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-5 py-3.5 text-sm font-medium text-primary-foreground shadow-[0_0_30px_-10px_var(--primary)]"
         >
           Umów strategię
