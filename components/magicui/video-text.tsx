@@ -15,6 +15,14 @@ type VideoTextProps = {
   className?: string
 }
 
+// Augment HTMLVideoElement with requestVideoFrameCallback / cancelVideoFrameCallback
+// (TS lib.dom.d.ts ships these as "experimental" depending on version, so declare loosely)
+type VideoFrameCallback = (now: DOMHighResTimeStamp, metadata: unknown) => void
+type RVFCVideo = HTMLVideoElement & {
+  requestVideoFrameCallback?: (cb: VideoFrameCallback) => number
+  cancelVideoFrameCallback?: (handle: number) => void
+}
+
 export function VideoText({ text, src, className }: VideoTextProps) {
   const measureRef = useRef<HTMLSpanElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -23,107 +31,179 @@ export function VideoText({ text, src, className }: VideoTextProps) {
   useEffect(() => {
     const measure = measureRef.current
     const canvas = canvasRef.current
-    const video = videoRef.current
+    const video = videoRef.current as RVFCVideo | null
     if (!measure || !canvas || !video) return
 
-    let rafId = 0
+    // alpha:true preserves transparency from destination-in compositing.
+    // NOTE: do NOT pass desynchronized:true here — it lets the browser present
+    // intermediate paint states, which causes a visible flash of the raw video
+    // frame before the destination-in composite finishes clipping it to the
+    // text shape. Synchronized presentation is required for compositing canvases.
+    const ctx = canvas.getContext("2d", { alpha: true })
+    if (!ctx) return
+
     let isVisible = false
     let fontsReady = false
-    let loopActive = false
+    let videoPlaying = false
+
+    // Cached per-style measurements — recomputed only inside sync().
+    // draw() reads these without touching the DOM, getComputedStyle, or measureText.
+    let cachedFont = ""
+    let cachedLetterSpacing = "" // "" means "do not set (== normal)"
+    let cachedAscent = 0
+    let cachedWidth = 0
+    let cachedVisibleH = 0
+    let cachedDpr = 1
 
     const buildFont = (cs: CSSStyleDeclaration) =>
       `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`
 
-    // Apply font + letter-spacing on a 2D context. Returns the CSS-pixel ascent
-    // and descent of the *actual rendered glyphs* — not the line box. This is
-    // what we use to size the canvas so there is no whitespace above or below.
-    function applyFontAndMeasure(ctx: CanvasRenderingContext2D) {
+    function sync() {
       const cs = getComputedStyle(measure!)
-      ctx.font = buildFont(cs)
-      const ls = cs.letterSpacing
-      if (ls && ls !== "normal") {
+      const font = buildFont(cs)
+      const ls = cs.letterSpacing && cs.letterSpacing !== "normal" ? cs.letterSpacing : ""
+
+      // Apply font + letter-spacing to the context BEFORE measuring so that
+      // measureText() returns letter-spacing-aware widths.
+      ctx!.font = font
+      if (ls) {
         try {
           // @ts-expect-error - letterSpacing exists at runtime on modern browsers
-          ctx.letterSpacing = ls
+          ctx!.letterSpacing = ls
         } catch {
-          /* older browser fallback: no letter-spacing */
+          /* older browser fallback */
         }
       }
-      const m = ctx.measureText(text)
-      return {
-        width: m.width,
-        ascent: m.actualBoundingBoxAscent,
-        descent: m.actualBoundingBoxDescent,
-      }
-    }
 
-    function sync() {
-      const ctx = canvas!.getContext("2d")
-      if (!ctx) return
-      const { width, ascent, descent } = applyFontAndMeasure(ctx)
+      const m = ctx!.measureText(text)
+      const width = m.width
+      const ascent = m.actualBoundingBoxAscent
+      const descent = m.actualBoundingBoxDescent
       const visibleH = ascent + descent
       if (width === 0 || visibleH === 0) return
+
       const dpr = window.devicePixelRatio || 1
       canvas!.style.width = `${width}px`
       canvas!.style.height = `${visibleH}px`
       canvas!.width = Math.max(1, Math.round(width * dpr))
       canvas!.height = Math.max(1, Math.round(visibleH * dpr))
+
+      // Setting canvas.width/height resets the context state, so re-apply font
+      // + letterSpacing once now and trust the cache for subsequent draws.
+      ctx!.font = font
+      if (ls) {
+        try {
+          // @ts-expect-error - letterSpacing exists at runtime on modern browsers
+          ctx!.letterSpacing = ls
+        } catch {
+          /* noop */
+        }
+      }
+
+      cachedFont = font
+      cachedLetterSpacing = ls
+      cachedAscent = ascent
+      cachedWidth = width
+      cachedVisibleH = visibleH
+      cachedDpr = dpr
     }
 
     function draw() {
       if (video!.readyState < 2) return
-      const ctx = canvas!.getContext("2d")
-      if (!ctx) return
       const W = canvas!.width
       const H = canvas!.height
       if (W === 0 || H === 0) return
 
-      const dpr = window.devicePixelRatio || 1
-      const cssW = W / dpr
-      const cssH = H / dpr
+      const cssW = cachedWidth
+      const cssH = cachedVisibleH
 
-      ctx.save()
-      ctx.clearRect(0, 0, W, H)
+      ctx!.save()
+      ctx!.clearRect(0, 0, W, H)
       // After this scale, all drawing units are CSS pixels (DPR-aware).
-      ctx.scale(dpr, dpr)
+      ctx!.scale(cachedDpr, cachedDpr)
 
-      // 1. Fill canvas with the current video frame
-      ctx.drawImage(video!, 0, 0, cssW, cssH)
+      // Draw current video frame
+      ctx!.drawImage(video!, 0, 0, cssW, cssH)
 
-      // 2. destination-in keeps video pixels only where text glyphs land
-      ctx.globalCompositeOperation = "destination-in"
-      const { ascent } = applyFontAndMeasure(ctx)
-      ctx.fillStyle = "#000"
-      ctx.textAlign = "left"
-      ctx.textBaseline = "alphabetic"
-      // Glyph top-left sits at canvas (0, 0) when baseline is at y = ascent
-      ctx.fillText(text, 0, ascent)
+      // Mask: keep video pixels only where text glyphs land
+      ctx!.globalCompositeOperation = "destination-in"
+      // Re-set font on each draw because save/restore + composite changes can
+      // reset it on some browsers; the value is cached so it's just a string assign.
+      ctx!.font = cachedFont
+      if (cachedLetterSpacing) {
+        try {
+          // @ts-expect-error - letterSpacing exists at runtime on modern browsers
+          ctx!.letterSpacing = cachedLetterSpacing
+        } catch {
+          /* noop */
+        }
+      }
+      ctx!.fillStyle = "#000"
+      ctx!.textAlign = "left"
+      ctx!.textBaseline = "alphabetic"
+      ctx!.fillText(text, 0, cachedAscent)
 
-      ctx.restore()
+      ctx!.restore()
+    }
+
+    // ----- Frame loop: prefer requestVideoFrameCallback, fall back to rAF -----
+
+    const useRVFC = typeof video.requestVideoFrameCallback === "function"
+    let rafId = 0
+    let rvfcHandle = 0
+    let loopActive = false
+
+    function tickRAF() {
+      if (!loopActive) return
+      draw()
+      rafId = requestAnimationFrame(tickRAF)
+    }
+
+    function tickRVFC() {
+      if (!loopActive) return
+      draw()
+      rvfcHandle = video!.requestVideoFrameCallback!(tickRVFC)
     }
 
     function startLoop() {
       if (loopActive) return
       loopActive = true
-      const tick = () => {
-        if (!loopActive) return
-        draw()
-        rafId = requestAnimationFrame(tick)
+      if (useRVFC) {
+        rvfcHandle = video!.requestVideoFrameCallback!(tickRVFC)
+      } else {
+        rafId = requestAnimationFrame(tickRAF)
       }
-      rafId = requestAnimationFrame(tick)
     }
 
     function stopLoop() {
       loopActive = false
-      cancelAnimationFrame(rafId)
+      if (useRVFC && rvfcHandle && video!.cancelVideoFrameCallback) {
+        video!.cancelVideoFrameCallback(rvfcHandle)
+        rvfcHandle = 0
+      }
+      if (rafId) {
+        cancelAnimationFrame(rafId)
+        rafId = 0
+      }
     }
 
     function syncPlayback() {
       if (fontsReady && isVisible) {
-        video!.play().catch(() => {})
+        if (!videoPlaying) {
+          // First time we become visible: this also kicks off network fetch +
+          // decode for preload="none" videos. Browser handles caching after that.
+          video!.play().then(() => {
+            videoPlaying = true
+          }).catch(() => {
+            /* autoplay blocked or interrupted; will retry on next visibility change */
+          })
+        }
         startLoop()
       } else {
-        video!.pause()
+        if (videoPlaying) {
+          video!.pause()
+          videoPlaying = false
+        }
         stopLoop()
       }
     }
@@ -154,7 +234,7 @@ export function VideoText({ text, src, className }: VideoTextProps) {
       stopLoop()
       io.disconnect()
       ro.disconnect()
-      video!.pause()
+      if (videoPlaying) video.pause()
     }
   }, [text, src, className])
 
@@ -180,14 +260,17 @@ export function VideoText({ text, src, className }: VideoTextProps) {
         aria-label={text}
         role="img"
       />
-      {/* Hidden video source — canvas reads frames from this each rAF */}
+      {/*
+        Hidden video source. preload="none" defers the network fetch + decode
+        until IntersectionObserver triggers play() — cuts initial page-load cost.
+      */}
       <video
         ref={videoRef}
         src={src}
         muted
         loop
         playsInline
-        preload="metadata"
+        preload="none"
         className="hidden"
       />
     </span>

@@ -44,7 +44,7 @@ export function Authority() {
             <h3 className="text-display-fade mt-5 text-3xl font-black leading-[1.05] tracking-tight md:text-4xl">
               Certyfikowani partnerzy
             </h3>
-            <p className="mt-3 max-w-4xl text-sm font-medium leading-relaxed text-[#aeb8cb] md:text-base">
+            <p className="mt-3 max-w-4xl text-sm font-medium leading-relaxed text-white md:text-base">
               Nie uznajemy półśrodków. Pracujemy na licencjach Premium i Enterprise od największych graczy
               (Google, Meta, Vercel, Anthropic). Otrzymujesz system oparty na certyfikowanych i niezawodnych
               fundamentach.
@@ -64,7 +64,7 @@ export function Authority() {
                     height={44}
                     aria-hidden
                   />
-                  <span className="mt-2 text-[11px] font-medium leading-snug text-[#aeb8cb] md:text-xs">
+                  <span className="mt-2 text-[11px] font-medium leading-snug text-white md:text-xs">
                     {p.name}
                   </span>
                 </li>
@@ -95,7 +95,7 @@ export function Authority() {
               <h3 className="mt-5 text-2xl font-black leading-tight tracking-tight text-white md:text-3xl">
                 Silna społeczność
               </h3>
-              <p className="mt-3 text-sm font-medium leading-relaxed text-[#aeb8cb]">
+              <p className="mt-3 text-sm font-medium leading-relaxed text-white">
                 Ponad tysiąc osób codziennie śledzi nasze realizacje i uczy się z nami skalowania biznesu.
               </p>
             </div>
@@ -122,7 +122,7 @@ export function Authority() {
             <h3 className="mt-5 text-2xl font-black leading-tight tracking-tight text-white md:text-3xl">
               Zweryfikowana jakość
             </h3>
-            <p className="mt-3 max-w-[22rem] text-sm font-medium leading-relaxed text-[#aeb8cb]">
+            <p className="mt-3 max-w-[22rem] text-sm font-medium leading-relaxed text-white">
               Zaufanie poparte twardymi ocenami naszych klientów. Dowozimy to, co obiecujemy.
             </p>
           </div>
@@ -136,7 +136,7 @@ export function Authority() {
             <h3 className="mt-5 text-2xl font-black leading-tight tracking-tight text-white md:text-3xl">
               Ekstremalna szybkość
             </h3>
-            <p className="mt-3 max-w-xs text-sm font-medium leading-relaxed text-[#aeb8cb]">
+            <p className="mt-3 max-w-xs text-sm font-medium leading-relaxed text-white">
               Średnio 98/100 pkt w testach wydajności. Piszemy czysty kod, który ładuje się w ułamku sekundy.
             </p>
           </div>

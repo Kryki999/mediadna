@@ -21,7 +21,7 @@
   --secondary-foreground: oklch(0.975 0 0);
 
   --muted: oklch(0.18 0.006 240);
-  --muted-foreground: oklch(0.76 0.006 240);
+  --muted-foreground: oklch(1 0 0);
 
   --accent: oklch(0.2 0.012 235);
   --accent-foreground: oklch(0.985 0 0);
@@ -220,7 +220,7 @@
   /* Strong subhead baseline — matches the shredder paragraph mass. */
   .text-subhead {
     font-weight: 500;
-    color: oklch(0.76 0.006 240);
+    color: oklch(1 0 0);
     letter-spacing: -0.005em;
   }
 

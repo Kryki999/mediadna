@@ -32,7 +32,6 @@ const diagnosisTiles = [
   { id: "lead-generation", label: "Pozyskiwanie leadów / Zwiększenie sprzedaży", icon: "fluent-emoji:bullseye" },
   { id: "ecommerce-sales", label: "Sprzedaż produktów online (E-commerce)", icon: "fluent-emoji:shopping-cart" },
   { id: "process-automation", label: "Automatyzacja procesów w firmie", icon: "fluent-emoji:gear" },
-  { id: "website-modernization", label: "Modernizacja obecnej, niedziałającej strony", icon: "fluent-emoji:hammer-and-wrench" },
   { id: "need-consulting", label: "Nie jestem pewien / Potrzebuję doradztwa", icon: "fluent-emoji:person-raising-hand" },
 ]
 
@@ -260,23 +259,22 @@ export function ProjectConfiguratorCore({
                           const active = field.value.includes(item.id)
                           const iconName = item.icon
                           return (
-                          <button
-                            key={item.id}
-                            type="button"
-                            onClick={() =>
-                              active
-                                ? field.onChange(field.value.filter((value) => value !== item.id))
-                                : field.onChange([...field.value, item.id])
-                            }
-                            className={`rounded-lg border px-4 py-3 text-left text-sm transition-colors ${
-                              active ? "border-primary bg-primary/10" : "border-border hover:border-primary/60"
-                            }`}
-                          >
-                            <span className="flex items-start gap-3">
-                              <Icon icon={iconName} className="mt-0.5 h-5 w-5 shrink-0" />
-                              <span>{item.label}</span>
-                            </span>
-                          </button>
+                            <button
+                              key={item.id}
+                              type="button"
+                              onClick={() =>
+                                active
+                                  ? field.onChange(field.value.filter((value) => value !== item.id))
+                                  : field.onChange([...field.value, item.id])
+                              }
+                              className={`rounded-lg border px-4 py-3 text-left text-sm transition-colors ${active ? "border-primary bg-primary/10" : "border-border hover:border-primary/60"
+                                }`}
+                            >
+                              <span className="flex items-start gap-3">
+                                <Icon icon={iconName} className="mt-0.5 h-5 w-5 shrink-0" />
+                                <span>{item.label}</span>
+                              </span>
+                            </button>
                           )
                         })}
                       </div>
@@ -308,9 +306,8 @@ export function ProjectConfiguratorCore({
                             key={budget}
                             type="button"
                             onClick={() => field.onChange(budget)}
-                            className={`rounded-lg border px-3 py-2 text-left text-sm transition-colors ${
-                              field.value === budget ? "border-primary bg-primary/10" : "border-border hover:border-primary/60"
-                            }`}
+                            className={`rounded-lg border px-3 py-2 text-left text-sm transition-colors ${field.value === budget ? "border-primary bg-primary/10" : "border-border hover:border-primary/60"
+                              }`}
                           >
                             <span className="flex items-center gap-2">
                               <Icon icon="fluent-emoji:money-bag" className="h-5 w-5 shrink-0" />

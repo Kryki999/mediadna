@@ -1,4 +1,4 @@
- "use client"
+"use client"
 
 import { ArrowUpRight } from "lucide-react"
 import { useState } from "react"
@@ -51,7 +51,7 @@ const impactCards: ImpactCard[] = [
     metrics: [
       { value: "+120%", label: "Zapytań o usługi premium (PPF/Ceramika)" },
       { value: "14 dni", label: "Stałe obłożenie kalendarza w przód" },
-      { value: "Auto Detailing", label: "Branża:" },
+      { value: "Auto Detailing", label: "Branża" },
     ],
     cta: "Przeczytaj case study",
   },
@@ -65,7 +65,7 @@ const impactCards: ImpactCard[] = [
     metrics: [
       { value: "+45%", label: "Wyższa średnia wartość podpisywanej umowy" },
       { value: "8/10", label: "Zweryfikowanych zapytań z odpowiednim budżetem" },
-      { value: "Architektura Wnętrz", label: "Branża:" },
+      { value: "Architektura Wnętrz", label: "Branża" },
     ],
     cta: "Przeczytaj case study",
   },
@@ -79,7 +79,7 @@ const impactCards: ImpactCard[] = [
     metrics: [
       { value: "20 MLN+", label: "Wyświetleń organicznych (Rolki i wideo)" },
       { value: "100%", label: "Wyprzedane pule biletów na eventy" },
-      { value: "Kluby Nocne i Eventy", label: "Branża:" },
+      { value: "Kluby Nocne i Eventy", label: "Branża" },
     ],
     cta: "Przeczytaj case study",
   },
@@ -107,7 +107,7 @@ function CaseStudyMetrics({ metrics }: { metrics: CaseMetric[] }) {
       {metrics.map((metric) => (
         <div key={`${metric.label}-${metric.value}`} className="border-b border-[#252b36] pb-4 last:border-b-0 last:pb-0">
           <p className="text-4xl font-black tracking-tight md:text-5xl">{metric.value}</p>
-          <p className="mt-1 text-sm text-[#a6afc2]">{metric.label}</p>
+          <p className="mt-1 text-sm text-white">{metric.label}</p>
         </div>
       ))}
     </div>
@@ -125,10 +125,10 @@ function PortfolioTeaserCard({ card }: { card: CtaPortfolioCard }) {
           <h3 className="text-balance text-3xl font-black leading-[1.05] tracking-tight text-white md:text-5xl">
             {card.heading}
           </h3>
-          <p className="mt-3 max-w-2xl text-pretty text-sm leading-relaxed text-[#b3bed1] md:text-base">
+          <p className="mt-3 max-w-2xl text-pretty text-sm leading-relaxed text-white md:text-base">
             {card.description}
           </p>
-          <p className="mt-2 max-w-2xl text-pretty text-sm leading-relaxed text-[#8d9ab3] md:text-base">
+          <p className="mt-2 max-w-2xl text-pretty text-sm leading-relaxed text-white md:text-base">
             {card.supportingText}
           </p>
           <Button
@@ -153,15 +153,13 @@ function PortfolioTeaserCard({ card }: { card: CtaPortfolioCard }) {
                 aria-label={tile.isFeatured ? "Tu będzie Twój projekt" : `Projekt referencyjny: ${tile.title}`}
                 onMouseEnter={() => setActiveTileId(tile.id)}
                 onFocus={() => setActiveTileId(tile.id)}
-                className={`group/tile relative block h-44 overflow-hidden rounded-2xl border transition-[flex-grow,border-color,transform] duration-500 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2f7cff]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0e1320] md:h-52 md:min-w-0 md:w-auto ${
-                  tile.isFeatured ? "w-[230px] flex-none" : "w-[82px] flex-none"
-                } ${
-                  activeTileId === tile.id ? "border-[#5f86ff]/75 md:flex-[2.15]" : "border-[#2b3344] md:flex-1"
-                }`}
+                className={`group/tile relative block h-44 overflow-hidden rounded-2xl border transition-[flex-grow,border-color,transform] duration-500 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2f7cff]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0e1320] md:h-52 md:min-w-0 md:w-auto ${tile.isFeatured ? "w-[230px] flex-none" : "w-[82px] flex-none"
+                  } ${activeTileId === tile.id ? "border-[#5f86ff]/75 md:flex-[2.15]" : "border-[#2b3344] md:flex-1"
+                  }`}
               >
                 {tile.isFeatured ? (
                   <div className="absolute inset-0 flex items-center justify-center bg-[#101a34] px-4 text-center">
-                    <span className="text-sm font-semibold text-[#eaf1ff] md:text-base">{tile.title}</span>
+                    <span className="text-sm font-semibold text-white md:text-base">{tile.title}</span>
                   </div>
                 ) : (
                   <>
@@ -249,13 +247,13 @@ export function Impact() {
       />
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         <div className="mb-12 max-w-3xl md:mb-20">
-          <span className="text-xs uppercase tracking-[0.2em] text-[#7e889e]">
+          <span className="text-xs uppercase tracking-[0.2em] text-white">
             Impact in action
           </span>
           <h2 className="mt-3 text-balance text-4xl font-black leading-[1.02] tracking-tight text-white md:text-6xl">
             Systemy, które <span className="italic text-[#2f7cff]">zarabiają</span> w tle.
           </h2>
-          <p className="mt-5 max-w-2xl text-pretty text-base font-medium leading-relaxed text-[#a2a9b7] md:text-lg">
+          <p className="mt-5 max-w-2xl text-pretty text-base font-medium leading-relaxed text-white md:text-lg">
             Zamiast jednorazowych projektów, dostarczamy produktyzowane systemy wzrostu —
             dopasowane do konkretnych branż i powtarzalne w skali.
           </p>
