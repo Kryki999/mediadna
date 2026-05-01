@@ -64,16 +64,16 @@ export function BookingSection() {
   }
 
   return (
-    <section id="cta" className="w-full overflow-x-hidden border-t border-border bg-background py-16 md:py-28">
-      <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-6 md:px-8 lg:px-10 xl:px-12">
+    <section id="cta" className="w-full overflow-x-hidden border-t border-border bg-background py-10 md:py-28">
+      <div className="mx-auto w-full max-w-[1400px] max-md:px-0 md:px-8 lg:px-10 xl:px-12">
         <div className="overflow-hidden rounded-none border-x-0 border-border bg-card/50 md:rounded-[32px] md:border-x md:border-border md:p-12">
           <div className="grid grid-cols-1 items-start gap-0 md:grid-cols-2 md:gap-12">
-            <div className="flex h-full flex-col justify-between space-y-8 p-3 pb-6 md:p-0">
+            <div className="flex h-full flex-col justify-between space-y-8 px-4 pb-6 pt-2 md:space-y-8 md:p-0">
               <div className="space-y-4">
                 <h2 className="text-display-fade text-balance text-4xl font-black leading-[1.05] tracking-tight md:text-5xl">
                   Sprawdźmy, czy Media DNA to dobry kierunek dla Twojej marki
                 </h2>
-                <p className="max-w-[450px] text-lg font-medium text-muted-foreground">
+                <p className="max-w-none text-lg font-medium text-muted-foreground md:max-w-[450px]">
                   Umów 15-minutową rozmowę i zobacz, jak możemy ułożyć Twój system pozyskiwania klientów.
                 </p>
               </div>
@@ -92,7 +92,7 @@ export function BookingSection() {
             {/* Mobile: pełna szerokość viewportu — bez podwójnego marginesu wokół kalendarza */}
             <div className="min-w-0 md:flex md:w-full md:flex-col md:items-end">
               <div className="w-full md:w-full">
-                <div className="w-full space-y-4 px-0 pb-8 pt-2 md:pb-0 md:pt-0">
+                <div className="w-full space-y-4 px-0 pb-8 pt-0 md:pb-0 md:pt-0">
                   {!showInlineConfigurator ? (
                     <>
                       <div className="space-y-2 rounded-xl border border-primary/20 bg-primary/10 p-4">

@@ -231,7 +231,7 @@ export function Impact() {
   return (
     <section
       id="impact"
-      className="relative overflow-hidden border-t border-white/10 bg-[#060b17] py-20 md:py-32"
+      className="relative overflow-hidden border-t border-white/10 bg-[#060b17] py-10 md:py-32"
     >
       <div
         aria-hidden="true"
@@ -246,7 +246,7 @@ export function Impact() {
         className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(7,15,34,0.12)_0%,rgba(7,15,34,0.09)_50%,rgba(7,15,34,0.12)_100%)]"
       />
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
-        <div className="mb-12 max-w-3xl md:mb-20">
+        <div className="mb-8 max-w-3xl md:mb-20">
           <span className="text-xs uppercase tracking-[0.2em] text-white">
             Impact in action
           </span>
@@ -259,7 +259,7 @@ export function Impact() {
           </p>
         </div>
 
-        <div className="-mx-4 flex flex-col gap-12 md:mx-0 md:gap-16">
+        <div className="-mx-4 flex flex-col gap-8 md:mx-0 md:gap-16">
           {impactCards.map((card, index) =>
             card.type === "case-study" ? (
               <ProjectCard key={card.id} project={card} index={index} />

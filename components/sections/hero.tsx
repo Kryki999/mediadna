@@ -32,7 +32,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative isolate flex min-h-[100svh] items-center justify-center overflow-hidden bg-[#020305] px-5 pt-24 sm:px-6 md:px-8 md:pt-32 lg:px-10"
+      className="relative isolate flex min-h-[100svh] items-end justify-center overflow-hidden bg-[#020305] px-5 pb-6 pt-24 sm:px-6 md:items-center md:pb-0 md:px-8 md:pt-32 lg:px-10"
     >
       <div
         aria-hidden

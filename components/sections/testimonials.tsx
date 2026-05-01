@@ -30,7 +30,7 @@ export function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="relative overflow-x-hidden border-y border-border bg-background py-20 md:py-28"
+      className="relative overflow-x-hidden border-y border-border bg-background py-10 md:py-28"
     >
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 md:px-8 lg:px-10">
         <div className="mx-auto max-w-3xl text-center">
@@ -47,7 +47,7 @@ export function Testimonials() {
 
         {/* Mobile: pełna szerokość viewportu (bez „pudła”); md+: jak wcześniej w boxie */}
         <div
-          className="group relative mt-12 ml-[calc(50%-50vw)] w-screen max-w-[100vw] overflow-hidden rounded-none border-0 bg-transparent p-0 md:mt-14 md:ml-0 md:w-full md:max-w-none md:rounded-3xl md:border md:border-border/80 md:bg-card/30 md:p-4"
+          className="group relative mt-8 ml-[calc(50%-50vw)] w-screen max-w-[100vw] overflow-hidden rounded-none border-0 bg-transparent p-0 md:mt-14 md:ml-0 md:w-full md:max-w-none md:rounded-3xl md:border md:border-border/80 md:bg-card/30 md:p-4"
         >
           <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-background to-transparent sm:w-14 md:w-32" />
           <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-background to-transparent sm:w-14 md:w-32" />

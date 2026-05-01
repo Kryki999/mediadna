@@ -18,7 +18,7 @@ export function WebsiteShredder() {
   }, [])
 
   return (
-    <section className="relative bg-black pb-2 pt-12 md:pb-4 md:pt-16">
+    <section className="relative bg-black pb-2 pt-6 md:pb-4 md:pt-16">
       <div className="mx-auto w-full max-w-[1400px] px-5 text-center sm:px-6 md:px-8 lg:px-10 xl:px-12">
         <h2 className="mb-4 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-4xl font-black leading-[1.05] text-transparent sm:text-5xl md:mb-5 md:text-6xl lg:text-7xl">
           Nie przepalaj budżetu
@@ -29,7 +29,7 @@ export function WebsiteShredder() {
         </h2>
       </div>
 
-      <div className="relative mt-8 w-full overflow-hidden bg-black md:mt-10">
+      <div className="relative mt-6 w-full overflow-hidden bg-black md:mt-10">
         <div className="relative flex h-[400px] w-full items-center justify-center overflow-hidden">
           <canvas
             id="particleCanvas"

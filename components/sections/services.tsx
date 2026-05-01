@@ -246,9 +246,9 @@ export function Services() {
   }
 
   return (
-    <section id="services" className="relative border-t border-border bg-background py-20 md:py-32">
+    <section id="services" className="relative border-t border-border bg-background py-10 md:py-32">
       <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-6 md:px-8 lg:px-10 xl:px-12">
-        <div className="mb-12 flex flex-col items-start justify-between gap-4 md:mb-20 md:flex-row md:items-end">
+        <div className="mb-8 flex flex-col items-start justify-between gap-4 md:mb-20 md:flex-row md:items-end">
           <div>
             <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
               Build · Operate · Grow

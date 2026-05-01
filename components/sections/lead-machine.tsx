@@ -208,7 +208,7 @@ export function LeadMachine() {
       <div
         className={cn(
           "relative z-10 grid h-full w-full",
-          "grid-cols-1 grid-rows-[auto_auto_auto] gap-[4.5rem] px-4 py-10",
+          "grid-cols-1 grid-rows-[auto_auto_auto] gap-9 px-4 py-6",
           "md:grid-cols-[200px_minmax(0,1fr)_minmax(280px,340px)] md:grid-rows-1 md:items-center md:gap-10 md:p-10",
         )}
       >

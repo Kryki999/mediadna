@@ -59,9 +59,9 @@ const columnCards = [cards.slice(0, 3), cards.slice(3, 6), cards.slice(6, 9)]
 
 export function ScrollingCards() {
   return (
-    <section className="relative border-t border-border bg-background pt-12 pb-14 md:pt-20 md:pb-24">
+    <section className="relative border-border bg-background pb-10 pt-0 max-md:border-t-0 md:border-t md:pb-24 md:pt-20">
       <div className="mx-auto w-full max-w-[1400px] px-0 sm:px-6 md:px-8 lg:px-10 xl:px-12">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-[minmax(300px,420px)_1fr] md:gap-10">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-[minmax(300px,420px)_1fr] md:gap-10">
           <div className="grid h-[24rem] grid-cols-3 gap-1 overflow-hidden border-y border-border/70 bg-card/30 p-1 md:hidden sm:gap-2 sm:rounded-3xl sm:border sm:p-2">
             {columnCards.map((column, columnIndex) => (
               <div
@@ -90,7 +90,7 @@ export function ScrollingCards() {
           </div>
 
           <aside className="px-5 sm:px-0 md:sticky md:top-28 md:h-fit">
-            <div className="space-y-10 md:space-y-12">
+            <div className="space-y-6 md:space-y-12">
               <p className="text-lg font-medium leading-relaxed text-foreground md:text-xl">
                 Zaufanie{" "}
                 <span className="text-brand-fade text-2xl font-black tracking-tight md:text-3xl">+50</span>{" "}

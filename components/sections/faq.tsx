@@ -31,9 +31,9 @@ const faqItems = [
 
 export function Faq() {
   return (
-    <section className="relative border-t border-border bg-background py-20 md:py-32">
-      <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
-        <div className="mb-10 text-center md:mb-14">
+    <section className="relative border-t border-border bg-background py-10 md:py-32">
+      <div className="mx-auto w-full max-w-[1400px] md:px-8 lg:px-10 xl:px-12">
+        <div className="mb-10 px-4 text-center sm:px-6 md:mb-14 md:px-0">
           <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
             Najczęstsze pytania
           </span>
@@ -45,10 +45,10 @@ export function Faq() {
         <Accordion
           type="single"
           collapsible
-          className="overflow-hidden rounded-3xl border border-border bg-card/40"
+          className="overflow-hidden rounded-none border-x-0 border-y border-border bg-card/40 md:rounded-3xl md:border-x md:border-border"
         >
           {faqItems.map((item) => (
-            <AccordionItem key={item.id} value={item.id} className="px-5 md:px-7">
+            <AccordionItem key={item.id} value={item.id} className="px-4 sm:px-5 md:px-7">
               <AccordionTrigger className="py-5 text-base font-semibold tracking-tight hover:no-underline md:text-lg">
                 {item.question}
               </AccordionTrigger>

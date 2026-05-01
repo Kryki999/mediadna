@@ -50,7 +50,7 @@ const rows: MatrixRow[] = [
 
 export function FeatureMatrix() {
   return (
-    <section id="comparison" className="relative overflow-x-hidden bg-black pb-16 pt-2 md:pb-28 md:pt-4">
+    <section id="comparison" className="relative overflow-x-hidden bg-black pb-10 pt-2 md:pb-28 md:pt-4">
       {/* Most nagłówkowy jest w WebsiteShredder — tu tylko krótki most do tabeli */}
       <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         <p className="mx-auto max-w-2xl pb-6 text-center text-sm font-medium leading-relaxed text-white md:pb-8 md:text-base">
@@ -190,7 +190,7 @@ export function FeatureMatrix() {
         </div>
       </div>
 
-      <div className="mx-auto mt-10 w-full max-w-[1400px] px-5 sm:px-6 md:mt-14 md:px-8 lg:px-10 xl:px-12">
+      <div className="mx-auto mt-6 w-full max-w-[1400px] px-5 sm:px-6 md:mt-14 md:px-8 lg:px-10 xl:px-12">
         <div className="flex justify-center">
           <HintCard
             title="WSKAZÓWKA"
