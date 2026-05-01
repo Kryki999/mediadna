@@ -4,7 +4,7 @@ import { ProjectConfiguratorCore } from "@/components/project-configurator-core"
 
 export function ProjectConfiguratorSection() {
   return (
-    <section id="konfigurator" className="w-full border-t border-border bg-background py-16 md:py-24">
+    <section id="konfigurator" className="w-full border-t border-border bg-background py-16 md:py-20">
       <div className="mx-auto w-full max-w-[1100px] px-5 sm:px-6 md:px-8 lg:px-10">
         <div className="rounded-3xl border border-border bg-card/50 p-5 md:p-8">
           <div className="mb-6 space-y-3 md:mb-8">

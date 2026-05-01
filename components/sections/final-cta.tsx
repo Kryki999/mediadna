@@ -29,10 +29,10 @@ export function FinalCta() {
   const [slot, setSlot] = useState<string | null>(null)
 
   return (
-    <section id="cta" className="relative border-t border-border bg-background py-20 md:py-32">
+    <section id="cta" className="relative border-t border-border bg-background py-10 md:py-20">
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         {/* Teaser banner */}
-        <div className="relative mb-12 overflow-hidden rounded-3xl border border-border bg-card md:mb-16">
+        <div className="relative mb-12 overflow-hidden rounded-3xl border border-border bg-card md:mb-12">
           <div
             aria-hidden
             className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-primary/15 blur-3xl"
@@ -75,7 +75,7 @@ export function FinalCta() {
             </p>
           </div>
 
-          <div className="-mx-4 mt-10 overflow-hidden rounded-3xl border border-border bg-card md:mx-0 md:mt-14">
+          <div className="-mx-4 mt-10 overflow-hidden rounded-3xl border border-border bg-card md:mx-0 md:mt-10">
             {/* Meta bar */}
             <div className="flex flex-wrap items-center gap-4 border-b border-border bg-background/40 px-4 py-4 text-sm text-muted-foreground md:px-8">
               <span className="inline-flex items-center gap-2">

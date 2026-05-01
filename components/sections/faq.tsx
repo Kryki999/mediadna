@@ -31,9 +31,9 @@ const faqItems = [
 
 export function Faq() {
   return (
-    <section className="relative border-t border-border bg-background py-10 md:py-32">
+    <section className="relative border-t border-border bg-background py-10 md:py-20">
       <div className="mx-auto w-full max-w-[1400px] md:px-8 lg:px-10 xl:px-12">
-        <div className="mb-10 px-4 text-center sm:px-6 md:mb-14 md:px-0">
+        <div className="mb-10 px-4 text-center sm:px-6 md:mb-10 md:px-0">
           <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
             Najczęstsze pytania
           </span>

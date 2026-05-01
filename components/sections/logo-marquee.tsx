@@ -13,7 +13,7 @@ export function LogoMarquee() {
   return (
     <section
       aria-label="Marki, które nam zaufały"
-      className="relative border-y border-border bg-background py-5 md:py-14"
+      className="relative border-y border-border bg-background py-5 md:pt-8 md:pb-4"
     >
       <div className="group relative overflow-hidden">
         {/* Edge fades */}

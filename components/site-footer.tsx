@@ -3,7 +3,7 @@ import { ArrowUpRight, Instagram, Linkedin, Facebook } from "lucide-react"
 export function SiteFooter() {
   return (
     <footer className="border-t border-border bg-background">
-      <div className="mx-auto w-full max-w-[1400px] px-5 py-10 sm:px-6 md:px-8 md:py-20 lg:px-10 xl:px-12">
+      <div className="mx-auto w-full max-w-[1400px] px-5 py-10 sm:px-6 md:px-8 md:py-14 lg:px-10 xl:px-12">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-10">
           <div className="md:col-span-3">
             <div className="text-lg font-black tracking-[0.18em] text-foreground">MEDIA DNA</div>

@@ -17,7 +17,7 @@ const partners: PartnerLogo[] = [
 
 export function Authority() {
   return (
-    <section className="relative border-t border-border bg-background py-10 md:py-32">
+    <section className="relative border-t border-border bg-background py-10 md:py-20">
       <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         <div className="mb-8 max-w-3xl md:mb-16">
           <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">

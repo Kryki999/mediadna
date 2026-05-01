@@ -28,7 +28,7 @@ export function Ecosystem() {
     <section
       id="ecosystem"
       ref={sectionRef}
-      className="relative border-t border-border bg-background py-10 md:py-32"
+      className="relative border-t border-border bg-background py-10 md:pt-8 md:pb-12"
     >
       <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         <div className="mx-auto max-w-3xl text-center">
@@ -37,7 +37,7 @@ export function Ecosystem() {
           </h2>
         </div>
 
-        <div className="mt-6 w-full overflow-hidden rounded-2xl border border-border/70 bg-card/40 px-3 py-4 md:mt-12 md:px-4 md:py-5">
+        <div className="mt-6 w-full overflow-hidden rounded-2xl border border-border/70 bg-card/40 px-3 py-4 md:mt-10 md:px-4 md:py-5">
           <div className="relative h-24 w-full md:h-28">
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(0,85,255,0.28),transparent_60%)]" />
@@ -63,7 +63,7 @@ export function Ecosystem() {
           Pozyskiwanie klientów nie powinno zależeć od szczęścia. Wykres, który widzisz wyżej, to efekt działania bezawaryjnej maszyny. Poniżej pokazujemy jej budowę. To zautomatyzowany proces, który każdego miesiąca napędza sprzedaż, dając Ci finansowy spokój.
         </p>
 
-        <div className="-mx-5 mt-8 sm:-mx-6 md:mx-0 md:mt-20">
+        <div className="-mx-5 mt-8 sm:-mx-6 md:mx-0 md:mt-14">
           <LeadMachine />
         </div>
       </div>

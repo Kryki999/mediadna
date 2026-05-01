@@ -64,10 +64,10 @@ export function BookingSection() {
   }
 
   return (
-    <section id="cta" className="w-full overflow-x-hidden border-t border-border bg-background py-10 md:py-28">
+    <section id="cta" className="w-full overflow-x-hidden border-t border-border bg-background py-10 md:py-20">
       <div className="mx-auto w-full max-w-[1400px] max-md:px-0 md:px-8 lg:px-10 xl:px-12">
-        <div className="overflow-hidden rounded-none border-x-0 border-border bg-card/50 md:rounded-[32px] md:border-x md:border-border md:p-12">
-          <div className="grid grid-cols-1 items-start gap-0 md:grid-cols-2 md:gap-12">
+        <div className="overflow-hidden rounded-none border-x-0 border-border bg-card/50 md:rounded-[32px] md:border-x md:border-border md:p-10">
+          <div className="grid grid-cols-1 items-start gap-0 md:grid-cols-2 md:gap-10">
             <div className="flex h-full flex-col justify-between space-y-8 px-4 pb-6 pt-2 md:space-y-8 md:p-0">
               <div className="space-y-4">
                 <h2 className="text-display-fade text-balance text-4xl font-black leading-[1.05] tracking-tight md:text-5xl">
