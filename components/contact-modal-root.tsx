@@ -25,8 +25,8 @@ export function ContactModalRoot() {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="max-h-[90svh] overflow-y-auto border-border bg-card p-4 sm:max-w-2xl sm:p-6">
-        <DialogHeader>
+      <DialogContent className="max-h-[90svh] overflow-y-auto border-border bg-card p-4 sm:max-w-2xl sm:p-6 [&>[data-slot='dialog-close']]:right-3 [&>[data-slot='dialog-close']]:top-3 [&>[data-slot='dialog-close']]:h-9 [&>[data-slot='dialog-close']]:w-9 [&>[data-slot='dialog-close']]:rounded-md [&>[data-slot='dialog-close']]:border [&>[data-slot='dialog-close']]:border-border/70 [&>[data-slot='dialog-close']]:bg-background/80 [&>[data-slot='dialog-close']]:p-0 [&>[data-slot='dialog-close']]:opacity-100 [&>[data-slot='dialog-close']_svg]:size-5 sm:[&>[data-slot='dialog-close']]:h-10 sm:[&>[data-slot='dialog-close']]:w-10">
+        <DialogHeader className="pr-12 sm:pr-14">
           <DialogTitle className="text-2xl font-black tracking-tight sm:text-3xl">Konfigurator projektu</DialogTitle>
         </DialogHeader>
         <ProjectConfiguratorCore variant="modal" onSuccess={() => setOpen(false)} />
