@@ -8,6 +8,7 @@ const links = [
   { href: "#ecosystem", label: "Ekosystem" },
   { href: "#services", label: "Usługi" },
   { href: "#impact", label: "Case studies" },
+  { href: "/blog", label: "Blog" },
   { href: "#testimonials", label: "Opinie" },
 ]
 
@@ -120,7 +121,7 @@ export function SiteNav() {
               open ? "h-14 md:h-16 md:px-8" : "h-14 md:h-16"
             }`}
           >
-            <a href="#top" onClick={() => setOpen(false)} className="flex items-center gap-2 text-lg font-extrabold tracking-tight md:text-xl">
+            <a href="/#top" onClick={() => setOpen(false)} className="flex items-center gap-2 text-lg font-extrabold tracking-tight md:text-xl">
               <span
                 aria-hidden
                 className={`relative inline-flex h-2.5 w-2.5 items-center justify-center rounded-full transition-colors duration-500 ${

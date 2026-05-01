@@ -10,10 +10,18 @@ export function WebsiteShredder() {
     document.body.appendChild(scannerScript)
 
     return () => {
+      const w = window as Window & {
+        cardStream?: { destroy?: () => void }
+        particleScanner?: { destroy?: () => void }
+        particleSystem?: { destroy?: () => void }
+      }
+      w.cardStream?.destroy?.()
+      w.particleScanner?.destroy?.()
+      w.particleSystem?.destroy?.()
+      w.cardStream = undefined
+      w.particleScanner = undefined
+      w.setScannerScanning = undefined
       if (scannerScript.parentNode) scannerScript.parentNode.removeChild(scannerScript)
-        ; (window as Window & { cardStream?: unknown }).cardStream = null
-        ; (window as Window & { particleSystem?: { destroy?: () => void } }).particleSystem?.destroy?.()
-        ; (window as Window & { particleScanner?: { destroy?: () => void } }).particleScanner?.destroy?.()
     }
   }, [])
 

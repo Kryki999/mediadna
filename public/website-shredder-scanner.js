@@ -1,3 +1,6 @@
+;(function () {
+  "use strict"
+
 class CardStreamController {
   constructor() {
     this.container = document.getElementById("cardStream");
@@ -499,6 +502,12 @@ function initCardScanner() {
     const cardLine = document.getElementById("cardLine");
     const scannerCanvas = document.getElementById("scannerCanvas");
     if (cardStream && cardLine && scannerCanvas) {
+      if (window.cardStream && typeof window.cardStream.destroy === "function") {
+        window.cardStream.destroy();
+      }
+      if (window.particleScanner && typeof window.particleScanner.destroy === "function") {
+        window.particleScanner.destroy();
+      }
       window.cardStream = new CardStreamController();
       window.particleScanner = new ParticleScanner();
       window.setScannerScanning = (active) => {
@@ -516,3 +525,5 @@ if (document.readyState === "loading") {
 } else {
   initCardScanner();
 }
+
+})()

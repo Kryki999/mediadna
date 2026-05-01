@@ -8,6 +8,7 @@ import { Services } from "@/components/sections/services"
 import { Reels } from "@/components/sections/reels"
 import { Impact } from "@/components/sections/impact"
 import { Authority } from "@/components/sections/authority"
+import { BlogSection } from "@/components/sections/blog-section"
 import { Testimonials } from "@/components/sections/testimonials"
 import { Faq } from "@/components/sections/faq"
 import { WebsiteShredder } from "@/components/sections/website-shredder"
@@ -30,6 +31,7 @@ export default function Page() {
       <Impact />
       <Reels />
       <Authority />
+      <BlogSection />
       <Testimonials />
       <WebsiteShredder />
       <FeatureMatrix />
