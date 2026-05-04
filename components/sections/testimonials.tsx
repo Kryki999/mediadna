@@ -47,12 +47,12 @@ export function Testimonials() {
 
         {/* Mobile: pełna szerokość viewportu (bez „pudła”); md+: jak wcześniej w boxie */}
         <div
-          className="group relative mt-8 ml-[calc(50%-50vw)] w-screen max-w-[100vw] overflow-hidden rounded-none border-0 bg-transparent p-0 md:mt-10 md:ml-0 md:w-full md:max-w-none md:rounded-3xl md:border md:border-border/80 md:bg-card/30 md:p-4"
+          className="relative mt-8 ml-[calc(50%-50vw)] w-screen max-w-[100vw] overflow-hidden rounded-none border-0 bg-transparent p-0 md:mt-10 md:ml-0 md:w-full md:max-w-none md:rounded-3xl md:border md:border-border/80 md:bg-card/30 md:p-4"
         >
           <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-background to-transparent sm:w-14 md:w-32" />
           <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-background to-transparent sm:w-14 md:w-32" />
 
-          <div className="flex w-max animate-marquee gap-4 [animation-duration:34s] group-hover:[animation-play-state:paused] md:gap-6">
+          <div className="flex w-max animate-marquee gap-4 [animation-duration:34s] md:gap-6">
             {[...reviews, ...reviews].map((r, idx) => (
               <article
                 key={`${r.author}-${idx}`}

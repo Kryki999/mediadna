@@ -6,7 +6,7 @@ import { LogoMarquee } from "@/components/sections/logo-marquee"
 import { Ecosystem } from "@/components/sections/ecosystem"
 import { Services } from "@/components/sections/services"
 import { Reels } from "@/components/sections/reels"
-import { Impact } from "@/components/sections/impact"
+import { PortfolioAlt } from "@/components/sections/portfolio-alt"
 import { Authority } from "@/components/sections/authority"
 import { BlogSection } from "@/components/sections/blog-section"
 import { Testimonials } from "@/components/sections/testimonials"
@@ -20,7 +20,7 @@ export default function Page() {
   const LETTER_PORTAL_ENABLED = false
 
   return (
-    <main className="relative min-h-screen overflow-x-clip bg-background text-foreground">
+    <main className="relative min-h-screen overflow-x-clip bg-black text-foreground">
       <SiteNav />
       <Hero />
       <LetterPortalTransition enabled={LETTER_PORTAL_ENABLED} letter="E" />
@@ -28,7 +28,7 @@ export default function Page() {
       <LogoMarquee />
       <Ecosystem />
       <Services />
-      <Impact />
+      <PortfolioAlt />
       <Reels />
       <Authority />
       <BlogSection />

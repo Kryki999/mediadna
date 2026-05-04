@@ -5,7 +5,7 @@
 
 /* Media DNA Studio — dark mode premium palette */
 :root {
-  --background: oklch(0 0 0);
+  --background: #000000;
   --foreground: oklch(0.99 0 0);
 
   --card: oklch(0.14 0.004 240);
