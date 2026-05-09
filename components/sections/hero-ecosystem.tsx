@@ -90,7 +90,7 @@ function OrbitPhotoCard({
           "relative shrink-0 overflow-hidden rounded-2xl bg-zinc-950/90 shadow-[0_0_56px_-12px_rgba(56,189,248,0.55)] ring-2 ring-white/35",
           isPortrait
             ? compact
-              ? "aspect-[9/16] h-[min(46vmin,420px)] w-auto md:h-[min(41vmin,448px)]"
+              ? "aspect-[9/16] h-[min(62vmin,620px)] w-auto md:h-[min(41vmin,448px)]"
               : "aspect-[9/16] h-[min(36vmin,392px)] w-auto md:h-[min(41vmin,448px)]"
             : compact
               ? "aspect-[16/10] w-[min(52vw,248px)] md:w-[min(55vmin,546px)]"
@@ -133,7 +133,7 @@ function OrbitPartnerIcon({
         className={cn(
           "shrink-0 md:h-[min(15vmin,5.25rem)] md:w-[min(15vmin,5.25rem)]",
           compact
-            ? "h-[min(19vmin,4.5rem)] w-[min(19vmin,4.5rem)]"
+            ? "h-[min(27vmin,6.25rem)] w-[min(27vmin,6.25rem)]"
             : "h-[min(19vmin,4.75rem)] w-[min(19vmin,4.75rem)]",
         )}
         style={{
@@ -252,7 +252,7 @@ export function HeroEcosystem() {
       />
 
       {/* md+: elipsa pozioma (sx>sy). Mobile portrait: elipsa pionowa (sx<sy); landscape → globals.css. */}
-      <div className="pointer-events-none absolute left-1/2 top-[50%] z-[5] h-[min(520vw,2400px)] w-[min(520vw,2400px)] max-md:h-[min(540vw,1680px)] max-md:w-[min(540vw,1680px)] -translate-x-1/2 -translate-y-1/2 md:h-[2100px] md:w-[2100px]">
+      <div className="pointer-events-none absolute left-1/2 top-[50%] z-[5] h-[min(520vw,2400px)] w-[min(520vw,2400px)] max-md:h-[min(540vw,1620px)] max-md:w-[min(540vw,1620px)] -translate-x-1/2 -translate-y-1/2 md:h-[2100px] md:w-[2100px]">
         <div className="relative flex h-full w-full items-center justify-center">
           <div
             className="absolute inset-0 origin-center"
@@ -261,10 +261,10 @@ export function HeroEcosystem() {
           >
             <span className="absolute inset-0 md:hidden">
               <OrbitingCircles
-                radius={238}
+                radius={252}
                 duration={prefersReducedMotion ? 999 : 95}
                 reverse
-                iconSize={368}
+                iconSize={392}
                 speed={1}
                 path={false}
                 className="overflow-visible border-none bg-transparent"
