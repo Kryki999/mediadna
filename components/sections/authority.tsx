@@ -1,19 +1,7 @@
 import { Icon } from "@iconify/react"
 import { Award, Star } from "lucide-react"
 
-type PartnerLogo = {
-  name: string
-  icon: string
-}
-
-const partners: PartnerLogo[] = [
-  { name: "Google", icon: "logos:google-icon" },
-  { name: "Meta", icon: "logos:meta-icon" },
-  { name: "Next.js", icon: "logos:nextjs-icon" },
-  { name: "Vercel", icon: "logos:vercel-icon" },
-  { name: "Claude", icon: "simple-icons:anthropic" },
-  { name: "Figma", icon: "logos:figma" },
-]
+import { CERTIFIED_PARTNER_ICONS } from "@/lib/certified-partner-icons"
 
 export function Authority() {
   return (
@@ -51,7 +39,7 @@ export function Authority() {
             </p>
 
             <ul className="mt-7 grid grid-cols-2 justify-items-center gap-x-5 gap-y-6 sm:grid-cols-3 md:mt-8 md:gap-x-8 md:gap-y-7">
-              {partners.map((p) => (
+              {CERTIFIED_PARTNER_ICONS.map((p) => (
                 <li
                   key={p.name}
                   className="flex w-full max-w-[7.5rem] flex-col items-center text-center sm:max-w-[8.25rem]"

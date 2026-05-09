@@ -7,7 +7,7 @@ import { FloatingDock } from "@/components/magicui/floating-dock"
 import { VideoText } from "@/components/magicui/video-text"
 import { Button } from "@/components/ui/button"
 
-export function Hero() {
+export function HeroLegacy() {
   const prefersReducedMotion = useReducedMotion()
   const [isDesktop, setIsDesktop] = useState(false)
 

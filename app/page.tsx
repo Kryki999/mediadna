@@ -1,5 +1,6 @@
 import { SiteNav } from "@/components/site-nav"
-import { Hero } from "@/components/sections/hero"
+import { HeroEcosystem } from "@/components/sections/hero-ecosystem"
+/* Previous hero: import { HeroLegacy } from "@/components/sections/hero" */
 import { LetterPortalTransition } from "@/components/sections/letter-portal-transition"
 import { ScrollingCards } from "@/components/sections/scrolling-cards"
 import { LogoMarquee } from "@/components/sections/logo-marquee"
@@ -22,11 +23,11 @@ export default function Page() {
   return (
     <main className="relative min-h-screen overflow-x-clip bg-black text-foreground">
       <SiteNav />
-      <Hero />
+      <HeroEcosystem />
       <LetterPortalTransition enabled={LETTER_PORTAL_ENABLED} letter="E" />
-      <ScrollingCards />
       <LogoMarquee />
       <Ecosystem />
+      <ScrollingCards />
       <Services />
       <PortfolioAlt />
       <Reels />

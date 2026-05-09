@@ -68,7 +68,6 @@ export function VideoText({ text, src, className }: VideoTextProps) {
       ctx!.font = font
       if (ls) {
         try {
-          // @ts-expect-error - letterSpacing exists at runtime on modern browsers
           ctx!.letterSpacing = ls
         } catch {
           /* older browser fallback */
@@ -93,7 +92,6 @@ export function VideoText({ text, src, className }: VideoTextProps) {
       ctx!.font = font
       if (ls) {
         try {
-          // @ts-expect-error - letterSpacing exists at runtime on modern browsers
           ctx!.letterSpacing = ls
         } catch {
           /* noop */
@@ -132,7 +130,6 @@ export function VideoText({ text, src, className }: VideoTextProps) {
       ctx!.font = cachedFont
       if (cachedLetterSpacing) {
         try {
-          // @ts-expect-error - letterSpacing exists at runtime on modern browsers
           ctx!.letterSpacing = cachedLetterSpacing
         } catch {
           /* noop */
@@ -177,8 +174,8 @@ export function VideoText({ text, src, className }: VideoTextProps) {
 
     function stopLoop() {
       loopActive = false
-      if (useRVFC && rvfcHandle && video!.cancelVideoFrameCallback) {
-        video!.cancelVideoFrameCallback(rvfcHandle)
+      if (useRVFC && rvfcHandle) {
+        video!.cancelVideoFrameCallback!(rvfcHandle)
         rvfcHandle = 0
       }
       if (rafId) {

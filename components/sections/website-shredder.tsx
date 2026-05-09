@@ -14,6 +14,7 @@ export function WebsiteShredder() {
         cardStream?: { destroy?: () => void }
         particleScanner?: { destroy?: () => void }
         particleSystem?: { destroy?: () => void }
+        setScannerScanning?: ((active: boolean) => void) | undefined
       }
       w.cardStream?.destroy?.()
       w.particleScanner?.destroy?.()
